@@ -64,7 +64,7 @@ header li {
     font-size: 3em;
 }
 
-.about, .products, .contact {
+.about, .products, .services, .contact {
     text-align: center;
     padding: 50px 20px;
     background: #fff;
@@ -72,8 +72,30 @@ header li {
     transition: all 0.3s ease-in-out;
 }
 
-.about h2, .products h2, .contact h2 {
+.about h2, .products h2, .services h2, .contact h2 {
     font-size: 2em;
+}
+
+.products ul {
+    list-style: none;
+    padding: 0;
+}
+
+.products li {
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
+.products img {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.service-item {
+    margin: 20px 0;
 }
 
 footer {
@@ -87,7 +109,7 @@ footer {
 
 .social-media img {
     width: 24px;
-    height: 24px;
+    height: auto;
     margin: 0 10px;
     transition: transform 0.3s ease-in-out;
 }
