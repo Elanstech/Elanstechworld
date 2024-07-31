@@ -116,4 +116,15 @@ footer {
 
 .social-media img:hover {
     transform: scale(1.2);
+    .social-media img {
+    width: 24px !important;
+    height: auto !important;
+    margin: 0 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-media img:hover {
+    transform: scale(1.2);
+}
+
 }
