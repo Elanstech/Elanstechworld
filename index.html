@@ -1,4 +1,4 @@
-DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@ DOCTYPE html>
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-color: #f0f2f5;
             color: #333;
             transition: all 0.3s ease-in-out;
         }
@@ -22,10 +22,10 @@ DOCTYPE html>
         }
 
         header {
-            background: #fff;
-            color: #333;
+            background: #4CAF50; /* Modern green color */
+            color: #fff;
             padding: 10px 0;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 3px solid #3e8e41;
             position: fixed;
             width: 100%;
             top: 0;
@@ -34,7 +34,7 @@ DOCTYPE html>
         }
 
         header a {
-            color: #333;
+            color: #fff;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
@@ -55,14 +55,14 @@ DOCTYPE html>
         .logo {
             float: left;
             font-size: 1.5em;
-            color: #333;
+            color: #fff;
         }
 
         .hero {
             text-align: center;
             padding: 100px 20px;
-            background: #eaeaea;
-            color: #333;
+            background: #2196F3; /* Modern blue color */
+            color: white;
             margin-top: 70px;
             transition: all 0.3s ease-in-out;
         }
@@ -82,6 +82,7 @@ DOCTYPE html>
 
         .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2 {
             font-size: 2em;
+            color: #4CAF50;
         }
 
         .products ul {
@@ -107,11 +108,11 @@ DOCTYPE html>
         }
 
         footer {
-            background: #fff;
-            color: #333;
+            background: #4CAF50;
+            color: #fff;
             text-align: center;
             padding: 10px;
-            border-top: 1px solid #eaeaea;
+            border-top: 3px solid #3e8e41;
             transition: all 0.3s ease-in-out;
         }
 
@@ -140,6 +141,7 @@ DOCTYPE html>
         .service-item h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
+            color: #2196F3;
         }
 
         .service-item p {
@@ -162,12 +164,17 @@ DOCTYPE html>
 
         .contact button {
             padding: 10px 20px;
-            background: #3498db;
+            background: #2196F3;
             border: none;
             color: white;
             cursor: pointer;
             border-radius: 4px;
             margin-top: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .contact button:hover {
+            background-color: #1769aa;
         }
     </style>
 </head>
@@ -240,14 +247,14 @@ DOCTYPE html>
             <p>Proudly offering genuine Apple products and services.</p>
         </div>
     </section>
-    
-    <section id="services" class="services">
+        <section id="services" class="services">
         <div class="container">
             <h2>Our Services</h2>
             <div class="service-item">
                 <h3>Buy & Sell</h3>
                 <p>We buy and sell the latest tech gadgets. Get in touch for the best deals.</p>
-            </div class="service-item">
+            </div>
+            <div class="service-item">
                 <h3>Repairs</h3>
                 <p>We offer repair services for all types of devices. Contact us for more information.</p>
             </div>
