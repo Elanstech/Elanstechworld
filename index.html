@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Playfair Display', serif;
@@ -194,14 +195,14 @@
         </div>
     </header>
     
-    <section id="home" class="hero">
+    <section id="home" class="hero" data-aos="fade-up">
         <div class="container">
             <h1>Discover the Latest Tech</h1>
             <p>Explore our collection of open box iPhones, MacBooks, and iPads.</p>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="about" class="about" data-aos="fade-right">
         <div class="container">
             <h2>About Us</h2>
             <p>Welcome to Elan's Tech World, your trusted source for high-quality open box iPhones, laptops, iPads, and Android devices. We specialize in buying and selling top tech products, ensuring that you get the best deals on the market. Our mission is to provide excellent customer service and unbeatable prices on premium tech products.</p>
@@ -211,7 +212,7 @@
         </div>
     </section>
     
-    <section id="products" class="products">
+    <section id="products" class="products" data-aos="zoom-in">
         <div class="container">
             <h2>Our Products</h2>
             <p>Check out our latest products:</p>
@@ -240,7 +241,7 @@
         </div>
     </section>
 
-    <section id="auth-reseller" class="auth-reseller">
+    <section id="auth-reseller" class="auth-reseller" data-aos="fade-left">
         <div class="container">
             <h2>Authorized Apple Service Reseller</h2>
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" style="max-width: 100px; margin-bottom: 10px;">
@@ -248,7 +249,7 @@
         </div>
     </section>
     
-    <section id="services" class="services">
+    <section id="services" class="services" data-aos="fade-right">
         <div class="container">
             <h2>Our Services</h2>
             <div class="service-item">
@@ -266,7 +267,7 @@
         </div>
     </section>
     
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" data-aos="fade-up">
         <div class="container">
             <h2>Contact Us</h2>
             <p>Have questions or want to make a purchase? Reach out to us via direct message on Instagram, or use the form below:</p>
@@ -291,5 +292,10 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
