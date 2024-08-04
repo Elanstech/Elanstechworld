@@ -6,6 +6,7 @@
     <title>Elan's Tech World</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.css">
     <style>
         body {
             font-family: 'Playfair Display', serif;
@@ -80,11 +81,6 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .hero h1 {
-            margin: 0;
-            font-size: 3em;
-        }
-
         .promotion-section {
             background: #fff3e0; /* Light orange color */
             padding: 50px 20px;
@@ -100,7 +96,7 @@
             font-size: 1.5em;
         }
 
-        .about, .products, .auth-reseller, .services, .contact {
+        .about, .products, .auth-reseller, .services, .contact, .instagram-section {
             text-align: center;
             padding: 50px 20px;
             background: #fff;
@@ -108,7 +104,7 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2 {
+        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .instagram-section h2 {
             font-size: 2em;
             color: #1e88e5; /* Darker blue color */
         }
@@ -226,7 +222,7 @@
         Promotion: Free AirPods with a MacBook Pro purchase for $1000, and an iPhone 14 Pro Max for $750 with a free AirTag!
     </div>
     
-    <section id="home" class="hero" data-aos="fade-up">
+    <section id="home" class="hero jarallax" data-speed="0.5" style="background-image: url('path_to_your_image.jpg');">
         <div class="container">
             <h1>Discover the Latest Tech</h1>
             <p>Explore our collection of open box iPhones, MacBooks, and iPads.</p>
@@ -235,9 +231,18 @@
 
     <section id="promotion" class="promotion-section" data-aos="zoom-in">
         <div class="container">
-            <h2>Special Promotion</h2>
-            <p>Free AirPods with a MacBook Pro purchase for $1000</p>
+            <h2>Special Promotion</h2
+                    <p>Free AirPods with a MacBook Pro purchase for $1000</p>
             <p>iPhone 14 Pro Max for $750 with a free AirTag!</p>
+            <div id="countdown">
+                <h3>Hurry up! Offer ends in:</h3>
+                <div id="timer">
+                    <span id="days"></span> days 
+                    <span id="hours"></span> hours 
+                    <span id="minutes"></span> minutes 
+                    <span id="seconds"></span> seconds
+                </div>
+            </div>
         </div>
     </section>
 
@@ -328,6 +333,16 @@
         </div>
     </section>
     
+    <section id="instagram" class="instagram-section" data-aos="fade-up">
+        <div class="container">
+            <h2>Follow Us on Instagram</h2>
+            <div class="instagram-feed">
+                <!-- Add your Lightwidget embed code here -->
+                <iframe src="//lightwidget.com/widgets/YOUR_WIDGET_CODE.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact" data-aos="fade-up">
         <div class="container">
             <h2>Contact Us</h2>
@@ -355,9 +370,37 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.min.js"></script>
     <script>
         AOS.init();
+        jarallax(document.querySelectorAll('.jarallax'), {
+            speed: 0.5
+        });
+
+        // Countdown Timer Script
+        var countDownDate = new Date("        Aug,30 2024 23:59:59").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
 </body>
 </html>
+
 
