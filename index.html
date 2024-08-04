@@ -16,15 +16,16 @@
             color: #333;
             transition: all 0.3s ease-in-out;
         }
-
+        html {
+            scroll-behavior: smooth;
+        }
         .container {
             width: 80%;
             margin: auto;
             overflow: hidden;
         }
-
         header {
-            background: #e3f2fd; /* Light blue color */
+            background: #e3f2fd;
             color: #333;
             padding: 10px 0;
             border-bottom: 3px solid #bbdefb;
@@ -34,7 +35,6 @@
             z-index: 1000;
             transition: all 0.3s ease-in-out;
         }
-
         header a {
             color: #333;
             text-decoration: none;
@@ -42,26 +42,22 @@
             font-size: 16px;
             transition: color 0.3s ease-in-out;
         }
-
         header ul {
             padding: 0;
             list-style: none;
             text-align: right;
         }
-
         header li {
             display: inline;
             padding: 0 20px;
         }
-
         .logo {
             float: left;
             font-size: 1.5em;
             color: #333;
         }
-
         .promotion-banner {
-            background: #ffeb3b; /* Yellow color */
+            background: #ffeb3b;
             color: #333;
             text-align: center;
             padding: 10px;
@@ -71,31 +67,26 @@
             top: 50px;
             z-index: 1000;
         }
-
         .hero {
             text-align: center;
             padding: 100px 20px;
-            background: #bbdefb; /* Light blue color */
+            background: #bbdefb;
             color: #333;
             margin-top: 100px;
             transition: all 0.3s ease-in-out;
         }
-
         .promotion-section {
-            background: #fff3e0; /* Light orange color */
+            background: #fff3e0;
             padding: 50px 20px;
             text-align: center;
         }
-
         .promotion-section h2 {
             font-size: 2.5em;
-            color: #ff9800; /* Orange color */
+            color: #ff9800;
         }
-
         .promotion-section p {
             font-size: 1.5em;
         }
-
         .about, .products, .auth-reseller, .services, .contact, .instagram-section {
             text-align: center;
             padding: 50px 20px;
@@ -103,34 +94,28 @@
             margin-top: 20px;
             transition: all 0.3s ease-in-out;
         }
-
         .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .instagram-section h2 {
             font-size: 2em;
-            color: #1e88e5; /* Darker blue color */
+            color: #1e88e5;
         }
-
         .products ul {
             list-style: none;
             padding: 0;
         }
-
         .products li {
             display: inline-block;
             margin: 10px;
             text-align: center;
         }
-
         .products img {
             max-width: 150px;
             display: block;
             margin: 0 auto;
             border-radius: 8px;
         }
-
         .service-item {
             margin: 20px 0;
         }
-
         footer {
             background: #e3f2fd;
             color: #333;
@@ -139,45 +124,37 @@
             border-top: 3px solid #bbdefb;
             transition: all 0.3s ease-in-out;
         }
-
         .social-media img {
             width: 24px !important;
             height: auto !important;
             margin: 0 10px;
             transition: transform 0.3s ease-in-out;
         }
-
         .social-media img:hover {
             transform: scale(1.2);
         }
-
         .hero p {
             font-size: 1.2em;
         }
-
         .services .service-item {
             display: inline-block;
             width: 30%;
             margin: 15px;
             text-align: left;
         }
-
         .service-item h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
             color: #1e88e5;
         }
-
         .service-item p {
             font-size: 1em;
         }
-
         .contact form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .contact input, .contact textarea {
             width: 80%;
             padding: 10px;
@@ -185,7 +162,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
         .contact button {
             padding: 10px 20px;
             background: #1e88e5;
@@ -196,9 +172,21 @@
             margin-top: 10px;
             transition: background-color 0.3s ease-in-out;
         }
-
         .contact button:hover {
             background-color: #1565c0;
+        }
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #1e88e5;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -232,17 +220,8 @@
     <section id="promotion" class="promotion-section" data-aos="zoom-in">
         <div class="container">
             <h2>Special Promotion</h2>
-                    <p>Free AirPods with a MacBook Pro purchase for $1000</p>
+            <p>Free AirPods with a MacBook Pro purchase for $1000</p>
             <p>iPhone 14 Pro Max for $750 with a free AirTag!</p>
-            <div id="countdown">
-                <h3>Hurry up! Offer ends in:</h3>
-                <div id="timer">
-                    <span id="days"></span> days 
-                    <span id="hours"></span> hours 
-                    <span id="minutes"></span> minutes 
-                    <span id="seconds"></span> seconds
-                </div>
-            </div>
         </div>
     </section>
 
@@ -332,7 +311,17 @@
             </div>
         </div>
     </section>
-  <section id="contact" class="contact" data-aos="fade-up">
+    
+    <section id="instagram" class="instagram-section" data-aos="fade-up">
+        <div class="container">
+            <h2>Follow Us on Instagram</h2>
+            <div class="instagram-feed">
+                <!-- Add your Instagram embed code here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact" data-aos="fade-up">
         <div class="container">
             <h2>Contact Us</h2>
             <p>Have questions or want to make a purchase? Reach out to us via direct message on Instagram, or use the form below:</p>
@@ -358,6 +347,8 @@
         </div>
     </footer>
 
+    <div id="back-to-top" onclick="scrollToTop()">↑</div>
+
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.min.js"></script>
     <script>
@@ -366,30 +357,18 @@
             speed: 0.5
         });
 
-        // Countdown Timer Script
-        var countDownDate = new Date("        Aug,30 2024 23:59:59").getTime();
-
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
-
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("timer").innerHTML = "EXPIRED";
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("back-to-top").style.display = "block";
+            } else {
+                document.getElementById("back-to-top").style.display = "none";
             }
-        }, 1000);
+        };
+
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
     </script>
 </body>
 </html>
-
 
