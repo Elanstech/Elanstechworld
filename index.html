@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
+            background-color: #f9f9f9;
             color: #333;
             transition: all 0.3s ease-in-out;
         }
 
         .container {
-            width: 90%;
+            width: 80%;
             margin: auto;
             overflow: hidden;
         }
 
         header {
-            background: #fff;
-            color: #333;
+            background: #0d47a1; /* Dark blue color */
+            color: #fff;
             padding: 10px 0;
-            border-bottom: 2px solid #eaeaea;
+            border-bottom: 3px solid #1976d2;
             position: fixed;
             width: 100%;
             top: 0;
@@ -35,7 +35,7 @@
         }
 
         header a {
-            color: #333;
+            color: #fff;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
@@ -56,13 +56,13 @@
         .logo {
             float: left;
             font-size: 1.5em;
-            color: #333;
+            color: #fff;
         }
 
         .hero {
             text-align: center;
-            padding: 150px 20px;
-            background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center/cover;
+            padding: 100px 20px;
+            background: url('https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/hero-bg.jpg') no-repeat center center/cover;
             color: #fff;
             margin-top: 70px;
             transition: all 0.3s ease-in-out;
@@ -70,14 +70,14 @@
 
         .hero h1 {
             margin: 0;
-            font-size: 4em;
+            font-size: 3em;
         }
 
         .hero p {
             font-size: 1.2em;
         }
 
-        .about, .products, .auth-reseller, .services, .contact, .testimonials, .promotion {
+        .about, .products, .auth-reseller, .services, .contact, .testimonials {
             text-align: center;
             padding: 50px 20px;
             background: #fff;
@@ -85,10 +85,9 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .testimonials h2, .promotion h2 {
-            font-size: 2.5em;
-            color: #007bff; /* Modern blue color */
-            margin-bottom: 20px;
+        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .testimonials h2 {
+            font-size: 2em;
+            color: #1e88e5; /* Darker blue color */
         }
 
         .products ul {
@@ -98,16 +97,15 @@
 
         .products li {
             display: inline-block;
-            margin: 20px;
+            margin: 10px;
             text-align: center;
         }
 
         .products img {
-            max-width: 200px;
+            max-width: 150px;
             display: block;
             margin: 0 auto;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .service-item {
@@ -115,11 +113,11 @@
         }
 
         footer {
-            background: #fff;
-            color: #333;
+            background: #0d47a1;
+            color: #fff;
             text-align: center;
-            padding: 20px;
-            border-top: 2px solid #eaeaea;
+            padding: 10px;
+            border-top: 3px solid #1976d2;
             transition: all 0.3s ease-in-out;
         }
 
@@ -142,13 +140,13 @@
         }
 
         .service-item h3 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             margin-bottom: 10px;
-            color: #007bff;
+            color: #1e88e5;
         }
 
         .service-item p {
-            font-size: 1.1em;
+            font-size: 1em;
         }
 
         .contact form {
@@ -159,15 +157,15 @@
 
         .contact input, .contact textarea {
             width: 80%;
-            padding: 15px;
-            margin: 10px 0;
+            padding: 10px;
+            margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
 
         .contact button {
-            padding: 15px 30px;
-            background: #007bff;
+            padding: 10px 20px;
+            background: #1e88e5;
             border: none;
             color: white;
             cursor: pointer;
@@ -177,16 +175,15 @@
         }
 
         .contact button:hover {
-            background-color: #0056b3;
+            background-color: #1565c0;
         }
 
-        .promotion-banner {
-            background: #ff9800; /* Promotion banner color */
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 1.2em;
-            font-weight: bold;
+        .testimonial-item {
+            background: #f1f1f1;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            text-align: left;
         }
     </style>
 </head>
@@ -200,15 +197,12 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <div class="promotion-banner" data-aos="fade-down">
-        🎉 Special Promotion: Buy an iPhone 14 Pro Max, get a free AirTag! Buy a MacBook Pro, get free AirPods! Limited time offer! 🎉
-    </div>
     
     <section id="home" class="hero" data-aos="fade-up">
         <div class="container">
@@ -247,26 +241,12 @@
                 <li>
                     <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" alt="13-inch MacBook Air">
                     <p>13-inch MacBook Air - From $850</p>
-                </li>
+               </li>
                 <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
+                     <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
                     <p>13-inch MacBook Pro - From $950</p>
                 </li>
             </ul>
-        </div>
-    </section>
-
-    <section id="promotion" class="promotion" data-aos="fade-up">
-        <div class="container">
-            <h2>Special Promotions</h2>
-            <div class="promotion-item">
-                <h3>Buy an iPhone 14 Pro Max, Get a Free AirTag!</h3>
-                <p>For a limited time, purchase an iPhone 14 Pro Max for $630 and receive a complimentary AirTag. Don't miss out on this exclusive offer!</p>
-            </div>
-            <div class="promotion-item">
-                <h3>Buy a MacBook Pro, Get Free AirPods!</h3>
-                <p>Get the best of both worlds with our special offer. Purchase a 13-inch MacBook Pro for $950 and receive a pair of AirPods for free. Hurry, offer valid while supplies last!</p>
-            </div>
         </div>
     </section>
 
@@ -277,32 +257,26 @@
             <p>Proudly offering genuine Apple products and services.</p>
         </div>
     </section>
-    <section id="products" class="products" data-aos="zoom-in">
+
+    <section id="testimonials" class="testimonials" data-aos="fade-up">
         <div class="container">
-            <h2>Our Products</h2>
-            <p>Check out our latest products:</p>
-            <ul>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone14pro.jpeg" alt="iPhone 14 Pro">
-                    <p>iPhone 14 Pro - From $630</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone12promax.jpeg" alt="iPhone 12 Pro Max">
-                    <p>iPhone 12 Pro Max - From $500</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone11.jpg" alt="iPhone 11">
-                    <p>iPhone 11 - From $250</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" alt="13-inch MacBook Air">
-                    <p>13-inch MacBook Air - From $850</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
-                    <p>13-inch MacBook Pro - From $950</p>
-                </li>
-            </ul>
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-item">
+                <p>"Elan's Tech World provided me with an exceptional service. I bought an iPhone 12 Pro Max and it was like brand new. The staff was very helpful and guided me through the entire process. Highly recommended for anyone looking for great deals on high-quality tech!"</p>
+                <p><strong>- Daniel Matatov</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"I got my MacBook Air from Elan's Tech World and I'm extremely happy with the purchase. The customer service was outstanding and the prices are unbeatable. They even helped me set up the laptop and transfer my data. I will definitely be coming back for all my tech needs."</p>
+                <p><strong>- Eddy Shakarov</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"Elan's Tech World is my go-to place for all my tech needs. The staff is very knowledgeable and they always have great deals on the latest gadgets. I recently bought an iPad and the whole experience was seamless. The quality of their products and service is top-notch."</p>
+                <p><strong>- Steve Inoyatov</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
+                <p><strong>- Sarah Boroukhova</strong></p>
+            </div>
         </div>
     </section>
 
@@ -323,6 +297,7 @@
             </div>
         </div>
     </section>
+    
     <section id="contact" class="contact" data-aos="fade-up">
         <div class="container">
             <h2>Contact Us</h2>
@@ -355,4 +330,3 @@
     </script>
 </body>
 </html>
-                        
