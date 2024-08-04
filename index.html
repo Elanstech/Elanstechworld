@@ -6,105 +6,189 @@
     <title>Elan's Tech World</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            transition: all 0.3s ease-in-out;
         }
 
-        body {
-            overflow-y: hidden; /* Hide overflow initially */
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
         }
 
         header {
-            background: #ffffff;
+            background: #e3f2fd; /* Light blue color */
             color: #333;
-            padding: 20px 0;
-            border-bottom: 1px solid #e0e0e0;
+            padding: 10px 0;
+            border-bottom: 3px solid #bbdefb;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
         }
 
-        .logo img {
-            height: 50px;
-            vertical-align: middle;
-        }
-
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header nav ul {
-            display: flex;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        header nav ul li {
-            margin-left: 20px;
-        }
-
-        header nav ul li a {
-            text-decoration: none;
+        header a {
             color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
             font-size: 16px;
             transition: color 0.3s ease-in-out;
         }
 
-        header nav ul li a:hover {
-            color: #1e88e5;
+        header ul {
+            padding: 0;
+            list-style: none;
+            text-align: right;
+        }
+
+        header li {
+            display: inline;
+            padding: 0 20px;
+        }
+
+        .logo {
+            float: left;
+            font-size: 1.5em;
+            color: #333;
         }
 
         .hero {
             text-align: center;
-            padding: 150px 20px;
-            background: #f1f1f1;
+            padding: 100px 20px;
+            background: #bbdefb; /* Light blue color */
             color: #333;
-            margin-top: 80px;
+            margin-top: 70px;
             transition: all 0.3s ease-in-out;
         }
 
         .hero h1 {
             margin: 0;
-            font-size: 3.5em;
-            font-weight: bold;
+            font-size: 3em;
+        }
+
+        .about, .products, .auth-reseller, .services, .contact {
+            text-align: center;
+            padding: 50px 20px;
+            background: #fff;
+            margin-top: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2 {
+            font-size: 2em;
+            color: #1e88e5; /* Darker blue color */
+        }
+
+        .products ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .products li {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .products img {
+            max-width: 150px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+        }
+
+        .service-item {
+            margin: 20px 0;
+        }
+
+        footer {
+            background: #e3f2fd;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            border-top: 3px solid #bbdefb;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .social-media img {
+            width: 24px !important;
+            height: auto !important;
+            margin: 0 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-media img:hover {
+            transform: scale(1.2);
         }
 
         .hero p {
             font-size: 1.2em;
-            margin-top: 20px;
         }
 
-        section {
-            text-align: center;
-            padding: 60px 20px;
-            background: #fff;
-            margin-top: 20px;
-            transition: all 0.3s ease-in-out;
+        .services .service-item {
+            display: inline-block;
+            width: 30%;
+            margin: 15px;
+            text-align: left;
+        }
+
+        .service-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #1e88e5;
+        }
+
+        .service-item p {
+            font-size: 1em;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact input, .contact textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact button {
+            padding: 10px 20px;
+            background: #1e88e5;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .contact button:hover {
+            background-color: #1565c0;
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <a href="#home"><img src="https://your-logo-url.com/logo.png" alt="Elan's Tech World Logo"></a>
-            </div>
+            <div class="logo">Elan's Tech World</div>
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -134,96 +218,56 @@
             <p>Check out our latest products:</p>
             <ul>
                 <li>
-                    <a href="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone14pro.jpeg" data-lightbox="products" data-title="iPhone 14 Pro - From $630">
-                        <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone14pro.jpeg" alt="iPhone 14 Pro">
-                    </a>
+                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone14pro.jpeg" alt="iPhone 14 Pro">
                     <p>iPhone 14 Pro - From $630</p>
                 </li>
                 <li>
-                    <a href="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone12promax.jpeg" data-lightbox="products" data-title="iPhone 12 Pro Max - From $500">
-                        <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone12promax.jpeg" alt="iPhone 12 Pro Max">
-                    </a>
+                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone12promax.jpeg" alt="iPhone 12 Pro Max">
                     <p>iPhone 12 Pro Max - From $500</p>
                 </li>
                 <li>
-                    <a href="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone11.jpg" data-lightbox="products" data-title="iPhone 11 - From $250">
-                        <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone11.jpg" alt="iPhone 11">
-                    </a>
+                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone11.jpg" alt="iPhone 11">
                     <p>iPhone 11 - From $250</p>
                 </li>
                 <li>
-                    <a href="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" data-lightbox="products" data-title="13-inch MacBook Air - From $850">
-                        <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" alt="13-inch MacBook Air">
-                    </a>
+                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" alt="13-inch MacBook Air">
                     <p>13-inch MacBook Air - From $850</p>
                 </li>
                 <li>
-                    <a href="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" data-lightbox="products" data-title="13-inch MacBook Pro - From $950">
-                        <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
-                    </a>
+                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
                     <p>13-inch MacBook Pro - From $950</p>
                 </li>
             </ul>
         </div>
     </section>
 
-    <section id="promotions" class="promotion" data-aos="fade-up">
-        <div class="container">
-            <h2>Special Promotions</h2>
-            <div class="promotion-item">
-                <h3>MacBook Pro</h3>
-                <p>Purchase a MacBook Pro for $1000 and get a pair of free AirPods!</p>
-            </div>
-            <div class="promotion-item">
-                <h3>iPhone 14 Pro Max</h3>
-                <p>Buy an iPhone 14 Pro Max for $750 and receive a free AirTag!</p>
-            </div>
-        </div>
-    </section>
-
     <section id="auth-reseller" class="auth-reseller" data-aos="fade-left">
         <div class="container">
             <h2>Authorized Apple Service Reseller</h2>
-            <img src="https://upload.wikimedia.org/w            ikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" style="max-width: 100px; margin-bottom: 10px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" style="max-width: 100px; margin-bottom: 10px;">
             <p>Proudly offering genuine Apple products and services.</p>
         </div>
-    </section>
-
     <section id="testimonials" class="testimonials" data-aos="fade-up">
-        <div class="container">
-            <h2>What Our Customers Say</h2>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide testimonial-item">
-                        <p>"Elan's Tech World provided me with an exceptional service. I bought an iPhone 12 Pro Max and it was like brand new. The staff was very helpful and guided me through the entire process. Highly recommended for anyone looking for great deals on high-quality tech!"</p>
-                        <p><strong>- Daniel Matatov</strong></p>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <p>"I got my MacBook Air from Elan's Tech World and I'm extremely happy with the purchase. The customer service was outstanding and the prices are unbeatable. They even helped me set up the laptop and transfer my data. I will definitely be coming back for all my tech needs."</p>
-                        <p><strong>- Eddy Shakarov</strong></p>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <p>"Elan's Tech World is my go-to place for all my tech needs. The staff is very knowledgeable and they always have great deals on the latest gadgets. I recently bought an iPad and the whole experience was seamless. The quality of their products and service is top-notch."</p>
-                        <p><strong>- Steve Inoyatov</strong></p>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
-                        <p><strong>- Sarah Boroukhova</strong></p>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <p>"Excellent service and great products! I am very satisfied with my purchase and will definitely be coming back for more."</p>
-                        <p><strong>- Alex Johnson</strong></p>
-                    </div>
-                    <div class="swiper-slide testimonial-item">
-                        <p>"Highly recommend Elan's Tech World for anyone looking for high-quality tech at great prices. The team is very helpful and professional."</p>
-                        <p><strong>- Maria Garcia</strong></p>
-                    </div>
-                </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
+    <div class="container">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-item">
+            <p>"Elan's Tech World provided me with an exceptional service. I bought an iPhone 12 Pro Max and it was like brand new. The staff was very helpful and guided me through the entire process. Highly recommended for anyone looking for great deals on high-quality tech!"</p>
+            <p><strong>- Daniel Matatov</strong></p>
         </div>
-    </section>
+        <div class="testimonial-item">
+            <p>"I got my MacBook Air from Elan's Tech World and I'm extremely happy with the purchase. The customer service was outstanding and the prices are unbeatable. They even helped me set up the laptop and transfer my data. I will definitely be coming back for all my tech needs."</p>
+            <p><strong>- Eddy Shakarov</strong></p>
+        </div>
+        <div class="testimonial-item">
+            <p>"Elan's Tech World is my go-to place for all my tech needs. The staff is very knowledgeable and they always have great deals on the latest gadgets. I recently bought an iPad and the whole experience was seamless. The quality of their products and service is top-notch."</p>
+            <p><strong>- Steve Inoyatov</strong></p>
+        </div>
+        <div class="testimonial-item">
+            <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
+            <p><strong>- Sarah Boroukhova</strong></p>
+        </div>
+    </div>
+</section>
 
     <section id="services" class="services" data-aos="fade-right">
         <div class="container">
@@ -242,24 +286,6 @@
             </div>
         </div>
     </section>
-
-    <section id="faq" class="faq" data-aos="fade-up">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>What is an open box product?</h3>
-                <p>Open box products are items that have been returned by customers or used as display models. They are thoroughly inspected, tested, and repackaged to ensure they meet our high standards of quality.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer warranties on your products?</h3>
-                <p>Yes, we offer a limited warranty on all our products. The duration and terms of the warranty vary depending on the product. Please contact us for specific warranty information.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I return a product if I'm not satisfied?</h3>
-                <p>We offer a 30-day return policy for most products. If you're not satisfied with your purchase, please contact us within 30 days to initiate a return. The product must be in its original condition and packaging.</p>
-            </div>
-        </div>
-    </section>
     
     <section id="contact" class="contact" data-aos="fade-up">
         <div class="container">
@@ -273,13 +299,6 @@
                 <textarea name="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
-            <div class="newsletter">
-                <h3>Subscribe to our Newsletter</h3>
-                <form action="https://yournewsletterprovider.com/subscribe" method="post">
-                    <input type="email" name="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
         </div>
     </section>
 
@@ -294,43 +313,9 @@
         </div>
     </footer>
 
-    <div id="chatbot">
-        <div id="chatbox"></div>
-        <input type="text" id="userInput" placeholder="Type your message...">
-        <button id="sendButton">Send</button>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         AOS.init();
-
-        var swiper = new Swiper('.swiper-container', {
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Enable scrolling when a header link is clicked
-            const headerLinks = document.querySelectorAll('header nav ul li a');
-
-            headerLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-
-                    // Scroll to the target element
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-
-                    // Enable body scrolling
-                    document.body.style.overflowY = 'scroll';
-                });
-            });
-        });
     </script>
 </body>
 </html>
