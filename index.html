@@ -240,6 +240,68 @@
         .faq-item p {
             font-size: 1em;
         }
+
+        .product-3d-viewer {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .product-3d-viewer iframe {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+        }
+
+        .product-ar-viewer {
+            text-align: center;
+            margin: 20px 0;
+            background: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .product-ar-viewer .ar-button {
+            padding: 10px 20px;
+            background: #1e88e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .product-ar-viewer .ar-button:hover {
+            background-color: #1565c0;
+        }
+        
+        .newsletter {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+        
+        .newsletter input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 80%;
+        }
+        
+        .newsletter button {
+            padding: 10px 20px;
+            background: #1e88e5;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        .newsletter button:hover {
+            background-color: #1565c0;
+        }
     </style>
 </head>
 <body>
@@ -256,7 +318,8 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#products">Products</a></li>
-                    <li><a href="#services">Services</a></li>
+                    <li><a href="#services">Services
+</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -309,6 +372,15 @@
                 </li>
             </ul>
         </div>
+        <div class="product-3d-viewer">
+            <h3>Explore Our Products in 3D</h3>
+            <iframe src="https://sketchfab.com/models/YOUR_3D_MODEL/embed" frameborder="0" allow="autoplay; fullscreen; vr" allowfullscreen></iframe>
+        </div>
+        <div class="product-ar-viewer">
+            <h3>See Our Products in Your Space</h3>
+            <p>Use your phone to see our products in augmented reality!</p>
+            <a href="https://example.com/ar-view" target="_blank" class="ar-button">Try AR Preview</a>
+        </div>
     </section>
 
     <section id="promotions" class="promotion" data-aos="fade-up">
@@ -351,6 +423,14 @@
             <div class="testimonial-item">
                 <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
                 <p><strong>- Sarah Boroukhova</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"Excellent service and great products! I am very satisfied with my purchase and will definitely come back for more."</p>
+                <p><strong>- Alex Johnson</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"Highly recommend Elan's Tech World for anyone looking for high-quality tech at great prices. The team is very helpful and professional."</p>
+                <p><strong>- Maria Garcia</strong></p>
             </div>
         </div>
     </section>
@@ -403,6 +483,13 @@
                 <textarea name="message" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
+            <div class="newsletter">
+                <h3>Subscribe to our Newsletter</h3>
+                <form action="https://yournewsletterprovider.com/subscribe" method="post">
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -420,6 +507,21 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+    <!-- AI Chatbot Widget -->
+    <script src="https://cdn.botpress.cloud/webchat/v0/inject.js"></script>
+    <script>
+        window.botpressWebChat.init({
+            botId: 'YOUR_BOT_ID',
+            hostUrl: 'https://cdn.botpress.cloud/webchat/v0',
+            messagingUrl: 'https://messaging.botpress.cloud',
+            enableReset: true,
+            enableTranscriptDownload: true,
+            showMessageTimestamp: true,
+            botName: 'Tech Assistant',
+            botAvatarUrl: 'https://example.com/avatar.png',
+            botDescription: 'Ask me anything about our products!',
+        });
     </script>
 </body>
 </html>
