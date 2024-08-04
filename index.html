@@ -59,18 +59,45 @@
             color: #333;
         }
 
+        .promotion-banner {
+            background: #ffeb3b; /* Yellow color */
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+            position: fixed;
+            width: 100%;
+            top: 50px;
+            z-index: 1000;
+        }
+
         .hero {
             text-align: center;
             padding: 100px 20px;
             background: #bbdefb; /* Light blue color */
             color: #333;
-            margin-top: 70px;
+            margin-top: 100px;
             transition: all 0.3s ease-in-out;
         }
 
         .hero h1 {
             margin: 0;
             font-size: 3em;
+        }
+
+        .promotion-section {
+            background: #fff3e0; /* Light orange color */
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .promotion-section h2 {
+            font-size: 2.5em;
+            color: #ff9800; /* Orange color */
+        }
+
+        .promotion-section p {
+            font-size: 1.5em;
         }
 
         .about, .products, .auth-reseller, .services, .contact {
@@ -194,11 +221,23 @@
             </nav>
         </div>
     </header>
+
+    <div class="promotion-banner">
+        Promotion: Free AirPods with a MacBook Pro purchase for $1000, and an iPhone 14 Pro Max for $750 with a free AirTag!
+    </div>
     
     <section id="home" class="hero" data-aos="fade-up">
         <div class="container">
             <h1>Discover the Latest Tech</h1>
             <p>Explore our collection of open box iPhones, MacBooks, and iPads.</p>
+        </div>
+    </section>
+
+    <section id="promotion" class="promotion-section" data-aos="zoom-in">
+        <div class="container">
+            <h2>Special Promotion</h2>
+            <p>Free AirPods with a MacBook Pro purchase for $1000</p>
+            <p>iPhone 14 Pro Max for $750 with a free AirTag!</p>
         </div>
     </section>
 
@@ -247,27 +286,29 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" style="max-width: 100px; margin-bottom: 10px;">
             <p>Proudly offering genuine Apple products and services.</p>
         </div>
+    </section>
+
     <section id="testimonials" class="testimonials" data-aos="fade-up">
-    <div class="container">
-        <h2>What Our Customers Say</h2>
-        <div class="testimonial-item">
-            <p>"Elan's Tech World provided me with an exceptional service. I bought an iPhone 12 Pro Max and it was like brand new. The staff was very helpful and guided me through the entire process. Highly recommended for anyone looking for great deals on high-quality tech!"</p>
-            <p><strong>- Daniel Matatov</strong></p>
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-item">
+                <p>"Elan's Tech World provided me with an exceptional service. I bought an iPhone 12 Pro Max and it was like brand new. The staff was very helpful and guided me through the entire process. Highly recommended for anyone looking for great deals on high-quality tech!"</p>
+                <p><strong>- Daniel Matatov</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"I got my MacBook Air from Elan's Tech World and I'm extremely happy with the purchase. The customer service was outstanding and the prices are unbeatable. They even helped me set up the laptop and transfer my data. I will definitely be coming back for all my tech needs."</p>
+                <p><strong>- Eddy Shakarov</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"Elan's Tech World is my go-to place for all my tech needs. The staff is very knowledgeable and they always have great deals on the latest gadgets. I recently bought an iPad and the whole experience was seamless. The quality of their products and service is top-notch."</p>
+                <p><strong>- Steve Inoyatov</strong></p>
+            </div>
+            <div class="testimonial-item">
+                <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
+                <p><strong>- Sarah Boroukhova</strong></p>
+            </div>
         </div>
-        <div class="testimonial-item">
-            <p>"I got my MacBook Air from Elan's Tech World and I'm extremely happy with the purchase. The customer service was outstanding and the prices are unbeatable. They even helped me set up the laptop and transfer my data. I will definitely be coming back for all my tech needs."</p>
-            <p><strong>- Eddy Shakarov</strong></p>
-        </div>
-        <div class="testimonial-item">
-            <p>"Elan's Tech World is my go-to place for all my tech needs. The staff is very knowledgeable and they always have great deals on the latest gadgets. I recently bought an iPad and the whole experience was seamless. The quality of their products and service is top-notch."</p>
-            <p><strong>- Steve Inoyatov</strong></p>
-        </div>
-        <div class="testimonial-item">
-            <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
-            <p><strong>- Sarah Boroukhova</strong></p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <section id="services" class="services" data-aos="fade-right">
         <div class="container">
@@ -319,3 +360,4 @@
     </script>
 </body>
 </html>
+
