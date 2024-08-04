@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Playfair Display', serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
@@ -23,10 +23,10 @@
         }
 
         header {
-            background: #0d47a1; /* Dark blue color */
-            color: #fff;
+            background: #e3f2fd; /* Light blue color */
+            color: #333;
             padding: 10px 0;
-            border-bottom: 3px solid #1976d2;
+            border-bottom: 3px solid #bbdefb;
             position: fixed;
             width: 100%;
             top: 0;
@@ -35,7 +35,7 @@
         }
 
         header a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
@@ -56,14 +56,14 @@
         .logo {
             float: left;
             font-size: 1.5em;
-            color: #fff;
+            color: #333;
         }
 
         .hero {
             text-align: center;
             padding: 100px 20px;
-            background: url('https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/hero-bg.jpg') no-repeat center center/cover;
-            color: #fff;
+            background: #bbdefb; /* Light blue color */
+            color: #333;
             margin-top: 70px;
             transition: all 0.3s ease-in-out;
         }
@@ -113,11 +113,11 @@
         }
 
         footer {
-            background: #0d47a1;
-            color: #fff;
+            background: #e3f2fd;
+            color: #333;
             text-align: center;
             padding: 10px;
-            border-top: 3px solid #1976d2;
+            border-top: 3px solid #bbdefb;
             transition: all 0.3s ease-in-out;
         }
 
@@ -185,6 +185,21 @@
             border-radius: 8px;
             text-align: left;
         }
+
+        .promotion {
+            background: #bbdefb; /* Light blue color */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .promotion h3 {
+            color: #1e88e5; /* Darker blue color */
+        }
+
+        .promotion p {
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -241,12 +256,26 @@
                 <li>
                     <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" alt="13-inch MacBook Air">
                     <p>13-inch MacBook Air - From $850</p>
-               </li>
+                </li>
                 <li>
-                     <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
+                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
                     <p>13-inch MacBook Pro - From $950</p>
                 </li>
             </ul>
+        </div>
+    </section>
+
+    <section id="promotions" class="promotion" data-aos="fade-up">
+        <div class="container">
+            <h2>Special Promotions</h2>
+            <div class="promotion-item">
+                <h3>MacBook Pro</h3>
+                <p>Purchase a MacBook Pro for $1000 and get a pair of free AirPods!</p>
+            </div>
+            <div class="promotion-item">
+                <h3>iPhone 14 Pro Max</h3>
+                <p>Buy an iPhone 14 Pro Max for $750 and receive a free AirTag!</p>
+            </div>
         </div>
     </section>
 
@@ -330,3 +359,4 @@
     </script>
 </body>
 </html>
+
