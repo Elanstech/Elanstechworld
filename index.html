@@ -59,6 +59,32 @@
             color: #333;
         }
 
+        .promo-banner {
+            background: #1e88e5;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.5em;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1100;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .promo-banner .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
         .hero {
             text-align: center;
             padding: 100px 20px;
@@ -77,7 +103,7 @@
             font-size: 1.2em;
         }
 
-        .about, .products, .auth-reseller, .services, .contact, .testimonials {
+        .about, .products, .auth-reseller, .services, .contact, .testimonials, .faq {
             text-align: center;
             padding: 50px 20px;
             background: #fff;
@@ -85,7 +111,7 @@
             transition: all 0.3s ease-in-out;
         }
 
-        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .testimonials h2 {
+        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .testimonials h2, .faq h2 {
             font-size: 2em;
             color: #1e88e5; /* Darker blue color */
         }
@@ -200,9 +226,28 @@
         .promotion p {
             font-size: 1.2em;
         }
+
+        .faq-item {
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .faq-item h3 {
+            font-size: 1.5em;
+            color: #1e88e5;
+        }
+
+        .faq-item p {
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
+    <div class="promo-banner" id="promoBanner">
+        <p>Special Promotion: MacBook Pro with free AirPods for $1000 or iPhone 14 Pro Max with a free AirTag for $750!</p>
+        <button class="close-btn" onclick="document.getElementById('promoBanner').style.display='none'">Close</button>
+    </div>
+
     <header>
         <div class="container">
             <div class="logo">Elan's Tech World</div>
@@ -213,6 +258,7 @@
                     <li><a href="#products">Products</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -323,6 +369,24 @@
             <div class="service-item">
                 <h3>Support</h3>
                 <p>Need help? Our support team is here to assist you with any tech issues.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq" data-aos="fade-up">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>What is an open box product?</h3>
+                <p>Open box products are items that have been returned by customers or used as display models. They are thoroughly inspected, tested, and repackaged to ensure they meet our high standards of quality.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer warranties on your products?</h3>
+                <p>Yes, we offer a limited warranty on all our products. The duration and terms of the warranty vary depending on the product. Please contact us for specific warranty information.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I return a product if I'm not satisfied?</h3>
+                <p>We offer a 30-day return policy for most products. If you're not satisfied with your purchase, please contact us within 30 days to initiate a return. The product must be in its original condition and packaging.</p>
             </div>
         </div>
     </section>
