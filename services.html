@@ -6,6 +6,8 @@
     <title>Our Services - Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
@@ -25,7 +27,7 @@
         header {
             background-color: #0b1f3f;
             padding: 15px 0;
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
@@ -65,31 +67,29 @@
             color: #fff;
         }
 
-        /* Parallax Section */
-        .parallax-section {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
-            min-height: 500px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        /* Hero Section with Parallax */
+        .hero {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            height: 70vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
-            font-size: 2em;
+            color: white;
+            padding: 20px;
+            margin-top: 70px; /* Space for fixed header */
         }
 
-        .parallax-section h2 {
-            font-family: 'Montserrat', sans-serif;
+        .hero h1 {
             font-size: 3em;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .parallax-section p {
+        .hero p {
             font-size: 1.5em;
-            margin-top: 0;
         }
 
         /* Services Section */
@@ -157,20 +157,6 @@
             z-index: 1;
             position: relative;
         }
-
-        /* Animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards;
-        }
-
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 <body>
@@ -194,7 +180,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Parallax Effect -->
     <section class="hero">
         <h1>Our Services</h1>
         <p>Innovative technology solutions for your business</p>
@@ -203,7 +189,7 @@
     <!-- Services Section -->
     <section class="services-section" data-aos="fade-up">
         <!-- Service 1 -->
-        <div class="service-box fade-up">
+        <div class="service-box" data-aos="fade-up" data-aos-delay="100">
             <i class="service-icon fas fa-desktop"></i>
             <h3 class="service-title">Expert Business Computer Setup</h3>
             <p class="service-description">
@@ -212,7 +198,7 @@
         </div>
 
         <!-- Service 2 -->
-        <div class="service-box fade-up">
+        <div class="service-box" data-aos="fade-up" data-aos-delay="200">
             <i class="service-icon fas fa-laptop-code"></i>
             <h3 class="service-title">Custom Web Design</h3>
             <p class="service-description">
@@ -221,7 +207,7 @@
         </div>
 
         <!-- Service 3 -->
-        <div class="service-box fade-up">
+        <div class="service-box" data-aos="fade-up" data-aos-delay="300">
             <i class="service-icon fas fa-tools"></i>
             <h3 class="service-title">POS System Setup</h3>
             <p class="service-description">
@@ -230,7 +216,7 @@
         </div>
 
         <!-- Service 4 -->
-        <div class="service-box fade-up">
+        <div class="service-box" data-aos="fade-up" data-aos-delay="400">
             <i class="service-icon fas fa-mobile-alt"></i>
             <h3 class="service-title">Apple Product Resale</h3>
             <p class="service-description">
@@ -241,12 +227,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init();
-
-        // Trigger animations
-        const serviceBoxes = document.querySelectorAll('.service-box');
-        serviceBoxes.forEach((box, index) => {
-            box.style.animationDelay = `${index * 0.3}s`;
+        AOS.init({
+            duration: 1000, // Duration of the animations
+            once: true // Whether animation should happen only once
         });
     </script>
 </body>
