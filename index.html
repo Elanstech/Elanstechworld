@@ -46,6 +46,7 @@
             filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
+        /* Navigation Menu */
         header nav ul {
             list-style: none;
             display: flex;
@@ -65,6 +66,42 @@
         header nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+        }
+
+        .mobile-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-nav li a {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
         }
 
         /* Hero Section */
@@ -121,111 +158,18 @@
             transform: translateY(-5px);
         }
 
-        /* Parallax Section */
-        .parallax-section {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
-            min-height: 400px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-size: 2em;
-        }
-
-        /* Sections with Bubbly Text Boxes */
-        section {
-            padding: 60px 20px;
-            background: #f9f9f9;
-            border-radius: 15px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .bubbly {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 30px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .bubbly:hover {
-            transform: translateY(-5px);
-        }
-
-        section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #0b1f3f;
-            margin-bottom: 20px;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .scroll-to-top.show {
-            display: block;
-        }
-
-        /* Contact Section */
-        .contact {
-            background-color: #0b1f3f;
-            color: white;
-        }
-
         /* Responsive Styles */
         @media (max-width: 768px) {
-            header .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
             header nav ul {
-                flex-direction: column;
-                gap: 10px;
+                display: none;
             }
 
-            .hero h1 {
-                font-size: 2.5em;
+            .hamburger {
+                display: block;
             }
 
-            .hero p {
-                font-size: 1.2em;
-            }
-
-            .btn {
-                padding: 12px 25px;
-                font-size: 1em;
-            }
-
-            .parallax-section {
-                font-size: 1.5em;
-                min-height: 300px;
-            }
-
-            section h2 {
-                font-size: 2em;
+            .mobile-nav.active {
+                display: flex;
             }
         }
 
@@ -235,26 +179,12 @@
             }
 
             .hero p {
-                font-size: 1em;
+                font-size: 1.2em;
             }
 
             .btn {
                 padding: 10px 20px;
                 font-size: 0.9em;
-            }
-
-            .parallax-section {
-                font-size: 1.2em;
-                min-height: 250px;
-            }
-
-            section h2 {
-                font-size: 1.8em;
-            }
-
-            .scroll-to-top {
-                font-size: 1.2em;
-                padding: 10px;
             }
         }
     </style>
@@ -277,6 +207,22 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
+
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <ul class="mobile-nav" id="mobile-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
         </div>
     </header>
 
@@ -321,7 +267,7 @@
             <p>See what our clients have to say about their experiences working with us.</p>
             <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
         </div>
-    </section>
+        </section>
 
     <!-- FAQ Section -->
     <section id="faq">
@@ -392,6 +338,16 @@
 
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+    <!-- Hamburger Menu Script -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
         });
     </script>
 
