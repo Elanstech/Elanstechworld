@@ -14,7 +14,6 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            transition: all 0.3s ease-in-out;
         }
         html {
             scroll-behavior: smooth;
@@ -25,22 +24,20 @@
             overflow: hidden;
         }
         header {
-            background: #e3f2fd;
-            color: #333;
+            background: #0b1f3f;
+            color: #f9c200;
             padding: 10px 0;
-            border-bottom: 3px solid #bbdefb;
+            border-bottom: 3px solid #f9c200;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: all 0.3s ease-in-out;
         }
         header a {
-            color: #333;
+            color: #f9c200;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
-            transition: color 0.3s ease-in-out;
         }
         header ul {
             padding: 0;
@@ -54,139 +51,59 @@
         .logo {
             float: left;
             font-size: 1.5em;
-            color: #333;
-        }
-        .promotion-banner {
-            background: #ffeb3b;
-            color: #333;
-            text-align: center;
-            padding: 10px;
-            font-size: 1.2em;
-            position: fixed;
-            width: 100%;
-            top: 50px;
-            z-index: 1000;
+            color: #f9c200;
         }
         .hero {
             text-align: center;
-            padding: 100px 20px;
-            background: #bbdefb;
-            color: #333;
-            margin-top: 100px;
-            transition: all 0.3s ease-in-out;
+            padding: 150px 20px;
+            background-color: #0b1f3f;
+            color: white;
+            margin-top: 70px;
         }
-        .promotion-section {
-            background: #fff3e0;
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .promotion-section h2 {
-            font-size: 2.5em;
-            color: #ff9800;
-        }
-        .promotion-section p {
-            font-size: 1.5em;
-        }
-        .about, .products, .auth-reseller, .services, .contact, .instagram-section {
-            text-align: center;
-            padding: 50px 20px;
-            background: #fff;
-            margin-top: 20px;
-            transition: all 0.3s ease-in-out;
-        }
-        .about h2, .products h2, .auth-reseller h2, .services h2, .contact h2, .instagram-section h2 {
-            font-size: 2em;
-            color: #1e88e5;
-        }
-        .products ul {
-            list-style: none;
-            padding: 0;
-        }
-        .products li {
-            display: inline-block;
-            margin: 10px;
-            text-align: center;
-        }
-        .products img {
-            max-width: 150px;
-            display: block;
-            margin: 0 auto;
-            border-radius: 8px;
-        }
-        .service-item {
-            margin: 20px 0;
-        }
-        footer {
-            background: #e3f2fd;
-            color: #333;
-            text-align: center;
-            padding: 10px;
-            border-top: 3px solid #bbdefb;
-            transition: all 0.3s ease-in-out;
-        }
-        .social-media img {
-            width: 24px !important;
-            height: auto !important;
-            margin: 0 10px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .social-media img:hover {
-            transform: scale(1.2);
-        }
-        .hero p {
+        .hero button {
+            background-color: #f9c200;
+            color: #0b1f3f;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
             font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .hero button:hover {
+            background-color: #d1a800;
+        }
+        .services {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: white;
+        }
+        .services h2 {
+            color: #0b1f3f;
+            font-size: 2em;
         }
         .services .service-item {
-            display: inline-block;
-            width: 30%;
-            margin: 15px;
+            padding: 20px;
             text-align: left;
+            width: 30%;
+            display: inline-block;
         }
         .service-item h3 {
             font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #1e88e5;
+            color: #f9c200;
         }
-        .service-item p {
-            font-size: 1em;
-        }
-        .contact form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .contact input, .contact textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .contact button {
-            padding: 10px 20px;
-            background: #1e88e5;
-            border: none;
+        .contact {
+            padding: 50px 20px;
+            background-color: #0b1f3f;
             color: white;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease-in-out;
+            text-align: center;
         }
-        .contact button:hover {
-            background-color: #1565c0;
+        .contact h2 {
+            font-size: 2em;
         }
-        #back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-            background-color: #1e88e5;
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            z-index: 1000;
+        .contact a {
+            color: #f9c200;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -197,8 +114,6 @@
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#products">Products</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -206,169 +121,50 @@
         </div>
     </header>
 
-    <div class="promotion-banner">
-        Promotion: Free AirPods with a MacBook Pro purchase for $1000, and an iPhone 14 Pro Max for $750 with a free AirTag!
-    </div>
-    
-    <section id="home" class="hero jarallax" data-speed="0.5" style="background-image: url('path_to_your_image.jpg');">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
         <div class="container">
-            <h1>Discover the Latest Tech</h1>
-            <p>Explore our collection of open box iPhones, MacBooks, and iPads.</p>
+            <h1>Grow Your Business With Us</h1>
+            <p>Empowering your business with cutting-edge technology solutions.</p>
+            <a href="#services"><button>Get Started</button></a>
         </div>
     </section>
 
-    <section id="promotion" class="promotion-section" data-aos="zoom-in">
-        <div class="container">
-            <h2>Special Promotion</h2>
-            <p>Free AirPods with a MacBook Pro purchase for $1000</p>
-            <p>iPhone 14 Pro Max for $750 with a free AirTag!</p>
-        </div>
-    </section>
-
-    <section id="about" class="about" data-aos="fade-right">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>Welcome to Elan's Tech World, your trusted source for high-quality open box iPhones, laptops, iPads, and Android devices. We specialize in buying and selling top tech products, ensuring that you get the best deals on the market. Our mission is to provide excellent customer service and unbeatable prices on premium tech products.</p>
-            <p>Founded by Elan Cohen, Elan's Tech World has grown to become a leading provider of open box electronics. Our extensive experience in the tech industry allows us to offer a wide range of products that cater to the needs of tech enthusiasts and everyday users alike.</p>
-            <p>At Elan's Tech World, we understand the importance of staying connected in today's fast-paced world. That's why we prioritize stocking the latest models and ensuring that our products meet the highest standards of quality. Whether you're looking for the latest smartphone, a powerful laptop, or a versatile tablet, we've got you covered.</p>
-            <p>We take pride in our commitment to customer satisfaction. Our dedicated team is always ready to assist you with any queries or concerns, providing personalized support to ensure you have a seamless shopping experience. Thank you for choosing Elan's Tech World. We look forward to serving you and helping you find the perfect tech solutions for your needs.</p>
-        </div>
-    </section>
-    
-    <section id="products" class="products" data-aos="zoom-in">
-        <div class="container">
-            <h2>Our Products</h2>
-            <p>Check out our latest products:</p>
-            <ul>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone14pro.jpeg" alt="iPhone 14 Pro">
-                    <p>iPhone 14 Pro - From $630</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone12promax.jpeg" alt="iPhone 12 Pro Max">
-                    <p>iPhone 12 Pro Max - From $500</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/iphone11.jpg" alt="iPhone 11">
-                    <p>iPhone 11 - From $250</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/13inchair.jpeg" alt="13-inch MacBook Air">
-                    <p>13-inch MacBook Air - From $850</p>
-                </li>
-                <li>
-                    <img src="https://raw.githubusercontent.com/Elanstech/Elanstechworld/main/macbook%20pro%2013.jpeg" alt="13-inch MacBook Pro">
-                    <p>13-inch MacBook Pro - From $950</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="auth-reseller" class="auth-reseller" data-aos="fade-left">
-        <div class="container">
-            <h2>Authorized Apple Service Reseller</h2>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" style="max-width: 100px; margin-bottom: 10px;">
-            <p>Proudly offering genuine Apple products and services.</p>
-        </div>
-    </section>
-
-    <section id="testimonials" class="testimonials" data-aos="fade-up">
-        <div class="container">
-            <h2>What Our Customers Say</h2>
-            <div class="testimonial-item">
-                <p>"Elan's Tech World provided me with an exceptional service. I bought an iPhone 12 Pro Max and it was like brand new. The staff was very helpful and guided me through the entire process. Highly recommended for anyone looking for great deals on high-quality tech!"</p>
-                <p><strong>- Daniel Matatov</strong></p>
-            </div>
-            <div class="testimonial-item">
-                <p>"I got my MacBook Air from Elan's Tech World and I'm extremely happy with the purchase. The customer service was outstanding and the prices are unbeatable. They even helped me set up the laptop and transfer my data. I will definitely be coming back for all my tech needs."</p>
-                <p><strong>- Eddy Shakarov</strong></p>
-            </div>
-            <div class="testimonial-item">
-                <p>"Elan's Tech World is my go-to place for all my tech needs. The staff is very knowledgeable and they always have great deals on the latest gadgets. I recently bought an iPad and the whole experience was seamless. The quality of their products and service is top-notch."</p>
-                <p><strong>- Steve Inoyatov</strong></p>
-            </div>
-            <div class="testimonial-item">
-                <p>"I had my iPhone screen repaired here and the service was quick and affordable. The repair was done in less than an hour and my phone looks as good as new. Highly recommend Elan's Tech World for any tech repairs. Their professionalism and efficiency are truly impressive."</p>
-                <p><strong>- Sarah Boroukhova</strong></p>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="services" data-aos="fade-right">
+    <!-- Services Section -->
+    <section id="services" class="services">
         <div class="container">
             <h2>Our Services</h2>
             <div class="service-item">
-                <h3>Buy & Sell</h3>
-                <p>We buy and sell the latest tech gadgets. Get in touch for the best deals.</p>
+                <h3>Expert Business Computer Setup Services</h3>
+                <p>Professional computer setup for efficient business operations.</p>
             </div>
             <div class="service-item">
-                <h3>Repairs</h3>
-                <p>We offer repair services for all types of devices. Contact us for more information.</p>
+                <h3>Custom Web Design Solutions</h3>
+                <p>Tailored web designs to enhance your online presence.</p>
             </div>
             <div class="service-item">
-                <h3>Support</h3>
-                <p>Need help? Our support team is here to assist you with any tech issues.</p>
+                <h3>Logo and Custom Business Card Design</h3>
+                <p>High-quality design services for branding materials.</p>
             </div>
-        </div>
-    </section>
-    
-    <section id="instagram" class="instagram-section" data-aos="fade-up">
-        <div class="container">
-            <h2>Follow Us on Instagram</h2>
-            <div class="instagram-feed">
-                <!-- Add your Instagram embed code here -->
+            <div class="service-item">
+                <h3>Apple Authorized Reseller</h3>
+                <p>Authorized sales of iPhones, laptops, iPads, and accessories.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact" data-aos="fade-up">
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
         <div class="container">
             <h2>Contact Us</h2>
-            <p>Have questions or want to make a purchase? Reach out to us via direct message on Instagram, or use the form below:</p>
             <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
             <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-            <form action="mailto:elan.ayl8@gmail.com" method="post" enctype="text/plain">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Elan's Tech World. All Rights Reserved.</p>
-            <div class="social-media">
-                <a href="https://instagram.com/elan_tech_world" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <div id="back-to-top" onclick="scrollToTop()">↑</div>
-
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.min.js"></script>
     <script>
         AOS.init();
-        jarallax(document.querySelectorAll('.jarallax'), {
-            speed: 0.5
-        });
-
-        window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("back-to-top").style.display = "block";
-            } else {
-                document.getElementById("back-to-top").style.display = "none";
-            }
-        };
-
-        function scrollToTop() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
     </script>
 </body>
 </html>
-
