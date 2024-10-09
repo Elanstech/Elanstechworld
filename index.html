@@ -137,23 +137,7 @@
             font-size: 2em;
         }
 
-        /* Services Parallax Section */
-        .services-parallax {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true'); /* Same image or different one */
-            min-height: 500px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-size: 2em;
-        }
-
-        /* Bubbly Sections */
+        /* Sections with Bubbly Text Boxes */
         section {
             padding: 60px 20px;
             background: #f9f9f9;
@@ -176,10 +160,11 @@
             transform: translateY(-5px);
         }
 
-        /* Contact Section */
-        .contact {
-            background-color: #0b1f3f;
-            color: white;
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 20px;
         }
 
         /* Scroll to Top Button */
@@ -201,6 +186,12 @@
 
         .scroll-to-top.show {
             display: block;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #0b1f3f;
+            color: white;
         }
 
     </style>
@@ -242,20 +233,21 @@
         <h2>Innovating for the Future</h2>
     </div>
 
-    <!-- Services Parallax Section -->
-    <section id="services" class="services-parallax">
-        <div class="container">
-            <h2>Our Services</h2>
-            <p>Innovative technology solutions for your business</p>
-        </div>
-    </section>
-
     <!-- About Us Section -->
     <section id="about">
         <div class="bubbly" data-aos="fade-up">
             <h2>About Us</h2>
             <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
             <a href="about.html"><button class="btn">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>Our Services</h2>
+            <p>We offer a variety of technology solutions to meet your business needs.</p>
+            <a href="services.html"><button class="btn">Explore Services</button></a>
         </div>
     </section>
 
@@ -290,11 +282,8 @@
     <!-- Scroll to Top Button -->
     <a href="#top" class="scroll-to-top">↑</a>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- Smooth Scrolling JavaScript -->
     <script>
-        AOS.init();
-
-        // Smooth scrolling functionality
         function smoothScroll(target, duration) {
             const targetElement = document.querySelector(target);
             const targetPosition = targetElement.getBoundingClientRect().top;
@@ -319,16 +308,16 @@
             requestAnimationFrame(animation);
         }
 
-        // Smooth scrolling for anchor links
+        // Attach event listeners for smooth scrolling to anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = this.getAttribute('href');
-                smoothScroll(target, 1000); // Adjust the duration here
+                smoothScroll(target, 1000); // Adjust duration for smoothness (1000ms = 1s)
             });
         });
 
-        // Scroll to top button functionality
+        // Scroll to Top Button
         const scrollToTopButton = document.querySelector('.scroll-to-top');
         window.onscroll = function() {
             if (window.pageYOffset > 50) {
@@ -341,6 +330,12 @@
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    </script>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
