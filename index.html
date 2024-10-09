@@ -52,23 +52,9 @@
             display: inline;
             padding: 0 20px;
         }
-        /* Logo styling */
         .logo img {
-            height: 60px; /* Adjust the height to fit your logo */
-            animation: logoFadeIn 1.5s ease-in-out;
+            height: 60px;
         }
-
-        @keyframes logoFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
         .hero {
             text-align: center;
             padding: 150px 20px;
@@ -89,16 +75,20 @@
         .hero button:hover {
             background-color: #d1a800;
         }
-        .services {
-            text-align: center;
+        section {
             padding: 50px 20px;
-            background-color: white;
+            text-align: center;
         }
-        .services h2 {
+        section h2 {
             color: #0b1f3f;
-            font-size: 2em;
+            font-size: 2.5em;
         }
-        .services button {
+        section p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .section-link {
             background-color: #f9c200;
             color: #0b1f3f;
             padding: 15px 30px;
@@ -108,11 +98,10 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        .services button:hover {
+        .section-link:hover {
             background-color: #d1a800;
         }
         .contact {
-            padding: 50px 20px;
             background-color: #0b1f3f;
             color: white;
             text-align: center;
@@ -136,8 +125,11 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
     </header>
@@ -147,24 +139,44 @@
         <div class="container">
             <h1>Grow Your Business With Us</h1>
             <p>Empowering your business with cutting-edge technology solutions.</p>
-            <a href="#services"><button>Get Started</button></a>
+            <a href="services.html"><button>Get Started</button></a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Services</h2>
-            <a href="services.html"><button>Explore Our Services</button></a>
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="container" data-aos="fade-up">
+            <h2>About Us</h2>
+            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+            <a href="about.html"><button class="section-link">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container" data-aos="fade-up">
+            <h2>What Our Clients Say</h2>
+            <p>See what our clients have to say about their experiences working with us.</p>
+            <a href="testimonials.html"><button class="section-link">View Testimonials</button></a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+            <a href="faq.html"><button class="section-link">Read FAQs</button></a>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <div class="container">
+        <div class="container" data-aos="fade-up">
             <h2>Contact Us</h2>
             <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
             <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+            <a href="contact.html"><button class="section-link">Get In Touch</button></a>
         </div>
     </section>
 
