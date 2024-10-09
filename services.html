@@ -12,16 +12,21 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #0b1f3f;
+            color: #fff;
             overflow-x: hidden;
-            transition: all 0.3s ease-in-out;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         /* Header */
         header {
             background-color: #0b1f3f;
             padding: 15px 0;
+            position: absolute;
+            top: 0;
             width: 100%;
             z-index: 1000;
         }
@@ -36,6 +41,7 @@
 
         header .logo img {
             height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
         header nav ul {
@@ -50,96 +56,126 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Parallax Section */
-        .parallax-section {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
-            min-height: 500px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0100f4, #00aaff);
+            height: 60vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            color: white;
+            justify-content: center;
+            color: #fff;
             text-align: center;
-            font-size: 2em;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
         }
 
-        .parallax-section h2 {
+        .hero h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 3em;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .parallax-section p {
+        .hero h1:hover {
+            transform: scale(1.05);
+        }
+
+        .hero p {
             font-size: 1.5em;
-            margin-top: 0;
+            margin-bottom: 20px;
         }
 
         /* Services Section */
         .services-section {
-            padding: 60px 20px;
-            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+            padding: 50px 0;
         }
 
-        .services-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #0b1f3f;
-            margin-bottom: 40px;
-        }
-
-        .service-item {
-            margin: 30px 0;
+        .service-box {
+            background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 15px;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-item:hover {
+        .service-box:hover {
             transform: translateY(-10px);
-            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .service-item h3 {
-            font-size: 1.8em;
-            font-weight: 600;
-            color: #0b1f3f;
+        .service-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease-in-out;
+            z-index: 0;
+        }
+
+        .service-box:hover::before {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-icon {
+            font-size: 4em;
+            color: #f9c200;
             margin-bottom: 20px;
+            z-index: 1;
+            position: relative;
         }
 
-        .service-item p {
-            font-size: 1.2em;
-            color: #666;
+        .service-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
         }
 
-        /* Button */
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #f9c200, #d1a800);
-            color: #0b1f3f;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2em;
-            margin-top: 30px;
-            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .service-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #ddd;
+            z-index: 1;
+            position: relative;
         }
 
-        .btn:hover {
-            background: linear-gradient(45deg, #d1a800, #f9c200);
-            transform: translateY(-5px);
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards;
         }
 
-        /* AOS */
-        .aos-animate {
-            transition: all 0.3s ease-in-out;
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -164,39 +200,60 @@
         </div>
     </header>
 
-    <!-- Parallax Section -->
-    <section class="parallax-section">
-        <h2>Our Services</h2>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Our Services</h1>
         <p>Innovative technology solutions for your business</p>
     </section>
 
     <!-- Services Section -->
-    <section class="services-section">
-        <div class="container" data-aos="fade-up">
-            <h2>Explore Our Services</h2>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="100">
-                <h3>Business Computer Setup</h3>
-                <p>Expert computer setup services for efficient business operations.</p>
-            </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="200">
-                <h3>Custom Web Design</h3>
-                <p>Tailored web designs to enhance your online presence.</p>
-            </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="300">
-                <h3>Logo and Business Card Design</h3>
-                <p>High-quality branding solutions for your business.</p>
-            </div>
-            <div class="service-item" data-aos="zoom-in" data-aos-delay="400">
-                <h3>Apple Authorized Reseller</h3>
-                <p>Sales of iPhones, iPads, laptops, and accessories.</p>
-            </div>
+    <section class="services-section" data-aos="fade-up">
+        <!-- Service 1 -->
+        <div class="service-box fade-up">
+            <i class="service-icon fas fa-desktop"></i>
+            <h3 class="service-title">Expert Business Computer Setup</h3>
+            <p class="service-description">
+                Professional setup for seamless business operations. From choosing the right hardware to installation, we make sure your system is optimized for performance.
+            </p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-box fade-up">
+            <i class="service-icon fas fa-laptop-code"></i>
+            <h3 class="service-title">Custom Web Design</h3>
+            <p class="service-description">
+                Stand out with a custom website tailored to your brand. We specialize in sleek, responsive designs that enhance your online presence.
+            </p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-box fade-up">
+            <i class="service-icon fas fa-tools"></i>
+            <h3 class="service-title">POS System Setup</h3>
+            <p class="service-description">
+                Streamline your business operations with modern point-of-sale systems, ensuring smooth transactions and data management.
+            </p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-box fade-up">
+            <i class="service-icon fas fa-mobile-alt"></i>
+            <h3 class="service-title">Apple Product Resale</h3>
+            <p class="service-description">
+                As an authorized reseller, we provide genuine Apple products including iPhones, iPads, and MacBooks, all with warranty support.
+            </p>
         </div>
     </section>
 
-    <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        // Trigger animations
+        const serviceBoxes = document.querySelectorAll('.service-box');
+        serviceBoxes.forEach((box, index) => {
+            box.style.animationDelay = `${index * 0.3}s`;
+        });
     </script>
 </body>
 </html>
