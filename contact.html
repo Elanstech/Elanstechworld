@@ -67,6 +67,42 @@
             color: #fff;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+        }
+
+        .mobile-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-nav li a {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
         /* Hero Section with Parallax */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
@@ -195,6 +231,20 @@
             text-decoration: underline;
         }
 
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -215,6 +265,22 @@
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
+
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <ul class="mobile-nav" id="mobile-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
         </div>
     </header>
 
@@ -248,6 +314,14 @@
         AOS.init({
             duration: 1000, // Duration of the animations
             once: true // Whether animation should happen only once
+        });
+
+        // Hamburger Menu Script
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
         });
     </script>
 </body>
