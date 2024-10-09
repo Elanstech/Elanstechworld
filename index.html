@@ -46,7 +46,6 @@
             filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
-        /* Navigation Menu */
         header nav ul {
             list-style: none;
             display: flex;
@@ -158,7 +157,80 @@
             transform: translateY(-5px);
         }
 
-        /* Responsive Styles */
+        /* Parallax Section */
+        .parallax-section {
+            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
+            min-height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        /* Sections with Bubbly Text Boxes */
+        section {
+            padding: 60px 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .bubbly {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .bubbly:hover {
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 20px;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0b1f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-to-top.show {
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #0b1f3f;
+            color: white;
+        }
+
+        /* Responsive Styles for Mobile with Hamburger Menu */
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -267,7 +339,7 @@
             <p>See what our clients have to say about their experiences working with us.</p>
             <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
         </div>
-        </section>
+    </section>
 
     <!-- FAQ Section -->
     <section id="faq">
