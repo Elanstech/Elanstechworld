@@ -18,10 +18,6 @@
             transition: all 0.3s ease-in-out;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         /* Header */
         header {
             background-color: transparent;
@@ -70,20 +66,19 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
         }
+
         /* Hero Section */
         .hero {
-    background-color: #0b1f3f;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    /* Remove or comment out the clip-path property */
-    /* clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); */
-}
+            background-color: #0b1f3f;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+        }
+
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 3em;
@@ -140,7 +135,36 @@
             color: white;
             text-align: center;
             font-size: 2em;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Sections with Bubbly Text Boxes */
+        section {
+            padding: 60px 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .bubbly {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .bubbly:hover {
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 20px;
         }
 
         /* Scroll to Top Button */
@@ -164,59 +188,12 @@
             display: block;
         }
 
-        /* Sections with Royal Gold Borders */
-        section {
-            padding: 60px 20px;
-            background: #f9f9f9;
-            border-radius: 15px 15px 0 0;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            border: 4px solid #8d721e; /* Royal Gold Border */
-        }
-
-        section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #0b1f3f;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #8d721e; /* Gold underline for headings */
-        }
-
-        .section-link {
-            background-color: #8d721e;
-            color: #0b1f3f;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.2em;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .section-link:hover {
-            background-color: #d1a800;
-        }
-
         /* Contact Section */
         .contact {
             background-color: #0b1f3f;
             color: white;
         }
 
-        /* Scroll Effect for Header */
-        window.onscroll = function() {
-            const header = document.querySelector("header");
-            const scrollToTopButton = document.querySelector('.scroll-to-top');
-            if (window.pageYOffset > 50) {
-                header.classList.add("scrolled");
-                scrollToTopButton.classList.add("show");
-            } else {
-                header.classList.remove("scrolled");
-                scrollToTopButton.classList.remove("show");
-            }
-        };
     </style>
 </head>
 <body>
@@ -258,37 +235,37 @@
 
     <!-- About Us Section -->
     <section id="about">
-        <div class="container" data-aos="fade-up">
+        <div class="bubbly" data-aos="fade-up">
             <h2>About Us</h2>
             <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
-            <a href="about.html"><button class="section-link">Learn More</button></a>
+            <a href="about.html"><button class="btn">Learn More</button></a>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container" data-aos="fade-up">
+    <section id="services">
+        <div class="bubbly" data-aos="fade-up">
             <h2>Our Services</h2>
             <p>We offer a variety of technology solutions to meet your business needs.</p>
-            <a href="services.html"><button class="section-link">Explore Services</button></a>
+            <a href="services.html"><button class="btn">Explore Services</button></a>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <div class="container" data-aos="fade-up">
+    <section id="testimonials">
+        <div class="bubbly" data-aos="fade-up">
             <h2>What Our Clients Say</h2>
             <p>See what our clients have to say about their experiences working with us.</p>
-            <a href="testimonials.html"><button class="section-link">View Testimonials</button></a>
+            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <div class="container" data-aos="fade-up">
+    <section id="faq">
+        <div class="bubbly" data-aos="fade-up">
             <h2>Frequently Asked Questions</h2>
             <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-            <a href="faq.html"><button class="section-link">Read FAQs</button></a>
+            <a href="faq.html"><button class="btn">Read FAQs</button></a>
         </div>
     </section>
 
@@ -298,35 +275,67 @@
             <h2>Contact Us</h2>
             <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
             <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-            <a href="contact.html"><button class="section-link">Get In Touch</button></a>
+            <a href="contact.html"><button class="btn">Get In Touch</button></a>
         </div>
     </section>
 
     <!-- Scroll to Top Button -->
     <a href="#top" class="scroll-to-top">↑</a>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- Smooth Scrolling JavaScript -->
     <script>
-        AOS.init();
+        function smoothScroll(target, duration) {
+            const targetElement = document.querySelector(target);
+            const targetPosition = targetElement.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            let startTime = null;
 
-        // Header scroll effect
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, targetPosition, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Attach event listeners for smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                smoothScroll(target, 1000); // Adjust duration for smoothness (1000ms = 1s)
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
         window.onscroll = function() {
-            const header = document.querySelector("header");
-            const scrollToTopButton = document.querySelector('.scroll-to-top');
             if (window.pageYOffset > 50) {
-                header.classList.add("scrolled");
                 scrollToTopButton.classList.add("show");
             } else {
-                header.classList.remove("scrolled");
                 scrollToTopButton.classList.remove("show");
             }
         };
 
-        // Scroll to top button functionality
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    </script>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
