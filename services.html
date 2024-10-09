@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elan's Tech World</title>
+    <title>Our Services - Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -20,17 +20,10 @@
 
         /* Header */
         header {
-            background-color: transparent;
+            background-color: #0b1f3f;
             padding: 15px 0;
-            position: absolute;
-            top: 0;
             width: 100%;
             z-index: 1000;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        header.scrolled {
-            background-color: #0b1f3f;
         }
 
         .header-container {
@@ -43,7 +36,6 @@
 
         header .logo img {
             height: 75px;
-            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
         header nav ul {
@@ -58,88 +50,11 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: #0b1f3f;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3em;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hero h1:hover {
-            transform: scale(1.05);
-        }
-
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .button-container {
-            margin-top: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #f9c200, #d1a800);
-            color: #0b1f3f;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2em;
-            margin: 10px;
-            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn:hover {
-            background: linear-gradient(45deg, #d1a800, #f9c200);
-            transform: translateY(-5px);
         }
 
         /* Parallax Section */
         .parallax-section {
             background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
-            min-height: 400px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-size: 2em;
-        }
-
-        /* Services Parallax Section */
-        .services-parallax {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true'); /* Same image or different one */
             min-height: 500px;
             background-attachment: fixed;
             background-position: center;
@@ -153,69 +68,84 @@
             font-size: 2em;
         }
 
-        /* Bubbly Sections */
-        section {
+        .parallax-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .parallax-section p {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+
+        /* Services Section */
+        .services-section {
             padding: 60px 20px;
-            background: #f9f9f9;
-            border-radius: 15px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
-        .bubbly {
+        .service-item {
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 15px;
             background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 30px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .bubbly:hover {
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-item h3 {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #0b1f3f;
+        }
+
+        .service-item p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #f9c200, #d1a800);
+            color: #0b1f3f;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            margin-top: 30px;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #d1a800, #f9c200);
             transform: translateY(-5px);
         }
 
-        /* Contact Section */
-        .contact {
-            background-color: #0b1f3f;
-            color: white;
+        /* AOS */
+        .aos-animate {
+            transition: all 0.3s ease-in-out;
         }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .scroll-to-top.show {
-            display: block;
-        }
-
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="#home">
+                <a href="index.html">
                     <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
                 </a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
@@ -226,121 +156,39 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Grow Your Business With Us</h1>
-            <p>Empowering your business with cutting-edge technology solutions.</p>
-            <div class="button-container">
-                <a href="services.html" class="btn">Get Started</a>
+    <!-- Parallax Section -->
+    <section class="parallax-section">
+        <h2>Our Services</h2>
+        <p>Innovative technology solutions for your business</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container" data-aos="fade-up">
+            <h2>Explore Our Services</h2>
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="100">
+                <h3>Business Computer Setup</h3>
+                <p>Expert computer setup services for efficient business operations.</p>
+            </div>
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="200">
+                <h3>Custom Web Design</h3>
+                <p>Tailored web designs to enhance your online presence.</p>
+            </div>
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="300">
+                <h3>Logo and Business Card Design</h3>
+                <p>High-quality branding solutions for your business.</p>
+            </div>
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="400">
+                <h3>Apple Authorized Reseller</h3>
+                <p>Sales of iPhones, iPads, laptops, and accessories.</p>
             </div>
         </div>
     </section>
 
-    <!-- Parallax Section -->
-    <div class="parallax-section">
-        <h2>Innovating for the Future</h2>
-    </div>
-
-    <!-- Services Parallax Section -->
-    <section id="services" class="services-parallax">
-        <div class="container">
-            <h2>Our Services</h2>
-            <p>Innovative technology solutions for your business</p>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>About Us</h2>
-            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
-            <a href="about.html"><button class="btn">Learn More</button></a>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>What Our Clients Say</h2>
-            <p>See what our clients have to say about their experiences working with us.</p>
-            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>Frequently Asked Questions</h2>
-            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-            <a href="faq.html"><button class="btn">Read FAQs</button></a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
-            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-            <a href="contact.html"><button class="btn">Get In Touch</button></a>
-        </div>
-    </section>
-
-    <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top">↑</a>
-
+    <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
-
-        // Smooth scrolling functionality
-        function smoothScroll(target, duration) {
-            const targetElement = document.querySelector(target);
-            const targetPosition = targetElement.getBoundingClientRect().top;
-            const startPosition = window.pageYOffset;
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = ease(timeElapsed, startPosition, targetPosition, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-
-            function ease(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            requestAnimationFrame(animation);
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = this.getAttribute('href');
-                smoothScroll(target, 1000); // Adjust the duration here
-            });
-        });
-
-        // Scroll to top button functionality
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
-        window.onscroll = function() {
-            if (window.pageYOffset > 50) {
-                scrollToTopButton.classList.add("show");
-            } else {
-                scrollToTopButton.classList.remove("show");
-            }
-        };
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
     </script>
 </body>
 </html>
