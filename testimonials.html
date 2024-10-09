@@ -3,81 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testimonials - Elan's Tech World</title>
+    <title>Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
-        /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            overflow-x: hidden;
+            transition: all 0.3s ease-in-out;
         }
 
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #0b1f3f;
+        /* Header */
+        header {
+            background-color: transparent;
+            padding: 15px 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease-in-out;
         }
 
-        /* Testimonials Section */
-        .testimonials-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: #f9f9f9;
-            border-radius: 15px;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        header.scrolled {
+            background-color: #0b1f3f;
         }
 
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
         }
 
-        .testimonial-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        header .logo img {
+            height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
         }
 
-        .testimonial-image {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            object-fit: cover;
-        }
-
-        .testimonial-content p {
-            font-size: 1.1em;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-content h4 {
-            font-size: 1.4em;
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
             font-weight: 600;
-            color: #0b1f3f;
-            margin-bottom: 5px;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .testimonial-role {
-            font-size: 0.9em;
-            color: #f9c200;
-            font-style: italic;
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #0b1f3f;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .hero h1:hover {
+            transform: scale(1.05);
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
         }
 
         .btn {
@@ -88,7 +111,7 @@
             text-decoration: none;
             border-radius: 30px;
             font-size: 1.2em;
-            margin-top: 30px;
+            margin: 10px;
             transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
@@ -97,50 +120,227 @@
             background: linear-gradient(45deg, #d1a800, #f9c200);
             transform: translateY(-5px);
         }
+
+        /* Parallax Section */
+        .parallax-section {
+            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
+            min-height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        /* Services Parallax Section */
+        .services-parallax {
+            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true'); /* Same image or different one */
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        /* Bubbly Sections */
+        section {
+            padding: 60px 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .bubbly {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .bubbly:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: #0b1f3f;
+            color: white;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0b1f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-to-top.show {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <div class="container" data-aos="fade-up">
-            <h2>What Our Clients Say</h2>
-            <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="testimonial-content">
-                        <img src="https://via.placeholder.com/100" alt="Client Image" class="testimonial-image">
-                        <p>"Elan's Tech World transformed our business with expert computer setups and web design. Highly recommend!"</p>
-                        <h4>Zarina Yusupova</h4>
-                        <span class="testimonial-role">Owner, East Coast Realty</span>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="testimonial-content">
-                        <img src="https://via.placeholder.com/100" alt="Client Image" class="testimonial-image">
-                        <p>"Elan made setting up my POS system easy. My business runs smoother than ever!"</p>
-                        <h4>Laura Sholomov</h4>
-                        <span class="testimonial-role">Owner, Laura's Beauty Touch</span>
-                    </div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="testimonial-content">
-                        <img src="https://via.placeholder.com/100" alt="Client Image" class="testimonial-image">
-                        <p>"Their computer and office setup was perfect for our needs. We couldn’t be happier with the results."</p>
-                        <h4>Oksana & Steve Cohen</h4>
-                        <span class="testimonial-role">Cohen & Associates</span>
-                    </div>
-                </div>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+                </a>
             </div>
-            <a href="testimonials.html"><button class="btn">View More Testimonials</button></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Grow Your Business With Us</h1>
+            <p>Empowering your business with cutting-edge technology solutions.</p>
+            <div class="button-container">
+                <a href="services.html" class="btn">Get Started</a>
+            </div>
         </div>
     </section>
 
-    <!-- AOS Animation Script -->
+    <!-- Parallax Section -->
+    <div class="parallax-section">
+        <h2>Innovating for the Future</h2>
+    </div>
+
+    <!-- Services Parallax Section -->
+    <section id="services" class="services-parallax">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>Innovative technology solutions for your business</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>About Us</h2>
+            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+            <a href="about.html"><button class="btn">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>What Our Clients Say</h2>
+            <p>See what our clients have to say about their experiences working with us.</p>
+            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+            <a href="faq.html"><button class="btn">Read FAQs</button></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+            <a href="contact.html"><button class="btn">Get In Touch</button></a>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <a href="#top" class="scroll-to-top">↑</a>
+
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        // Smooth scrolling functionality
+        function smoothScroll(target, duration) {
+            const targetElement = document.querySelector(target);
+            const targetPosition = targetElement.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, targetPosition, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                smoothScroll(target, 1000); // Adjust the duration here
+            });
+        });
+
+        // Scroll to top button functionality
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        window.onscroll = function() {
+            if (window.pageYOffset > 50) {
+                scrollToTopButton.classList.add("show");
+            } else {
+                scrollToTopButton.classList.remove("show");
+            }
+        };
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
