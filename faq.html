@@ -4,121 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Elan's Tech World</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Import Poppins and Montserrat Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #0b1f3f;
+            color: #fff;
+            overflow-x: hidden;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
+
+        html {
+            scroll-behavior: smooth;
         }
+
+        /* Header */
         header {
-            background: #0b1f3f;
-            color: #f9c200;
-            padding: 10px 0;
-            border-bottom: 3px solid #f9c200;
+            background-color: #0b1f3f;
+            padding: 15px 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
             z-index: 1000;
+        }
+
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 90%;
+            margin: auto;
         }
-        header a {
-            color: #f9c200;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 16px;
+
+        header .logo img {
+            height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
-        header ul {
-            padding: 0;
+
+        header nav ul {
             list-style: none;
-            text-align: right;
+            display: flex;
+            gap: 20px;
             margin: 0;
         }
-        header li {
-            display: inline;
-            padding: 0 20px;
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .logo img {
-            height: 60px;
+
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
         }
-        h1 {
-            color: #0b1f3f;
+
+        /* Hero Section with Parallax */
+        .hero {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 70px; /* Space for fixed header */
         }
-        .faq-item {
+
+        .hero h1 {
+            font-size: 3em;
             margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
-        h2 {
-            color: #0b1f3f;
+
+        .hero p {
             font-size: 1.5em;
         }
-        p {
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 20px;
+            background: #f9f9f9;
+            color: #333;
+            margin-top: 40px;
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: #0b1f3f;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-item h3 {
+            font-size: 1.6em;
+            font-family: 'Montserrat', sans-serif;
+            color: #0b1f3f;
+            margin-bottom: 15px;
+        }
+
+        .faq-item p {
             font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 10px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -100%;
+            left: -100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: transform 0.6s ease-in-out;
+            z-index: 0;
+        }
+
+        .faq-item:hover::before {
+            transform: translate(100%, 100%);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item-content {
+            position: relative;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
-            </a>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <div class="container" data-aos="fade-up">
+    <!-- Hero Section -->
+    <section class="hero">
         <h1>Frequently Asked Questions</h1>
-        <div class="faq-item">
-            <h2>What services does Elan's Tech World offer?</h2>
-            <p>We offer a variety of technology solutions, including expert business computer setup, custom web design, Apple product resale, and logo and business card design services.</p>
-        </div>
+        <p>All your tech inquiries, answered.</p>
+    </section>
 
-        <div class="faq-item">
-            <h2>Do you offer ongoing support?</h2>
-            <p>Yes! We provide continuous support for our clients to ensure their technology solutions run smoothly.</p>
-        </div>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            
+            <!-- FAQ Item 1 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-item-content">
+                    <h3>What services does Elan's Tech World offer?</h3>
+                    <p>We offer expert computer setup for businesses, custom web design, logo and branding services, Apple product resale, and comprehensive repair services for your devices.</p>
+                </div>
+            </div>
 
-        <div class="faq-item">
-            <h2>How can I get a quote for a service?</h2>
-            <p>You can contact us through the form on our "Contact Us" page, or reach out via phone or email for a custom quote.</p>
-        </div>
+            <!-- FAQ Item 2 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="faq-item-content">
+                    <h3>Are you an authorized Apple reseller?</h3>
+                    <p>Yes, Elan's Tech World is an authorized reseller of Apple products including iPhones, iPads, MacBooks, and accessories, with full warranty support.</p>
+                </div>
+            </div>
 
-        <div class="faq-item">
-            <h2>Are you an authorized Apple reseller?</h2>
-            <p>Yes, we are an official Apple authorized reseller for iPhones, laptops, iPads, and other Apple products.</p>
-        </div>
-    </div>
+            <!-- FAQ Item 3 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="faq-item-content">
+                    <h3>Can you help with custom web designs?</h3>
+                    <p>Absolutely! We specialize in creating custom, responsive web designs tailored to your brand, helping you stand out in the digital world.</p>
+                </div>
+            </div>
 
-    <footer>
-        <p>© 2024 Elan's Tech World. All Rights Reserved.</p>
-    </footer>
+            <!-- FAQ Item 4 -->
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="faq-item-content">
+                    <h3>What repair services do you offer?</h3>
+                    <p>We provide repair services for Apple products, computers, and business systems. From hardware replacements to system diagnostics, we've got you covered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 1000, // Duration of the animations
+            once: true // Whether animation should happen only once
+        });
     </script>
 </body>
 </html>
