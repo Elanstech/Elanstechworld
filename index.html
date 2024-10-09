@@ -14,15 +14,15 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            transition: all 0.3s ease-in-out;
             overflow-x: hidden;
+            transition: all 0.3s ease-in-out;
         }
 
         html {
             scroll-behavior: smooth;
         }
 
-        /* Transparent Header */
+        /* Header */
         header {
             background-color: transparent;
             padding: 15px 0;
@@ -92,8 +92,8 @@
             padding: 20px;
             background: rgba(0, 0, 0, 0.5);
             text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            transition: transform 0.3s ease-in-out;
             border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
         }
 
         .hero h1:hover {
@@ -129,7 +129,7 @@
 
         /* Parallax Section */
         .parallax-section {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallax.jpeg?raw=true');
+            background-image: url('your-parallax-image.jpg');
             min-height: 400px;
             background-attachment: fixed;
             background-position: center;
@@ -165,6 +165,7 @@
             display: block;
         }
 
+        /* Sections */
         section {
             padding: 60px 20px;
             background: #f9f9f9;
@@ -196,6 +197,7 @@
             background-color: #d1a800;
         }
 
+        /* Contact Section */
         .contact {
             background-color: #0b1f3f;
             color: white;
@@ -204,10 +206,13 @@
         /* Scroll Effect for Header */
         window.onscroll = function() {
             const header = document.querySelector("header");
+            const scrollToTopButton = document.querySelector('.scroll-to-top');
             if (window.pageYOffset > 50) {
                 header.classList.add("scrolled");
+                scrollToTopButton.classList.add("show");
             } else {
                 header.classList.remove("scrolled");
+                scrollToTopButton.classList.remove("show");
             }
         };
     </style>
@@ -255,6 +260,43 @@
             <h2>About Us</h2>
             <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
             <a href="about.html"><button class="section-link">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container" data-aos="fade-up">
+            <h2>Our Services</h2>
+            <p>We offer a variety of technology solutions to meet your business needs.</p>
+            <a href="services.html"><button class="section-link">Explore Services</button></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container" data-aos="fade-up">
+            <h2>What Our Clients Say</h2>
+            <p>See what our clients have to say about their experiences working with us.</p>
+            <a href="testimonials.html"><button class="section-link">View Testimonials</button></a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+            <a href="faq.html"><button class="section-link">Read FAQs</button></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+            <a href="contact.html"><button class="section-link">Get In Touch</button></a>
         </div>
     </section>
 
