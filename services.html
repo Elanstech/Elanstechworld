@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - Elan's Tech World</title>
+    <title>Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -12,23 +12,25 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #0b1f3f;
-            color: #fff;
+            background-color: #f9f9f9;
+            color: #333;
             overflow-x: hidden;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            transition: all 0.3s ease-in-out;
         }
 
         /* Header */
         header {
-            background-color: #0b1f3f;
+            background-color: transparent;
             padding: 15px 0;
             position: absolute;
             top: 0;
             width: 100%;
             z-index: 1000;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        header.scrolled {
+            background-color: #0b1f3f;
         }
 
         .header-container {
@@ -67,15 +69,14 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #0100f4, #00aaff);
-            height: 60vh;
+            background-color: #0b1f3f;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             color: #fff;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
         }
 
         .hero h1 {
@@ -98,98 +99,123 @@
             margin-bottom: 20px;
         }
 
-        /* Services Section */
-        .services-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 90%;
-            margin: auto;
-            padding: 50px 0;
+        .button-container {
+            margin-top: 20px;
         }
 
-        .service-box {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #f9c200, #d1a800);
+            color: #0b1f3f;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: linear-gradient(45deg, #d1a800, #f9c200);
+            transform: translateY(-5px);
+        }
+
+        /* Parallax Section */
+        .parallax-section {
+            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
+            min-height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            font-size: 2em;
         }
 
-        .service-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        /* Services Parallax Section */
+        .services-parallax {
+            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true'); /* Same image or different one */
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            font-size: 2em;
         }
 
-        .service-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease-in-out;
-            z-index: 0;
+        /* Bubbly Sections */
+        section {
+            padding: 60px 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
-        .service-box:hover::before {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .service-icon {
-            font-size: 4em;
-            color: #f9c200;
+        .bubbly {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            z-index: 1;
-            position: relative;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .service-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-            z-index: 1;
-            position: relative;
+        .bubbly:hover {
+            transform: translateY(-5px);
         }
 
-        .service-description {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #ddd;
-            z-index: 1;
-            position: relative;
+        /* Contact Section */
+        .contact {
+            background-color: #0b1f3f;
+            color: white;
         }
 
-        /* Animations */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s forwards;
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0b1f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            transition: opacity 0.3s ease;
         }
 
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .scroll-to-top.show {
+            display: block;
         }
+
     </style>
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.html">
+                <a href="#home">
                     <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
                 </a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#home">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
@@ -201,58 +227,119 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h1>Our Services</h1>
-        <p>Innovative technology solutions for your business</p>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section" data-aos="fade-up">
-        <!-- Service 1 -->
-        <div class="service-box fade-up">
-            <i class="service-icon fas fa-desktop"></i>
-            <h3 class="service-title">Expert Business Computer Setup</h3>
-            <p class="service-description">
-                Professional setup for seamless business operations. From choosing the right hardware to installation, we make sure your system is optimized for performance.
-            </p>
-        </div>
-
-        <!-- Service 2 -->
-        <div class="service-box fade-up">
-            <i class="service-icon fas fa-laptop-code"></i>
-            <h3 class="service-title">Custom Web Design</h3>
-            <p class="service-description">
-                Stand out with a custom website tailored to your brand. We specialize in sleek, responsive designs that enhance your online presence.
-            </p>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="service-box fade-up">
-            <i class="service-icon fas fa-tools"></i>
-            <h3 class="service-title">POS System Setup</h3>
-            <p class="service-description">
-                Streamline your business operations with modern point-of-sale systems, ensuring smooth transactions and data management.
-            </p>
-        </div>
-
-        <!-- Service 4 -->
-        <div class="service-box fade-up">
-            <i class="service-icon fas fa-mobile-alt"></i>
-            <h3 class="service-title">Apple Product Resale</h3>
-            <p class="service-description">
-                As an authorized reseller, we provide genuine Apple products including iPhones, iPads, and MacBooks, all with warranty support.
-            </p>
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Grow Your Business With Us</h1>
+            <p>Empowering your business with cutting-edge technology solutions.</p>
+            <div class="button-container">
+                <a href="services.html" class="btn">Get Started</a>
+            </div>
         </div>
     </section>
+
+    <!-- Parallax Section -->
+    <div class="parallax-section">
+        <h2>Innovating for the Future</h2>
+    </div>
+
+    <!-- Services Parallax Section -->
+    <section id="services" class="services-parallax">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p>Innovative technology solutions for your business</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>About Us</h2>
+            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+            <a href="about.html"><button class="btn">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>What Our Clients Say</h2>
+            <p>See what our clients have to say about their experiences working with us.</p>
+            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+            <a href="faq.html"><button class="btn">Read FAQs</button></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+            <a href="contact.html"><button class="btn">Get In Touch</button></a>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <a href="#top" class="scroll-to-top">↑</a>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
 
-        // Trigger animations
-        const serviceBoxes = document.querySelectorAll('.service-box');
-        serviceBoxes.forEach((box, index) => {
-            box.style.animationDelay = `${index * 0.3}s`;
+        // Smooth scrolling functionality
+        function smoothScroll(target, duration) {
+            const targetElement = document.querySelector(target);
+            const targetPosition = targetElement.getBoundingClientRect().top;
+            const startPosition = window.pageYOffset;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, targetPosition, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = this.getAttribute('href');
+                smoothScroll(target, 1000); // Adjust the duration here
+            });
+        });
+
+        // Scroll to top button functionality
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        window.onscroll = function() {
+            if (window.pageYOffset > 50) {
+                scrollToTopButton.classList.add("show");
+            } else {
+                scrollToTopButton.classList.remove("show");
+            }
+        };
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
