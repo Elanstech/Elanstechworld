@@ -20,11 +20,37 @@
             overflow: hidden;
             padding: 20px;
         }
-        header, footer {
+        header {
             background: #0b1f3f;
             color: #f9c200;
-            text-align: center;
             padding: 10px 0;
+            border-bottom: 3px solid #f9c200;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: #f9c200;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+            text-align: right;
+            margin: 0;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px;
+        }
+        .logo img {
+            height: 60px;
         }
         h1 {
             color: #0b1f3f;
@@ -49,10 +75,25 @@
 </head>
 <body>
     <header>
-        <h1>What Our Clients Say</h1>
+        <div class="logo">
+            <a href="index.html">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="container" data-aos="fade-up">
+        <h1>What Our Clients Say</h1>
         <div class="testimonial-item">
             <h2>Zarina Yusupova, Owner at East Coast Realty</h2>
             <p>"Elan's Tech World helped build my entire business infrastructure. From designing my website to installing all the computers within my budget, the service was exceptional. They understood my needs and executed everything flawlessly."</p>
@@ -71,6 +112,16 @@
         <div class="testimonial-item">
             <h2>John Doe, CEO of Tech Solutions</h2>
             <p>"Elan's Tech World transformed our website and business operations with their expert setup services. We couldn't be happier with the results!"</p>
+        </div>
+
+        <div class="testimonial-item">
+            <h2>Jane Smith, Founder of Startup Co.</h2>
+            <p>"The custom web design solutions from Elan's Tech World helped us establish a professional online presence. Their team was knowledgeable and easy to work with."</p>
+        </div>
+
+        <div class="testimonial-item">
+            <h2>Michael Lee, Freelancer</h2>
+            <p>"I was blown away by the quality of the logo and business card designs I received. Highly recommend Elan's Tech World for any business needing branding help!"</p>
         </div>
     </div>
 
