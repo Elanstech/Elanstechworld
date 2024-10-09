@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Elan's Tech World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jarallax/1.12.7/jarallax.css">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #0b1f3f;
+            color: #f9c200;
+            padding: 10px 0;
+            border-bottom: 3px solid #f9c200;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        header a {
+            color: #f9c200;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+            text-align: right;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px;
+        }
+        .logo {
+            float: left;
+            font-size: 1.5em;
+            color: #f9c200;
+        }
+        .services {
+            text-align: center;
+            padding: 150px 20px;
+            background-color: white;
+            margin-top: 70px;
+        }
+        .services h2 {
+            color: #0b1f3f;
+            font-size: 2.5em;
+        }
+        .services .service-item {
+            padding: 20px;
+            text-align: left;
+            width: 30%;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #f9f9f9;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+        .service-item h3 {
+            font-size: 1.5em;
+            color: #f9c200;
+        }
+        .service-item p {
+            font-size: 1.1em;
+            color: #333;
+        }
+        .contact {
+            padding: 50px 20px;
+            background-color: #0b1f3f;
+            color: white;
+            text-align: center;
+        }
+        .contact h2 {
+            font-size: 2em;
+        }
+        .contact a {
+            color: #f9c200;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Elan's Tech World</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="services" data-aos="fade-up">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-item" data-aos="fade-right">
+                <h3>Expert Business Computer Setup Services</h3>
+                <p>Professional computer setup for efficient business operations.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up">
+                <h3>Custom Web Design Solutions</h3>
+                <p>Tailored web designs to enhance your online presence.</p>
+            </div>
+            <div class="service-item" data-aos="fade-left">
+                <h3>Logo and Custom Business Card Design</h3>
+                <p>High-quality design services for branding materials.</p>
+            </div>
+            <div class="service-item" data-aos="fade-right">
+                <h3>Apple Authorized Reseller</h3>
+                <p>Authorized sales of iPhones, laptops, iPads, and accessories.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact" data-aos="fade-in">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
