@@ -127,7 +127,44 @@
             transform: translateY(-5px);
         }
 
-        /* Sections */
+        /* Parallax Section */
+        .parallax-section {
+            background-image: url('your-parallax-image.jpg');
+            min-height: 400px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            font-size: 2em;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0b1f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-to-top.show {
+            display: block;
+        }
+
         section {
             padding: 60px 20px;
             background: #f9f9f9;
@@ -173,7 +210,6 @@
                 header.classList.remove("scrolled");
             }
         };
-
     </style>
 </head>
 <body>
@@ -200,13 +236,18 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
-            <h1>Grow Your Business With Elan's Tech World</h1>
+            <h1>Grow Your Business With Us</h1>
             <p>Empowering your business with cutting-edge technology solutions.</p>
             <div class="button-container">
                 <a href="services.html" class="btn">Get Started</a>
             </div>
         </div>
     </section>
+
+    <!-- Parallax Section -->
+    <div class="parallax-section">
+        <h2>Innovating for the Future</h2>
+    </div>
 
     <!-- About Us Section -->
     <section id="about">
@@ -217,33 +258,8 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="container" data-aos="fade-up">
-            <h2>What Our Clients Say</h2>
-            <p>See what our clients have to say about their experiences working with us.</p>
-            <a href="testimonials.html"><button class="section-link">View Testimonials</button></a>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <div class="container" data-aos="fade-up">
-            <h2>Frequently Asked Questions</h2>
-            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-            <a href="faq.html"><button class="section-link">Read FAQs</button></a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
-            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-            <a href="contact.html"><button class="section-link">Get In Touch</button></a>
-        </div>
-    </section>
+    <!-- Scroll to Top Button -->
+    <a href="#top" class="scroll-to-top">↑</a>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
@@ -252,12 +268,21 @@
         // Header scroll effect
         window.onscroll = function() {
             const header = document.querySelector("header");
+            const scrollToTopButton = document.querySelector('.scroll-to-top');
             if (window.pageYOffset > 50) {
                 header.classList.add("scrolled");
+                scrollToTopButton.classList.add("show");
             } else {
                 header.classList.remove("scrolled");
+                scrollToTopButton.classList.remove("show");
             }
         };
+
+        // Scroll to top button functionality
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
