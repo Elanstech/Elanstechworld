@@ -6,20 +6,29 @@
     <title>Testimonials - Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            background-color: #0b1f3f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         /* Header */
         header {
             background-color: #0b1f3f;
             padding: 15px 0;
+            position: fixed;
+            top: 0;
             width: 100%;
             z-index: 1000;
         }
@@ -34,6 +43,7 @@
 
         header .logo img {
             height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
         header nav ul {
@@ -48,9 +58,38 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
-               header nav ul li a:hover {
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 70px; /* Space for fixed header */
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero p {
+            font-size: 1.5em;
         }
 
         /* Testimonials Section */
@@ -58,74 +97,92 @@
             padding: 60px 20px;
             text-align: center;
             background: #f9f9f9;
-            border-radius: 15px;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
+            margin-top: 40px;
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            font-family: 'Montserrat', sans-serif;
+            color: #0b1f3f;
         }
 
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
         .testimonial-card {
             background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
+            border-radius: 25px;
             padding: 30px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -100%;
+            left: -100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: transform 0.6s ease-in-out;
+            z-index: 0;
+        }
+
+        .testimonial-card:hover::before {
+            transform: translate(100%, 100%);
         }
 
         .testimonial-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .testimonial-image {
+        .testimonial-card img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
             margin-bottom: 20px;
             object-fit: cover;
+            z-index: 1;
+            position: relative;
         }
 
-        .testimonial-content p {
+        .testimonial-card p {
             font-size: 1.1em;
             color: #666;
             line-height: 1.6;
             margin-bottom: 20px;
+            z-index: 1;
+            position: relative;
         }
 
-        .testimonial-content h4 {
+        .testimonial-card h4 {
             font-size: 1.4em;
             font-weight: 600;
             color: #0b1f3f;
             margin-bottom: 5px;
+            z-index: 1;
+            position: relative;
         }
 
         .testimonial-role {
             font-size: 0.9em;
             color: #f9c200;
             font-style: italic;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #f9c200, #d1a800);
-            color: #0b1f3f;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2em;
-            margin-top: 30px;
-            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn:hover {
-            background: linear-gradient(45deg, #d1a800, #f9c200);
-            transform: translateY(-5px);
+            z-index: 1;
+            position: relative;
         }
     </style>
 </head>
@@ -150,47 +207,48 @@
         </div>
     </header>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
+    <!-- Hero Section with Parallax Effect -->
+    <section class="hero">
+        <h1>Our Services</h1>
+        <p>Innovative technology solutions for your business</p>
+    </section>
+
+    <!-- Testimonials Section with Bubbly Design -->
+    <section class="testimonials-section">
         <div class="container" data-aos="fade-up">
             <h2>What Our Clients Say</h2>
             <div class="testimonials-grid">
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="testimonial-content">
-                        <img src="https://via.placeholder.com/100" alt="Client Image" class="testimonial-image">
-                        <p>"Elan's Tech World transformed our business with expert computer setups and web design. Highly recommend!"</p>
-                        <h4>Zarina Yusupova</h4>
-                        <span class="testimonial-role">Owner, East Coast Realty</span>
-                    </div>
+                    <img src="https://via.placeholder.com/100" alt="Client Image">
+                    <p>"Elan's Tech World transformed our business with expert computer setups and web design. Highly recommend!"</p>
+                    <h4>Zarina Yusupova</h4>
+                    <span class="testimonial-role">Owner, East Coast Realty</span>
                 </div>
                 <!-- Testimonial 2 -->
                 <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="testimonial-content">
-                        <img src="https://via.placeholder.com/100" alt="Client Image" class="testimonial-image">
-                        <p>"Elan made setting up my POS system easy. My business runs smoother than ever!"</p>
-                        <h4>Laura Sholomov</h4>
-                        <span class="testimonial-role">Owner, Laura's Beauty Touch</span>
-                    </div>
+                    <img src="https://via.placeholder.com/100" alt="Client Image">
+                    <p>"Elan made setting up my POS system easy. My business runs smoother than ever!"</p>
+                    <h4>Laura Sholomov</h4>
+                    <span class="testimonial-role">Owner, Laura's Beauty Touch</span>
                 </div>
                 <!-- Testimonial 3 -->
                 <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="testimonial-content">
-                        <img src="https://via.placeholder.com/100" alt="Client Image" class="testimonial-image">
-                        <p>"Their computer and office setup was perfect for our needs. We couldn’t be happier with the results."</p>
-                        <h4>Oksana & Steve Cohen</h4>
-                        <span class="testimonial-role">Cohen & Associates</span>
-                    </div>
+                    <img src="https://via.placeholder.com/100" alt="Client Image">
+                    <p>"Their computer and office setup was perfect for our needs. We couldn’t be happier with the results."</p>
+                    <h4>Oksana & Steve Cohen</h4>
+                    <span class="testimonial-role">Cohen & Associates</span>
                 </div>
             </div>
-            <a href="testimonials.html"><button class="btn">View More Testimonials</button></a>
         </div>
     </section>
 
-    <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 1000, // Duration of the animations
+            once: true // Whether animation should happen only once
+        });
     </script>
 </body>
 </html>
