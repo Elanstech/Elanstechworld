@@ -65,37 +65,31 @@
             color: #fff;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0100f4, #00aaff);
-            height: 60vh;
+        /* Parallax Section */
+        .parallax-section {
+            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
+            min-height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            color: #fff;
+            align-items: center;
+            color: white;
             text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+            font-size: 2em;
         }
 
-        .hero h1 {
+        .parallax-section h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 3em;
-            margin-bottom: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            transition: transform 0.3s ease-in-out;
+            margin-bottom: 10px;
         }
 
-        .hero h1:hover {
-            transform: scale(1.05);
-        }
-
-        .hero p {
+        .parallax-section p {
             font-size: 1.5em;
-            margin-bottom: 20px;
+            margin-top: 0;
         }
 
         /* Services Section */
