@@ -224,40 +224,60 @@
             display: block;
         }
 
-        /* Contact Section */
-        .contact {
+        /* What's Going On Now Section */
+        .whats-going-on {
+            padding: 50px 20px;
             background-color: #0b1f3f;
-            color: white;
+            color: #fff;
+            text-align: center;
         }
 
-        /* MacBook Quiz Section */
-        .quiz-section {
-            padding: 60px 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 30px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
+        .whats-going-on h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
         }
 
-        /* Quiz Buttons */
-        .quiz-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #f9c200, #d1a800);
-            color: #0b1f3f;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2em;
-            margin: 10px;
-            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
+        .scrolling-container {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            max-width: 100%;
+            height: 300px;
         }
 
-        .quiz-btn:hover {
-            background: linear-gradient(45deg, #d1a800, #f9c200);
-            transform: translateY(-5px);
+        .event-slide {
+            min-width: 100%;
+            transition: transform 1s ease;
+        }
+
+        .event-slide img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .event-slide h3 {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .event-slide p {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Animation for auto-scroll */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            100% { transform: translateX(0); }
+        }
+
+        .scrolling-container {
+            animation: scroll 12s infinite linear;
         }
 
         /* Responsive Styles for Mobile with Hamburger Menu */
@@ -339,117 +359,27 @@
         </div>
     </section>
 
-    <!-- Parallax Section -->
-    <div class="parallax-section">
-        <h2>Innovating for the Future</h2>
-    </div>
-
-    <!-- About Us Section -->
-    <section id="about">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>About Us</h2>
-            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
-            <a href="about.html"><button class="btn">Learn More</button></a>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>Our Services</h2>
-            <p>We offer a variety of technology solutions to meet your business needs.</p>
-            <a href="services.html"><button class="btn">Explore Services</button></a>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>What Our Clients Say</h2>
-            <p>See what our clients have to say about their experiences working with us.</p>
-            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>Frequently Asked Questions</h2>
-            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-            <a href="faq.html"><button class="btn">Read FAQs</button></a>
-        </div>
-    </section>
-
-    <!-- MacBook Quiz Section -->
-    <section id="macbook-quiz" class="quiz-section">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>What's the Best MacBook for You?</h2>
-            <p>Take the quiz and discover your perfect MacBook match.</p>
-            <div id="quiz-container">
-                <!-- Quiz questions -->
-                <div class="quiz-question" data-question="1">
-                    <h3>1. How do you plan to use your MacBook?</h3>
-                    <button class="quiz-btn" data-answer="light-use">Light Work (Browsing, Emails, etc.)</button>
-                    <button class="quiz-btn" data-answer="creative-use">Creative Work (Design, Video Editing)</button>
-                    <button class="quiz-btn" data-answer="power-use">Powerful Work (Software Development, Gaming)</button>
-                </div>
-                <div class="quiz-question" data-question="2" style="display:none;">
-                    <h3>2. What's your preferred screen size?</h3>
-                    <button class="quiz-btn" data-answer="small-screen">13-14 inches</button>
-                    <button class="quiz-btn" data-answer="large-screen">16 inches</button>
-                </div>
-                <div class="quiz-question" data-question="3" style="display:none;">
-                    <h3>3. What's your budget?</h3>
-                    <button class="quiz-btn" data-answer="low-budget">$999 - $1,299</button>
-                    <button class="quiz-btn" data-answer="mid-budget">$1,300 - $2,000</button>
-                    <button class="quiz-btn" data-answer="high-budget">Above $2,000</button>
-                </div>
-
-                <!-- Quiz result -->
-                <div id="quiz-result" style="display:none;">
-                    <h3>Your Perfect MacBook is:</h3>
-                    <p id="quiz-suggestion"></p>
-                </div>
+    <!-- What's Going On Now Section -->
+    <section class="whats-going-on" data-aos="fade-up">
+        <h2>What's Going On Now</h2>
+        <div class="scrolling-container">
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/beautyweb.jpeg?raw=true" alt="Project 1">
+                <h3>New Website Launch: Laura's Beauty Touch</h3>
+                <p>We’ve just launched a new sleek and modern website for Laura's Beauty Touch salon. Check it out!</p>
             </div>
-        </div>
-    </section>
 
-    <!-- iPhone Quiz Section -->
-    <section id="iphone-quiz" class="quiz-section">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>What's the Best iPhone for You?</h2>
-            <p>Take the quiz and discover your ideal iPhone.</p>
-            <div id="quiz-container">
-                <!-- iPhone Quiz questions -->
-                <div class="quiz-question" data-question="1">
-                    <h3>1. How do you use your phone?</h3>
-                    <button class="quiz-btn" data-answer="basic-use">Basic (Calls, Messages, Social Media)</button>
-                    <button class="quiz-btn" data-answer="creative-use">Creative (Photography, Video Editing)</button>
-                    <button class="quiz-btn" data-answer="power-use">Power User (Gaming, Heavy Apps)</button>
-                </div>
-                <div class="quiz-question" data-question="2" style="display:none;">
-                    <h3>2. What size do you prefer?</h3>
-                    <button class="quiz-btn" data-answer="small-size">Small (iPhone Mini)</button>
-                    <button class="quiz-btn" data-answer="medium-size">Medium (iPhone 13/14)</button>
-                    <button class="quiz-btn" data-answer="large-size">Large (iPhone Pro Max)</button>
-                </div>
-
-                <!-- iPhone Quiz result -->
-                <div id="iphone-quiz-result" style="display:none;">
-                    <h3>Your Perfect iPhone is:</h3>
-                    <p id="iphone-suggestion"></p>
-                </div>
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="Project 2">
+                <h3>Real Estate Website: East Coast Realty</h3>
+                <p>Our latest real estate website is live with advanced property search and lead generation features.</p>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
-            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-            <a href="contact.html"><button class="btn">Get In Touch</button></a>
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Project 3">
+                <h3>Cohen and Associates: Corporate Website</h3>
+                <p>We’ve delivered a sleek, corporate site optimized for seamless client interaction.</p>
+            </div>
         </div>
     </section>
 
@@ -503,94 +433,6 @@
 
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
-
-    <!-- Quiz JavaScript Logic -->
-    <script>
-        const questions = document.querySelectorAll('.quiz-question');
-        const resultContainer = document.getElementById('quiz-result');
-        const suggestionText = document.getElementById('quiz-suggestion');
-        let currentQuestion = 0;
-        let answers = {};
-
-        document.querySelectorAll('.quiz-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const answer = this.getAttribute('data-answer');
-                answers[`question${currentQuestion + 1}`] = answer;
-
-                // Move to next question or show result
-                if (currentQuestion < questions.length - 1) {
-                    questions[currentQuestion].style.display = 'none';
-                    currentQuestion++;
-                    questions[currentQuestion].style.display = 'block';
-                } else {
-                    showResult();
-                }
-            });
-        });
-
-        function showResult() {
-            questions[currentQuestion].style.display = 'none';
-            resultContainer.style.display = 'block';
-            
-            // Determine the best MacBook based on answers
-            if (answers.question1 === 'light-use') {
-                suggestionText.textContent = 'MacBook Air (Light, Portable, and Affordable)';
-            } else if (answers.question1 === 'creative-use' && answers.question2 === 'large-screen') {
-                suggestionText.textContent = 'MacBook Pro 16" (Best for Creative Professionals)';
-            } else if (answers.question1 === 'power-use') {
-                suggestionText.textContent = 'MacBook Pro 16" (Ultimate Power and Performance)';
-            } else {
-                suggestionText.textContent = 'MacBook Pro 14" (Balanced Performance and Portability)';
-            }
-        }
-
-        // iPhone Quiz Logic
-        const iphoneQuestions = document.querySelectorAll('#iphone-quiz .quiz-question');
-        const iphoneResultContainer = document.getElementById('iphone-quiz-result');
-        const iphoneSuggestionText = document.getElementById('iphone-suggestion');
-        let currentIphoneQuestion = 0;
-        let iphoneAnswers = {};
-
-        document.querySelectorAll('#iphone-quiz .quiz-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const answer = this.getAttribute('data-answer');
-                iphoneAnswers[`question${currentIphoneQuestion + 1}`] = answer;
-
-                if (currentIphoneQuestion < iphoneQuestions.length - 1) {
-                    iphoneQuestions[currentIphoneQuestion].style.display = 'none';
-                    currentIphoneQuestion++;
-                    iphoneQuestions[currentIphoneQuestion].style.display = 'block';
-                } else {
-                    showIphoneResult();
-                }
-            });
-        });
-
-        function showIphoneResult() {
-            iphoneQuestions[currentIphoneQuestion].style.display = 'none';
-            iphoneResultContainer.style.display = 'block';
-
-            if (iphoneAnswers.question1 === 'basic-use') {
-                iphoneSuggestionText.textContent = 'iPhone SE (Affordable and Compact)';
-            } else if (iphoneAnswers.question1 === 'creative-use' && iphoneAnswers.question2 === 'large-size') {
-                iphoneSuggestionText.textContent = 'iPhone 15 Pro Max (Perfect for Photography)';
-            } else if (iphoneAnswers.question1 === 'power-use') {
-                iphoneSuggestionText.textContent = 'iPhone 15 Pro Max (Ultimate Performance)';
-            } else {
-                iphoneSuggestionText.textContent = 'iPhone 15 (Balanced for Everyday Use)';
-            }
-        }
-    </script>
-
-    <!-- Hamburger Menu Script -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-
-        hamburger.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
         });
     </script>
 
