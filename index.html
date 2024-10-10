@@ -24,13 +24,19 @@
 header {
     background-color: #0b1f3f;
     padding: 15px 0;
-    position: fixed; /* Make the header fixed at the top */
+    position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Ensure it stays above other content */
-    transition: background-color 0.3s ease-in-out;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out; /* Smooth appearance/disappearance */
+    opacity: 1; /* Fully visible */
 }
 
+header.hidden {
+    opacity: 0; /* Make the header disappear */
+}
+
+/* Optional: background color change on scroll */
 header.scrolled {
     background-color: #0b1f3f;
 
@@ -414,30 +420,27 @@ header.scrolled {
 
     <!-- JavaScript -->
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
-        const slides = document.querySelectorAll('.event-slide');
-        let currentSlide = 0;
-
-        hamburger.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-        });
-
-        window.onscroll = function() {
-            if (window.pageYOffset > 50) {
-                scrollToTopButton.classList.add("show");
-            } else {
-                scrollToTopButton.classList.remove("show");
-            }
-        };
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-       const slides = document.querySelectorAll('.event-slide');
+     const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+const scrollToTopButton = document.querySelector('.scroll-to-top');
+const slides = document.querySelectorAll('.event-slide');
 let currentSlide = 0;
+
+hamburger.addEventListener('click', function() {
+    mobileNav.classList.toggle('active');
+});
+
+window.onscroll = function() {
+    if (window.pageYOffset > 50) {
+        scrollToTopButton.classList.add("show");
+    } else {
+        scrollToTopButton.classList.remove("show");
+    }
+};
+
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 
 function showSlide(index) {
     const totalSlides = slides.length;
@@ -454,12 +457,27 @@ document.getElementById('prevSlide').addEventListener('click', () => showSlide(c
 
 // Auto slide every 10 seconds
 setInterval(() => showSlide(currentSlide + 1), 10000);
-    </script>
 
-    <!-- AOS Animation Script -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
+// Header show/hide logic based on scroll position
+const header = document.querySelector('header');
+const parallaxSection = document.querySelector('.hero');
+let lastScrollY = window.scrollY;
+
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const parallaxPosition = parallaxSection.offsetTop;
+
+    // Hide the header when scrolling down
+    if (currentScrollY > lastScrollY) {
+        header.classList.add('hidden');
+    } 
+    // Show the header when reaching the parallax section
+    else if (currentScrollY < lastScrollY && currentScrollY >= parallaxPosition - window.innerHeight / 2) {
+        header.classList.remove('hidden');
+    }
+
+    lastScrollY = currentScrollY;
+});
     </script>
 </body>
 </html>
