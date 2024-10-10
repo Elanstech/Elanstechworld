@@ -20,19 +20,20 @@
             transition: all 0.3s ease-in-out;
         }
 
-        /* Header */
-        header {
-            background-color: transparent;
-            padding: 15px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: background-color 0.3s ease-in-out;
-        }
+       /* Header */
+header {
+    background-color: #0b1f3f;
+    padding: 15px 0;
+    position: fixed; /* Make the header fixed at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: background-color 0.3s ease-in-out;
+}
 
-        header.scrolled {
-            background-color: #0b1f3f;
+header.scrolled {
+    background-color: #0b1f3f;
+
         }
 
         .header-container {
