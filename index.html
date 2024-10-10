@@ -222,6 +222,54 @@
             display: block;
         }
 
+        /* What's Going On Now Section */
+        .whats-going-on {
+            position: relative;
+            padding: 60px 20px;
+            background-color: #0b1f3f;
+            color: white;
+        }
+
+        .scrolling-container {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .event-slide {
+            min-width: 100%;
+            transition: transform 0.5s ease-in-out;
+            text-align: center;
+        }
+
+        .event-slide img {
+            max-width: 80%;
+            border-radius: 15px;
+        }
+
+        .arrows {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .arrow {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 2em;
+        }
+
+        .arrow:hover {
+            background-color: #d4af37;
+        }
+
         /* Responsive Styling */
         @media (max-width: 768px) {
             header nav ul {
@@ -299,7 +347,7 @@
         </div>
     </section>
 
-    <!-- About Us Section (Blue Background) -->
+    <!-- About Us Section -->
     <section id="about" data-aos="fade-up">
         <i class="fas fa-briefcase section-icon"></i>
         <h2>About Us</h2>
@@ -307,7 +355,7 @@
         <a href="about.html" class="btn">Learn More</a>
     </section>
 
-    <!-- Our Services Section (White Background) -->
+    <!-- Our Services Section -->
     <section id="services" data-aos="fade-up">
         <i class="fas fa-cogs section-icon"></i>
         <h2>Our Services</h2>
@@ -315,7 +363,33 @@
         <a href="services.html" class="btn">Explore Services</a>
     </section>
 
-    <!-- Testimonials Section (Blue Background) -->
+    <!-- What's Going On Now Section -->
+    <section class="whats-going-on" data-aos="fade-up">
+        <h2>What's Going On Now</h2>
+        <div class="scrolling-container" id="scrolling-container">
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/beautyweb.jpeg?raw=true" alt="Project 1">
+                <h3>New Website Launch: Laura's Beauty Touch</h3>
+                <p>We’ve just launched a new sleek and modern website for Laura's Beauty Touch salon. Check it out!</p>
+            </div>
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="Project 2">
+                <h3>Real Estate Website: East Coast Realty</h3>
+                <p>Our latest real estate website is live with advanced property search and lead generation features.</p>
+            </div>
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Project 3">
+                <h3>Cohen and Associates: Corporate Website</h3>
+                <p>We’ve delivered a sleek, corporate site optimized for seamless client interaction.</p>
+            </div>
+        </div>
+        <div class="arrows">
+            <button class="arrow" id="prevSlide">&#10094;</button>
+            <button class="arrow" id="nextSlide">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
     <section id="testimonials" data-aos="fade-up">
         <i class="fas fa-comments section-icon"></i>
         <h2>What Our Clients Say</h2>
@@ -323,7 +397,7 @@
         <a href="testimonials.html" class="btn">View Testimonials</a>
     </section>
 
-    <!-- FAQ Section (White Background) -->
+    <!-- FAQ Section -->
     <section id="faq" data-aos="fade-up">
         <i class="fas fa-question-circle section-icon"></i>
         <h2>Frequently Asked Questions</h2>
@@ -331,7 +405,7 @@
         <a href="faq.html" class="btn">Read FAQs</a>
     </section>
 
-    <!-- Contact Section (Blue Background) -->
+    <!-- Contact Section -->
     <section id="contact" data-aos="fade-up">
         <h2>Contact Us</h2>
         <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
@@ -342,27 +416,18 @@
     <!-- Scroll to Top Button -->
     <a href="#top" class="scroll-to-top">↑</a>
 
-    <!-- Smooth Scrolling JavaScript -->
+    <!-- JavaScript -->
     <script>
-        // Hamburger Menu Script
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        const slides = document.querySelectorAll('.event-slide');
+        let currentSlide = 0;
 
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
         });
 
-        // Smooth scrolling to sections
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = this.getAttribute('href');
-                document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-
-        // Scroll to Top Button
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
         window.onscroll = function() {
             if (window.pageYOffset > 50) {
                 scrollToTopButton.classList.add("show");
@@ -374,6 +439,23 @@
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+
+        // Slide functionality
+        function showSlide(index) {
+            const totalSlides = slides.length;
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
+
+            const offset = -currentSlide * 100; // Slide to show based on width
+            document.getElementById('scrolling-container').style.transform = `translateX(${offset}%)`;
+        }
+
+        document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
+        document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
+
+        // Auto slide every 10 seconds
+        setInterval(() => showSlide(currentSlide + 1), 10000);
     </script>
 
     <!-- AOS Animation Script -->
