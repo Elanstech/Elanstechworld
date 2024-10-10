@@ -150,13 +150,13 @@
 
 .scrolling-container {
     display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 300%;
+    transition: transform 0.5s ease-in-out; /* Ensures smooth sliding */
+    width: 300%; /* This is important to accommodate all the slides */
 }
 
 .event-slide {
-    min-width: 100%;
-    text-align: center;
+    min-width: 100%; /* Ensure each slide takes up the full width */
+    box-sizing: border-box;
 }
 
 .event-slide img {
@@ -544,8 +544,8 @@ button.next {
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
         });
-    </script>
-      let slideIndex = 0;
+  <script>
+    let slideIndex = 0;
     const slides = document.querySelectorAll('.event-slide');
     const totalSlides = slides.length;
 
@@ -553,7 +553,8 @@ button.next {
         slideIndex = index;
         if (slideIndex >= totalSlides) slideIndex = 0;
         if (slideIndex < 0) slideIndex = totalSlides - 1;
-        document.querySelector('.scrolling-container').style.transform = `translateX(-${slideIndex * 100}%)`;
+        const translateValue = -(slideIndex * 100);
+        document.querySelector('.scrolling-container').style.transform = `translateX(${translateValue}%)`;
     }
 
     function nextSlide() {
@@ -568,6 +569,9 @@ button.next {
     setInterval(() => {
         nextSlide();
     }, 10000);
+
+    // Initialize the first slide
+    showSlide(slideIndex);
 </script>
 </body>
 </html>
