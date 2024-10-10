@@ -233,17 +233,14 @@
         /* MacBook Quiz Section */
         .quiz-section {
             padding: 60px 20px;
-            background: linear-gradient(135deg, #1f1f1f, #3f3f3f);
-            color: #fff;
-            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .quiz-question {
             margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
         }
 
+        /* Quiz Buttons */
         .quiz-btn {
             display: inline-block;
             padding: 15px 30px;
@@ -417,6 +414,35 @@
         </div>
     </section>
 
+    <!-- iPhone Quiz Section -->
+    <section id="iphone-quiz" class="quiz-section">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>What's the Best iPhone for You?</h2>
+            <p>Take the quiz and discover your ideal iPhone.</p>
+            <div id="quiz-container">
+                <!-- iPhone Quiz questions -->
+                <div class="quiz-question" data-question="1">
+                    <h3>1. How do you use your phone?</h3>
+                    <button class="quiz-btn" data-answer="basic-use">Basic (Calls, Messages, Social Media)</button>
+                    <button class="quiz-btn" data-answer="creative-use">Creative (Photography, Video Editing)</button>
+                    <button class="quiz-btn" data-answer="power-use">Power User (Gaming, Heavy Apps)</button>
+                </div>
+                <div class="quiz-question" data-question="2" style="display:none;">
+                    <h3>2. What size do you prefer?</h3>
+                    <button class="quiz-btn" data-answer="small-size">Small (iPhone Mini)</button>
+                    <button class="quiz-btn" data-answer="medium-size">Medium (iPhone 13/14)</button>
+                    <button class="quiz-btn" data-answer="large-size">Large (iPhone Pro Max)</button>
+                </div>
+
+                <!-- iPhone Quiz result -->
+                <div id="iphone-quiz-result" style="display:none;">
+                    <h3>Your Perfect iPhone is:</h3>
+                    <p id="iphone-suggestion"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container" data-aos="fade-up">
@@ -517,6 +543,43 @@
                 suggestionText.textContent = 'MacBook Pro 16" (Ultimate Power and Performance)';
             } else {
                 suggestionText.textContent = 'MacBook Pro 14" (Balanced Performance and Portability)';
+            }
+        }
+
+        // iPhone Quiz Logic
+        const iphoneQuestions = document.querySelectorAll('#iphone-quiz .quiz-question');
+        const iphoneResultContainer = document.getElementById('iphone-quiz-result');
+        const iphoneSuggestionText = document.getElementById('iphone-suggestion');
+        let currentIphoneQuestion = 0;
+        let iphoneAnswers = {};
+
+        document.querySelectorAll('#iphone-quiz .quiz-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const answer = this.getAttribute('data-answer');
+                iphoneAnswers[`question${currentIphoneQuestion + 1}`] = answer;
+
+                if (currentIphoneQuestion < iphoneQuestions.length - 1) {
+                    iphoneQuestions[currentIphoneQuestion].style.display = 'none';
+                    currentIphoneQuestion++;
+                    iphoneQuestions[currentIphoneQuestion].style.display = 'block';
+                } else {
+                    showIphoneResult();
+                }
+            });
+        });
+
+        function showIphoneResult() {
+            iphoneQuestions[currentIphoneQuestion].style.display = 'none';
+            iphoneResultContainer.style.display = 'block';
+
+            if (iphoneAnswers.question1 === 'basic-use') {
+                iphoneSuggestionText.textContent = 'iPhone SE (Affordable and Compact)';
+            } else if (iphoneAnswers.question1 === 'creative-use' && iphoneAnswers.question2 === 'large-size') {
+                iphoneSuggestionText.textContent = 'iPhone 15 Pro Max (Perfect for Photography)';
+            } else if (iphoneAnswers.question1 === 'power-use') {
+                iphoneSuggestionText.textContent = 'iPhone 15 Pro Max (Ultimate Performance)';
+            } else {
+                iphoneSuggestionText.textContent = 'iPhone 15 (Balanced for Everyday Use)';
             }
         }
     </script>
