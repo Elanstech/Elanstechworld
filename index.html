@@ -67,42 +67,6 @@
             color: #fff;
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background-color: #0b1f3f;
-            position: absolute;
-            top: 100%;
-            width: 100%;
-            left: 0;
-        }
-
-        .mobile-nav li {
-            margin: 10px 0;
-        }
-
-        .mobile-nav li a {
-            color: white;
-            font-weight: bold;
-            font-size: 1.2em;
-            padding: 10px;
-        }
-
         /* Hero Section with Parallax Effect */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
@@ -158,31 +122,44 @@
         /* About Us Section */
         section {
             padding: 60px 20px;
+            margin-bottom: 40px;
             background: #f9f9f9;
             border-radius: 15px;
             transition: all 0.3s ease-in-out;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative;
         }
 
-        .bubbly {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 30px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .bubbly:hover {
-            transform: translateY(-5px);
+        /* Add background colors and contrast for sections */
+        section:nth-of-type(odd) {
+            background: #0b1f3f; /* Darker background for contrast */
+            color: #fff;
         }
 
         section h2 {
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5em;
-            color: #0b1f3f;
             margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Icons for Sections */
+        .section-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #d4af37; /* Gold-like color for icons */
+        }
+
+        /* Hover effects for sections */
+        section:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
         }
 
         /* Scroll to Top Button */
@@ -206,33 +183,23 @@
             display: block;
         }
 
-        /* Responsive Styles for Mobile with Hamburger Menu */
+        /* Responsive Styling */
         @media (max-width: 768px) {
-            header nav ul {
-                display: none;
+            section {
+                padding: 30px 15px;
             }
 
-            .hamburger {
-                display: block;
-            }
-
-            .mobile-nav.active {
-                display: flex;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
+            section h2 {
                 font-size: 2em;
             }
 
-            .hero p {
-                font-size: 1.2em;
+            section p {
+                font-size: 1.1em;
             }
 
             .btn {
                 padding: 10px 20px;
-                font-size: 0.9em;
+                font-size: 1em;
             }
         }
     </style>
@@ -286,49 +253,69 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="about">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>About Us</h2>
-            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
-            <a href="about.html"><button class="btn">Learn More</button></a>
-        </div>
+    <section id="about" data-aos="fade-up">
+        <i class="fas fa-briefcase section-icon"></i>
+        <h2>About Us</h2>
+        <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+        <a href="about.html" class="btn">Learn More</a>
     </section>
 
-    <!-- Services Section -->
-    <section id="services">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>Our Services</h2>
-            <p>We offer a variety of technology solutions to meet your business needs.</p>
-            <a href="services.html"><button class="btn">Explore Services</button></a>
-        </div>
+    <!-- Our Services Section -->
+    <section id="services" data-aos="fade-up">
+        <i class="fas fa-cogs section-icon"></i>
+        <h2>Our Services</h2>
+        <p>We offer a variety of technology solutions to meet your business needs.</p>
+        <a href="services.html" class="btn">Explore Services</a>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>What Our Clients Say</h2>
-            <p>See what our clients have to say about their experiences working with us.</p>
-            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
-        </div>
+    <section id="testimonials" data-aos="fade-up">
+        <i class="fas fa-comments section-icon"></i>
+        <h2>What Our Clients Say</h2>
+        <p>See what our clients have to say about their experiences working with us.</p>
+        <a href="testimonials.html" class="btn">View Testimonials</a>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq">
-        <div class="bubbly" data-aos="fade-up">
-            <h2>Frequently Asked Questions</h2>
-            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-            <a href="faq.html"><button class="btn">Read FAQs</button></a>
+    <section id="faq" data-aos="fade-up">
+        <i class="fas fa-question-circle section-icon"></i>
+        <h2>Frequently Asked Questions</h2>
+        <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+        <a href="faq.html" class="btn">Read FAQs</a>
+    </section>
+
+    <!-- What's Going On Now Section -->
+    <section class="whats-going-on" data-aos="fade-up">
+        <h2>What's Going On Now</h2>
+        <div class="scrolling-container">
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/beautyweb.jpeg?raw=true" alt="Project 1">
+                <h3>New Website Launch: Laura's Beauty Touch</h3>
+                <p>We’ve just launched a new sleek and modern website for Laura's Beauty Touch salon. Check it out!</p>
+            </div>
+
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="Project 2">
+                <h3>Real Estate Website: East Coast Realty</h3>
+                <p>Our latest real estate website is live with advanced property search and lead generation features.</p>
+            </div>
+
+            <div class="event-slide">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Project 3">
+                <h3>Cohen and Associates: Corporate Website</h3>
+                <p>We’ve delivered a sleek, corporate site optimized for seamless client interaction.</p>
+            </div>
         </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container" data-aos="fade-up">
-            <h2>Contact Us</h2>
-            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
-            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-            <a href="contact.html"><button class="btn">Get In Touch</button></a>
-        </div>
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+        <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+        <a href="contact.html" class="btn">Get In Touch</a>
     </section>
 
     <!-- Scroll to Top Button -->
