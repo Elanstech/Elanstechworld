@@ -103,176 +103,59 @@
             padding: 10px;
         }
 
-        /* Hero Section */
+        /* Hero Section with Parallax Effect */
         .hero {
-            background-color: #0b1f3f;
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax effect */
             height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            color: #fff;
+            align-items: center;
             text-align: center;
+            color: #fff;
+            padding: 20px;
         }
 
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
             font-size: 3em;
             margin-bottom: 20px;
-            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
             background: rgba(0, 0, 0, 0.5);
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .hero h1:hover {
-            transform: scale(1.05);
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .hero p {
             font-size: 1.5em;
-            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .button-container {
             margin-top: 20px;
         }
 
-        .whats-going-on {
-    position: relative;
-    padding: 50px 20px;
-    background-color: #0b1f3f;
-    color: #fff;
-    text-align: center;
-    overflow: hidden;
-}
-
-.scrolling-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out; /* Ensures smooth sliding */
-    width: 300%; /* This is important to accommodate all the slides */
-}
-
-.event-slide {
-    min-width: 100%; /* Ensure each slide takes up the full width */
-    box-sizing: border-box;
-}
-
-.event-slide img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Arrow Buttons */
-button.prev, button.next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #0b1f3f;
-    border-radius: 50%;
-    z-index: 1;
-    transition: background-color 0.3s ease;
-}
-
-button.prev:hover, button.next:hover {
-    background-color: #f9c200;
-}
-
-button.prev {
-    left: 10px;
-}
-
-button.next {
-    right: 10px;
-}
-
         .btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background-color: #d4af37; /* Gold-like color */
-    color: #fff; /* White text color */
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 1.2em;
-    margin: 10px;
-    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-        
-       .btn:hover {
-    background-color: #b8992c; /* Darker shade of gold for hover effect */
-    transform: translateY(-5px);
-}
-
-        /* Parallax Section */
-        .parallax-section {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true');
-            min-height: 400px;
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-            font-size: 2em;
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #d4af37; /* Gold-like color */
+            color: #fff; /* White text color */
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        /* What's Going On Now Section */
-        .whats-going-on {
-            padding: 50px 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            text-align: center;
+        .btn:hover {
+            background-color: #b8992c; /* Darker shade of gold for hover effect */
+            transform: translateY(-5px);
         }
 
-        .whats-going-on h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-
-        .scrolling-container {
-            display: flex;
-            overflow: hidden;
-            position: relative;
-            max-width: 100%;
-            height: 300px;
-        }
-
-        .event-slide {
-            min-width: 100%;
-            transition: transform 1s ease;
-        }
-
-        .event-slide img {
-            max-width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .event-slide h3 {
-            font-size: 1.5em;
-            margin-top: 10px;
-        }
-
-        .event-slide p {
-            font-size: 1.1em;
-            margin-top: 5px;
-        }
-        
-        /* Sections with Bubbly Text Boxes */
+        /* About Us Section */
         section {
             padding: 60px 20px;
             background: #f9f9f9;
@@ -391,7 +274,7 @@ button.next {
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Parallax Effect -->
     <section id="home" class="hero">
         <div class="container">
             <h1>Driving Success with our Tech Expertise</h1>
@@ -402,35 +285,6 @@ button.next {
         </div>
     </section>
 
-    <!-- Parallax Section -->
-    <div class="parallax-section">
-        <h2>Innovating for the Future</h2>
-    </div>
-
-    <!-- What's Going On Now Section -->
-<section class="whats-going-on">
-    <h2>What's Going On Now</h2>
-    <div class="scrolling-container">
-        <div class="event-slide">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/beautyweb.jpeg?raw=true" alt="Project 1">
-            <h3>New Website Launch: Laura's Beauty Touch</h3>
-            <p>We’ve just launched a new sleek and modern website for Laura's Beauty Touch salon. Check it out!</p>
-        </div>
-        <div class="event-slide">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="Project 2">
-            <h3>Real Estate Website: East Coast Realty</h3>
-            <p>Our latest real estate website is live with advanced property search and lead generation features.</p>
-        </div>
-        <div class="event-slide">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Project 3">
-            <h3>Cohen and Associates: Corporate Website</h3>
-            <p>We’ve delivered a sleek, corporate site optimized for seamless client interaction.</p>
-        </div>
-    </div>
-    <button class="prev" onclick="prevSlide()">&#10094;</button>
-    <button class="next" onclick="nextSlide()">&#10095;</button>
-</section>
-    
     <!-- About Us Section -->
     <section id="about">
         <div class="bubbly" data-aos="fade-up">
@@ -544,34 +398,6 @@ button.next {
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
         });
-  <script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.event-slide');
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-        slideIndex = index;
-        if (slideIndex >= totalSlides) slideIndex = 0;
-        if (slideIndex < 0) slideIndex = totalSlides - 1;
-        const translateValue = -(slideIndex * 100);
-        document.querySelector('.scrolling-container').style.transform = `translateX(${translateValue}%)`;
-    }
-
-    function nextSlide() {
-        showSlide(slideIndex + 1);
-    }
-
-    function prevSlide() {
-        showSlide(slideIndex - 1);
-    }
-
-    // Auto-cycle every 10 seconds
-    setInterval(() => {
-        nextSlide();
-    }, 10000);
-
-    // Initialize the first slide
-    showSlide(slideIndex);
-</script>
+    </script>
 </body>
 </html>
