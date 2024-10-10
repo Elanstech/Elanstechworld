@@ -6,6 +6,8 @@
     <title>Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
@@ -22,7 +24,7 @@
         header {
             background-color: transparent;
             padding: 15px 0;
-            position: absolute;
+            position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
@@ -65,6 +67,46 @@
         header nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-nav li a {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
         }
 
         /* Hero Section with Parallax Effect */
@@ -119,16 +161,25 @@
             transform: translateY(-5px);
         }
 
-        /* About Us Section Styling */
+        /* Section Styling */
         section {
             padding: 60px 20px;
             margin-bottom: 40px;
-            background: #f9f9f9;
             border-radius: 15px;
             transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             position: relative;
+        }
+
+        /* Blue and White Alternating Backgrounds */
+        section:nth-of-type(odd) {
+            background-color: #0b1f3f; /* Dark blue */
+            color: white;
+        }
+
+        section:nth-of-type(even) {
+            background-color: #fff;
+            color: #333;
         }
 
         section h2 {
@@ -143,17 +194,11 @@
             margin-bottom: 20px;
         }
 
-        /* Icons for Sections */
+        /* Section Icons */
         .section-icon {
             font-size: 3em;
             margin-bottom: 20px;
-            color: #d4af37; /* Gold-like color for icons */
-        }
-
-        /* Hover effects for sections */
-        section:hover {
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transform: translateY(-5px);
+            color: #d4af37; /* Gold-like color */
         }
 
         /* Scroll to Top Button */
@@ -179,21 +224,29 @@
 
         /* Responsive Styling */
         @media (max-width: 768px) {
-            section {
-                padding: 30px 15px;
+            header nav ul {
+                display: none;
             }
 
-            section h2 {
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+
+            .hero h1 {
                 font-size: 2em;
             }
 
-            section p {
-                font-size: 1.1em;
+            .hero p {
+                font-size: 1.2em;
             }
 
             .btn {
                 padding: 10px 20px;
-                font-size: 1em;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -246,7 +299,7 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
+    <!-- About Us Section (Blue Background) -->
     <section id="about" data-aos="fade-up">
         <i class="fas fa-briefcase section-icon"></i>
         <h2>About Us</h2>
@@ -254,7 +307,7 @@
         <a href="about.html" class="btn">Learn More</a>
     </section>
 
-    <!-- Our Services Section -->
+    <!-- Our Services Section (White Background) -->
     <section id="services" data-aos="fade-up">
         <i class="fas fa-cogs section-icon"></i>
         <h2>Our Services</h2>
@@ -262,7 +315,7 @@
         <a href="services.html" class="btn">Explore Services</a>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Testimonials Section (Blue Background) -->
     <section id="testimonials" data-aos="fade-up">
         <i class="fas fa-comments section-icon"></i>
         <h2>What Our Clients Say</h2>
@@ -270,7 +323,7 @@
         <a href="testimonials.html" class="btn">View Testimonials</a>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ Section (White Background) -->
     <section id="faq" data-aos="fade-up">
         <i class="fas fa-question-circle section-icon"></i>
         <h2>Frequently Asked Questions</h2>
@@ -278,7 +331,7 @@
         <a href="faq.html" class="btn">Read FAQs</a>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Blue Background) -->
     <section id="contact" data-aos="fade-up">
         <h2>Contact Us</h2>
         <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
@@ -291,36 +344,20 @@
 
     <!-- Smooth Scrolling JavaScript -->
     <script>
-        function smoothScroll(target, duration) {
-            const targetElement = document.querySelector(target);
-            const targetPosition = targetElement.getBoundingClientRect().top;
-            const startPosition = window.pageYOffset;
-            let startTime = null;
+        // Hamburger Menu Script
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
 
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = ease(timeElapsed, startPosition, targetPosition, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
 
-            function ease(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
-
-            requestAnimationFrame(animation);
-        }
-
-        // Attach event listeners for smooth scrolling to anchor links
+        // Smooth scrolling to sections
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = this.getAttribute('href');
-                smoothScroll(target, 1000); // Adjust duration for smoothness (1000ms = 1s)
+                document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
@@ -343,16 +380,6 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
-    </script>
-
-    <!-- Hamburger Menu Script -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-
-        hamburger.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-        });
     </script>
 </body>
 </html>
