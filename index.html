@@ -435,22 +435,24 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Slide functionality
-        function showSlide(index) {
-            const totalSlides = slides.length;
-            if (index >= totalSlides) currentSlide = 0;
-            else if (index < 0) currentSlide = totalSlides - 1;
-            else currentSlide = index;
+       const slides = document.querySelectorAll('.event-slide');
+let currentSlide = 0;
 
-            const offset = -currentSlide * 100; // Slide to show based on width
-            document.getElementById('scrolling-container').style.transform = `translateX(${offset}%)`;
-        }
+function showSlide(index) {
+    const totalSlides = slides.length;
+    if (index >= totalSlides) currentSlide = 0;
+    else if (index < 0) currentSlide = totalSlides - 1;
+    else currentSlide = index;
 
-        document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
-        document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
+    const offset = -currentSlide * 100; // Each slide takes up 100% width of the container
+    document.getElementById('scrolling-container').style.transform = `translateX(${offset}%)`;
+}
 
-        // Auto slide every 10 seconds
-        setInterval(() => showSlide(currentSlide + 1), 10000);
+document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
+document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
+
+// Auto slide every 10 seconds
+setInterval(() => showSlide(currentSlide + 1), 10000);
     </script>
 
     <!-- AOS Animation Script -->
