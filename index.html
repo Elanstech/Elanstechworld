@@ -258,6 +258,37 @@
                 padding: 10px 20px;
                 font-size: 0.9em;
             }
+                .quiz-section {
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #1f1f1f, #3f3f3f);
+        color: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .quiz-question {
+        margin-bottom: 20px;
+    }
+
+    .quiz-btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background: linear-gradient(45deg, #f9c200, #d1a800);
+        color: #0b1f3f;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 1.2em;
+        margin: 10px;
+        transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+    }
+
+    .quiz-btn:hover {
+        background: linear-gradient(45deg, #d1a800, #f9c200);
+        transform: translateY(-5px);
+    }
         }
     </style>
 </head>
@@ -349,6 +380,38 @@
             <a href="faq.html"><button class="btn">Read FAQs</button></a>
         </div>
     </section>
+    <section id="macbook-quiz" class="quiz-section">
+    <div class="bubbly" data-aos="fade-up">
+        <h2>What's the Best MacBook for You?</h2>
+        <p>Take the quiz and discover your perfect MacBook match.</p>
+        <div id="quiz-container">
+            <!-- Quiz questions -->
+            <div class="quiz-question" data-question="1">
+                <h3>1. How do you plan to use your MacBook?</h3>
+                <button class="quiz-btn" data-answer="light-use">Light Work (Browsing, Emails, etc.)</button>
+                <button class="quiz-btn" data-answer="creative-use">Creative Work (Design, Video Editing)</button>
+                <button class="quiz-btn" data-answer="power-use">Powerful Work (Software Development, Gaming)</button>
+            </div>
+            <div class="quiz-question" data-question="2" style="display:none;">
+                <h3>2. What's your preferred screen size?</h3>
+                <button class="quiz-btn" data-answer="small-screen">13-14 inches</button>
+                <button class="quiz-btn" data-answer="large-screen">16 inches</button>
+            </div>
+            <div class="quiz-question" data-question="3" style="display:none;">
+                <h3>3. What's your budget?</h3>
+                <button class="quiz-btn" data-answer="low-budget">$999 - $1,299</button>
+                <button class="quiz-btn" data-answer="mid-budget">$1,300 - $2,000</button>
+                <button class="quiz-btn" data-answer="high-budget">Above $2,000</button>
+            </div>
+
+            <!-- Quiz result -->
+            <div id="quiz-result" style="display:none;">
+                <h3>Your Perfect MacBook is:</h3>
+                <p id="quiz-suggestion"></p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -428,5 +491,43 @@
     <script>
         AOS.init();
     </script>
+    const questions = document.querySelectorAll('.quiz-question');
+    const resultContainer = document.getElementById('quiz-result');
+    const suggestionText = document.getElementById('quiz-suggestion');
+    let currentQuestion = 0;
+    let answers = {};
+
+    document.querySelectorAll('.quiz-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const answer = this.getAttribute('data-answer');
+            answers[`question${currentQuestion + 1}`] = answer;
+
+            // Move to next question or show result
+            if (currentQuestion < questions.length - 1) {
+                questions[currentQuestion].style.display = 'none';
+                currentQuestion++;
+                questions[currentQuestion].style.display = 'block';
+            } else {
+                showResult();
+            }
+        });
+    });
+
+    function showResult() {
+        questions[currentQuestion].style.display = 'none';
+        resultContainer.style.display = 'block';
+        
+        // Determine the best MacBook based on answers
+        if (answers.question1 === 'light-use') {
+            suggestionText.textContent = 'MacBook Air (Light, Portable, and Affordable)';
+        } else if (answers.question1 === 'creative-use' && answers.question2 === 'large-screen') {
+            suggestionText.textContent = 'MacBook Pro 16" (Best for Creative Professionals)';
+        } else if (answers.question1 === 'power-use') {
+            suggestionText.textContent = 'MacBook Pro 16" (Ultimate Power and Performance)';
+        } else {
+            suggestionText.textContent = 'MacBook Pro 14" (Balanced Performance and Portability)';
+        }
+    }
+</script>
 </body>
 </html>
