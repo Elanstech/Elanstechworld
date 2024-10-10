@@ -173,57 +173,6 @@
             font-size: 2em;
         }
 
-        /* Sections with Bubbly Text Boxes */
-        section {
-            padding: 60px 20px;
-            background: #f9f9f9;
-            border-radius: 15px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .bubbly {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 30px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .bubbly:hover {
-            transform: translateY(-5px);
-        }
-
-        section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #0b1f3f;
-            margin-bottom: 20px;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .scroll-to-top.show {
-            display: block;
-        }
-
         /* What's Going On Now Section */
         .whats-going-on {
             padding: 50px 20px;
@@ -278,6 +227,57 @@
 
         .scrolling-container {
             animation: scroll 12s infinite linear;
+        }
+
+        /* Sections with Bubbly Text Boxes */
+        section {
+            padding: 60px 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .bubbly {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .bubbly:hover {
+            transform: translateY(-5px);
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 20px;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #0b1f3f;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .scroll-to-top.show {
+            display: block;
         }
 
         /* Responsive Styles for Mobile with Hamburger Menu */
@@ -359,8 +359,13 @@
         </div>
     </section>
 
+    <!-- Parallax Section -->
+    <div class="parallax-section">
+        <h2>Innovating for the Future</h2>
+    </div>
+
     <!-- What's Going On Now Section -->
-    <section class="whats-going-on" data-aos="fade-up">
+    <section class="whats-going-on">
         <h2>What's Going On Now</h2>
         <div class="scrolling-container">
             <div class="event-slide">
@@ -380,6 +385,52 @@
                 <h3>Cohen and Associates: Corporate Website</h3>
                 <p>We’ve delivered a sleek, corporate site optimized for seamless client interaction.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>About Us</h2>
+            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+            <a href="about.html"><button class="btn">Learn More</button></a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>Our Services</h2>
+            <p>We offer a variety of technology solutions to meet your business needs.</p>
+            <a href="services.html"><button class="btn">Explore Services</button></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>What Our Clients Say</h2>
+            <p>See what our clients have to say about their experiences working with us.</p>
+            <a href="testimonials.html"><button class="btn">View Testimonials</button></a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="bubbly" data-aos="fade-up">
+            <h2>Frequently Asked Questions</h2>
+            <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+            <a href="faq.html"><button class="btn">Read FAQs</button></a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+            <h2>Contact Us</h2>
+            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+            <a href="contact.html"><button class="btn">Get In Touch</button></a>
         </div>
     </section>
 
@@ -440,6 +491,16 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+
+    <!-- Hamburger Menu Script -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
