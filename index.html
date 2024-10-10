@@ -20,26 +20,25 @@
             transition: all 0.3s ease-in-out;
         }
 
-       /* Header */
-header {
-    background-color: #0b1f3f;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: opacity 0.5s ease-in-out; /* Smooth appearance/disappearance */
-    opacity: 1; /* Fully visible */
-}
+        /* Header */
+        header {
+            background-color: #0b1f3f;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
 
-header.hidden {
-    opacity: 0; /* Make the header disappear */
-}
+        header.hidden {
+            opacity: 0;
+        }
 
-/* Optional: background color change on scroll */
-header.scrolled {
-    background-color: #0b1f3f;
-
+        /* Optional: background color change on scroll */
+        header.scrolled {
+            background-color: #0b1f3f;
         }
 
         .header-container {
@@ -119,7 +118,7 @@ header.scrolled {
         /* Hero Section with Parallax Effect */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallex.jpeg?raw=true') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
+            background-attachment: fixed;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -153,8 +152,8 @@ header.scrolled {
         .btn {
             display: inline-block;
             padding: 15px 30px;
-            background-color: #d4af37; /* Gold-like color */
-            color: #fff; /* White text color */
+            background-color: #d4af37;
+            color: #fff;
             text-decoration: none;
             border-radius: 30px;
             font-size: 1.2em;
@@ -164,7 +163,7 @@ header.scrolled {
         }
 
         .btn:hover {
-            background-color: #b8992c; /* Darker shade of gold for hover effect */
+            background-color: #b8992c;
             transform: translateY(-5px);
         }
 
@@ -180,7 +179,7 @@ header.scrolled {
 
         /* Blue and White Alternating Backgrounds */
         section:nth-of-type(odd) {
-            background-color: #0b1f3f; /* Dark blue */
+            background-color: #0b1f3f;
             color: white;
         }
 
@@ -205,7 +204,7 @@ header.scrolled {
         .section-icon {
             font-size: 3em;
             margin-bottom: 20px;
-            color: #d4af37; /* Gold-like color */
+            color: #d4af37;
         }
 
         /* Scroll to Top Button */
@@ -420,64 +419,70 @@ header.scrolled {
 
     <!-- JavaScript -->
     <script>
-     const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-const scrollToTopButton = document.querySelector('.scroll-to-top');
-const slides = document.querySelectorAll('.event-slide');
-let currentSlide = 0;
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        const slides = document.querySelectorAll('.event-slide');
+        let currentSlide = 0;
 
-hamburger.addEventListener('click', function() {
-    mobileNav.classList.toggle('active');
-});
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
 
-window.onscroll = function() {
-    if (window.pageYOffset > 50) {
-        scrollToTopButton.classList.add("show");
-    } else {
-        scrollToTopButton.classList.remove("show");
-    }
-};
+        window.onscroll = function() {
+            if (window.pageYOffset > 50) {
+                scrollToTopButton.classList.add("show");
+            } else {
+                scrollToTopButton.classList.remove("show");
+            }
+        };
 
-scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-function showSlide(index) {
-    const totalSlides = slides.length;
-    if (index >= totalSlides) currentSlide = 0;
-    else if (index < 0) currentSlide = totalSlides - 1;
-    else currentSlide = index;
+        function showSlide(index) {
+            const totalSlides = slides.length;
+            if (index >= totalSlides) currentSlide = 0;
+            else if (index < 0) currentSlide = totalSlides - 1;
+            else currentSlide = index;
 
-    const offset = -currentSlide * 100; // Each slide takes up 100% width of the container
-    document.getElementById('scrolling-container').style.transform = `translateX(${offset}%)`;
-}
+            const offset = -currentSlide * 100; // Each slide takes up 100% width of the container
+            document.getElementById('scrolling-container').style.transform = `translateX(${offset}%)`;
+        }
 
-document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
-document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
+        document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
+        document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
 
-// Auto slide every 10 seconds
-setInterval(() => showSlide(currentSlide + 1), 10000);
+        // Auto slide every 10 seconds
+        setInterval(() => showSlide(currentSlide + 1), 10000);
 
-// Header show/hide logic based on scroll position
-const header = document.querySelector('header');
-const parallaxSection = document.querySelector('.hero');
-let lastScrollY = window.scrollY;
+        // Header show/hide logic based on scroll position
+        const header = document.querySelector('header');
+        const parallaxSection = document.querySelector('.hero');
+        let lastScrollY = window.scrollY;
 
-window.addEventListener('scroll', () => {
-    const currentScrollY = window.scrollY;
-    const parallaxPosition = parallaxSection.offsetTop;
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const parallaxPosition = parallaxSection.offsetTop;
 
-    // Hide the header when scrolling down
-    if (currentScrollY > lastScrollY) {
-        header.classList.add('hidden');
-    } 
-    // Show the header when reaching the parallax section
-    else if (currentScrollY < lastScrollY && currentScrollY >= parallaxPosition - window.innerHeight / 2) {
-        header.classList.remove('hidden');
-    }
+            // Hide the header when scrolling down
+            if (currentScrollY > lastScrollY) {
+                header.classList.add('hidden');
+            } 
+            // Show the header when reaching the parallax section
+            else if (currentScrollY < lastScrollY && currentScrollY >= parallaxPosition - window.innerHeight / 2) {
+                header.classList.remove('hidden');
+            }
 
-    lastScrollY = currentScrollY;
-});
+            lastScrollY = currentScrollY;
+        });
+    </script>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
