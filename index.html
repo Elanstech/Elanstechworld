@@ -459,19 +459,21 @@
 
         // Header show/hide logic based on scroll position
         const header = document.querySelector('header');
-        const parallaxSection = document.querySelector('.hero');
+        const heroSection = document.querySelector('.hero');
+        const parallaxSection = document.querySelector('.whats-going-on');
         let lastScrollY = window.scrollY;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
+            const heroPosition = heroSection.offsetHeight;
             const parallaxPosition = parallaxSection.offsetTop;
 
-            // Hide the header when scrolling down
-            if (currentScrollY > lastScrollY) {
+            // Hide the header when scrolling down past the hero section
+            if (currentScrollY > heroPosition && currentScrollY < parallaxPosition - window.innerHeight / 2) {
                 header.classList.add('hidden');
             } 
-            // Show the header when reaching the parallax section
-            else if (currentScrollY < lastScrollY && currentScrollY >= parallaxPosition - window.innerHeight / 2) {
+            // Show the header on the hero section or when reaching the parallax section
+            else if (currentScrollY <= heroPosition || currentScrollY >= parallaxPosition - window.innerHeight / 2) {
                 header.classList.remove('hidden');
             }
 
