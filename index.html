@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
@@ -190,7 +191,7 @@
             border-radius: 15px;
             transition: all 0.3s ease-in-out;
             text-align: center;
-            position: relative;
+            position:relative;
             width: 100%;
             box-sizing: border-box;
         }
@@ -299,24 +300,22 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="quiz.html">Discover Your Tech Fit</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
-
             <!-- Hamburger Menu for Mobile -->
             <div class="hamburger" id="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-
             <ul class="mobile-nav" id="mobile-nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li
+                <li><a href="services.html">Services</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="quiz.html">Discover Your Tech Fit</a></li>
@@ -324,7 +323,6 @@
             </ul>
         </div>
     </header>
-
     <!-- Hero Section with Parallax Effect -->
     <section id="home" class="hero">
         <div class="container">
@@ -335,7 +333,6 @@
             </div>
         </div>
     </section>
-
     <!-- About Us Section -->
     <section id="about" data-aos="fade-up">
         <i class="fas fa-briefcase section-icon"></i>
@@ -343,7 +340,6 @@
         <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
         <a href="about.html" class="btn">Learn More</a>
     </section>
-
     <!-- Our Services Section -->
     <section id="services" data-aos="fade-up">
         <i class="fas fa-cogs section-icon"></i>
@@ -351,21 +347,18 @@
         <p>We offer a variety of technology solutions to meet your business needs.</p>
         <a href="services.html" class="btn">Explore Services</a>
     </section>
-
     <!-- iPhone Quiz Section -->
     <section class="quiz-section" data-aos="fade-up">
         <h2>What's the Right iPhone for You?</h2>
         <p>Find the perfect iPhone that fits your style and needs.</p>
         <a href="quiz-iphone.html" class="btn">Take the Quiz</a>
     </section>
-
     <!-- Mac Quiz Section -->
     <section class="quiz-section" data-aos="fade-up">
         <h2>What's the Best Mac for You?</h2>
         <p>Discover which Mac model will help you achieve more.</p>
         <a href="quiz-mac.html" class="btn">Take the Quiz</a>
     </section>
-
     <!-- Testimonials Section -->
     <section id="testimonials" data-aos="fade-up">
         <i class="fas fa-comments section-icon"></i>
@@ -373,7 +366,6 @@
         <p>See what our clients have to say about their experiences working with us.</p>
         <a href="testimonials.html" class="btn">View Testimonials</a>
     </section>
-
     <!-- FAQ Section -->
     <section id="faq" data-aos="fade-up">
         <i class="fas fa-question-circle section-icon"></i>
@@ -381,37 +373,30 @@
         <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
         <a href="faq.html" class="btn">Read FAQs</a>
     </section>
-
     <!-- Contact Section -->
     <section id="contact" data-aos="fade-up">
         <h2>Contact Us</h2>
         <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
         <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-
         <!-- Instagram Icon with Link -->
         <div class="social-icons">
             <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
-
         <a href="contact.html" class="btn">Get In Touch</a>
     </section>
-
     <!-- Scroll to Top Button -->
     <a href="#top" class="scroll-to-top">↑</a>
-
     <!-- JavaScript -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
         const scrollToTopButton = document.querySelector('.scroll-to-top');
-
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
             hamburger.classList.toggle('active');
         });
-
         window.onscroll = function() {
             if (window.pageYOffset > 50) {
                 scrollToTopButton.classList.add("show");
@@ -419,11 +404,9 @@
                 scrollToTopButton.classList.remove("show");
             }
         };
-
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
         // AOS Animation Script
         AOS.init();
     </script>
