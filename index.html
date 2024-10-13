@@ -79,14 +79,33 @@
         .hamburger {
             display: none;
             cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 24px;
+            width: 30px;
+            transition: transform 0.3s ease;
         }
 
         .hamburger div {
-            width: 25px;
-            height: 3px;
+            width: 30px;
+            height: 4px;
             background-color: white;
-            margin: 5px;
-            transition: all 0.3s ease;
+            margin: 3px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Transform hamburger to "X" on active */
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
         }
 
         .mobile-nav {
@@ -304,20 +323,20 @@
             }
        
             /* Contact Section - Social Icons */
-.social-icons {
-    margin-top: 20px;
-}
+            .social-icons {
+                margin-top: 20px;
+            }
 
-.social-icons a {
-    font-size: 2em;
-    color: #fff;
-    margin: 0 10px;
-    transition: color 0.3s ease;
-}
+            .social-icons a {
+                font-size: 2em;
+                color: #fff;
+                margin: 0 10px;
+                transition: color 0.3s ease;
+            }
 
-.social-icons a:hover {
-    color: #d4af37; /* Hover color change */
-}
+            .social-icons a:hover {
+                color: #d4af37; /* Hover color change */
+            }
         }
     </style>
 </head>
@@ -336,7 +355,7 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
-                     <li><a href="quiz.html">Discover Your Tech Fit</a></li>
+                    <li><a href="quiz.html">Discover Your Tech Fit</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
@@ -354,7 +373,7 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                 <li><a href="quiz.html">Discover Your Tech Fit</a></li>
+                <li><a href="quiz.html">Discover Your Tech Fit</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </div>
@@ -452,6 +471,7 @@
 
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active'); // Add this line to animate the hamburger
         });
 
         window.onscroll = function() {
