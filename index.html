@@ -17,10 +17,11 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
             transition: all 0.3s ease-in-out;
         }
 
+        /* Header */
         header {
             background-color: #0b1f3f;
             padding: 15px 0;
@@ -36,6 +37,7 @@
             opacity: 0;
         }
 
+        /* Optional: background color change on scroll */
         header.scrolled {
             background-color: #0b1f3f;
         }
@@ -46,7 +48,7 @@
             align-items: center;
             width: 90%;
             margin: auto;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Ensure header items wrap on smaller screens */
         }
 
         header .logo img {
@@ -75,6 +77,7 @@
             color: #fff;
         }
 
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -94,6 +97,7 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
+        /* Transform hamburger to "X" on active */
         .hamburger.active div:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
         }
@@ -132,6 +136,7 @@
             padding: 10px;
         }
 
+        /* Hero Section with Parallax Effect */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexback2.jpeg?raw=true') no-repeat center center/cover;
             background-attachment: fixed;
@@ -143,8 +148,8 @@
             text-align: center;
             color: #fff;
             padding: 20px;
-            max-width: 100vw;
-            overflow-x: hidden;
+            max-width: 100vw; /* Prevents overflow */
+            overflow-x: hidden; /* Avoid horizontal scroll */
         }
 
         .hero h1 {
@@ -185,17 +190,19 @@
             transform: translateY(-5px);
         }
 
+        /* Section Styling */
         section {
             padding: 60px 20px;
             margin-bottom: 40px;
             border-radius: 15px;
             transition: all 0.3s ease-in-out;
             text-align: center;
-            position:relative;
-            width: 100%;
+            position: relative;
+            width: 100%; /* Make sections responsive */
             box-sizing: border-box;
         }
 
+        /* Blue and White Alternating Backgrounds */
         section:nth-of-type(odd) {
             background-color: #0b1f3f;
             color: white;
@@ -218,12 +225,14 @@
             margin-bottom: 20px;
         }
 
+        /* Section Icons */
         .section-icon {
             font-size: 3em;
             margin-bottom: 20px;
             color: #d4af37;
         }
 
+        /* Scroll to Top Button */
         .scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -244,6 +253,7 @@
             display: block;
         }
 
+        /* Responsive Styling */
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -270,6 +280,7 @@
                 font-size: 0.9em;
             }
 
+            /* Contact Section - Social Icons */
             .social-icons {
                 margin-top: 20px;
             }
@@ -282,7 +293,7 @@
             }
 
             .social-icons a:hover {
-                color: #d4af37;
+                color: #d4af37; /* Hover color change */
             }
         }
     </style>
@@ -300,21 +311,23 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li
+                    <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="quiz.html">Discover Your Tech Fit</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
+
             <!-- Hamburger Menu for Mobile -->
             <div class="hamburger" id="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
+
             <ul class="mobile-nav" id="mobile-nav">
                 <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">About Us</a></li
                 <li><a href="services.html">Services</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
                 <li><a href="faq.html">FAQ</a></li>
@@ -323,6 +336,7 @@
             </ul>
         </div>
     </header>
+
     <!-- Hero Section with Parallax Effect -->
     <section id="home" class="hero">
         <div class="container">
@@ -333,6 +347,7 @@
             </div>
         </div>
     </section>
+
     <!-- About Us Section -->
     <section id="about" data-aos="fade-up">
         <i class="fas fa-briefcase section-icon"></i>
@@ -340,25 +355,15 @@
         <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
         <a href="about.html" class="btn">Learn More</a>
     </section>
+
     <!-- Our Services Section -->
     <section id="services" data-aos="fade-up">
-        <i class="fas fa-cogs section-icon"></i>
+        <i class="fas fa-cogs section-icon"></i
         <h2>Our Services</h2>
         <p>We offer a variety of technology solutions to meet your business needs.</p>
         <a href="services.html" class="btn">Explore Services</a>
     </section>
-    <!-- iPhone Quiz Section -->
-    <section class="quiz-section" data-aos="fade-up">
-        <h2>What's the Right iPhone for You?</h2>
-        <p>Find the perfect iPhone that fits your style and needs.</p>
-        <a href="quiz-iphone.html" class="btn">Take the Quiz</a>
-    </section>
-    <!-- Mac Quiz Section -->
-    <section class="quiz-section" data-aos="fade-up">
-        <h2>What's the Best Mac for You?</h2>
-        <p>Discover which Mac model will help you achieve more.</p>
-        <a href="quiz-mac.html" class="btn">Take the Quiz</a>
-    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" data-aos="fade-up">
         <i class="fas fa-comments section-icon"></i>
@@ -366,6 +371,7 @@
         <p>See what our clients have to say about their experiences working with us.</p>
         <a href="testimonials.html" class="btn">View Testimonials</a>
     </section>
+
     <!-- FAQ Section -->
     <section id="faq" data-aos="fade-up">
         <i class="fas fa-question-circle section-icon"></i>
@@ -373,30 +379,38 @@
         <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
         <a href="faq.html" class="btn">Read FAQs</a>
     </section>
+
     <!-- Contact Section -->
     <section id="contact" data-aos="fade-up">
         <h2>Contact Us</h2>
         <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
         <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+
         <!-- Instagram Icon with Link -->
         <div class="social-icons">
             <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
+
         <a href="contact.html" class="btn">Get In Touch</a>
     </section>
+
     <!-- Scroll to Top Button -->
     <a href="#top" class="scroll-to-top">↑</a>
+
     <!-- JavaScript -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
         const scrollToTopButton = document.querySelector('.scroll-to-top');
+        let currentSlide = 0;
+
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            hamburger.classList.toggle('active'); // Add this line to animate the hamburger
         });
+
         window.onscroll = function() {
             if (window.pageYOffset > 50) {
                 scrollToTopButton.classList.add("show");
@@ -404,10 +418,36 @@
                 scrollToTopButton.classList.remove("show");
             }
         };
+
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        // AOS Animation Script
+
+        // Header show/hide logic based on scroll position
+        const header = document.querySelector('header');
+        const heroSection = document.querySelector('.hero');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const heroPosition = heroSection.offsetHeight;
+
+            // Hide the header when scrolling down past the hero section
+            if (currentScrollY > heroPosition) {
+                header.classList.add('hidden');
+            } 
+            // Show the header on the hero section or when reaching the parallax section
+            else if (currentScrollY <= heroPosition) {
+                header.classList.remove('hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        });
+    </script>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
         AOS.init();
     </script>
 </body>
