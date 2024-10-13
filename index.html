@@ -84,7 +84,8 @@
             position: relative;
             transition: transform 0.5s ease;
         }
-                .hamburger div {
+
+        .hamburger div {
             width: 100%;
             height: 4px;
             background-color: white;
@@ -156,78 +157,81 @@
             color: #d4af37; /* Gold hover effect */
         }
 
-        /* Parallax Section with Fixed Background */
-        .parallax {
-            background-position: center;
-            background-size: cover;
-            background-attachment: fixed;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            padding: 20px;
+       /* Hero Section with Parallax Effect */
+.hero {
+    background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    max-width: 100vw; /* Prevents overflow */
+    overflow-x: hidden;
         }
 
-        /* First Parallax Image */
-        .parallax-1 {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true');
-        }
-
-        /* Second Parallax Image */
-        .parallax-2 {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround4.0.jpg?raw=true');
-        }
-
-        /* Adjust for mobile screens */
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll; /* Disable parallax effect on mobile */
-                height: 60vh; /* Reduce height for mobile */
-            }
-
-            .parallax-1 {
-                margin-top: 80px; /* Prevents overlap with header */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .parallax {
-                height: 50vh; /* Further reduce height for smaller devices */
-            }
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: transparent;
-            color: #d4af37;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
+        .hero h1 {
             font-size: 3em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
         }
 
-        .scroll-to-top:hover {
-            color: #0b1f3f;
-            transform: scale(1.1);
+        .hero p {
+            font-size: 1.5em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
         }
 
-        .scroll-to-top.show {
-            display: block;
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #d4af37;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #b8992c;
+            transform: translateY(-5px);
         }
 
         /* Section Styling */
         section {
             padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
             text-align: center;
+            position: relative;
+            width: 100%; /* Make sections responsive */
+            box-sizing: border-box;
+        }
+
+        /* Blue and White Alternating Backgrounds */
+        section:nth-of-type(odd) {
+            background-color: #0b1f3f;
+            color: white;
+        }
+
+        section:nth-of-type(even) {
+            background-color: #fff;
+            color: #333;
         }
 
         section h2 {
@@ -238,9 +242,163 @@
 
         section p {
             font-size: 1.2em;
-            margin-bottom: 40px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
+        /* Section Icon Styling */
+        .section-icon {
+            font-size: 4em;
+            color: #d4af37;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .section-icon:hover {
+            transform: scale(1.2);
+            color: #0b1f3f;
+        }
+
+        /* Quiz Section Styling */
+        .quiz-section {
+            background-color: #fff;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .quiz-section a {
+            text-decoration: none;
+            background-color: #d4af37;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-section a:hover {
+            background-color: #b8992c;
+        }
+
+        /* Scroll to Top Button */
+     <!-- Scroll to Top Button -->
+<a href="#top" class="scroll-to-top">
+    <i class="fas fa-arrow-circle-up"></i>
+</a>
+
+<!-- Updated CSS for Scroll to Top Button -->
+<style>
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: transparent; /* Remove the previous background */
+        color: #d4af37; /* Gold color */
+        padding: 15px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 3em;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .scroll-to-top:hover {
+        color: #0b1f3f; /* Darker blue on hover */
+        transform: scale(1.1); /* Slight zoom effect */
+    }
+
+    .scroll-to-top.show {
+        display: block;
+    }
+        
+        /* Responsive Styling */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            section p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.8em;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            section p {
+                font-size: 0.9em;
+            }
+            /* Adjust for mobile screens */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll; /* Disable parallax on small screens */
+        background-size: cover; /* Ensure the image covers the whole section */
+        height: 60vh; /* Reduce the height to fit mobile screens better */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        background-position: center top; /* Adjust image position for smaller screens */
+        background-size: cover; /* Ensure the image covers the whole section */
+        height: 50vh; /* Further reduce height for smaller devices */
+    }
+}
     </style>
 </head>
 <body>
@@ -282,40 +440,81 @@
         </div>
     </header>
 
-    <!-- Parallax Section 1 -->
-    <section class="parallax parallax-1">
-        <div class="content">
-            <h2>Our Expertise</h2>
-            <p>Empowering businesses with cutting-edge technology solutions.</p>
+    <!-- Hero Section with Parallax Effect -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Driving Success with our Tech Expertise</h1>
+            <p>Empowering your people with cutting-edge technology solutions.</p>
+            <div class="button-container">
+                <a href="services.html" class="btn">Get Started</a>
+            </div>
         </div>
     </section>
 
     <!-- About Us Section -->
     <section id="about" data-aos="fade-up">
+        <i class="fas fa-briefcase section-icon"></i>
         <h2>About Us</h2>
         <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
         <a href="about.html" class="btn">Learn More</a>
     </section>
 
-    <!-- Parallax Section 2 -->
-    <section class="parallax parallax-2">
-        <div class="content">
-            <h2>Innovative Solutions</h2>
-            <p>We offer a variety of technology services to meet the needs of modern businesses.</p>
+    <!-- Our Services Section -->
+<section id="services" data-aos="fade-up">
+    <i class="fas fa-cogs section-icon"></i>
+    <h2>Our Services</h2>
+    <p>We offer a variety of technology solutions to meet your business needs.</p>
+    <a href="services.html" class="btn">Explore Services</a>
+</section>
+
+    <!-- New Quiz Section -->
+    <section id="quiz" class="quiz-section" data-aos="fade-up">
+        <h3>Discover Your Tech Fit</h3>
+        <p>Take our quick quizzes to find out which Apple device is right for you!</p>
+        <div>
+            <a href="quiz_mac.html" class="btn">What Mac is Right for You?</a>
+        </div>
+        <div style="margin-top: 20px;">
+            <a href="quiz_iphone.html" class="btn">What iPhone is Right for You?</a>
         </div>
     </section>
 
-    <!-- Our Services Section -->
-    <section id="services" data-aos="fade-up">
-        <h2>Our Services</h2>
-        <p>We offer a variety of technology solutions to meet your business needs, from setting up computer systems to creating professional websites.</p>
-        <a href="services.html" class="btn">Explore Services</a>
+    <!-- Testimonials Section -->
+    <section id="testimonials" data-aos="fade-up">
+        <i class="fas fa-comments section-icon"></i>
+        <h2>What Our Clients Say</h2>
+        <p>See what our clients have to say about their experiences working with us.</p>
+        <a href="testimonials.html" class="btn">View Testimonials</a>
     </section>
 
-    <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top">
-        <i class="fas fa-arrow-circle-up"></i>
-    </a>
+    <!-- FAQ Section -->
+    <section id="faq" data-aos="fade-up">
+        <i class="fas fa-question-circle section-icon"></i>
+        <h2>Frequently Asked Questions</h2>
+        <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+        <a href="faq.html" class="btn">Read FAQs</a>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+        <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+
+        <!-- Instagram Icon with Link -->
+        <div class="social-icons">
+            <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+
+        <a href="contact.html" class="btn">Get In Touch</a>
+    </section>
+
+   <!-- Scroll to Top Button -->
+<a href="#top" class="scroll-to-top">
+    <i class="fas fa-arrow-circle-up"></i>
+</a>
 
     <!-- JavaScript -->
     <script>
@@ -342,18 +541,18 @@
 
         // Header show/hide logic based on scroll position
         const header = document.querySelector('header');
-        const heroSection = document.querySelector('.parallax-1');
+        const heroSection = document.querySelector('.hero');
         let lastScrollY = window.scrollY;
 
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
             const heroPosition = heroSection.offsetHeight;
 
-            // Hide the header when scrolling down past the first parallax section
+            // Hide the header when scrolling down past the hero section
             if (currentScrollY > heroPosition) {
                 header.classList.add('hidden');
             } 
-            // Show the header on the first parallax section
+            // Show the header on the hero section or when reaching the parallax section
             else if (currentScrollY <= heroPosition) {
                 header.classList.remove('hidden');
             }
@@ -369,4 +568,3 @@
     </script>
 </body>
 </html>
-
