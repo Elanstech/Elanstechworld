@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Perfect Tech Solution - Elan's Tech World</title>
+    <title>Discover Your Tech Fit - Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -18,7 +18,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f9;
+            background-color: #f9f9f9;
             color: #333;
             overflow-x: hidden;
         }
@@ -31,7 +31,6 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: opacity 0.5s ease-in-out;
         }
 
         .header-container {
@@ -65,12 +64,11 @@
 
         header nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
         }
 
         /* Quiz Section */
         .quiz-section {
-            padding: 100px 20px 60px;
+            padding: 120px 20px 60px;
             background-color: #fff;
             text-align: center;
             position: relative;
@@ -88,6 +86,39 @@
             font-size: 1.5em;
             margin-bottom: 40px;
             color: #333;
+        }
+
+        /* Tile-based Design for Quiz */
+        .quiz-answers {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-answer {
+            background-color: #0b1f3f;
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            flex: 1 1 30%;
+            max-width: 30%;
+            margin: 10px;
+            font-size: 1.2em;
+        }
+
+        .quiz-answer:hover {
+            transform: translateY(-5px);
+            background-color: #d4af37;
+        }
+
+        .quiz-answer i {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: block;
         }
 
         .quiz-question {
@@ -108,31 +139,6 @@
             font-size: 2em;
             color: #0b1f3f;
             margin-bottom: 20px;
-        }
-
-        .quiz-answers {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .quiz-answer {
-            background: #fff;
-            padding: 15px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            cursor: pointer;
-            flex: 1 1 45%;
-            max-width: 45%;
-            margin: 10px;
-            font-size: 1.2em;
-        }
-
-        .quiz-answer:hover {
-            transform: scale(1.05);
-            background-color: #f4f7f9;
         }
 
         .quiz-result {
@@ -215,29 +221,47 @@
 <!-- Quiz Section -->
 <section class="quiz-section" id="quiz">
     <h1 data-aos="fade-up">Find Your Perfect Tech Solution</h1>
-    <p data-aos="fade-up">Answer a few fun questions to find the right tech fit for you!</p>
+    <p data-aos="fade-up">Answer a few questions and we'll match you with the right tech fit!</p>
 
     <div class="quiz-question active" id="question1" data-aos="fade-up">
         <h3>1. What describes your ideal workspace?</h3>
         <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="minimalist" data-next="question2">Minimalist and Clean</div>
-            <div class="quiz-answer" data-answer="tech-heavy" data-next="question2">Tech-Heavy and Advanced</div>
+            <div class="quiz-answer" data-answer="minimalist" data-next="question2">
+                <i class="fas fa-laptop-house"></i>
+                Minimalist and Clean
+            </div>
+            <div class="quiz-answer" data-answer="tech-heavy" data-next="question2">
+                <i class="fas fa-desktop"></i>
+                Tech-Heavy and Advanced
+            </div>
         </div>
     </div>
 
     <div class="quiz-question" id="question2" data-aos="fade-up">
         <h3>2. What feature is a must-have in your tech gear?</h3>
         <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="performance" data-next="question3">High Performance</div>
-            <div class="quiz-answer" data-answer="design" data-next="question3">Sleek Design</div>
+            <div class="quiz-answer" data-answer="performance" data-next="question3">
+                <i class="fas fa-tachometer-alt"></i>
+                High Performance
+            </div>
+            <div class="quiz-answer" data-answer="design" data-next="question3">
+                <i class="fas fa-pencil-ruler"></i>
+                Sleek Design
+            </div>
         </div>
     </div>
 
     <div class="quiz-question" id="question3" data-aos="fade-up">
         <h3>3. How often do you upgrade your tech?</h3>
         <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="yearly" data-next="result">Every Year</div>
-            <div class="quiz-answer" data-answer="when-needed" data-next="result">Only When Needed</div>
+            <div class="quiz-answer" data-answer="yearly" data-next="result">
+                <i class="fas fa-sync-alt"></i>
+                Every Year
+            </div>
+            <div class="quiz-answer" data-answer="when-needed" data-next="result">
+                <i class="fas fa-tools"></i>
+                Only When Needed
+            </div>
         </div>
     </div>
 
@@ -265,7 +289,7 @@
 
             userAnswers[currentQuestion.id] = answerValue;
 
-            // Move to the next question or show result
+            // Move to next question or show result
             currentQuestion.classList.remove('active');
             if (nextQuestionId === 'result') {
                 showResult();
