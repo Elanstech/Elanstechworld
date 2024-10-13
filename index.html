@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Elan's Tech World - Providing cutting-edge technology solutions for businesses including computer setups, web design, and Apple product sales.">
     <title>Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -33,17 +28,6 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: opacity 0.5s ease-in-out;
-            opacity: 1;
-        }
-
-        header.hidden {
-            opacity: 0;
-        }
-
-        /* Optional: background color change on scroll */
-        header.scrolled {
-            background-color: #0b1f3f;
         }
 
         .header-container {
@@ -52,7 +36,6 @@
             align-items: center;
             width: 90%;
             margin: auto;
-            flex-wrap: wrap; /* Ensure header items wrap on smaller screens */
         }
 
         header .logo img {
@@ -72,7 +55,6 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
@@ -85,33 +67,14 @@
         .hamburger {
             display: none;
             cursor: pointer;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 24px;
-            width: 30px;
-            transition: transform 0.3s ease;
         }
 
         .hamburger div {
-            width: 30px;
-            height: 4px;
+            width: 25px;
+            height: 3px;
             background-color: white;
-            margin: 3px 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        /* Transform hamburger to "X" on active */
-        .hamburger.active div:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+            margin: 5px;
+            transition: all 0.3s ease;
         }
 
         .mobile-nav {
@@ -140,7 +103,7 @@
             padding: 10px;
         }
 
-        /* Hero Section with Parallax Effect */
+        /* Hero Section */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexback2.jpeg?raw=true') no-repeat center center/cover;
             background-attachment: fixed;
@@ -152,8 +115,6 @@
             text-align: center;
             color: #fff;
             padding: 20px;
-            max-width: 100vw; /* Prevents overflow */
-            overflow-x: hidden; /* Avoid horizontal scroll */
         }
 
         .hero h1 {
@@ -186,7 +147,6 @@
             font-size: 1.2em;
             margin: 10px;
             transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .btn:hover {
@@ -194,19 +154,16 @@
             transform: translateY(-5px);
         }
 
-        /* Section Styling */
+        /* About Us Section */
         section {
             padding: 60px 20px;
             margin-bottom: 40px;
             border-radius: 15px;
-            transition: all 0.3s ease-in-out;
             text-align: center;
-            position: relative;
-            width: 100%; /* Make sections responsive */
+            width: 100%;
             box-sizing: border-box;
         }
 
-        /* Blue and White Alternating Backgrounds */
         section:nth-of-type(odd) {
             background-color: #0b1f3f;
             color: white;
@@ -229,84 +186,120 @@
             margin-bottom: 20px;
         }
 
-        /* Section Icons */
-        .section-icon {
+        /* Quiz Section */
+        .quiz-section {
+            padding: 120px 20px 60px;
+            background-color: #fff;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-section h1 {
             font-size: 3em;
             margin-bottom: 20px;
-            color: #d4af37;
+            color: #0b1f3f;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
+        .quiz-section p {
             font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease;
+            margin-bottom: 40px;
+            color: #333;
         }
 
-        .scroll-to-top.show {
-            display: block;
+        /* Tile-based Design for Quiz */
+        .quiz-answers {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        /* What's Going On Now Section */
-        .whats-going-on {
-            position: relative;
-            padding: 60px 20px;
+        .quiz-answer {
             background-color: #0b1f3f;
+            padding: 20px;
+            border-radius: 10px;
             color: white;
-        }
-
-        .scrolling-container {
-            display: flex;
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-            max-width: 100vw; /* Prevents overflow */
-        }
-
-        .event-slide {
-            min-width: 100%;
-            transition: transform 0.5s ease-in-out;
-            text-align: center;
-        }
-
-        .event-slide img {
-            max-width: 80%;
-            border-radius: 15px;
-        }
-
-        .arrows {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .arrow {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            border: none;
-            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
             cursor: pointer;
-            font-size: 2em;
+            flex: 1 1 30%;
+            max-width: 30%;
+            margin: 10px;
+            font-size: 1.2em;
         }
 
-        .arrow:hover {
+        .quiz-answer:hover {
+            transform: translateY(-5px);
             background-color: #d4af37;
         }
 
-        /* Responsive Styling */
+        .quiz-answer i {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quiz-question {
+            display: none;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .quiz-question.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quiz-result {
+            display: none;
+            font-size: 1.5em;
+            color: #0b1f3f;
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .quiz-result.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quiz-result h3 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .quiz-result p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            padding: 15px 30px;
+            background-color: #d4af37;
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #b8992c;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -316,231 +309,180 @@
                 display: block;
             }
 
-            .mobile-nav.active {
-                display: flex;
+            .quiz-answers {
+                flex-direction: column;
             }
 
-            .hero h1 {
-                font-size: 2em;
-            }
-
-            .hero p {
-                font-size: 1.2em;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
-
-            /* Contact Section - Social Icons */
-            .social-icons {
-                margin-top: 20px;
-            }
-
-            .social-icons a {
-                font-size: 2em;
-                color: #fff;
-                margin: 0 10px;
-                transition: color 0.3s ease;
-            }
-
-            .social-icons a:hover {
-                color: #d4af37; /* Hover color change */
+            .quiz-answer {
+                width: 100%;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="#home">
-                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home" aria-label="Navigate to Home">Home</a></li>
-                    <li><a href="about.html" aria-label="Navigate to About Us">About Us</a></li>
-                    <li><a href="services.html" aria-label="Navigate to Services">Services</a></li>
-                    <li><a href="testimonials.html" aria-label="Navigate to Testimonials">Testimonials</a></li>
-                    <li><a href="faq.html" aria-label="Navigate to FAQ">FAQ</a></li>
-                    <li><a href="quiz.html" aria-label="Navigate to Tech Fit Quiz">Discover Your Tech Fit</a></li>
-                    <li><a href="contact.html" aria-label="Navigate to Contact Us">Contact Us</a></li>
-                </ul>
-            </nav>
 
-            <!-- Hamburger Menu for Mobile -->
-            <div class="hamburger" id="hamburger" aria-label="Toggle Mobile Navigation">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-
-            <ul class="mobile-nav" id="mobile-nav">
-                <li><a href="#home" aria-label="Navigate to Home (Mobile)">Home</a></li>
-                <li><a href="about.html" aria-label="Navigate to About Us (Mobile)">About Us</a></li>
-                <li><a href="services.html" aria-label="Navigate to Services (Mobile)">Services</a></li>
-                <li><a href="testimonials.html" aria-label="Navigate to Testimonials (Mobile)">Testimonials</a></li>
-                <li><a href="faq.html" aria-label="Navigate to FAQ (Mobile)">FAQ</a></li>
-                <li><a href="quiz.html" aria-label="Navigate to Tech Fit Quiz (Mobile)">Discover Your Tech Fit</a></li>
-                <li><a href="contact.html" aria-label="Navigate to Contact Us (Mobile)">Contact Us</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Hero Section with Parallax Effect -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Driving Success with our Tech Expertise</h1>
-            <p>Empowering your people with cutting-edge technology solutions.</p>
-            <div class="button-container">
-                <a href="services.html" class="btn">Get Started</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" data-aos="fade-up">
-        <i class="fas fa-briefcase section-icon"></i>
-        <h2>About Us</h2>
-        <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
-        <a href="about.html" class="btn">Learn More</a>
-    </section>
-
-    <!-- Our Services Section -->
-    <section id="services" data-aos="fade-up">
-        <i class="fas fa-cogs section-icon"></i>
-        <h2>Our Services</h2>
-        <p>We offer a variety of technology solutions to meet your business needs.</p>
-        <a href="services.html" class="btn">Explore Services</a>
-    </section>
-
-    <!-- What's Going On Now Section -->
-    <section class="whats-going-on" data-aos="fade-up">
-        <h2>What's Going On Now</h2>
-        <div class="scrolling-container" id="scrolling-container">
-            <div class="event-slide">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="Project 1">
-                <h3>Real Estate Website: East Coast Realty</h3>
-                <p>Our latest real estate website is live with advanced property search and lead generation features.</p>
-            </div>
-            <div class="event-slide">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Project 3">
-                <h3>Cohen and Associates: Corporate Website</h3>
-                <p>We’ve delivered a sleek, corporate site optimized for seamless client interaction.</p>
-            </div>
-        </div>
-        <div class="arrows">
-            <button class="arrow" id="prevSlide" aria-label="Previous Slide">&#10094;</button>
-            <button class="arrow" id="nextSlide" aria-label="Next Slide">&#10095;</button>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" data-aos="fade-up">
-        <i class="fas fa-comments section-icon"></i>
-        <h2>What Our Clients Say</h2>
-        <p>See what our clients have to say about their experiences working with us.</p>
-        <a href="testimonials.html" class="btn">View Testimonials</a>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" data-aos="fade-up">
-        <i class="fas fa-question-circle section-icon"></i>
-        <h2>Frequently Asked Questions</h2>
-        <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-        <a href="faq.html" class="btn">Read FAQs</a>
-
-    <!-- Contact Section -->
-    <section id="contact" data-aos="fade-up">
-        <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:elan.ayl8@gmail.com" aria-label="Send an Email to Elan">elan.ayl8@gmail.com</a></p>
-        <p>Phone: <a href="tel:+19294176819" aria-label="Call Elan">929-417-6819</a></p>
-
-        <!-- Instagram Icon with Link -->
-        <div class="social-icons">
-            <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Visit our Instagram">
-                <i class="fab fa-instagram"></i>
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <a href="#home">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
             </a>
         </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="quiz.html">Discover Your Tech Fit</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
 
-        <a href="contact.html" class="btn">Get In Touch</a>
-    </section>
+        <!-- Hamburger Menu for Mobile -->
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
 
-    <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top" aria-label="Scroll to Top">↑</a>
+        <ul class="mobile-nav" id="mobile-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="quiz.html">Discover Your Tech Fit</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </div>
+</header>
 
-    <!-- JavaScript -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
-        const slides = document.querySelectorAll('.event-slide');
-        let currentSlide = 0;
+<!-- Hero Section with Parallax Effect -->
+<section id="home" class="hero">
+    <div class="container">
+        <h1>Driving Success with our Tech Expertise</h1>
+        <p>Empowering your people with cutting-edge technology solutions.</p>
+        <div class="button-container">
+            <a href="services.html" class="btn">Get Started</a>
+        </div>
+    </div>
+</section>
 
-        hamburger.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active'); // Add this line to animate the hamburger
-        });
+<!-- About Us Section -->
+<section id="about" data-aos="fade-up">
+    <i class="fas fa-briefcase section-icon"></i>
+    <h2>About Us</h2>
+    <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+    <a href="about.html" class="btn">Learn More</a>
+</section>
 
-        window.onscroll = function() {
-            if (window.pageYOffset > 50) {
-                scrollToTopButton.classList.add("show");
+<!-- Our Services Section -->
+<section id="services" data-aos="fade-up">
+    <i class="fas fa-cogs section-icon"></i>
+    <h2>Our Services</h2>
+    <p>We offer a variety of technology solutions to meet your business needs.</p>
+    <a href="services.html" class="btn">Explore Services</a>
+</section>
+
+<!-- Quiz Section -->
+<section class="quiz-section" id="quiz">
+    <h1 data-aos="fade-up">Find Your Perfect Tech Solution</h1>
+    <p data-aos="fade-up">Answer a few questions and we'll match you with the right tech fit!</p>
+
+    <div class="quiz-question active" id="question1" data-aos="fade-up">
+        <h3>1. What describes your ideal workspace?</h3>
+        <div class="quiz-answers">
+            <div class="quiz-answer" data-answer="minimalist" data-next="question2">
+                <i class="fas fa-laptop-house"></i>
+                Minimalist and Clean
+            </div>
+            <div class="quiz-answer" data-answer="tech-heavy" data-next="question2">
+                <i class="fas fa-desktop"></i>
+                Tech-Heavy and Advanced
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-question" id="question2" data-aos="fade-up">
+        <h3>2. What feature is a must-have in your tech gear?</h3>
+        <div class="quiz-answers">
+            <div class="quiz-answer" data-answer="performance" data-next="question3">
+                <i class="fas fa-tachometer-alt"></i>
+                High Performance
+            </div>
+            <div class="quiz-answer" data-answer="design" data-next="question3">
+                <i class="fas fa-pencil-ruler"></i>
+                Sleek Design
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-question" id="question3" data-aos="fade-up">
+        <h3>3. How often do you upgrade your tech?</h3>
+        <div class="quiz-answers">
+            <div class="quiz-answer" data-answer="yearly" data-next="result">
+                <i class="fas fa-sync-alt"></i>
+                Every Year
+            </div>
+            <div class="quiz-answer" data-answer="when-needed" data-next="result">
+                <i class="fas fa-tools"></i>
+                Only When Needed
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Result -->
+    <div class="quiz-result" id="result" data-aos="fade-up">
+        <h3>Your Tech Fit is:</h3>
+        <p id="techRecommendation"></p>
+        <a href="services.html" class="cta-button">Explore Services</a>
+    </div>
+</section>
+
+<!-- JavaScript to Handle Quiz Logic -->
+<script>
+    const quizAnswers = document.querySelectorAll('.quiz-answer');
+    const quizQuestions = document.querySelectorAll('.quiz-question');
+    const resultContainer = document.getElementById('result');
+    const recommendation = document.getElementById('techRecommendation');
+    let userAnswers = {};
+
+    quizAnswers.forEach(answer => {
+        answer.addEventListener('click', function() {
+            const currentQuestion = this.closest('.quiz-question');
+            const nextQuestionId = this.getAttribute('data-next');
+            const answerValue = this.getAttribute('data-answer');
+
+            userAnswers[currentQuestion.id] = answerValue;
+
+            // Move to next question or show result
+            currentQuestion.classList.remove('active');
+            if (nextQuestionId === 'result') {
+                showResult();
             } else {
-                scrollToTopButton.classList.remove("show");
+                document.getElementById(nextQuestionId).classList.add('active');
             }
-        };
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    });
 
-        function showSlide(index) {
-            const totalSlides = slides.length;
-            if (index >= totalSlides) currentSlide = 0;
-            else if (index < 0) currentSlide = totalSlides - 1;
-            else currentSlide = index;
-
-            const offset = -currentSlide * 100; // Each slide takes up 100% width of the container
-            document.getElementById('scrolling-container').style.transform = `translateX(${offset}%)`;
+    function showResult() {
+        // Determine recommendation based on user answers
+        if (userAnswers.question1 === 'minimalist' && userAnswers.question3 === 'yearly') {
+            recommendation.textContent = 'Apple MacBook Air - Perfect for a minimalist who values sleek design and frequent upgrades!';
+        } else if (userAnswers.question1 === 'tech-heavy' && userAnswers.question2 === 'performance') {
+            recommendation.textContent = 'High-Performance Desktop Setup - Get the ultimate performance with a custom-built workstation!';
+        } else {
+            recommendation.textContent = 'Balanced Laptop - A flexible solution for both performance and design with upgrade options as needed.';
         }
 
-        document.getElementById('nextSlide').addEventListener('click', () => showSlide(currentSlide + 1));
-        document.getElementById('prevSlide').addEventListener('click', () => showSlide(currentSlide - 1));
+        resultContainer.classList.add('active');
+    }
+</script>
 
-        // Auto slide every 10 seconds
-        setInterval(() => showSlide(currentSlide + 1), 10000);
+<!-- AOS Animation Script -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 
-        // Header show/hide logic based on scroll position
-        const header = document.querySelector('header');
-        const heroSection = document.querySelector('.hero');
-        const parallaxSection = document.querySelector('.whats-going-on');
-        let lastScrollY = window.scrollY;
-
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
-            const heroPosition = heroSection.offsetHeight;
-            const parallaxPosition = parallaxSection.offsetTop;
-
-            // Hide the header when scrolling down past the hero section
-            if (currentScrollY > heroPosition && currentScrollY < parallaxPosition - window.innerHeight / 2) {
-                header.classList.add('hidden');
-            } 
-            // Show the header on the hero section or when reaching the parallax section
-            else if (currentScrollY <= heroPosition || currentScrollY >= parallaxPosition - window.innerHeight / 2) {
-                header.classList.remove('hidden');
-            }
-
-            lastScrollY = currentScrollY;
-        });
-    </script>
-
-    <!-- AOS Animation Script -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 </body>
 </html>
