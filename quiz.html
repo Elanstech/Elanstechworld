@@ -10,6 +10,10 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -27,6 +31,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .header-container {
@@ -54,11 +59,13 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
-            transition: background-color 0.3s ease;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         header nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
         }
 
         /* Hamburger Menu */
@@ -68,7 +75,7 @@
         }
 
         .hamburger div {
-            width: 25px;
+            width: 30px;
             height: 3px;
             background-color: white;
             margin: 5px;
@@ -103,33 +110,42 @@
 
         /* Quiz Section */
         .quiz-section {
-            padding: 60px 20px;
+            padding: 100px 20px 60px;
             background-color: #fff;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .quiz-section h1 {
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 20px;
             color: #0b1f3f;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .quiz-section p {
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin-bottom: 40px;
+            color: #333;
         }
 
         .quiz-question {
             display: none;
             margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
         }
 
         .quiz-question.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .quiz-question h3 {
-            font-size: 1.8em;
+            font-size: 2em;
             color: #0b1f3f;
             margin-bottom: 20px;
         }
@@ -147,11 +163,13 @@
             color: #fff;
             border-radius: 30px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .quiz-answer:hover {
             background-color: #b8992c;
+            transform: translateY(-5px);
         }
 
         .quiz-result {
@@ -159,15 +177,24 @@
             font-size: 1.5em;
             color: #0b1f3f;
             margin-top: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .quiz-result.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .quiz-result h3 {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
 
         .quiz-result p {
-            font-size: 1.2em;
+            font-size: 1.5em;
             margin-bottom: 20px;
         }
 
@@ -181,10 +208,24 @@
             font-size: 1.2em;
             margin-top: 20px;
             display: inline-block;
+            transition: background-color 0.3s ease;
         }
 
         .cta-button:hover {
             background-color: #b8992c;
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive Design */
@@ -195,10 +236,6 @@
 
             .hamburger {
                 display: block;
-            }
-
-            .mobile-nav.active {
-                display: flex;
             }
 
             .quiz-answers {
@@ -231,7 +268,7 @@
         </nav>
 
         <!-- Hamburger Menu for Mobile -->
-        <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger" aria-label="Toggle Mobile Menu">
             <div></div>
             <div></div>
             <div></div>
@@ -247,11 +284,11 @@
 </header>
 
 <!-- Quiz Section -->
-<section class="quiz-section">
-    <h1>Discover Your Tech Fit</h1>
-    <p>Answer a few questions, and we'll recommend the best tech solution for you!</p>
+<section class="quiz-section" id="quiz">
+    <h1 data-aos="fade-up">Discover Your Tech Fit</h1>
+    <p data-aos="fade-up">Answer a few questions, and we'll recommend the best tech solution for you!</p>
 
-    <div class="quiz-question active" id="question1">
+    <div class="quiz-question active" id="question1" data-aos="fade-up">
         <h3>1. How do you primarily use technology?</h3>
         <div class="quiz-answers">
             <div class="quiz-answer" data-answer="business" data-next="question2">Business Operations</div>
@@ -260,7 +297,7 @@
         </div>
     </div>
 
-    <div class="quiz-question" id="question2">
+    <div class="quiz-question" id="question2" data-aos="fade-up">
         <h3>2. What is most important to you in a tech solution?</h3>
         <div class="quiz-answers">
             <div class="quiz-answer" data-answer="efficiency" data-next="question3">Efficiency</div>
@@ -269,7 +306,7 @@
         </div>
     </div>
 
-    <div class="quiz-question" id="question3">
+    <div class="quiz-question" id="question3" data-aos="fade-up">
         <h3>3. Which best describes your current setup?</h3>
         <div class="quiz-answers">
             <div class="quiz-answer" data-answer="outdated" data-next="result">Outdated and Slow</div>
@@ -279,17 +316,17 @@
     </div>
 
     <!-- Quiz Result -->
-    <div class="quiz-result" id="result">
+    <div class="quiz-result" id="result" data-aos="fade-up">
         <h3>Your Tech Fit is:</h3>
         <p id="techRecommendation"></p>
         <a href="services.html" class="cta-button">Explore Services</a>
-            </div>
+    </div>
 
     <!-- Second Quiz: Best iPhone or MacBook for You -->
-    <h1>What's the Best iPhone or Mac for You?</h1>
-    <p>Let us help you discover the perfect Apple product based on your needs!</p>
+    <h1 data-aos="fade-up">What's the Best iPhone or Mac for You?</h1>
+    <p data-aos="fade-up">Let us help you discover the perfect Apple product based on your needs!</p>
 
-    <div class="quiz-question active" id="iphone-question1">
+    <div class="quiz-question active" id="iphone-question1" data-aos="fade-up">
         <h3>1. How do you plan to use your device?</h3>
         <div class="quiz-answers">
             <div class="quiz-answer" data-answer="light-use" data-next="iphone-question2">Light Use (Browsing, Email)</div>
@@ -298,7 +335,7 @@
         </div>
     </div>
 
-    <div class="quiz-question" id="iphone-question2">
+    <div class="quiz-question" id="iphone-question2" data-aos="fade-up">
         <h3>2. What's your preferred device?</h3>
         <div class="quiz-answers">
             <div class="quiz-answer" data-answer="iphone" data-next="iphone-result">iPhone</div>
@@ -307,7 +344,7 @@
     </div>
 
     <!-- iPhone/MacBook Quiz Result -->
-    <div class="quiz-result" id="iphone-result">
+    <div class="quiz-result" id="iphone-result" data-aos="fade-up">
         <h3>Your Perfect Apple Device is:</h3>
         <p id="iphoneRecommendation"></p>
         <a href="services.html" class="cta-button">Explore Apple Products</a>
@@ -353,7 +390,7 @@
             recommendation.textContent = 'Apple Product Solutions - Our Apple products fit perfectly with your tech-savvy needs!';
         }
 
-        resultContainer.style.display = 'block';
+        resultContainer.classList.add('active');
     }
 
     function showIphoneResult() {
@@ -366,7 +403,7 @@
             iphoneRecommendation.textContent = 'iPhone 15 Pro Max - A powerhouse for both creative work and gaming!';
         }
 
-        document.getElementById('iphone-result').style.display = 'block';
+        document.getElementById('iphone-result').classList.add('active');
     }
 </script>
 
