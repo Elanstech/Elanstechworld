@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elan's Tech World - Providing cutting-edge technology solutions for businesses including computer setups, web design, and Apple product sales.">
     <title>Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -10,6 +11,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -356,31 +361,31 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="quiz.html">Discover Your Tech Fit</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#home" aria-label="Navigate to Home">Home</a></li>
+                    <li><a href="about.html" aria-label="Navigate to About Us">About Us</a></li>
+                    <li><a href="services.html" aria-label="Navigate to Services">Services</a></li>
+                    <li><a href="testimonials.html" aria-label="Navigate to Testimonials">Testimonials</a></li>
+                    <li><a href="faq.html" aria-label="Navigate to FAQ">FAQ</a></li>
+                    <li><a href="quiz.html" aria-label="Navigate to Tech Fit Quiz">Discover Your Tech Fit</a></li>
+                    <li><a href="contact.html" aria-label="Navigate to Contact Us">Contact Us</a></li>
                 </ul>
             </nav>
 
             <!-- Hamburger Menu for Mobile -->
-            <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger" aria-label="Toggle Mobile Navigation">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
 
             <ul class="mobile-nav" id="mobile-nav">
-                <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="quiz.html">Discover Your Tech Fit</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#home" aria-label="Navigate to Home (Mobile)">Home</a></li>
+                <li><a href="about.html" aria-label="Navigate to About Us (Mobile)">About Us</a></li>
+                <li><a href="services.html" aria-label="Navigate to Services (Mobile)">Services</a></li>
+                <li><a href="testimonials.html" aria-label="Navigate to Testimonials (Mobile)">Testimonials</a></li>
+                <li><a href="faq.html" aria-label="Navigate to FAQ (Mobile)">FAQ</a></li>
+                <li><a href="quiz.html" aria-label="Navigate to Tech Fit Quiz (Mobile)">Discover Your Tech Fit</a></li>
+                <li><a href="contact.html" aria-label="Navigate to Contact Us (Mobile)">Contact Us</a></li>
             </ul>
         </div>
     </header>
@@ -428,8 +433,8 @@
             </div>
         </div>
         <div class="arrows">
-            <button class="arrow" id="prevSlide">&#10094;</button>
-            <button class="arrow" id="nextSlide">&#10095;</button>
+            <button class="arrow" id="prevSlide" aria-label="Previous Slide">&#10094;</button>
+            <button class="arrow" id="nextSlide" aria-label="Next Slide">&#10095;</button>
         </div>
     </section>
 
@@ -451,12 +456,12 @@
     <!-- Contact Section -->
     <section id="contact" data-aos="fade-up">
         <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
-        <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+        <p>Email: <a href="mailto:elan.ayl8@gmail.com" aria-label="Send an Email to Elan">elan.ayl8@gmail.com</a></p>
+        <p>Phone: <a href="tel:+19294176819" aria-label="Call Elan">929-417-6819</a></p>
 
         <!-- Instagram Icon with Link -->
         <div class="social-icons">
-            <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
+            <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Visit our Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
@@ -465,7 +470,7 @@
     </section>
 
     <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top">↑</a>
+    <a href="#top" class="scroll-to-top" aria-label="Scroll to Top">↑</a>
 
     <!-- JavaScript -->
     <script>
