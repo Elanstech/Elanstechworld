@@ -91,7 +91,7 @@
         }
 
         /* Next Button */
-        .next-btn {
+        .next-btn, .back-btn {
             display: inline-block;
             padding: 15px 30px;
             background-color: #0b1f3f;
@@ -102,14 +102,31 @@
             font-size: 1.2em;
             margin-top: 20px;
             transition: background-color 0.3s ease;
+            text-decoration: none;
         }
 
-        .next-btn:hover {
+        .next-btn:hover, .back-btn:hover {
             background-color: #d4af37;
         }
 
         .hidden {
             display: none;
+        }
+
+        /* Result Section */
+        .result {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .result h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .result p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
 
         /* Responsive Styling */
@@ -151,6 +168,12 @@
 
         <button class="next-btn hidden" id="next-btn">Next</button>
     </div>
+
+    <div class="result hidden" id="result-section">
+        <h2>Your Recommended iPhone</h2>
+        <p id="result-text"></p>
+        <a href="quiz_iphone.html" class="back-btn">Start Over</a>
+    </div>
 </div>
 
 <script>
@@ -172,11 +195,25 @@
         }
     ];
 
+    const resultsMapping = {
+        'Photography,Very important,Under $600': 'iPhone SE (3rd Generation)',
+        'Photography,Very important,$600 - $1,000': 'iPhone 13',
+        'Photography,Over $1,000,Very important': 'iPhone 15 Pro Max',
+        'Gaming,Very important,Over $1,000': 'iPhone 15 Pro Max',
+        'Gaming,Somewhat important,$600 - $1,000': 'iPhone 13',
+        'Social Media,Very important,Over $1,000': 'iPhone 15 Pro',
+        'Social Media,Somewhat important,Under $600': 'iPhone SE (3rd Generation)'
+    };
+
     let currentQuestionIndex = 0;
     const progressElement = document.getElementById('progress');
     const questionText = document.getElementById('question-text');
     const optionsContainer = document.querySelector('.options');
     const nextButton = document.getElementById('next-btn');
+    const resultSection = document.getElementById('result-section');
+    const resultText = document.getElementById('result-text');
+
+    let selectedAnswers = [];
 
     function loadQuestion() {
         const question = questions[currentQuestionIndex];
@@ -199,6 +236,7 @@
     function selectOption(e) {
         document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
         e.currentTarget.classList.add('selected');
+        selectedAnswers[currentQuestionIndex] = e.currentTarget.getAttribute('data-answer');
         nextButton.classList.remove('hidden');
     }
 
@@ -217,9 +255,12 @@
     });
 
     function finishQuiz() {
-        questionText.textContent = "Thank you for completing the quiz!";
-        optionsContainer.innerHTML = '<p>We\'ll recommend the best iPhone for you shortly!</p>';
+        const key = selectedAnswers.join(',');
+        const result = resultsMapping[key] || 'iPhone 15';
+        resultText.textContent = `We recommend the ${result}. Please contact us to discuss the best options for you!`;
+        optionsContainer.classList.add('hidden');
         nextButton.classList.add('hidden');
+        resultSection.classList.remove('hidden');
     }
 
     loadQuestion();
