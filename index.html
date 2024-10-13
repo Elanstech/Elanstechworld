@@ -295,25 +295,6 @@
             .social-icons a:hover {
                 color: #d4af37; /* Hover color change */
             }
-            
-            .quiz-modal {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
-    width: 80%;
-    max-width: 600px;
-    z-index: 1050; /* Above everything else */
-    display: none;
-}
-.hidden {
-    display: none;
-}
-
         }
     </style>
 </head>
@@ -382,38 +363,7 @@
     <p>We offer a variety of technology solutions to meet your business needs.</p>
     <a href="services.html" class="btn">Explore Services</a>
 </section>
-
-    <!-- Decide What's Right for You Section with Inline Quiz -->
-<section class="quiz-section" id="decide-right">
-    <h2>Decide What's Right for You</h2>
-    <div class="quiz-container">
-        <div class="quiz-box" onclick="openQuiz('macQuiz')">
-            <i class="fas fa-laptop-code"></i>
-            <h3>What's the Right Mac for You?</h3>
-        </div>
-        <div class="quiz-box" onclick="openQuiz('iphoneQuiz')">
-            <i class="fas fa-mobile-alt"></i>
-            <h3>What's the Right iPhone for You?</h3>
-        </div>
-    </div>
-</section>
-<div id="macQuiz" class="quiz-modal hidden">
-    <!-- Quiz content for Mac -->
-    <h3>What's the Right Mac for You?</h3>
-    <!-- Add your questions here -->
-    <p>Question 1: What will you primarily use the Mac for? (Work, Design, Casual Use, etc.)</p>
-    <!-- Example question -->
-    <button onclick="closeQuiz('macQuiz')">Close Quiz</button>
-</div>
-<div id="iphoneQuiz" class="quiz-modal hidden">
-    <!-- Quiz content for iPhone -->
-    <h3>What's the Right iPhone for You?</h3>
-    <!-- Add your questions here -->
-    <p>Question 1: What is your main priority? (Camera, Battery Life, Screen Size)</p>
-    <!-- Example question -->
-    <button onclick="closeQuiz('iphoneQuiz')">Close Quiz</button>
-</div>
-
+    
     <!-- Testimonials Section -->
     <section id="testimonials" data-aos="fade-up">
         <i class="fas fa-comments section-icon"></i>
@@ -449,7 +399,7 @@
     <!-- Scroll to Top Button -->
     <a href="#top" class="scroll-to-top">↑</a>
 
-      <!-- JavaScript -->
+    <!-- JavaScript -->
     <script>
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
@@ -499,15 +449,6 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
-    </script>
-    <script>
-        function openQuiz(quizId) {
-            document.getElementById(quizId).style.display = 'block';
-        }
-
-        function closeQuiz(quizId) {
-            document.getElementById(quizId).style.display = 'none';
-        }
     </script>
 </body>
 </html>
