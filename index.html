@@ -16,7 +16,7 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
+            overflow-x: hidden;
             transition: all 0.3s ease-in-out;
         }
 
@@ -154,7 +154,7 @@
             transform: translateY(-5px);
         }
 
-        /* About Us Section */
+        /* Section Styling */
         section {
             padding: 60px 20px;
             margin-bottom: 40px;
@@ -299,6 +299,49 @@
             transform: translateY(-5px);
         }
 
+        /* Contact Us Section */
+        #contact {
+            background-color: #0b1f3f;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+                #contact a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #contact a:hover {
+            color: #b8992c;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            font-size: 2em;
+            color: #fff;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #d4af37;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             header nav ul {
@@ -334,7 +377,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="whatsnew.html">What's New</a></li>
+                <li><a href="quiz.html">Discover Your Tech Fit</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
@@ -350,7 +393,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html">Services</a></li>
-            <li><a href="whatsnew.html">What's New</a></li>
+            <li><a href="quiz.html">Discover Your Tech Fit</a></li>
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
     </div>
@@ -436,6 +479,22 @@
         <p id="techRecommendation"></p>
         <a href="services.html" class="cta-button">Explore Services</a>
     </div>
+</section>
+
+<!-- Contact Us Section -->
+<section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+    <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+        <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <a href="contact.html" class="btn">Get In Touch</a>
 </section>
 
 <!-- JavaScript to Handle Quiz Logic -->
