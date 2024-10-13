@@ -63,6 +63,91 @@
             color: #fff;
         }
 
+        /* Advanced Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            border-radius: 10px;
+            position: absolute;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .hamburger div:nth-child(1) {
+            top: 0;
+        }
+
+        .hamburger div:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger div:nth-child(3) {
+            bottom: 0;
+        }
+
+        /* Animation for the "X" effect */
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(12px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-12px) rotate(-45deg);
+        }
+
+        /* Mobile Nav Menu */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-nav li a {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav li a:hover {
+            color: #d4af37; /* Gold hover effect */
+        }
+
         /* Hero Section */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexback2.jpeg?raw=true') no-repeat center center/cover;
@@ -163,6 +248,10 @@
                 display: none;
             }
 
+            .hamburger {
+                display: block;
+            }
+
             .hero h1 {
                 font-size: 2em;
             }
@@ -197,7 +286,24 @@
                     <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
+        <!-- Hamburger Icon for Mobile -->
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
+
+    <!-- Mobile Navigation -->
+    <ul class="mobile-nav" id="mobile-nav">
+        <li><a href="#home">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="whatsnew.html">See What We're Working On</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
 </header>
 
 <!-- Hero Section -->
@@ -237,6 +343,17 @@
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
     AOS.init();
+</script>
+
+<!-- Hamburger Menu Script -->
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        hamburger.classList.toggle('active'); // Add this line to animate the hamburger
+    });
 </script>
 
 </body>
