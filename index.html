@@ -37,11 +37,6 @@
             opacity: 0;
         }
 
-        /* Optional: background color change on scroll */
-        header.scrolled {
-            background-color: #0b1f3f;
-        }
-
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -125,7 +120,7 @@
             transform: translateY(-12px) rotate(-45deg);
         }
 
-        /* Advanced Menu Appearance */
+        /* Animated Mobile Nav Menu */
         .mobile-nav {
             display: none;
             flex-direction: column;
@@ -146,8 +141,49 @@
             transform: translateY(0);
         }
 
+        /* Menu Items Animation */
         .mobile-nav li {
             margin: 10px 0;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.5s ease;
+        }
+
+        /* Animate menu items sequentially when the menu is active */
+        .mobile-nav.active li:nth-child(1) {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.1s;
+        }
+
+        .mobile-nav.active li:nth-child(2) {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.2s;
+        }
+
+        .mobile-nav.active li:nth-child(3) {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.3s;
+        }
+
+        .mobile-nav.active li:nth-child(4) {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.4s;
+        }
+
+        .mobile-nav.active li:nth-child(5) {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.5s;
+        }
+
+        .mobile-nav.active li:nth-child(6) {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.6s;
         }
 
         .mobile-nav li a {
