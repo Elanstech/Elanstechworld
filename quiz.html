@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Your Tech Fit - Elan's Tech World</title>
+    <title>Find Your Perfect Tech Solution - Elan's Tech World</title>
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -18,7 +18,7 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #f4f7f9;
             color: #333;
             overflow-x: hidden;
         }
@@ -66,46 +66,6 @@
         header nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-
-        .hamburger div {
-            width: 30px;
-            height: 3px;
-            background-color: white;
-            margin: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background-color: #0b1f3f;
-            position: absolute;
-            top: 100%;
-            width: 100%;
-            left: 0;
-        }
-
-        .mobile-nav.active {
-            display: flex;
-        }
-
-        .mobile-nav li {
-            margin: 10px 0;
-        }
-
-        .mobile-nav li a {
-            color: white;
-            font-weight: bold;
-            font-size: 1.2em;
-            padding: 10px;
         }
 
         /* Quiz Section */
@@ -158,18 +118,21 @@
         }
 
         .quiz-answer {
+            background: #fff;
             padding: 15px 30px;
-            background-color: #d4af37;
-            color: #fff;
-            border-radius: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
             cursor: pointer;
+            flex: 1 1 45%;
+            max-width: 45%;
+            margin: 10px;
             font-size: 1.2em;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .quiz-answer:hover {
-            background-color: #b8992c;
-            transform: translateY(-5px);
+            transform: scale(1.05);
+            background-color: #f4f7f9;
         }
 
         .quiz-result {
@@ -216,34 +179,14 @@
             transform: translateY(-5px);
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
-            header nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
             .quiz-answers {
                 flex-direction: column;
             }
 
             .quiz-answer {
-                width: 80%;
+                width: 100%;
                 margin-bottom: 20px;
             }
         }
@@ -266,52 +209,35 @@
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
-
-        <!-- Hamburger Menu for Mobile -->
-        <div class="hamburger" id="hamburger" aria-label="Toggle Mobile Menu">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
-        <ul class="mobile-nav" id="mobile-nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
     </div>
 </header>
 
 <!-- Quiz Section -->
 <section class="quiz-section" id="quiz">
-    <h1 data-aos="fade-up">Discover Your Tech Fit</h1>
-    <p data-aos="fade-up">Answer a few questions, and we'll recommend the best tech solution for you!</p>
+    <h1 data-aos="fade-up">Find Your Perfect Tech Solution</h1>
+    <p data-aos="fade-up">Answer a few fun questions to find the right tech fit for you!</p>
 
     <div class="quiz-question active" id="question1" data-aos="fade-up">
-        <h3>1. How do you primarily use technology?</h3>
+        <h3>1. What describes your ideal workspace?</h3>
         <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="business" data-next="question2">Business Operations</div>
-            <div class="quiz-answer" data-answer="personal" data-next="question2">Personal Use</div>
-            <div class="quiz-answer" data-answer="creative" data-next="question2">Creative Projects</div>
+            <div class="quiz-answer" data-answer="minimalist" data-next="question2">Minimalist and Clean</div>
+            <div class="quiz-answer" data-answer="tech-heavy" data-next="question2">Tech-Heavy and Advanced</div>
         </div>
     </div>
 
     <div class="quiz-question" id="question2" data-aos="fade-up">
-        <h3>2. What is most important to you in a tech solution?</h3>
+        <h3>2. What feature is a must-have in your tech gear?</h3>
         <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="efficiency" data-next="question3">Efficiency</div>
-            <div class="quiz-answer" data-answer="design" data-next="question3">Design & Aesthetics</div>
-            <div class="quiz-answer" data-answer="support" data-next="question3">Support & Guidance</div>
+            <div class="quiz-answer" data-answer="performance" data-next="question3">High Performance</div>
+            <div class="quiz-answer" data-answer="design" data-next="question3">Sleek Design</div>
         </div>
     </div>
 
     <div class="quiz-question" id="question3" data-aos="fade-up">
-        <h3>3. Which best describes your current setup?</h3>
+        <h3>3. How often do you upgrade your tech?</h3>
         <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="outdated" data-next="result">Outdated and Slow</div>
-            <div class="quiz-answer" data-answer="functional" data-next="result">Functional but Needs Improvement</div>
-            <div class="quiz-answer" data-answer="cutting-edge" data-next="result">Cutting-Edge</div>
+            <div class="quiz-answer" data-answer="yearly" data-next="result">Every Year</div>
+            <div class="quiz-answer" data-answer="when-needed" data-next="result">Only When Needed</div>
         </div>
     </div>
 
@@ -321,34 +247,6 @@
         <p id="techRecommendation"></p>
         <a href="services.html" class="cta-button">Explore Services</a>
     </div>
-
-    <!-- Second Quiz: Best iPhone or MacBook for You -->
-    <h1 data-aos="fade-up">What's the Best iPhone or Mac for You?</h1>
-    <p data-aos="fade-up">Let us help you discover the perfect Apple product based on your needs!</p>
-
-    <div class="quiz-question active" id="iphone-question1" data-aos="fade-up">
-        <h3>1. How do you plan to use your device?</h3>
-        <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="light-use" data-next="iphone-question2">Light Use (Browsing, Email)</div>
-            <div class="quiz-answer" data-answer="creative-use" data-next="iphone-question2">Creative Work (Design, Video Editing)</div>
-            <div class="quiz-answer" data-answer="power-use" data-next="iphone-question2">Power Use (Gaming, Development)</div>
-        </div>
-    </div>
-
-    <div class="quiz-question" id="iphone-question2" data-aos="fade-up">
-        <h3>2. What's your preferred device?</h3>
-        <div class="quiz-answers">
-            <div class="quiz-answer" data-answer="iphone" data-next="iphone-result">iPhone</div>
-            <div class="quiz-answer" data-answer="macbook" data-next="iphone-result">MacBook</div>
-        </div>
-    </div>
-
-    <!-- iPhone/MacBook Quiz Result -->
-    <div class="quiz-result" id="iphone-result" data-aos="fade-up">
-        <h3>Your Perfect Apple Device is:</h3>
-        <p id="iphoneRecommendation"></p>
-        <a href="services.html" class="cta-button">Explore Apple Products</a>
-    </div>
 </section>
 
 <!-- JavaScript to Handle Quiz Logic -->
@@ -357,7 +255,6 @@
     const quizQuestions = document.querySelectorAll('.quiz-question');
     const resultContainer = document.getElementById('result');
     const recommendation = document.getElementById('techRecommendation');
-    const iphoneRecommendation = document.getElementById('iphoneRecommendation');
     let userAnswers = {};
 
     quizAnswers.forEach(answer => {
@@ -368,12 +265,10 @@
 
             userAnswers[currentQuestion.id] = answerValue;
 
-            // Move to next question or show result
+            // Move to the next question or show result
             currentQuestion.classList.remove('active');
             if (nextQuestionId === 'result') {
                 showResult();
-            } else if (nextQuestionId === 'iphone-result') {
-                showIphoneResult();
             } else {
                 document.getElementById(nextQuestionId).classList.add('active');
             }
@@ -381,40 +276,17 @@
     });
 
     function showResult() {
-        // Determine recommendation based on answers for the Tech Fit quiz
-        if (userAnswers.question1 === 'business' && userAnswers.question3 === 'outdated') {
-            recommendation.textContent = 'Business Computer Setup - We can bring your setup to speed and maximize efficiency!';
-        } else if (userAnswers.question1 === 'personal' && userAnswers.question2 === 'design') {
-            recommendation.textContent = 'Custom Web Design - Let us create a sleek and responsive design tailored for you!';
+        // Determine recommendation based on user answers
+        if (userAnswers.question1 === 'minimalist' && userAnswers.question3 === 'yearly') {
+            recommendation.textContent = 'Apple MacBook Air - Perfect for a minimalist who values sleek design and frequent upgrades!';
+        } else if (userAnswers.question1 === 'tech-heavy' && userAnswers.question2 === 'performance') {
+            recommendation.textContent = 'High-Performance Desktop Setup - Get the ultimate performance with a custom-built workstation!';
         } else {
-            recommendation.textContent = 'Apple Product Solutions - Our Apple products fit perfectly with your tech-savvy needs!';
+            recommendation.textContent = 'Balanced Laptop - A flexible solution for both performance and design with upgrade options as needed.';
         }
 
         resultContainer.classList.add('active');
     }
-
-    function showIphoneResult() {
-        // Determine recommendation based on answers for the iPhone/MacBook quiz
-        if (userAnswers['iphone-question1'] === 'light-use' && userAnswers['iphone-question2'] === 'iphone') {
-            iphoneRecommendation.textContent = 'iPhone SE - Compact, affordable, and perfect for light use!';
-        } else if (userAnswers['iphone-question1'] === 'creative-use' && userAnswers['iphone-question2'] === 'macbook') {
-            iphoneRecommendation.textContent = 'MacBook Pro 16" - The ultimate machine for creative professionals!';
-        } else {
-            iphoneRecommendation.textContent = 'iPhone 15 Pro Max - A powerhouse for both creative work and gaming!';
-        }
-
-        document.getElementById('iphone-result').classList.add('active');
-    }
-</script>
-
-<!-- Hamburger Menu Script -->
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    hamburger.addEventListener('click', function() {
-        mobileNav.classList.toggle('active');
-    });
 </script>
 
 <!-- AOS Animation Script -->
