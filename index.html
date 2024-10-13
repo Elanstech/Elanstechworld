@@ -288,26 +288,31 @@
         }
 
         /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease;
-        }
+         .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: transparent; /* Remove the previous background */
+        color: #d4af37; /* Gold color */
+        padding: 15px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 3em;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-        .scroll-to-top.show {
-            display: block;
-        }
+    .scroll-to-top:hover {
+        color: #0b1f3f; /* Darker blue on hover */
+        transform: scale(1.1); /* Slight zoom effect */
+    }
 
+    .scroll-to-top.show {
+        display: block;
+    }
+    
         /* Responsive Styling */
         @media (max-width: 1024px) {
             .hero h1 {
@@ -484,9 +489,10 @@
         <a href="contact.html" class="btn">Get In Touch</a>
     </section>
 
-    <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top">↑</a>
-
+    <a href="#top" class="scroll-to-top">
+    <i class="fas fa-arrow-circle-up"></i>
+</a>
+    
     <!-- JavaScript -->
     <script>
         const hamburger = document.getElementById('hamburger');
