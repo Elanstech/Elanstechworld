@@ -120,7 +120,7 @@
             transform: translateY(-12px) rotate(-45deg);
         }
 
-        /* Animated Mobile Nav Menu */
+        /* Mobile Nav Menu */
         .mobile-nav {
             display: none;
             flex-direction: column;
@@ -141,49 +141,8 @@
             transform: translateY(0);
         }
 
-        /* Menu Items Animation */
         .mobile-nav li {
             margin: 10px 0;
-            opacity: 0;
-            transform: translateX(30px);
-            transition: all 0.5s ease;
-        }
-
-        /* Animate menu items sequentially when the menu is active */
-        .mobile-nav.active li:nth-child(1) {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.1s;
-        }
-
-        .mobile-nav.active li:nth-child(2) {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.2s;
-        }
-
-        .mobile-nav.active li:nth-child(3) {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.3s;
-        }
-
-        .mobile-nav.active li:nth-child(4) {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.4s;
-        }
-
-        .mobile-nav.active li:nth-child(5) {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.5s;
-        }
-
-        .mobile-nav.active li:nth-child(6) {
-            opacity: 1;
-            transform: translateX(0);
-            transition-delay: 0.6s;
         }
 
         .mobile-nav li a {
@@ -337,6 +296,16 @@
         }
 
         /* Responsive Styling */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+        }
+
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -359,20 +328,35 @@
                 font-size: 0.9em;
             }
 
-            /* Contact Section - Social Icons */
-            .social-icons {
-                margin-top: 20px;
-            }
-
-            .social-icons a {
+            section h2 {
                 font-size: 2em;
-                color: #fff;
-                margin: 0 10px;
-                transition: color 0.3s ease;
             }
 
-            .social-icons a:hover {
-                color: #d4af37; /* Hover color change */
+            section p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.8em;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            section p {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -392,7 +376,7 @@
                     <li><a href="services.html">Services</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="whatsnew.html">See What We're Working On</a></li>
+                    <li><a href="quiz.html">Discover Your Tech Fit</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
