@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Mac is Right for You?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0b1f3f;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background-color: #d4af37;
+            transition: width 0.4s ease;
+        }
+
+        /* Question and Options */
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .option-card {
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .option-card:hover {
+            background-color: #d4af37;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .option-card.selected {
+            background-color: #0b1f3f;
+            color: white;
+            border-color: #d4af37;
+            transform: scale(1.05);
+        }
+
+        /* Next Button */
+        .next-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #0b1f3f;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-btn:hover {
+            background-color: #d4af37;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>What Mac is Right for You?</h1>
+</header>
+
+<div class="quiz-container">
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="question-container">
+        <p class="question" id="question-text">What will you primarily use your Mac for?</p>
+
+        <div class="options">
+            <div class="option-card" data-answer="Productivity">
+                <i class="fas fa-briefcase fa-2x"></i>
+                <p>Work/Productivity</p>
+            </div>
+            <div class="option-card" data-answer="Creative">
+                <i class="fas fa-paint-brush fa-2x"></i>
+                <p>Creative Design</p>
+            </div>
+            <div class="option-card" data-answer="Entertainment">
+                <i class="fas fa-film fa-2x"></i>
+                <p>Entertainment</p>
+            </div>
+        </div>
+
+        <button class="next-btn hidden" id="next-btn">Next</button>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "What will you primarily use your Mac for?",
+            options: ["Work/Productivity", "Creative Design", "Entertainment"],
+            answers: []
+        },
+        {
+            question: "What is your budget range?",
+            options: ["Under $1,000", "$1,000 - $2,000", "Over $2,000"],
+            answers: []
+        },
+        {
+            question: "Do you prefer portability or performance?",
+            options: ["Portability", "Performance"],
+            answers: []
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    const progressElement = document.getElementById('progress');
+    const questionText = document.getElementById('question-text');
+    const optionsContainer = document.querySelector('.options');
+    const nextButton = document.getElementById('next-btn');
+
+    function loadQuestion() {
+        const question = questions[currentQuestionIndex];
+        questionText.textContent = question.question;
+        optionsContainer.innerHTML = '';
+
+        question.options.forEach(option => {
+            const optionCard = document.createElement('div');
+            optionCard.classList.add('option-card');
+            optionCard.setAttribute('data-answer', option);
+            optionCard.innerHTML = `<p>${option}</p>`;
+            optionCard.addEventListener('click', selectOption);
+            optionsContainer.appendChild(optionCard);
+        });
+
+        nextButton.classList.add('hidden');
+        updateProgress();
+    }
+
+    function selectOption(e) {
+        document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+        e.currentTarget.classList.add('selected');
+        nextButton.classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        const progressPercent = ((currentQuestionIndex + 1) / questions.length) * 100;
+        progressElement.style.width = `${progressPercent}%`;
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            loadQuestion();
+        } else {
+            finishQuiz();
+        }
+    });
+
+    function finishQuiz() {
+        questionText.textContent = "Thank you for completing the quiz!";
+        optionsContainer.innerHTML = '<p>We\'ll recommend the best Mac for you shortly!</p>';
+        nextButton.classList.add('hidden');
+    }
+
+    loadQuestion();
+</script>
+
+</body>
+</html>
