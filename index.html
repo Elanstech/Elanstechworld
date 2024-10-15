@@ -72,80 +72,93 @@
             color: #fff;
         }
 
-         /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 30px;
-        }
+        /* Redesigned Hamburger Button */
+.hamburger {
+    display: block;
+    position: relative;
+    width: 35px;
+    height: 3px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
 
-        .hamburger div {
-            width: 100%;
-            height: 3px;
-            background-color: white;
-            border-radius: 5px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
+.hamburger div {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
-        .hamburger.active div:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
+.hamburger div:nth-child(1) {
+    top: 0;
+}
 
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
+.hamburger div:nth-child(2) {
+    top: 10px;
+}
 
-        .hamburger.active div:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
+.hamburger div:nth-child(3) {
+    top: 20px;
+}
 
-        /* Mobile Nav Menu */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(11, 31, 63, 0.95); /* Dark background */
-            opacity: 0;
-            transform: translateY(-100%);
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            z-index: 1000;
-        }
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
 
-        .mobile-nav.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
 
-        .mobile-nav li {
-            margin: 20px 0;
-        }
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
 
-        /* Updated Text Styling for Mobile Nav */
-        .mobile-nav li a {
-            color: white;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5em; /* Larger text */
-            font-weight: 700; /* Bold font */
-            letter-spacing: 1.5px; /* Add spacing between letters */
-            text-transform: uppercase; /* Make text uppercase */
-            padding: 15px 20px;
-            transition: color 0.3s ease, background-color 0.3s ease;
-        }
+/* Redesigned Mobile Nav Menu */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(11, 31, 63, 0.85); /* Dark background with transparency */
+    backdrop-filter: blur(10px); /* Blur effect for a modern look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s;
+    z-index: 1000;
+}
 
-        .mobile-nav li a:hover {
-            color: #d4af37; /* Gold hover effect */
-            background-color: rgba(255, 255, 255, 0.1); /* Add background on hover */
-        }
+.mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mobile-nav li {
+    margin: 15px 0;
+}
+
+.mobile-nav li a {
+    color: #fff;
+    font-size: 1.7em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav li a:hover {
+    color: #d4af37; /* Gold hover effect */
+
+}
       
         /* Hero Section with Parallax Effect */
         .hero {
