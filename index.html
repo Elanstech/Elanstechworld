@@ -119,6 +119,7 @@
             transform: translateY(-100%);
             transition: transform 0.5s ease, opacity 0.5s ease;
             z-index: 1000;
+            text-align: center; /* Ensures text is centered */
         }
 
         .mobile-nav.active {
@@ -128,17 +129,17 @@
         }
 
         .mobile-nav li {
-            margin: 20px 0;
+            margin: 10px 0; /* Reduce margin for better spacing */
         }
 
         .mobile-nav li a {
             color: white;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-size: 1.2em; /* Reduced font size */
+            font-weight: 600; /* Slightly less bold */
+            letter-spacing: 1.2px;
             text-transform: uppercase;
-            padding: 15px 20px;
+            padding: 10px 15px;
             transition: color 0.3s ease, background-color 0.3s ease;
         }
 
@@ -214,68 +215,19 @@
             transform: translateY(-5px);
         }
 
-        /* Section Styling */
-        section {
-            padding: 60px 20px;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-
-        section:nth-of-type(odd) {
-            background-color: #0b1f3f;
-            color: white;
-        }
-
-        section:nth-of-type(even) {
-            background-color: #fff;
-            color: #333;
-        }
-
-        section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        section p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: transparent;
-            color: #d4af37;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 3em;
-            cursor: pointer;
-            display: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .scroll-to-top.show {
-            display: block;
-        }
-
-        .scroll-to-top:hover {
-            color: #0b1f3f;
-            transform: scale(1.1);
-        }
-
         /* Responsive Styling */
         @media (max-width: 768px) {
-            header nav ul {
-                display: none;
-            }
-
             .hamburger {
                 display: flex;
+            }
+
+            .mobile-nav li a {
+                font-size: 1.2em; /* Adjusted for better readability */
+                padding: 10px;
+            }
+
+            header nav ul {
+                display: none;
             }
 
             .hero h1 {
@@ -289,19 +241,6 @@
             .btn {
                 padding: 10px 20px;
                 font-size: 0.9em;
-            }
-
-            section h2 {
-                font-size: 2em;
-            }
-
-            section p {
-                font-size: 1em;
-            }
-
-            .hero {
-                background-attachment: scroll;
-                height: 60vh;
             }
         }
 
@@ -319,17 +258,8 @@
                 font-size: 0.8em;
             }
 
-            section h2 {
-                font-size: 1.8em;
-            }
-
-            section p {
-                font-size: 0.9em;
-            }
-
-            .hero {
-                background-position: center top;
-                height: 50vh;
+            .mobile-nav li a {
+                font-size: 1em; /* Further reduced for smaller screens */
             }
         }
     </style>
@@ -345,11 +275,11 @@
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
 
