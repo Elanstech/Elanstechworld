@@ -41,10 +41,11 @@ header {
 }
 
 header .logo img {
-    height: 50px; /* Reduced logo size */
+    height: 50px;
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
 }
 
+/* Desktop Nav */
 header nav ul {
     list-style: none;
     display: flex;
@@ -66,28 +67,41 @@ header nav ul li a:hover {
     color: #fff;
 }
 
-/* Hamburger Menu */
+/* Hide Nav and Show Hamburger on Mobile/Tablet */
+@media (max-width: 1024px) {
+    nav ul {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* Redesigned Hamburger Menu */
 .hamburger {
     display: none;
     cursor: pointer;
     flex-direction: column;
-    justify-content: space-around;
-    width: 35px;
-    height: 30px;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
     position: relative;
     z-index: 1100;
 }
 
 .hamburger div {
     width: 100%;
-    height: 4px;
+    height: 3px;
     background-color: white;
     border-radius: 5px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .hamburger.active div:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
+    transform: rotate(45deg);
+    position: relative;
+    top: 8px;
 }
 
 .hamburger.active div:nth-child(2) {
@@ -95,7 +109,9 @@ header nav ul li a:hover {
 }
 
 .hamburger.active div:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
+    transform: rotate(-45deg);
+    position: relative;
+    top: -8px;
 }
 
 /* Mobile Nav Menu */
@@ -157,7 +173,6 @@ header nav ul li a:hover {
 .close-btn:hover {
     color: #d4af37;
 }
-
 /* Hero Section - Full Image on Mobile */
 .hero {
     background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center;
@@ -441,20 +456,19 @@ section:hover {
 
     <!-- JavaScript -->
     <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-        const closeBtn = document.getElementById('close-btn');
-        const scrollToTopButton = document.querySelector('.scroll-to-top');
+         const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const closeBtn = document.getElementById('close-btn');
 
-        hamburger.addEventListener('click', function() {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+    hamburger.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
 
-        closeBtn.addEventListener('click', function() {
-            mobileNav.classList.remove('active');
-            hamburger.classList.remove('active');
-        });
+    closeBtn.addEventListener('click', function() {
+        mobileNav.classList.remove('active');
+        hamburger.classList.remove('active');
+    });
 
         window.onscroll = function() {
             if (window.pageYOffset > 50) {
