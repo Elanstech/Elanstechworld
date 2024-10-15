@@ -17,8 +17,7 @@
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            overflow-x: hidden; /* Prevents horizontal scrolling */
-            transition: all 0.3s ease-in-out;
+            overflow-x: hidden;
         }
 
         /* Header */
@@ -43,7 +42,7 @@
             align-items: center;
             width: 90%;
             margin: auto;
-            flex-wrap: wrap; /* Ensure header items wrap on smaller screens */
+            flex-wrap: wrap;
         }
 
         header .logo img {
@@ -78,15 +77,15 @@
             cursor: pointer;
             flex-direction: column;
             justify-content: space-around;
-            width: 35px; /* Increased size */
+            width: 35px;
             height: 30px;
             position: relative;
-            z-index: 1100; /* Ensure it's always above the mobile nav */
+            z-index: 1100;
         }
 
         .hamburger div {
             width: 100%;
-            height: 4px; /* Thicker lines for better visibility */
+            height: 4px;
             background-color: white;
             border-radius: 5px;
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -115,7 +114,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: rgba(11, 31, 63, 0.95); /* Dark background */
+            background-color: rgba(11, 31, 63, 0.95);
             opacity: 0;
             transform: translateY(-100%);
             transition: transform 0.5s ease, opacity 0.5s ease;
@@ -135,20 +134,20 @@
         .mobile-nav li a {
             color: white;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em; /* Larger text */
-            font-weight: 700; /* Bold font */
-            letter-spacing: 1.5px; /* Add spacing between letters */
-            text-transform: uppercase; /* Make text uppercase */
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
             padding: 15px 20px;
             transition: color 0.3s ease, background-color 0.3s ease;
         }
 
         .mobile-nav li a:hover {
-            color: #d4af37; /* Gold hover effect */
-            background-color: rgba(255, 255, 255, 0.1); /* Add background on hover */
+            color: #d4af37;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Add Close Button in Mobile Nav */
+        /* Close Button */
         .close-btn {
             position: absolute;
             top: 20px;
@@ -160,10 +159,10 @@
         }
 
         .close-btn:hover {
-            color: #d4af37; /* Gold color on hover */
+            color: #d4af37;
         }
 
-        /* Hero Section with Parallax Effect */
+        /* Hero Section */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
             background-attachment: fixed;
@@ -176,13 +175,11 @@
             color: #fff;
             padding: 20px;
             max-width: 100vw;
-            overflow-x: hidden;
         }
 
         .hero h1 {
             font-size: 3em;
             margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
             background: rgba(0, 0, 0, 0.5);
             padding: 10px;
             border-radius: 10px;
@@ -221,15 +218,10 @@
         section {
             padding: 60px 20px;
             margin-bottom: 40px;
-            border-radius: 15px;
-            transition: all 0.3s ease-in-out;
             text-align: center;
             position: relative;
-            width: 100%;
-            box-sizing: border-box;
         }
 
-        /* Blue and White Alternating Backgrounds */
         section:nth-of-type(odd) {
             background-color: #0b1f3f;
             color: white;
@@ -241,7 +233,6 @@
         }
 
         section h2 {
-            font-family: 'Montserrat', sans-serif;
             font-size: 2.5em;
             margin-bottom: 20px;
         }
@@ -250,19 +241,6 @@
             font-size: 1.2em;
             line-height: 1.6;
             margin-bottom: 20px;
-        }
-
-        /* Section Icon Styling */
-        .section-icon {
-            font-size: 4em;
-            color: #d4af37;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .section-icon:hover {
-            transform: scale(1.2);
-            color: #0b1f3f;
         }
 
         /* Scroll to Top Button */
@@ -277,7 +255,6 @@
             text-align: center;
             font-size: 3em;
             cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
             display: none;
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
@@ -292,16 +269,6 @@
         }
 
         /* Responsive Styling */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-
-            .hero p {
-                font-size: 1.2em;
-            }
-        }
-
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -333,8 +300,7 @@
             }
 
             .hero {
-                background-attachment: scroll; /* Disable parallax on small screens */
-                background-size: cover;
+                background-attachment: scroll;
                 height: 60vh;
             }
         }
@@ -363,7 +329,6 @@
 
             .hero {
                 background-position: center top;
-                background-size: cover;
                 height: 50vh;
             }
         }
@@ -380,12 +345,11 @@
             <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="whatsnew.html">See What We're Working On</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </nav>
 
@@ -399,84 +363,57 @@
         <ul class="mobile-nav" id="mobile-nav">
             <span class="close-btn" id="close-btn">&times;</span>
             <li><a href="#home">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="whatsnew.html">See What We're Working On</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact Us</a></li>
         </ul>
     </header>
 
-    <!-- Hero Section with Parallax Effect -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="container">
-            <h1>Driving Success with our Tech Expertise</h1>
-            <p>Empowering your people with cutting-edge technology solutions.</p>
-            <div class="button-container">
-                <a href="services.html" class="btn">Get Started</a>
-            </div>
+        <h1>Driving Success with Our Tech Expertise</h1>
+        <p>Empowering your business with cutting-edge technology solutions.</p>
+        <div class="button-container">
+            <a href="#services" class="btn">Get Started</a>
         </div>
     </section>
 
     <!-- About Us Section -->
-    <section id="about" data-aos="fade-up">
-        <i class="fas fa-briefcase section-icon"></i>
+    <section id="about">
         <h2>About Us</h2>
         <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
-        <a href="about.html" class="btn">Learn More</a>
+        <a href="#about" class="btn">Learn More</a>
     </section>
 
-    <!-- Our Services Section -->
-    <section id="services" data-aos="fade-up">
-        <i class="fas fa-cogs section-icon"></i>
+    <!-- Services Section -->
+    <section id="services">
         <h2>Our Services</h2>
-        <p>We offer a variety of technology solutions to meet your business needs.</p>
-        <a href="services.html" class="btn">Explore Services</a>
-    </section>
-
-    <!-- New Quiz Section -->
-    <section id="quiz" class="quiz-section" data-aos="fade-up">
-        <h3>Discover Your Tech Fit</h3>
-        <p>Take our quick quizzes to find out which Apple device is right for you!</p>
-        <div>
-            <a href="quiz_mac.html" class="btn">What Mac is Right for You?</a>
-        </div>
-        <div style="margin-top: 20px;">
-            <a href="quiz_iphone.html" class="btn">What iPhone is Right for You?</a>
-        </div>
+        <p>We offer a variety of technology solutions to meet your business needs, including website design, computer setup, and Apple device resale.</p>
+        <a href="#services" class="btn">Explore Services</a>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" data-aos="fade-up">
-        <i class="fas fa-comments section-icon"></i>
+    <section id="testimonials">
         <h2>What Our Clients Say</h2>
         <p>See what our clients have to say about their experiences working with us.</p>
-        <a href="testimonials.html" class="btn">View Testimonials</a>
+        <a href="#testimonials" class="btn">View Testimonials</a>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" data-aos="fade-up">
-        <i class="fas fa-question-circle section-icon"></i>
+    <section id="faq">
         <h2>Frequently Asked Questions</h2>
         <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-        <a href="faq.html" class="btn">Read FAQs</a>
+        <a href="#faq" class="btn">Read FAQs</a>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" data-aos="fade-up">
+    <section id="contact">
         <h2>Contact Us</h2>
         <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
         <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-
-        <!-- Instagram Icon with Link -->
-        <div class="social-icons">
-            <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
-                <i class="fab fa-instagram"></i>
-            </a>
-        </div>
-
-        <a href="contact.html" class="btn">Get In Touch</a>
+        <a href="#contact" class="btn">Get In Touch</a>
     </section>
 
     <!-- Scroll to Top Button -->
@@ -512,30 +449,6 @@
         scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
-        // Header show/hide logic based on scroll position
-        const header = document.querySelector('header');
-        const heroSection = document.querySelector('.hero');
-        let lastScrollY = window.scrollY;
-
-        window.addEventListener('scroll', () => {
-            const currentScrollY = window.scrollY;
-            const heroPosition = heroSection.offsetHeight;
-
-            // Hide the header when scrolling down past the hero section
-            if (currentScrollY > heroPosition) {
-                header.classList.add('hidden');
-            } 
-            // Show the header on the hero section or when reaching the parallax section
-            else if (currentScrollY <= heroPosition) {
-                header.classList.remove('hidden');
-            }
-
-            lastScrollY = currentScrollY;
-        });
-
-        // AOS Animation Init
-        AOS.init();
     </script>
 </body>
 </html>
