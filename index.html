@@ -11,7 +11,7 @@
     <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
-     /* General Body and Layout */
+/* General Body and Layout */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -70,11 +70,11 @@ header nav ul li a:hover {
 /* Hide Nav and Show Hamburger on Mobile/Tablet */
 @media (max-width: 1024px) {
     nav ul {
-        display: none;
+        display: none; /* Hide navigation menu on mobile and tablet */
     }
 
     .hamburger {
-        display: flex;
+        display: flex; /* Show hamburger menu */
     }
 }
 
@@ -173,7 +173,8 @@ header nav ul li a:hover {
 .close-btn:hover {
     color: #d4af37;
 }
-/* Hero Section - Full Image on Mobile */
+
+/* Hero Section */
 .hero {
     background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center;
     background-size: cover;
@@ -225,7 +226,7 @@ header nav ul li a:hover {
     transform: translateY(-5px);
 }
 
-/* Full-width Sections on Laptop */
+/* Full-width Sections */
 section {
     width: 100%; /* Full width for all sections */
     padding: 60px 20px;
@@ -332,14 +333,6 @@ section:hover {
 
     .header-container {
         flex-direction: row;
-    }
-
-    nav ul {
-        display: none;
-    }
-
-    .mobile-nav.active ul {
-        display: block;
     }
 
     .logo img {
@@ -456,32 +449,19 @@ section:hover {
 
     <!-- JavaScript -->
     <script>
-         const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    const closeBtn = document.getElementById('close-btn');
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const closeBtn = document.getElementById('close-btn');
 
-    hamburger.addEventListener('click', function() {
-        mobileNav.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
 
-    closeBtn.addEventListener('click', function() {
-        mobileNav.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-
-        window.onscroll = function() {
-            if (window.pageYOffset > 50) {
-                scrollToTopButton.classList.add("show");
-            } else {
-                scrollToTopButton.classList.remove("show");
-            }
-        };
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        closeBtn.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+            hamburger.classList.remove('active');
         });
     </script>
 </body>
 </html>
-
