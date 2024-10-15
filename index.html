@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elan's Tech World</title>
+    <!-- Import Poppins and Montserrat Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Header */
+        header {
+            background-color: #0b1f3f;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
+
+        header.hidden {
+            opacity: 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+            flex-wrap: wrap; /* Ensure header items wrap on smaller screens */
+        }
+
+        header .logo img {
+            height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+         /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border-radius: 5px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Mobile Nav Menu */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(11, 31, 63, 0.95); /* Dark background */
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            z-index: 1000;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav li {
+            margin: 20px 0;
+        }
+
+        /* Updated Text Styling for Mobile Nav */
+        .mobile-nav li a {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em; /* Larger text */
+            font-weight: 700; /* Bold font */
+            letter-spacing: 1.5px; /* Add spacing between letters */
+            text-transform: uppercase; /* Make text uppercase */
+            padding: 15px 20px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .mobile-nav li a:hover {
+            color: #d4af37; /* Gold hover effect */
+            background-color: rgba(255, 255, 255, 0.1); /* Add background on hover */
+        }
+      
+        /* Hero Section with Parallax Effect */
+        .hero {
+    background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    max-width: 100vw; /* Prevents overflow */
+    overflow-x: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #d4af37;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #b8992c;
+            transform: translateY(-5px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            transition: all 0.3s ease-in-out;
+            text-align: center;
+            position: relative;
+            width: 100%; /* Make sections responsive */
+            box-sizing: border-box;
+        }
+
+        /* Blue and White Alternating Backgrounds */
+        section:nth-of-type(odd) {
+            background-color: #0b1f3f;
+            color: white;
+        }
+
+        section:nth-of-type(even) {
+            background-color: #fff;
+            color: #333;
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Section Icon Styling */
+        .section-icon {
+            font-size: 4em;
+            color: #d4af37;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .section-icon:hover {
+            transform: scale(1.2);
+            color: #0b1f3f;
+        }
+
+        /* Quiz Section Styling */
+        .quiz-section {
+            background-color: #fff;
+            color: #333;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .quiz-section a {
+            text-decoration: none;
+            background-color: #d4af37;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-section a:hover {
+            background-color: #b8992c;
+        }
+
+        /* Scroll to Top Button */
+     <!-- Scroll to Top Button -->
+<a href="#top" class="scroll-to-top">
+    <i class="fas fa-arrow-circle-up"></i>
+</a>
+
+<!-- Updated CSS for Scroll to Top Button -->
+<style>
+    .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: transparent; /* Remove the previous background */
+        color: #d4af37; /* Gold color */
+        padding: 15px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 3em;
+        cursor: pointer;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .scroll-to-top:hover {
+        color: #0b1f3f; /* Darker blue on hover */
+        transform: scale(1.1); /* Slight zoom effect */
+    }
+
+    .scroll-to-top.show {
+        display: block;
+    }
+        
+        /* Responsive Styling */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .hero p {
+                font-size: 1.2em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            section h2 {
+                font-size: 2em;
+            }
+
+            section p {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.8em;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            section p {
+                font-size: 0.9em;
+            }
+            /* Adjust for mobile screens */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll; /* Disable parallax on small screens */
+        background-size: cover; /* Ensure the image covers the whole section */
+        height: 60vh; /* Reduce the height to fit mobile screens better */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        background-position: center top; /* Adjust image position for smaller screens */
+        background-size: cover; /* Ensure the image covers the whole section */
+        height: 50vh; /* Further reduce height for smaller devices */
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="#home">
+                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="whatsnew.html">See What We're Working On</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Advanced Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <ul class="mobile-nav" id="mobile-nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="whatsnew.html">See What We're Working On</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section with Parallax Effect -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Driving Success with our Tech Expertise</h1>
+            <p>Empowering your people with cutting-edge technology solutions.</p>
+            <div class="button-container">
+                <a href="services.html" class="btn">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" data-aos="fade-up">
+        <i class="fas fa-briefcase section-icon"></i>
+        <h2>About Us</h2>
+        <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and the sale of premium Apple devices. Our services are designed to enhance your business operations, ensuring seamless integration and a professional online presence.</p>
+        <a href="about.html" class="btn">Learn More</a>
+    </section>
+
+    <!-- Our Services Section -->
+<section id="services" data-aos="fade-up">
+    <i class="fas fa-cogs section-icon"></i>
+    <h2>Our Services</h2>
+    <p>We offer a variety of technology solutions to meet your business needs.</p>
+    <a href="services.html" class="btn">Explore Services</a>
+</section>
+
+    <!-- New Quiz Section -->
+    <section id="quiz" class="quiz-section" data-aos="fade-up">
+        <h3>Discover Your Tech Fit</h3>
+        <p>Take our quick quizzes to find out which Apple device is right for you!</p>
+        <div>
+            <a href="quiz_mac.html" class="btn">What Mac is Right for You?</a>
+        </div>
+        <div style="margin-top: 20px;">
+            <a href="quiz_iphone.html" class="btn">What iPhone is Right for You?</a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" data-aos="fade-up">
+        <i class="fas fa-comments section-icon"></i>
+        <h2>What Our Clients Say</h2>
+        <p>See what our clients have to say about their experiences working with us.</p>
+        <a href="testimonials.html" class="btn">View Testimonials</a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" data-aos="fade-up">
+        <i class="fas fa-question-circle section-icon"></i>
+        <h2>Frequently Asked Questions</h2>
+        <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
+        <a href="faq.html" class="btn">Read FAQs</a>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+        <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+
+        <!-- Instagram Icon with Link -->
+        <div class="social-icons">
+            <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+
+        <a href="contact.html" class="btn">Get In Touch</a>
+    </section>
+
+   <!-- Scroll to Top Button -->
+<a href="#top" class="scroll-to-top">
+    <i class="fas fa-arrow-circle-up"></i>
+</a>
+
+    <!-- JavaScript -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active'); // Add this line to animate the hamburger
+        });
+
+        window.onscroll = function() {
+            if (window.pageYOffset > 50) {
+                scrollToTopButton.classList.add("show");
+            } else {
+                scrollToTopButton.classList.remove("show");
+            }
+        };
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Header show/hide logic based on scroll position
+        const header = document.querySelector('header');
+        const heroSection = document.querySelector('.hero');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            const heroPosition = heroSection.offsetHeight;
+
+            // Hide the header when scrolling down past the hero section
+            if (currentScrollY > heroPosition) {
+                header.classList.add('hidden');
+            } 
+            // Show the header on the hero section or when reaching the parallax section
+            else if (currentScrollY <= heroPosition) {
+                header.classList.remove('hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        });
+    </script>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
