@@ -291,6 +291,10 @@ section:hover {
     .hero h1, .hero p {
         margin: 0 20px; /* Add some margin to keep content from touching the edges */
     }
+
+    .hamburger {
+        display: flex;
+    }
 }
 
 @media (max-width: 480px) {
@@ -304,7 +308,49 @@ section:hover {
         padding: 30px 10px; /* Slightly less padding for smaller devices */
     }
 }
-</style>
+
+/* Additional Styles for Better Mobile Experience */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 0;
+    }
+
+    .header-container {
+        flex-direction: row;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .mobile-nav.active ul {
+        display: block;
+    }
+
+    .logo img {
+        height: 40px; /* Smaller logo size for mobile */
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+
+    .btn:hover {
+        transform: translateY(0); /* Remove hover effect on mobile */
+    }
+
+    .scroll-to-top {
+        font-size: 2em;
+        padding: 10px;
+    }
+
+    .scroll-to-top:hover {
+        transform: none; /* No scale effect on mobile */
+    }
+}
+
+    </style>
 </head>
 <body>
     <header>
@@ -424,3 +470,4 @@ section:hover {
     </script>
 </body>
 </html>
+
