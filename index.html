@@ -274,21 +274,38 @@
         transform: scale(1.1);
     }
 
-    /* Remove parallax effect and adjust hero section on mobile */
-    @media (max-width: 768px) {
-        .hero {
-            background-attachment: scroll; /* Disable parallax */
-            background-size: cover; /* Ensure the entire image fits */
-            height: 60vh; /* Adjust height for smaller screens */
-        }
+   @media (max-width: 768px) {
+    /* Add space above the hero section */
+    .hero {
+        background-attachment: scroll; /* Disable parallax */
+        background-size: cover; /* Ensure the entire image fits */
+        height: 60vh;
+        padding-top: 80px; /* Adds space between top and hero */
     }
 
-    @media (max-width: 480px) {
-        .hero {
-            background-position: center top; /* Adjust image position */
-            height: 50vh; /* Further reduce height for smaller screens */
-        }
+    /* Add more padding between sections */
+    section {
+        padding: 40px 15px;
     }
+
+    /* Ensure even spacing between elements */
+    .hero h1, .hero p {
+        margin: 0 20px; /* Add some margin to keep content from touching the edges */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Further adjustment for smaller screens */
+    .hero {
+        background-position: center top;
+        height: 50vh;
+        padding-top: 80px; /* Maintain space on top for mobile */
+    }
+
+    section {
+        padding: 30px 10px; /* Slightly less padding for smaller devices */
+    }
+}
 </style>
 </head>
 <body>
