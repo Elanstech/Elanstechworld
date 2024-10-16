@@ -63,7 +63,7 @@
             color: #fff;
         }
 
-        /* Advanced Hamburger Menu */
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -98,7 +98,6 @@
             bottom: 0;
         }
 
-        /* Animation for the "X" effect */
         .hamburger.active div:nth-child(1) {
             transform: translateY(12px) rotate(45deg);
         }
@@ -145,7 +144,7 @@
         }
 
         .mobile-nav li a:hover {
-            color: #d4af37; /* Gold hover effect */
+            color: #d4af37;
         }
 
         /* Hero Section */
@@ -217,6 +216,7 @@
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .event img {
@@ -225,16 +225,74 @@
             object-fit: cover;
         }
 
+        .event-slider {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-slider img {
+            width: 100%;
+            display: none;
+        }
+
+        .event-slider img.active {
+            display: block;
+        }
+
+        .event .prev, .event .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .event .prev {
+            left: 10px;
+        }
+
+        .event .next {
+            right: 10px;
+        }
+
         .event h3 {
             font-size: 1.8em;
             color: #0b1f3f;
             padding: 15px;
         }
 
-        .event p {
+        .event-description {
+            display: none;
             padding: 0 15px 15px;
             font-size: 1.1em;
             color: #555;
+        }
+
+        .event .toggle-description {
+            background: none;
+            border: none;
+            color: #0b1f3f;
+            font-size: 1.5em;
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        .event .toggle-description i {
+            transition: transform 0.3s ease;
+        }
+
+        /* Active state for description */
+        .event.active .event-description {
+            display: block;
+        }
+
+        .event.active .toggle-description i {
+            transform: rotate(180deg);
         }
 
         .event:hover {
@@ -242,7 +300,6 @@
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -277,24 +334,21 @@
         </div>
         <nav>
             <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="whatsnew.html">See What We're Working On</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="whatsnew.html">See What We're Working On</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
         </nav>
-        <!-- Hamburger Icon for Mobile -->
         <div class="hamburger" id="hamburger">
             <div></div>
             <div></div>
             <div></div>
         </div>
     </div>
-
-    <!-- Mobile Navigation -->
     <ul class="mobile-nav" id="mobile-nav">
         <li><a href="#home">Home</a></li>
         <li><a href="about.html">About Us</a></li>
@@ -306,13 +360,11 @@
     </ul>
 </header>
 
-<!-- Hero Section -->
 <section class="hero">
-    <h1>See What Were Working On</h1>
+    <h1>See What We're Working On</h1>
     <p>Discover our latest projects and success stories</p>
 </section>
 
-<!-- Content Section -->
 <section class="content">
     <h2>Latest Projects</h2>
     <p>Take a look at some of the exciting work we've been doing lately for our clients.</p>
@@ -320,21 +372,33 @@
     <!-- Events Grid -->
     <div class="events-grid">
         <div class="event" data-aos="fade-up">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="East Coast Realty">
+            <div class="event-slider">
+                <img src="path/to/your-image1.jpg" class="active" alt="East Coast Realty 1">
+                <img src="path/to/your-image2.jpg" alt="East Coast Realty 2">
+                <img src="path/to/your-image3.jpg" alt="East Coast Realty 3">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
             <h3>East Coast Realty Website</h3>
-            <p>We've developed a modern real estate platform with advanced property search and lead generation features for East Coast Realty.</p>
+            <div class="event-description">
+                <p>We've developed a modern real estate platform with advanced property search and lead generation features for East Coast Realty.</p>
+            </div>
+            <button class="toggle-description"><i class="fas fa-chevron-down"></i></button>
         </div>
 
         <div class="event" data-aos="fade-up">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Cohen and Associates Website">
+            <div class="event-slider">
+                <img src="path/to/your-image1.jpg" class="active" alt="Cohen and Associates 1">
+                <img src="path/to/your-image2.jpg" alt="Cohen and Associates 2">
+                <img src="path/to/your-image3.jpg" alt="Cohen and Associates 3">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
             <h3>Cohen and Associates Website</h3>
-            <p>A sleek corporate site optimized for client interaction, reflecting the professionalism of Cohen and Associates.</p>
-        </div>
-
-        <div class="event" data-aos="fade-up">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/techproject.jpeg?raw=true" alt="Tech Upgrade Project">
-            <h3>Complete Tech Upgrade</h3>
-            <p>Upgraded and streamlined the entire tech infrastructure of a client’s office, boosting efficiency and productivity.</p>
+            <div class="event-description">
+                <p>A sleek corporate site optimized for client interaction, reflecting the professionalism of Cohen and Associates.</p>
+            </div>
+            <button class="toggle-description"><i class="fas fa-chevron-down"></i></button>
         </div>
     </div>
 </section>
@@ -352,7 +416,37 @@
 
     hamburger.addEventListener('click', function() {
         mobileNav.classList.toggle('active');
-        hamburger.classList.toggle('active'); // Add this line to animate the hamburger
+        hamburger.classList.toggle('active');
+    });
+
+    // Toggle Description Script
+    const toggles = document.querySelectorAll('.toggle-description');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const event = this.closest('.event');
+            event.classList.toggle('active');
+        });
+    });
+
+    // Image Slider Script
+    const sliders = document.querySelectorAll('.event-slider');
+    sliders.forEach(slider => {
+        let currentIndex = 0;
+        const images = slider.querySelectorAll('img');
+        const prevButton = slider.querySelector('.prev');
+        const nextButton = slider.querySelector('.next');
+
+        prevButton.addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            images[currentIndex].classList.add('active');
+        });
+
+        nextButton.addEventListener('click', () => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            images[currentIndex].classList.add('active');
+        });
     });
 </script>
 
