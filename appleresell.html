@@ -66,6 +66,38 @@
             color: #fff;
         }
 
+        /* Hide the regular menu on smaller screens */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .mobile-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: #0b1f3f;
+                width: 100%;
+                text-align: right;
+                padding: 20px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+
+        /* Hide the hamburger menu on larger screens */
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+
         /* Hero Section */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/applehero.jpg?raw=true') no-repeat center center/cover;
@@ -151,8 +183,8 @@
             background-color: #ffd600;
         }
 
-        /* CTA Button */
-        .cta-button {
+        /* View More Button */
+        .view-more {
             display: inline-block;
             margin-top: 10px;
             padding: 10px 20px;
@@ -161,11 +193,21 @@
             text-decoration: none;
             font-weight: 600;
             border-radius: 5px;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .cta-button:hover {
+        .view-more:hover {
             background-color: #ffd600;
+        }
+
+        .specs-content {
+            display: none;
+            margin-top: 10px;
+            text-align: left;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
         }
 
         /* Responsive Styles */
@@ -317,6 +359,14 @@
                 <option value="256GB">$899.99 - 256GB SSD</option>
                 <option value="512GB">$1,049.99 - 512GB SSD</option>
             </select>
+            <button class="view-more" onclick="toggleSpecs('specsMacAirM1')">View More Specs</button>
+            <div id="specsMacAirM1" class="specs-content">
+                <p><strong>Display Size:</strong> 13.3-inch Retina Display</p>
+                <p><strong>CPU:</strong> 8-core CPU</p>
+                <p><strong>GPU:</strong> 7-core GPU</p>
+                <p><strong>RAM:</strong> 8GB Unified Memory</p>
+                <p><strong>Battery Life:</strong> Up to 18 hours</p>
+            </div>
         </div>
 
         <!-- MacBook Pro M1 -->
@@ -328,6 +378,14 @@
                 <option value="512GB">$1,709.00 - 512GB SSD</option>
                 <option value="1TB">$1,899.00 - 1TB SSD</option>
             </select>
+            <button class="view-more" onclick="toggleSpecs('specsMacProM1')">View More Specs</button>
+            <div id="specsMacProM1" class="specs-content">
+                <p><strong>Display Size:</strong> 13.3-inch Retina Display</p>
+                <p><strong>CPU:</strong> 8-core CPU</p>
+                <p><strong>GPU:</strong> 8-core GPU</p>
+                <p><strong>RAM:</strong> 8GB Unified Memory</p>
+                <p><strong>Battery Life:</strong> Up to 20 hours</p>
+            </div>
         </div>
 
         <!-- MacBook Pro M1 Max -->
@@ -339,6 +397,14 @@
                 <option value="512GB">$2,099.00 - 512GB SSD</option>
                 <option value="1TB">$2,299.00 - 1TB SSD</option>
             </select>
+            <button class="view-more" onclick="toggleSpecs('specsMacProM1Max')">View More Specs</button>
+            <div id="specsMacProM1Max" class="specs-content">
+                <p><strong>Display Size:</strong> 16-inch Retina Display</p>
+                <p><strong>CPU:</strong> 10-core CPU</p>
+                <p><strong>GPU:</strong> 32-core GPU</p>
+                <p><strong>RAM:</strong> 32GB Unified Memory</p>
+                <p><strong>Battery Life:</strong> Up to 21 hours</p>
+            </div>
         </div>
 
         <!-- MacBook Air M2 -->
@@ -350,6 +416,14 @@
                 <option value="256GB">$1,049.99 - 256GB SSD</option>
                 <option value="512GB">$1,199.99 - 512GB SSD</option>
             </select>
+            <button class="view-more" onclick="toggleSpecs('specsMacAirM2')">View More Specs</button>
+            <div id="specsMacAirM2" class="specs-content">
+                <p><strong>Display Size:</strong> 13.6-inch Liquid Retina Display</p>
+                <p><strong>CPU:</strong> 8-core CPU</p>
+                <p><strong>GPU:</strong> 8-core GPU</p>
+                <p><strong>RAM:</strong> 8GB Unified Memory</p>
+                <p><strong>Battery Life:</strong> Up to 18 hours</p>
+            </div>
         </div>
 
         <!-- MacBook Pro M2 -->
@@ -361,6 +435,14 @@
                 <option value="512GB">$1,799.00 - 512GB SSD</option>
                 <option value="1TB">$1,999.00 - 1TB SSD</option>
             </select>
+            <button class="view-more" onclick="toggleSpecs('specsMacProM2')">View More Specs</button>
+            <div id="specsMacProM2" class="specs-content">
+                <p><strong>Display Size:</strong> 13.3-inch Retina Display</p>
+                <p><strong>CPU:</strong> 8-core CPU</p>
+                <p><strong>GPU:</strong> 10-core GPU</p>
+                <p><strong>RAM:</strong> 16GB Unified Memory</p>
+                <p><strong>Battery Life:</strong> Up to 20 hours</p>
+            </div>
         </div>
     </section>
 
@@ -371,6 +453,15 @@
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
         });
+
+        function toggleSpecs(id) {
+            const element = document.getElementById(id);
+            if (element.style.display === 'none' || element.style.display === '') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
