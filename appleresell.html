@@ -45,6 +45,7 @@
             filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
+        /* Desktop Navigation */
         header nav ul {
             list-style: none;
             display: flex;
@@ -69,10 +70,10 @@
         /* Hide the regular menu on smaller screens */
         @media (max-width: 768px) {
             header nav ul {
-                display: none;
+                display: none; /* Hide desktop menu */
             }
             .hamburger {
-                display: block;
+                display: block; /* Show hamburger menu */
             }
             .mobile-nav {
                 display: none;
@@ -323,17 +324,34 @@
         <!-- iPhone 12 Series -->
         <div class="product-box">
             <i class="product-icon fas fa-mobile-alt"></i>
-            <h3 class="product-title">iPhone 12</h3>
+            <h3 class="product-title">iPhone 12 Mini</h3>
             <select class="product-config">
-                <option value="64GB">$469 - 64GB</option>
-                <option value="128GB">$489 - 128GB</option>
+                <option value="64GB">$429 - 64GB</option>
+                <option value="128GB">$459 - 128GB</option>
                 <option value="256GB">$529 - 256GB</option>
             </select>
-            <button class="view-more" onclick="toggleSpecs('specsIphone12')">View More Specs</button>
-            <div id="specsIphone12" class="specs-content">
-                <p><strong>Display:</strong> 6.1-inch Super Retina XDR</p>
+            <button class="view-more" onclick="toggleSpecs('specsIphone12Mini')">View More Specs</button>
+            <div id="specsIphone12Mini" class="specs-content">
+                <p><strong>Display:</strong> 5.4-inch Super Retina XDR</p>
                 <p><strong>Chip:</strong> A14 Bionic</p>
                 <p><strong>Camera:</strong> Dual 12MP camera</p>
+                <p><strong>5G:</strong> Yes</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 12 Pro</h3>
+            <select class="product-config">
+                <option value="128GB">$499 - 128GB</option>
+                <option value="256GB">$589 - 256GB</option>
+                <option value="512GB">$689 - 512GB</option>
+            </select>
+            <button class="view-more" onclick="toggleSpecs('specsIphone12Pro')">View More Specs</button>
+            <div id="specsIphone12Pro" class="specs-content">
+                <p><strong>Display:</strong> 6.1-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A14 Bionic</p>
+                <p><strong>Camera:</strong> Triple 12MP camera + LiDAR</p>
                 <p><strong>5G:</strong> Yes</p>
             </div>
         </div>
@@ -358,16 +376,48 @@
         <!-- iPhone 13 Series -->
         <div class="product-box">
             <i class="product-icon fas fa-mobile-alt"></i>
-            <h3 class="product-title">iPhone 13 Pro</h3>
+            <h3 class="product-title">iPhone 13 Mini</h3>
             <select class="product-config">
-                <option value="128GB">$599 - 128GB</option>
-                <option value="256GB">$649 - 256GB</option>
-                <option value="512GB">$749 - 512GB</option>
-                <option value="1TB">$1,019 - 1TB</option>
+                <option value="128GB">$529 - 128GB</option>
+                <option value="256GB">$579 - 256GB</option>
             </select>
-            <button class="view-more" onclick="toggleSpecs('specsIphone13Pro')">View More Specs</button>
-            <div id="specsIphone13Pro" class="specs-content">
+            <button class="view-more" onclick="toggleSpecs('specsIphone13Mini')">View More Specs</button>
+            <div id="specsIphone13Mini" class="specs-content">
+                <p><strong>Display:</strong> 5.4-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A15 Bionic</p>
+                <p><strong>Camera:</strong> Dual 12MP camera</p>
+                <p><strong>5G:</strong> Yes</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 13</h3>
+            <select class="product-config">
+                <option value="128GB">$549 - 128GB</option>
+                <option value="256GB">$599 - 256GB</option>
+            </select>
+            <button class="view-more" onclick="toggleSpecs('specsIphone13')">View More Specs</button>
+            <div id="specsIphone13" class="specs-content">
                 <p><strong>Display:</strong> 6.1-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A15 Bionic</p>
+                <p><strong>Camera:</strong> Dual 12MP camera</p>
+                <p><strong>5G:</strong> Yes</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 13 Pro Max</h3>
+            <select class="product-config">
+                <option value="128GB">$649 - 128GB</option>
+                <option value="256GB">$699 - 256GB</option>
+                <option value="512GB">$799 - 512GB</option>
+                <option value="1TB">$1,099 - 1TB</option>
+            </select>
+            <button class="view-more" onclick="toggleSpecs('specsIphone13ProMax')">View More Specs</button>
+            <div id="specsIphone13ProMax" class="specs-content">
+                <p><strong>Display:</strong> 6.7-inch Super Retina XDR</p>
                 <p><strong>Chip:</strong> A15 Bionic</p>
                 <p><strong>Camera:</strong> Triple 12MP camera + LiDAR</p>
                 <p><strong>5G:</strong> Yes</p>
@@ -375,54 +425,225 @@
             </div>
         </div>
 
-        <!-- MacBooks -->
+        <!-- iPhone 14 Series -->
         <div class="product-box">
-            <i class="product-icon fas fa-laptop"></i>
-            <h3 class="product-title">MacBook Air M1</h3>
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 14</h3>
             <select class="product-config">
-                <option value="256GB">$609.99 - 256GB</option>
-                <option value="512GB">$629.99 - 512GB</option>
+                <option value="128GB">$579 - 128GB</option>
+                <option value="256GB">$629 - 256GB</option>
             </select>
-            <button class="view-more" onclick="toggleSpecs('specsMacAirM1')">View More Specs</button>
-            <div id="specsMacAirM1" class="specs-content">
-                <p><strong>Display:</strong> 13.3-inch Retina</p>
-                <p><strong>Chip:</strong> M1 (8-core CPU, 7-core GPU)</p>
-                <p><strong>Battery Life:</strong> 18 hours</p>
-                <p><strong>Ports:</strong> 2 Thunderbolt 3</p>
+            <button class="view-more" onclick="toggleSpecs('specsIphone14')">View More Specs</button>
+            <div id="specsIphone14" class="specs-content">
+                <p><strong>Display:</strong> 6.1-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A15 Bionic</p>
+                <p><strong>Camera:</strong> Dual 12MP camera</p>
+                <p><strong>5G:</strong> Yes</p>
             </div>
         </div>
 
         <div class="product-box">
-            <i class="product-icon fas fa-laptop"></i>
-            <h3 class="product-title">MacBook Pro M1</h3>
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 14 Plus</h3>
             <select class="product-config">
-                <option value="256GB">$649.99 - 256GB</option>
-                <option value="512GB">$709.99 - 512GB</option>
+                <option value="128GB">$629 - 128GB</option>
+                <option value="256GB">$729 - 256GB</option>
             </select>
-            <button class="view-more" onclick="toggleSpecs('specsMacProM1')">View More Specs</button>
-            <div id="specsMacProM1" class="specs-content">
-                <p><strong>Display:</strong> 13.3-inch Retina</p>
-                <p><strong>Chip:</strong> M1 (8-core CPU, 8-core GPU)</p>
-                <p><strong>Battery Life:</strong> 20 hours</p>
-                <p><strong>Ports:</strong> 2 Thunderbolt 3</p>
+            <button class="view-more" onclick="toggleSpecs('specsIphone14Plus')">View More Specs</button>
+            <div id="specsIphone14Plus" class="specs-content">
+                <p><strong>Display:</strong> 6.7-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A15 Bionic</p>
+                <p><strong>Camera:</strong> Dual 12MP camera</p>
+                <p><strong>5G:</strong> Yes</p>
             </div>
         </div>
 
         <div class="product-box">
-            <i class="product-icon fas fa-laptop"></i>
-            <h3 class="product-title">MacBook Pro M2</h3>
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 14 Pro</h3>
             <select class="product-config">
-                <option value="256GB">$1,099 - 256GB</option>
-                <option value="512GB">$1,299 - 512GB</option>
+                <option value="128GB">$799 - 128GB</option>
+                <option value="256GB">$849 - 256GB</option>
+                <option value="512GB">$999 - 512GB</option>
+                <option value="1TB">$1,099 - 1TB</option>
             </select>
-            <button class="view-more" onclick="toggleSpecs('specsMacProM2')">View More Specs</button>
-            <div id="specsMacProM2" class="specs-content">
-                <p><strong>Display:</strong> 13.3-inch Retina</p>
-                <p><strong>Chip:</strong> M2 (8-core CPU, 10-core GPU)</p>
-                <p><strong>Battery Life:</strong> 20 hours</p>
+            <button class="view-more" onclick="toggleSpecs('specsIphone14Pro')">View More Specs</button>
+            <div id="specsIphone14Pro" class="specs-content">
+                <p><strong>Display:</strong> 6.1-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A16 Bionic</p>
+                <p><strong>Camera:</strong> Triple 12MP camera + LiDAR</p>
+                <p><strong>5G:</strong> Yes</p>
+                <p><strong>Features:</strong> Always-On Display, Dynamic Island</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 14 Pro Max</h3>
+            <select class="product-config">
+                <option value="128GB">$849 - 128GB</option>
+                <option value="256GB">$899 - 256GB</option>
+                <option value="512GB">$1,019 - 512GB</option>
+                <option value="1TB">$1,189 - 1TB</option>
+            </select>
+            <button class="view-more" onclick="toggleSpecs('specsIphone14ProMax')">View More Specs</button>
+            <div id="specsIphone14ProMax" class="specs-content">
+                <p><strong>Display:</strong> 6.7-inch Super Retina XDR</p>
+                <p><strong>Chip:</strong> A16 Bionic</p>
+                <p><strong>Camera:</strong> Triple 12MP camera + LiDAR</p>
+                <p><strong>5G:</strong> Yes</p>
+                <p><strong>Features:</strong> Always-On Display, Dynamic Island</p>
+            </div>
+        </div>
+                <!-- MacBook Air with M2 Chip (Released July 2022) -->
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Air (M2, 8GB RAM, 256GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $929</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacAirM2_256')">View More Specs</button>
+            <div id="specsMacAirM2_256" class="specs-content">
+                <p><strong>Display:</strong> 13.6-inch Liquid Retina</p>
+                <p><strong>Chip:</strong> M2 (8-core CPU, 8-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 18 hours</p>
                 <p><strong>Ports:</strong> 2 Thunderbolt/USB 4</p>
             </div>
         </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Air (M2, 8GB RAM, 512GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $1,049</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacAirM2_512')">View More Specs</button>
+            <div id="specsMacAirM2_512" class="specs-content">
+                <p><strong>Display:</strong> 13.6-inch Liquid Retina</p>
+                <p><strong>Chip:</strong> M2 (8-core CPU, 8-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 18 hours</p>
+                <p><strong>Ports:</strong> 2 Thunderbolt/USB 4</p>
+            </div>
+        </div>
+
+        <!-- MacBook Pro with M2 Chip (Released June 2022) -->
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 13-inch (M2, 8GB RAM, 256GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $1,099</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacProM2_256')">View More Specs</button>
+            <div id="specsMacProM2_256" class="specs-content">
+                <p><strong>Display:</strong> 13.3-inch Retina</p>
+                <p><strong>Chip:</strong> M2 (8-core CPU, 10-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 20 hours</p>
+                <p><strong>Ports:</strong> 2 Thunderbolt/USB 4</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 13-inch (M2, 16GB RAM, 512GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $1,299</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacProM2_512')">View More Specs</button>
+            <div id="specsMacProM2_512" class="specs-content">
+                <p><strong>Display:</strong> 13.3-inch Retina</p>
+                <p><strong>Chip:</strong> M2 (8-core CPU, 10-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 20 hours</p>
+                <p><strong>Ports:</strong> 2 Thunderbolt/USB 4</p>
+                <p><strong>RAM:</strong> 16GB Unified Memory</p>
+            </div>
+        </div>
+
+        <!-- MacBook Pro with M2 Pro and M2 Max Chips (Released January 2023) -->
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 14-inch (M2 Pro, 16GB RAM, 512GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $1,799</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacPro14M2Pro')">View More Specs</button>
+            <div id="specsMacPro14M2Pro" class="specs-content">
+                <p><strong>Display:</strong> 14.2-inch Liquid Retina XDR</p>
+                <p><strong>Chip:</strong> M2 Pro (10-core CPU, 16-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 22 hours</p>
+                <p><strong>Ports:</strong> 3 Thunderbolt 4, HDMI, SDXC</p>
+                <p><strong>RAM:</strong> 16GB Unified Memory</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 16-inch (M2 Pro, 16GB RAM, 512GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $2,099</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacPro16M2Pro')">View More Specs</button>
+            <div id="specsMacPro16M2Pro" class="specs-content">
+                <p><strong>Display:</strong> 16.2-inch Liquid Retina XDR</p>
+                <p><strong>Chip:</strong> M2 Pro (12-core CPU, 19-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 21 hours</p>
+                <p><strong>Ports:</strong> MagSafe 3, HDMI</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 16-inch (M2 Max, 32GB RAM, 1TB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $3,499</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacPro16M2Max')">View More Specs</button>
+            <div id="specsMacPro16M2Max" class="specs-content">
+                <p><strong>Display:</strong> 16.2-inch Liquid Retina XDR</p>
+                <p><strong>Chip:</strong> M2 Max (12-core CPU, 38-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 21 hours</p>
+                <p><strong>RAM:</strong> 32GB Unified Memory</p>
+                <p><strong>Storage:</strong> 1TB SSD</p>
+                <p><strong>Ports:</strong> MagSafe 3, HDMI</p>
+            </div>
+        </div>
+
+        <!-- MacBook Air and Pro with M3 Chip (Released October 2023) -->
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Air 15-inch (M3, 8GB RAM, 256GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $1,099</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacAirM3')">View More Specs</button>
+            <div id="specsMacAirM3" class="specs-content">
+                <p><strong>Display:</strong> 15.3-inch Liquid Retina</p>
+                <p><strong>Chip:</strong> M3 (8-core CPU, 10-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 18 hours</p>
+                <p><strong>Ports:</strong> 2 Thunderbolt/USB 4</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 14-inch (M3, 8GB RAM, 512GB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $1,799</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacPro14M3')">View More Specs</button>
+            <div id="specsMacPro14M3" class="specs-content">
+                <p><strong>Display:</strong> 14.2-inch Liquid Retina XDR</p>
+                <p><strong>Chip:</strong> M3 (8-core CPU, 10-core GPU)</p>
+                <p><strong>Battery Life:</strong> Up to 22 hours</p>
+                <p><strong>Ports:</strong> MagSafe 3, 2 Thunderbolt 4, HDMI</p>
+            </div>
+        </div>
+
+        <div class="product-box">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro 16-inch (M3 Max, 48GB RAM, 1TB SSD)</h3>
+            <p class="product-description">Refurbished Price: Around $3,399</p>
+            <button class="view-more" onclick="toggleSpecs('specsMacPro16M3Max')">View More Specs</button>
+            <div id="specsMacPro16M3Max" class="specs-content">
+                <p><strong>Display:</strong> 16.2-inch Liquid Retina XDR</p>
+                <p><strong>Chip:</strong> M3 Max (16-core CPU, 40-core GPU)</p>
+                <p><strong>Neural Engine:</strong> 16-core</p>
+                <p><strong>Battery Life:</strong> Up to 22 hours</p>
+                <p><strong>RAM:</strong> 48GB Unified Memory</p>
+                <p><strong>Storage:</strong> 1TB SSD</p>
+                <p><strong>Ports:</strong> MagSafe 3, 3 Thunderbolt 4</p>
+            </div>
+        </div>
+
     </section>
 
     <script>
@@ -442,5 +663,3 @@
             }
         }
     </script>
-</body>
-</html>
