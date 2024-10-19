@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Products - Elan's Tech World</title>
+    <!-- Import Poppins and Montserrat Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b1f3f;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            background-color: #0b1f3f;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        header .logo img {
+            height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/applehero.jpg?raw=true') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        /* Products Section */
+        .products-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+            padding: 50px 0;
+        }
+
+        .product-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-icon {
+            font-size: 4em;
+            color: #f9c200;
+            margin-bottom: 20px;
+        }
+
+        .product-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        /* Dropdown for Configurations */
+        .product-config {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .product-config:hover {
+            background-color: #ffd600;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ffd600;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <ul class="mobile-nav" id="mobile-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Apple Products</h1>
+        <p>Explore the latest Apple devices, from iPhone 11 to MacBooks past the M1</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <!-- iPhone 11 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="100">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 11</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="64GB">$299.99 - 64GB</option>
+                <option value="128GB">$349.99 - 128GB</option>
+                <option value="256GB">$399.99 - 256GB</option>
+            </select>
+        </div>
+
+        <!-- iPhone 12 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="150">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 12</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="64GB">$379.99 - 64GB</option>
+                <option value="128GB">$429.99 - 128GB</option>
+                <option value="256GB">$479.99 - 256GB</option>
+            </select>
+        </div>
+
+        <!-- iPhone 12 Pro -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="200">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 12 Pro</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="128GB">$679.99 - 128GB</option>
+                <option value="256GB">$729.99 - 256GB</option>
+              </select>
+        </div>
+
+        <!-- iPhone 12 Pro Max -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="250">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 12 Pro Max</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="128GB">$719.99 - 128GB</option>
+                <option value="256GB">$769.99 - 256GB</option>
+                <option value="512GB">$819.99 - 512GB</option>
+            </select>
+        </div>
+
+        <!-- iPhone 13 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="300">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 13</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="128GB">$489.99 - 128GB</option>
+                <option value="256GB">$539.99 - 256GB</option>
+            </select>
+        </div>
+
+        <!-- iPhone 13 Pro -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="350">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 13 Pro</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="128GB">$949.99 - 128GB</option>
+                <option value="256GB">$1,019.00 - 256GB</option>
+                <option value="512GB">$1,099.00 - 512GB</option>
+            </select>
+        </div>
+
+        <!-- iPhone 14 Pro Max -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="400">
+            <i class="product-icon fas fa-mobile-alt"></i>
+            <h3 class="product-title">iPhone 14 Pro Max</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="256GB">$1,099.00 - 256GB</option>
+                <option value="512GB">$1,189.00 - 512GB</option>
+                <option value="1TB">$1,299.00 - 1TB</option>
+            </select>
+        </div>
+
+        <!-- MacBook Air M1 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="450">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Air M1</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="256GB">$899.99 - 256GB SSD</option>
+                <option value="512GB">$1,049.99 - 512GB SSD</option>
+            </select>
+        </div>
+
+        <!-- MacBook Pro M1 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="500">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro M1</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="512GB">$1,709.00 - 512GB SSD</option>
+                <option value="1TB">$1,899.00 - 1TB SSD</option>
+            </select>
+        </div>
+
+        <!-- MacBook Pro M1 Max -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="550">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro M1 Max</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="512GB">$2,099.00 - 512GB SSD</option>
+                <option value="1TB">$2,299.00 - 1TB SSD</option>
+            </select>
+        </div>
+
+        <!-- MacBook Air M2 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="600">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Air M2</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="256GB">$1,049.99 - 256GB SSD</option>
+                <option value="512GB">$1,199.99 - 512GB SSD</option>
+            </select>
+        </div>
+
+        <!-- MacBook Pro M2 -->
+        <div class="product-box" data-aos="fade-up" data-aos-delay="650">
+            <i class="product-icon fas fa-laptop"></i>
+            <h3 class="product-title">MacBook Pro M2</h3>
+            <p class="product-description">Choose storage size:</p>
+            <select class="product-config">
+                <option value="512GB">$1,799.00 - 512GB SSD</option>
+                <option value="1TB">$1,999.00 - 1TB SSD</option>
+            </select>
+        </div>
+    </section>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
