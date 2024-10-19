@@ -532,7 +532,6 @@ header nav ul li a:hover {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Navigation (Hidden by default) */
 .mobile-nav {
     display: none;
     flex-direction: column;
@@ -547,7 +546,6 @@ header nav ul li a:hover {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Mobile navigation visible when active */
 .mobile-nav.active {
     display: flex;
     opacity: 1;
@@ -555,6 +553,7 @@ header nav ul li a:hover {
 }
 
 .mobile-nav li {
+    list-style: none; /* Remove bullet points */
     margin: 10px 0;
 }
 
