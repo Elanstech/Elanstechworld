@@ -450,12 +450,114 @@
             .hero p {
                 font-size: 1.2em;
             }
+            
 
             .btn {
                 padding: 10px 20px;
                 font-size: 1em;
             }
-        }
+            /* Hamburger Menu (Hidden on desktop, visible on mobile) */
+.hamburger {
+    display: none; /* Hidden by default */
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.hamburger div {
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 5px;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.hamburger div:nth-child(1) {
+    top: 0;
+}
+
+.hamburger div:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger div:nth-child(3) {
+    bottom: 0;
+}
+
+/* Active state for hamburger (cross shape) */
+.hamburger.active div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation (Hidden by default) */
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #0b1f3f;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Mobile navigation visible when active */
+.mobile-nav.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-nav li {
+    margin: 10px 0;
+}
+
+.mobile-nav li a {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav li a:hover {
+    color: #d4af37; /* Gold hover effect */
+}
+
+/* Media Queries to show hamburger only on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    header nav ul {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-nav {
+        display: none;
+    }
+}
     </style>
 </head>
 <body>
