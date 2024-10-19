@@ -279,25 +279,45 @@
             background-color: #b8992c;
         }
 
-        /* Scroll to Top Button */
+        /* Modern Scroll to Top Button */
         .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #0b1f3f;
-            color: #fff;
-            padding: 15px;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 1.5em;
-            cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-            transition: opacity 0.3s ease;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #d4af37; /* Gold to match your theme */
+        color: white;
+        border-radius: 50%; /* Make it circular */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Modern shadow for depth */
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        opacity: 0;
+        visibility: hidden;
         }
 
         .scroll-to-top.show {
-            display: block;
+        opacity: 1;
+        visibility: visible;
+        }
+    
+        .scroll-to-top:hover {
+        background-color: #b8992c; /* Darker gold on hover */
+        transform: scale(1.1); /* Slight zoom on hover */
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5); /* Glow effect */
+        }
+    
+        .scroll-to-top i {
+        font-size: 1.5em;
+        transition: transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover i {
+         transform: translateY(-3px); /* Subtle arrow lift on hover */
         }
 
         /* Responsive Styling */
@@ -461,8 +481,11 @@
         <a href="contact.html" class="btn">Get In Touch</a>
     </section>
 
-    <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top">↑</a>
+    <!-- Modern Scroll to Top Button -->
+    <a href="#top" class="scroll-to-top">
+    <i class="fas fa-chevron-up"></i> <!-- Modern arrow icon -->
+    </a>
+
 
     <!-- JavaScript -->
     <script>
