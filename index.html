@@ -190,6 +190,70 @@ header nav ul li a:hover {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
+        /* Quiz Section Styling */
+.quiz-section {
+    background-color: #f9f9f9;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.quiz-section h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    position: relative;
+    color: #333;
+}
+
+.quiz-section p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.quiz-card {
+    display: inline-block;
+    padding: 30px 20px;
+    margin: 20px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.quiz-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: #d4af37;
+    color: #fff;
+}
+
+.quiz-card h4 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: inherit;
+}
+
+.quiz-card i {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.quiz-card:hover i {
+    color: #fff;
+}
+
+
 .mobile-nav.active {
     display: flex;
     opacity: 1;
@@ -587,17 +651,24 @@ section p {
     <a href="services.html" class="btn">Explore Services</a>
 </section>
 
-    <!-- New Quiz Section -->
-    <section id="quiz" class="quiz-section" data-aos="fade-up">
-        <h3>Discover Your Tech Fit</h3>
-        <p>Take our quick quizzes to find out which Apple device is right for you!</p>
-        <div>
-            <a href="quiz_mac.html" class="btn">What Mac is Right for You?</a>
-        </div>
-        <div style="margin-top: 20px;">
-            <a href="quiz_iphone.html" class="btn">What iPhone is Right for You?</a>
-        </div>
+   <!-- New Quiz Section -->
+<section id="quiz" class="quiz-section" data-aos="fade-up">
+    <h3>Discover Your Tech Fit</h3>
+    <p>Take our quick quizzes to find out which Apple device is right for you!</p>
+
+    <div class="quiz-card">
+        <i class="fas fa-laptop"></i>
+        <h4>What Mac is Right for You?</h4>
+        <a href="quiz_mac.html" class="btn-outline">Take Quiz</a>
+    </div>
+
+    <div class="quiz-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h4>What iPhone is Right for You?</h4>
+        <a href="quiz_iphone.html" class="btn-outline">Take Quiz</a>
+    </div>
     </section>
+
 
     <!-- Testimonials Section -->
     <section id="testimonials" data-aos="fade-up">
