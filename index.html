@@ -160,21 +160,48 @@
         }
 
         /* Hero Section */
-        .hero {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
-            background-attachment: fixed;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInHero 1s ease forwards;
-        }
+        /* Hero Section */
+.hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    transition: background-image 1s ease-in-out; /* Smooth transition for image change */
+}
 
+.hero-content {
+    z-index: 2; /* Ensures the content stays on top of the background images */
+    position: relative;
+}
+
+/* Slideshow images as backgrounds */
+.hero-slide-1 {
+    background: url('your-image-1.jpg') no-repeat center center/cover;
+}
+
+.hero-slide-2 {
+    background: url('your-image-2.jpg') no-repeat center center/cover;
+}
+
+.hero-slide-3 {
+    background: url('your-image-3.jpg') no-repeat center center/cover;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+        
         @keyframes fadeInHero {
             0% {
                 opacity: 0;
@@ -599,13 +626,14 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Welcome To Elan's Tech World</h1>
+  <section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Driving Success with our Tech Expertise</h1>
         <p>Empowering your people with cutting-edge technology solutions.</p>
         <div class="button-container">
             <a href="services.html" class="btn">Get Started</a>
         </div>
+    </div>
     </section>
 
     <!-- About Us Section -->
@@ -678,6 +706,25 @@
 
     <!-- JavaScript -->
     <script>
+        // Hero Section Slideshow
+    const hero = document.querySelector('.hero');
+    const slides = ['hero-slide-1', 'hero-slide-2', 'hero-slide-3']; // Add more slides if needed
+    let currentSlide = 0;
+
+    function changeSlide() {
+    hero.classList.remove(slides[currentSlide]); // Remove current class
+    currentSlide = (currentSlide + 1) % slides.length; // Move to the next slide
+    hero.classList.add(slides[currentSlide]); // Add the next class
+    }
+
+    // Change slide every 5 seconds
+    setInterval(changeSlide, 5000);
+
+    // Initially set the first slide
+    hero.classList.add(slides[currentSlide]);
+     
+        });
+
         // Mobile Hamburger Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
