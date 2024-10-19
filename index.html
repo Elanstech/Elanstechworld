@@ -11,7 +11,6 @@
     <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
- <style>
 /* Global Styles */
 * {
     margin: 0;
@@ -647,56 +646,55 @@ section p {
     <i class="fas fa-chevron-up"></i> <!-- Modern arrow icon -->
     </a>
 
-
     <!-- JavaScript -->
-// Mobile Hamburger Menu Toggle
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
+    <script>
+        // Mobile Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
 
-hamburger.addEventListener('click', function () {
-    mobileNav.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+        hamburger.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
 
-// Scroll Header Effect (Changes header styling when scrolling)
-window.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-});
+        // Scroll Header Effect (Changes header styling when scrolling)
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
 
-// Scroll-to-Top Button Visibility
-const scrollToTopButton = document.querySelector('.scroll-to-top');
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 100) {
-        scrollToTopButton.classList.add('show');
-    } else {
-        scrollToTopButton.classList.remove('show');
-    }
-});
+        // Scroll-to-Top Button Visibility
+        const scrollToTopButton = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                scrollToTopButton.classList.add('show');
+            } else {
+                scrollToTopButton.classList.remove('show');
+            }
+        });
 
-// Smooth Scroll to Top
-scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+        // Smooth Scroll to Top
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-// Testimonials Slider (Auto-slide)
-const testimonials = document.querySelectorAll('.testimonial-slide');
-let currentTestimonial = 0;
+        // Testimonials Slider (Auto-slide)
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+        let currentTestimonial = 0;
 
-setInterval(() => {
-    testimonials[currentTestimonial].style.transform = 'translateX(-100%)';
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    testimonials[currentTestimonial].style.transform = 'translateX(0)';
-}, 5000);  // Change slide every 5 seconds
+        setInterval(() => {
+            testimonials[currentTestimonial].style.transform = 'translateX(-100%)';
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            testimonials[currentTestimonial].style.transform = 'translateX(0)';
+        }, 5000);  // Change slide every 5 seconds
 
-// AOS Initialization (For Scroll Animations)
-AOS.init({
-    duration: 1000,  // Duration of animations in milliseconds
-    once: true  // Animation will only happen once as you scroll
-});
+        // AOS Initialization (For Scroll Animations)
+        AOS.init({
+            duration: 1000,  // Duration of animations in milliseconds
+            once: true  // Animation will only happen once as you scroll
+        });
     </script>
- <script src="https://static.elfsight.com/platform/platform.js" async></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 </body>
 </html>
