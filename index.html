@@ -94,25 +94,25 @@
             height: 50px;
         }
 
-          header nav ul {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-        }
+        /* Header */
+header nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+}
 
+header nav ul li a {
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+}
 
-        header nav ul li a {
-            padding: 10px 20px;
-            font-weight: 600;
-            color: #fff;
-            transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-
+header nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+      
         /* Hamburger Menu */
         .hamburger {
             display: none;
