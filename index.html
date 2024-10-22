@@ -38,25 +38,6 @@
             color: #d4af37;
         }
 
-        /* Scrollbar Design */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background-color: #f4f4f4;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #003366;
-            border-radius: 10px;
-            border: 2px solid #f4f4f4;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #002244;
-        }
-
         /* Header */
         header {
             display: flex;
@@ -149,16 +130,6 @@
             overflow: hidden;
         }
 
-        /* Particle Animation in Hero Section */
-        canvas#hero-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
         .hero-content {
             z-index: 2;
             animation: fadeInUp 1.5s ease;
@@ -196,14 +167,11 @@
         /* Section Styles */
         section {
             padding: 100px 20px;
-            text-align: center;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: #003366;
-            border-top: 5px solid #d4af37;
         }
 
         section h2 {
@@ -221,22 +189,95 @@
             color: white;
         }
 
-        /* Section Colors */
-        #about {
-            background-color: #005a9c;
+        /* Bubbly Section Design */
+        .bubble-section {
+            background: linear-gradient(135deg, #003366, #005a9c);
+            border-radius: 50px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            text-align: center;
+            overflow: hidden;
         }
 
-        #services {
-            background-color: #003366;
+        .bubble-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+            animation: floatBubbles 5s infinite ease-in-out;
         }
 
+        .bubble-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+            animation: floatBubbles 7s infinite ease-in-out;
+        }
+
+        @keyframes floatBubbles {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, 30px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        /* Unique Layout - Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Testimonial Section */
         #testimonials {
-            background-color: #d4af37;
-            color: #333;
-        }
-
-        #faq {
-            background-color: #005a9c;
+            background: radial-gradient(circle, #003366 20%, #005a9c 100%);
+            color: #fff;
         }
 
         /* Media Queries */
@@ -273,14 +314,12 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <canvas id="hero-animation"></canvas>
         <div class="hero-content">
             <h1>Empowering Your Business</h1>
             <p>Leading the way in technology solutions that drive success and innovation.</p>
             <a href="#services" class="btn">Explore Services</a>
         </div>
     </section>
-
     <!-- About Us Section -->
     <section id="about">
         <h2>About Us</h2>
