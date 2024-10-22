@@ -1,280 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elan's Tech World</title>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- AOS Animation CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            position: relative;
-        }
-
-        /* Links */
-        a {
-            text-decoration: none;
-            color: #d4af37;
-            transition: color 0.3s ease, border-bottom 0.3s ease;
-        }
-
-        a:hover {
-            color: #b8992c;
-            border-bottom: 2px solid #b8992c;
-        }
-
-        /* Scrollbar Design */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background-color: #f9f9f9;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background-color: #d4af37;
-            border-radius: 10px;
-            border: 2px solid #f9f9f9;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #b8992c;
-        }
-
-        /* Header */
-        header {
-            background-color: #0b1f3f;
-            padding: 20px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        header .logo img {
-            height: 50px;
-        }
-
-        header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        header nav ul li a {
-            padding: 10px 20px;
-            font-weight: 600;
-            color: #fff;
-            border-radius: 30px;
-            transition: background-color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, #0b1f3f 30%, #d4af37 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            color: white;
-        }
-
-        .hero-content {
-            z-index: 2;
-            animation: fadeInUp 1.5s ease;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-        }
-
-        .hero .btn {
-            padding: 15px 30px;
-            background-color: #d4af37;
-            color: #fff;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .hero .btn:hover {
-            background-color: #b8992c;
-        }
-
-        /* Particle Animation */
-        canvas#hero-animation {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 100px 20px;
-            text-align: center;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-
-        section p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        .btn-section {
-            display: inline-block;
-            padding: 12px 30px;
-            background-color: #fff;
-            color: #0b1f3f;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .btn-section:hover {
-            background-color: #d4af37;
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Tile Grid for Content */
-        .tile-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            width: 100%;
-        }
-
-        .tile {
-            background-color: #fff;
-            color: #0b1f3f;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .tile:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .tile h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .tile p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Colorful Section Backgrounds */
-        #about {
-            background: linear-gradient(135deg, #1a2d5a 30%, #4b79a1 100%);
-        }
-
-        #services {
-            background: linear-gradient(135deg, #ffd700 30%, #ff6347 100%);
-        }
-
-        #testimonials {
-            background: linear-gradient(135deg, #8e44ad 30%, #3498db 100%);
-        }
-
-        #faq {
-            background: linear-gradient(135deg, #27ae60 30%, #2ecc71 100%);
-        }
-
-        #contact {
-            background: linear-gradient(135deg, #c0392b 30%, #d35400 100%);
-        }
-
-        /* Animations */
-        section[data-aos] {
-            position: relative;
-            z-index: 2;
-        }
-
-        section[data-aos]:before {
-            content: "";
-            position: absolute;
-            top: -30%;
-            left: 0;
-            width: 100%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: -1;
-            transform: rotate(30deg);
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        @media (max-width: 768px) {
-            .tile-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-
 <body>
 
     <!-- Header -->
@@ -296,7 +19,7 @@
         </nav>
     </header>
 
- <!-- Hero Section -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Empowering Your Business</h1>
@@ -354,7 +77,7 @@
             <!-- Example 1 from Testimonials Page -->
             <div class="tile">
                 <h3>Outstanding Service</h3>
-                <p>“Elan's Tech World transformed our business with their custom web solutions!”</p>
+                <p>“Elan's Tech World transformed our business operations with their custom web solutions!”</p>
                 <a href="testimonials.html#outstanding" class="btn-section">Read Full Story</a>
             </div>
             <!-- Example 2 from Testimonials Page -->
@@ -373,7 +96,7 @@
         <div class="tile-grid">
             <!-- Example 1 from FAQ Page -->
             <div class="tile">
-                <h3>24/7 Support</h3>
+                <h3>Support 24/7</h3>
                 <p>We provide round-the-clock support to assist you with any technical issues.</p>
                 <a href="faq.html#support" class="btn-section">Read More</a>
             </div>
@@ -462,3 +185,5 @@
         initParticles();
         animate();
     </script>
+</body>
+</html>
