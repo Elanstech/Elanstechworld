@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- Hover.css for cool hover effects -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" rel="stylesheet">
     <style>
         /* Global Styles */
         * {
@@ -73,7 +69,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px); /* Added Blur for sleekness */
+            backdrop-filter: blur(10px);
         }
 
         header .logo img {
@@ -122,12 +118,12 @@
             font-size: 4rem;
             font-weight: bold;
             margin-bottom: 20px;
-            transform: rotateY(30deg) rotateX(10deg); /* Added depth */
+            transform: rotateY(30deg) rotateX(10deg);
             transition: transform 0.5s ease-out;
         }
 
         .hero:hover h1 {
-            transform: rotateY(0) rotateX(0); /* Brings text back to 0 on hover */
+            transform: rotateY(0) rotateX(0);
         }
 
         .hero p {
@@ -161,7 +157,7 @@
             z-index: 1;
         }
 
-        /* Animated Background with Parallax */
+        /* Parallax Background */
         .parallax-background {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/hero-background.jpeg?raw=true');
             background-size: cover;
@@ -185,7 +181,7 @@
             align-items: center;
             flex-direction: column;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.05); /* Frosted Glass Background */
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(5px);
         }
 
@@ -220,14 +216,14 @@
         }
 
         .tile {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
             color: #0b1f3f;
             border-radius: 20px;
             padding: 40px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .tile:hover {
@@ -240,9 +236,45 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* SVG Wave Animation for Section Dividers */
+        .wave {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #1e3c72 30%, #2a5298 100%);
+            overflow: hidden;
+        }
+
+        .wave svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        /* Section Background Color with Animation */
+        #about {
+            background: linear-gradient(135deg, #1e3c72 30%, #2a5298 100%);
+        }
+
+        #services {
+            background: linear-gradient(135deg, #3498db 30%, #2c3e50 100%);
+        }
+
+        #testimonials {
+            background: linear-gradient(135deg, #2980b9 30%, #34495e 100%);
+        }
+
+        #faq {
+            background: linear-gradient(135deg, #6dd5ed 30%, #2193b0 100%);
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #4e54c8 30%, #8f94fb 100%);
+        }
+
     </style>
 </head>
-
 <body>
 
     <!-- Header -->
@@ -269,28 +301,31 @@
         <div class="hero-content">
             <h1 class="neon-text">Empowering Your Business</h1>
             <p>Driving Success with Cutting-Edge Technology Solutions</p>
-            <a href="#services" class="btn hvr-pulse-grow">Get Started</a>
+            <a href="#services" class="btn">Get Started</a>
         </div>
         <canvas id="hero-animation"></canvas>
     </section>
 
-    <!-- About Us Section -->
+    <!-- About Us Section with SVG Divider -->
     <section id="about" class="about-section" data-aos="fade-up">
         <h2>About Us</h2>
         <p>We specialize in providing custom technology solutions that help your business thrive.</p>
         <div class="tile-grid">
-            <!-- Example 1 from About Us Page -->
             <div class="tile">
                 <h3>Our Mission</h3>
                 <p>To empower businesses by providing cutting-edge tech solutions and expert support.</p>
                 <a href="about.html" class="btn-section">Learn More</a>
             </div>
-            <!-- Example 2 from About Us Page -->
             <div class="tile">
                 <h3>Our Vision</h3>
                 <p>Leading the industry with innovative solutions, fostering long-term success for clients.</p>
                 <a href="about.html" class="btn-section">Read More</a>
             </div>
+        </div>
+        <div class="wave">
+            <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                <path d="M1200 0L0 40V0H1200Z"></path>
+            </svg>
         </div>
     </section>
 
@@ -299,18 +334,21 @@
         <h2>Our Services</h2>
         <p>Explore our wide range of services, from web design to IT support, tailored to meet your business needs.</p>
         <div class="tile-grid">
-            <!-- Example 1 from Services Page -->
             <div class="tile">
                 <h3>Web Design</h3>
                 <p>We create custom, responsive websites that make your business stand out online.</p>
                 <a href="services.html#webdesign" class="btn-section">See More</a>
             </div>
-            <!-- Example 2 from Services Page -->
             <div class="tile">
                 <h3>Networking Solutions</h3>
                 <p>Expert setup and optimization of networking systems for seamless connectivity.</p>
                 <a href="services.html#networking" class="btn-section">Learn More</a>
             </div>
+        </div>
+        <div class="wave">
+            <svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                <path d="M1200 0L0 40V0H1200Z"></path>
+            </svg>
         </div>
     </section>
 
@@ -319,13 +357,11 @@
         <h2>Client Testimonials</h2>
         <p>Don’t just take our word for it, see what our clients have to say about working with us!</p>
         <div class="tile-grid">
-            <!-- Example 1 from Testimonials Page -->
             <div class="tile">
                 <h3>Outstanding Service</h3>
                 <p>“Elan's Tech World transformed our business operations with their custom web solutions!”</p>
                 <a href="testimonials.html#outstanding" class="btn-section">Read Full Story</a>
             </div>
-            <!-- Example 2 from Testimonials Page -->
             <div class="tile">
                 <h3>Efficient Networks</h3>
                 <p>“Their networking solutions made our office run smoother than ever!”</p>
@@ -339,13 +375,11 @@
         <h2>Frequently Asked Questions</h2>
         <p>Find answers to common questions about our services and support.</p>
         <div class="tile-grid">
-            <!-- Example 1 from FAQ Page -->
             <div class="tile">
                 <h3>Support 24/7</h3>
                 <p>We provide round-the-clock support to assist you with any technical issues.</p>
                 <a href="faq.html#support" class="btn-section">Read More</a>
             </div>
-            <!-- Example 2 from FAQ Page -->
             <div class="tile">
                 <h3>Custom Solutions</h3>
                 <p>Can you create custom IT solutions for my business? Yes, we specialize in that!</p>
@@ -361,8 +395,7 @@
         <a href="contact.html" class="btn-section">Contact Us</a>
     </section>
 
-
-     <!-- AOS Animation Script -->
+    <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -383,10 +416,6 @@
             });
         }
     </script>
-
-    <!-- Particle Animation Script remains unchanged -->
-</body>
-</html>
 
     <!-- Particle Animation Script -->
     <script>
@@ -448,5 +477,7 @@
         initParticles();
         animate();
     </script>
+
 </body>
+
 </html>
