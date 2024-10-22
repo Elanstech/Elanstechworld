@@ -59,7 +59,7 @@
             background-color: #b8992c;
         }
 
-        /* Header - Sleek, Minimal */
+        /* Header */
         header {
             background-color: #0b1f3f;
             padding: 20px 0;
@@ -95,7 +95,7 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Hero Section with Subtle Animations */
+        /* Hero Section */
         .hero {
             height: 100vh;
             background: linear-gradient(135deg, #0b1f3f 30%, #d4af37 100%);
@@ -147,20 +147,7 @@
             z-index: 1;
         }
 
-        /* Subtle Fade-in Animation */
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Futuristic Glassmorphism Sections */
+        /* Section Styling */
         section {
             padding: 100px 20px;
             text-align: center;
@@ -178,23 +165,21 @@
             font-weight: bold;
             margin-bottom: 40px;
             text-transform: uppercase;
-            color: #0b1f3f;
+            color: #fff;
         }
 
         section p {
             font-size: 1.2rem;
             max-width: 600px;
             margin-bottom: 30px;
-            color: #666;
+            color: #ddd;
         }
 
         .btn-section {
             display: inline-block;
             padding: 12px 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 2px solid #d4af37;
-            color: #fff;
-            backdrop-filter: blur(10px);
+            background-color: #fff;
+            color: #0b1f3f;
             border-radius: 50px;
             font-weight: bold;
             text-transform: uppercase;
@@ -208,17 +193,17 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Card Style - Floating and Futuristic */
-        .card-grid {
+        /* Tile Grid for Content */
+        .tile-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             width: 100%;
         }
 
-        .card {
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+        .tile {
+            background-color: #fff;
+            color: #0b1f3f;
             border-radius: 20px;
             padding: 40px;
             text-align: center;
@@ -226,23 +211,43 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .card:hover {
+        .tile:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .card h3 {
+        .tile h3 {
             font-size: 1.8rem;
-            color: #fff;
             margin-bottom: 20px;
         }
 
-        .card p {
+        .tile p {
             font-size: 1rem;
-            color: #ccc;
+            color: #666;
         }
 
-        /* Animations for Glassmorphism */
+        /* Colorful Section Backgrounds */
+        #about {
+            background: linear-gradient(135deg, #1a2d5a 30%, #4b79a1 100%);
+        }
+
+        #services {
+            background: linear-gradient(135deg, #ffd700 30%, #ff6347 100%);
+        }
+
+        #testimonials {
+            background: linear-gradient(135deg, #8e44ad 30%, #3498db 100%);
+        }
+
+        #faq {
+            background: linear-gradient(135deg, #27ae60 30%, #2ecc71 100%);
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #c0392b 30%, #d35400 100%);
+        }
+
+        /* Animations */
         section[data-aos] {
             position: relative;
             z-index: 2;
@@ -255,7 +260,7 @@
             left: 0;
             width: 100%;
             height: 200%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            background: rgba(255, 255, 255, 0.1);
             z-index: -1;
             transform: rotate(30deg);
             opacity: 0.5;
@@ -263,7 +268,7 @@
         }
 
         @media (max-width: 768px) {
-            .card-grid {
+            .tile-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -291,7 +296,7 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+ <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Empowering Your Business</h1>
@@ -305,72 +310,80 @@
     <section id="about" class="about-section" data-aos="fade-up">
         <h2>About Us</h2>
         <p>We specialize in providing custom technology solutions that help your business thrive.</p>
-        <div class="card-grid">
-            <div class="card">
-                <h3>Customized Solutions</h3>
-                <p>Tailored tech services that fit your business needs, empowering your growth.</p>
+        <div class="tile-grid">
+            <!-- Example 1 from About Us Page -->
+            <div class="tile">
+                <h3>Our Mission</h3>
+                <p>To empower businesses by providing cutting-edge tech solutions and expert support.</p>
+                <a href="about.html" class="btn-section">Learn More</a>
             </div>
-            <div class="card">
-                <h3>Expert Support</h3>
-                <p>Round-the-clock tech support from experienced professionals.</p>
+            <!-- Example 2 from About Us Page -->
+            <div class="tile">
+                <h3>Our Vision</h3>
+                <p>Leading the industry with innovative solutions, fostering long-term success for clients.</p>
+                <a href="about.html" class="btn-section">Read More</a>
             </div>
         </div>
-        <a href="about.html" class="btn-section">Learn More</a>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services-section" data-aos="fade-up">
         <h2>Our Services</h2>
         <p>Explore our wide range of services, from web design to IT support, tailored to meet your business needs.</p>
-        <div class="card-grid">
-            <div class="card">
+        <div class="tile-grid">
+            <!-- Example 1 from Services Page -->
+            <div class="tile">
                 <h3>Web Design</h3>
-                <p>Customized web design solutions that make your business stand out.</p>
+                <p>We create custom, responsive websites that make your business stand out online.</p>
+                <a href="services.html#webdesign" class="btn-section">See More</a>
             </div>
-            <div class="card">
-                <h3>Mobile Optimization</h3>
-                <p>Responsive, mobile-friendly designs to ensure accessibility across all devices.</p>
-            </div>
-            <div class="card">
+            <!-- Example 2 from Services Page -->
+            <div class="tile">
                 <h3>Networking Solutions</h3>
                 <p>Expert setup and optimization of networking systems for seamless connectivity.</p>
+                <a href="services.html#networking" class="btn-section">Learn More</a>
             </div>
         </div>
-        <a href="services.html" class="btn-section">View More</a>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials-section" data-aos="fade-up">
         <h2>Client Testimonials</h2>
         <p>Don’t just take our word for it, see what our clients have to say about working with us!</p>
-        <div class="card-grid">
-            <div class="card">
+        <div class="tile-grid">
+            <!-- Example 1 from Testimonials Page -->
+            <div class="tile">
                 <h3>Outstanding Service</h3>
-                <p>“Elan's Tech World transformed our business operations with their custom web solutions!”</p>
+                <p>“Elan's Tech World transformed our business with their custom web solutions!”</p>
+                <a href="testimonials.html#outstanding" class="btn-section">Read Full Story</a>
             </div>
-            <div class="card">
+            <!-- Example 2 from Testimonials Page -->
+            <div class="tile">
                 <h3>Efficient Networks</h3>
                 <p>“Their networking solutions made our office run smoother than ever!”</p>
+                <a href="testimonials.html#efficient" class="btn-section">Read Full Story</a>
             </div>
         </div>
-        <a href="testimonials.html" class="btn-section">See More</a>
     </section>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq-section" data-aos="fade-up">
         <h2>Frequently Asked Questions</h2>
         <p>Find answers to common questions about our services and support.</p>
-        <div class="card-grid">
-            <div class="card">
-                <h3>Support 24/7</h3>
-                <p>Our support team is available around the clock to assist you with any issues.</p>
+        <div class="tile-grid">
+            <!-- Example 1 from FAQ Page -->
+            <div class="tile">
+                <h3>24/7 Support</h3>
+                <p>We provide round-the-clock support to assist you with any technical issues.</p>
+                <a href="faq.html#support" class="btn-section">Read More</a>
             </div>
-            <div class="card">
-                <h3>Seamless Solutions</h3>
-                <p>We offer seamless integrations and custom IT solutions for your business.</p>
+            <!-- Example 2 from FAQ Page -->
+            <div class="tile">
+                <h3>Custom Solutions</h3>
+                <p>Can you create custom IT solutions for my business? Yes, we specialize in that!</p>
+                <a href="faq.html#customsolutions" class="btn-section">See FAQ</a>
             </div>
         </div>
-        <a href="faq.html" class="btn-section">Read FAQs</a>
     </section>
 
     <!-- Contact Section -->
@@ -391,7 +404,6 @@
 
     <!-- Particle Animation Script -->
     <script>
-        // Basic Particle Animation
         const canvas = document.getElementById('hero-animation');
         const ctx = canvas.getContext('2d');
         const particles = [];
@@ -434,7 +446,6 @@
                 particles[i].update();
                 particles[i].draw();
 
-                // Remove particles when they get small
                 if (particles[i].size <= 0.3) {
                     particles.splice(i, 1);
                     i--;
@@ -451,7 +462,3 @@
         initParticles();
         animate();
     </script>
-
-</body>
-
-</html>
