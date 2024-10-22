@@ -91,17 +91,25 @@
             top: 100%;
             width: 100%;
             left: 0;
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1; /* Show when active */
         }
 
         .mobile-nav li {
             margin: 10px 0;
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(-10px); /* Start slightly above */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Animation */
         }
 
-        .mobile-nav li a {
-            color: white;
-            font-weight: bold;
-            font-size: 1.2em;
-            padding: 10px;
+        .mobile-nav.active li {
+            opacity: 1; /* Fade in */
+            transform: translateY(0); /* Move to original position */
         }
 
         /* Hero Section with Parallax */
@@ -450,6 +458,17 @@
 
         hamburger.addEventListener('click', function() {
             mobileNav.classList.toggle('active');
+            const links = mobileNav.querySelectorAll('li');
+            links.forEach((link, index) => {
+                if (mobileNav.classList.contains('active')) {
+                    link.style.transitionDelay = `${index * 100}ms`;
+                    link.style.opacity = '1'; // Fade in
+                    link.style.transform = 'translateY(0)'; // Slide down
+                } else {
+                    link.style.opacity = '0'; // Fade out
+                    link.style.transform = 'translateY(-10px)'; // Slide up
+                }
+            });
         });
     </script>
 </body>
