@@ -57,6 +57,85 @@
             background-color: #002244;
         }
 
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #003366;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 4px;
+            width: 25px;
+            background-color: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #003366;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -123,8 +202,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            background-color: #f4f4f4;
             color: #003366;
+            border-top: 5px solid #d4af37;
         }
 
         section h2 {
@@ -132,74 +211,32 @@
             font-size: 3rem;
             font-weight: 600;
             margin-bottom: 20px;
+            color: white;
         }
 
         section p {
             font-size: 1.2rem;
             max-width: 700px;
             margin-bottom: 40px;
+            color: white;
         }
 
-        /* Icons and hover effects */
-        .icon-box {
-            font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .icon-box:hover {
-            color: #b8992c;
-        }
-
-        /* Card Layout for Sections */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            transition: transform 0.3s ease;
-            text-align: left;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Alternating Background Colors */
+        /* Section Colors */
         #about {
-            background-color: #f4f4f4;
+            background-color: #005a9c;
         }
 
         #services {
-            background-color: #fff;
+            background-color: #003366;
         }
 
         #testimonials {
-            background-color: #f4f4f4;
+            background-color: #d4af37;
+            color: #333;
         }
 
         #faq {
-            background-color: #fff;
+            background-color: #005a9c;
         }
 
         /* Media Queries */
@@ -216,6 +253,23 @@
 </head>
 
 <body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="your-logo.png" alt="Logo">
+        </div>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="hamburger" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -299,12 +353,22 @@
         </div>
     </section>
 
-    <!-- AOS Animation Script -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 1000,
             once: true
+        });
+    </script>
+
+    <!-- Hamburger Menu Script -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            hamburger.classList.toggle('active');
         });
     </script>
 
