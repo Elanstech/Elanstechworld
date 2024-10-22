@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
     <!-- Modern Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -68,6 +68,7 @@
             font-size: 1.2rem;
             transition: color 0.3s;
             text-decoration: none; /* Remove underline */
+            font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
         }
 
         .nav-links a:hover {
@@ -75,7 +76,7 @@
         }
 
         .hamburger {
-            display: none;
+            display: none; /* Hidden on larger screens */
             flex-direction: column;
             cursor: pointer;
         }
@@ -106,7 +107,7 @@
             }
 
             .hamburger {
-                display: flex;
+                display: flex; /* Show hamburger on small screens */
             }
         }
 
@@ -170,94 +171,33 @@
             transform: translateY(-5px);
         }
 
-        /* Section Styles with Royal Blue Gradients */
-        section {
-            padding: 100px 20px;
-            text-align: center;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: white;
-            background: linear-gradient(135deg, #001f3f, #005a9c);
-            border-radius: 50px;
-            margin: 50px 0;
-        }
+section {
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    background: linear-gradient(135deg, #001f3f, #005a9c);
+    border-radius: 50px;
+    margin: 50px 0;
+}
 
-        section h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+section h2 {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+    font-size: 3rem;
+    font-weight: 600;
+    margin-top: 20px; /* Added margin for spacing */
+    margin-bottom: 20px; /* Retain bottom margin for spacing */
+}
 
-        section p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 40px;
-        }
-
-        /* Icon Boxes */
-        .icon-box {
-            font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .icon-box:hover {
-            color: #b8992c;
-        }
-
-        /* Card Grid Layout */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .card {
-            background-color: #fff;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: left;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-                .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #333;
-        }
-
-        /* 3D Button Styles */
-        .btn-3d {
-            padding: 15px 30px;
-            background-color: #d4af37;
-            color: white;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
-            display: inline-block;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            margin-top: 20px; /* Added margin for spacing */
-        }
+section p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-bottom: 40px;
+}
 
         .btn-3d:hover {
             background-color: #b8992c;
@@ -493,3 +433,5 @@
 </body>
 
 </html>
+
+        }
