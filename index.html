@@ -27,27 +27,22 @@
             scroll-behavior: smooth;
         }
 
-        /* Links */
-        a {
-            text-decoration: none;
-            color: #003366;
-            transition: color 0.3s ease, border-bottom 0.3s ease;
-        }
-
-        a:hover {
-            color: #d4af37;
-        }
-
-        /* Header */
+        /* Transparent Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #003366;
             padding: 20px;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            width: 100%;
+            z-index: 1000;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 51, 0.9);
         }
 
         .logo img {
@@ -117,17 +112,17 @@
             }
         }
 
-        /* Hero Section */
+        /* Parallax Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #001f3f, #005a9c);
+            background: url('your-parallax-image.jpg') no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
             position: relative;
-            overflow: hidden;
+            background-attachment: fixed;
         }
 
         .hero-content {
@@ -164,14 +159,19 @@
             transform: translateY(-5px);
         }
 
-        /* Section Styles */
+        /* Section Styles with Royal Blue Gradients */
         section {
             padding: 100px 20px;
+            text-align: center;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            color: white;
+            background: linear-gradient(135deg, #001f3f, #005a9c);
+            border-radius: 50px;
+            margin: 50px 0;
         }
 
         section h2 {
@@ -179,84 +179,42 @@
             font-size: 3rem;
             font-weight: 600;
             margin-bottom: 20px;
-            color: white;
         }
 
         section p {
             font-size: 1.2rem;
             max-width: 700px;
             margin-bottom: 40px;
-            color: white;
         }
 
-        /* Bubbly Section Design */
-        .bubble-section {
-            background: linear-gradient(135deg, #003366, #005a9c);
-            border-radius: 50px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-            padding: 50px;
-            text-align: center;
-            overflow: hidden;
+        /* Icon Boxes */
+        .icon-box {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
-        .bubble-section::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-            animation: floatBubbles 5s infinite ease-in-out;
+        .icon-box:hover {
+            color: #b8992c;
         }
 
-        .bubble-section::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            right: -100px;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            z-index: 1;
-            animation: floatBubbles 7s infinite ease-in-out;
-        }
-
-        @keyframes floatBubbles {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(30px, 30px);
-            }
-
-            100% {
-                transform: translate(0, 0);
-            }
-        }
-
-        /* Unique Layout - Cards */
+        /* Card Grid Layout */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             width: 100%;
             max-width: 1200px;
-            position: relative;
-            z-index: 2;
         }
 
         .card {
-            background-color: white;
+            background-color: #fff;
             border-radius: 20px;
-            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            transition: transform 0.3s ease;
             text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .card:hover {
@@ -271,13 +229,7 @@
 
         .card p {
             font-size: 1rem;
-            color: #666;
-        }
-
-        /* Testimonial Section */
-        #testimonials {
-            background: radial-gradient(circle, #003366 20%, #005a9c 100%);
-            color: #fff;
+            color: #333;
         }
 
         /* Media Queries */
@@ -294,10 +246,11 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
+
+    <!-- Transparent Header -->
+    <header id="header">
         <div class="logo">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Logo">
+            <img src="your-logo.png" alt="Logo">
         </div>
         <nav class="nav-links">
             <a href="#about">About</a>
@@ -312,7 +265,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Parallax Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Empowering Your Business</h1>
@@ -320,6 +273,7 @@
             <a href="#services" class="btn">Explore Services</a>
         </div>
     </section>
+
     <!-- About Us Section -->
     <section id="about">
         <h2>About Us</h2>
@@ -337,7 +291,6 @@
             </div>
         </div>
     </section>
-
     <!-- Services Section -->
     <section id="services">
         <h2>Our Services</h2>
