@@ -27,25 +27,35 @@
             scroll-behavior: smooth;
         }
 
+        /* Header Styles */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px 20px;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 51, 0);
+            background: rgba(0, 0, 51, 0.8); /* Semi-transparent background */
             transition: background 0.3s ease;
         }
 
         header.scrolled {
-            background-color: rgba(0, 0, 51, 0.9);
+            background-color: rgba(0, 0, 51, 1); /* Opaque on scroll */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px; /* Max width for container */
+            margin: 0 auto; /* Center the container */
         }
 
         .logo img {
-            height: 60px;
+            height: 70px; /* Slightly larger logo */
         }
 
         .nav-links {
@@ -54,25 +64,25 @@
         }
 
         .nav-links a {
-            color: white;
-            font-size: 1.1rem;
+            color: #d4af37; /* Gold color for links */
+            font-size: 1.2rem; /* Slightly larger font */
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: #d4af37;
+            color: white; /* Change color on hover */
         }
 
         .hamburger {
-            display: none;
+            display: none; /* Hidden on larger screens */
             flex-direction: column;
             cursor: pointer;
         }
 
         .bar {
             height: 4px;
-            width: 25px;
-            background-color: white;
+            width: 30px;
+            background-color: #d4af37; /* Gold color for hamburger */
             margin: 3px 0;
             transition: all 0.3s ease;
         }
@@ -95,19 +105,7 @@
             }
 
             .hamburger {
-                display: flex;
-            }
-
-            .hamburger.active .bar:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .hamburger.active .bar:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active .bar:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
+                display: flex; /* Show hamburger on small screens */
             }
         }
 
@@ -319,21 +317,23 @@
 
 <body>
 
-    <!-- Transparent Header -->
+    <!-- Header -->
     <header id="header">
-        <div class="logo">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Logo">
-        </div>
-        <nav class="nav-links">
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#faq">FAQ</a>
-        </nav>
-        <div class="hamburger" id="hamburger">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
         </div>
     </header>
 
