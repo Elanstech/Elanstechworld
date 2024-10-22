@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
-    <!-- Import Poppins and Montserrat Fonts -->
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -59,761 +59,314 @@
             background-color: #b8992c;
         }
 
-        /* Maintenance Message */
-        .maintenance-message {
-            background-color: #ffcc00;
-            color: #000;
-            text-align: center;
-            padding: 10px;
-            font-weight: bold;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1001;
-        }
-
         /* Header */
         header {
             background-color: #0b1f3f;
-            padding: 15px 0;
+            padding: 20px 0;
             position: fixed;
-            top: 40px; /* Adjusted to be below the maintenance message */
+            top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, padding 0.3s ease;
-        }
-
-        header.scrolled {
-            background-color: rgba(11, 31, 63, 0.95);
-            padding: 10px 0;
-        }
-
-        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 90%;
-            margin: auto;
-            transition: padding 0.3s ease;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         header .logo img {
-            height: 60px;
-            transition: height 0.3s ease;
-        }
-
-        header.scrolled .logo img {
             height: 50px;
+            transition: height 0.3s ease;
         }
 
         header nav ul {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         header nav ul li a {
             padding: 10px 20px;
             font-weight: 600;
             color: #fff;
-            transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
         }
 
         header nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-      
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 30px;
-            height: 30px;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .hamburger div {
-            width: 100%;
-            height: 4px;
-            background-color: #fff;
-            border-radius: 5px;
-            position: absolute;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger div:nth-child(1) {
-            top: 0;
-        }
-
-        .hamburger div:nth-child(2) {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .hamburger div:nth-child(3) {
-            bottom: 0;
-        }
-
-        .hamburger.active div:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+            background-color: rgba(255, 255, 255, 0.15);
         }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            position: relative;
-            overflow: hidden;
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #fff;
             text-align: center;
-            transition: background-image 1s ease-in-out;
-        }
-
-        .hero-content {
-            z-index: 2;
             position: relative;
+            overflow: hidden;
         }
 
-        .hero-slide-1 {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
-        }
-
-        .hero-slide-2 {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexback2.jpeg?raw=true') no-repeat center center/cover;
-        }
-
-        .hero-slide-3 {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/Backround12.jpeg?raw=true') no-repeat center center/cover;
-        }
-
-        .hero::before {
-            content: "";
+        .hero:before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.6);
         }
 
-        @keyframes fadeInHero {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-content {
+            z-index: 1;
+            color: #fff;
+            animation: fadeIn 2s ease-in-out;
         }
 
         .hero h1 {
-            font-size: 4em;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            animation: fadeInDown 1.5s ease forwards;
-        }
-
-        @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            font-size: 4rem;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 1.5em;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            animation: fadeInUp 1.8s ease forwards;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
         }
 
-        @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero .button-container {
-            margin-top: 30px;
-            opacity: 0;
-            animation: fadeInButton 2.3s ease forwards;
-        }
-
-        @keyframes fadeInButton {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Advanced Buttons */
-        .btn {
-            display: inline-block;
+        .hero .btn {
             padding: 15px 30px;
             background-color: #d4af37;
             color: #fff;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.2em;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .btn:hover {
+        .hero .btn:hover {
             background-color: #b8992c;
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid #d4af37;
-            color: #d4af37;
-            padding: 15px 30px;
-        }
-
-        .btn-outline:hover {
-            background-color: #d4af37;
-            color: #fff;
-        }
-
-        /* Section Styling */
+        /* Advanced Section Layout */
         section {
             padding: 80px 20px;
-            margin-bottom: 40px;
-            border-radius: 15px;
-            text-align: center;
             position: relative;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #fff;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease-in-out;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
         }
 
-        section:nth-of-type(odd) {
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        /* Alternating Backgrounds for Sections */
+        section:nth-of-type(even) {
             background-color: #0b1f3f;
             color: white;
         }
 
-        section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #d4af37;
-            animation: fadeInDown 1s ease forwards;
+        /* About Us Section */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
         }
 
-        section p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            animation: fadeInUp 1.2s ease forwards;
+        .about-section .content {
+            width: 45%;
+            text-align: left;
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
         }
 
-        .service-card {
-            display: inline-block;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 15px;
-            background: #0b1f3f;
-            color: white;
-            width: 250px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-card:hover {
+        .about-section .content:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Service Section with Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .services-grid .service-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .services-grid .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
         }
 
         .service-card i {
-            font-size: 4em;
-            margin-bottom: 15px;
-            transition: color 0.3s ease;
-        }
-
-        .service-card:hover i {
+            font-size: 3rem;
             color: #d4af37;
-        }
-
-        .quiz-section {
-            background-color: #f9f9f9;
-            padding: 80px 20px;
-            text-align: center;
-            margin-bottom: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-        }
-
-        .quiz-section h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
             margin-bottom: 20px;
-            position: relative;
-            color: #333;
         }
 
-        .quiz-section p {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 40px;
-        }
-
-        .quiz-card {
-            display: inline-block;
-            padding: 30px 20px;
-            margin: 20px;
-            width: 250px;
-            border-radius: 20px;
-            background-color: #fff;
-            color: #333;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .quiz-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            background-color: #d4af37;
-            color: #fff;
-        }
-
-        .quiz-card h4 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: inherit;
-        }
-
-        .quiz-card i {
-            font-size: 3em;
+        .service-card h4 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
         }
 
-        .quiz-card:hover i {
+        /* Contact Section */
+        .contact-section {
+            background: #0b1f3f;
             color: #fff;
+            padding: 80px 20px;
         }
 
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #d4af37;
-            color: white;
-            border-radius: 50%;
+        .contact-section .contact-info {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            visibility: hidden;
         }
 
-        .scroll-to-top.show {
-            opacity: 1;
-            visibility: visible;
+        .contact-section .contact-info p {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
         }
 
-        .scroll-to-top:hover {
-            background-color: #b8992c;
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        .contact-section .contact-info a {
+            color: #d4af37;
+            font-weight: bold;
         }
 
-        @media (max-width: 768px) {
-            header nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.5em;
-            }
-
-            .hero p {
-                font-size: 1.2em;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
-
-            .hamburger {
-                display: none;
-                cursor: pointer;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 30px;
-                height: 30px;
-                position: relative;
-                transition: transform 0.3s ease;
-            }
-
-            .hamburger div {
-                width: 100%;
-                height: 4px;
-                background-color: #fff;
-                border-radius: 5px;
-                position: absolute;
-                transition: all 0.3s ease;
-            }
-
-            .hamburger div:nth-child(1) {
-                top: 0;
-            }
-
-            .hamburger div:nth-child(2) {
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            .hamburger div:nth-child(3) {
-                bottom: 0;
-            }
-
-            .hamburger.active div:nth-child(1) {
-                transform: translateY(8px) rotate(45deg);
-            }
-
-            .hamburger.active div:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active div:nth-child(3) {
-                transform: translateY(-8px) rotate(-45deg);
-            }
-
-            .mobile-nav {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                background-color: #0b1f3f;
-                position: absolute;
-                top: 100%;
-                width: 100%;
-                left: 0;
-                opacity: 0;
-                transform: translateY(-100%);
-                transition: opacity 0.5s ease, transform 0.5s ease;
-            }
-
-            .mobile-nav.active {
-                display: flex;
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .mobile-nav li {
-                list-style: none;
-                margin: 10px 0;
-            }
-
-            .mobile-nav li a {
-                color: white;
-                font-weight: bold;
-                font-size: 1.2em;
-                padding: 10px;
-                transition: color 0.3s ease;
-            }
-
-            .mobile-nav li a:hover {
-                color: #d4af37;
-            }
-
-            @media (max-width: 768px) {
-                .hamburger {
-                    display: flex;
-                }
-
-                header nav ul {
-                    display: none;
-                }
-            }
-
-            @media (min-width: 769px) {
-                .mobile-nav {
-                    display: none;
-                }
-            }
-
-            @media (min-width: 769px) {
-                header {
-                    background-color: #1a1a1a;
-                    padding: 20px 0;
-                }
-
-                header .logo img {
-                    height: 70px;
-                }
-
-                header nav ul {
-                    gap: 30px;
-                }
-
-                header nav ul li a {
-                    padding: 15px 25px;
-                    font-size: 1.1em;
-                }
-
-                header nav ul li a:hover {
-                    background-color: rgba(255, 255, 255, 0.3);
-                    color: #d4af37;
-                }
-                /* Animations */
+        /* Animations */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-section .content {
+                width: 100%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Maintenance Message -->
-    <div style="background-color: #ffcc00; color: #000; text-align: center; padding: 10px; font-weight: bold;">
-        This main page is under maintenance until Sunday 10 AM. All the other Pages work And Our team is still available 24/7 to respond to any inquiries.
-    </div>
+
+    <!-- Header -->
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <a href="#home">
-                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
-                </a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="whatsnew.html">What's New</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </nav>
-
-            <!-- Hamburger Menu for Mobile -->
-            <div class="hamburger" id="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-
-            <ul class="mobile-nav" id="mobile-nav">
-                <li><a href="#home">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="whatsnew.html">What's New</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
+        <div class="logo">
+            <a href="#home">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+            </a>
         </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
     </header>
 
-  <section id="home" class="hero">
-    <div class="hero-content">
-        <h1>Driving Success with our Tech Expertise</h1>
-        <p>Empowering your people with cutting-edge technology solutions.</p>
-        <div class="button-container">
-            <a href="services.html" class="btn">Get Started</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Empowering Your Business</h1>
+            <p>Driving Success with Cutting-Edge Technology Solutions</p>
+            <a href="#services" class="btn">Get Started</a>
         </div>
-    </div>
     </section>
 
     <!-- About Us Section -->
     <section id="about" class="about-section">
         <h2>About Us</h2>
-        <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and more.</p>
-        <a href="about.html" class="btn">Learn More</a>
+        <div class="content" data-aos="fade-right">
+            <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and more.</p>
+        </div>
+        <div class="content" data-aos="fade-left">
+            <p>With a team of tech experts, we ensure your business thrives with modern solutions and cutting-edge support tailored to your specific needs.</p>
+        </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="services-section">
         <h2>Our Services</h2>
-        <p>Explore a variety of technology solutions to meet your business needs, from web design to Apple device setup.</p>
-        <a href="services.html" class="btn">Explore Services</a>
-    </section>
-
-    <!-- Quiz Section -->
-    <section id="quiz" class="quiz-section">
-        <h3>Discover Your Tech Fit</h3>
-        <p>Take our quick quizzes to find out which Apple device is right for you!</p>
-        <div class="quiz-card">
-            <i class="fas fa-laptop"></i>
-            <h4>What Mac is Right for You?</h4>
-            <a href="quiz_mac.html" class="btn-outline">Take Quiz</a>
+        <div class="services-grid">
+            <div class="service-card" data-aos="fade-up">
+                <i class="fas fa-laptop-code"></i>
+                <h4>Web Design</h4>
+                <p>Customized web design solutions that make your business stand out.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-mobile-alt"></i>
+                <h4>Mobile Optimization</h4>
+                <p>Responsive, mobile-friendly designs to ensure accessibility across all devices.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-network-wired"></i>
+                <h4>Networking Solutions</h4>
+                <p>Expert setup and optimization of networking systems for seamless connectivity.</p>
+            </div>
         </div>
-        <div class="quiz-card">
-            <i class="fas fa-mobile-alt"></i>
-            <h4>What iPhone is Right for You?</h4>
-            <a href="quiz_iphone.html" class="btn-outline">Take Quiz</a>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <p>Got questions? We've got answers. Check out our FAQ section for more information about our services.</p>
-        <a href="faq.html" class="btn">Read FAQs</a>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <h2>What Our Clients Say</h2>
-        <p>See what our clients have to say about their experiences working with us.</p>
-        <a href="testimonials.html" class="btn">View Testimonials</a>
-    </section>
-
-    <!-- Instagram Feed Section -->
-    <section id="instagram">
-        <h2>Follow Us on Instagram</h2>
-        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-    </section>
-
-    <!-- Click-to-Call Button -->
-    <section id="call-button">
-        <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <h2>Contact Us</h2>
-        <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
-        <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
-        <a href="contact.html" class="btn">Get In Touch</a>
+        <div class="contact-info">
+            <p>Email: <a href="mailto:elan.ayl8@gmail.com">elan.ayl8@gmail.com</a></p>
+            <p>Phone: <a href="tel:+19294176819">929-417-6819</a></p>
+        </div>
     </section>
 
-    <!-- Scroll to Top Button -->
-    <a href="#top" class="scroll-to-top">
-        <i class="fas fa-chevron-up"></i>
-    </a>
-
-    <!-- JavaScript -->
-    <script>
-// Hero Section Slideshow
-const hero = document.querySelector('.hero');
-const slides = ['hero-slide-1', 'hero-slide-2', 'hero-slide-3']; // Add more slides if needed
-let currentSlide = 0;
-
-function changeSlide() {
-    hero.classList.remove(slides[currentSlide]); // Remove current class
-    currentSlide = (currentSlide + 1) % slides.length; // Move to the next slide
-    hero.classList.add(slides[currentSlide]); // Add the next class
-}
-
-// Change slide every 5 seconds
-setInterval(changeSlide, 5000);
-
-// Initially set the first slide
-hero.classList.add(slides[currentSlide]);
-
-// Mobile Hamburger Menu Toggle
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-
-hamburger.addEventListener('click', function () {
-    mobileNav.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-
-// Scroll Header Effect (Changes header styling when scrolling)
-window.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// Scroll-to-Top Button Visibility
-const scrollToTopButton = document.querySelector('.scroll-to-top');
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 100) {
-        scrollToTopButton.classList.add('show');
-    } else {
-        scrollToTopButton.classList.remove('show');
-    }
-});
-
-// Smooth Scroll to Top
-scrollToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Testimonials Slider (Auto-slide)
-const testimonials = document.querySelectorAll('.testimonial-slide');
-let currentTestimonial = 0;
-
-setInterval(() => {
-    testimonials[currentTestimonial].style.transform = 'translateX(-100%)';
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    testimonials[currentTestimonial].style.transform = 'translateX(0)';
-}, 5000);  // Change slide every 5 seconds
-
-// AOS Initialization (For Scroll Animations)
-AOS.init({
-    duration: 1000,  // Duration of animations in milliseconds
-    once: true  // Animation will only happen once as you scroll
-});
-    </script>
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
 </body>
+
 </html>
