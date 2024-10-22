@@ -37,12 +37,12 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 51, 0.8); /* Semi-transparent background */
+            background: rgba(0, 0, 51, 0.8);
             transition: background 0.3s ease;
         }
 
         header.scrolled {
-            background-color: rgba(0, 0, 51, 1); /* Opaque on scroll */
+            background-color: rgba(0, 0, 51, 1);
         }
 
         .container {
@@ -50,12 +50,12 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            max-width: 1200px; /* Max width for container */
-            margin: 0 auto; /* Center the container */
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo img {
-            height: 70px; /* Slightly larger logo */
+            height: 70px;
         }
 
         .nav-links {
@@ -64,17 +64,18 @@
         }
 
         .nav-links a {
-            color: #d4af37; /* Gold color for links */
-            font-size: 1.2rem; /* Slightly larger font */
+            color: #d4af37;
+            font-size: 1.2rem;
             transition: color 0.3s;
+            text-decoration: none; /* Remove underline */
         }
 
         .nav-links a:hover {
-            color: white; /* Change color on hover */
+            color: white;
         }
 
         .hamburger {
-            display: none; /* Hidden on larger screens */
+            display: none;
             flex-direction: column;
             cursor: pointer;
         }
@@ -82,7 +83,7 @@
         .bar {
             height: 4px;
             width: 30px;
-            background-color: #d4af37; /* Gold color for hamburger */
+            background-color: #d4af37;
             margin: 3px 0;
             transition: all 0.3s ease;
         }
@@ -105,7 +106,7 @@
             }
 
             .hamburger {
-                display: flex; /* Show hamburger on small screens */
+                display: flex;
             }
         }
 
@@ -116,10 +117,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            color: white;
             position: relative;
             background-attachment: fixed;
+        }
+
+        .hero-overlay {
+            background-color: rgba(0, 0, 51, 0.7); /* Dark overlay for title and tagline */
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            border-radius: 10px; /* Optional: round edges of overlay */
         }
 
         .hero-content {
@@ -132,6 +144,7 @@
             font-size: 4.5rem;
             font-weight: 600;
             margin-bottom: 20px;
+            text-decoration: none; /* Remove underline */
         }
 
         .hero p {
@@ -149,6 +162,7 @@
             font-size: 1rem;
             text-transform: uppercase;
             transition: all 0.3s ease-in-out;
+            text-decoration: none; /* Remove underline */
         }
 
         .hero .btn:hover {
@@ -214,7 +228,7 @@
             transition: transform 0.3s ease;
         }
 
-        .card:hover {
+                .card:hover {
             transform: translateY(-10px);
         }
 
@@ -339,10 +353,12 @@
 
     <!-- Parallax Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Empowering Your Business</h1>
-            <p>Leading the way in technology solutions that drive success and innovation.</p>
-            <a href="#services" class="btn">Explore Services</a>
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Empowering Your Business</h1>
+                <p>Leading the way in technology solutions that drive success and innovation.</p>
+                <a href="#services" class="btn">Explore Services</a>
+            </div>
         </div>
     </section>
 
