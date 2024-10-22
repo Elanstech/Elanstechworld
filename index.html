@@ -232,6 +232,26 @@
             color: #333;
         }
 
+        /* 3D Button Styles */
+        .btn-3d {
+            padding: 15px 30px;
+            background-color: #d4af37;
+            color: white;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-3d:hover {
+            background-color: #b8992c;
+            transform: translateY(-5px);
+        }
+
         /* Contact Section */
         #contact {
             background-color: #003366;
@@ -250,21 +270,38 @@
             margin-bottom: 40px;
         }
 
-        #contact a {
-            padding: 15px 30px;
-            background-color: #d4af37;
-            color: white;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: all 0.3s ease-in-out;
+        /* Form Styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        #contact a:hover {
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
             background-color: #b8992c;
-            transform: translateY(-5px);
         }
 
         /* Media Queries */
@@ -289,7 +326,7 @@
         </div>
         <nav class="nav-links">
             <a href="#about">About</a>
-            <a href="#services">Services</a>
+            <a href="#services">Services</a
             <a href="#testimonials">Testimonials</a>
             <a href="#faq">FAQ</a>
         </nav>
@@ -315,16 +352,16 @@
         <p>We specialize in delivering custom technology solutions designed to streamline your business and elevate your success.</p>
         <div class="card-grid">
             <div class="card">
-             <div class="icon-box"><i class="fas fa-bullseye"></i></div>
+                <div class="icon-box"><i class="fas fa-bullseye"></i></div>
                 <h3>Our Mission</h3>
                 <p>To provide cutting-edge, reliable, and scalable tech solutions that support your business growth.</p>
-                <a href="#about" class="btn-view-more">View More</a>
+                <a href="#about" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
                 <h3>Our Vision</h3>
                 <p>To be a leader in innovation, offering technology that enhances efficiency and drives success for our clients.</p>
-                <a href="#about" class="btn-view-more">View More</a>
+                <a href="#about" class="btn-3d">View More</a>
             </div>
         </div>
     </section>
@@ -338,13 +375,13 @@
                 <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
                 <h3>Web Design</h3>
                 <p>We create custom, responsive websites that make your business stand out online with modern design and functionality.</p>
-                <a href="#services" class="btn-view-more">View More</a>
+                <a href="#services" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-network-wired"></i></div>
                 <h3>Networking Solutions</h3>
                 <p>Our team provides expert setup and optimization of networking systems to ensure seamless connectivity.</p>
-                <a href="#services" class="btn-view-more">View More</a>
+                <a href="#services" class="btn-3d">View More</a>
             </div>
         </div>
     </section>
@@ -358,13 +395,13 @@
                 <div class="icon-box"><i class="fas fa-user-check"></i></div>
                 <h3>Exceptional Service</h3>
                 <p>"Elan's Tech World transformed our operations with their custom web solutions, making our business more efficient!"</p>
-                <a href="#testimonials" class="btn-view-more">View More</a>
+                <a href="#testimonials" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-thumbs-up"></i></div>
                 <h3>Highly Recommend</h3>
                 <p>"Their networking solutions helped streamline our processes and improved our connectivity across the office."</p>
-                <a href="#testimonials" class="btn-view-more">View More</a>
+                <a href="#testimonials" class="btn-3d">View More</a>
             </div>
         </div>
     </section>
@@ -378,13 +415,13 @@
                 <div class="icon-box"><i class="fas fa-headset"></i></div>
                 <h3>24/7 Support</h3>
                 <p>We provide round-the-clock support to assist you with any technical issues you may encounter.</p>
-                <a href="#faq" class="btn-view-more">View More</a>
+                <a href="#faq" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-cogs"></i></div>
                 <h3>Custom Solutions</h3>
                 <p>Yes, we offer fully custom IT solutions that are designed to fit the unique needs of your business.</p>
-                <a href="#faq" class="btn-view-more">View More</a>
+                <a href="#faq" class="btn-3d">View More</a>
             </div>
         </div>
     </section>
@@ -395,13 +432,21 @@
         <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
     </section>
 
-    <!-- Click-to-Call Button Section -->
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or inquiries, feel free to reach out!</p>
-        <a href="mailto:your-email@example.com" class="btn">Contact Us</a>
-        <a href="tel:+1234567890" class="btn">Call Us</a>
-    </section>
+<!-- Contact Us Section -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or inquiries, feel free to reach out!</p>
+    <div class="contact-form">
+        <form action="mailto:your-email@example.com" method="POST" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p>Or you can also call us at <a href="tel:+1234567890" style="color: #d4af37;">+1 234 567 890</a>.</p>
+    </div>
+</section>
+
 
     <!-- Elfsight Script for Instagram Widget -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
