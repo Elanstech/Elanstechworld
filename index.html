@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Hover.css for cool hover effects -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" rel="stylesheet">
     <style>
         /* Global Styles */
         * {
@@ -71,6 +73,7 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Added Blur for sleekness */
         }
 
         header .logo img {
@@ -105,17 +108,26 @@
             text-align: center;
             position: relative;
             color: white;
+            overflow: hidden;
         }
 
+        /* Interactive 3D Effect */
         .hero-content {
             z-index: 2;
             animation: fadeInUp 1.5s ease;
+            perspective: 1000px;
         }
 
         .hero h1 {
             font-size: 4rem;
             font-weight: bold;
             margin-bottom: 20px;
+            transform: rotateY(30deg) rotateX(10deg); /* Added depth */
+            transition: transform 0.5s ease-out;
+        }
+
+        .hero:hover h1 {
+            transform: rotateY(0) rotateX(0); /* Brings text back to 0 on hover */
         }
 
         .hero p {
@@ -139,7 +151,7 @@
             transform: translateY(-5px);
         }
 
-        /* Particle Animation */
+        /* Parallax Particles */
         canvas#hero-animation {
             position: absolute;
             top: 0;
@@ -147,6 +159,14 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+        }
+
+        /* Animated Background with Parallax */
+        .parallax-background {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/hero-background.jpeg?raw=true');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         /* Neon Glow Effect */
@@ -165,6 +185,8 @@
             align-items: center;
             flex-direction: column;
             overflow: hidden;
+            background: rgba(255, 255, 255, 0.05); /* Frosted Glass Background */
+            backdrop-filter: blur(5px);
         }
 
         section h2 {
@@ -176,36 +198,25 @@
             color: #fff;
         }
 
-        section p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            color: #ddd;
-        }
-
-        .btn-section {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: #d4af37;
-            color: #fff;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-section:hover {
-            background-color: #b8992c;
-            transform: translateY(-5px);
-        }
-
-        /* Tile Grid for Content */
+        /* Animated Tiles */
         .tile-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
             width: 100%;
+            animation: slideIn 1.2s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tile {
@@ -219,57 +230,9 @@
             position: relative;
         }
 
-        .tile::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
-            transition: opacity 0.3s ease;
-            z-index: 1;
-        }
-
-        .tile:hover::before {
-            opacity: 0;
-        }
-
         .tile:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .tile h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .tile p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Colorful Blue-Themed Section Backgrounds */
-        #about {
-            background: linear-gradient(135deg, #1e3c72 30%, #2a5298 100%);
-        }
-
-        #services {
-            background: linear-gradient(135deg, #3498db 30%, #2c3e50 100%);
-        }
-
-        #testimonials {
-            background: linear-gradient(135deg, #2980b9 30%, #34495e 100%);
-        }
-
-        #faq {
-            background: linear-gradient(135deg, #6dd5ed 30%, #2193b0 100%);
-        }
-
-        #contact {
-            background: linear-gradient(135deg, #4e54c8 30%, #8f94fb 100%);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -301,12 +264,12 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- Hero Section with Interactive Background -->
+    <section id="home" class="hero parallax-background">
         <div class="hero-content">
-            <h1>Empowering Your Business</h1>
+            <h1 class="neon-text">Empowering Your Business</h1>
             <p>Driving Success with Cutting-Edge Technology Solutions</p>
-            <a href="#services" class="btn">Get Started</a>
+            <a href="#services" class="btn hvr-pulse-grow">Get Started</a>
         </div>
         <canvas id="hero-animation"></canvas>
     </section>
@@ -398,7 +361,8 @@
         <a href="contact.html" class="btn-section">Contact Us</a>
     </section>
 
-    <!-- AOS Animation Script -->
+
+     <!-- AOS Animation Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -406,6 +370,23 @@
             once: true
         });
     </script>
+
+    <!-- Parallax Script for Interactive Movement -->
+    <script>
+        document.addEventListener('mousemove', parallax);
+        function parallax(e) {
+            document.querySelectorAll('.hero-content h1').forEach(layer => {
+                const speed = layer.getAttribute('data-speed');
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        }
+    </script>
+
+    <!-- Particle Animation Script remains unchanged -->
+</body>
+</html>
 
     <!-- Particle Animation Script -->
     <script>
