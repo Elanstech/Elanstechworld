@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -25,7 +25,6 @@
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            position: relative;
         }
 
         /* Links */
@@ -37,7 +36,6 @@
 
         a:hover {
             color: #d4af37;
-            border-bottom: 2px solid #d4af37;
         }
 
         /* Scrollbar Design */
@@ -59,139 +57,17 @@
             background-color: #002244;
         }
 
-        /* Header */
-        header {
-            background-color: #003366;
-            padding: 20px 0;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        header .logo img {
-            height: 50px;
-        }
-
-        header nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        header nav ul li a {
-            padding: 10px 20px;
-            font-weight: 500;
-            color: #fff;
-            border-radius: 30px;
-            transition: background-color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Mobile Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            height: 3px;
-            width: 30px;
-            background-color: #fff;
-            margin: 4px;
-            transition: all 0.3s ease;
-        }
-
-        /* Navbar for Mobile */
-        @media (max-width: 768px) {
-            header nav ul {
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                width: 100%;
-                background-color: #003366;
-                display: none;
-                transition: max-height 0.5s ease;
-            }
-
-            header nav ul.open {
-                display: flex;
-            }
-
-            header nav ul li {
-                text-align: center;
-                padding: 15px 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translateY(8px);
-            }
-
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translateY(-8px);
-            }
-        }
-
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: #003366;
+            background: linear-gradient(135deg, #001f3f, #005a9c);
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
             position: relative;
-        }
-
-        .hero-content {
-            z-index: 2;
-            animation: fadeInUp 1.5s ease;
-        }
-
-        .hero h1 {
-            font-family: 'Lora', serif;
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-        }
-
-        .hero .btn {
-            padding: 15px 30px;
-            background-color: #d4af37;
-            color: #fff;
-            border-radius: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero .btn:hover {
-            background-color: #b8992c;
-            transform: translateY(-5px);
+            overflow: hidden;
         }
 
         /* Particle Animation in Hero Section */
@@ -204,7 +80,41 @@
             z-index: 1;
         }
 
-        /* Section Styling */
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        .hero .btn {
+            padding: 15px 30px;
+            background-color: #d4af37;
+            color: #fff;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hero .btn:hover {
+            background-color: #b8992c;
+            transform: translateY(-5px);
+        }
+
+        /* Section Styles */
         section {
             padding: 100px 20px;
             text-align: center;
@@ -214,98 +124,92 @@
             align-items: center;
             flex-direction: column;
             background-color: #f4f4f4;
+            color: #003366;
         }
 
         section h2 {
-            font-family: 'Lora', serif;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            color: #003366;
+            font-family: 'Inter', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
 
         section p {
             font-size: 1.2rem;
-            max-width: 600px;
-            margin-bottom: 30px;
-            color: #555;
+            max-width: 700px;
+            margin-bottom: 40px;
         }
 
-        /* Tile Grid for Content */
-        .tile-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            width: 100%;
-        }
-
-        .tile {
-            background-color: #fff;
-            color: #0b1f3f;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .tile:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .tile h3 {
-            font-family: 'Lora', serif;
-            font-size: 1.8rem;
+        /* Icons and hover effects */
+        .icon-box {
+            font-size: 3rem;
+            color: #d4af37;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
-        .tile p {
+        .icon-box:hover {
+            color: #b8992c;
+        }
+
+        /* Card Layout for Sections */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
             font-size: 1rem;
             color: #666;
         }
 
-        /* Section Colors */
+        /* Alternating Background Colors */
         #about {
-            background: #001f3f;
-            color: white;
-        }
-
-        #about h2, #about p {
-            color: white;
+            background-color: #f4f4f4;
         }
 
         #services {
-            background: #002244;
-            color: white;
-        }
-
-        #services h2, #services p {
-            color: white;
+            background-color: #fff;
         }
 
         #testimonials {
-            background: #003366;
-            color: white;
-        }
-
-        #testimonials h2, #testimonials p {
-            color: white;
+            background-color: #f4f4f4;
         }
 
         #faq {
-            background: #001f3f;
-            color: white;
+            background-color: #fff;
         }
 
-        #faq h2, #faq p {
-            color: white;
-        }
-
+        /* Media Queries */
         @media (max-width: 768px) {
-            .tile-grid {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            section h2 {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -313,108 +217,86 @@
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <a href="#home">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
-            </a>
-        </div>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero">
+        <canvas id="hero-animation"></canvas>
         <div class="hero-content">
             <h1>Empowering Your Business</h1>
-            <p>Driving Success with Cutting-Edge Technology Solutions</p>
-            <a href="#services" class="btn">Get Started</a>
+            <p>Leading the way in technology solutions that drive success and innovation.</p>
+            <a href="#services" class="btn">Explore Services</a>
         </div>
-        <canvas id="hero-animation"></canvas>
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="about-section" data-aos="fade-up">
+    <section id="about">
         <h2>About Us</h2>
-        <p>We specialize in providing custom technology solutions that help your business thrive.</p>
-        <div class="tile-grid">
-            <div class="tile">
+        <p>We specialize in delivering custom technology solutions designed to streamline your business and elevate your success.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-bullseye"></i></div>
                 <h3>Our Mission</h3>
-                <p>To empower businesses by providing cutting-edge tech solutions and expert support.</p>
+                <p>To provide cutting-edge, reliable, and scalable tech solutions that support your business growth.</p>
             </div>
-            <div class="tile">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
                 <h3>Our Vision</h3>
-                <p>Leading the industry with innovative solutions, fostering long-term success for clients.</p>
+                <p>To be a leader in innovation, offering technology that enhances efficiency and drives success for our clients.</p>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section" data-aos="fade-up">
+    <section id="services">
         <h2>Our Services</h2>
-        <p>Explore our wide range of services, from web design to IT support, tailored to meet your business needs.</p>
-        <div class="tile-grid">
-            <div class="tile">
+        <p>We offer a wide range of services from web design to IT support, all tailored to meet the unique needs of your business.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
                 <h3>Web Design</h3>
-                <p>We create custom, responsive websites that make your business stand out online.</p>
+                <p>We create custom, responsive websites that make your business stand out online with modern design and functionality.</p>
             </div>
-            <div class="tile">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-network-wired"></i></div>
                 <h3>Networking Solutions</h3>
-                <p>Expert setup and optimization of networking systems for seamless connectivity.</p>
+                <p>Our team provides expert setup and optimization of networking systems to ensure seamless connectivity.</p>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section" data-aos="fade-up">
-        <h2>Client Testimonials</h2>
-        <p>Don’t just take our word for it, see what our clients have to say about working with us!</p>
-        <div class="tile-grid">
-            <div class="tile">
-                <h3>Outstanding Service</h3>
-                <p>“Elan's Tech World transformed our business operations with their custom web solutions!”</p>
+    <section id="testimonials">
+        <h2>What Our Clients Say</h2>
+        <p>Discover why businesses choose us to provide reliable, innovative technology solutions.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-user-check"></i></div>
+                <h3>Exceptional Service</h3>
+                <p>"Elan's Tech World transformed our operations with their custom web solutions, making our business more efficient!"</p>
             </div>
-            <div class="tile">
-                <h3>Efficient Networks</h3>
-                <p>“Their networking solutions made our office run smoother than ever!”</p>
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-thumbs-up"></i></div>
+                <h3>Highly Recommend</h3>
+                <p>"Their networking solutions helped streamline our processes and improved our connectivity across the office."</p>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="faq-section" data-aos="fade-up">
+    <section id="faq">
         <h2>Frequently Asked Questions</h2>
-        <p>Find answers to common questions about our services and support.</p>
-        <div class="tile-grid">
-            <div class="tile">
-                <h3>Support 24/7</h3>
-                <p>We provide round-the-clock support to assist you with any technical issues.</p>
+        <p>Find answers to common questions about our services and how we can help your business succeed.</p>
+        <div class="card-grid">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-headset"></i></div>
+                <h3>24/7 Support</h3>
+                <p>We provide round-the-clock support to assist you with any technical issues you may encounter.</p>
             </div>
-            <div class="tile">
+            <div class="card">
+                <div class="icon-box"><i class="fas fa-cogs"></i></div>
                 <h3>Custom Solutions</h3>
-                <p>Can you create custom IT solutions for my business? Yes, we specialize in that!</p>
+                <p>Yes, we offer fully custom IT solutions that are designed to fit the unique needs of your business.</p>
             </div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section" data-aos="fade-up">
-        <h2>Contact Us</h2>
-        <p>Have any questions or need assistance? Get in touch with our team.</p>
     </section>
 
     <!-- AOS Animation Script -->
@@ -424,19 +306,6 @@
             duration: 1000,
             once: true
         });
-    </script>
-
-    <!-- Parallax Script for Interactive Movement -->
-    <script>
-        document.addEventListener('mousemove', parallax);
-        function parallax(e) {
-            document.querySelectorAll('.hero-content h1').forEach(layer => {
-                const speed = layer.getAttribute('data-speed');
-                const x = (window.innerWidth - e.pageX * speed) / 100;
-                const y = (window.innerHeight - e.pageY * speed) / 100;
-                layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
-            });
-        }
     </script>
 
     <!-- Particle Animation Script -->
@@ -498,17 +367,6 @@
 
         initParticles();
         animate();
-    </script>
-
-    <!-- Hamburger Menu Script -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('open');
-        });
     </script>
 </body>
 
