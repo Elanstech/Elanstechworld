@@ -59,9 +59,11 @@
             background-color: #b8992c;
         }
 
-        /* Header */
+        /* Header with Animated Gradient */
         header {
-            background-color: #0b1f3f;
+            background: linear-gradient(45deg, #0b1f3f, #1a2d5a, #243b6f);
+            background-size: 300% 300%;
+            animation: gradientShift 10s ease infinite;
             padding: 20px 0;
             position: fixed;
             top: 0;
@@ -70,8 +72,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background-color 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         header .logo img {
@@ -100,34 +107,59 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            position: relative;
             overflow: hidden;
+            text-align: center;
+            color: white;
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
         }
 
-        .hero:before {
+        /* Particle Effect Background */
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://media.giphy.com/media/3oEjI80DSa1grNPTDq/giphy.gif');
+            opacity: 0.2;
+            z-index: 2;
         }
 
         .hero-content {
-            z-index: 1;
-            color: #fff;
+            z-index: 3;
+            position: relative;
             animation: fadeIn 2s ease-in-out;
         }
 
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
+            animation: floatText 6s ease-in-out infinite;
+        }
+
+        @keyframes floatText {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         .hero p {
@@ -144,11 +176,20 @@
             text-transform: uppercase;
             transition: all 0.3s ease-in-out;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: floatButton 4s ease-in-out infinite;
+        }
+
+        @keyframes floatButton {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .hero .btn:hover {
             background-color: #b8992c;
-            transform: translateY(-5px);
         }
 
         /* Advanced Section Layout */
@@ -214,61 +255,6 @@
             transform: translateY(-5px);
         }
 
-        /* Service Section with Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .services-grid .service-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-
-        .services-grid .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 20px;
-        }
-
-        .service-card h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            background: #0b1f3f;
-            color: #fff;
-            padding: 80px 20px;
-        }
-
-        .contact-section .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-section .contact-info p {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .contact-section .contact-info a {
-            color: #d4af37;
-            font-weight: bold;
-        }
-
         /* Animations */
         @keyframes fadeIn {
             0% {
@@ -294,10 +280,6 @@
 
             .about-section .content {
                 width: 100%;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
