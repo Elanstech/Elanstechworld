@@ -76,9 +76,17 @@
         }
 
         @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         header .logo img {
@@ -104,7 +112,7 @@
             background-color: rgba(255, 255, 255, 0.15);
         }
 
-        /* Hero Section */
+        /* Hero Section with Floating Effects and Parallax */
         .hero {
             height: 100vh;
             position: relative;
@@ -115,6 +123,7 @@
             text-align: center;
             color: white;
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
+            background-attachment: fixed;
         }
 
         /* Particle Effect Background */
@@ -154,9 +163,11 @@
         }
 
         @keyframes floatText {
-            0%, 100% {
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-20px);
             }
@@ -180,9 +191,11 @@
         }
 
         @keyframes floatButton {
-            0%, 100% {
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-10px);
             }
@@ -192,7 +205,7 @@
             background-color: #b8992c;
         }
 
-        /* Advanced Section Layout */
+        /* Parallax and Interactive Sections */
         section {
             padding: 80px 20px;
             position: relative;
@@ -212,32 +225,42 @@
             margin-bottom: 40px;
         }
 
-        /* Alternating Backgrounds for Sections */
-        section:nth-of-type(even) {
-            background-color: #0b1f3f;
-            color: white;
+        /* Fade-in and Slide-in Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
         }
 
-        /* About Us Section */
-        .about-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .about-section .content {
-            width: 45%;
-            text-align: left;
+        /* Hover Effects for Services */
+        .service-card {
             background: #fff;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
         }
 
-        .about-section .content:hover {
-            transform: translateY(-10px);
+        .service-card:hover {
+            transform: translateY(-15px) rotateY(10deg);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover i {
+            transform: rotate(360deg);
         }
 
         .btn-section {
@@ -255,17 +278,62 @@
             transform: translateY(-5px);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        /* Parallax Background */
+        .parallax-bg {
+            background-attachment: fixed;
+        }
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Floating Callouts */
+        .callout {
+            display: none;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card:hover .callout {
+            display: block;
+        }
+
+        /* Slider for Testimonials */
+        .testimonials-slider {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonials-container {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .testimonial {
+            min-width: 100%;
+            padding: 20px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #0b1f3f;
+            color: #fff;
+            padding: 80px 20px;
+        }
+
+        .contact-section .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-section .contact-info p {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-section .contact-info a {
+            color: #d4af37;
+            font-weight: bold;
         }
 
         /* Media Queries */
@@ -316,33 +384,33 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="about-section">
+    <section id="about" class="about-section parallax-bg" style="background-image: url('https://example.com/background1.jpg');">
         <h2>About Us</h2>
-        <div class="content" data-aos="fade-right">
+        <div class="content fade-in">
             <p>We provide tailored technology solutions for businesses, including expert computer setup, custom web design, and more.</p>
             <a href="about.html" class="btn-section">Learn More</a>
         </div>
-        <div class="content" data-aos="fade-left">
+        <div class="content fade-in">
             <p>With a team of tech experts, we ensure your business thrives with modern solutions and cutting-edge support tailored to your specific needs.</p>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
+    <section id="services" class="services-section parallax-bg" style="background-image: url('https://example.com/background2.jpg');">
         <h2>Our Services</h2>
         <div class="services-grid">
-            <div class="service-card" data-aos="fade-up">
+            <div class="service-card fade-in" data-aos="fade-up">
                 <i class="fas fa-laptop-code"></i>
                 <h4>Web Design</h4>
                 <p>Customized web design solutions that make your business stand out.</p>
                 <a href="services.html" class="btn-section">Explore Services</a>
             </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="100">
                 <i class="fas fa-mobile-alt"></i>
                 <h4>Mobile Optimization</h4>
                 <p>Responsive, mobile-friendly designs to ensure accessibility across all devices.</p>
             </div>
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card fade-in" data-aos="fade-up" data-aos-delay="200">
                 <i class="fas fa-network-wired"></i>
                 <h4>Networking Solutions</h4>
                 <p>Expert setup and optimization of networking systems for seamless connectivity.</p>
@@ -351,9 +419,18 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
+    <section id="testimonials" class="testimonials-section parallax-bg" style="background-image: url('https://example.com/background3.jpg');">
         <h2>What Our Clients Say</h2>
-        <p>See what our clients have to say about their experiences working with us.</p>
+        <div class="testimonials-slider">
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p>“Elan's Tech World transformed our business operations with their custom web solutions!”</p>
+                </div>
+                <div class="testimonial">
+                    <p>“Their networking solutions made our office run smoother than ever!”</p>
+                </div>
+            </div>
+        </div>
         <a href="testimonials.html" class="btn-section">View Testimonials</a>
     </section>
 
@@ -403,6 +480,18 @@
         AOS.init({
             duration: 1000,
             once: true
+        });
+
+        /* Parallax Scroll Effect */
+        window.addEventListener("scroll", function () {
+            let elements = document.querySelectorAll(".fade-in");
+            elements.forEach((element) => {
+                let position = element.getBoundingClientRect().top;
+                let screenPosition = window.innerHeight / 1.3;
+                if (position < screenPosition) {
+                    element.classList.add("appear");
+                }
+            });
         });
     </script>
 
