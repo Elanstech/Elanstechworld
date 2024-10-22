@@ -201,6 +201,73 @@
             background-color: #ffd600;
         }
 
+        /* Instagram Section */
+        #instagram {
+            padding: 50px 0;
+            text-align: center;
+            background: #0b1f3f; /* Background color for the Instagram section */
+        }
+
+        #instagram h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
+
+        /* Contact Us Section */
+        #contact {
+            padding: 50px 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        #contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
+
+        #contact p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1); /* Match background */
+            color: white; /* Text color */
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ffd600;
+        }
+
         /* Responsive Styles */
         @media (max-width: 768px) {
             header nav ul {
@@ -318,11 +385,6 @@
                 <p class="service-description">
                     We specialize in delivering custom technology solutions designed to streamline your business.
                 </p>
-                <ul>
-                    <li>Reliable tech solutions</li>
-                    <li>Innovative strategies</li>
-                    <li>Expert support</li>
-                </ul>
                 <a href="about.html" class="explore-btn">View More</a>
             </div>
         </div>
@@ -337,10 +399,6 @@
                 <p class="service-description">
                     Discover why businesses choose us for reliable tech solutions.
                 </p>
-                <ul>
-                    <li>Exceptional service</li>
-                    <li>Increased efficiency</li>
-                </ul>
                 <a href="testimonials.html" class="explore-btn">View More</a>
             </div>
         </div>
@@ -355,19 +413,22 @@
                 <p class="service-description">
                     Find answers to your questions about our services.
                 </p>
-                <ul>
-                    <li>24/7 Support</li>
-                    <li>Custom Solutions</li>
-                </ul>
                 <a href="faq.html" class="explore-btn">View More</a>
             </div>
         </div>
     </section>
 
+    <!-- Instagram Section -->
+    <section id="instagram">
+        <h2>Follow Us on Instagram</h2>
+        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
+    </section>
+
     <!-- Contact Us Section -->
     <section id="contact">
         <h2 class="section-title">Contact Us</h2>
-        <p>If you have any questions or inquiries, feel free to reach out!</p>
+        <p>Have any questions or inquiries? We're here to help you!</p>
+        <p>Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
         <div class="contact-form">
             <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
                 <input type="text" name="name" placeholder="Your Name" required>
@@ -375,7 +436,7 @@
                 <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
-            <p>Or you can also call us at <a href="tel:+1234567890" style="color: #f9c200;">+1 234 567 890</a>.</p>
+            <p>Or you can also call us at <a href="tel:+929-417-6819" style="color: #f9c200;">+1 929-417-6819</a>.</p>
         </div>
     </section>
 
