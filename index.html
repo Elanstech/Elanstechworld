@@ -30,19 +30,19 @@
         /* Header Styles */
         header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* Keep logo on the left */
             align-items: center;
             padding: 15px 20px;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 102, 0.8); /* Royal blue with transparency */
+            background: #003366; /* Solid royal blue */
             transition: background 0.3s ease;
         }
 
         header.scrolled {
-            background-color: rgba(0, 0, 102, 1);
+            background-color: #003366; /* Solid royal blue */
         }
 
         .container {
@@ -64,18 +64,19 @@
         }
 
         .nav-links a {
-            color: #d4af37;
+            color: #d4af37; /* Gold color */
             font-size: 1.2rem;
-            transition: color 0.3s;
+            font-weight: 600; /* Bold text */
             text-decoration: none; /* Remove underline */
+            transition: color 0.3s; /* Smooth color change on hover */
         }
 
         .nav-links a:hover {
-            color: white;
+            color: white; /* Change to white on hover */
         }
 
         .hamburger {
-            display: none;
+            display: none; /* Initially hide hamburger menu */
             flex-direction: column;
             cursor: pointer;
         }
@@ -83,30 +84,31 @@
         .bar {
             height: 4px;
             width: 30px;
-            background-color: #d4af37;
+            background-color: #d4af37; /* Gold color */
             margin: 3px 0;
             transition: all 0.3s ease;
         }
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                display: none; /* Hide links by default on mobile */
                 position: absolute;
-                top: 100%;
+                top: 60px; /* Below the header */
                 left: 0;
                 width: 100%;
-                background-color: #003366;
+                background-color: #003366; /* Match the header color */
                 flex-direction: column;
                 align-items: center;
                 padding: 20px 0;
+                transition: all 0.3s ease; /* Smooth transition */
             }
 
             .nav-links.show {
-                display: flex;
+                display: flex; /* Show links when hamburger is clicked */
             }
 
             .hamburger {
-                display: flex;
+                display: flex; /* Show hamburger menu on mobile */
             }
         }
 
@@ -272,9 +274,16 @@
             margin-bottom: 15px;
         }
 
-        .card p {
-            font-size: 1rem;
-            color: #333;
+        .card ul {
+            list-style-type: disc; /* Bullet points */
+            margin: 10px 0; /* Margin around the list */
+            padding-left: 20px; /* Indent the bullet points */
+            font-size: 0.9rem; /* Slightly smaller font for bullet points */
+            color: #333; /* Dark text color for better contrast */
+        }
+
+        .card ul li {
+            margin-bottom: 5px; /* Space between bullet points */
         }
 
         /* 3D Button Styles */
@@ -407,77 +416,69 @@
     <!-- About Us Section -->
     <section id="about">
         <h2>About Us</h2>
-        <p>We specialize in delivering custom technology solutions designed to streamline your business and elevate your success.</p>
         <div class="card-grid">
             <div class="card">
                 <div class="icon-box"><i class="fas fa-bullseye"></i></div>
                 <h3>Our Mission</h3>
-                <p>To provide cutting-edge, reliable, and scalable tech solutions that support your business growth.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
-                <h3>Our Vision</h3>
-                <p>To be a leader in innovation, offering technology that enhances efficiency and drives success for our clients.</p>
+                <ul>
+                    <li>Delivering reliable tech solutions</li>
+                    <li>Enhancing business efficiency</li>
+                    <li>Supporting growth with innovation</li>
+                </ul>
+                <a href="about.html" class="btn-3d">View More</a>
             </div>
         </div>
-        <a href="about.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- Services Section -->
     <section id="services">
         <h2>Our Services</h2>
-        <p>We offer a wide range of services from web design to IT support, all tailored to meet the unique needs of your business.</p>
         <div class="card-grid">
             <div class="card">
                 <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
                 <h3>Web Design</h3>
-                <p>We create custom, responsive websites that make your business stand out online with modern design and functionality.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-network-wired"></i></div>
-                <h3>Networking Solutions</h3>
-                <p>Our team provides expert setup and optimization of networking systems to ensure seamless connectivity.</p>
+                <ul>
+                    <li>Custom responsive websites</li>
+                    <li>Modern design and functionality</li>
+                    <li>SEO optimization included</li>
+                </ul>
+                <a href="services.html" class="btn-3d">View More</a>
             </div>
         </div>
-        <a href="services.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials">
         <h2>What Our Clients Say</h2>
-        <p>Discover why businesses choose us to provide reliable, innovative technology solutions.</p>
         <div class="card-grid">
             <div class="card">
                 <div class="icon-box"><i class="fas fa-user-check"></i></div>
                 <h3>Exceptional Service</h3>
-                <p>"Elan's Tech World transformed our operations with their custom web solutions, making our business more efficient!"</p>
-            </div>
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-thumbs-up"></i></div>
-                <h3>Highly Recommend</h3>
-                <p>"Their networking solutions helped streamline our processes and improved our connectivity across the office."</p>
+                <ul>
+                    <li>Custom web solutions</li>
+                    <li>Increased operational efficiency</li>
+                    <li>Reliable technical support</li>
+                </ul>
+                <a href="testimonials.html" class="btn-3d">View More</a>
             </div>
         </div>
-        <a href="testimonials.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- FAQ Section -->
     <section id="faq">
         <h2>Frequently Asked Questions</h2>
-        <p>Find answers to common questions about our services and how we can help your business succeed.</p>
         <div class="card-grid">
             <div class="card">
                 <div class="icon-box"><i class="fas fa-headset"></i></div>
                 <h3>24/7 Support</h3>
-                <p>We provide round-the-clock support to assist you with any technical issues you may encounter.</p>
-            </div>
-            <div class="card">
-                <div class="icon-box"><i class="fas fa-cogs"></i></div>
-                <h3>Custom Solutions</h3>
-                <p>Yes, we offer fully custom IT solutions that are designed to fit the unique needs of your business.</p>
+                <ul>
+                    <li>Round-the-clock assistance</li>
+                    <li>Quick response to inquiries</li>
+                    <li>Expert technical guidance</li>
+                </ul>
+                <a href="faq.html" class="btn-3d">View More</a>
             </div>
         </div>
-        <a href="faq.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- Instagram Section -->
