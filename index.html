@@ -26,22 +26,23 @@
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
-    header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    background: rgba(0, 0, 51, 0); /* Start with transparent */
-    transition: background 0.3s ease;
-    }
 
-    header.scrolled {
-    background-color: rgba(0, 0, 51, 0.9); /* Change to opaque on scroll */
-    }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 51, 0);
+            transition: background 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(0, 0, 51, 0.9);
+        }
 
         .logo img {
             height: 60px;
@@ -243,6 +244,7 @@
             transition: all 0.3s ease-in-out;
             display: inline-block;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-top: 20px; /* Added margin for spacing */
         }
 
         .btn-3d:hover {
@@ -317,30 +319,30 @@
 
 <body>
 
-   <!-- Transparent Header -->
-<header id="header">
-    <div class="logo">
-        <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Logo">
-    </div>
-    <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#faq">FAQ</a>
-    </nav>
-    <div class="hamburger" id="hamburger">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-</header>
+    <!-- Transparent Header -->
+    <header id="header">
+        <div class="logo">
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Logo">
+        </div>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="hamburger" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
 
     <!-- Parallax Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Empowering Your Business</h1>
             <p>Leading the way in technology solutions that drive success and innovation.</p>
-            <a href="services.html" class="btn">Explore Services</a>
+            <a href="#services" class="btn">Explore Services</a>
         </div>
     </section>
 
@@ -353,15 +355,14 @@
                 <div class="icon-box"><i class="fas fa-bullseye"></i></div>
                 <h3>Our Mission</h3>
                 <p>To provide cutting-edge, reliable, and scalable tech solutions that support your business growth.</p>
-                <a href="about.html" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
                 <h3>Our Vision</h3>
                 <p>To be a leader in innovation, offering technology that enhances efficiency and drives success for our clients.</p>
-                <a href="about.html" class="btn-3d">View More</a>
             </div>
         </div>
+        <a href="about.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- Services Section -->
@@ -373,15 +374,14 @@
                 <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
                 <h3>Web Design</h3>
                 <p>We create custom, responsive websites that make your business stand out online with modern design and functionality.</p>
-                <a href="services.html" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-network-wired"></i></div>
                 <h3>Networking Solutions</h3>
                 <p>Our team provides expert setup and optimization of networking systems to ensure seamless connectivity.</p>
-                <a href="services.html" class="btn-3d">View More</a>
             </div>
         </div>
+        <a href="services.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- Testimonials Section -->
@@ -393,15 +393,14 @@
                 <div class="icon-box"><i class="fas fa-user-check"></i></div>
                 <h3>Exceptional Service</h3>
                 <p>"Elan's Tech World transformed our operations with their custom web solutions, making our business more efficient!"</p>
-                <a href="testimonials.html" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-thumbs-up"></i></div>
                 <h3>Highly Recommend</h3>
                 <p>"Their networking solutions helped streamline our processes and improved our connectivity across the office."</p>
-                <a href="testimonials.html" class="btn-3d">View More</a>
             </div>
         </div>
+        <a href="testimonials.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- FAQ Section -->
@@ -413,15 +412,14 @@
                 <div class="icon-box"><i class="fas fa-headset"></i></div>
                 <h3>24/7 Support</h3>
                 <p>We provide round-the-clock support to assist you with any technical issues you may encounter.</p>
-                <a href="faq.html" class="btn-3d">View More</a>
             </div>
             <div class="card">
                 <div class="icon-box"><i class="fas fa-cogs"></i></div>
                 <h3>Custom Solutions</h3>
                 <p>Yes, we offer fully custom IT solutions that are designed to fit the unique needs of your business.</p>
-                <a href="faq.html" class="btn-3d">View More</a>
             </div>
         </div>
+        <a href="faq.html" class="btn-3d">Learn More</a>
     </section>
 
     <!-- Instagram Section -->
@@ -430,21 +428,20 @@
         <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
     </section>
 
-<!-- Contact Us Section -->
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>If you have any questions or inquiries, feel free to reach out!</p>
-    <div class="contact-form">
-        <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <p>Or you can also call us at <a href="tel:+1234567890" style="color: #d4af37;">+1 234 567 890</a>.</p>
-    </div>
-</section>
-
+    <!-- Contact Us Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or inquiries, feel free to reach out!</p>
+        <div class="contact-form">
+            <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p>Or you can also call us at <a href="tel:+1234567890" style="color: #d4af37;">+1 234 567 890</a>.</p>
+        </div>
+    </section>
 
     <!-- Elfsight Script for Instagram Widget -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
