@@ -160,11 +160,16 @@
             }
         }
 
-        /* Section Styles with Parallax Backgrounds */
+        /* Futuristic Glassmorphism Sections */
         section {
             padding: 100px 20px;
             text-align: center;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         section h2 {
@@ -176,12 +181,20 @@
             color: #0b1f3f;
         }
 
-        /* Button Styling for Sections */
+        section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
         .btn-section {
             display: inline-block;
             padding: 12px 30px;
-            background-color: #d4af37;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid #d4af37;
             color: #fff;
+            backdrop-filter: blur(10px);
             border-radius: 50px;
             font-weight: bold;
             text-transform: uppercase;
@@ -189,153 +202,68 @@
         }
 
         .btn-section:hover {
-            background-color: #b8992c;
+            background-color: #d4af37;
+            color: white;
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .parallax-bg {
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        /* About Us Section */
-        .about-section {
-            background-color: #f9f9f9;
-        }
-
-        .about-grid {
+        /* Card Style - Floating and Futuristic */
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .about-card {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .about-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Services Section with Hover Animation */
-        .services-section {
-            background-color: #f9f9f9;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
-            margin-top: 40px;
+            width: 100%;
         }
 
-        .service-card {
-            background: #fff;
-            padding: 40px;
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .service-card i {
-            font-size: 3rem;
-            color: #d4af37;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover i {
-            transform: rotate(360deg);
-        }
-
-        /* Testimonials Section with Dynamic Shadow */
-        .testimonials-section {
-            background-color: #0b1f3f;
-            color: white;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .testimonial-card {
-            background-color: #1a2d5a;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        .testimonial-card:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            background-color: #fff;
-        }
-
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .faq-card {
-            background-color: #f9f9f9;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .faq-card:hover {
+        .card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
-        /* Contact Section */
-        .contact-section {
-            background-color: #0b1f3f;
-            color: white;
-            padding: 100px 20px;
+        .card h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 20px;
         }
 
-        .contact-info {
-            font-size: 1.5rem;
+        .card p {
+            font-size: 1rem;
+            color: #ccc;
         }
 
-        .contact-info a {
-            color: #d4af37;
-            font-weight: bold;
-            text-decoration: none;
+        /* Animations for Glassmorphism */
+        section[data-aos] {
+            position: relative;
+            z-index: 2;
         }
 
-        .contact-info a:hover {
-            color: #b8992c;
+        section[data-aos]:before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: -1;
+            transform: rotate(30deg);
+            opacity: 0.5;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
-            .about-grid,
-            .services-grid,
-            .testimonials-grid,
-            .faq-grid {
+            .card-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -374,41 +302,79 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="about-section">
+    <section id="about" class="about-section" data-aos="fade-up">
         <h2>About Us</h2>
         <p>We specialize in providing custom technology solutions that help your business thrive.</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Customized Solutions</h3>
+                <p>Tailored tech services that fit your business needs, empowering your growth.</p>
+            </div>
+            <div class="card">
+                <h3>Expert Support</h3>
+                <p>Round-the-clock tech support from experienced professionals.</p>
+            </div>
+        </div>
         <a href="about.html" class="btn-section">Learn More</a>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
+    <section id="services" class="services-section" data-aos="fade-up">
         <h2>Our Services</h2>
         <p>Explore our wide range of services, from web design to IT support, tailored to meet your business needs.</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Web Design</h3>
+                <p>Customized web design solutions that make your business stand out.</p>
+            </div>
+            <div class="card">
+                <h3>Mobile Optimization</h3>
+                <p>Responsive, mobile-friendly designs to ensure accessibility across all devices.</p>
+            </div>
+            <div class="card">
+                <h3>Networking Solutions</h3>
+                <p>Expert setup and optimization of networking systems for seamless connectivity.</p>
+            </div>
+        </div>
         <a href="services.html" class="btn-section">View More</a>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
+    <section id="testimonials" class="testimonials-section" data-aos="fade-up">
         <h2>Client Testimonials</h2>
         <p>Don’t just take our word for it, see what our clients have to say about working with us!</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Outstanding Service</h3>
+                <p>“Elan's Tech World transformed our business operations with their custom web solutions!”</p>
+            </div>
+            <div class="card">
+                <h3>Efficient Networks</h3>
+                <p>“Their networking solutions made our office run smoother than ever!”</p>
+            </div>
+        </div>
         <a href="testimonials.html" class="btn-section">See More</a>
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
+    <section id="faq" class="faq-section" data-aos="fade-up">
         <h2>Frequently Asked Questions</h2>
         <p>Find answers to common questions about our services and support.</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Support 24/7</h3>
+                <p>Our support team is available around the clock to assist you with any issues.</p>
+            </div>
+            <div class="card">
+                <h3>Seamless Solutions</h3>
+                <p>We offer seamless integrations and custom IT solutions for your business.</p>
+            </div>
+        </div>
         <a href="faq.html" class="btn-section">Read FAQs</a>
     </section>
 
-    <!-- Instagram Feed Section -->
-    <section id="instagram" class="instagram-section">
-        <h2>Follow Us on Instagram</h2>
-        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-    </section>
-
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section" data-aos="fade-up">
         <h2>Contact Us</h2>
         <p>Have any questions or need assistance? Get in touch with our team.</p>
         <a href="contact.html" class="btn-section">Contact Us</a>
