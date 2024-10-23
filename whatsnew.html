@@ -187,68 +187,43 @@
         /* Events Grid */
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
             padding: 0 20px;
         }
 
         /* Event Cards */
         .event {
             background-color: #fff;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
         }
 
-        .event-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px 15px 0 0;
+        .event img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .event-slider img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .event:hover img {
+            transform: scale(1.05);
         }
 
         .event h3 {
-            font-size: 1.8em;
-            color: #0b1f3f;
-            padding: 15px;
-        }
-
-        .event-description {
-            padding: 0 15px 15px;
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        /* Image Slider Navigation */
-        .event .prev, .event .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #333;
             font-size: 2em;
-            cursor: pointer;
+            color: #0b1f3f;
+            padding: 20px 30px 10px;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .event .prev {
-            left: 10px;
-        }
-
-        .event .next {
-            right: 10px;
-        }
-
-        .event:hover {
-            transform: translateY(-5px);
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        .event p {
+            padding: 0 30px 20px;
+            font-size: 1.1em;
+            color: #666;
         }
 
         /* Responsive Styles */
@@ -324,41 +299,21 @@
     <!-- Events Grid -->
     <div class="events-grid">
         <div class="event" data-aos="fade-up">
-            <div class="event-slider">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" class="active" alt="East Coast Realty 1">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="East Coast Realty">
             <h3>East Coast Realty Website</h3>
-            <div class="event-description">
-                <p>We've developed a modern real estate platform with advanced property search and lead generation features for East Coast Realty.</p>
-            </div>
+            <p>We've developed a modern real estate platform with advanced property search and lead generation features for East Coast Realty.</p>
         </div>
 
         <div class="event" data-aos="fade-up">
-            <div class="event-slider">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohen.jpg?raw=true" class="active" alt="Cohen and Associates 1">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohen.jpg?raw=true" alt="Cohen and Associates">
             <h3>Cohen and Associates Website</h3>
-            <div class="event-description">
-                <p>A sleek corporate site optimized for client interaction, reflecting the professionalism of Cohen and Associates.</p>
-            </div>
+            <p>A sleek corporate site optimized for client interaction, reflecting the professionalism of Cohen and Associates.</p>
         </div>
 
         <div class="event" data-aos="fade-up">
-            <div class="event-slider">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_9600.jpeg?raw=true" class="active" alt="East Coast Setup 1">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_1055.jpeg?raw=true" alt="East Coast Setup 2">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_1053.jpeg?raw=true" alt="East Coast Setup 3">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_9600.jpeg?raw=true" alt="East Coast Realty Setup">
             <h3>East Coast Realty Computer Setup</h3>
-            <div class="event-description">
-                <p>We provided a full-scale computer setup and network installation for East Coast Realty, tailored to the fast-paced demands of the real estate industry.</p>
-            </div>
+            <p>For East Coast Realty, we provided a full-scale computer setup and network installation tailored to the fast-paced demands of the real estate industry.</p>
         </div>
     </div>
 </section>
@@ -377,36 +332,6 @@
     hamburger.addEventListener('click', function() {
         mobileNav.classList.toggle('active');
         hamburger.classList.toggle('active');
-    });
-
-    // Toggle Description Script
-    const toggles = document.querySelectorAll('.toggle-description');
-    toggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const event = this.closest('.event');
-            event.classList.toggle('active');
-        });
-    });
-
-    // Image Slider Script
-    const sliders = document.querySelectorAll('.event-slider');
-    sliders.forEach(slider => {
-        let currentIndex = 0;
-        const images = slider.querySelectorAll('img');
-        const prevButton = slider.querySelector('.prev');
-        const nextButton = slider.querySelector('.next');
-
-        prevButton.addEventListener('click', () => {
-            images[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
-            images[currentIndex].classList.add('active');
-        });
-
-        nextButton.addEventListener('click', () => {
-            images[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
-            images[currentIndex].classList.add('active');
-        });
     });
 </script>
 
