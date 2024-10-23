@@ -10,269 +10,269 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    overflow-x: hidden;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-/* Header */
-header {
-    background-color: #0b1f3f;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
+        /* Header */
+        header {
+            background-color: #0b1f3f;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: auto;
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
 
-header .logo img {
-    height: 75px;
-}
+        header .logo img {
+            height: 75px;
+        }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-}
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    padding: 8px 15px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-header nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
-}
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
 
-/* Hamburger Menu */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    position: relative;
-    transition: transform 0.5s ease;
-}
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
 
-.hamburger div {
-    width: 100%;
-    height: 4px;
-    background-color: white;
-    border-radius: 10px;
-    position: absolute;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            border-radius: 10px;
+            position: absolute;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
 
-.hamburger.active div:nth-child(1) {
-    transform: translateY(12px) rotate(45deg);
-}
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(12px) rotate(45deg);
+        }
 
-.hamburger.active div:nth-child(2) {
-    opacity: 0;
-}
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
 
-.hamburger.active div:nth-child(3) {
-    transform: translateY(-12px) rotate(-45deg);
-}
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-12px) rotate(-45deg);
+        }
 
-/* Mobile Nav Menu */
-.mobile-nav {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: #0b1f3f;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    left: 0;
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
+        /* Mobile Nav Menu */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-.mobile-nav.active {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-}
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.mobile-nav li {
-    margin: 10px 0;
-}
+        .mobile-nav li {
+            margin: 10px 0;
+        }
 
-.mobile-nav li a {
-    color: white;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 10px;
-    transition: color 0.3s ease;
-}
+        .mobile-nav li a {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
 
-.mobile-nav li a:hover {
-    color: #d4af37;
-}
+        .mobile-nav li a:hover {
+            color: #d4af37;
+        }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
-                url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexback2.jpeg?raw=true') no-repeat center center/cover;
-    height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    padding: 20px;
-    margin-top: 70px;
-}
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
+                        url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexback2.jpeg?raw=true') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            margin-top: 70px;
+        }
 
-/* Parallax effect only on large screens */
-@media (min-width: 769px) {
-    .hero {
-        background-attachment: fixed; /* Parallax effect for large screens */
-    }
-}
+        /* Parallax effect only on large screens */
+        @media (min-width: 769px) {
+            .hero {
+                background-attachment: fixed; /* Parallax effect for large screens */
+            }
+        }
 
-.hero h1 {
-    font-size: 3em;
-    font-family: 'Montserrat', sans-serif;
-}
+        .hero h1 {
+            font-size: 3em;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.hero p {
-    font-size: 1.5em;
-}
+        .hero p {
+            font-size: 1.5em;
+        }
 
-/* Content Section */
-.content {
-    padding: 80px 20px;
-    text-align: center;
-}
+        /* Content Section */
+        .content {
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-.content h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #0b1f3f;
-}
+        .content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #0b1f3f;
+        }
 
-.content p {
-    font-size: 1.2em;
-    color: #555;
-    margin-bottom: 40px;
-}
+        .content p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 40px;
+        }
 
-/* Events Grid */
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 0 20px;
-}
+        /* Events Grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
 
-/* Event Cards */
-.event {
-    background-color: #fff;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
+        /* Event Cards */
+        .event {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
 
-.event-slider {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px 15px 0 0;
-}
+        .event-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px 15px 0 0;
+        }
 
-.event-slider img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
+        .event-slider img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
 
-.event h3 {
-    font-size: 1.8em;
-    color: #0b1f3f;
-    padding: 15px;
-}
+        .event h3 {
+            font-size: 1.8em;
+            color: #0b1f3f;
+            padding: 15px;
+        }
 
-.event-description {
-    padding: 0 15px 15px;
-    font-size: 1.1em;
-    color: #555;
-}
+        .event-description {
+            padding: 0 15px 15px;
+            font-size: 1.1em;
+            color: #555;
+        }
 
-/* Image Slider Navigation */
-.event .prev, .event .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 2em;
-    cursor: pointer;
-}
+        /* Image Slider Navigation */
+        .event .prev, .event .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 2em;
+            cursor: pointer;
+        }
 
-.event .prev {
-    left: 10px;
-}
+        .event .prev {
+            left: 10px;
+        }
 
-.event .next {
-    right: 10px;
-}
+        .event .next {
+            right: 10px;
+        }
 
-.event:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
+        .event:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    header nav ul {
-        display: none;
-    }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
 
-    .hamburger {
-        display: block;
-    }
+            .hamburger {
+                display: block;
+            }
 
-    .hero h1 {
-        font-size: 2em;
-    }
+            .hero h1 {
+                font-size: 2em;
+            }
 
-    .hero p {
-        font-size: 1.2em;
-    }
+            .hero p {
+                font-size: 1.2em;
+            }
 
-    .events-grid {
-        grid-template-columns: 1fr;
-    }
-}
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -333,14 +333,11 @@ header nav ul li a:hover {
             <div class="event-description">
                 <p>We've developed a modern real estate platform with advanced property search and lead generation features for East Coast Realty.</p>
             </div>
-            <button class="toggle-description"><i class="fas fa-chevron-down"></i></button>
         </div>
 
         <div class="event" data-aos="fade-up">
             <div class="event-slider">
-                <img src="path/to/your-image1.jpg" class="active" alt="Cohen and Associates 1">
-                <img src="path/to/your-image2.jpg" alt="Cohen and Associates 2">
-                <img src="path/to/your-image3.jpg" alt="Cohen and Associates 3">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohen.jpg?raw=true" class="active" alt="Cohen and Associates 1">
                 <button class="prev"><i class="fas fa-chevron-left"></i></button>
                 <button class="next"><i class="fas fa-chevron-right"></i></button>
             </div>
@@ -348,22 +345,20 @@ header nav ul li a:hover {
             <div class="event-description">
                 <p>A sleek corporate site optimized for client interaction, reflecting the professionalism of Cohen and Associates.</p>
             </div>
-            <button class="toggle-description"><i class="fas fa-chevron-down"></i></button>
         </div>
 
-         <div class="event" data-aos="fade-up">
+        <div class="event" data-aos="fade-up">
             <div class="event-slider">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_9600.jpeg?raw=true" class="active" alt="Cohen and Associates 1">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_1055.jpeg?raw=true" alt="Cohen and Associates 2">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_1053.jpeg?raw=true" alt="Cohen and Associates 3">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_9600.jpeg?raw=true" class="active" alt="East Coast Setup 1">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_1055.jpeg?raw=true" alt="East Coast Setup 2">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/IMG_1053.jpeg?raw=true" alt="East Coast Setup 3">
                 <button class="prev"><i class="fas fa-chevron-left"></i></button>
                 <button class="next"><i class="fas fa-chevron-right"></i></button>
             </div>
             <h3>East Coast Realty Computer Setup</h3>
             <div class="event-description">
-                <p>For East Coast Realty, we provided a full-scale computer setup and network installation tailored to the fast-paced demands of the real estate industry. Our services included configuring workstations, setting up secure office servers, and ensuring seamless connectivity across all devices. The result is a highly efficient, technology-driven office environment that supports team collaboration, streamlines client interactions, and enhances overall productivity. Our careful attention to detail ensures their team can focus on real estate while we handle the tech.</p>
+                <p>We provided a full-scale computer setup and network installation for East Coast Realty, tailored to the fast-paced demands of the real estate industry.</p>
             </div>
-            <button class="toggle-description"><i class="fas fa-chevron-down"></i></button>
         </div>
     </div>
 </section>
