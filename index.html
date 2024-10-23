@@ -10,6 +10,8 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Elf Widget Script -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -91,31 +93,30 @@
             top: 100%;
             width: 100%;
             left: 0;
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
             transition: opacity 0.5s ease;
         }
 
         .mobile-nav.active {
             display: flex;
-            opacity: 1; /* Show when active */
+            opacity: 1;
         }
 
         .mobile-nav li {
             margin: 10px 0;
-            opacity: 0; /* Initially hidden for animation */
-            transform: translateY(-10px); /* Start slightly above */
-            transition: opacity 0.5s ease, transform 0.5s ease; /* Animation */
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .mobile-nav.active li {
-            opacity: 1; /* Fade in */
-            transform: translateY(0); /* Move to original position */
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section with Parallax */
         .hero {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
-            background-attachment: fixed; /* Parallax effect */
             height: 70vh;
             display: flex;
             flex-direction: column;
@@ -124,7 +125,14 @@
             text-align: center;
             color: white;
             padding: 20px;
-            margin-top: 70px; /* Space for fixed header */
+            margin-top: 70px;
+        }
+
+        /* Parallax only on desktop */
+        @media (min-width: 769px) {
+            .hero {
+                background-attachment: fixed;
+            }
         }
 
         .hero h1 {
@@ -213,7 +221,7 @@
         #instagram {
             padding: 50px 0;
             text-align: center;
-            background: #0b1f3f; /* Background color for the Instagram section */
+            background: #0b1f3f;
         }
 
         #instagram h2 {
@@ -257,8 +265,8 @@
             border: none;
             border-radius: 5px;
             font-size: 1rem;
-            background: rgba(255, 255, 255, 0.1); /* Match background */
-            color: white; /* Text color */
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         .contact-form button {
@@ -425,15 +433,9 @@
 
     <!-- Instagram Section -->
     <section id="instagram">
-    <h2>Follow Us on Instagram</h2>
-    <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-</section>
-
-    <section id="contact">
-    ...
-    <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
-    ...
-</section>
+        <h2>Follow Us on Instagram</h2>
+        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
+    </section>
 
     <!-- Contact Us Section -->
     <section id="contact">
@@ -448,31 +450,32 @@
                 <button type="submit">Send Message</button>
             </form>
             <p>Or you can also call us at <a href="tel:+1234567890" style="color: #f9c200;">+1 234 567 890</a>.</p>
+            <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1000, // Duration of the animations
-            once: true // Whether animation should happen only once
+            duration: 1000,
+            once: true
         });
 
         // Hamburger Menu Script
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
 
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function () {
             mobileNav.classList.toggle('active');
             const links = mobileNav.querySelectorAll('li');
             links.forEach((link, index) => {
                 if (mobileNav.classList.contains('active')) {
                     link.style.transitionDelay = `${index * 100}ms`;
-                    link.style.opacity = '1'; // Fade in
-                    link.style.transform = 'translateY(0)'; // Slide down
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateY(0)';
                 } else {
-                    link.style.opacity = '0'; // Fade out
-                    link.style.transform = 'translateY(-10px)'; // Slide up
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateY(-10px)';
                 }
             });
         });
