@@ -149,6 +149,13 @@ header nav ul li a:hover {
     margin-top: 70px;
 }
 
+/* Parallax effect only on large screens */
+@media (min-width: 769px) {
+    .hero {
+        background-attachment: fixed; /* Parallax effect for large screens */
+    }
+}
+
 .hero h1 {
     font-size: 3em;
     font-family: 'Montserrat', sans-serif;
