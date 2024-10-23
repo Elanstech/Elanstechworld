@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -116,15 +117,10 @@
             margin-top: 70px;
         }
 
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .hero p {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+        @media (min-width: 769px) {
+            .hero {
+                background-attachment: fixed; /* Parallax effect for desktop */
+            }
         }
 
         /* Main Content Section */
@@ -190,6 +186,17 @@
         }
 
         /* Portfolio Image Styles */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px auto;
+        }
+
+        .portfolio-item {
+            text-align: center;
+        }
+
         .portfolio-item img {
             width: 100%;
             height: auto;
@@ -319,7 +326,7 @@
 
         <h2>Portfolio</h2>
         <div class="portfolio">
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
                 <a href="https://www.laurasbeautytouch.com" target="_blank">
                     <img src="https://github.com/Elanstech/Elanstechworld/blob/main/beautyweb.jpeg?raw=true" alt="Laura's Beauty Touch Website">
                 </a>
@@ -327,7 +334,7 @@
                 <p>A modern and chic design for a beauty salon, focused on ease of booking and client engagement.</p>
             </div>
 
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
                 <a href="https://www.eastcoastrealtybyzarina.com" target="_blank">
                     <img src="https://github.com/Elanstech/Elanstechworld/blob/main/coastweb.jpeg?raw=true" alt="East Coast Realty Website">
                 </a>
@@ -335,12 +342,20 @@
                 <p>A professional real estate website with intuitive property search and lead generation features.</p>
             </div>
 
-            <div class="portfolio-item">
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
                 <a href="http://cohen-associates.com" target="_blank">
                     <img src="https://github.com/Elanstech/Elanstechworld/blob/main/cohenweb.jpeg?raw=true" alt="Cohen and Associates Website">
                 </a>
                 <h3>Cohen and Associates</h3>
                 <p>A sleek, corporate site optimized for seamless client interaction and brand authority.</p>
+            </div>
+
+            <div class="portfolio-item" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://iconicaesthetics.com" target="_blank">
+                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconicaesthetics.jpeg?raw=true" alt="Iconic Aesthetics Website">
+                </a>
+                <h3>Iconic Aesthetics</h3>
+                <p>An elegant and minimalist design for a luxury skincare brand, enhancing client experiences through easy navigation.</p>
             </div>
         </div>
 
@@ -349,7 +364,13 @@
         <a href="contact.html" class="cta-button">Schedule a Consultation</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
 
