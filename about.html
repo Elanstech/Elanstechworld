@@ -137,19 +137,15 @@
             font-size: 1.5em;
         }
 
-        /* Section Styles */
-        section {
-            padding: 50px 0;
+        /* About Us Section */
+        .about-section {
+            padding: 100px 20px;
             text-align: center;
+            background: #0b1f3f;
+            color: #fff;
         }
 
-        .section-title {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #f9c200;
-        }
-
-        .card-grid {
+        .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -157,39 +153,51 @@
             margin: auto;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.1);
+        .about-card {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
 
-        .card:hover {
+        .about-card:hover {
             transform: translateY(-10px);
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .service-icon {
-            font-size: 4em;
-            color: #f9c200;
+        .card-icon {
+            font-size: 3em;
             margin-bottom: 20px;
+            color: #ffd700;
         }
 
-        .service-title {
+        .card-title {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.8em;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
-        .service-description {
+        .card-description {
             font-size: 1.1em;
             line-height: 1.6;
-            color: #ddd;
+        }
+
+        /* About Us Cards */
+        .mission, .values, .why-choose-us {
+            padding: 20px;
+        }
+
+        .about-grid ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .about-grid ul li {
+            margin: 10px 0;
         }
 
         /* Explore More Button */
@@ -197,7 +205,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #f9c200;
+            background-color: #ffd700;
             color: #0b1f3f;
             text-decoration: none;
             font-weight: 600;
@@ -206,7 +214,7 @@
         }
 
         .explore-btn:hover {
-            background-color: #ffd600;
+            background-color: #ffcc00;
         }
 
         /* Responsive Styles */
@@ -270,31 +278,47 @@
     </section>
 
     <!-- About Us Content Section -->
-    <section id="about">
+    <section id="about" class="about-section">
         <h2 class="section-title">Who We Are</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Who We Are</h3>
-                <p class="service-description">
-                    We specialize in delivering custom technology solutions designed to streamline your business.
-                </p>
-                <a href="services.html" class="explore-btn">View More</a>
+        <div class="about-grid">
+            <div class="about-card mission" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Our Mission</h3>
+                    <p class="card-description">
+                        At Elan's Tech World, our mission is to empower businesses with cutting-edge technology solutions that enhance efficiency and drive growth. We believe in the transformative power of technology and aim to deliver exceptional services that make a lasting impact.
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Us Section -->
-    <section id="contact">
-        <h2 class="section-title">Contact Us</h2>
-        <p>Have any questions or inquiries? We're here to help you!</p>
-        <div class="contact-form">
-            <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-                <button type="submit" class="explore-btn">Send Message</button>
-            </form>
-            <p>Or you can also call us at <a href="tel:+1234567890" style="color: #f9c200;">+1 234 567 890</a>.</p>
+            <div class="about-card values" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Our Values</h3>
+                    <ul class="card-description">
+                        <li><strong>Innovation:</strong> We continuously explore new and creative solutions tailored to our clients' needs.</li>
+                        <li><strong>Quality:</strong> We hold ourselves to the highest standards to deliver reliable and robust technology services.</li>
+                        <li><strong>Customer-Centric:</strong> Your success is our top priority, and we strive to build lasting relationships through trust and transparency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="about-card why-choose-us" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon">
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Why Choose Us?</h3>
+                    <p class="card-description">
+                        With years of experience and a passion for tech, we specialize in providing expert computer setups, custom web design, Apple product resales, and tech consultation services. Whether you’re a small business seeking tailored solutions or an established enterprise looking to optimize your operations, we are committed to exceeding your expectations.
+                    </p>
+                    <a href="services.html" class="explore-btn">Explore Our Services</a>
+                </div>
+            </div>
         </div>
     </section>
 
