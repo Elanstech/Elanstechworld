@@ -204,9 +204,12 @@
 
         .event img {
             width: 100%;
-            height: auto;
-            object-fit: cover;
+            height: 300px;
+            object-fit: cover; /* Maintain aspect ratio and cover the container */
             transition: transform 0.3s ease;
+            position: absolute; /* Make all images overlay on each other */
+            top: 0;
+            left: 0;
         }
 
         .event:hover img {
@@ -218,27 +221,32 @@
             color: #0b1f3f;
             padding: 20px 30px 10px;
             font-family: 'Montserrat', sans-serif;
+            position: relative; /* Bring title above image */
+            z-index: 2;
         }
 
         .event p {
             padding: 0 30px 20px;
             font-size: 1.1em;
             color: #666;
+            position: relative; /* Bring text above image */
+            z-index: 2;
         }
 
         /* Image Slider */
         .event-slider {
             position: relative;
-        }
-
-        .event-slider img {
-            position: absolute;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            height: 300px; /* Fix height of slider */
         }
 
         .event-slider img.active {
             opacity: 1;
+            z-index: 1;
+        }
+
+        .event-slider img {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
         }
 
         /* Responsive Styles */
