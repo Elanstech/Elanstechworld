@@ -133,26 +133,28 @@
         }
 
         .slide {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-size: cover;
-            background-position: center;
-            transition: opacity 1s ease-in-out;
-            opacity: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            color: white;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-size: cover;
+        background-position: center;
+        transition: opacity 1s ease-in-out;
+        opacity: 0; /* Default hidden */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        color: white;
+        
         }
 
         .slide.active {
-            opacity: 1;
-            z-index: 1;
+        opacity: 1; /* Fully visible when active */
+        z-index: 1;
+        
         }
 
         .slide:nth-child(1) {
