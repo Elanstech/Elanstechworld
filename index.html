@@ -15,208 +15,183 @@
     <!-- Elf Widget Script -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #0b1f3f; /* Deep navy background for theme consistency */
-    color: #fff; /* White text color for readability */
-    overflow-x: hidden; /* Prevent unwanted horizontal scrolling */
-}
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b1f3f;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-/* Smooth scrolling across the entire page */
-html {
-    scroll-behavior: smooth;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* Header Styling */
-header {
-    background-color: #0b1f3f;
-    padding: 15px 0;
-    position: fixed; /* Sticky header */
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Keep header above other elements */
-    transition: top 0.6s; /* Smooth header transition for scroll effects */
-}
+        /* Header Styling */
+        header {
+            background-color: #0b1f3f;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: top 0.6s;
+        }
 
-/* Header Container */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: auto;
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
 
-/* Logo Styling */
-header .logo img {
-    height: 75px;
-    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7)); /* Soft shadow for a cleaner look */
-    src: url('https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true'); /* Logo image reference */
-}
+        header .logo img {
+            height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
+        }
 
-/* Desktop Navigation Styling */
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-}
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
 
-/* Navigation Link Styling */
-header nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    padding: 8px 15px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-/* Hover Effect for Navigation Links */
-header nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
 
-/* Hamburger Menu for Mobile */
-.hamburger {
-    display: none; /* Hidden on larger screens */
-    cursor: pointer;
-}
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
 
-/* Hamburger Menu Lines */
-.hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
 
-/* Mobile Navigation Styling */
-.mobile-nav {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: #0b1f3f;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
 
-/* Active Mobile Navigation */
-.mobile-nav.active {
-    display: flex;
-    opacity: 1;
-}
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+        }
 
-/* Mobile Navigation Links */
-.mobile-nav li {
-    margin: 10px 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
+        .mobile-nav li {
+            margin: 10px 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-/* Active Mobile Navigation Links */
-.mobile-nav.active li {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .mobile-nav.active li {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* Hero Section Styling */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Full screen height */
-    overflow: hidden;
-}
+        /* Hero Section Styling */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
 
-/* Particles Container */
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
 
-/* Slide Styling */
-.slide {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    transition: opacity 1s ease-in-out;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    color: white;
-}
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+        }
 
-/* Active Slide */
-.slide.active {
-    opacity: 1;
-    z-index: 1;
-}
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
 
-/* Different backgrounds for each slide */
-.slide:nth-child(1) {
-    background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center / cover;
-}
+        .slide:nth-child(1) {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center / cover;
+        }
 
-.slide:nth-child(2) {
-    background: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true') no-repeat center center / cover;
-}
+        .slide:nth-child(2) {
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true') no-repeat center center / cover;
+        }
+         
+        .overlay p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
 
-/* Hero Overlay Text */
-.overlay h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
+        .explore-btn {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-.overlay p {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
+        .explore-btn:hover {
+            background-color: #ffd600;
+        }
 
-/* Explore Button in Hero Section */
-.explore-btn {
-    padding: 10px 20px;
-    background-color: #f9c200;
-    color: #0b1f3f;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* Hover Effect for Explore Button */
-.explore-btn:hover {
-    background-color: #ffd600;
-}
-
-/* Scroll Down Arrow Styling */
-.scroll-down {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2em;
-    color: #f9c200;
-    animation: bounce 2s infinite;
-    z-index: 2;
-}
+        .scroll-down {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            color: #f9c200;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
 
 /* Bounce Animation for Scroll Down Arrow */
 @keyframes bounce {
@@ -427,14 +402,11 @@ header nav ul li a:hover {
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
-
-            <!-- Hamburger Menu for Mobile -->
             <div class="hamburger" id="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-
             <ul class="mobile-nav" id="mobile-nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -450,6 +422,8 @@ header nav ul li a:hover {
     <!-- Hero Section with Particles and Scroll Down Arrow -->
     <section class="hero" id="hero">
         <div id="particles-js"></div>
+        <div class="slide active"></div>
+        <div class="slide"></div>
         <div class="overlay">
             <h1 class="hero-title">Welcome To Elan's Tech World</h1>
             <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
@@ -564,12 +538,9 @@ header nav ul li a:hover {
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
 
         // JavaScript for Dynamic Slide Transitions
         let currentSlide = 0;
@@ -613,74 +584,22 @@ header nav ul li a:hover {
                         "value_area": 800
                     }
                 },
-                "color": {
-                    "value": "#ffffff"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    }
-                },
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 6 }
             },
             "interactivity": {
                 "detect_on": "canvas",
                 "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    }
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
                 }
             },
             "retina_detect": true
         });
     </script>
 </body>
-
 </html>
