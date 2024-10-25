@@ -10,10 +10,11 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Particle.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- Elf Widget Script -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
-        /* Add the provided CSS here */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -35,6 +36,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
+            transition: top 0.6s;
         }
 
         .header-container {
@@ -64,11 +66,6 @@
             padding: 8px 15px;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
             transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
         }
 
         /* Hamburger Menu */
@@ -118,8 +115,15 @@
         .hero {
             position: relative;
             width: 100%;
-            height: 70vh;
+            height: 100vh;
             overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
         .slide {
@@ -177,12 +181,31 @@
 
         .explore-btn:hover {
             background-color: #ffd600;
+        
+        }
+            .scroll-down {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            color: #f9c200;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+       
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
         }
 
         /* Parallax effect only on large screens */
         @media (min-width: 769px) {
-            .slide:nth-child(1),
-            .slide:nth-child(2) {
+            .slide {
                 background-attachment: fixed;
             }
         }
@@ -202,6 +225,13 @@
             }
         }
 
+        /* Parallax effect only on large screens */
+        @media (min-width: 769px) {
+            .slide:nth-child(1),
+            .slide:nth-child(2) {
+                background-attachment: fixed;
+            }
+        }
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -378,7 +408,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href=".html"></a></li>
+                    <li><a href="services.html">Services</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="whatsnew.html">See What's New</a></li>
@@ -396,7 +426,7 @@
             <ul class="mobile-nav" id="mobile-nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href=".html"></a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="whatsnew.html">See What's New</a></li>
@@ -405,21 +435,16 @@
         </div>
     </header>
 
-    <!-- Hero Section with Dynamic Slider and Parallax Effect -->
+    <!-- Hero Section with Particles and Scroll Down Arrow -->
     <section class="hero" id="hero">
-        <div class="slide active">
-            <div class="overlay">
-                <h1 class="hero-title">Welcome To Elan's Tech World </h1>
-                <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
-                <a href=".html" class="explore-btn">View Our  →</a>
-            </div>
+        <div id="particles-js"></div>
+        <div class="overlay">
+            <h1 class="hero-title">Welcome To Elan's Tech World</h1>
+            <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
+            <a href="#services" class="explore-btn">View Our Services →</a>
         </div>
-        <div class="slide">
-            <div class="overlay">
-                <h1 class="hero-title">Check Our Blog</h1>
-                <p class="hero-description">See how we empower people with our cutting-edge technology solutions.</p>
-                <a href="whatsnew.html" class="explore-btn">View →</a>
-            </div>
+        <div class="scroll-down">
+            <i class="fas fa-angle-down"></i>
         </div>
     </section>
 
@@ -527,7 +552,7 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 1000,
@@ -564,6 +589,84 @@
                     link.style.transform = 'translateY(-10px)';
                 }
             });
+        });
+
+        // Particles.js Initialization
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    }
+                }
+            },
+            "retina_detect": true
         });
     </script>
 </body>
