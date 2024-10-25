@@ -130,31 +130,30 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            pointer-events: none;
         }
 
         .slide {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-size: cover;
-        background-position: center;
-        transition: opacity 1s ease-in-out;
-        opacity: 0; /* Default hidden */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        color: white;
-        
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            color: white;
         }
 
         .slide.active {
-        opacity: 1; /* Fully visible when active */
-        z-index: 1;
-        
+            opacity: 1;
+            z-index: 0;
         }
 
         .slide:nth-child(1) {
@@ -164,7 +163,23 @@
         .slide:nth-child(2) {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true') no-repeat center center / cover;
         }
-         
+
+        .overlay {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .overlay h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
         .overlay p {
             font-size: 1.5em;
             margin-bottom: 20px;
@@ -192,196 +207,197 @@
             font-size: 2em;
             color: #f9c200;
             animation: bounce 2s infinite;
-            z-index: 2;
+            z-index: 3;
         }
 
-/* Bounce Animation for Scroll Down Arrow */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
 
-/* Parallax Effect for Slides */
-@media (min-width: 769px) {
-    .slide {
-        background-attachment: fixed;
-    }
-}
+        @media (min-width: 769px) {
+            .slide {
+                background-attachment: fixed;
+            }
+        }
 
-/* Static Backgrounds on Mobile */
-@media (max-width: 768px) {
-    .slide {
-        background-attachment: scroll;
-    }
-    .overlay h1 {
-        font-size: 2em;
-    }
-    .overlay p {
-        font-size: 1.2em;
-    }
-}
+        @media (max-width: 768px) {
+            .slide {
+                background-attachment: scroll;
+            }
 
-/* Services Section Styling */
-.services-section {
-    text-align: center;
-    padding: 50px 0;
-}
+            .overlay h1 {
+                font-size: 2em;
+            }
 
-/* Centered Explore Button in Services Section */
-.services-section .explore-btn {
-    margin: 20px auto 0 auto;
-    display: inline-block;
-}
+            .overlay p {
+                font-size: 1.2em;
+            }
+        }
 
-/* Card Grid Layout */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    width: 90%;
-    margin: auto;
-}
+        /* Services Section Styling */
+        .services-section {
+            text-align: center;
+            padding: 50px 0;
+        }
 
-/* Card Styling */
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
+        /* Centered Explore Button in Services Section */
+        .services-section .explore-btn {
+            margin: 20px auto 0 auto;
+            display: inline-block;
+        }
 
-/* Hover Effect for Cards */
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-}
+        /* Card Grid Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+        }
 
-/* Service Icons in Cards */
-.service-icon {
-    font-size: 4em;
-    color: #f9c200;
-    margin-bottom: 20px;
-}
+        /* Card Styling */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-/* Service Titles in Cards */
-.service-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-}
+        /* Hover Effect for Cards */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
 
-/* Service Descriptions in Cards */
-.service-description {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #ddd;
-}
+        /* Service Icons in Cards */
+        .service-icon {
+            font-size: 4em;
+            color: #f9c200;
+            margin-bottom: 20px;
+        }
 
-/* Section Titles Styling */
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5em;
-    color: #f9c200;
-    text-align: center;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-}
+        /* Service Titles in Cards */
+        .service-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
 
-/* Instagram Section Styling */
-#instagram {
-    padding: 50px 0;
-    text-align: center;
-    background: #0b1f3f;
-}
+        /* Service Descriptions in Cards */
+        .service-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #ddd;
+        }
 
-/* Instagram Section Title */
-#instagram h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #f9c200;
-}
+        /* Section Titles Styling */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #f9c200;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
 
-/* Contact Us Section Styling */
-#contact {
-    padding: 50px 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-}
+        /* Instagram Section Styling */
+        #instagram {
+            padding: 50px 0;
+            text-align: center;
+            background: #0b1f3f;
+        }
 
-/* Contact Us Section Title */
-#contact h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #f9c200;
-}
+        /* Instagram Section Title */
+        #instagram h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
 
-/* Contact Us Section Text */
-#contact p {
-    font-size: 1.1em;
-    margin-bottom: 20px;
-}
+        /* Contact Us Section Styling */
+        #contact {
+            padding: 50px 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
 
-/* Contact Form Styling */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
+        /* Contact Us Section Title */
+        #contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
 
-/* Contact Form Inputs and Textareas */
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
+        /* Contact Us Section Text */
+        #contact p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
 
-/* Contact Form Button Styling */
-.contact-form button {
-    padding: 10px 20px;
-    background-color: #f9c200;
-    color: #0b1f3f;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        /* Contact Form Styling */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-/* Hover Effect for Contact Form Button */
-.contact-form button:hover {
-    background-color: #ffd600;
-}
+        /* Contact Form Inputs and Textareas */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
 
-/* Mobile-Only Styles */
-@media (max-width: 768px) {
-    header nav ul {
-        display: none;
-    }
-    .hamburger {
-        display: block;
-    }
-    .mobile-nav.active {
-        display: flex;
-    }
-}
+        /* Contact Form Button Styling */
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover Effect for Contact Form Button */
+        .contact-form button:hover {
+            background-color: #ffd600;
+        }
+
+        /* Mobile-Only Styles */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
     </style>
 </head>
 
@@ -421,19 +437,20 @@
         </div>
     </header>
 
+    <!-- Hero Section with Particles and Scroll Down Arrow -->
     <section class="hero" id="hero">
-    <div id="particles-js"></div>
-    <div class="slide active"></div>
-    <div class="slide"></div>
-    <div class="overlay">
-        <h1 class="hero-title">Welcome To Elan's Tech World</h1>
-        <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
-        <a href="services.html" class="explore-btn">View Our Services →</a>
-    </div>
-    <div class="scroll-down">
-        <i class="fas fa-angle-down"></i>
-    </div>
-</section>
+        <div id="particles-js"></div>
+        <div class="slide active"></div>
+        <div class="slide"></div>
+        <div class="overlay">
+            <h1 class="hero-title">Welcome To Elan's Tech World</h1>
+            <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
+            <a href="#services" class="explore-btn">View Our Services →</a>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-angle-down"></i>
+        </div>
+    </section>
 
     <!-- Services Section -->
     <section class="services-section" id="services" data-aos="fade-up">
@@ -539,7 +556,7 @@
         </div>
     </section>
 
-   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
 
@@ -603,4 +620,5 @@
         });
     </script>
 </body>
+
 </html>
