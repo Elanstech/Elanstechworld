@@ -63,77 +63,6 @@
             color: #fff;
         }
 
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 30px;
-            height: 30px;
-            position: relative;
-            transition: transform 0.5s ease;
-        }
-
-        .hamburger div {
-            width: 100%;
-            height: 4px;
-            background-color: white;
-            border-radius: 10px;
-            position: absolute;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        .hamburger.active div:nth-child(1) {
-            transform: translateY(12px) rotate(45deg);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: translateY(-12px) rotate(-45deg);
-        }
-
-        /* Mobile Nav Menu */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background-color: #0b1f3f;
-            position: absolute;
-            top: 100%;
-            width: 100%;
-            left: 0;
-            opacity: 0;
-            transform: translateY(-100%);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .mobile-nav.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mobile-nav li {
-            margin: 10px 0;
-        }
-
-        .mobile-nav li a {
-            color: white;
-            font-weight: bold;
-            font-size: 1.2em;
-            padding: 10px;
-            transition: color 0.3s ease;
-        }
-
-        .mobile-nav li a:hover {
-            color: #d4af37;
-        }
-
         /* Hero Section */
         .hero {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
@@ -147,19 +76,6 @@
             color: #fff;
             padding: 20px;
             margin-top: 70px;
-        }
-
-        /* Parallax effect only on large screens */
-        @media (min-width: 769px) {
-            .hero {
-                background-attachment: fixed; /* Parallax effect for large screens */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                background-attachment: scroll; /* Disable parallax effect on mobile devices */
-            }
         }
 
         .hero h1 {
@@ -198,66 +114,70 @@
             padding: 0 20px;
         }
 
-        /* Event Cards */
+        /* Card Flip Container */
         .event {
-            background-color: #fff;
+            perspective: 1000px; /* Container used to set 3D space */
+            height: 400px;
+        }
+
+        /* Event Card Styles */
+        .event-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .event:hover .event-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back Faces */
+        .event-front, .event-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
             border-radius: 20px;
-            overflow: hidden;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-front {
+            background: #fff;
+            color: #333;
+        }
+
+        .event-back {
+            background-color: #0b1f3f;
+            color: #fff;
+            transform: rotateY(180deg);
+            padding: 30px;
         }
 
         /* Image Slider */
-        .event-slider {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
         .event-slider img {
-         width: 100%;
-         height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        z-index: 0;
-        transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
-        transform: scale(0.9); /* Slight zoom out */
-        
-        }
-    
-        .event-slider img.active {
-        opacity: 1;
-        z-index: 1;
-        transform: scale(1); /* Set scale to 1 when active */
-        
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
 
         .event h3 {
             font-size: 2em;
-            color: #0b1f3f;
-            padding: 20px 30px 10px;
+            padding: 20px;
             font-family: 'Montserrat', sans-serif;
+            color: #0b1f3f;
         }
 
         .event p {
-            padding: 0 30px 20px;
             font-size: 1.1em;
-            color: #666;
         }
 
         /* Responsive Styles */
         @media (max-width: 768px) {
-            header nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
             .hero h1 {
                 font-size: 2em;
             }
@@ -283,7 +203,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
@@ -299,7 +219,7 @@
         </div>
     </div>
     <ul class="mobile-nav" id="mobile-nav">
-        <li><a href="#home">Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="testimonials.html">Testimonials</a></li>
