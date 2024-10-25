@@ -114,48 +114,93 @@
             transform: translateY(0);
         }
 
-        /* Hero Section with Parallax */
         .hero {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center/cover;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
-            margin-top: 70px;
-        }
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+}
 
-        /* Parallax only on desktop */
-        @media (min-width: 769px) {
-            .hero {
-                background-attachment: fixed;
-            }
-        }
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+}
 
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-family: 'Montserrat', sans-serif;
-        }
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
 
-        .hero p {
-            font-size: 1.5em;
-        }
+/* Different backgrounds for each slide */
+.slide:nth-child(1) {
+    background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center / cover;
+}
 
-        /* Section Styles */
-        section {
-            padding: 50px 0;
-            text-align: center;
-        }
+.slide:nth-child(2) {
+    background: url('https://github.com/Elanstech/Elanstechworld/blob/main/second-image.png') no-repeat center center / cover;
+}
 
-        .section-title {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #f9c200;
-        }
+.overlay h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.overlay p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.explore-btn {
+    padding: 10px 20px;
+    background-color: #f9c200;
+    color: #0b1f3f;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.explore-btn:hover {
+    background-color: #ffd600;
+}
+
+/* Parallax effect only on large screens */
+@media (min-width: 769px) {
+    .slide:nth-child(1),
+    .slide:nth-child(2) {
+        background-attachment: fixed;
+    }
+}
+
+/* Static images for mobile */
+@media (max-width: 768px) {
+    .slide {
+        background-attachment: scroll;
+    }
+
+    .overlay h1 {
+        font-size: 2em;
+    }
+
+    .overlay p {
+        font-size: 1.2em;
+    }
+}
+
 
         .card-grid {
             display: grid;
@@ -340,11 +385,23 @@
         </div>
     </header>
 
-    <!-- Hero Section with Parallax Effect -->
-    <section class="hero">
-        <h1>Welcome to Elan's Tech World</h1>
-        <p>Your partner in innovative technology solutions</p>
-    </section>
+  <!-- Hero Section with Dynamic Slider and Parallax Effect -->
+<section class="hero" id="hero">
+    <div class="slide active">
+        <div class="overlay">
+            <h1 class="hero-title">Permanent Make Up Deals</h1>
+            <p class="hero-description">Fuller, bold eyebrows to enhance your look</p>
+            <a href="#services" class="explore-btn">View Discount →</a>
+        </div>
+    </div>
+    <div class="slide">
+        <div class="overlay">
+            <h1 class="hero-title">Check Our Spooky Deals</h1>
+            <p class="hero-description">Special Halloween offers just for you</p>
+            <a href="#specials" class="explore-btn">Specials →</a>
+        </div>
+    </div>
+</section>
 
     <!-- Services Section -->
     <section class="services-section" data-aos="fade-up">
@@ -460,6 +517,21 @@
             duration: 1000,
             once: true
         });
+
+        
+    // JavaScript for Dynamic Slide Transitions
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slideInterval = 5000; // Interval time in milliseconds
+
+    function showNextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(showNextSlide, slideInterval);
+
 
         // Hamburger Menu Script
         const hamburger = document.getElementById('hamburger');
