@@ -63,6 +63,83 @@
             color: #fff;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            transition: transform 0.5s ease;
+        }
+
+        .hamburger div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            border-radius: 10px;
+            position: absolute;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .hamburger div:nth-child(1) {
+            transform: translateY(0px) rotate(0deg);
+        }
+
+        .hamburger div:nth-child(2) {
+            transform: translateY(8px);
+        }
+
+        .hamburger div:nth-child(3) {
+            transform: translateY(16px);
+        }
+
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(12px) rotate(45deg);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-12px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav li {
+            margin: 10px 0;
+        }
+
+        .mobile-nav li a {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
@@ -178,6 +255,14 @@
 
         /* Responsive Styles */
         @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
             .hero h1 {
                 font-size: 2em;
             }
@@ -194,7 +279,7 @@
 </head>
 <body>
 
-<header>
+    <header>
     <div class="header-container">
         <div class="logo">
             <a href="index.html">
