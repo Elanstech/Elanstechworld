@@ -215,20 +215,24 @@
         }
 
         .event-slider img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            z-index: 0;
-            transition: opacity 1s ease-in-out;
+         width: 100%;
+         height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
+        transform: scale(0.9); /* Slight zoom out */
+        
         }
-
+    
         .event-slider img.active {
-            opacity: 1;
-            z-index: 1;
+        opacity: 1;
+        z-index: 1;
+        transform: scale(1); /* Set scale to 1 when active */
+        
         }
 
         .event h3 {
