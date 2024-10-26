@@ -350,6 +350,74 @@
 
         .contact-form button:hover {
             background-color: #ffd600;
+        
+        }
+        /* Projects Section Styling */
+        .projects-section {
+            padding: 50px 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .projects-section .section-title {
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .project-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-image {
+            width: 100%;
+            border-radius: 10px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.8em;
+            color: #0b1f3f;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: #f9c200;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #ffd600;
         }
 
         @media (max-width: 768px) {
@@ -418,7 +486,21 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- About Us Section -->
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3 class="service-title">Who We Are</h3>
+                <p class="service-description">
+                    We specialize in delivering custom technology solutions designed to streamline your business.
+                </p>
+                <a href="about.html" class="explore-btn">View More</a>
+            </div>
+        </div>
+    </section>
+
+     <!-- Services Section -->
     <section class="services-section" id="services" data-aos="fade-up">
         <h2 class="section-title">Our Services</h2>
         <div class="card-grid">
@@ -457,19 +539,33 @@
         <a href="services.html" class="explore-btn">Explore More</a>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about">
-        <h2 class="section-title">About Us</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Who We Are</h3>
-                <p class="service-description">
-                    We specialize in delivering custom technology solutions designed to streamline your business.
-                </p>
-                <a href="about.html" class="explore-btn">View More</a>
-            </div>
+
+    <section class="projects-section" id="projects">
+    <h2 class="section-title">Our Latest Projects</h2>
+    <div class="project-grid">
+        <!-- Project 1: Iconic Aesthetics -->
+        <div class="project-card">
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
+            <h3 class="project-title">Iconic Aesthetics</h3>
+            <p class="project-description">
+                For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
+            </p>
+            <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
         </div>
-    </section>
+
+        <!-- Project 2: East Coast Realty -->
+        <div class="project-card">
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
+            <h3 class="project-title">East Coast Realty</h3>
+            <p class="project-description">
+                For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
+            </p>
+            <a href="east-coast-realty.html" class="project-link">Read More →</a>
+        </div>
+    </div>
+</section>
+
+
 
     <!-- Testimonials Section -->
     <section id="testimonials">
