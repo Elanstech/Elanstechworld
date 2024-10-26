@@ -121,7 +121,7 @@
             transform: translateY(0);
         }
 
-        /* Improved Hero Section CSS */
+        /* Redesigned Hero Section */
         .hero {
             position: relative;
             width: 100%;
@@ -222,97 +222,67 @@
             }
         }
 
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5em;
-            }
-
-            .hero-description {
-                font-size: 1.2em;
-            }
+        /* Redesigned Sections */
+        .about-section, .projects-section, .services-section {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, #0b1f3f, #111c40);
+            color: #fff;
         }
 
-        /* Section Titles Styling */
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #f9c200;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Card Grid Layout */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* About Us Section */
+        .about-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
             gap: 30px;
             width: 90%;
             margin: auto;
         }
 
-        /* Card Styling */
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
+        .about-image img {
+            width: 100%;
+            max-width: 500px;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Hover Effect for Cards */
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        .about-content {
+            max-width: 500px;
         }
 
-        /* Service Icons in Cards */
-        .service-icon {
-            font-size: 4em;
+        .about-title {
+            font-size: 2.2em;
             color: #f9c200;
             margin-bottom: 20px;
         }
 
-        /* Service Titles in Cards */
-        .service-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            margin-bottom: 10px;
+        /* Redesigned Service Cards */
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 90%;
+            margin: auto;
         }
 
-        /* Service Descriptions in Cards */
-        .service-description {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #ddd;
-        }
-
-        /* Explore Button in Services Section */
-        .services-section .explore-btn {
-            margin: 20px auto 0 auto;
-            display: inline-block;
-        }
-
-        /* Projects Section Styling */
-        .projects-section {
-            padding: 50px 0;
-            background-color: #f4f4f4;
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .projects-section .section-title {
-            font-size: 2.5em;
-            color: #0b1f3f;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .project-grid {
+        /* Redesigned Projects Section */
+        .project-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -321,49 +291,36 @@
         }
 
         .project-card {
-            background: #fff;
-            padding: 20px;
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/project-background.jpg?raw=true') no-repeat center/cover;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 400px;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
             width: 100%;
-            border-radius: 10px;
-            height: 200px;
-            object-fit: cover;
-            margin-bottom: 15px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            transition: background 0.3s;
+            text-align: left;
+        }
+
+        .project-card:hover .project-overlay {
+            background: rgba(0, 0, 0, 0.9);
         }
 
         .project-title {
             font-size: 1.8em;
-            color: #0b1f3f;
             margin-bottom: 10px;
         }
 
         .project-description {
             font-size: 1.1em;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .project-link {
-            color: #f9c200;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: #ffd600;
+            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
@@ -377,6 +334,14 @@
 
             .mobile-nav.active {
                 display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5em;
+            }
+
+            .hero-description {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -433,13 +398,16 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
-    <section id="about">
+    <!-- Redesigned About Us Section -->
+    <section id="about" class="about-section">
         <h2 class="section-title">About Us</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Who We Are</h3>
-                <p class="service-description">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/about-image.jpeg?raw=true" alt="About Us">
+            </div>
+            <div class="about-content">
+                <h3 class="about-title">Who We Are</h3>
+                <p class="about-description">
                     We specialize in delivering custom technology solutions designed to streamline your business.
                 </p>
                 <a href="about.html" class="explore-btn">View More</a>
@@ -447,66 +415,53 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section" id="services" data-aos="fade-up">
+    <!-- Redesigned Services Section -->
+    <section id="services" class="services-section" data-aos="fade-up">
         <h2 class="section-title">Our Services</h2>
-        <div class="card-grid">
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-cards">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <i class="service-icon fas fa-desktop"></i>
                 <h3 class="service-title">Expert Business Computer Setup</h3>
-                <p class="service-description">
-                    Professional setup for seamless business operations.
-                </p>
+                <p class="service-description">Professional setup for seamless business operations.</p>
             </div>
 
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                 <i class="service-icon fas fa-laptop-code"></i>
                 <h3 class="service-title">Custom Web Design</h3>
-                <p class="service-description">
-                    Stand out with a custom website tailored to your brand.
-                </p>
+                <p class="service-description">Stand out with a custom website tailored to your brand.</p>
             </div>
 
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                 <i class="service-icon fas fa-tools"></i>
                 <h3 class="service-title">POS System Setup</h3>
-                <p class="service-description">
-                    Streamline your business operations with modern POS systems.
-                </p>
+                <p class="service-description">Streamline your business operations with modern POS systems.</p>
             </div>
 
-            <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                 <i class="service-icon fas fa-mobile-alt"></i>
                 <h3 class="service-title">Apple Product Resale</h3>
-                <p class="service-description">
-                    Genuine Apple products with warranty support.
-                </p>
+                <p class="service-description">Genuine Apple products with warranty support.</p>
             </div>
         </div>
-        <a href="services.html" class="explore-btn">Explore More</a>
     </section>
 
-    <section class="projects-section" id="projects">
+    <!-- Redesigned Projects Section -->
+    <section id="projects" class="projects-section">
         <h2 class="section-title">Our Latest Projects</h2>
-        <div class="project-grid">
-            <!-- Project 1: Iconic Aesthetics -->
+        <div class="project-cards">
             <div class="project-card">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
-                <h3 class="project-title">Iconic Aesthetics</h3>
-                <p class="project-description">
-                    For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
-                </p>
-                <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
+                <div class="project-overlay">
+                    <h3 class="project-title">Iconic Aesthetics</h3>
+                    <p class="project-description">A complete digital transformation that encompassed branding, web design, and marketing strategies.</p>
+                    <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
+                </div>
             </div>
-
-            <!-- Project 2: East Coast Realty -->
             <div class="project-card">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
-                <h3 class="project-title">East Coast Realty</h3>
-                <p class="project-description">
-                    For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
-                </p>
-                <a href="east-coast-realty.html" class="project-link">Read More →</a>
+                <div class="project-overlay">
+                    <h3 class="project-title">East Coast Realty</h3>
+                    <p class="project-description">A comprehensive digital and technical overhaul enhancing online presence and internal operations.</p>
+                    <a href="east-coast-realty.html" class="project-link">Read More →</a>
+                </div>
             </div>
         </div>
     </section>
