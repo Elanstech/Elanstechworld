@@ -756,8 +756,10 @@ header nav ul li a:hover {
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
+    // Initialize AOS animations
     AOS.init({ duration: 1000, once: true });
 
+    // Hero Section - Slide Control
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const heroTitle = document.querySelector('.hero-title');
@@ -781,6 +783,7 @@ header nav ul li a:hover {
         }
     ];
 
+    // Function to change to the next slide
     function showNextSlide() {
         slides[currentSlide].classList.remove('active', 'fade-in');
         currentSlide = (currentSlide + 1) % slideData.length;
@@ -823,13 +826,13 @@ header nav ul li a:hover {
         "interactivity": {
             "detect_on": "canvas",
             "events": {
-                "onhover": { 
-                    "enable": true, 
-                    "mode": ["grab", "bubble"] 
+                "onhover": {
+                    "enable": true,
+                    "mode": ["grab", "bubble"]
                 },
-                "onclick": { 
-                    "enable": true, 
-                    "mode": "repulse" 
+                "onclick": {
+                    "enable": true,
+                    "mode": "repulse"
                 }
             },
             "modes": {
@@ -867,39 +870,45 @@ header nav ul li a:hover {
         return royalBlueGradient[Math.floor(Math.random() * royalBlueGradient.length)];
     }
 
-    // Change color dynamically on hover
+    // Change particle color dynamically on hover
     document.querySelector('#particles-js').addEventListener('mousemove', () => {
         const particles = window.pJSDom[0].pJS.particles.array; // Access all particles
         particles.forEach(particle => {
             particle.color.value = getRandomRoyalBlue(); // Assign a random royal blue shade to each particle
         });
     });
-         const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
 
-        // Toggle Hamburger Menu
-        hamburger.addEventListener('click', function () {
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
+    // Hamburger Menu Functionality
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
 
-            // Animate Menu Links
-            const links = mobileNav.querySelectorAll('li');
-            links.forEach((link, index) => {
-                if (mobileNav.classList.contains('active')) {
-                    link.style.transitionDelay = `${index * 100}ms`;
-                } else {
-                    link.style.transitionDelay = '0ms';
-                }
-            });
-        });
+    // Toggle Hamburger Menu
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
 
-        // Close the menu when clicking outside of it
-        document.addEventListener('click', function (event) {
-            if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
+        // Animate Menu Links
+        const links = mobileNav.querySelectorAll('li');
+        links.forEach((link, index) => {
+            if (mobileNav.classList.contains('active')) {
+                link.style.transitionDelay = `${index * 100}ms`;
+                link.style.opacity = '1';
+                link.style.transform = 'translateY(0)';
+            } else {
+                link.style.transitionDelay = '0ms';
+                link.style.opacity = '0';
+                link.style.transform = 'translateY(-20px)';
             }
         });
-    </script>
+    });
+
+    // Close the menu when clicking outside of it
+    document.addEventListener('click', function (event) {
+        if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>
