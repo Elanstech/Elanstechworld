@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elan's Tech World</title>
+    <title>Elan's Tech World - Technology Solutions for Your Business</title>
+    <meta name="description" content="Empowering your business with expert computer setup, custom web design, Apple product resale, and repair services. Explore Elan's Tech World for innovative tech solutions.">
+    <meta name="keywords" content="Elan's Tech World, technology solutions, web design, Apple product resale, computer setup, business tech solutions, POS system setup">
+    <meta name="author" content="Elan Cohen">
+    <link rel="canonical" href="https://elanstechworld.com/">
     <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
@@ -156,14 +160,6 @@
             z-index: 0;
         }
 
-        .slide:nth-child(1) {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true') no-repeat center center / cover;
-        }
-
-        .slide:nth-child(2) {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true') no-repeat center center / cover;
-        }
-
         .overlay {
             position: relative;
             z-index: 2;
@@ -172,6 +168,9 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            border-radius: 10px;
         }
 
         .overlay h1 {
@@ -228,6 +227,7 @@
         @media (max-width: 768px) {
             .slide {
                 background-attachment: scroll;
+                height: auto;
             }
 
             .overlay h1 {
@@ -237,18 +237,20 @@
             .overlay p {
                 font-size: 1.2em;
             }
+
+            .explore-btn {
+                padding: 8px 16px;
+            }
         }
 
-        /* Services Section Styling */
-        .services-section {
+        /* Section Titles Styling */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #f9c200;
             text-align: center;
-            padding: 50px 0;
-        }
-
-        /* Centered Explore Button in Services Section */
-        .services-section .explore-btn {
-            margin: 20px auto 0 auto;
-            display: inline-block;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
         }
 
         /* Card Grid Layout */
@@ -300,28 +302,10 @@
             color: #ddd;
         }
 
-        /* Section Titles Styling */
-        .section-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            color: #f9c200;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Instagram Section Styling */
-        #instagram {
-            padding: 50px 0;
-            text-align: center;
-            background: #0b1f3f;
-        }
-
-        /* Instagram Section Title */
-        #instagram h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #f9c200;
+        /* Explore Button in Services Section */
+        .services-section .explore-btn {
+            margin: 20px auto 0 auto;
+            display: inline-block;
         }
 
         /* Contact Us Section Styling */
@@ -330,19 +314,6 @@
             text-align: center;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-        }
-
-        /* Contact Us Section Title */
-        #contact h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #f9c200;
-        }
-
-        /* Contact Us Section Text */
-        #contact p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
         }
 
         /* Contact Form Styling */
@@ -354,7 +325,6 @@
             margin: 0 auto;
         }
 
-        /* Contact Form Inputs and Textareas */
         .contact-form input,
         .contact-form textarea {
             width: 100%;
@@ -367,7 +337,6 @@
             color: white;
         }
 
-        /* Contact Form Button Styling */
         .contact-form button {
             padding: 10px 20px;
             background-color: #f9c200;
@@ -379,12 +348,10 @@
             transition: background-color 0.3s;
         }
 
-        /* Hover Effect for Contact Form Button */
         .contact-form button:hover {
             background-color: #ffd600;
         }
 
-        /* Mobile-Only Styles */
         @media (max-width: 768px) {
             header nav ul {
                 display: none;
@@ -438,19 +405,18 @@
     </header>
 
     <!-- Hero Section with Particles and Scroll Down Arrow -->
-<section class="hero" id="hero">
-    <div id="particles-js"></div>
-    <div class="slide active"></div> <!-- We'll dynamically update the image using JavaScript -->
-    <div class="overlay">
-        <h1 class="hero-title">Welcome To Elan's Tech World</h1>
-        <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
-        <a href="#services" class="explore-btn">View Our Services →</a>
-    </div>
-    <div class="scroll-down">
-        <i class="fas fa-angle-down"></i>
-    </div>
-</section>
-
+    <section class="hero" id="hero">
+        <div id="particles-js"></div>
+        <div class="slide active"></div> <!-- We'll dynamically update the image using JavaScript -->
+        <div class="overlay">
+            <h1 class="hero-title">Welcome To Elan's Tech World</h1>
+            <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
+            <a href="#services" class="explore-btn">View Our Services →</a>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-angle-down"></i>
+        </div>
+    </section>
 
     <!-- Services Section -->
     <section class="services-section" id="services" data-aos="fade-up">
@@ -556,99 +522,99 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
 
-      // JavaScript for Dynamic Slide Transitions
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const heroTitle = document.querySelector('.hero-title');
-const heroDescription = document.querySelector('.hero-description');
-const exploreButton = document.querySelector('.explore-btn');
+        // JavaScript for Dynamic Slide Transitions
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const heroTitle = document.querySelector('.hero-title');
+        const heroDescription = document.querySelector('.hero-description');
+        const exploreButton = document.querySelector('.explore-btn');
 
-const slideData = [
-    {
-        image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
-        title: "Welcome To Elan's Tech World",
-        description: "Empowering your people with cutting-edge technology solutions.",
-        buttonLink: "#services",
-        buttonText: "View Our Services →"
-    },
-    {
-        image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
-        title: "Innovative Tech Solutions",
-        description: "Delivering personalized technology strategies for your business.",
-        buttonLink: "#about",
-        buttonText: "Learn About Us →"
-    }
-];
-
-function showNextSlide() {
-    // Update the slide background image
-    slides[0].style.backgroundImage = `url(${slideData[currentSlide].image})`;
-
-    // Update the overlay content
-    heroTitle.textContent = slideData[currentSlide].title;
-    heroDescription.textContent = slideData[currentSlide].description;
-    exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
-    exploreButton.textContent = slideData[currentSlide].buttonText;
-
-    // Increment the slide index or reset to zero if at the end
-    currentSlide = (currentSlide + 1) % slideData.length;
-}
-
-// Set an interval to change the slides every 5 seconds
-setInterval(showNextSlide, 5000);
-
-// Initial call to set up the first slide
-showNextSlide();
-
-// Hamburger Menu Script
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-
-hamburger.addEventListener('click', function () {
-    mobileNav.classList.toggle('active');
-    const links = mobileNav.querySelectorAll('li');
-    links.forEach((link, index) => {
-        if (mobileNav.classList.contains('active')) {
-            link.style.transitionDelay = `${index * 100}ms`;
-            link.style.opacity = '1';
-            link.style.transform = 'translateY(0)';
-        } else {
-            link.style.opacity = '0';
-            link.style.transform = 'translateY(-10px)';
-        }
-    });
-});
-
-// Particles.js Initialization
-particlesJS("particles-js", {
-    "particles": {
-        "number": {
-            "value": 100,
-            "density": {
-                "enable": true,
-                "value_area": 800
+        const slideData = [
+            {
+                image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
+                title: "Welcome To Elan's Tech World",
+                description: "Empowering your people with cutting-edge technology solutions.",
+                buttonLink: "#services",
+                buttonText: "View Our Services →"
+            },
+            {
+                image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
+                title: "Innovative Tech Solutions",
+                description: "Delivering personalized technology strategies for your business.",
+                buttonLink: "#about",
+                buttonText: "Learn About Us →"
             }
-        },
-        "color": { "value": "#ffffff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-        "move": { "enable": true, "speed": 6 }
-    },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": { "enable": true, "mode": "repulse" },
-            "onclick": { "enable": true, "mode": "push" }
+        ];
+
+        function showNextSlide() {
+            // Update the slide background image
+            slides[0].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+
+            // Update the overlay content
+            heroTitle.textContent = slideData[currentSlide].title;
+            heroDescription.textContent = slideData[currentSlide].description;
+            exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
+            exploreButton.textContent = slideData[currentSlide].buttonText;
+
+            // Increment the slide index or reset to zero if at the end
+            currentSlide = (currentSlide + 1) % slideData.length;
         }
-    },
-    "retina_detect": true
-});
+
+        // Set an interval to change the slides every 5 seconds
+        setInterval(showNextSlide, 5000);
+
+        // Initial call to set up the first slide
+        showNextSlide();
+
+        // Hamburger Menu Script
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+            const links = mobileNav.querySelectorAll('li');
+            links.forEach((link, index) => {
+                if (mobileNav.classList.contains('active')) {
+                    link.style.transitionDelay = `${index * 100}ms`;
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateY(0)';
+                } else {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateY(-10px)';
+                }
+            });
+        });
+
+        // Particles.js Initialization
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 6 }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            },
+            "retina_detect": true
+        });
     </script>
 </body>
 
