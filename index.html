@@ -204,6 +204,12 @@
             z-index: 2;
             text-align: center;
             color: #fff;
+            transition: transform 0.5s ease;
+            perspective: 1000px;
+        }
+
+        .hero-content:hover {
+            transform: rotateY(10deg) rotateX(10deg);
         }
 
         .hero-title {
@@ -211,6 +217,19 @@
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 20px;
             animation: slideInLeft 1.5s ease;
+            background: linear-gradient(to right, #f9c200, #ff6a00, #ff0072);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: text-flicker 2.5s infinite;
+        }
+
+        @keyframes text-flicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
         }
 
         .hero-description {
@@ -291,6 +310,71 @@
                 transform: translateY(-10px);
             }
         }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .section-wrapper {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .section-text {
+            flex: 1;
+        }
+
+        .section-text h3 {
+            font-size: 2.5em;
+            font-family: 'Montserrat', sans-serif;
+            color: #f9c200;
+            margin-bottom: 20px;
+        }
+
+        .section-text p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .learn-more-btn, .explore-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .learn-more-btn:hover, .explore-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        footer {
+            background-color: rgba(11, 31, 63, 1);
+            padding: 30px 0;
+            color: #f1f1f1;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #f9c200;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -311,13 +395,17 @@
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </nav>
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox" />
-                    <div class="slider round"></div>
-                </label>
-                <em>Enable Dark Mode!</em>
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
+            <ul class="mobile-nav" id="mobile-nav">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
         </div>
     </header>
 
@@ -332,6 +420,46 @@
             <i class="fas fa-arrow-down"></i>
         </div>
     </section>
+
+    <section id="about" class="section-wrapper">
+        <div class="section-text" data-aos="fade-right">
+            <h3>About Us</h3>
+            <p>We specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our team is dedicated to providing exceptional service and innovative solutions that drive success.</p>
+            <a href="about.html" class="learn-more-btn">Learn More →</a>
+        </div>
+        <img src="https://via.placeholder.com/450" alt="About Us" data-aos="fade-left">
+    </section>
+
+    <section id="services" class="section-wrapper">
+        <div class="section-text" data-aos="fade-right">
+            <h3>Our Services</h3>
+            <p>We provide a range of technology services including business computer setup, custom web design, and technology consulting. Our goal is to empower your business with efficient, scalable, and effective tech solutions.</p>
+            <a href="services.html" class="learn-more-btn">Explore Services →</a>
+        </div>
+        <img src="https://via.placeholder.com/450" alt="Services" data-aos="fade-left">
+    </section>
+
+    <section id="projects" class="section-wrapper">
+        <div class="section-text" data-aos="fade-right">
+            <h3>Our Latest Projects</h3>
+            <p>From small business websites to enterprise-level solutions, we have successfully delivered numerous projects. Each one tailored to meet the specific needs of our clients, ensuring quality and satisfaction.</p>
+            <a href="projects.html" class="learn-more-btn">View Projects →</a>
+        </div>
+        <img src="https://via.placeholder.com/450" alt="Projects" data-aos="fade-left">
+    </section>
+
+    <section id="contact" class="section-wrapper">
+        <div class="section-text" data-aos="fade-right">
+            <h3>Contact Us</h3>
+            <p>Reach out to us for expert advice, assistance, and support tailored to your needs. Our team is ready to help you solve your tech challenges and enhance your business capabilities.</p>
+            <a href="contact.html" class="learn-more-btn">Contact Now →</a>
+        </div>
+        <img src="https://via.placeholder.com/450" alt="Contact Us" data-aos="fade-left">
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Elan's Tech World. All rights reserved. <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
@@ -364,6 +492,15 @@
                 events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
             },
             retina_detect: true
+        });
+
+        // Hamburger Menu Interaction
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
         });
     </script>
 </body>
