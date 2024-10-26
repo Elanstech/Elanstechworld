@@ -18,148 +18,109 @@
     <!-- Elf Widget Script -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
-/* General Body Styling */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #0b1f3f;
-    color: #fff;
-    overflow-x: hidden;
-}
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0b1f3f;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* Header Styling */
-header {
-    background-color: #0b1f3f;
-    padding: 15px 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    transition: top 0.6s;
-}
+        /* Header Styling */
+        header {
+            background-color: #0b1f3f;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: top 0.6s;
+        }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    margin: auto;
-}
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
 
-header .logo img {
-    height: 75px;
-    filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
-}
+        header .logo img {
+            height: 75px;
+            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
+        }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-}
+        header nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    padding: 8px 15px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 15px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-header nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
+        header nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
 
-/* Hamburger Menu for Mobile */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    z-index: 1100;
-}
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
 
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
-    transition: all 0.4s ease;
-}
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
 
-.hamburger.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b1f3f;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
 
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+        }
 
-.hamburger.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
+        .mobile-nav li {
+            margin: 10px 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-/* Media Query for Mobile Menu */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-}
-/* Mobile Nav Styling */
-.mobile-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 80%;
-    height: 100vh;
-    background-color: #0b1f3f;
-    padding: 50px 20px;
-    transform: translateX(100%);
-    transition: transform 0.5s ease;
-    z-index: 1000;
-    visibility: hidden;
-    opacity: 0;
-}
+        .mobile-nav.active li {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.mobile-nav.active {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.mobile-nav ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
-
-.mobile-nav ul li {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.mobile-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.5em;
-    font-weight: 600;
-}
-    .mobile-nav.active ul li:nth-child(1) { transition-delay: 0.1s; }
-    .mobile-nav.active ul li:nth-child(2) { transition-delay: 0.2s; }
-    .mobile-nav.active ul li:nth-child(3) { transition-delay: 0.3s; }
-    .mobile-nav.active ul li:nth-child(4) { transition-delay: 0.4s; }
-    .mobile-nav.active ul li:nth-child(5) { transition-delay: 0.5s; }
-    .mobile-nav.active ul li:nth-child(6) { transition-delay: 0.6s; }
-}
-
+        /* Hero Section Styling */
 /* Hero Section Styling */
 .hero {
     position: relative;
@@ -200,368 +161,375 @@ header nav ul li a:hover {
     z-index: 5; /* Ensure active slide is below the particles.js container */
 }
 
-.fade-in {
-    animation: fadeIn 1s forwards;
-}
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
 
-.fade-out {
-    animation: fadeOut 1s forwards;
-}
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
 
-.overlay {
-    position: relative;
-    z-index: 15; /* Overlay content should be above particles.js */
-    color: #fff;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.4);
-    padding: 20px;
-    border-radius: 10px;
-}
+        .overlay {
+        position: relative;
+        z-index: 15; /* Overlay content should be above particles.js */
+        color: #fff;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        border-radius: 10px;
+        
+        }
 
-.overlay h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
+        .overlay h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.overlay p {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
+        .overlay p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
 
-.explore-btn {
-    padding: 10px 20px;
-    background-color: #f9c200;
-    color: #0b1f3f;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-    text-align: center;
-    margin: 20px auto 0;
-}
+       .explore-btn {
+        padding: 10px 20px;
+        background-color: #f9c200;
+        color: #0b1f3f;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: inline-block; /* Ensure the button is displayed as a block-level element */
+        text-align: center;
+        margin: 20px auto 0; /* Center the button within the section */
+        
+        }
 
-.explore-btn:hover {
-    background-color: #ffd600;
-    transform: translateY(-3px);
-}
+        .explore-btn:hover {
+        background-color: #ffd600;
+        transform: translateY(-3px); /* Adds a hover effect for visual feedback */
+        
+        }
 
-.scroll-down {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 2em;
-    color: #f9c200;
-    animation: bounce 2s infinite;
-    z-index: 3;
-}
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
+        .scroll-down {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2em;
+            color: #f9c200;
+            animation: bounce 2s infinite;
+            z-index: 3;
+        }
 
-@media (min-width: 769px) {
-    .slide {
-        background-attachment: fixed;
-    }
-}
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
 
-@media (max-width: 768px) {
-    .slide {
-        background-attachment: scroll;
-        height: auto;
-    }
+        @media (min-width: 769px) {
+            .slide {
+                background-attachment: fixed;
+            }
+        }
 
-    .overlay h1 {
-        font-size: 2em;
-    }
+        @media (max-width: 768px) {
+            .slide {
+                background-attachment: scroll;
+                height: auto;
+            }
 
-    .overlay p {
-        font-size: 1.2em;
-    }
+            .overlay h1 {
+                font-size: 2em;
+            }
 
-    .explore-btn {
-        padding: 8px 16px;
-    }
-}
+            .overlay p {
+                font-size: 1.2em;
+            }
 
-/* Section Titles Styling */
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5em;
-    color: #f9c200;
-    text-align: center;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-}
+            .explore-btn {
+                padding: 8px 16px;
+            }
+        }
 
-/* Card Grid Styling */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    width: 90%;
-    margin: auto;
-}
+        /* Section Titles Styling */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: #f9c200;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        }
+        .card-grid .card i.service-icon {
+        font-size: 4em;
+        color: #f9c200;
+        margin-bottom: 20px;
+        
+        }
 
-/* Specific Styling for Services Section */
-.services-section .card-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    width: 90%;
-    margin: auto;
-}
 
-.services-section .card {
-    flex: 1 1 24%;
-    margin: 0 10px;
-}
+        /* Card Grid Layout */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+        }
 
-@media (max-width: 768px) {
-    .services-section .card-grid {
-        flex-wrap: wrap;
-    }
+        /* Card Styling */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
 
-    .services-section .card {
-        flex: 1 1 100%;
-        margin: 10px 0;
-    }
-}
+        .services-section .explore-btn {
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
 
-/* Card Styling */
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
+        /* Hover Effect for Cards */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
 
-/* Hover Effect for Cards */
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-}
+        /* Service Icons in Cards */
+        .service-icon {
+            font-size: 4em;
+            color: #f9c200;
+            margin-bottom: 20px;
+        }
 
-/* Service Icons in Cards */
-.service-icon {
-    font-size: 4em;
-    color: #f9c200;
-    margin-bottom: 20px;
-}
+        /* Service Titles in Cards */
+        .service-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
 
-/* Service Titles in Cards */
-.service-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-}
+        /* Service Descriptions in Cards */
+        .service-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #ddd;
+        }
 
-/* Service Descriptions in Cards */
-.service-description {
-    font-size: 1.1em;
-    line-height: 1.6;
-    color: #ddd;
-}
+        /* Explore Button in Services Section */
+        .services-section .explore-btn {
+         display: block; /* Ensure the button is treated as a block element */
+         margin: 20px auto 0 auto; /* Center the button horizontally */
+        text-align: center;
+        
+        }
 
-/* Projects Section Styling */
-.projects-section {
-    padding: 60px 0;
-    background-color: #f4f4f4;
-    text-align: center;
-}
 
-.projects-section .section-title {
-    font-size: 2.5em;
-    color: #0b1f3f;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
+        /* Projects Section Styling */
+        .projects-section {
+            padding: 60px 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    width: 90%;
-    margin: auto;
-}
+        .projects-section .section-title {
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.project-card {
-    position: relative;
-    background: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #0b1f3f;
-}
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+        }
 
-.project-image {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 2px solid #f9c200;
-    margin: 0 auto 15px auto;
-    transition: transform 0.3s ease;
-}
+        .project-card {
+            position: relative;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #0b1f3f;
+        }
 
-.project-card:hover .project-image {
-    transform: scale(1.05);
-}
+        .project-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid #f9c200;
+            margin: 0 auto 15px auto;
+            transition: transform 0.3s ease;
+        }
 
-.project-content {
-    padding: 20px;
-    text-align: center;
-}
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
 
-.project-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6em;
-    margin-bottom: 10px;
-}
+        .project-content {
+            padding: 20px;
+            text-align: center;
+        }
 
-.project-description {
-    font-size: 1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
+        .project-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
 
-.project-link {
-    color: #f9c200;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
+        .project-description {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-.project-link:hover {
-    color: #ffd600;
-}
+        .project-link {
+            color: #f9c200;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
 
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
+        .project-link:hover {
+            color: #ffd600;
+        }
 
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 10px;
-}
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
 
-.project-overlay .overlay-title {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 10px;
+        }
 
-.project-overlay .overlay-link {
-    padding: 10px 20px;
-    background-color: #f9c200;
-    color: #0b1f3f;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+        .project-overlay .overlay-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
 
-.project-overlay .overlay-link:hover {
-    background-color: #ffd600;
-}
+        .project-overlay .overlay-link {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
 
-/* Contact Us Section Styling */
-#contact {
-    padding: 50px 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-}
+        .project-overlay .overlay-link:hover {
+            background-color: #ffd600;
+        }
 
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
+        /* Testimonials and FAQ Styling */
+        .testimonials-section,
+        .faq-section {
+            background-color: #fff;
+            padding: 60px 0;
+        }
 
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-}
+        #instagram h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
 
-.contact-form button {
-    padding: 10px 20px;
-    background-color: #f9c200;
-    color: #0b1f3f;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        /* Contact Us Section Styling */
+        #contact {
+            padding: 50px 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
 
-.contact-form button:hover {
-    background-color: #ffd600;
-}
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-/* Instagram Section Title */
-#instagram h2 {
-    text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #f9c200;
-}
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ffd600;
+        }
     </style>
 </head>
 
@@ -601,17 +569,33 @@ header nav ul li a:hover {
         </div>
     </header>
 
-    <section class="hero" id="hero">
-        <div id="particles-js"></div>
-        <div class="slide active"></div>
-        <div class="slide"></div>
-        <div class="overlay">
-            <h1 class="hero-title">Welcome To Elan's Tech World</h1>
-            <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
-            <a href="#services" class="explore-btn">View Our Services →</a>
-        </div>
-        <div class="scroll-down">
-            <i class="fas fa-angle-down"></i>
+<section class="hero" id="hero">
+    <div id="particles-js"></div>
+    <!-- Slide 1 -->
+    <div class="slide"></div>
+    <!-- Slide 2 -->
+    <div class="slide"></div>
+    <div class="overlay">
+        <h1 class="hero-title">Welcome To Elan's Tech World</h1>
+        <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
+        <a href="#services" class="explore-btn">View Our Services →</a>
+    </div>
+    <div class="scroll-down">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</section>
+
+
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3 class="service-title">Who We Are</h3>
+                <p class="service-description">
+                    We specialize in delivering custom technology solutions designed to streamline your business.
+                </p>
+                <a href="about.html" class="explore-btn">View More</a>
+            </div>
         </div>
     </section>
 
@@ -664,126 +648,144 @@ header nav ul li a:hover {
     <a href="services.html" class="explore-btn">Explore More</a>
 </section>
 
-<section class="projects-section" id="projects">
-    <h2 class="section-title">Our Latest Projects</h2>
-    <div class="project-grid">
-        <div class="project-card">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
-            <h3 class="project-title">Iconic Aesthetics</h3>
-            <p class="project-description">
-                For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
-            </p>
-            <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
+
+    <section class="projects-section" id="projects">
+        <h2 class="section-title">Our Latest Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
+                <h3 class="project-title">Iconic Aesthetics</h3>
+                <p class="project-description">
+                    For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
+                </p>
+                <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
+                <h3 class="project-title">East Coast Realty</h3>
+                <p class="project-description">
+                    For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
+                </p>
+                <a href="east-coast-realty.html" class="project-link">Read More →</a>
+            </div>
         </div>
+    </section>
 
-        <div class="project-card">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
-            <h3 class="project-title">East Coast Realty</h3>
-            <p class="project-description">
-                For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
-            </p>
-            <a href="east-coast-realty.html" class="project-link">Read More →</a>
+    <section id="testimonials">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3 class="service-title">Client Feedback</h3>
+                <p class="service-description">
+                    Discover why businesses choose us for reliable tech solutions.
+                </p>
+                <a href="testimonials.html" class="explore-btn">View More</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="testimonials">
-    <h2 class="section-title">What Our Clients Say</h2>
-    <div class="card-grid">
-        <div class="card">
-            <h3 class="service-title">Client Feedback</h3>
-            <p class="service-description">
-                Discover why businesses choose us for reliable tech solutions.
-            </p>
-            <a href="testimonials.html" class="explore-btn">View More</a>
+    <section id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3 class="service-title">Common Questions</h3>
+                <p class="service-description">
+                    Find answers to your questions about our services.
+                </p>
+                <a href="faq.html" class="explore-btn">View More</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="faq">
-    <h2 class="section-title">Frequently Asked Questions</h2>
-    <div class="card-grid">
-        <div class="card">
-            <h3 class="service-title">Common Questions</h3>
-            <p class="service-description">
-                Find answers to your questions about our services.
-            </p>
-            <a href="faq.html" class="explore-btn">View More</a>
+    <section id="instagram">
+        <h2>Follow Us on Instagram</h2>
+        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <p>Have any questions or inquiries? We're here to help you!</p>
+        <p>Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
+        <div class="contact-form">
+            <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <p>Or you can also call us at <a href="tel:929-417-6819" style="color: #f9c200;">929-417-6819</a>.</p>
+            <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="instagram">
-    <h2>Follow Us on Instagram</h2>
-    <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-</section>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
 
-<section id="contact">
-    <h2 class="section-title">Contact Us</h2>
-    <p>Have any questions or inquiries? We're here to help you!</p>
-    <p>Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
-    <div class="contact-form">
-        <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <p>Or you can also call us at <a href="tel:929-417-6819" style="color: #f9c200;">929-417-6819</a>.</p>
-        <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
-    </div>
-</section>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const heroTitle = document.querySelector('.hero-title');
+        const heroDescription = document.querySelector('.hero-description');
+        const exploreButton = document.querySelector('.explore-btn');
 
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<script>
-    AOS.init({ duration: 1000, once: true });
+        const slideData = [
+            {
+                image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
+                title: "Welcome To Elan's Tech World",
+                description: "Empowering your people with cutting-edge technology solutions.",
+                buttonLink: "about.html",
+                buttonText: "View Our Story →"
+            },
+            {
+                image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
+                title: "Innovative Tech Solutions",
+                description: "Delivering personalized technology strategies for your business.",
+                buttonLink: "Services.html",
+                buttonText: "Dive In To Our Services →"
+            }
+        ];
 
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const heroTitle = document.querySelector('.hero-title');
-    const heroDescription = document.querySelector('.hero-description');
-    const exploreButton = document.querySelector('.explore-btn');
+        function showNextSlide() {
+    slides[currentSlide].classList.remove('active', 'fade-in');
+    currentSlide = (currentSlide + 1) % slideData.length;
+    slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+    heroTitle.textContent = slideData[currentSlide].title;
+    heroDescription.textContent = slideData[currentSlide].description;
+    exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
+    exploreButton.textContent = slideData[currentSlide].buttonText;
+    slides[currentSlide].classList.add('fade-in', 'active');
+}
 
-    const slideData = [
-        {
-            image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
-            title: "Welcome To Elan's Tech World",
-            description: "Empowering your people with cutting-edge technology solutions.",
-            buttonLink: "about.html",
-            buttonText: "View Our Story →"
-        },
-        {
-            image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
-            title: "Innovative Tech Solutions",
-            description: "Delivering personalized technology strategies for your business.",
-            buttonLink: "Services.html",
-            buttonText: "Dive In To Our Services →"
-        }
-    ];
-
-    function showNextSlide() {
-        slides[currentSlide].classList.remove('active', 'fade-in');
-        currentSlide = (currentSlide + 1) % slideData.length;
-        slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
-        heroTitle.textContent = slideData[currentSlide].title;
-        heroDescription.textContent = slideData[currentSlide].description;
-        exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
-        exploreButton.textContent = slideData[currentSlide].buttonText;
-        slides[currentSlide].classList.add('fade-in', 'active');
+// Initialize slides with their respective background images
+slides.forEach((slide, index) => {
+    slide.style.backgroundImage = `url(${slideData[index].image})`;
+    if (index === 0) {
+        slide.classList.add('active');
     }
+});
 
-    // Initialize slides with their respective background images
-    slides.forEach((slide, index) => {
-        slide.style.backgroundImage = `url(${slideData[index].image})`;
-        if (index === 0) {
-            slide.classList.add('active');
-        }
-    });
+// Start the slideshow
+setInterval(showNextSlide, 5000);
 
-    // Start the slideshow
-    setInterval(showNextSlide, 5000);
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
 
-    // Particles.js Initialization
+        hamburger.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+            const links = mobileNav.querySelectorAll('li');
+            links.forEach((link, index) => {
+                if (mobileNav.classList.contains('active')) {
+                    link.style.transitionDelay = `${index * 100}ms`;
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateY(0)';
+                } else {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateY(-10px)';
+                }
+            });
+        });
+
     particlesJS("particles-js", {
         "particles": {
             "number": {
@@ -803,85 +805,12 @@ header nav ul li a:hover {
         "interactivity": {
             "detect_on": "canvas",
             "events": {
-                "onhover": { 
-                    "enable": true, 
-                    "mode": ["grab", "bubble"] 
-                },
-                "onclick": { 
-                    "enable": true, 
-                    "mode": "repulse" 
-                }
-            },
-            "modes": {
-                "grab": {
-                    "distance": 200,
-                    "line_linked": {
-                        "opacity": 1
-                    }
-                },
-                "bubble": {
-                    "distance": 150,
-                    "size": 6,
-                    "duration": 2,
-                    "opacity": 0.8,
-                    "speed": 3,
-                    "color": "#4682B4" // Change to royal blue shades on hover
-                },
-                "repulse": {
-                    "distance": 100,
-                    "duration": 0.4
-                },
-                "push": {
-                    "particles_nb": 4
-                }
+                "onhover": { "enable": true, "mode": "repulse" },
+                "onclick": { "enable": true, "mode": "push" }
             }
         },
         "retina_detect": true
     });
-
-    // Define an array of royal blue gradient shades
-    const royalBlueGradient = ["#4169E1", "#1E90FF", "#4682B4", "#5F9EA0", "#6495ED", "#00BFFF", "#87CEEB"];
-
-    // Function to get a random royal blue shade
-    function getRandomRoyalBlue() {
-        return royalBlueGradient[Math.floor(Math.random() * royalBlueGradient.length)];
-    }
-
-    // Change color dynamically on hover
-    document.querySelector('#particles-js').addEventListener('mousemove', () => {
-        const particles = window.pJSDom[0].pJS.particles.array; // Access all particles
-        particles.forEach(particle => {
-            particle.color.value = getRandomRoyalBlue(); // Assign a random royal blue shade to each particle
-        });
-    });
-
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    // Toggle Hamburger Menu
-    hamburger.addEventListener('click', function () {
-        hamburger.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-
-        // Animate Menu Links
-        const links = mobileNav.querySelectorAll('li');
-        links.forEach((link, index) => {
-            if (mobileNav.classList.contains('active')) {
-                link.style.transitionDelay = `${index * 100}ms`;
-            } else {
-                link.style.transitionDelay = '0ms';
-            }
-        });
-    });
-
-    // Close the menu when clicking outside of it
-    document.addEventListener('click', function (event) {
-        if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
-        }
-    });
 </script>
 </body>
 </html>
-
