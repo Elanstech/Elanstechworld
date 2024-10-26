@@ -744,72 +744,73 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
+<script>
+    AOS.init({ duration: 1000, once: true });
 
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const heroTitle = document.querySelector('.hero-title');
-        const heroDescription = document.querySelector('.hero-description');
-        const exploreButton = document.querySelector('.explore-btn');
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroDescription = document.querySelector('.hero-description');
+    const exploreButton = document.querySelector('.explore-btn');
 
-        const slideData = [
-            {
-                image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
-                title: "Welcome To Elan's Tech World",
-                description: "Empowering your people with cutting-edge technology solutions.",
-                buttonLink: "about.html",
-                buttonText: "View Our Story →"
-            },
-            {
-                image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
-                title: "Innovative Tech Solutions",
-                description: "Delivering personalized technology strategies for your business.",
-                buttonLink: "Services.html",
-                buttonText: "Dive In To Our Services →"
-            }
-        ];
+    const slideData = [
+        {
+            image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
+            title: "Welcome To Elan's Tech World",
+            description: "Empowering your people with cutting-edge technology solutions.",
+            buttonLink: "about.html",
+            buttonText: "View Our Story →"
+        },
+        {
+            image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
+            title: "Innovative Tech Solutions",
+            description: "Delivering personalized technology strategies for your business.",
+            buttonLink: "Services.html",
+            buttonText: "Dive In To Our Services →"
+        }
+    ];
 
-        function showNextSlide() {
-    slides[currentSlide].classList.remove('active', 'fade-in');
-    currentSlide = (currentSlide + 1) % slideData.length;
-    slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
-    heroTitle.textContent = slideData[currentSlide].title;
-    heroDescription.textContent = slideData[currentSlide].description;
-    exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
-    exploreButton.textContent = slideData[currentSlide].buttonText;
-    slides[currentSlide].classList.add('fade-in', 'active');
-}
-
-// Initialize slides with their respective background images
-slides.forEach((slide, index) => {
-    slide.style.backgroundImage = `url(${slideData[index].image})`;
-    if (index === 0) {
-        slide.classList.add('active');
+    function showNextSlide() {
+        slides[currentSlide].classList.remove('active', 'fade-in');
+        currentSlide = (currentSlide + 1) % slideData.length;
+        slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+        heroTitle.textContent = slideData[currentSlide].title;
+        heroDescription.textContent = slideData[currentSlide].description;
+        exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
+        exploreButton.textContent = slideData[currentSlide].buttonText;
+        slides[currentSlide].classList.add('fade-in', 'active');
     }
-});
 
-// Start the slideshow
-setInterval(showNextSlide, 5000);
+    // Initialize slides with their respective background images
+    slides.forEach((slide, index) => {
+        slide.style.backgroundImage = `url(${slideData[index].image})`;
+        if (index === 0) {
+            slide.classList.add('active');
+        }
+    });
 
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
+    // Start the slideshow
+    setInterval(showNextSlide, 5000);
 
-        hamburger.addEventListener('click', function () {
-            mobileNav.classList.toggle('active');
-            const links = mobileNav.querySelectorAll('li');
-            links.forEach((link, index) => {
-                if (mobileNav.classList.contains('active')) {
-                    link.style.transitionDelay = `${index * 100}ms`;
-                    link.style.opacity = '1';
-                    link.style.transform = 'translateY(0)';
-                } else {
-                    link.style.opacity = '0';
-                    link.style.transform = 'translateY(-10px)';
-                }
-            });
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', function () {
+        mobileNav.classList.toggle('active');
+        const links = mobileNav.querySelectorAll('li');
+        links.forEach((link, index) => {
+            if (mobileNav.classList.contains('active')) {
+                link.style.transitionDelay = `${index * 100}ms`;
+                link.style.opacity = '1';
+                link.style.transform = 'translateY(0)';
+            } else {
+                link.style.opacity = '0';
+                link.style.transform = 'translateY(-10px)';
+            }
         });
+    });
 
+    // Particles.js Initialization
     particlesJS("particles-js", {
         "particles": {
             "number": {
@@ -829,11 +830,56 @@ setInterval(showNextSlide, 5000);
         "interactivity": {
             "detect_on": "canvas",
             "events": {
-                "onhover": { "enable": true, "mode": "repulse" },
-                "onclick": { "enable": true, "mode": "push" }
+                "onhover": { 
+                    "enable": true, 
+                    "mode": ["grab", "bubble"] 
+                },
+                "onclick": { 
+                    "enable": true, 
+                    "mode": "repulse" 
+                }
+            },
+            "modes": {
+                "grab": {
+                    "distance": 200,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 150,
+                    "size": 6,
+                    "duration": 2,
+                    "opacity": 0.8,
+                    "speed": 3,
+                    "color": "#4682B4" // Change to royal blue shades on hover
+                },
+                "repulse": {
+                    "distance": 100,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                }
             }
         },
         "retina_detect": true
+    });
+
+    // Define an array of royal blue gradient shades
+    const royalBlueGradient = ["#4169E1", "#1E90FF", "#4682B4", "#5F9EA0", "#6495ED", "#00BFFF", "#87CEEB"];
+
+    // Function to get a random royal blue shade
+    function getRandomRoyalBlue() {
+        return royalBlueGradient[Math.floor(Math.random() * royalBlueGradient.length)];
+    }
+
+    // Change color dynamically on hover
+    document.querySelector('#particles-js').addEventListener('mousemove', () => {
+        const particles = window.pJSDom[0].pJS.particles.array; // Access all particles
+        particles.forEach(particle => {
+            particle.color.value = getRandomRoyalBlue(); // Assign a random royal blue shade to each particle
+        });
     });
 </script>
 </body>
