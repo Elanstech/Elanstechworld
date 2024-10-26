@@ -761,32 +761,27 @@ const slideData = [
     }
 ];
 
+const slides = document.querySelectorAll('.slide'); // Ensure slides are selected
+
 function showNextSlide() {
-    // Remove active class and add fade-out to the current slide
     slides[currentSlide].classList.remove('active', 'fade-in');
-    slides[currentSlide].classList.add('fade-out');
-
-    // Increment the slide index or reset to zero if at the end
     currentSlide = (currentSlide + 1) % slideData.length;
-
-    // Update the slide background image
     slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
-    
-    // Update the overlay content
     heroTitle.textContent = slideData[currentSlide].title;
     heroDescription.textContent = slideData[currentSlide].description;
     exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
     exploreButton.textContent = slideData[currentSlide].buttonText;
 
-    slides[currentSlide].classList.remove('fade-out');
     slides[currentSlide].classList.add('fade-in', 'active');
 }
 
-// Set an interval to change the slides every 5 seconds
+// Ensure initial setup
+slides.forEach((slide, index) => {
+    slide.style.backgroundImage = `url(${slideData[index].image})`;
+});
+slides[currentSlide].classList.add('fade-in', 'active');
 setInterval(showNextSlide, 5000);
 
-// Initial call to set up the first slide
-slides[currentSlide].classList.add('fade-in', 'active');
 
 // Hamburger Menu Script
 const hamburger = document.getElementById('hamburger');
