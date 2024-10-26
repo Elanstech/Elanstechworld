@@ -121,7 +121,7 @@
             transform: translateY(0);
         }
 
-        /* Redesigned Hero Section */
+        /* Enhanced Hero Section */
         .hero {
             position: relative;
             width: 100%;
@@ -145,7 +145,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
             z-index: 2;
             display: flex;
             align-items: center;
@@ -222,14 +222,14 @@
             }
         }
 
-        /* Redesigned Sections */
+        /* Enhanced About Section */
         .about-section, .projects-section, .services-section {
             padding: 60px 0;
             background: linear-gradient(to bottom, #0b1f3f, #111c40);
             color: #fff;
+            position: relative;
         }
 
-        /* About Us Section */
         .about-container {
             display: flex;
             justify-content: space-between;
@@ -238,6 +238,8 @@
             gap: 30px;
             width: 90%;
             margin: auto;
+            position: relative;
+            z-index: 2;
         }
 
         .about-image img {
@@ -257,31 +259,38 @@
             margin-bottom: 20px;
         }
 
-        /* Redesigned Service Cards */
+        /* Enhanced Service Cards */
         .service-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 30px;
             width: 90%;
             margin: auto;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
             padding: 25px;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
-        /* Redesigned Projects Section */
+        .service-icon {
+            font-size: 3.5em;
+            color: #f9c200;
+            margin-bottom: 15px;
+        }
+
+        /* Projects Section with Image Overlays */
         .project-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -292,10 +301,17 @@
 
         .project-card {
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/project-background.jpg?raw=true') no-repeat center/cover;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
             height: 400px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .project-overlay {
@@ -321,6 +337,19 @@
         .project-description {
             font-size: 1.1em;
             line-height: 1.5;
+        }
+
+        /* Parallax Effect for Sections */
+        .about-section::before, .projects-section::before, .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallax-overlay.jpg?raw=true') no-repeat center center/cover;
+            opacity: 0.1;
+            pointer-events: none;
         }
 
         @media (max-width: 768px) {
@@ -383,7 +412,7 @@
         </div>
     </header>
 
-    <!-- Updated Hero Section -->
+    <!-- Enhanced Hero Section -->
     <section class="hero" id="hero">
         <div id="particles-js"></div>
         <div class="overlay">
@@ -398,7 +427,7 @@
         </div>
     </section>
 
-    <!-- Redesigned About Us Section -->
+    <!-- Enhanced About Us Section -->
     <section id="about" class="about-section">
         <h2 class="section-title">About Us</h2>
         <div class="about-container">
@@ -415,7 +444,7 @@
         </div>
     </section>
 
-    <!-- Redesigned Services Section -->
+    <!-- Enhanced Services Section -->
     <section id="services" class="services-section" data-aos="fade-up">
         <h2 class="section-title">Our Services</h2>
         <div class="service-cards">
@@ -445,7 +474,7 @@
         </div>
     </section>
 
-    <!-- Redesigned Projects Section -->
+    <!-- Enhanced Projects Section -->
     <section id="projects" class="projects-section">
         <h2 class="section-title">Our Latest Projects</h2>
         <div class="project-cards">
