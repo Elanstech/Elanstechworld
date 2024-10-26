@@ -77,48 +77,102 @@ header nav ul li a:hover {
 }
 
 /* Hamburger Menu for Mobile */
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
+        /* Hamburger Menu Styling */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1100; /* Above everything else */
+            transition: transform 0.3s ease;
+        }
 
-.hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+            transition: all 0.4s ease;
+        }
 
-.mobile-nav {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: #0b1f3f;
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
+        .hamburger.active div:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
 
-.mobile-nav.active {
-    display: flex;
-    opacity: 1;
-}
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
 
-.mobile-nav li {
-    margin: 10px 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
+        .hamburger.active div:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
 
-.mobile-nav.active li {
-    opacity: 1;
-    transform: translateY(0);
-}
+        /* Mobile Nav Styling */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80%;
+            height: 100vh;
+            background-color: #0b1f3f;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+            padding: 50px 20px;
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            transform: translateX(0);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .mobile-nav ul li {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .mobile-nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: 600;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav ul li a:hover {
+            color: #f9c200;
+        }
+
+        /* Animations for Menu Items */
+        .mobile-nav.active ul li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav.active ul li:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-nav.active ul li:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-nav.active ul li:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-nav.active ul li:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav.active ul li:nth-child(5) { transition-delay: 0.5s; }
+        .mobile-nav.active ul li:nth-child(6) { transition-delay: 0.6s; }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
 
 /* Hero Section Styling */
 .hero {
@@ -749,24 +803,6 @@ header nav ul li a:hover {
     // Start the slideshow
     setInterval(showNextSlide, 5000);
 
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    hamburger.addEventListener('click', function () {
-        mobileNav.classList.toggle('active');
-        const links = mobileNav.querySelectorAll('li');
-        links.forEach((link, index) => {
-            if (mobileNav.classList.contains('active')) {
-                link.style.transitionDelay = `${index * 100}ms`;
-                link.style.opacity = '1';
-                link.style.transform = 'translateY(0)';
-            } else {
-                link.style.opacity = '0';
-                link.style.transform = 'translateY(-10px)';
-            }
-        });
-    });
-
     // Particles.js Initialization
     particlesJS("particles-js", {
         "particles": {
@@ -838,6 +874,32 @@ header nav ul li a:hover {
             particle.color.value = getRandomRoyalBlue(); // Assign a random royal blue shade to each particle
         });
     });
-</script>
+         const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        // Toggle Hamburger Menu
+        hamburger.addEventListener('click', function () {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+
+            // Animate Menu Links
+            const links = mobileNav.querySelectorAll('li');
+            links.forEach((link, index) => {
+                if (mobileNav.classList.contains('active')) {
+                    link.style.transitionDelay = `${index * 100}ms`;
+                } else {
+                    link.style.transitionDelay = '0ms';
+                }
+            });
+        });
+
+        // Close the menu when clicking outside of it
+        document.addEventListener('click', function (event) {
+            if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
