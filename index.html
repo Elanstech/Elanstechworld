@@ -741,12 +741,6 @@ header nav ul li a:hover {
         document.addEventListener('DOMContentLoaded', function () {
             AOS.init({ duration: 1000, once: true });
 
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.slide');
-            const heroTitle = document.querySelector('.hero-title');
-            const heroDescription = document.querySelector('.hero-description');
-            const exploreButton = document.querySelector('.explore-btn');
-
             const slideData = [
                 {
                     image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
@@ -764,27 +758,46 @@ header nav ul li a:hover {
                 }
             ];
 
+            const slideContainer = document.querySelector('.hero');
+            const slides = [];
+            slideData.forEach((data, index) => {
+                const slide = document.createElement('div');
+                slide.classList.add('slide');
+                slide.style.backgroundImage = `url(${data.image})`;
+                slideContainer.insertBefore(slide, slideContainer.querySelector('.overlay'));
+                slides.push(slide);
+
+                if (index === 0) {
+                    slide.classList.add('active', 'fade-in');
+                }
+            });
+
+            let currentSlide = 0;
+            const heroTitle = document.querySelector('.hero-title');
+            const heroDescription = document.querySelector('.hero-description');
+            const exploreButton = document.querySelector('.explore-btn');
+
             function showNextSlide() {
                 if (!slides.length || !heroTitle || !heroDescription || !exploreButton) return;
 
                 slides[currentSlide].classList.remove('active', 'fade-in');
-                currentSlide = (currentSlide + 1) % slideData.length;
-                slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('fade-in', 'active');
                 heroTitle.textContent = slideData[currentSlide].title;
                 heroDescription.textContent = slideData[currentSlide].description;
                 exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
                 exploreButton.textContent = slideData[currentSlide].buttonText;
-                slides[currentSlide].classList.add('fade-in', 'active');
             }
 
-            slides.forEach((slide, index) => {
-                slide.style.backgroundImage = `url(${slideData[index].image})`;
-                if (index === 0) {
-                    slide.classList.add('active');
+            let slideInterval = setInterval(showNextSlide, 5000);
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    clearInterval(slideInterval);
+                } else {
+                    slideInterval = setInterval(showNextSlide, 5000);
                 }
             });
-
-            setInterval(showNextSlide, 5000);
 
             const hamburger = document.getElementById('hamburger');
             const mobileNav = document.getElementById('mobile-nav');
