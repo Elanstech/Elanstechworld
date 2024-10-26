@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -238,52 +238,75 @@
             margin: 50px 0 30px;
         }
 
-        /* Tile Sections */
-        .tile-section {
-            padding: 60px 0;
+        /* Complex Sections Styling */
+        .section-wrapper {
+            position: relative;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 120%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(249, 194, 0, 0.2), rgba(11, 31, 63, 0.7));
+            transform: translateX(-50%);
+            z-index: -1;
+            clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
+        }
+
+        .about-content, .services-content, .projects-content, .contact-content {
             display: flex;
-            justify-content: center;
-            gap: 30px;
+            align-items: center;
+            justify-content: space-around;
+            gap: 50px;
             flex-wrap: wrap;
         }
 
-        .tile {
-            width: 300px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            overflow: hidden;
-            position: relative;
+        .about-content img, .services-content img, .projects-content img, .contact-content img {
+            width: 45%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
         }
 
-        .tile:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        .about-content img:hover, .services-content img:hover, .projects-content img:hover, .contact-content img:hover {
+            transform: scale(1.05);
         }
 
-        .tile-icon {
-            font-size: 3.5em;
+        .section-text {
+            max-width: 500px;
+            text-align: left;
+            color: #ffffff;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-text h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
             color: #f9c200;
+        }
+
+        .section-text p {
+            font-size: 1.2em;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        .tile-title {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        .tile-description {
-            font-size: 1em;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .tile-button {
+        .learn-more-btn {
             padding: 10px 20px;
             background-color: #f9c200;
             color: #0b1f3f;
@@ -293,7 +316,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .tile-button:hover {
+        .learn-more-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
@@ -342,50 +365,52 @@
         </div>
     </section>
 
-    <!-- Tile-Based Sections -->
-    <section id="about" class="tile-section">
-        <h2 class="section-title">About Us</h2>
-        <div class="tile" data-aos="fade-up">
-            <i class="tile-icon fas fa-user-friends"></i>
-            <h3 class="tile-title">Who We Are</h3>
-            <p class="tile-description">We specialize in delivering custom technology solutions designed to streamline your business.</p>
-            <a href="about.html" class="tile-button">Learn More →</a>
+    <!-- Complex Section Design -->
+    <section id="about" class="section-wrapper">
+        <div class="section-bg"></div>
+        <div class="about-content">
+            <div class="section-text" data-aos="fade-right">
+                <h3>About Us</h3>
+                <p>We specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our team is dedicated to providing exceptional service and innovative solutions that drive success.</p>
+                <a href="about.html" class="learn-more-btn">Learn More →</a>
+            </div>
+            <img src="https://via.placeholder.com/450" alt="About Us" data-aos="fade-left">
         </div>
     </section>
 
-    <section id="services" class="tile-section">
-        <h2 class="section-title">Our Services</h2>
-        <div class="tile" data-aos="fade-up" data-aos-delay="100">
-            <i class="tile-icon fas fa-desktop"></i>
-            <h3 class="tile-title">Business Computer Setup</h3>
-            <p class="tile-description">Professional setup for seamless business operations.</p>
-            <a href="services.html" class="tile-button">Explore →</a>
-        </div>
-        <div class="tile" data-aos="fade-up" data-aos-delay="200">
-            <i class="tile-icon fas fa-laptop-code"></i>
-            <h3 class="tile-title">Custom Web Design</h3>
-            <p class="tile-description">Stand out with a custom website tailored to your brand.</p>
-            <a href="services.html" class="tile-button">Explore →</a>
+    <section id="services" class="section-wrapper">
+        <div class="section-bg"></div>
+        <div class="services-content">
+            <img src="https://via.placeholder.com/450" alt="Services" data-aos="fade-right">
+            <div class="section-text" data-aos="fade-left">
+                <h3>Our Services</h3>
+                <p>We provide a range of technology services including business computer setup, custom web design, and technology consulting. Our goal is to empower your business with efficient, scalable, and effective tech solutions.</p>
+                <a href="services.html" class="learn-more-btn">Explore Services →</a>
+            </div>
         </div>
     </section>
 
-    <section id="projects" class="tile-section">
-        <h2 class="section-title">Our Latest Projects</h2>
-        <div class="tile" data-aos="fade-up">
-            <i class="tile-icon fas fa-building"></i>
-            <h3 class="tile-title">Iconic Aesthetics</h3>
-            <p class="tile-description">A complete digital transformation encompassing branding, web design, and marketing strategies.</p>
-            <a href="projects.html" class="tile-button">Read More →</a>
+    <section id="projects" class="section-wrapper">
+        <div class="section-bg"></div>
+        <div class="projects-content">
+            <div class="section-text" data-aos="fade-right">
+                <h3>Our Latest Projects</h3>
+                <p>From small business websites to enterprise-level solutions, we have successfully delivered numerous projects. Each one tailored to meet the specific needs of our clients, ensuring quality and satisfaction.</p>
+                <a href="projects.html" class="learn-more-btn">View Projects →</a>
+            </div>
+            <img src="https://via.placeholder.com/450" alt="Projects" data-aos="fade-left">
         </div>
     </section>
 
-    <section id="contact" class="tile-section">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="tile" data-aos="fade-up">
-            <i class="tile-icon fas fa-phone-alt"></i>
-            <h3 class="tile-title">Get in Touch</h3>
-            <p class="tile-description">Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
-            <a href="contact.html" class="tile-button">Contact Now →</a>
+    <section id="contact" class="section-wrapper">
+        <div class="section-bg"></div>
+        <div class="contact-content">
+            <img src="https://via.placeholder.com/450" alt="Contact Us" data-aos="fade-right">
+            <div class="section-text" data-aos="fade-left">
+                <h3>Contact Us</h3>
+                <p>Reach out to us for expert advice, assistance, and support tailored to your needs. Our team is ready to help you solve your tech challenges and enhance your business capabilities.</p>
+                <a href="contact.html" class="learn-more-btn">Contact Now →</a>
+            </div>
         </div>
     </section>
 
