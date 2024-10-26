@@ -8,20 +8,13 @@
     <meta name="description" content="Empowering your business with expert computer setup, custom web design, Apple product resale, and repair services. Explore Elan's Tech World for innovative tech solutions.">
     <meta name="keywords" content="Elan's Tech World, technology solutions, web design, Apple product resale, computer setup, business tech solutions, POS system setup">
     <meta name="author" content="Elan Cohen">
-    <link rel="canonical" href="https://elanstechworld.com/">
-    <!-- Import Poppins and Montserrat Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- AOS Animation Library -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- Particle.js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lottie-web/build/player/lottie.min.js">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <!-- GSAP Animation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
-    <!-- Elfsight Widgets -->
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -36,19 +29,18 @@
             scroll-behavior: smooth;
         }
 
-        /* Header Styling */
         header {
-            background-color: rgba(11, 31, 63, 0.95);
+            background-color: transparent;
             padding: 15px 0;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: background-color 0.6s ease;
+            transition: background-color 0.6s ease, box-shadow 0.6s ease;
         }
 
         header.scrolled {
-            background-color: rgba(11, 31, 63, 1);
+            background-color: rgba(11, 31, 63, 0.95);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -119,69 +111,63 @@
             left: 0;
         }
 
-        /* Advanced Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 25px;
-            height: 20px;
-            cursor: pointer;
+        .theme-switch-wrapper {
             margin-left: auto;
-        }
-
-        .hamburger div {
-            width: 100%;
-            height: 3px;
-            background-color: #fff;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background-color: #0b1f3f;
-            position: absolute;
-            top: 60px;
-            width: 100%;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .mobile-nav.active {
             display: flex;
-            opacity: 1;
+            align-items: center;
         }
 
-        .mobile-nav li {
-            margin: 10px 0;
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            nav {
-                display: none;
-            }
+        .theme-switch input {
+            display: none;
         }
 
-        /* Modern Hero Section Styling with Parallax */
+        .slider {
+            background-color: #ccc;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: 0.4s;
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            background-color: white;
+            bottom: 4px;
+            content: "";
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: 0.4s;
+            width: 26px;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #f9c200;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
         .hero {
             position: relative;
             width: 100%;
@@ -191,7 +177,6 @@
             justify-content: center;
             overflow: hidden;
             background: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true') center center/cover no-repeat;
-            background-attachment: fixed;
         }
 
         .hero::before {
@@ -205,13 +190,20 @@
             z-index: 1;
         }
 
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
         .hero-content {
             max-width: 800px;
             padding: 20px;
             z-index: 2;
             text-align: center;
             color: #fff;
-            animation: fadeInUp 1.5s ease forwards;
         }
 
         .hero-title {
@@ -221,32 +213,10 @@
             animation: slideInLeft 1.5s ease;
         }
 
-        @keyframes slideInLeft {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
         .hero-description {
             font-size: 1.8em;
             margin-bottom: 30px;
             animation: slideInRight 1.5s ease;
-        }
-
-        @keyframes slideInRight {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
         }
 
         .explore-btn {
@@ -265,6 +235,28 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
         @keyframes fadeInUp {
             0% {
                 transform: translateY(50px);
@@ -274,28 +266,6 @@
                 transform: translateY(0);
                 opacity: 1;
             }
-        }
-
-        /* Additional Design Elements */
-        .floating-icons {
-            position: absolute;
-            top: 20%;
-            right: 5%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 3;
-        }
-
-        .floating-icons i {
-            font-size: 2.5em;
-            color: #f9c200;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .floating-icons i:hover {
-            transform: translateY(-10px) scale(1.2);
-            opacity: 0.8;
         }
 
         .scroll-indicator {
@@ -335,85 +305,49 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </nav>
-            <div class="hamburger" id="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                </label>
+                <em>Enable Dark Mode!</em>
             </div>
-            <ul class="mobile-nav" id="mobile-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
         </div>
     </header>
 
-    
-
-    <!-- About Section -->
-    <section id="about" class="section-wrapper">
-        <div class="section-bg"></div>
-        <div class="about-content">
-            <div class="section-text" data-aos="fade-right">
-                <h3>About Us</h3>
-                <p>We specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our team is dedicated to providing exceptional service and innovative solutions that drive success.</p>
-                <a href="about.html" class="learn-more-btn">Learn More →</a>
-            </div>
-            <img src="https://via.placeholder.com/450" alt="About Us" data-aos="fade-left">
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Elan's Tech World</h1>
+            <p class="hero-description">Innovative Tech Solutions for Your Business</p>
+            <a href="#services" class="explore-btn">Explore Services</a>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section-wrapper">
-        <div class="section-bg"></div>
-        <div class="services-content">
-            <img src="https://via.placeholder.com/450" alt="Services" data-aos="fade-right">
-            <div class="section-text" data-aos="fade-left">
-                <h3>Our Services</h3>
-                <p>We provide a range of technology services including business computer setup, custom web design, and technology consulting. Our goal is to empower your business with efficient, scalable, and effective tech solutions.</p>
-                <a href="services.html" class="learn-more-btn">Explore Services →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section-wrapper">
-        <div class="section-bg"></div>
-        <div class="projects-content">
-            <div class="section-text" data-aos="fade-right">
-                <h3>Our Latest Projects</h3>
-                <p>From small business websites to enterprise-level solutions, we have successfully delivered numerous projects. Each one tailored to meet the specific needs of our clients, ensuring quality and satisfaction.</p>
-                <a href="projects.html" class="learn-more-btn">View Projects →</a>
-            </div>
-            <img src="https://via.placeholder.com/450" alt="Projects" data-aos="fade-left">
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section-wrapper">
-        <div class="section-bg"></div>
-        <div class="contact-content">
-            <img src="https://via.placeholder.com/450" alt="Contact Us" data-aos="fade-right">
-            <div class="section-text" data-aos="fade-left">
-                <h3>Contact Us</h3>
-                <p>Reach out to us for expert advice, assistance, and support tailored to your needs. Our team is ready to help you solve your tech challenges and enhance your business capabilities.</p>
-                <a href="contact.html" class="learn-more-btn">Contact Now →</a>
-            </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-arrow-down"></i>
         </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // Dark Mode Toggle
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        toggleSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Header Scroll Effect
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
 
         // Initialize Particles.js
         particlesJS("particles-js", {
@@ -430,15 +364,6 @@
                 events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }
             },
             retina_detect: true
-        });
-
-        // Hamburger Menu Script
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
-
-        hamburger.addEventListener('click', function () {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
         });
     </script>
 </body>
