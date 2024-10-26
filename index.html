@@ -14,11 +14,8 @@
     <meta property="og:title" content="Elan's Tech World - Technology Solutions for Your Business">
     <meta property="og:description" content="Empowering your business with expert computer setup, custom web design, Apple product resale, and repair services. Explore Elan's Tech World for innovative tech solutions.">
     <meta property="og:image" content="https://elanstechworld.com/images/og-image.jpg">
-    <meta property="og:url" content="https://elanstechworld.com/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Elan's Tech World">
-    <style>
-        /* General Body Styling */
+  </style>       
+/* General Body Styling */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -40,7 +37,12 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: top 0.6s;
+    transition: top 0.6s, background-color 0.6s;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+header.sticky {
+    background-color: rgba(11, 31, 63, 0.95);
 }
 
 .header-container {
@@ -54,8 +56,14 @@ header {
 header .logo img {
     height: 75px;
     filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
+    transition: transform 0.3s ease;
 }
 
+header .logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation Styling */
 header nav ul {
     list-style: none;
     display: flex;
@@ -69,126 +77,143 @@ header nav ul li a {
     font-weight: 600;
     padding: 8px 15px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 header nav ul li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
 
-/* Hamburger Menu for Mobile */
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
-.hamburger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
-    transition: all 0.3s ease;
-}
-
-.mobile-nav {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: #0b1f3f;
-    position: absolute;
-    top: 100%;
+/* Full-width Section Styling */
+.full-width-section {
     width: 100%;
-    left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.mobile-nav.active {
-    display: flex;
-    opacity: 1;
-}
-
-.mobile-nav li {
-    margin: 10px 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.mobile-nav.active li {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Hero Section Styling */
-.hero {
+    padding: 60px 0;
+    box-sizing: border-box;
     position: relative;
-    width: 100%;
-    height: 100vh;
     overflow: hidden;
 }
 
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 10; /* Ensure particles.js container has a high z-index */
-    pointer-events: none;
-}
-
-.slide {
-    width: 100%;
-    height: 100%;
+.full-width-section::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    background-size: cover;
-    background-position: center;
-    transition: opacity 1s ease-in-out;
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(11, 31, 63, 0.5), rgba(0, 0, 0, 0.5));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.full-width-card {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    margin: 0 auto 20px auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
     text-align: center;
-    color: white;
-    z-index: 5; /* Ensure slides are below the particles.js container */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.slide.active {
-    opacity: 1;
-    z-index: 5; /* Ensure active slide is below the particles.js container */
+.full-width-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.fade-in {
-    animation: fadeIn 1s forwards;
+/* Section Titles */
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    color: #f9c200;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    animation: fadeInTitle 1s forwards;
 }
 
-.fade-out {
-    animation: fadeOut 1s forwards;
-}
-
-@keyframes fadeIn {
+@keyframes fadeInTitle {
     0% {
         opacity: 0;
+        transform: translateY(20px);
     }
     100% {
         opacity: 1;
+        transform: translateY(0);
     }
 }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
+/* Card Grid Styling */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 90%;
+    margin: auto;
+}
+
+@media (max-width: 1200px) {
+    .card-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
+@media (max-width: 992px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card Styling */
+.card {
+    padding: 30px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.card i.service-icon {
+    font-size: 4em;
+    color: #f9c200;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.card:hover i.service-icon {
+    color: #ffd600;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Overlay Styling */
 .overlay {
     position: relative;
-    z-index: 15; /* Overlay content should be above particles.js */
+    z-index: 15;
     color: #fff;
     text-align: center;
     top: 50%;
@@ -199,17 +224,7 @@ header nav ul li a:hover {
     border-radius: 10px;
 }
 
-.overlay h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.overlay p {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
+/* Button Styling */
 .explore-btn {
     padding: 10px 20px;
     background-color: #f9c200;
@@ -217,17 +232,36 @@ header nav ul li a:hover {
     text-decoration: none;
     font-weight: 600;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block; /* Ensure the button is displayed as a block-level element */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
     text-align: center;
-    margin: 20px auto 0; /* Center the button within the section */
+    margin: 20px auto 0;
+    box-shadow: 0 5px 15px rgba(249, 194, 0, 0.5);
 }
 
 .explore-btn:hover {
     background-color: #ffd600;
-    transform: translateY(-3px); /* Adds a hover effect for visual feedback */
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(249, 194, 0, 0.7);
 }
 
+/* Animations */
+@keyframes fadeInCard {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInCard 1s ease-in-out forwards;
+}
+
+/* Scroll Button */
 .scroll-down {
     position: absolute;
     bottom: 10px;
@@ -248,23 +282,48 @@ header nav ul li a:hover {
     }
 }
 
-@media (min-width: 769px) {
-    .slide {
-        background-attachment: fixed;
-    }
+/* Contact Form Styling */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: background 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .slide {
-        background-attachment: scroll;
-        height: auto;
-    }
+.contact-form input:hover,
+.contact-form textarea:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
 
-    .overlay h1 {
+.contact-form button {
+    padding: 10px 20px;
+    background-color: #f9c200;
+    color: #0b1f3f;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #ffd600;
+    transform: translateY(-3px);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .hero .overlay h1 {
         font-size: 2em;
     }
 
-    .overlay p {
+    .hero .overlay p {
         font-size: 1.2em;
     }
 
@@ -272,284 +331,6 @@ header nav ul li a:hover {
         padding: 8px 16px;
     }
 }
-
-/* Section Titles Styling */
-.section-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5em;
-    color: #f9c200;
-    text-align: center;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-}
-
-        .card-grid .card i.service-icon {
-        font-size: 4em;
-        color: #f9c200;
-        margin-bottom: 20px;
-        
-        }
-
-
-       .card-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr); /* 5 columns on large screens */
-        gap: 20px;
-        width: 90%;
-        margin: auto;
-        
-        }
-
-        @media (max-width: 1200px) {
-        .card-grid {
-         grid-template-columns: repeat(4, 1fr); /* 4 columns for large tablets */
-        }
-    }
-
-        @media (max-width: 992px) {
-        .card-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for medium tablets */
-        }
-    }
-
-        @media (max-width: 768px) {
-        .card-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller tablets */
-        }
-    }
-
-        @media (max-width: 576px) {
-        .card-grid {
-        grid-template-columns: 1fr; /* Single column for mobile devices */
-        }
-    }    
-
-        /* Card Styling */
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .services-section .explore-btn {
-            margin: 0 auto;
-            display: block;
-            text-align: center;
-        }
-
-        /* Hover Effect for Cards */
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Service Icons in Cards */
-        .service-icon {
-            font-size: 4em;
-            color: #f9c200;
-            margin-bottom: 20px;
-        }
-
-        /* Service Titles in Cards */
-        .service-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        /* Service Descriptions in Cards */
-        .service-description {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #ddd;
-        }
-
-        /* Explore Button in Services Section */
-        .services-section .explore-btn {
-         display: block; /* Ensure the button is treated as a block element */
-         margin: 20px auto 0 auto; /* Center the button horizontally */
-        text-align: center;
-        
-        }
-
-
-        /* Projects Section Styling */
-        .projects-section {
-            padding: 60px 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-
-        .projects-section .section-title {
-            font-size: 2.5em;
-            color: #0b1f3f;
-            margin-bottom: 40px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 90%;
-            margin: auto;
-        }
-
-        .project-card {
-            position: relative;
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #0b1f3f;
-        }
-
-        .project-image {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            border-radius: 50%;
-            border: 2px solid #f9c200;
-            margin: 0 auto 15px auto;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .project-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6em;
-            margin-bottom: 10px;
-        }
-
-        .project-description {
-            font-size: 1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .project-link {
-            color: #f9c200;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: #ffd600;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 10px;
-        }
-
-        .project-overlay .overlay-title {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .project-overlay .overlay-link {
-            padding: 10px 20px;
-            background-color: #f9c200;
-            color: #0b1f3f;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .project-overlay .overlay-link:hover {
-            background-color: #ffd600;
-        }
-
-        /* Testimonials and FAQ Styling */
-        .testimonials-section,
-        .faq-section {
-            background-color: #fff;
-            padding: 60px 0;
-        }
-
-        #instagram h2 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #f9c200;
-        }
-
-        /* Contact Us Section Styling */
-        #contact {
-            padding: 50px 0;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .contact-form button {
-            padding: 10px 20px;
-            background-color: #f9c200;
-            color: #0b1f3f;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .contact-form button:hover {
-            background-color: #ffd600;
-        }
     </style>
 </head>
 
