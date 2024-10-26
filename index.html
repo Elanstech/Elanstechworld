@@ -20,6 +20,8 @@
     <!-- GSAP Animation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
+    <!-- Elfsight Widgets -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -45,6 +47,11 @@
             transition: background-color 0.6s ease;
         }
 
+        header.scrolled {
+            background-color: rgba(11, 31, 63, 1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
         .header-container {
             display: flex;
             justify-content: space-between;
@@ -53,8 +60,26 @@
             margin: auto;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .logo img {
             height: 70px;
+            transition: transform 0.6s ease;
+        }
+
+        .logo:hover img {
+            transform: rotate(360deg);
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #f9c200;
         }
 
         nav ul {
@@ -69,11 +94,29 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
         }
 
         nav ul li a:hover {
             color: #f9c200;
+            transform: scale(1.1);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #f9c200;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
         }
 
         /* Advanced Hamburger Menu */
@@ -320,9 +363,34 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
+
+        /* Instagram Widget Section */
+        .instagram-widget {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #0b1f3f, #2e4b7b);
+        }
+
+        .instagram-widget h3 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
+
+        /* Call Button Section */
+        .call-button-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #2e4b7b, #0b1f3f);
+        }
+
+        .call-button-section h3 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
     </style>
 </head>
-
 <body>
     <header>
         <div class="header-container">
