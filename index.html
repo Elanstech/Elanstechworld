@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World - Technology Solutions for Your Business</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Empowering your business with expert computer setup, custom web design, Apple product resale, and repair services. Explore Elan's Tech World for innovative tech solutions.">
     <meta name="keywords" content="Elan's Tech World, technology solutions, web design, Apple product resale, computer setup, business tech solutions, POS system setup">
     <meta name="author" content="Elan Cohen">
@@ -15,11 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- Particle.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <!-- Lottie Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-    <!-- Elf Widget Script -->
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
     <style>
         /* General Styling */
         body {
@@ -43,7 +41,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: background-color 0.6s;
+            transition: background-color 0.6s ease;
         }
 
         .header-container {
@@ -56,10 +54,9 @@
 
         .logo img {
             height: 70px;
-            filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.7));
         }
 
-        header nav ul {
+        nav ul {
             list-style: none;
             display: flex;
             gap: 20px;
@@ -71,7 +68,7 @@
             color: #fff;
             font-weight: 600;
             padding: 8px 15px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
@@ -102,13 +99,10 @@
             top: 100%;
             width: 100%;
             left: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease;
         }
 
         .mobile-nav.active {
             display: flex;
-            opacity: 1;
         }
 
         /* Hero Section Styling */
@@ -164,12 +158,12 @@
             text-decoration: none;
             font-weight: 600;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .explore-btn:hover {
-            background-color: #ffd600;
             transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .scroll-down {
@@ -193,134 +187,114 @@
             }
         }
 
-        /* About Section Styling */
-        .about-section {
+        /* Tile Sections */
+        .tile-section {
             padding: 60px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
             background: linear-gradient(to bottom, #0b1f3f, #111c40);
         }
 
-        .about-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            width: 90%;
-            margin: auto;
+        .tile {
+            width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            overflow: hidden;
+            position: relative;
         }
 
-        .about-image img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        .tile:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .about-content {
-            max-width: 500px;
-        }
-
-        .about-title {
-            font-size: 2.2em;
+        .tile-icon {
+            font-size: 3.5em;
             color: #f9c200;
             margin-bottom: 20px;
         }
 
-        /* Service Cards with Advanced Effects */
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            width: 90%;
-            margin: auto;
-        }
-
-        .service-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .service-icon {
-            font-size: 3.5em;
-            color: #f9c200;
-            margin-bottom: 15px;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1);
-        }
-
-        /* Project Cards with Overlay Effects */
-        .project-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 90%;
-            margin: auto;
-        }
-
-        .project-card {
-            background: url('https://github.com/Elanstech/Elanstechworld/blob/main/project-background.jpg?raw=true') no-repeat center/cover;
-            border-radius: 20px;
-            overflow: hidden;
-            height: 400px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: left;
-        }
-
-        .project-card:hover .project-overlay {
-            background: rgba(0, 0, 0, 0.9);
-        }
-
-        .project-title {
+        .tile-title {
             font-size: 1.8em;
             margin-bottom: 10px;
         }
 
-        @media (max-width: 768px) {
-            header nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero-title {
-                font-size: 2.5em;
-            }
-
-            .hero-description {
-                font-size: 1.2em;
-            }
+        .tile-description {
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
+
+        .tile-button {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tile-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, #0b1f3f, #111c40);
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact-form {
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .contact-form button {
+            padding: 12px 25px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
     </style>
 </head>
 
@@ -334,11 +308,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="hamburger" id="hamburger">
@@ -349,119 +323,70 @@
         </div>
     </header>
 
-    <!-- Enhanced Hero Section -->
     <section class="hero" id="hero">
         <div id="particles-js"></div>
         <div class="overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">Welcome To Elan's Tech World</h1>
-            <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
-            <a href="#services" class="explore-btn">View Our Services →</a>
+            <p class="hero-description">Empowering your business with cutting-edge technology solutions.</p>
+            <a href="services.html" class="explore-btn">View Our Services →</a>
         </div>
         <div class="scroll-down"><i class="fas fa-angle-down"></i></div>
     </section>
 
-    <!-- Enhanced About Us Section -->
-    <section id="about" class="about-section">
-        <h2 class="about-title">Who We Are</h2>
-        <div class="about-container">
-            <div class="about-image">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/about-image.jpeg?raw=true" alt="About Us">
-            </div>
-            <div class="about-content">
-                <p>We specialize in delivering custom technology solutions designed to streamline your business.</p>
-                <a href="#about" class="explore-btn">Learn More →</a>
-            </div>
+    <!-- Tile-Based Sections -->
+    <section id="about" class="tile-section">
+        <div class="tile" data-aos="fade-up">
+            <i class="tile-icon fas fa-user-friends"></i>
+            <h3 class="tile-title">About Us</h3>
+            <p class="tile-description">We specialize in delivering custom technology solutions designed to streamline your business.</p>
+            <a href="about.html" class="tile-button">Learn More →</a>
         </div>
     </section>
 
-    <!-- Enhanced Services Section -->
-    <section id="services" class="services-section" data-aos="fade-up">
-        <h2 class="section-title">Our Services</h2>
-        <div class="service-cards">
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="service-icon fas fa-desktop"></i>
-                <h3 class="service-title">Expert Business Computer Setup</h3>
-                <p class="service-description">Professional setup for seamless business operations.</p>
-            </div>
-
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="service-icon fas fa-laptop-code"></i>
-                <h3 class="service-title">Custom Web Design</h3>
-                <p class="service-description">Stand out with a custom website tailored to your brand.</p>
-            </div>
-
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="service-icon fas fa-tools"></i>
-                <h3 class="service-title">POS System Setup</h3>
-                <p class="service-description">Streamline your business operations with modern POS systems.</p>
-            </div>
-
-            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                <i class="service-icon fas fa-mobile-alt"></i>
-                <h3 class="service-title">Apple Product Resale</h3>
-                <p class="service-description">Genuine Apple products with warranty support.</p>
-            </div>
+    <section id="services" class="tile-section">
+        <div class="tile" data-aos="fade-up" data-aos-delay="100">
+            <i class="tile-icon fas fa-desktop"></i>
+            <h3 class="tile-title">Business Computer Setup</h3>
+            <p class="tile-description">Professional setup for seamless business operations.</p>
+            <a href="services.html" class="tile-button">Explore →</a>
+        </div>
+        <div class="tile" data-aos="fade-up" data-aos-delay="200">
+            <i class="tile-icon fas fa-laptop-code"></i>
+            <h3 class="tile-title">Custom Web Design</h3>
+            <p class="tile-description">Stand out with a custom website tailored to your brand.</p>
+            <a href="services.html" class="tile-button">Explore →</a>
+        </div>
+        <div class="tile" data-aos="fade-up" data-aos-delay="300">
+            <i class="tile-icon fas fa-tools"></i>
+            <h3 class="tile-title">POS System Setup</h3>
+            <p class="tile-description">Streamline your business operations with modern POS systems.</p>
+            <a href="services.html" class="tile-button">Explore →</a>
+        </div>
+        <div class="tile" data-aos="fade-up" data-aos-delay="400">
+            <i class="tile-icon fas fa-mobile-alt"></i>
+            <h3 class="tile-title">Apple Product Resale</h3>
+            <p class="tile-description">Genuine Apple products with warranty support.</p>
+            <a href="services.html" class="tile-button">Explore →</a>
         </div>
     </section>
 
-    <!-- Enhanced Projects Section -->
-    <section id="projects" class="projects-section">
-        <h2 class="section-title">Our Latest Projects</h2>
-        <div class="project-cards">
-            <div class="project-card">
-                <div class="project-overlay">
-                    <h3 class="project-title">Iconic Aesthetics</h3>
-                    <p class="project-description">A complete digital transformation that encompassed branding, web design, and marketing strategies.</p>
-                    <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-overlay">
-                    <h3 class="project-title">East Coast Realty</h3>
-                    <p class="project-description">A comprehensive digital and technical overhaul enhancing online presence and internal operations.</p>
-                    <a href="east-coast-realty.html" class="project-link">Read More →</a>
-                </div>
-            </div>
+    <section id="projects" class="tile-section">
+        <div class="tile" data-aos="fade-up">
+            <i class="tile-icon fas fa-building"></i>
+            <h3 class="tile-title">Iconic Aesthetics</h3>
+            <p class="tile-description">A complete digital transformation encompassing branding, web design, and marketing strategies.</p>
+            <a href="projects.html" class="tile-button">Read More →</a>
+        </div>
+        <div class="tile" data-aos="fade-up" data-aos-delay="100">
+            <i class="tile-icon fas fa-warehouse"></i>
+            <h3 class="tile-title">East Coast Realty</h3>
+            <p class="tile-description">A comprehensive digital and technical overhaul enhancing online presence and internal operations.</p>
+            <a href="projects.html" class="tile-button">Read More →</a>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-        <h2 class="section-title">What Our Clients Say</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Client Feedback</h3>
-                <p class="service-description">
-                    Discover why businesses choose us for reliable tech solutions.
-                </p>
-                <a href="testimonials.html" class="explore-btn">View More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Common Questions</h3>
-                <p class="service-description">
-                    Find answers to your questions about our services.
-                </p>
-                <a href="faq.html" class="explore-btn">View More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Instagram Section -->
-    <section id="instagram">
-        <h2>Follow Us on Instagram</h2>
-        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-    </section>
-
-    <!-- Contact Us Section -->
-    <section id="contact">
+    <section id="contact" class="contact-section">
         <h2 class="section-title">Contact Us</h2>
         <p>Have any questions or inquiries? We're here to help you!</p>
         <p>Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
@@ -473,15 +398,14 @@
                 <button type="submit">Send Message</button>
             </form>
             <p>Or you can also call us at <a href="tel:929-417-6819" style="color: #f9c200;">929-417-6819</a>.</p>
-            <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
         </div>
     </section>
 
-    <!-- AOS and Particles.js Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-<!-- Scripts -->
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // Initialize Particles.js
         particlesJS("particles-js", {
             particles: {
                 number: { value: 100, density: { enable: true, value_area: 800 } },
