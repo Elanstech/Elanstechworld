@@ -77,102 +77,101 @@ header nav ul li a:hover {
 }
 
 /* Hamburger Menu for Mobile */
-        /* Hamburger Menu Styling */
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 1100; /* Above everything else */
-            transition: transform 0.3s ease;
-        }
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1100; /* Above everything else */
+    transition: transform 0.3s ease;
+}
 
-        .hamburger div {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px 0;
-            transition: all 0.4s ease;
-        }
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0;
+    transition: all 0.4s ease;
+}
 
-        .hamburger.active div:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
+.hamburger.active div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
 
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
 
-        .hamburger.active div:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
+.hamburger.active div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
 
-        /* Mobile Nav Styling */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 80%;
-            height: 100vh;
-            background-color: #0b1f3f;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-            padding: 50px 20px;
-            transform: translateX(100%);
-            transition: transform 0.5s ease;
-        }
+/* Mobile Nav Styling */
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100vh;
+    background-color: #0b1f3f;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    padding: 50px 20px;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+}
 
-        .mobile-nav.active {
-            display: flex;
-            transform: translateX(0);
-        }
+.mobile-nav.active {
+    display: flex;
+    transform: translateX(0);
+}
 
-        .mobile-nav ul {
-            list-style: none;
-            padding: 0;
-            width: 100%;
-        }
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
 
-        .mobile-nav ul li {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            text-align: center;
-            margin: 20px 0;
-        }
+.mobile-nav ul li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    text-align: center;
+    margin: 20px 0;
+}
 
-        .mobile-nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.5em;
-            font-weight: 600;
-            padding: 10px;
-            transition: color 0.3s ease;
-        }
+.mobile-nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 600;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
 
-        .mobile-nav ul li a:hover {
-            color: #f9c200;
-        }
+.mobile-nav ul li a:hover {
+    color: #f9c200;
+}
 
-        /* Animations for Menu Items */
-        .mobile-nav.active ul li {
-            opacity: 1;
-            transform: translateY(0);
-        }
+/* Animations for Menu Items */
+.mobile-nav.active ul li {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        .mobile-nav.active ul li:nth-child(1) { transition-delay: 0.1s; }
-        .mobile-nav.active ul li:nth-child(2) { transition-delay: 0.2s; }
-        .mobile-nav.active ul li:nth-child(3) { transition-delay: 0.3s; }
-        .mobile-nav.active ul li:nth-child(4) { transition-delay: 0.4s; }
-        .mobile-nav.active ul li:nth-child(5) { transition-delay: 0.5s; }
-        .mobile-nav.active ul li:nth-child(6) { transition-delay: 0.6s; }
+.mobile-nav.active ul li:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav.active ul li:nth-child(2) { transition-delay: 0.2s; }
+.mobile-nav.active ul li:nth-child(3) { transition-delay: 0.3s; }
+.mobile-nav.active ul li:nth-child(4) { transition-delay: 0.4s; }
+.mobile-nav.active ul li:nth-child(5) { transition-delay: 0.5s; }
+.mobile-nav.active ul li:nth-child(6) { transition-delay: 0.6s; }
 
-        @media (min-width: 769px) {
-            .hamburger {
-                display: none;
-            }
-        }
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+}
 
 /* Hero Section Styling */
 .hero {
@@ -272,14 +271,14 @@ header nav ul li a:hover {
     font-weight: 600;
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    display: inline-block; /* Ensure the button is displayed as a block-level element */
+    display: inline-block;
     text-align: center;
-    margin: 20px auto 0; /* Center the button within the section */
+    margin: 20px auto 0;
 }
 
 .explore-btn:hover {
     background-color: #ffd600;
-    transform: translateY(-3px); /* Adds a hover effect for visual feedback */
+    transform: translateY(-3px);
 }
 
 .scroll-down {
@@ -358,6 +357,17 @@ header nav ul li a:hover {
 .services-section .card {
     flex: 1 1 24%;
     margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+    .services-section .card-grid {
+        flex-wrap: wrap;
+    }
+
+    .services-section .card {
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
 }
 
 /* Card Styling */
@@ -620,19 +630,18 @@ header nav ul li a:hover {
     </div>
 </section>
 
-
-    <section id="about">
-        <h2 class="section-title">About Us</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Who We Are</h3>
-                <p class="service-description">
-                    We specialize in delivering custom technology solutions designed to streamline your business.
-                </p>
-                <a href="about.html" class="explore-btn">View More</a>
-            </div>
+<section id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3 class="service-title">Who We Are</h3>
+            <p class="service-description">
+                We specialize in delivering custom technology solutions designed to streamline your business.
+            </p>
+            <a href="about.html" class="explore-btn">View More</a>
         </div>
-    </section>
+    </div>
+</section>
 
 <!-- Our Services Section -->
 <section class="services-section" id="services" data-aos="fade-up">
@@ -683,83 +692,80 @@ header nav ul li a:hover {
     <a href="services.html" class="explore-btn">Explore More</a>
 </section>
 
-
-    <section class="projects-section" id="projects">
-        <h2 class="section-title">Our Latest Projects</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
-                <h3 class="project-title">Iconic Aesthetics</h3>
-                <p class="project-description">
-                    For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
-                </p>
-                <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
-            </div>
-
-            <div class="project-card">
-                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
-                <h3 class="project-title">East Coast Realty</h3>
-                <p class="project-description">
-                    For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
-                </p>
-                <a href="east-coast-realty.html" class="project-link">Read More →</a>
-            </div>
+<section class="projects-section" id="projects">
+    <h2 class="section-title">Our Latest Projects</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
+            <h3 class="project-title">Iconic Aesthetics</h3>
+            <p class="project-description">
+                For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
+            </p>
+            <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
         </div>
-    </section>
 
-    <section id="testimonials">
-        <h2 class="section-title">What Our Clients Say</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Client Feedback</h3>
-                <p class="service-description">
-                    Discover why businesses choose us for reliable tech solutions.
-                </p>
-                <a href="testimonials.html" class="explore-btn">View More</a>
-            </div>
+        <div class="project-card">
+            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
+            <h3 class="project-title">East Coast Realty</h3>
+            <p class="project-description">
+                For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
+            </p>
+            <a href="east-coast-realty.html" class="project-link">Read More →</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="card-grid">
-            <div class="card">
-                <h3 class="service-title">Common Questions</h3>
-                <p class="service-description">
-                    Find answers to your questions about our services.
-                </p>
-                <a href="faq.html" class="explore-btn">View More</a>
-            </div>
+<section id="testimonials">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3 class="service-title">Client Feedback</h3>
+            <p class="service-description">
+                Discover why businesses choose us for reliable tech solutions.
+            </p>
+            <a href="testimonials.html" class="explore-btn">View More</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="instagram">
-        <h2>Follow Us on Instagram</h2>
-        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">Contact Us</h2>
-        <p>Have any questions or inquiries? We're here to help you!</p>
-        <p>Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
-        <div class="contact-form">
-            <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-            <p>Or you can also call us at <a href="tel:929-417-6819" style="color: #f9c200;">929-417-6819</a>.</p>
-            <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
+<section id="faq">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3 class="service-title">Common Questions</h3>
+            <p class="service-description">
+                Find answers to your questions about our services.
+            </p>
+            <a href="faq.html" class="explore-btn">View More</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<section id="instagram">
+    <h2>Follow Us on Instagram</h2>
+    <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p>Have any questions or inquiries? We're here to help you!</p>
+    <p>Reach out to us for expert advice, assistance, and support tailored to your needs.</p>
+    <div class="contact-form">
+        <form action="mailto:Elanstechworld@gmail.com" method="POST" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p>Or you can also call us at <a href="tel:929-417-6819" style="color: #f9c200;">929-417-6819</a>.</p>
+        <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-    // Initialize AOS animations
     AOS.init({ duration: 1000, once: true });
 
-    // Hero Section - Slide Control
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const heroTitle = document.querySelector('.hero-title');
@@ -783,7 +789,6 @@ header nav ul li a:hover {
         }
     ];
 
-    // Function to change to the next slide
     function showNextSlide() {
         slides[currentSlide].classList.remove('active', 'fade-in');
         currentSlide = (currentSlide + 1) % slideData.length;
@@ -826,13 +831,13 @@ header nav ul li a:hover {
         "interactivity": {
             "detect_on": "canvas",
             "events": {
-                "onhover": {
-                    "enable": true,
-                    "mode": ["grab", "bubble"]
+                "onhover": { 
+                    "enable": true, 
+                    "mode": ["grab", "bubble"] 
                 },
-                "onclick": {
-                    "enable": true,
-                    "mode": "repulse"
+                "onclick": { 
+                    "enable": true, 
+                    "mode": "repulse" 
                 }
             },
             "modes": {
@@ -870,7 +875,7 @@ header nav ul li a:hover {
         return royalBlueGradient[Math.floor(Math.random() * royalBlueGradient.length)];
     }
 
-    // Change particle color dynamically on hover
+    // Change color dynamically on hover
     document.querySelector('#particles-js').addEventListener('mousemove', () => {
         const particles = window.pJSDom[0].pJS.particles.array; // Access all particles
         particles.forEach(particle => {
@@ -878,7 +883,6 @@ header nav ul li a:hover {
         });
     });
 
-    // Hamburger Menu Functionality
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobile-nav');
 
@@ -892,12 +896,8 @@ header nav ul li a:hover {
         links.forEach((link, index) => {
             if (mobileNav.classList.contains('active')) {
                 link.style.transitionDelay = `${index * 100}ms`;
-                link.style.opacity = '1';
-                link.style.transform = 'translateY(0)';
             } else {
                 link.style.transitionDelay = '0ms';
-                link.style.opacity = '0';
-                link.style.transform = 'translateY(-20px)';
             }
         });
     });
