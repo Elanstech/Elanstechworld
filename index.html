@@ -212,19 +212,26 @@
             margin-bottom: 20px;
         }
 
-        .explore-btn {
-            padding: 10px 20px;
-            background-color: #f9c200;
-            color: #0b1f3f;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+       .explore-btn {
+        padding: 10px 20px;
+        background-color: #f9c200;
+        color: #0b1f3f;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        display: inline-block; /* Ensure the button is displayed as a block-level element */
+        text-align: center;
+        margin: 20px auto 0; /* Center the button within the section */
+        
         }
 
         .explore-btn:hover {
-            background-color: #ffd600;
+        background-color: #ffd600;
+        transform: translateY(-3px); /* Adds a hover effect for visual feedback */
+        
         }
+
 
         .scroll-down {
             position: absolute;
@@ -280,6 +287,13 @@
             margin-bottom: 30px;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
         }
+        .card-grid .card i.service-icon {
+        font-size: 4em;
+        color: #f9c200;
+        margin-bottom: 20px;
+        
+        }
+
 
         /* Card Grid Layout */
         .card-grid {
@@ -585,43 +599,55 @@
         </div>
     </section>
 
-    <section class="services-section" id="services" data-aos="fade-up">
-        <h2 class="section-title">Our Services</h2>
-        <div class="card-grid">
-            <div class="card" data-aos="fade-up" data-aos-delay="100">
-                <i class="service-icon fas fa-desktop"></i>
-                <h3 class="service-title">Expert Business Computer Setup</h3>
-                <p class="service-description">
-                    Professional setup for seamless business operations.
-                </p>
-            </div>
-
-            <div class="card" data-aos="fade-up" data-aos-delay="200">
-                <i class="service-icon fas fa-laptop-code"></i>
-                <h3 class="service-title">Custom Web Design</h3>
-                <p class="service-description">
-                    Stand out with a custom website tailored to your brand.
-                </p>
-            </div>
-
-            <div class="card" data-aos="fade-up" data-aos-delay="300">
-                <i class="service-icon fas fa-tools"></i>
-                <h3 class="service-title">POS System Setup</h3>
-                <p class="service-description">
-                    Streamline your business operations with modern POS systems.
-                </p>
-            </div>
-
-            <div class="card" data-aos="fade-up" data-aos-delay="400">
-                <i class="service-icon fas fa-mobile-alt"></i>
-                <h3 class="service-title">Apple Product Resale</h3>
-                <p class="service-description">
-                    Genuine Apple products with warranty support.
-                </p>
-            </div>
+<!-- Our Services Section -->
+<section class="services-section" id="services" data-aos="fade-up">
+    <h2 class="section-title">Our Services</h2>
+    <div class="card-grid">
+        <!-- Existing Service Cards -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <i class="service-icon fas fa-desktop"></i>
+            <h3 class="service-title">Expert Business Computer Setup</h3>
+            <p class="service-description">
+                Professional setup for seamless business operations.
+            </p>
         </div>
-        <a href="services.html" class="explore-btn">Explore More</a>
-    </section>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <i class="service-icon fas fa-laptop-code"></i>
+            <h3 class="service-title">Custom Web Design</h3>
+            <p class="service-description">
+                Stand out with a custom website tailored to your brand.
+            </p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <i class="service-icon fas fa-tools"></i>
+            <h3 class="service-title">POS System Setup</h3>
+            <p class="service-description">
+                Streamline your business operations with modern POS systems.
+            </p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <i class="service-icon fas fa-mobile-alt"></i>
+            <h3 class="service-title">Apple Product Resale</h3>
+            <p class="service-description">
+                Genuine Apple products with warranty support.
+            </p>
+        </div>
+
+        <!-- New Service Card for Advertising Solutions -->
+        <div class="card" data-aos="fade-up" data-aos-delay="500">
+            <i class="service-icon fas fa-bullhorn"></i>
+            <h3 class="service-title">Advertising & Google Ads</h3>
+            <p class="service-description">
+                Create custom flyers, design business cards, and set up Google Ads for your business to reach new customers effectively.
+            </p>
+        </div>
+    </div>
+    <a href="services.html" class="explore-btn">Explore More</a>
+</section>
+
 
     <section class="projects-section" id="projects">
         <h2 class="section-title">Our Latest Projects</h2>
