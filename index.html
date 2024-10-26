@@ -123,10 +123,11 @@
 
         /* Hero Section Styling */
         .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
+          position: relative;
+          width: 100%;
+          height: 100vh;
+          overflow: hidden;
+                
         }
 
         #particles-js {
@@ -155,11 +156,39 @@
             color: white;
         }
 
-        .slide.active {
-            opacity: 1;
-            z-index: 0;
+          .slide.active {
+           opacity: 1; /* Show the active slide */
+            z-index: 1;
+        
+          }
+
+    /* Slide Fade-in and Fade-out Animations */
+    .fade-in {
+        animation: fadeIn 1s forwards;
         }
 
+        .fade-out {
+        animation: fadeOut 1s forwards;
+        
+        }
+
+    @keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
         .overlay {
             position: relative;
             z-index: 2;
@@ -623,28 +652,57 @@
         AOS.init({ duration: 1000, once: true });
 
         // JavaScript for Dynamic Slide Transitions
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const heroTitle = document.querySelector('.hero-title');
-        const heroDescription = document.querySelector('.hero-description');
-        const exploreButton = document.querySelector('.explore-btn');
+         let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroDescription = document.querySelector('.hero-description');
+    const exploreButton = document.querySelector('.explore-btn');
 
-        const slideData = [
-            {
-                image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
-                title: "Welcome To Elan's Tech World",
-                description: "Empowering your people with cutting-edge technology solutions.",
-                buttonLink: "#services",
-                buttonText: "View Our Services →"
-            },
-            {
-                image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
-                title: "Innovative Tech Solutions",
-                description: "Delivering personalized technology strategies for your business.",
-                buttonLink: "#about",
-                buttonText: "Learn About Us →"
-            }
-        ];
+    const slideData = [
+        {
+            image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
+            title: "Welcome To Elan's Tech World",
+            description: "Empowering your people with cutting-edge technology solutions.",
+            buttonLink: "#services",
+            buttonText: "View Our Services →"
+        },
+        {
+            image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
+            title: "Innovative Tech Solutions",
+            description: "Delivering personalized technology strategies for your business.",
+            buttonLink: "#about",
+            buttonText: "Learn About Us →"
+        }
+    ];
+
+    function showNextSlide() {
+        // Remove active class and add fade-out to the current slide
+        slides[currentSlide].classList.remove('active');
+        slides[currentSlide].classList.add('fade-out');
+
+        // Increment the slide index or reset to zero if at the end
+        currentSlide = (currentSlide + 1) % slideData.length;
+
+        // Update the slide background image
+        slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+
+        // Update the overlay content
+        heroTitle.textContent = slideData[currentSlide].title;
+        heroDescription.textContent = slideData[currentSlide].description;
+        exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
+        exploreButton.textContent = slideData[currentSlide].buttonText;
+
+        // Add fade-in class to the new slide and make it active
+        slides[currentSlide].classList.remove('fade-out');
+        slides[currentSlide].classList.add('fade-in', 'active');
+    }
+
+    // Set an interval to change the slides every 5 seconds
+    setInterval(showNextSlide, 5000);
+
+    // Initial call to set up the first slide
+    slides[currentSlide].classList.add('fade-in', 'active');
+    showNextSlide();
 
         function showNextSlide() {
             // Update the slide background image
