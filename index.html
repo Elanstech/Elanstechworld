@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,11 +122,10 @@
 
         /* Hero Section Styling */
         .hero {
-          position: relative;
-          width: 100%;
-          height: 100vh;
-          overflow: hidden;
-                
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
         }
 
         #particles-js {
@@ -156,39 +154,37 @@
             color: white;
         }
 
-          .slide.active {
-           opacity: 1; /* Show the active slide */
+        .slide.active {
+            opacity: 1;
             z-index: 1;
-        
-          }
+        }
 
-    /* Slide Fade-in and Fade-out Animations */
-    .fade-in {
-        animation: fadeIn 1s forwards;
+        .fade-in {
+            animation: fadeIn 1s forwards;
         }
 
         .fade-out {
-        animation: fadeOut 1s forwards;
-        
+            animation: fadeOut 1s forwards;
         }
 
-    @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
 
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
         .overlay {
             position: relative;
             z-index: 2;
@@ -303,12 +299,12 @@
             overflow: hidden;
             z-index: 1;
         }
-        .services-section .explore-btn {
-        margin: 0 auto; /* Center the button horizontally */
-        display: block;
-        
-        }
 
+        .services-section .explore-btn {
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
 
         /* Hover Effect for Cards */
         .card:hover {
@@ -337,14 +333,140 @@
             color: #ddd;
         }
 
+        /* Explore Button in Services Section */
         .services-section .explore-btn {
-         margin: 20px auto 0 auto; /* Centering using auto margins */
-        display: block;
-        text-align: center;
-        
+            margin: 20px auto 0 auto;
+            display: inline-block;
         }
 
+        /* Projects Section Styling */
+        .projects-section {
+            padding: 60px 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
 
+        .projects-section .section-title {
+            font-size: 2.5em;
+            color: #0b1f3f;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .project-card {
+            position: relative;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #0b1f3f;
+        }
+
+        .project-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid #f9c200;
+            margin: 0 auto 15px auto;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            color: #f9c200;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #ffd600;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .project-overlay .overlay-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .project-overlay .overlay-link {
+            padding: 10px 20px;
+            background-color: #f9c200;
+            color: #0b1f3f;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .project-overlay .overlay-link:hover {
+            background-color: #ffd600;
+        }
+
+        /* Testimonials and FAQ Styling */
+        .testimonials-section,
+        .faq-section {
+            background-color: #fff;
+            padding: 60px 0;
+        }
+
+        #instagram h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
 
         /* Contact Us Section Styling */
         #contact {
@@ -354,7 +476,6 @@
             border-radius: 15px;
         }
 
-        /* Contact Form Styling */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -388,150 +509,6 @@
 
         .contact-form button:hover {
             background-color: #ffd600;
-        
-        }
-      
-        #instagram h2 {
-        text-align: center;
-        font-size: 2.5em;
-        margin-bottom: 20px;
-        color: #f9c200;
-        
-        }
-
-/* Projects Section Styling */
-.projects-section {
-    padding: 60px 0;
-    background-color: #f4f4f4;
-    text-align: center;
-}
-
-.projects-section .section-title {
-    font-size: 2.5em;
-    color: #0b1f3f;
-    margin-bottom: 40px;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Grid Layout for Projects */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    width: 90%;
-    margin: auto;
-}
-
-/* Modern Card Styling */
-.project-card {
-    position: relative;
-    background: #f5f5f5; /* Lighter background to contrast with other sections */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #0b1f3f;
-}
-
-/* Circular Logo Styling */
-.project-image {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 50%;
-    border: 2px solid #f9c200; /* Highlight the logo with a border */
-    margin: 0 auto 15px auto;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image {
-    transform: scale(1.05); /* Slight zoom on hover */
-}
-
-/* Project Content */
-.project-content {
-    padding: 20px;
-    text-align: center;
-}
-
-.project-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6em;
-    margin-bottom: 10px;
-}
-
-.project-description {
-    font-size: 1em;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Project Link */
-.project-link {
-    color: #f9c200;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.project-link:hover {
-    color: #ffd600;
-}
-
-/* Overlay on Hover */
-.project-card:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 10px;
-}
-
-.project-overlay .overlay-title {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.project-overlay .overlay-link {
-    padding: 10px 20px;
-    background-color: #f9c200;
-    color: #0b1f3f;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.project-overlay .overlay-link:hover {
-    background-color: #ffd600;
-}
-
-        @media (max-width: 768px) {
-            header nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .mobile-nav.active {
-                display: flex;
-            }
         }
     </style>
 </head>
@@ -572,10 +549,9 @@
         </div>
     </header>
 
-    <!-- Hero Section with Particles and Scroll Down Arrow -->
     <section class="hero" id="hero">
         <div id="particles-js"></div>
-        <div class="slide active"></div> <!-- We'll dynamically update the image using JavaScript -->
+        <div class="slide active"></div>
         <div class="overlay">
             <h1 class="hero-title">Welcome To Elan's Tech World</h1>
             <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
@@ -586,7 +562,6 @@
         </div>
     </section>
 
-    <!-- About Us Section -->
     <section id="about">
         <h2 class="section-title">About Us</h2>
         <div class="card-grid">
@@ -600,7 +575,6 @@
         </div>
     </section>
 
-     <!-- Services Section -->
     <section class="services-section" id="services" data-aos="fade-up">
         <h2 class="section-title">Our Services</h2>
         <div class="card-grid">
@@ -639,35 +613,29 @@
         <a href="services.html" class="explore-btn">Explore More</a>
     </section>
 
-
     <section class="projects-section" id="projects">
-    <h2 class="section-title">Our Latest Projects</h2>
-    <div class="project-grid">
-        <!-- Project 1: Iconic Aesthetics -->
-        <div class="project-card">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
-            <h3 class="project-title">Iconic Aesthetics</h3>
-            <p class="project-description">
-                For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
-            </p>
-            <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
+        <h2 class="section-title">Our Latest Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/iconiclogo.jpeg?raw=true" alt="Iconic Aesthetics Project" class="project-image">
+                <h3 class="project-title">Iconic Aesthetics</h3>
+                <p class="project-description">
+                    For Iconic Aesthetics, we developed a complete digital transformation that encompassed branding, web design, and marketing strategies. We began by designing a sophisticated, visually appealing logo that aligned with their brand identity. The website was crafted to convey luxury and professionalism, incorporating modern animations and an intuitive layout. The site features dynamic image galleries showcasing their service portfolio and integrates with an online booking system, allowing clients to schedule appointments with ease.
+                </p>
+                <a href="iconic-aesthetics.html" class="project-link">Read More →</a>
+            </div>
+
+            <div class="project-card">
+                <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
+                <h3 class="project-title">East Coast Realty</h3>
+                <p class="project-description">
+                    For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
+                </p>
+                <a href="east-coast-realty.html" class="project-link">Read More →</a>
+            </div>
         </div>
+    </section>
 
-        <!-- Project 2: East Coast Realty -->
-        <div class="project-card">
-            <img src="https://github.com/Elanstech/Elanstechworld/blob/main/Eastcoastlogo.jpeg?raw=true" alt="East Coast Realty Project" class="project-image">
-            <h3 class="project-title">East Coast Realty</h3>
-            <p class="project-description">
-                For East Coast Realty, we executed a comprehensive digital and technical overhaul aimed at enhancing their online presence and internal operations. We started by creating a responsive, visually engaging website with a sleek design and easy navigation. The site was integrated with IDX solutions for real-time property listings, providing potential clients with seamless browsing experiences.
-            </p>
-            <a href="east-coast-realty.html" class="project-link">Read More →</a>
-        </div>
-    </div>
-</section>
-
-
-
-    <!-- Testimonials Section -->
     <section id="testimonials">
         <h2 class="section-title">What Our Clients Say</h2>
         <div class="card-grid">
@@ -681,7 +649,6 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section id="faq">
         <h2 class="section-title">Frequently Asked Questions</h2>
         <div class="card-grid">
@@ -695,13 +662,11 @@
         </div>
     </section>
 
-    <!-- Instagram Section -->
     <section id="instagram">
         <h2>Follow Us on Instagram</h2>
         <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
     </section>
 
-    <!-- Contact Us Section -->
     <section id="contact">
         <h2 class="section-title">Contact Us</h2>
         <p>Have any questions or inquiries? We're here to help you!</p>
@@ -718,102 +683,95 @@
         </div>
     </section>
 
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1000, once: true });
 
-// JavaScript for Dynamic Slide Transitions
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const heroTitle = document.querySelector('.hero-title');
-const heroDescription = document.querySelector('.hero-description');
-const exploreButton = document.querySelector('.explore-btn');
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const heroTitle = document.querySelector('.hero-title');
+        const heroDescription = document.querySelector('.hero-description');
+        const exploreButton = document.querySelector('.explore-btn');
 
-const slideData = [
-    {
-        image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
-        title: "Welcome To Elan's Tech World",
-        description: "Empowering your people with cutting-edge technology solutions.",
-        buttonLink: "about.html",
-        buttonText: "View Our Story →"
-    },
-    {
-        image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
-        title: "Innovative Tech Solutions",
-        description: "Delivering personalized technology strategies for your business.",
-        buttonLink: "Services.html",
-        buttonText: "Dive In To Our Services →"
-    }
-];
-
-const slides = document.querySelectorAll('.slide'); // Ensure slides are selected
-
-function showNextSlide() {
-    slides[currentSlide].classList.remove('active', 'fade-in');
-    currentSlide = (currentSlide + 1) % slideData.length;
-    slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
-    heroTitle.textContent = slideData[currentSlide].title;
-    heroDescription.textContent = slideData[currentSlide].description;
-    exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
-    exploreButton.textContent = slideData[currentSlide].buttonText;
-
-    slides[currentSlide].classList.add('fade-in', 'active');
-}
-
-// Ensure initial setup
-slides.forEach((slide, index) => {
-    slide.style.backgroundImage = `url(${slideData[index].image})`;
-});
-slides[currentSlide].classList.add('fade-in', 'active');
-setInterval(showNextSlide, 5000);
-
-
-// Hamburger Menu Script
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-
-hamburger.addEventListener('click', function () {
-    mobileNav.classList.toggle('active');
-    const links = mobileNav.querySelectorAll('li');
-    links.forEach((link, index) => {
-        if (mobileNav.classList.contains('active')) {
-            link.style.transitionDelay = `${index * 100}ms`;
-            link.style.opacity = '1';
-            link.style.transform = 'translateY(0)';
-        } else {
-            link.style.opacity = '0';
-            link.style.transform = 'translateY(-10px)';
-        }
-    });
-});
-
-// Particles.js Initialization
-particlesJS("particles-js", {
-    "particles": {
-        "number": {
-            "value": 100,
-            "density": {
-                "enable": true,
-                "value_area": 800
+        const slideData = [
+            {
+                image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
+                title: "Welcome To Elan's Tech World",
+                description: "Empowering your people with cutting-edge technology solutions.",
+                buttonLink: "about.html",
+                buttonText: "View Our Story →"
+            },
+            {
+                image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
+                title: "Innovative Tech Solutions",
+                description: "Delivering personalized technology strategies for your business.",
+                buttonLink: "Services.html",
+                buttonText: "Dive In To Our Services →"
             }
-        },
-        "color": { "value": "#ffffff" },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.5 },
-        "size": { "value": 3, "random": true },
-        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-        "move": { "enable": true, "speed": 6 }
-    },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": { "enable": true, "mode": "repulse" },
-            "onclick": { "enable": true, "mode": "push" }
+        ];
+
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active', 'fade-in');
+            currentSlide = (currentSlide + 1) % slideData.length;
+            slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+            heroTitle.textContent = slideData[currentSlide].title;
+            heroDescription.textContent = slideData[currentSlide].description;
+            exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
+            exploreButton.textContent = slideData[currentSlide].buttonText;
+
+            slides[currentSlide].classList.add('fade-in', 'active');
         }
-    },
-    "retina_detect": true
-});
+
+        slides.forEach((slide, index) => {
+            slide.style.backgroundImage = `url(${slideData[index].image})`;
+        });
+
+        slides[currentSlide].classList.add('fade-in', 'active');
+        setInterval(showNextSlide, 5000);
+
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', function () {
+            mobileNav.classList.toggle('active');
+            const links = mobileNav.querySelectorAll('li');
+            links.forEach((link, index) => {
+                if (mobileNav.classList.contains('active')) {
+                    link.style.transitionDelay = `${index * 100}ms`;
+                    link.style.opacity = '1';
+                    link.style.transform = 'translateY(0)';
+                } else {
+                    link.style.opacity = '0';
+                    link.style.transform = 'translateY(-10px)';
+                }
+            });
+        });
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 6 }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                }
+            },
+            "retina_detect": true
+        });
     </script>
 </body>
-
 </html>
