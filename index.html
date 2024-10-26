@@ -76,12 +76,13 @@
 
         /* Advanced Hamburger Menu */
         .hamburger {
-            display: none;
-            cursor: pointer;
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 30px;
+            width: 25px;
             height: 20px;
+            cursor: pointer;
+            margin-left: auto;
         }
 
         .hamburger div {
@@ -91,13 +92,25 @@
             transition: all 0.3s ease;
         }
 
+        .hamburger.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         .mobile-nav {
             display: none;
             flex-direction: column;
             align-items: center;
             background-color: #0b1f3f;
             position: absolute;
-            top: 100%;
+            top: 60px;
             width: 100%;
             left: 0;
             opacity: 0;
@@ -111,18 +124,6 @@
 
         .mobile-nav li {
             margin: 10px 0;
-        }
-
-        .hamburger.active div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
         }
 
         /* Hero Section Styling */
@@ -205,6 +206,15 @@
             50% {
                 transform: translateY(-15px);
             }
+        }
+
+        /* Section Title Styling */
+        .section-title {
+            font-size: 2.5em;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: #f9c200;
+            margin: 50px 0 30px;
         }
 
         /* Distinct Tile Sections */
@@ -378,15 +388,17 @@
 
     <!-- Tile-Based Sections -->
     <section id="about" class="tile-section">
+        <h2 class="section-title">About Us</h2>
         <div class="tile" data-aos="fade-up">
             <i class="tile-icon fas fa-user-friends"></i>
-            <h3 class="tile-title">About Us</h3>
+            <h3 class="tile-title">Who We Are</h3>
             <p class="tile-description">We specialize in delivering custom technology solutions designed to streamline your business.</p>
             <a href="about.html" class="tile-button">Learn More →</a>
         </div>
     </section>
 
     <section id="services" class="tile-section">
+        <h2 class="section-title">Our Services</h2>
         <div class="tile" data-aos="fade-up" data-aos-delay="100">
             <i class="tile-icon fas fa-desktop"></i>
             <h3 class="tile-title">Business Computer Setup</h3>
@@ -414,6 +426,7 @@
     </section>
 
     <section id="projects" class="tile-section">
+        <h2 class="section-title">Our Latest Projects</h2>
         <div class="tile" data-aos="fade-up">
             <i class="tile-icon fas fa-building"></i>
             <h3 class="tile-title">Iconic Aesthetics</h3>
