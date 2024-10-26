@@ -472,19 +472,26 @@
         </div>
     </header>
 
-    <!-- Hero Section with Particles and Scroll Down Arrow -->
-    <section class="hero" id="hero">
-        <div id="particles-js"></div>
-        <div class="slide active"></div> <!-- We'll dynamically update the image using JavaScript -->
-        <div class="overlay">
-            <h1 class="hero-title">Welcome To Elan's Tech World</h1>
-            <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
-            <a href="#services" class="explore-btn">View Our Services →</a>
-        </div>
-        <div class="scroll-down">
-            <i class="fas fa-angle-down"></i>
-        </div>
-    </section>
+<!-- Hero Section with Particles and Scroll Down Arrow -->
+<section class="hero" id="hero">
+    <div id="particles-js"></div> <!-- Particles.js container for the animated background -->
+    
+    <!-- Slide for Background Image - Initially empty, dynamically updated with JavaScript -->
+    <div class="slide active"></div> 
+    
+    <!-- Overlay Content (Title, Description, Button) -->
+    <div class="overlay">
+        <h1 class="hero-title">Welcome To Elan's Tech World</h1>
+        <p class="hero-description">Empowering your people with cutting-edge technology solutions.</p>
+        <a href="#services" class="explore-btn">View Our Services →</a>
+    </div>
+    
+    <!-- Scroll Down Arrow -->
+    <div class="scroll-down">
+        <i class="fas fa-angle-down"></i>
+    </div>
+</section>
+
 
     <!-- About Us Section -->
     <section id="about">
@@ -622,95 +629,120 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        // JavaScript for Dynamic Slide Transitions
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const heroTitle = document.querySelector('.hero-title');
-        const heroDescription = document.querySelector('.hero-description');
-        const exploreButton = document.querySelector('.explore-btn');
+<script>
+// JavaScript for AOS Animation Initialization
+AOS.init({ duration: 1000, once: true });
 
-        const slideData = [
-            {
-                image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
-                title: "Welcome To Elan's Tech World",
-                description: "Empowering your people with cutting-edge technology solutions.",
-                buttonLink: "#services",
-                buttonText: "View Our Services →"
-            },
-            {
-                image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
-                title: "Innovative Tech Solutions",
-                description: "Delivering personalized technology strategies for your business.",
-                buttonLink: "#about",
-                buttonText: "Learn About Us →"
+// JavaScript for Particles.js Initialization
+particlesJS("particles-js", {
+    "particles": {
+        "number": {
+            "value": 100,
+            "density": {
+                "enable": true,
+                "value_area": 800
             }
-        ];
-
-        function showNextSlide() {
-            // Update the slide background image
-            slides[0].style.backgroundImage = `url(${slideData[currentSlide].image})`;
-
-            // Update the overlay content
-            heroTitle.textContent = slideData[currentSlide].title;
-            heroDescription.textContent = slideData[currentSlide].description;
-            exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
-            exploreButton.textContent = slideData[currentSlide].buttonText;
-
-            // Increment the slide index or reset to zero if at the end
-            currentSlide = (currentSlide + 1) % slideData.length;
+        },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#ffffff",
+            "opacity": 0.4,
+            "width": 1
+        },
+        "move": {
+            "enable": true,
+            "speed": 6
         }
+    },
+    "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+            "onhover": { "enable": true, "mode": "repulse" },
+            "onclick": { "enable": true, "mode": "push" }
+        }
+    },
+    "retina_detect": true
+});
 
-        // Set an interval to change the slides every 5 seconds
-        setInterval(showNextSlide, 5000);
+// JavaScript for Dynamic Slide Transitions with Fade Animation
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const heroTitle = document.querySelector('.hero-title');
+const heroDescription = document.querySelector('.hero-description');
+const exploreButton = document.querySelector('.explore-btn');
 
-        // Initial call to set up the first slide
-        showNextSlide();
+const slideData = [
+    {
+        image: "https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true",
+        title: "Welcome To Elan's Tech World",
+        description: "Empowering your people with cutting-edge technology solutions.",
+        buttonLink: "#services",
+        buttonText: "View Our Services →"
+    },
+    {
+        image: "https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true",
+        title: "Innovative Tech Solutions",
+        description: "Delivering personalized technology strategies for your business.",
+        buttonLink: "#about",
+        buttonText: "Learn About Us →"
+    }
+];
 
-        // Hamburger Menu Script
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
+function showNextSlide() {
+    // Remove active class and add fade-out to the current slide
+    slides[currentSlide].classList.remove('active');
+    slides[currentSlide].classList.add('fade-out');
 
-        hamburger.addEventListener('click', function () {
-            mobileNav.classList.toggle('active');
-            const links = mobileNav.querySelectorAll('li');
-            links.forEach((link, index) => {
-                if (mobileNav.classList.contains('active')) {
-                    link.style.transitionDelay = `${index * 100}ms`;
-                    link.style.opacity = '1';
-                    link.style.transform = 'translateY(0)';
-                } else {
-                    link.style.opacity = '0';
-                    link.style.transform = 'translateY(-10px)';
-                }
-            });
-        });
+    // Increment the slide index or reset to zero if at the end
+    currentSlide = (currentSlide + 1) % slideData.length;
 
-        // Particles.js Initialization
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 100,
-                    "density": {
-                        "enable": true,
-                        "value_area": 800
-                    }
-                },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 6 }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": { "enable": true, "mode": "repulse" },
-                    "onclick": { "enable": true, "mode": "push" }
-                }
-            },
-            "retina_detect": true
-        });
+    // Update the slide background image
+    slides[currentSlide].style.backgroundImage = `url(${slideData[currentSlide].image})`;
+
+    // Update the overlay content
+    heroTitle.textContent = slideData[currentSlide].title;
+    heroDescription.textContent = slideData[currentSlide].description;
+    exploreButton.setAttribute('href', slideData[currentSlide].buttonLink);
+    exploreButton.textContent = slideData[currentSlide].buttonText;
+
+    // Add fade-in class to the new slide and make it active
+    slides[currentSlide].classList.remove('fade-out');
+    slides[currentSlide].classList.add('fade-in', 'active');
+}
+
+// Set an interval to change the slides every 5 seconds
+setInterval(showNextSlide, 5000);
+
+// Initial call to set up the first slide
+slides[currentSlide].classList.add('fade-in', 'active');
+showNextSlide();
+
+// JavaScript for Hamburger Menu
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+
+hamburger.addEventListener('click', function () {
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('active');
+});
+
+// JavaScript for Blog Image Slider
+const sliders = document.querySelectorAll('.blog-slider');
+sliders.forEach(slider => {
+    let currentIndex = 0;
+    const images = slider.querySelectorAll('img');
+
+    setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+    }, 3000); // Change image every 3 seconds
+});
     </script>
 </body>
 
