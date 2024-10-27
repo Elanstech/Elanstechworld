@@ -95,6 +95,19 @@ header.scrolled {
 .logo:hover .logo-text::after {
     transform: scaleX(1);
 }
+/* Add to your CSS file */
+.text-scramble {
+    opacity: 0.7;
+    color: #f9c200;
+}
+
+.loaded .section-wrapper {
+    transition: transform 0.3s ease-out;
+}
+
+.section-wrapper img {
+    transition: transform 0.3s ease-out;
+}
 
 /* Enhanced Navigation Styles */
 nav ul {
