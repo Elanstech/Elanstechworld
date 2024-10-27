@@ -29,6 +29,7 @@
             scroll-behavior: smooth;
         }
 
+        /* Header Styles */
         header {
             background-color: transparent;
             padding: 15px 0;
@@ -74,6 +75,7 @@
             color: #f9c200;
         }
 
+        /* Navigation Styles */
         nav ul {
             list-style: none;
             display: flex;
@@ -111,64 +113,7 @@
             left: 0;
         }
 
-        .theme-switch-wrapper {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-        }
-
-        .theme-switch {
-            display: inline-block;
-            height: 34px;
-            position: relative;
-            width: 60px;
-        }
-
-        .theme-switch input {
-            display: none;
-        }
-
-        .slider {
-            background-color: #ccc;
-            bottom: 0;
-            cursor: pointer;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: 0.4s;
-        }
-
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            background-color: white;
-            bottom: 4px;
-            content: "";
-            height: 26px;
-            left: 4px;
-            position: absolute;
-            transition: 0.4s;
-            width: 26px;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: #f9c200;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: #f1f1f1;
-        }
-
-        /* Updated Hamburger Menu Styles */
+        /* Hamburger Menu Styles */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -264,104 +209,76 @@
             .mobile-nav li:nth-child(4) { transition-delay: 0.4s; }
         }
 
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        /* Rest of your existing styles */
+        /* Hero Section Styles */
         .hero {
             position: relative;
             width: 100%;
             height: 100vh;
             overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
-            animation: imageSlider 18s infinite;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 0;
         }
 
-        @keyframes imageSlider {
-            0%, 33% {
-                background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true');
-            }
-            34%, 66% {
-                background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true');
-            }
-            67%, 100% {
-                background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround15.jpeg?raw=true');
-            }
+        .hero-bg.active {
+            opacity: 1;
         }
 
-        .hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-}
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
 
-/* Dark overlay to ensure text visibility */
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
-    z-index: 1;
-}
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            z-index: 3;
+            text-align: center;
+            color: #fff;
+            margin-top: 150px;
+        }
 
-/* Slideshow background images */
-.hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 0;
-}
+        .hero-title {
+            font-size: 4em;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #f9c200, #ff6a00, #ff0072);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 3;
+        }
 
-.hero-bg.active {
-    opacity: 1;
-}
-
-.hero-content {
-    position: relative;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    z-index: 2;
-    text-align: center;
-    color: #fff;
-    margin-top: 150px;
-}
-
-.hero-title {
-    font-size: 4em;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 20px;
-    color: #fff; /* Changed from transparent to ensure visibility */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to right, #f9c200, #ff6a00, #ff0072);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: text-flicker 2.5s infinite;
-}
-
-.hero-description {
-    font-size: 1.8em;
-    margin-bottom: 30px;
-    animation: slideInRight 1.5s ease;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-        @keyframes text-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .hero-description {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            animation: slideInRight 1.5s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .explore-btn {
@@ -372,44 +289,14 @@
             font-weight: 700;
             border-radius: 50px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 2s ease;
+            display: inline-block;
+            position: relative;
+            z-index: 3;
         }
 
         .explore-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        @keyframes slideInLeft {
-            0% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInRight {
-            0% {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            0% {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
         }
 
         .scroll-indicator {
@@ -427,15 +314,24 @@
             animation: bounce 1.5s infinite;
         }
 
+        /* Animations */
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
             }
-            50% {
-                transform: translateY(-10px);
+            100% {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
 
+        /* Section Styles */
         section {
             padding: 60px 0;
         }
@@ -465,7 +361,7 @@
             line-height: 1.6;
         }
 
-        .learn-more-btn, .explore-btn {
+        .learn-more-btn {
             display: inline-block;
             padding: 15px 30px;
             background-color: #f9c200;
@@ -476,11 +372,12 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .learn-more-btn:hover, .explore-btn:hover {
+        .learn-more-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
+        /* Footer Styles */
         footer {
             background-color: rgba(11, 31, 63, 1);
             padding: 30px 0;
@@ -499,6 +396,10 @@
 
         footer a:hover {
             text-decoration: underline;
+        }
+
+        body.menu-open {
+            overflow: hidden;
         }
     </style>
 </head>
@@ -520,34 +421,36 @@
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </nav>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
+            </button>
+            <div class="mobile-nav" id="mobile-nav">
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
             </div>
-            <ul class="mobile-nav" id="mobile-nav">
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-            </ul>
         </div>
     </header>
 
-<section class="hero">
-    <div class="hero-bg" style="background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true')"></div>
-    <div class="hero-bg" style="background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true')"></div>
-    <div class="hero-bg" style="background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround15.jpeg?raw=true')"></div>
-    <div id="particles-js"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">Welcome to Elan's Tech World</h1>
-        <p class="hero-description">Innovative Tech Solutions for Your Business</p>
-        <a href="#services" class="explore-btn">Explore Services</a>
-    </div>
-    <div class="scroll-indicator">
-        <i class="fas fa-arrow-down"></i>
-    </div>
-</section>
+    <section class="hero">
+        <div class="hero-bg" style="background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true')"></div>
+        <div class="hero-bg" style="background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true')"></div>
+        <div class="hero-bg" style="background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround15.jpeg?raw=true')"></div>
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Elan's Tech World</h1>
+            <p class="hero-description">Innovative Tech Solutions for Your Business</p>
+            <a href="#services" class="explore-btn">Explore Services</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-arrow-down"></i>
+        </div>
+    </section>
 
     <section id="about" class="section-wrapper">
         <div class="section-text" data-aos="fade-right">
@@ -589,8 +492,9 @@
         <p>&copy; 2024 Elan's Tech World. All rights reserved. <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
     </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
+        // Initialize AOS
         AOS.init({ duration: 1000, once: true });
 
         // Header Scroll Effect
@@ -598,77 +502,81 @@
             const header = document.querySelector('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
-document.addEventListener('DOMContentLoaded', function() {
-    const heroBackgrounds = document.querySelectorAll('.hero-bg');
-    let currentBg = 0;
-    
-    // Show first background immediately
-    heroBackgrounds[0].classList.add('active');
-    
-    function nextBackground() {
-        // Remove active class from current background
-        heroBackgrounds[currentBg].classList.remove('active');
-        
-        // Move to next background
-        currentBg = (currentBg + 1) % heroBackgrounds.length;
-        
-        // Add active class to new background
-        heroBackgrounds[currentBg].classList.add('active');
-    }
-    
-    // Change background every 6 seconds
-    setInterval(nextBackground, 6000);
-});
 
-// Ensure particles.js doesn't interfere with other elements
-particlesJS("particles-js", {
-    particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: {
-            value: 0.3,
-            random: false,
-            anim: { enable: false }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: { enable: false }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.2,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 3,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-        }
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: { enable: true, mode: "repulse" },
-            onclick: { enable: true, mode: "push" },
-            resize: true
-        }
-    },
-    retina_detect: true
-});
-        // Updated Hamburger Menu Interaction
+        // Hero Background Slideshow
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroBackgrounds = document.querySelectorAll('.hero-bg');
+            let currentBg = 0;
+            
+            // Show first background immediately
+            heroBackgrounds[0].classList.add('active');
+            
+            function nextBackground() {
+                // Remove active class from current background
+                heroBackgrounds[currentBg].classList.remove('active');
+                
+                // Move to next background
+                currentBg = (currentBg + 1) % heroBackgrounds.length;
+                
+                // Add active class to new background
+                heroBackgrounds[currentBg].classList.add('active');
+            }
+            
+            // Change background every 6 seconds
+            setInterval(nextBackground, 6000);
+        });
+
+        // Initialize Particles.js
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.3,
+                    random: false,
+                    anim: { enable: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: { enable: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Mobile Navigation
         const hamburger = document.getElementById('hamburger');
         const mobileNav = document.getElementById('mobile-nav');
         const body = document.body;
 
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent click from bubbling to document
             hamburger.classList.toggle('active');
             mobileNav.classList.toggle('active');
             body.classList.toggle('menu-open');
@@ -694,7 +602,11 @@ particlesJS("particles-js", {
                 body.classList.remove('menu-open');
             }
         });
+
+        // Prevent menu close when clicking inside mobile nav
+        mobileNav.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
     </script>
 </body>
-
 </html>
