@@ -15,13 +15,44 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/about.css">
 </head>
 <body>
-    <!-- Header (same as your existing header) -->
     <header>
-        <!-- Your existing header content -->
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://github.com/Elanstech/Elanstechworld/blob/main/logo.jpeg?raw=true" alt="Elan's Tech World Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="whatsnew.html">See What's New</a></li> 
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <ul class="mobile-nav" id="mobile-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -119,7 +150,7 @@
             <div class="team-grid">
                 <div class="team-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="team-image">
-                        <img src="assets/images/team/elan.jpg" alt="Team Member">
+                        <img src="assets/images/team/elan.jpg" alt="Elan">
                     </div>
                     <h3>Elan</h3>
                     <p>Founder & Tech Expert</p>
@@ -131,12 +162,34 @@
 
     <!-- Footer -->
     <footer>
-        <!-- Your existing footer content -->
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Elan's Tech World</h3>
+                <p>Your Partner in Technology Solutions</p>
+                <p>&copy; 2024 All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/elanstechworld/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/about.js"></script>
 </body>
 </html>
