@@ -257,34 +257,21 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-        }
-
-        .parallax-layer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
             background-size: cover;
             background-position: center;
+            animation: imageSlider 18s infinite;
         }
 
-        .parallax-layer.layer-1 {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true');
-            z-index: 1;
-            transform: translateY(0);
-        }
-
-        .parallax-layer.layer-2 {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true');
-            z-index: 2;
-            transform: translateY(0);
-        }
-
-        .parallax-layer.layer-3 {
-            background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround15.jpeg?raw=true');
-            z-index: 3;
-            transform: translateY(0);
+        @keyframes imageSlider {
+            0%, 33% {
+                background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/parallexbackround3.0.jpg?raw=true');
+            }
+            34%, 66% {
+                background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround33.jpeg?raw=true');
+            }
+            67%, 100% {
+                background-image: url('https://github.com/Elanstech/Elanstechworld/blob/main/backround15.jpeg?raw=true');
+            }
         }
 
         .hero-content {
@@ -292,9 +279,10 @@
             max-width: 800px;
             margin: auto;
             padding: 20px;
-            z-index: 4;
+            z-index: 2;
             text-align: center;
             color: #fff;
+            margin-top: 150px; /* Adjusted to move text down */
         }
 
         .hero-title {
@@ -494,9 +482,6 @@
     </header>
 
     <section class="hero">
-        <div class="parallax-layer layer-1"></div>
-        <div class="parallax-layer layer-2"></div>
-        <div class="parallax-layer layer-3"></div>
         <div id="particles-js"></div>
         <div class="hero-content">
             <h1 class="hero-title">Welcome to Elan's Tech World</h1>
@@ -588,31 +573,6 @@
         hamburger.addEventListener('click', function () {
             mobileNav.classList.toggle('active');
             hamburger.classList.toggle('active');
-        });
-
-        // Parallax Effect with GSAP
-        gsap.to('.parallax-layer.layer-1', {
-            yPercent: 20,
-            scrollTrigger: {
-                trigger: '.hero',
-                scrub: true
-            }
-        });
-
-        gsap.to('.parallax-layer.layer-2', {
-            yPercent: -10,
-            scrollTrigger: {
-                trigger: '.hero',
-                scrub: true
-            }
-        });
-
-        gsap.to('.parallax-layer.layer-3', {
-            yPercent: -30,
-            scrollTrigger: {
-                trigger: '.hero',
-                scrub: true
-            }
         });
     </script>
 </body>
