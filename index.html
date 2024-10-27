@@ -4,112 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0b1f3f">
-    <title>Elan's Tech World - Technology Solutions for Your Business</title>
-    <meta name="description" content="Empowering your business with expert computer setup, custom web design, Apple product resale, and repair services. Explore Elan's Tech World for innovative tech solutions.">
-    <meta name="keywords" content="Elan's Tech World, technology solutions, web design, Apple product resale, computer setup, business tech solutions, POS system setup">
-    <meta name="author" content="Elan Cohen">
+    <title>Elan's Tech World - Innovative Technology Solutions</title>
+    <meta name="description" content="Expert technology solutions for businesses including computer setup, web design, Apple product services, and tech consulting.">
     
-    <!-- Fonts and External CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" as="style">
+    <link rel="preload" href="./assets/images/Elanslogo.jpeg" as="image">
     
-    <!-- Your Custom CSS -->
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="index.html">
-                    <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                <a href="/" aria-label="Home">
+                    <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="60" height="60">
                 </a>
                 <span class="logo-text">Elan's Tech World</span>
             </div>
-            <nav>
+            
+            <nav aria-label="Main navigation">
                 <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <button class="hamburger" id="hamburger">
+
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
                 <div></div>
                 <div></div>
                 <div></div>
             </button>
-            <div class="mobile-nav" id="mobile-nav">
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
         </div>
     </header>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" aria-label="Mobile navigation">
+        <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
-        <div class="hero-bg" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
-        <div class="hero-bg" style="background-image: url('./assets/images/backround3.jpeg')"></div>
+        <div class="hero-bg"></div>
         <div id="particles-js"></div>
-        <div class="hero-content">
+        <div class="hero-content fade-in">
             <h1 class="hero-title">Welcome to Elan's Tech World</h1>
-            <p class="hero-description">Innovative Tech Solutions for Your Business</p>
-            <a href="#services" class="explore-btn">Explore Services</a>
-        </div>
-        <div class="scroll-indicator">
-            <i class="fas fa-arrow-down"></i>
+            <p class="hero-description">Transforming Businesses Through Technology</p>
+            <a href="#services" class="btn">Explore Services</a>
         </div>
     </section>
 
-    <section id="about" class="section-wrapper">
-        <div class="section-text" data-aos="fade-right">
-            <h3>About Us</h3>
-            <p>We specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our team is dedicated to providing exceptional service and innovative solutions that drive success.</p>
-            <a href="about.html" class="learn-more-btn">Learn More →</a>
-        </div>
-        <img src="./assets/images/zarinasofficeimage.jpg" alt="About Us" data-aos="fade-left">
-    </section>
+    <!-- Main Content Sections -->
+    <main>
+        <section id="about" class="section-wrapper">
+            <div class="section-text" data-aos="fade-right">
+                <h2>About Us</h2>
+                <p>Delivering custom technology solutions to streamline your business operations and enhance productivity. Our expert team is committed to your success through innovative solutions and exceptional service.</p>
+                <a href="/about" class="btn">Learn More →</a>
+            </div>
+            <img src="./assets/images/zarinasofficeimage.jpg" alt="Modern office workspace" loading="lazy" data-aos="fade-left">
+        </section>
 
-    <section id="services" class="section-wrapper">
-        <div class="section-text" data-aos="fade-right">
-            <h3>Our Services</h3>
-            <p>We provide a range of technology services including business computer setup, custom web design, and technology consulting. Our goal is to empower your business with efficient, scalable, and effective tech solutions.</p>
-            <a href="services.html" class="learn-more-btn">Explore Services →</a>
-        </div>
-        <img src="./assets/images/backroundimac.jpeg" alt="Services" data-aos="fade-left">
-    </section>
+        <section id="services" class="section-wrapper">
+            <div class="section-text" data-aos="fade-right">
+                <h2>Our Services</h2>
+                <p>Comprehensive technology services including business computer setup, custom web design, and expert consulting. We empower your business with efficient, scalable solutions.</p>
+                <a href="/services" class="btn">View Services →</a>
+            </div>
+            <img src="./assets/images/backroundimac.jpeg" alt="Modern computer setup" loading="lazy" data-aos="fade-left">
+        </section>
 
-    <section id="projects" class="section-wrapper">
-        <div class="section-text" data-aos="fade-right">
-            <h3>Our Latest Projects</h3>
-            <p>From small business websites to enterprise-level solutions, we have successfully delivered numerous projects. Each one tailored to meet the specific needs of our clients, ensuring quality and satisfaction.</p>
-            <a href="web-design-services.html" class="learn-more-btn">View Projects →</a>
-        </div>
-        <img src="./assets/images/laurasbeautywebsieimage.jpeg" alt="Projects" data-aos="fade-left">
-    </section>
+        <section id="projects" class="section-wrapper">
+            <div class="section-text" data-aos="fade-right">
+                <h2>Featured Projects</h2>
+                <p>Browse our portfolio of successful projects, each tailored to meet specific client needs. From small business websites to enterprise solutions, we deliver quality results.</p>
+                <a href="/projects" class="btn">See Projects →</a>
+            </div>
+            <img src="./assets/images/laurasbeautywebsieimage.jpeg" alt="Project showcase" loading="lazy" data-aos="fade-left">
+        </section>
 
-    <section id="contact" class="section-wrapper">
-        <div class="section-text" data-aos="fade-right">
-            <h3>Contact Us</h3>
-            <p>Reach out to us for expert advice, assistance, and support tailored to your needs. Our team is ready to help you solve your tech challenges and enhance your business capabilities.</p>
-            <a href="contact.html" class="learn-more-btn">Contact Now →</a>
-        </div>
-        <img src="./assets/images/storefrontcohen.jpg" alt="Contact Us" data-aos="fade-left">
-    </section>
+        <section id="contact" class="section-wrapper">
+            <div class="section-text" data-aos="fade-right">
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your business? Contact us for expert advice and support tailored to your needs. Let's solve your tech challenges together.</p>
+                <a href="/contact" class="btn">Contact Now →</a>
+            </div>
+            <img src="./assets/images/storefrontcohen.jpg" alt="Our storefront" loading="lazy" data-aos="fade-left">
+        </section>
+    </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Elan's Tech World. All rights reserved. <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+        <div class="footer-content">
+            <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
+            <nav aria-label="Footer navigation">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </nav>
+        </div>
     </footer>
 
-    <!-- External Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    
-    <!-- Your Custom Script -->
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
