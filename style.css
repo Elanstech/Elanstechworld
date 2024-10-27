@@ -246,3 +246,218 @@ nav ul li a:hover::before {
 .hamburger.active div:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
+/* Enhanced Section Styles */
+.section-wrapper {
+    width: 90%;
+    margin: 80px auto;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(11, 31, 63, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(249, 194, 0, 0.1);
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+/* Tech accent lines */
+.section-wrapper::before,
+.section-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, #f9c200, #ff6a00);
+    filter: blur(90px);
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.section-wrapper::before {
+    top: -100px;
+    left: -100px;
+}
+
+.section-wrapper::after {
+    bottom: -100px;
+    right: -100px;
+}
+
+/* Section text container */
+.section-text {
+    flex: 1;
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    background: rgba(11, 31, 63, 0.5);
+    border-radius: 20px;
+    border: 1px solid rgba(249, 194, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.section-text:hover {
+    transform: translateY(-5px);
+}
+
+/* Futuristic heading */
+.section-text h3 {
+    font-size: 2.5em;
+    font-family: 'Montserrat', sans-serif;
+    color: transparent;
+    background: linear-gradient(45deg, #f9c200, #ff6a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 25px;
+}
+
+/* Tech line accent */
+.section-text h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 70%;
+    background: linear-gradient(to bottom, #f9c200, #ff6a00);
+    border-radius: 2px;
+}
+
+/* Enhanced paragraph */
+.section-text p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+    position: relative;
+    padding-left: 20px;
+    border-left: 1px solid rgba(249, 194, 0, 0.3);
+}
+
+/* Image container */
+.section-wrapper img {
+    max-width: 450px;
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.4s ease;
+    border: 2px solid rgba(249, 194, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(249, 194, 0, 0.1);
+    filter: brightness(1.1) contrast(1.1);
+}
+
+.section-wrapper:hover img {
+    transform: scale(1.02) translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(249, 194, 0, 0.2);
+}
+
+/* Enhanced button */
+.learn-more-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #f9c200, #ff6a00);
+    color: #0b1f3f;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(249, 194, 0, 0.2);
+    border: none;
+}
+
+.learn-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.learn-more-btn:hover::before {
+    left: 100%;
+}
+
+.learn-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(249, 194, 0, 0.3);
+}
+
+/* Tech grid background */
+.section-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(249, 194, 0, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* Alternating sections */
+.section-wrapper:nth-child(even) {
+    flex-direction: row-reverse;
+    background: rgba(11, 31, 63, 0.4);
+}
+
+.section-wrapper:nth-child(even) .section-text {
+    background: rgba(11, 31, 63, 0.6);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .section-wrapper {
+        flex-direction: column;
+        padding: 30px 20px;
+        margin: 40px auto;
+    }
+
+    .section-text {
+        padding: 20px;
+    }
+
+    .section-text h3 {
+        font-size: 2em;
+        padding-left: 15px;
+    }
+
+    .section-wrapper img {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    .section-wrapper:nth-child(even) {
+        flex-direction: column;
+    }
+}
+
+/* Additional tech accents for larger screens */
+@media (min-width: 1200px) {
+    .section-wrapper {
+        margin: 100px auto;
+        padding: 80px 60px;
+    }
+
+    .section-wrapper::before,
+    .section-wrapper::after {
+        width: 300px;
+        height: 300px;
+    }
+}
