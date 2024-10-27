@@ -3,36 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0b1f3f">
-    <title>Elan's Tech World - Innovative Technology Solutions</title>
-    <meta name="description" content="Expert technology solutions for businesses including computer setup, web design, Apple product services, and tech consulting.">
+    <title>Elan's Tech World</title>
     
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" as="style">
-    <link rel="preload" href="./assets/images/Elanslogo.jpeg" as="image">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Your CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen">
-        <div class="loader"></div>
-    </div>
-
     <!-- Header -->
     <header>
         <div class="header-container">
             <div class="logo">
-                <a href="/" aria-label="Home">
-                    <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="60" height="60">
-                </a>
+                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                 <span class="logo-text">Elan's Tech World</span>
             </div>
             
-            <nav aria-label="Main navigation">
+            <nav>
                 <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
@@ -41,7 +30,7 @@
                 </ul>
             </nav>
 
-            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <button class="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -49,8 +38,7 @@
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" aria-label="Mobile navigation">
+    <div class="mobile-nav">
         <ul>
             <li><a href="#about">About Us</a></li>
             <li><a href="#services">Services</a></li>
@@ -63,65 +51,111 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div id="particles-js"></div>
-        <div class="hero-content fade-in">
+        <div class="hero-content">
             <h1 class="hero-title">Welcome to Elan's Tech World</h1>
             <p class="hero-description">Transforming Businesses Through Technology</p>
             <a href="#services" class="btn">Explore Services</a>
         </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-arrow-down"></i>
+        </div>
     </section>
 
-    <!-- Main Content Sections -->
+    <!-- Main Content -->
     <main>
+        <!-- About Section -->
         <section id="about" class="section-wrapper">
-            <div class="section-text" data-aos="fade-right">
+            <div class="section-text">
                 <h2>About Us</h2>
-                <p>Delivering custom technology solutions to streamline your business operations and enhance productivity. Our expert team is committed to your success through innovative solutions and exceptional service.</p>
+                <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
+                <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
                 <a href="/about" class="btn">Learn More →</a>
             </div>
-            <img src="./assets/images/zarinasofficeimage.jpg" alt="Modern office workspace" loading="lazy" data-aos="fade-left">
+            <img src="./assets/images/zarinasofficeimage.jpg" alt="Modern office workspace showcasing our technology solutions">
         </section>
 
+        <!-- Services Section -->
         <section id="services" class="section-wrapper">
-            <div class="section-text" data-aos="fade-right">
+            <div class="section-text">
                 <h2>Our Services</h2>
-                <p>Comprehensive technology services including business computer setup, custom web design, and expert consulting. We empower your business with efficient, scalable solutions.</p>
+                <p>We provide comprehensive technology services including:</p>
+                <ul>
+                    <li>Business Computer Setup and Support</li>
+                    <li>Custom Web Design and Development</li>
+                    <li>Technology Consulting</li>
+                    <li>Apple Product Sales and Service</li>
+                    <li>POS System Implementation</li>
+                </ul>
+                <p>Each service is tailored to meet your specific business needs and goals.</p>
                 <a href="/services" class="btn">View Services →</a>
             </div>
-            <img src="./assets/images/backroundimac.jpeg" alt="Modern computer setup" loading="lazy" data-aos="fade-left">
+            <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup and services">
         </section>
 
+        <!-- Projects Section -->
         <section id="projects" class="section-wrapper">
-            <div class="section-text" data-aos="fade-right">
+            <div class="section-text">
                 <h2>Featured Projects</h2>
-                <p>Browse our portfolio of successful projects, each tailored to meet specific client needs. From small business websites to enterprise solutions, we deliver quality results.</p>
+                <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
+                <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
                 <a href="/projects" class="btn">See Projects →</a>
             </div>
-            <img src="./assets/images/laurasbeautywebsieimage.jpeg" alt="Project showcase" loading="lazy" data-aos="fade-left">
+            <img src="./assets/images/laurasbeautywebsieimage.jpeg" alt="Project portfolio showcase">
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="section-wrapper">
-            <div class="section-text" data-aos="fade-right">
+            <div class="section-text">
                 <h2>Get In Touch</h2>
-                <p>Ready to transform your business? Contact us for expert advice and support tailored to your needs. Let's solve your tech challenges together.</p>
+                <p>Ready to transform your business with innovative tech solutions? Contact us today!</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> (XXX) XXX-XXXX</p>
+                    <p><i class="fas fa-envelope"></i> info@elanstechworld.com</p>
+                    <p><i class="fas fa-location-dot"></i> Location Address</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 5:00 PM</p>
+                </div>
                 <a href="/contact" class="btn">Contact Now →</a>
             </div>
-            <img src="./assets/images/storefrontcohen.jpg" alt="Our storefront" loading="lazy" data-aos="fade-left">
+            <img src="./assets/images/storefrontcohen.jpg" alt="Our welcoming storefront">
         </section>
     </main>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
-            <nav aria-label="Footer navigation">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-            </nav>
+            <div class="footer-info">
+                <h3>Elan's Tech World</h3>
+                <p>Your Partner in Technology Solutions</p>
+                <p>&copy; 2024 All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <nav>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Privacy Policy | Terms of Service</p>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
