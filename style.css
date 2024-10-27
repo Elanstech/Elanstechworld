@@ -135,6 +135,9 @@ nav ul li a:hover::before {
     height: 100%;
     z-index: -1;
 }
+.slide {
+    background-color: #0b1f3f; /* Fallback color */
+}
 
 .slide {
     position: absolute;
