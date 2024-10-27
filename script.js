@@ -1,174 +1,215 @@
-// Initialize AOS (Animate on Scroll)
-AOS.init({ 
-    duration: 1000, 
-    once: true,
-    disable: window.innerWidth < 768 // Disable on mobile for better performance
-});
+// GSAP initialization and ScrollTrigger registration
+gsap.registerPlugin(ScrollTrigger);
 
-// Header Scroll Effect
-window.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-});
-
-// Hero Background Slideshow
-document.addEventListener('DOMContentLoaded', function() {
-    const heroBackgrounds = document.querySelectorAll('.hero-bg');
-    let currentBg = 0;
-    
-    // Show first background immediately
-    heroBackgrounds[0].classList.add('active');
-    
-    function nextBackground() {
-        // Remove active class from current background
-        heroBackgrounds[currentBg].classList.remove('active');
-        
-        // Move to next background
-        currentBg = (currentBg + 1) % heroBackgrounds.length;
-        
-        // Add active class to new background
-        heroBackgrounds[currentBg].classList.add('active');
-    }
-    
-    // Change background every 6 seconds
-    setInterval(nextBackground, 6000);
-});
-
-// Mobile-optimized Particles.js Configuration
-particlesJS("particles-js", {
-    particles: {
-        number: {
-            value: window.innerWidth < 768 ? 40 : 80, // Reduce particles on mobile
-            density: {
-                enable: true,
-                value_area: 800
-            }
-        },
-        color: { 
-            value: "#ffffff" 
-        },
-        shape: { 
-            type: "circle" 
-        },
-        opacity: {
-            value: 0.3,
-            random: false,
-            anim: { enable: false }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: { enable: false }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.2,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: window.innerWidth < 768 ? 2 : 3, // Slower on mobile
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
+// Page Loader
+window.addEventListener('load', () => {
+    gsap.to('.page-loader', {
+        opacity: 0,
+        duration: 1,
+        onComplete: () => {
+            document.querySelector('.page-loader').style.display = 'none';
+            animateHeroContent();
         }
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: {
-                enable: window.innerWidth > 768, // Disable hover effect on mobile
-                mode: "repulse"
-            },
-            onclick: {
-                enable: true,
-                mode: "push"
-            },
-            resize: true
-        }
-    },
-    retina_detect: true
-});
-
-// Mobile Navigation
-const hamburger = document.getElementById('hamburger');
-const mobileNav = document.getElementById('mobile-nav');
-const body = document.body;
-
-// Hamburger Menu Click Handler
-hamburger.addEventListener('click', function(e) {
-    e.stopPropagation();
-    toggleMobileMenu();
-});
-
-// Close mobile menu when clicking on a link
-const mobileNavLinks = mobileNav.getElementsByTagName('a');
-for (const link of mobileNavLinks) {
-    link.addEventListener('click', function() {
-        closeMobileMenu();
     });
+});
+
+// Hero Content Animation
+function animateHeroContent() {
+    const tl = gsap.timeline();
+    tl.from('.hero-title .title-line', {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power4.out'
+    })
+    .from('.hero-description', {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+    }, '-=0.5')
+    .from('.explore-btn', {
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+    }, '-=0.5');
 }
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
-    if (!hamburger.contains(event.target) && 
-        !mobileNav.contains(event.target) && 
-        mobileNav.classList.contains('active')) {
-        closeMobileMenu();
+// Header Scroll Effect with GSAP
+ScrollTrigger.create({
+    start: 'top -80',
+    onUpdate: (self) => {
+        const header = document.querySelector('header');
+        if (self.direction === 1) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
     }
 });
 
-// Prevent menu close when clicking inside mobile nav
-mobileNav.addEventListener('click', function(e) {
-    e.stopPropagation();
+// Parallax Background Effect
+document.querySelectorAll('.hero-bg').forEach(layer => {
+    gsap.to(layer, {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        }
+    });
 });
 
-// Helper functions for mobile menu
-function toggleMobileMenu() {
-    hamburger.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-    body.classList.toggle('menu-open');
-}
+// Section Animations
+const sections = gsap.utils.toArray('.section-wrapper');
+sections.forEach(section => {
+    gsap.from(section, {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            end: 'top 20%',
+            scrub: 1
+        }
+    });
+});
 
-function closeMobileMenu() {
-    hamburger.classList.remove('active');
-    mobileNav.classList.remove('active');
-    body.classList.remove('menu-open');
-}
+// Service Cards Animation
+const serviceCards = gsap.utils.toArray('.service-card');
+serviceCards.forEach((card, i) => {
+    gsap.from(card, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'top 65%',
+            scrub: 1
+        }
+    });
+});
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+// Project Cards Hover Effect
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseenter', (e) => {
+        gsap.to(card.querySelector('.project-overlay'), {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: 'power2.out'
+        });
+    });
+
+    card.addEventListener('mouseleave', (e) => {
+        gsap.to(card.querySelector('.project-overlay'), {
+            opacity: 0,
+            y: 50,
+            duration: 0.4,
+            ease: 'power2.in'
+        });
+    });
+});
+
+// Form Input Animation
+document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+    input.addEventListener('focus', () => {
+        gsap.to(input.nextElementSibling, {
+            y: -25,
+            scale: 0.8,
+            duration: 0.3,
+            ease: 'power2.out'
+        });
+    });
+
+    input.addEventListener('blur', () => {
+        if (!input.value) {
+            gsap.to(input.nextElementSibling, {
+                y: 0,
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.in'
             });
         }
-        // Parallax Effect for Sections
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('.section-wrapper');
-    sections.forEach(section => {
-        const speed = 0.5;
-        const rect = section.getBoundingClientRect();
-        const scrolled = window.pageYOffset;
-        
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-            const yPos = -(scrolled * speed);
-            section.style.transform = `translateY(${yPos}px)`;
+    });
+});
+
+// Mobile Menu Toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    mainNav.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+});
+
+// Smooth Scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.offsetTop;
+            const offsetPosition = elementPosition - headerOffset;
+
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: {
+                    y: offsetPosition,
+                    autoKill: false
+                },
+                ease: 'power2.inOut'
+            });
+
+            // Close mobile menu if open
+            if (mainNav.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
         }
     });
 });
 
-// Text Scramble Effect for Section Headings
+// Scroll to Top Button
+const scrollTopBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        gsap.to(scrollTopBtn, {
+            opacity: 1,
+            duration: 0.3,
+            display: 'flex'
+        });
+    } else {
+        gsap.to(scrollTopBtn, {
+            opacity: 0,
+            duration: 0.3,
+            display: 'none'
+        });
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    gsap.to(window, {
+        duration: 1,
+        scrollTo: {
+            y: 0,
+            autoKill: false
+        },
+        ease: 'power2.inOut'
+    });
+});
+
+// Text Scramble Effect (Enhanced)
 class TextScramble {
     constructor(el) {
         this.el = el;
@@ -232,86 +273,14 @@ class TextScramble {
     }
 }
 
-// Apply scramble effect to headings when they come into view
-document.addEventListener('DOMContentLoaded', function() {
-    const headings = document.querySelectorAll('.section-text h3');
-    const observers = new Map();
+// Initialize Text Scramble Effect
+document.querySelectorAll('.section-header h2').forEach(heading => {
+    const fx = new TextScramble(heading);
+    const originalText = heading.textContent;
     
-    headings.forEach(heading => {
-        const fx = new TextScramble(heading);
-        const originalText = heading.textContent;
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    fx.setText(originalText);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(heading);
-        observers.set(heading, observer);
-    });
-});
-
-// Enhanced Particle Effect
-const updateParticlesConfig = () => {
-    if (window.innerWidth < 768) {
-        particlesJS('particles-js', {
-            // ... (your existing mobile config)
-            particles: {
-                number: { value: 40 },
-                size: { value: 2 },
-                move: { speed: 2 }
-            }
-        });
-    } else {
-        particlesJS('particles-js', {
-            // ... (your existing desktop config)
-            particles: {
-                number: { value: 80 },
-                size: { value: 3 },
-                move: { speed: 3 }
-            }
-        });
-    }
-};
-
-// Update particles on resize
-window.addEventListener('resize', updateParticlesConfig);
-
-// Tilt effect for section images
-document.addEventListener('DOMContentLoaded', function() {
-    const sectionImages = document.querySelectorAll('.section-wrapper img');
-    
-    sectionImages.forEach(image => {
-        image.addEventListener('mousemove', handleTilt);
-        image.addEventListener('mouseleave', resetTilt);
-    });
-});
-
-function handleTilt(e) {
-    const img = e.currentTarget;
-    const imgRect = img.getBoundingClientRect();
-    const centerX = imgRect.left + imgRect.width / 2;
-    const centerY = imgRect.top + imgRect.height / 2;
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    
-    const rotateX = (mouseY - centerY) * 0.01;
-    const rotateY = (centerX - mouseX) * 0.01;
-    
-    img.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-}
-
-function resetTilt(e) {
-    const img = e.currentTarget;
-    img.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-}
-
-// Add loading animation
-window.addEventListener('load', function() {
-    document.body.classList.add('loaded');
-});
+    ScrollTrigger.create({
+        trigger: heading,
+        start: 'top 80%',
+        onEnter: () => fx.setText(originalText)
     });
 });
