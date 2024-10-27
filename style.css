@@ -17,7 +17,7 @@ body {
         linear-gradient(-45deg, rgba(255, 106, 0, 0.03) 0%, transparent 70%);
     color: #fff;
     overflow-x: hidden;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 /* Header Styles */
@@ -28,14 +28,14 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    transition: all 0.6s ease;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
     backdrop-filter: blur(10px);
 }
 
 header.scrolled {
-    background-color: rgba(11, 31, 63, 0.85);
+    background-color: rgba(11, 31, 63, 0.9);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgba(249, 194, 0, 0.1);
+    border-bottom: 1px solid rgba(249, 194, 0, 0.15);
 }
 
 .header-container {
@@ -54,20 +54,20 @@ header.scrolled {
 }
 
 .logo img {
-    height: 70px;
-    transition: all 0.6s ease;
+    height: 60px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .logo:hover img {
     transform: rotate(360deg) scale(1.05);
-    box-shadow: 0 8px 25px rgba(249, 194, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(249, 194, 0, 0.3);
 }
 
 .logo-text {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: 700;
     background: linear-gradient(45deg, #f9c200, #ff6a00);
     -webkit-background-clip: text;
@@ -78,7 +78,7 @@ header.scrolled {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 25px;
 }
 
 nav ul li a {
@@ -88,7 +88,7 @@ nav ul li a {
     padding: 10px 20px;
     border-radius: 8px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 nav ul li a::before {
@@ -98,16 +98,16 @@ nav ul li a::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(249, 194, 0, 0.1);
+    background: rgba(249, 194, 0, 0.15);
     border-radius: 8px;
-    transform: scale(0.8);
+    transform: scale(0.9);
     opacity: 0;
     transition: all 0.3s ease;
 }
 
 nav ul li a:hover {
     color: #f9c200;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 nav ul li a:hover::before {
@@ -123,6 +123,7 @@ nav ul li a:hover::before {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding: 0 20px;
 }
 
 .hero-bg {
@@ -133,8 +134,8 @@ nav ul li a:hover::before {
     height: 100%;
     background-size: cover;
     background-position: center;
-    filter: brightness(0.7);
-    animation: backgroundSlide 30s infinite alternate;
+    filter: brightness(0.6);
+    animation: backgroundSlide 20s infinite alternate ease-in-out;
     z-index: -1;
 }
 
@@ -143,7 +144,7 @@ nav ul li a:hover::before {
         transform: scale(1) translateY(0);
     }
     50% {
-        transform: scale(1.1) translateY(-10px);
+        transform: scale(1.1) translateY(-15px);
     }
 }
 
@@ -154,16 +155,17 @@ nav ul li a:hover::before {
 }
 
 .hero-title {
-    font-size: 3.5em;
+    font-size: 3.8em;
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(45deg, #f9c200, #ff6a00);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.1;
 }
 
 .hero-description {
-    font-size: 1.5em;
-    margin: 20px 0;
+    font-size: 1.4em;
+    margin: 25px 0;
 }
 
 .explore-btn {
@@ -174,11 +176,12 @@ nav ul li a:hover::before {
     text-decoration: none;
     font-weight: 700;
     border-radius: 50px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .explore-btn:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(249, 194, 0, 0.4);
 }
 
 /* Scroll Indicator */
@@ -207,19 +210,19 @@ nav ul li a:hover::before {
 /* Section Styles */
 .section-wrapper {
     width: 90%;
-    margin: 80px auto;
-    padding: 60px 0;
+    margin: 100px auto;
+    padding: 60px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 60px;
+    gap: 50px;
     position: relative;
     overflow: hidden;
-    background: rgba(11, 31, 63, 0.3);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(249, 194, 0, 0.1);
+    background: rgba(11, 31, 63, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(249, 194, 0, 0.15);
     border-radius: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .section-text h3 {
@@ -240,17 +243,18 @@ nav ul li a:hover::before {
 
 /* Image Styles */
 .section-wrapper img {
-    max-width: 450px;
+    max-width: 400px;
     width: 100%;
     border-radius: 20px;
-    border: 2px solid rgba(249, 194, 0, 0.2);
+    border: 2px solid rgba(249, 194, 0, 0.25);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    filter: brightness(1.1) contrast(1.1);
-    transition: transform 0.4s ease;
+    filter: brightness(1.05) contrast(1.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .section-wrapper:hover img {
-    transform: scale(1.02) translateY(-10px);
+    transform: scale(1.03) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(249, 194, 0, 0.3);
 }
 
 /* Button Styles */
@@ -262,18 +266,19 @@ nav ul li a:hover::before {
     text-decoration: none;
     font-weight: 700;
     border-radius: 50px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
     .section-wrapper {
         flex-direction: column;
-        padding: 30px 20px;
+        padding: 40px 20px;
+        gap: 40px;
     }
 
     .section-text h3 {
-        font-size: 2em;
+        font-size: 2.2em;
     }
 
     .section-wrapper img {
@@ -284,7 +289,7 @@ nav ul li a:hover::before {
 
 @media (min-width: 1200px) {
     .section-wrapper {
-        margin: 100px auto;
+        margin: 120px auto;
         padding: 80px 60px;
     }
 }
