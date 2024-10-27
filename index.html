@@ -197,23 +197,24 @@
         }
 
         .mobile-nav {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(11, 31, 63, 0.95);
-            position: absolute;
-            top: 60px;
-            width: 100%;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            transform: translateY(-10px);
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(11, 31, 63, 0.95);
+        position: absolute;
+        top: 60px;
+        width: 100%;
+        left: 0;
+        opacity: 0;
+        visibility: hidden; /* Change from display: none */
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transform: translateY(-10px);
         }
 
-        .mobile-nav.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
+    .mobile-nav.active {
+    opacity: 1;
+    visibility: visible; /* Change from display: flex */
+    transform: translateY(0);
+        
         }
 
         .mobile-nav li {
@@ -566,14 +567,14 @@
             retina_detect: true
         });
 
-        // Hamburger Menu Interaction
-        const hamburger = document.getElementById('hamburger');
-        const mobileNav = document.getElementById('mobile-nav');
+// Hamburger Menu Interaction
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
 
-        hamburger.addEventListener('click', function () {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+hamburger.addEventListener('click', function () {
+    mobileNav.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
     </script>
 </body>
 
