@@ -20,63 +20,52 @@ document.querySelectorAll('.mobile-nav a').forEach(link => {
     });
 });
 
-// Slideshow functionality with debug
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Slideshow functionality
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
     
-    // Debug: Log number of slides found
-    console.log(`Found ${slides.length} slides`);
-    
-    // Verify image loading for each slide
+    // Debug: Log all slide background images
     slides.forEach((slide, index) => {
+        console.log(`Slide ${index + 1} background:`, slide.style.backgroundImage);
+        
+        // Ensure slide has proper styling
+        slide.style.opacity = index === 0 ? '1' : '0';
+        
+        // Test image loading
         const bgImage = slide.style.backgroundImage;
         const imageUrl = bgImage.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
         
-        // Create a temporary image to test loading
         const img = new Image();
         img.onload = () => {
-            console.log(`Slide ${index + 1} image loaded successfully:`, imageUrl);
+            console.log(`✓ Slide ${index + 1} image loaded:`, imageUrl);
         };
         img.onerror = () => {
-            console.error(`Failed to load slide ${index + 1} image:`, imageUrl);
-            // Fallback background color if image fails to load
-            slide.style.backgroundColor = '#0b1f3f';
+            console.error(`✗ Slide ${index + 1} image failed:`, imageUrl);
         };
         img.src = imageUrl;
     });
 
-    // Ensure first slide is active on page load
-    if (slides.length > 0) {
-        slides[0].classList.add('active');
-    }
-    
     function nextSlide() {
-        // Remove active class from current slide
-        slides[currentSlide].classList.remove('active');
+        // Fade out current slide
+        slides[currentSlide].style.opacity = '0';
         
         // Move to next slide
         currentSlide = (currentSlide + 1) % slides.length;
         
-        // Add active class to new slide
-        slides[currentSlide].classList.add('active');
+        // Fade in next slide
+        slides[currentSlide].style.opacity = '1';
         
-        // Debug: Log slide change
-        console.log(`Switched to slide ${currentSlide + 1}`);
+        console.log(`Transitioning to slide ${currentSlide + 1}`);
     }
     
-    // Change slide every 5 seconds
-    const slideInterval = setInterval(nextSlide, 5000);
-    
-    // Clear interval if slides are not found
-    if (slides.length === 0) {
-        console.error('No slides found in the slideshow');
-        clearInterval(slideInterval);
+    if (slides.length > 1) {
+        // Start the slideshow
+        setInterval(nextSlide, 5000);
     }
-});
 
-// Initialize particles.js
-document.addEventListener('DOMContentLoaded', function() {
+    // Initialize particles.js
     particlesJS('particles-js', {
         particles: {
             number: {
@@ -125,8 +114,53 @@ document.addEventListener('DOMContentLoaded', function() {
                     mode: "push"
                 },
                 resize: true
+            },
+            modes: {
+                repulse: {
+                    distance: 100,
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                }
             }
         },
         retina_detect: true
+    });
+
+    // Image path testing function
+    function testImagePaths() {
+        const testPaths = [
+            '/assets/images/Mainbackround.jpg',
+            '/assets/images/backroundcity.jpeg',
+            '/assets/images/backround3.jpeg'
+        ];
+
+        testPaths.forEach(path => {
+            const img = new Image();
+            img.onload = () => console.log('✓ Image exists:', path);
+            img.onerror = () => console.log('✗ Image missing:', path);
+            img.src = path;
+        });
+    }
+
+    // Run image path test
+    testImagePaths();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
     });
 });
