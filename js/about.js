@@ -154,13 +154,64 @@ function initializeTimelineAnimation() {
     });
 }
 
-// Mobile menu functionality
-const hamburger = document.querySelector('.hamburger');
-const mobileNav = document.querySelector('.mobile-nav');
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (keep existing initialization code)
 
-if (hamburger && mobileNav) {
-    hamburger.addEventListener('click', () => {
+    // Mobile Menu Functionality
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    let overlay;
+
+    // Create and append overlay
+    function createOverlay() {
+        overlay = document.createElement('div');
+        overlay.className = 'mobile-nav-overlay';
+        document.body.appendChild(overlay);
+    }
+    createOverlay();
+
+    // Toggle mobile menu
+    function toggleMobileMenu() {
         hamburger.classList.toggle('active');
         mobileNav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        
+        // Toggle body scroll
+        if (mobileNav.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+
+    // Event listeners
+    hamburger.addEventListener('click', toggleMobileMenu);
+    overlay.addEventListener('click', toggleMobileMenu);
+
+    // Close menu when clicking a link
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMobileMenu();
+        });
     });
-}
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+    });
+
+    // Handle resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        }, 250);
+    });
+});
+
