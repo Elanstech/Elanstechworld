@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - Elan's Tech World</title>
-    <!-- Updated CSS paths -->
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/services.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">
+                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                 <span class="logo-text">Elan's Tech World</span>
             </a>
             
@@ -23,59 +30,183 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
+
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Our Services</h1>
-            <p>Innovative technology solutions for your business</p>
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="services-particles"></div>
+        <div class="services-hero-content">
+            <h1 class="services-title">Our Services</h1>
+            <p class="services-subtitle">Innovative technology solutions for your business</p>
         </div>
     </section>
 
+    <!-- Services Grid -->
     <section class="services-grid">
-        <div class="service-card">
-            <div class="service-icon">💻</div>
+        <!-- Business Computer Setup -->
+        <div class="service-card" data-service="business-setup">
+            <div class="service-icon">
+                <i class="fas fa-desktop"></i>
+            </div>
             <h3>Expert Business Computer Setup</h3>
-            <p>Professional setup and optimization for seamless business operations</p>
+            <p>Professional setup and optimization for seamless business operations. We ensure your technology infrastructure runs at peak efficiency.</p>
             <div class="service-buttons">
-                <button class="preview-btn">Quick Preview</button>
-                <button class="details-btn">Full Details</button>
+                <button class="preview-btn">
+                    <i class="fas fa-search"></i>
+                    Quick Preview
+                </button>
+                <a href="expertbusiness.html" class="details-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Full Details
+                </a>
             </div>
         </div>
 
-        <div class="service-card">
-            <div class="service-icon">🌐</div>
+        <!-- Web Design -->
+        <div class="service-card" data-service="web-design">
+            <div class="service-icon">
+                <i class="fas fa-code"></i>
+            </div>
             <h3>Custom Web Design</h3>
-            <p>Stunning, responsive websites tailored to your brand</p>
+            <p>Beautiful, responsive websites tailored to your brand. We create engaging online experiences that convert visitors into customers.</p>
             <div class="service-buttons">
-                <button class="preview-btn">Quick Preview</button>
-                <button class="details-btn">Full Details</button>
+                <button class="preview-btn">
+                    <i class="fas fa-search"></i>
+                    Quick Preview
+                </button>
+                <a href="web-design-services.html" class="details-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Full Details
+                </a>
             </div>
         </div>
 
-        <div class="service-card">
-            <div class="service-icon">🏪</div>
+        <!-- POS System -->
+        <div class="service-card" data-service="pos-system">
+            <div class="service-icon">
+                <i class="fas fa-cash-register"></i>
+            </div>
             <h3>POS System Setup</h3>
-            <p>Modern point-of-sale solutions for efficient operations</p>
+            <p>Modern point-of-sale solutions that streamline your operations. Complete with inventory management and sales analytics.</p>
             <div class="service-buttons">
-                <button class="preview-btn">Quick Preview</button>
-                <button class="details-btn">Full Details</button>
+                <button class="preview-btn">
+                    <i class="fas fa-search"></i>
+                    Quick Preview
+                </button>
+                <a href="pos-system.html" class="details-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Full Details
+                </a>
             </div>
         </div>
 
-        <div class="service-card">
-            <div class="service-icon">📱</div>
+        <!-- Apple Products -->
+        <div class="service-card" data-service="apple-sales">
+            <div class="service-icon">
+                <i class="fab fa-apple"></i>
+            </div>
             <h3>Apple Product Sales</h3>
-            <p>Authorized reseller of genuine Apple products</p>
+            <p>Authorized reseller of genuine Apple products. Get the latest devices with professional setup and support.</p>
             <div class="service-buttons">
-                <button class="preview-btn">Quick Preview</button>
-                <button class="details-btn">Full Details</button>
+                <button class="preview-btn">
+                    <i class="fas fa-search"></i>
+                    Quick Preview
+                </button>
+                <a href="appleresell.html" class="details-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Full Details
+                </a>
+            </div>
+        </div>
+
+        <!-- IT Support -->
+        <div class="service-card" data-service="it-support">
+            <div class="service-icon">
+                <i class="fas fa-headset"></i>
+            </div>
+            <h3>IT Support & Maintenance</h3>
+            <p>Comprehensive IT support services to keep your business running smoothly. 24/7 technical assistance available.</p>
+            <div class="service-buttons">
+                <button class="preview-btn">
+                    <i class="fas fa-search"></i>
+                    Quick Preview
+                </button>
+                <a href="it-support.html" class="details-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Full Details
+                </a>
+            </div>
+        </div>
+
+        <!-- Network Solutions -->
+        <div class="service-card" data-service="network-solutions">
+            <div class="service-icon">
+                <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Network Solutions</h3>
+            <p>Professional network setup and security implementation. Ensure fast, reliable, and secure connectivity for your business.</p>
+            <div class="service-buttons">
+                <button class="preview-btn">
+                    <i class="fas fa-search"></i>
+                    Quick Preview
+                </button>
+                <a href="network-solutions.html" class="details-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    Full Details
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Updated JavaScript path -->
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Elan's Tech World</h3>
+                <p>Your Partner in Technology Solutions</p>
+                <p>&copy; 2024 All rights reserved.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="../js/script.js"></script>
     <script src="../js/services.js"></script>
 </body>
