@@ -214,7 +214,7 @@ nav ul li a:hover::before {
     width: 100%;
     height: 100%;
     z-index: 1;
-    pointer-events: none; /* This ensures clicks go through to elements below */
+    pointer-events: none;
 }
 
 .hero-content {
@@ -410,45 +410,6 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Instagram Feed Styles */
-#social-feed.section-wrapper {
-    display: flex;
-    align-items: flex-start; /* Changed from center to prevent stretching */
-}
-
-.instagram-container {
-    flex: 1;
-    max-width: 500px; /* Adjust this value as needed */
-    min-height: 400px;
-    overflow: hidden;
-    border-radius: 20px;
-    border: 2px solid rgba(249, 194, 0, 0.25);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71 {
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 400px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    #social-feed.section-wrapper {
-        flex-direction: column;
-    }
-
-    .instagram-container {
-        width: 100%;
-        margin-top: 20px;
-        min-height: 350px;
-    }
-
-    .elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71 {
-        min-height: 350px;
-    }
-}
 /* Media Queries */
 @media (max-width: 768px) {
     .hamburger {
@@ -485,10 +446,6 @@ footer {
 
     .social-links {
         justify-content: center;
-    }
-
-    .instagram-feed {
-        padding: 0 0.5rem;
     }
 }
 
