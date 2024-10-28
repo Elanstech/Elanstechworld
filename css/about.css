@@ -284,10 +284,10 @@
 
 .team-image-wrapper {
     position: relative;
-    width: 300px;  /* Increased width */
-    height: 300px; /* Kept equal to maintain circle */
+    width: 250px;  /* Increased width */
+    height: 300px; /* Increased height and made it rectangular */
     margin: 0 auto;
-    border-radius: 50%;
+    border-radius: 15px; /* Changed from circular to rounded corners */
     overflow: hidden;
     border: 3px solid #f9c200;
     transition: transform 0.3s ease;
@@ -296,8 +296,8 @@
 .team-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center top; /* This will focus on the top part of the image */
+    object-fit: contain; /* Changed from 'cover' to 'contain' */
+    padding: 10px; /* Added some padding */
     transition: transform 0.3s ease;
 }
 
