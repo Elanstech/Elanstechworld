@@ -17,7 +17,40 @@
     <link rel="stylesheet" href="../css/about.css">
 </head>
 <body>
-    <!-- Header remains the same -->
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">
+                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                <span class="logo-text">Elan's Tech World</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger" aria-label="Toggle menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
     
     <!-- Hero Section -->
     <section class="about-hero">
@@ -220,7 +253,7 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+ <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/about.js"></script>
