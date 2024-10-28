@@ -1,3 +1,4 @@
+// Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS
     AOS.init({
@@ -7,7 +8,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Particles Background
+    initParticles();
+    
+    // Initialize stats counter
+    initStatsCounter();
+    
+    // Initialize mobile navigation
+    initMobileNav();
+    
+    // Initialize smooth scroll
+    initSmoothScroll();
+    
+    // Initialize header scroll effect
+    initHeaderScroll();
+});
+
+// Particles Background Initialization
+function initParticles() {
     const particlesContainer = document.querySelector('.hero-particles');
+    if (!particlesContainer) return;
+
     for (let i = 0; i < 50; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -16,8 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
         particle.style.animationDelay = Math.random() * 5 + 's';
         particlesContainer.appendChild(particle);
     }
+}
 
-    // Stats Counter Animation with Circle Progress
+// Stats Counter Animation
+function initStatsCounter() {
     const stats = document.querySelectorAll('.stat-number');
     const circles = document.querySelectorAll('.circle-progress path.progress');
     
@@ -43,53 +65,59 @@ document.addEventListener('DOMContentLoaded', function() {
     stats.forEach(stat => {
         statsObserver.observe(stat);
     });
+}
 
-    function animateValue(obj, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            obj.innerHTML = Math.floor(progress * (end - start) + start) + '+';
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + '+';
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
 
-    function animateCircle(circle, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const value = progress * (end - start) + start;
-            circle.setAttribute('stroke-dasharray', `${value}, 100`);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
+function animateCircle(circle, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = progress * (end - start) + start;
+        circle.setAttribute('stroke-dasharray', `${value}, 100`);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
 
-    // Mobile Navigation
+// Mobile Navigation
+function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
     
     if (hamburger && mobileNav) {
         hamburger.addEventListener('click', () => {
             mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
             document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
         });
 
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
                 document.body.style.overflow = 'auto';
             });
         });
     }
+}
 
-    // Smooth Scroll for Anchor Links
+// Smooth Scroll
+function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -105,16 +133,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+}
 
-    // Header Scroll Effect
+// Header Scroll Effect
+function initHeaderScroll() {
     const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
+    const scrollHandler = () => {
         if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(11, 31, 63, 0.95)';
-            header.style.backdropFilter = 'blur(10px)';
+            header.classList.add('scrolled');
         } else {
-            header.style.backgroundColor = '#0b1f3f';
-            header.style.backdropFilter = 'none';
+            header.classList.remove('scrolled');
         }
-    });
-});
+    };
+
+    window.addEventListener('scroll', scrollHandler);
+    // Initial check
+    scrollHandler();
+}
