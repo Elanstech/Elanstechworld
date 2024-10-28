@@ -164,6 +164,7 @@
     align-items: center;
     text-align: center;
 }
+
 .journey-card-front {
     background: rgba(249, 194, 0, 0.1);
     border: 1px solid rgba(249, 194, 0, 0.2);
@@ -399,5 +400,51 @@
     .team-image-wrapper {
         width: 150px;
         height: 150px;
+    }
+}
+
+/* Additional Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.section-title {
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #f9c200;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Particle Animation */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #f9c200;
+    border-radius: 50%;
+    animation: float 5s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
     }
 }
