@@ -1,20 +1,25 @@
+/* about.js */
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize stat counters
-    initStatCounters();
-    
-    // Initialize scroll effects
-    initScrollEffects();
-    
+    // Initialize all animations and effects
+    initializeAnimations();
+    initializeParallax();
+    initializeTypingEffect();
+    initializeScrollEffects();
+    initializeStatCounters();
+    initializeTimelineAnimation();
+});
+
+function initializeAnimations() {
     // Initialize AOS
     AOS.init({
         duration: 1000,
         once: true,
         offset: 100
     });
-    
+
     // Initialize GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
-    
+
     // Animate hero content
     gsap.from('.about-hero-content', {
         opacity: 0,
@@ -22,19 +27,87 @@ document.addEventListener('DOMContentLoaded', function() {
         duration: 1.5,
         ease: 'power3.out'
     });
-    
-    // Initialize journey cards
-    initJourneyCards();
-});
+}
 
-function initStatCounters() {
+function initializeParallax() {
+    // Parallax effect for hero section
+    const heroSection = document.querySelector('.about-hero');
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        heroSection.style.backgroundPositionY = `${scrolled * 0.5}px`;
+    });
+}
+
+function initializeTypingEffect() {
+    const words = [
+        "Innovative Solutions.",
+        "Expert Support.",
+        "Quality Service.",
+        "Your Tech Partner."
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function type() {
+        const current = words[wordIndex];
+        const typingText = document.querySelector('.typing-text');
+
+        if (isDeleting) {
+            typingText.textContent = current.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = current.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === current.length) {
+            isDeleting = true;
+            typingSpeed = 50;
+            setTimeout(type, 1500);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typingSpeed = 100;
+            setTimeout(type, 500);
+        } else {
+            setTimeout(type, typingSpeed);
+        }
+    }
+
+    type();
+}
+
+function initializeScrollEffects() {
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        // Header effect
+        if (currentScroll > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        // Timeline items reveal
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top;
+            if (itemTop < window.innerHeight * 0.8) {
+                item.classList.add('visible');
+            }
+        });
+
+        lastScroll = currentScroll;
+    });
+}
+
+function initializeStatCounters() {
     const stats = document.querySelectorAll('.stat-number');
-    
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.5
-    };
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -44,66 +117,50 @@ function initStatCounters() {
                 observer.unobserve(entry.target);
             }
         });
-    }, options);
-    
+    }, { threshold: 0.5 });
+
     stats.forEach(stat => observer.observe(stat));
 }
 
 function animateCounter(element, target) {
     let current = 0;
     const duration = 2000;
-    const steps = 60; // 60fps
-    const increment = target / steps;
-    const stepTime = duration / steps;
-    
+    const increment = target / (duration / 16); // 60fps
+
     const counter = setInterval(() => {
         current += increment;
-        
         if (current >= target) {
             element.textContent = target;
             clearInterval(counter);
         } else {
             element.textContent = Math.round(current);
         }
-    }, stepTime);
+    }, 16);
 }
 
-function initScrollEffects() {
-    const header = document.querySelector('header');
-    let lastScroll = 0;
+function initializeTimelineAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
     
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        // Header effect
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    gsap.from(timelineItems, {
+        opacity: 0,
+        x: -100,
+        stagger: 0.3,
+        duration: 1,
+        scrollTrigger: {
+            trigger: '.timeline',
+            start: 'top center',
+            toggleActions: 'play none none reverse'
         }
-        
-        // Parallax effect
-        const hero = document.querySelector('.about-hero');
-        if (hero) {
-            requestAnimationFrame(() => {
-                hero.style.backgroundPositionY = `${currentScroll * 0.5}px`;
-            });
-        }
-        
-        lastScroll = currentScroll;
-    }, { passive: true });
+    });
 }
 
-function initJourneyCards() {
-    const cards = document.querySelectorAll('.journey-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.querySelector('.journey-card-inner').style.transform = 'rotateY(180deg)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.querySelector('.journey-card-inner').style.transform = 'rotateY(0)';
-        });
+// Mobile menu functionality
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.querySelector('.mobile-nav');
+
+if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
     });
 }
