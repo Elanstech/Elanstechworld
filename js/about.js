@@ -7,21 +7,40 @@ document.addEventListener('DOMContentLoaded', function() {
         offset: 100
     });
 
-    // Particles Background
+    // Initialize all components
     initParticles();
-    
-    // Initialize stats counter
     initStatsCounter();
-    
-    // Initialize mobile navigation
     initMobileNav();
-    
-    // Initialize smooth scroll
     initSmoothScroll();
-    
-    // Initialize header scroll effect
     initHeaderScroll();
+    initJourneyCards();
 });
+
+// Journey Cards Touch/Click Handling
+function initJourneyCards() {
+    const journeyCards = document.querySelectorAll('.journey-card');
+    
+    journeyCards.forEach(card => {
+        // Handle both click and touch events
+        card.addEventListener('click', function() {
+            // Remove active class from all other cards
+            journeyCards.forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.querySelector('.journey-card-inner').classList.remove('flipped');
+                }
+            });
+            
+            // Toggle flipped class on clicked card
+            const cardInner = this.querySelector('.journey-card-inner');
+            cardInner.classList.toggle('flipped');
+        });
+        
+        // Optional: Handle touch start for better mobile response
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevent default touch behavior
+        }, { passive: false });
+    });
+}
 
 // Particles Background Initialization
 function initParticles() {
@@ -150,3 +169,16 @@ function initHeaderScroll() {
     // Initial check
     scrollHandler();
 }
+
+// Prevent default on all touch events for journey cards
+document.addEventListener('touchstart', function(e) {
+    if (e.target.closest('.journey-card')) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+// Optional: Add resize handler for responsive adjustments
+window.addEventListener('resize', function() {
+    // Add any resize-specific logic here if needed
+    AOS.refresh();
+});
