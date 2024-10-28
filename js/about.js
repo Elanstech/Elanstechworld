@@ -4,9 +4,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize scroll effects
     initScrollEffects();
+    
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+    
+    // Initialize GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate hero content
+    gsap.from('.about-hero-content', {
+        opacity: 0,
+        y: 100,
+        duration: 1.5,
+        ease: 'power3.out'
+    });
+    
+    // Initialize journey cards
+    initJourneyCards();
 });
 
-// Counter Animation
 function initStatCounters() {
     const stats = document.querySelectorAll('.stat-number');
     
@@ -15,7 +35,7 @@ function initStatCounters() {
         rootMargin: '0px',
         threshold: 0.5
     };
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -25,29 +45,29 @@ function initStatCounters() {
             }
         });
     }, options);
-
+    
     stats.forEach(stat => observer.observe(stat));
 }
 
 function animateCounter(element, target) {
     let current = 0;
-    const duration = 2000; // 2 seconds
-    const step = target / (duration / 16); // For 60fps
+    const duration = 2000;
+    const steps = 60; // 60fps
+    const increment = target / steps;
+    const stepTime = duration / steps;
     
-    function update() {
-        current += step;
-        if (current < target) {
-            element.textContent = Math.round(current);
-            requestAnimationFrame(update);
-        } else {
+    const counter = setInterval(() => {
+        current += increment;
+        
+        if (current >= target) {
             element.textContent = target;
+            clearInterval(counter);
+        } else {
+            element.textContent = Math.round(current);
         }
-    }
-    
-    requestAnimationFrame(update);
+    }, stepTime);
 }
 
-// Scroll Effects
 function initScrollEffects() {
     const header = document.querySelector('header');
     let lastScroll = 0;
@@ -55,19 +75,35 @@ function initScrollEffects() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
-        // Header background effect
+        // Header effect
         if (currentScroll > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
-
-        // Parallax effect for background
+        
+        // Parallax effect
         const hero = document.querySelector('.about-hero');
         if (hero) {
-            hero.style.backgroundPositionY = `${currentScroll * 0.5}px`;
+            requestAnimationFrame(() => {
+                hero.style.backgroundPositionY = `${currentScroll * 0.5}px`;
+            });
         }
-
+        
         lastScroll = currentScroll;
     }, { passive: true });
+}
+
+function initJourneyCards() {
+    const cards = document.querySelectorAll('.journey-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.querySelector('.journey-card-inner').style.transform = 'rotateY(180deg)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.querySelector('.journey-card-inner').style.transform = 'rotateY(0)';
+        });
+    });
 }
