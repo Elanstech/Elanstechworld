@@ -173,7 +173,7 @@ nav ul li a:hover::before {
     color: #f9c200;
 }
 
-/* Update these styles in your CSS file */
+/* Hero Styles */
 .hero {
     position: relative;
     height: 100vh;
@@ -206,7 +206,6 @@ nav ul li a:hover::before {
     filter: brightness(0.6);
 }
 
-/* First slide should be visible by default */
 .slide:first-child {
     opacity: 1;
 }
@@ -225,7 +224,6 @@ nav ul li a:hover::before {
     text-align: center;
     z-index: 3;
 }
-
 .hero-title {
     font-size: 3.8em;
     font-family: 'Montserrat', sans-serif;
@@ -233,6 +231,9 @@ nav ul li a:hover::before {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
+    margin-bottom: 20px;
+}
+line-height: 1.1;
     margin-bottom: 20px;
 }
 
