@@ -20,10 +20,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/about.css">
 </head>
 <body>
@@ -31,14 +30,14 @@
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Header -->
-    <header>
+    <header class="header">
         <div class="header-container">
             <a href="index.html" class="logo">
                 <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50">
                 <span class="logo-text">Elan's Tech World</span>
             </a>
             
-            <nav>
+            <nav class="nav">
                 <ul>
                     <li><a href="about.html" class="active">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
@@ -48,64 +47,63 @@
             </nav>
 
             <button class="hamburger" aria-label="Toggle menu">
-                <div></div>
-                <div></div>
-                <div></div>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-
     <!-- Main Content -->
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="about-hero">
+        <section class="about-hero" id="parallax-hero">
             <div class="hero-overlay"></div>
-            <div class="about-hero-content" data-aos="fade-up">
+            <div class="about-hero-content">
                 <h1 class="glowing-text">About Elan's Tech World</h1>
-                <p class="typing-animation">Empowering businesses through innovative technology solutions</p>
+                <div class="typing-container">
+                    <span class="typing-text" id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </div>
                 
                 <div class="hero-stats-container">
                     <div class="stat-items-wrapper">
+                        <div class="stat-item" data-aos="zoom-in">
+                            <div class="stat-circle">
+                                <svg class="circle-progress" viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <path class="progress" stroke-dasharray="75, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                </svg>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="5">0</span>
+                                    <span class="stat-label">Years Experience</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
-                            <svg class="circle-progress" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                <path class="progress" stroke-dasharray="75, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            </svg>
-                            <div class="stat-content">
-                                <span class="stat-number" data-target="5">0</span>
-                                <span class="stat-label">Years Experience</span>
+                            <div class="stat-circle">
+                                <svg class="circle-progress" viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <path class="progress" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                </svg>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="100">0</span>
+                                    <span class="stat-label">Happy Clients</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
-                            <svg class="circle-progress" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                <path class="progress" stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            </svg>
-                            <div class="stat-content">
-                                <span class="stat-number" data-target="100">0</span>
-                                <span class="stat-label">Happy Clients</span>
-                            </div>
-                        </div>
-
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="600">
-                            <svg class="circle-progress" viewBox="0 0 36 36">
-                                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                                <path class="progress" stroke-dasharray="95, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                            </svg>
-                            <div class="stat-content">
-                                <span class="stat-number" data-target="500">0</span>
-                                <span class="stat-label">Projects Completed</span>
+                            <div class="stat-circle">
+                                <svg class="circle-progress" viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                    <path class="progress" stroke-dasharray="95, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                </svg>
+                                <div class="stat-content">
+                                    <span class="stat-number" data-target="500">0</span>
+                                    <span class="stat-label">Projects Completed</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,55 +118,39 @@
         </section>
 
         <!-- Journey Section -->
-        <section class="journey-section">
+        <section class="journey-section" data-parallax="scroll">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Our Journey</h2>
-                <div class="journey-cards">
-                    <div class="journey-card" data-aos="fade-right">
-                        <div class="journey-card-inner">
-                            <div class="journey-card-front">
-                                <span class="year">2019</span>
-                                <h3>The Beginning</h3>
-                            </div>
-                            <div class="journey-card-back">
-                                <p>Founded with a vision to provide innovative tech solutions</p>
-                            </div>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <span class="year">2019</span>
+                            <h3>The Beginning</h3>
+                            <p>Founded with a vision to provide innovative tech solutions</p>
                         </div>
                     </div>
 
-                    <div class="journey-card" data-aos="fade-up">
-                        <div class="journey-card-inner">
-                            <div class="journey-card-front">
-                                <span class="year">2020</span>
-                                <h3>Service Expansion</h3>
-                            </div>
-                            <div class="journey-card-back">
-                                <p>Expanded services to include web development and Apple product sales</p>
-                            </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <span class="year">2020</span>
+                            <h3>Service Expansion</h3>
+                            <p>Expanded services to include web development and Apple product sales</p>
                         </div>
                     </div>
 
-                    <div class="journey-card" data-aos="fade-down">
-                        <div class="journey-card-inner">
-                            <div class="journey-card-front">
-                                <span class="year">2021</span>
-                                <h3>Growing Success</h3>
-                            </div>
-                            <div class="journey-card-back">
-                                <p>Reached milestone of 50+ satisfied clients</p>
-                            </div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-content">
+                            <span class="year">2021</span>
+                            <h3>Growing Success</h3>
+                            <p>Reached milestone of 50+ satisfied clients</p>
                         </div>
                     </div>
 
-                    <div class="journey-card" data-aos="fade-left">
-                        <div class="journey-card-inner">
-                            <div class="journey-card-front">
-                                <span class="year">2024</span>
-                                <h3>Continuous Innovation</h3>
-                            </div>
-                            <div class="journey-card-back">
-                                <p>Continuing to grow and innovate in tech solutions</p>
-                            </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-content">
+                            <span class="year">2024</span>
+                            <h3>Continuous Innovation</h3>
+                            <p>Continuing to grow and innovate in tech solutions</p>
                         </div>
                     </div>
                 </div>
@@ -180,7 +162,7 @@
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Our Core Values</h2>
                 <div class="values-grid">
-                    <div class="value-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="value-card" data-aos="flip-left">
                         <div class="value-icon-wrapper">
                             <i class="fas fa-lightbulb"></i>
                         </div>
@@ -196,7 +178,7 @@
                         <p>Putting our clients' success at the heart of everything we do</p>
                     </div>
 
-                    <div class="value-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="value-card" data-aos="flip-left" data-aos-delay="400">
                         <div class="value-icon-wrapper">
                             <i class="fas fa-star"></i>
                         </div>
@@ -204,7 +186,7 @@
                         <p>Delivering top-quality service and support in every interaction</p>
                     </div>
 
-                    <div class="value-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="value-card" data-aos="flip-left" data-aos-delay="600">
                         <div class="value-icon-wrapper">
                             <i class="fas fa-handshake"></i>
                         </div>
@@ -222,7 +204,7 @@
                 <div class="team-grid">
                     <div class="team-card" data-aos="fade-up">
                         <div class="team-image-wrapper">
-                            <img src="assets/images/elan.jpg" alt="Elan">
+                            <img src="assets/images/elan.jpg" alt="Elan" loading="lazy">
                             <div class="team-overlay">
                                 <div class="team-social">
                                     <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener">
@@ -242,7 +224,7 @@
     </main>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-info">
                 <h3>Elan's Tech World</h3>
@@ -267,30 +249,20 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Privacy Policy | Terms of Service</p>
-        </div>
     </footer>
 
     <!-- Scripts -->
-    <!-- AOS Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- GSAP for smooth animations -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Initialize AOS -->
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-    </script>
-
+    
+    <!-- AOS Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Parallax Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
+    
     <!-- Custom scripts -->
-    <script src="../js/script.js"></script>
     <script src="../js/about.js"></script>
 </body>
 </html>
