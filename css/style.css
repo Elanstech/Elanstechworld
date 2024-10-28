@@ -446,6 +446,30 @@ footer {
         grid-template-columns: 1fr;
         text-align: center;
     }
+    /* Instagram Feed Section */
+#social-feed {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+.instagram-feed {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Click-to-Call Button Styling */
+.elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479 {
+    margin: 1.5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .instagram-feed {
+        padding: 0 0.5rem;
+    }
+}
 
     .social-links {
         justify-content: center;
