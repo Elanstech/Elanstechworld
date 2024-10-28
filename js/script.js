@@ -1,4 +1,4 @@
-/ Enhanced Slideshow Class
+// Slideshow Class
 class Slideshow {
     constructor(selector) {
         this.slides = document.querySelectorAll(selector);
@@ -148,12 +148,6 @@ class SmoothScroll {
     }
 }
 
-// Header Scroll Effect
-function handleScroll() {
-    const header = document.querySelector('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-}
-
 // Particles Configuration
 const particlesConfig = {
     particles: {
@@ -240,6 +234,14 @@ const particlesConfig = {
     },
     retina_detect: true
 };
+
+// Header Scroll Effect
+function handleScroll() {
+    const header = document.querySelector('header');
+    if (header) {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    }
+}
 
 // Initialize Particles
 function initParticles() {
