@@ -1,3 +1,4 @@
+<!-- services.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="header-container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+            <a href="index.html" class="logo">
+                <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                 <span class="logo-text">Elan's Tech World</span>
             </a>
             
@@ -32,9 +33,11 @@
             </nav>
 
             <button class="hamburger" aria-label="Toggle menu">
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="hamburger-lines">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
             </button>
         </div>
     </header>
@@ -49,18 +52,27 @@
         </ul>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Enhanced Hero Section -->
     <section class="services-hero">
-        <div class="services-particles"></div>
-        <div class="services-hero-content">
-            <h1 class="services-title">Our Services</h1>
-            <p class="services-subtitle">Innovative technology solutions for your business</p>
+        <div class="hero-particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Our Services</h1>
+            <p class="hero-subtitle">Innovative technology solutions for your business</p>
+            <div class="hero-scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrows">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Services Grid -->
     <section class="services-grid">
-        <!-- Business Computer Setup -->
         <div class="service-card" data-service="business-setup">
             <div class="service-icon">
                 <i class="fas fa-desktop"></i>
@@ -175,8 +187,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+   <footer>
         <div class="footer-content">
             <div class="footer-info">
                 <h3>Elan's Tech World</h3>
@@ -186,10 +197,10 @@
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-social">
@@ -201,13 +212,10 @@
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Privacy Policy | Terms of Service</p>
-        </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="../js/script.js"></script>
-    <script src="../js/services.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/services.js"></script>
 </body>
 </html>
