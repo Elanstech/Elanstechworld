@@ -11,8 +11,6 @@
     
     <!-- Your CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
-
 </head>
 <body>
     <!-- Header -->
@@ -26,9 +24,9 @@
             <nav>
                 <ul>
                     <li><a href="pages/about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="blog.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="pages/services.html">Services</a></li>
+                    <li><a href="pages/projects.html">Projects</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
                 </ul>
             </nav>
 
@@ -43,31 +41,28 @@
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
         <ul>
-            <li><a href="about.htmlt">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="blog.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="pages/about.html">About Us</a></li>
+            <li><a href="pages/services.html">Services</a></li>
+            <li><a href="pages/projects.html">Projects</a></li>
+            <li><a href="pages/contact.html">Contact</a></li>
         </ul>
     </div>
 
-    <!-- Move particles-js div before hero-content -->
-    <div id="particles-js"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">Welcome to Elan's Tech World</h1>
-        <p class="hero-description">Transforming Businesses Through Technology</p>
-        <a href="#services" class="btn">Explore Services</a>
-    </div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="slideshow">
+            <div class="slide" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
+            <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
+            <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')"></div>
+        </div>
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Elan's Tech World</h1>
+            <p class="hero-description">Transforming Businesses Through Technology</p>
+            <a href="#services" class="btn">Explore Services</a>
+        </div>
+    </section>
 
-   <!-- Hero Section -->
-<section class="hero">
-    <div class="slideshow">
-        <!-- Update image paths - make sure these images exist in your assets/images folder -->
-        <div class="slide" style="background-image: url('assets/images/Mainbackround.jpg')"></div>
-        <div class="slide" style="background-image: url('assets/images/backroundcity.jpeg')"></div>
-        <div class="slide" style="background-image: url('assets/images/backround3.jpeg')"></div>
-    </div>
-   
     <!-- Main Content -->
     <main>
         <!-- About Section -->
@@ -76,7 +71,7 @@
                 <h2>About Us</h2>
                 <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
                 <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
-                <a href="/about" class="btn">Learn More →</a>
+                <a href="pages/about.html" class="btn">Learn More →</a>
             </div>
             <img src="./assets/images/aboutsection.jpeg" alt="Modern office workspace">
         </section>
@@ -93,7 +88,7 @@
                     <li>Apple Product Sales and Service</li>
                     <li>POS System Implementation</li>
                 </ul>
-                <a href="/services" class="btn">View Services →</a>
+                <a href="pages/services.html" class="btn">View Services →</a>
             </div>
             <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup">
         </section>
@@ -104,24 +99,12 @@
                 <h2>Featured Projects</h2>
                 <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
                 <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
-                <a href="/projects" class="btn">See Projects →</a>
+                <a href="pages/projects.html" class="btn">See Projects →</a>
             </div>
             <img src="./assets/images/iconicwebsiteimage.jpeg" alt="Project showcase">
         </section>
 
-       <!-- Instagram Feed Section -->
-<section id="social-feed">
-    <div class="section-text">
-        <h2>Follow Us on Instagram</h2>
-        <p></p>
-    </div>
-    <div class="instagram-feed">
-        <!-- Elfsight Instagram Widget -->
-        <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-    </div>
-</section>
-
-        <!-- Contact Section with Click-to-Call -->
+        <!-- Contact Section -->
         <section id="contact" class="section-wrapper">
             <div class="section-text">
                 <h2>Get In Touch</h2>
@@ -132,12 +115,11 @@
                     <p><i class="fas fa-location-dot"></i> Online or We Come To You</p>
                     <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
                 </div>
-                <!-- Elfsight Click-to-Call Widget -->
-                <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
-                <a href="/contact" class="btn">Contact Now →</a>
+                <a href="pages/contact.html" class="btn">Contact Now →</a>
             </div>
-            <img src="./assets/images/Elanslogo.jpeg" alt="Our storefront">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Our logo">
         </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -159,7 +141,9 @@
             <div class="footer-social">
                 <h4>Connect With Us</h4>
                 <div class="social-links">
-            <a href="https://www.instagram.com/elan_tech_world//" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
         </div>
