@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - Elan's Tech World</title>
+    <title>Services - Elan's Tech World</title>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/services.css">
+    <style>
+        /* CSS will be in the next code block */
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="../index.html" class="logo">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
                 <span class="logo-text">Elan's Tech World</span>
             </a>
             
-            <nav>
+            <nav class="main-nav">
                 <ul>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html" class="active">Services</a></li>
@@ -35,9 +34,9 @@
             </nav>
 
             <button class="hamburger" aria-label="Toggle menu">
-                <div></div>
-                <div></div>
-                <div></div>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </header>
@@ -53,9 +52,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="services-hero" style="background-image: url('../assets/images/services-hero-bg.jpg')">
-        <div class="hero-overlay"></div>
-        <div class="hero-particles"></div>
+    <section class="hero" id="particles-js">
         <div class="hero-content" data-aos="fade-up">
             <h1 class="glowing-text">Our Services</h1>
             <p class="typing-animation">Innovative technology solutions for your business</p>
@@ -69,223 +66,200 @@
     </section>
 
     <!-- Services Grid -->
-    <section class="services-grid">
+    <section class="services">
         <div class="container">
-            <!-- Service 1: Business Computer Setup -->
-            <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-offset="200">
+            <!-- Service Cards - Business Setup -->
+            <div class="service-card" data-aos="fade-up">
                 <div class="service-icon">
                     <i class="fas fa-desktop"></i>
                 </div>
-                <h3>Expert Business Computer Setup</h3>
+                <h3>Business Computer Setup</h3>
                 <p>Professional setup and optimization for seamless business operations</p>
                 <div class="service-buttons">
                     <button class="preview-btn" data-service="business-setup">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="business-setup.html" class="details-btn">
+                    <a href="#" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
                     </a>
                 </div>
-                <div class="service-details" id="business-setup">
-                    <button class="close-details" aria-label="Close details">&times;</button>
-                    <div class="details-content">
-                        <h4>Our Process</h4>
-                        <div class="process-steps">
-                            <div class="step">
-                                <span class="step-number">1</span>
-                                <h5>Assessment</h5>
-                                <p>Evaluate your business needs and requirements</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">2</span>
-                                <h5>Planning</h5>
-                                <p>Design optimal system architecture</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">3</span>
-                                <h5>Implementation</h5>
-                                <p>Professional installation and setup</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">4</span>
-                                <h5>Training</h5>
-                                <p>Staff training and documentation</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Service 2: Web Design -->
-            <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-offset="200" data-aos-delay="100">
+            <!-- Service Cards - Web Design -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
+                    <i class="fas fa-code"></i>
                 </div>
-                <h3>Custom Web Design</h3>
-                <p>Stunning, responsive websites tailored to your brand</p>
+                <h3>Web Design</h3>
+                <p>Custom, responsive websites that elevate your brand</p>
                 <div class="service-buttons">
                     <button class="preview-btn" data-service="web-design">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="web-design.html" class="details-btn">
+                    <a href="#" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
                     </a>
                 </div>
-                <div class="service-details" id="web-design">
-                    <button class="close-details" aria-label="Close details">&times;</button>
-                    <div class="details-content">
-                        <h4>Design Process</h4>
-                        <div class="process-steps">
-                            <div class="step">
-                                <span class="step-number">1</span>
-                                <h5>Discovery</h5>
-                                <p>Understanding your brand and goals</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">2</span>
-                                <h5>Design</h5>
-                                <p>Creating stunning, user-friendly layouts</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">3</span>
-                                <h5>Development</h5>
-                                <p>Building with modern technologies</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">4</span>
-                                <h5>Launch</h5>
-                                <p>Testing and deploying your website</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Service 3: POS System -->
-            <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-offset="200" data-aos-delay="200">
+            <!-- Service Cards - POS Systems -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="service-icon">
                     <i class="fas fa-cash-register"></i>
                 </div>
                 <h3>POS System Setup</h3>
                 <p>Modern point-of-sale solutions for efficient operations</p>
                 <div class="service-buttons">
-                    <button class="preview-btn" data-service="pos-system">
+                    <button class="preview-btn" data-service="pos-setup">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="pos-system.html" class="details-btn">
+                    <a href="#" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
                     </a>
-                </div>
-                <div class="service-details" id="pos-system">
-                    <button class="close-details" aria-label="Close details">&times;</button>
-                    <div class="details-content">
-                        <h4>Implementation Steps</h4>
-                        <div class="process-steps">
-                            <div class="step">
-                                <span class="step-number">1</span>
-                                <h5>Analysis</h5>
-                                <p>Evaluating business requirements</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">2</span>
-                                <h5>Setup</h5>
-                                <p>Installing and configuring POS system</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">3</span>
-                                <h5>Integration</h5>
-                                <p>Connecting with existing systems</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number">4</span>
-                                <h5>Support</h5>
-                                <p>Ongoing maintenance and assistance</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- Service 4: Apple Products -->
-            <div class="service-card" data-aos="fade-up" data-aos-duration="800" data-aos-offset="200" data-aos-delay="300">
+            <!-- Service Cards - Apple Products -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="service-icon">
                     <i class="fab fa-apple"></i>
                 </div>
-                <h3>Apple Product Sales</h3>
-                <p>Authorized reseller of genuine Apple products</p>
+                <h3>Apple Products</h3>
+                <p>Authorized reseller of genuine Apple products and services</p>
                 <div class="service-buttons">
-                    <button class="preview-btn" data-service="apple-sales">
+                    <button class="preview-btn" data-service="apple-products">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="apple-sales.html" class="details-btn">
+                    <a href="#" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
                     </a>
                 </div>
-                <div class="service-details" id="apple-sales">
-                    <button class="close-details" aria-label="Close details">&times;</button>
-                    <div class="details-content">
-                        <h4>Our Products</h4>
-                        <div class="process-steps">
-                            <div class="step">
-                                <span class="step-number"><i class="fas fa-mobile-alt"></i></span>
-                                <h5>iPhones</h5>
-                                <p>Latest models with warranty</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number"><i class="fas fa-tablet-alt"></i></span>
-                                <h5>iPads</h5>
-                                <p>Full range of iPad models</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number"><i class="fas fa-laptop"></i></span>
-                                <h5>MacBooks</h5>
-                                <p>Pro and Air models available</p>
-                            </div>
-                            <div class="step">
-                                <span class="step-number"><i class="fas fa-headphones"></i></span>
-                                <h5>Accessories</h5>
-                                <p>Genuine Apple accessories</p>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+
+            <!-- Service Cards - Cybersecurity -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Cybersecurity Solutions</h3>
+                <p>Comprehensive security for your digital assets</p>
+                <div class="service-buttons">
+                    <button class="preview-btn" data-service="cybersecurity">
+                        <i class="fas fa-search"></i> Quick Preview
+                    </button>
+                    <a href="#" class="details-btn">
+                        <i class="fas fa-arrow-right"></i> Full Details
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service Cards - Custom Software -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3>Custom Software Development</h3>
+                <p>Tailored software solutions for your business needs</p>
+                <div class="service-buttons">
+                    <button class="preview-btn" data-service="custom-software">
+                        <i class="fas fa-search"></i> Quick Preview
+                    </button>
+                    <a href="#" class="details-btn">
+                        <i class="fas fa-arrow-right"></i> Full Details
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Elan's Tech World</h3>
-                <p>Your Partner in Technology Solutions</p>
-                <p>&copy; 2024 All rights reserved.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+    <!-- Service Preview Modals -->
+    <div class="modal-container">
+        <!-- Business Setup Modal -->
+        <div class="service-modal" id="business-setup-modal">
+            <div class="modal-content">
+                <button class="close-modal">&times;</button>
+                <h3>Business Computer Setup</h3>
+                <div class="preview-content">
+                    <div class="preview-features">
+                        <h4>Services Included:</h4>
+                        <ul>
+                            <li>Hardware configuration and setup</li>
+                            <li>Software installation and optimization</li>
+                            <li>Network setup and security</li>
+                            <li>Data migration and backup solutions</li>
+                        </ul>
+                    </div>
+                    <div class="preview-pricing">
+                        <h4>Pricing:</h4>
+                        <p>Starting from $499</p>
+                        <small>Custom quotes available for larger setups</small>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Privacy Policy | Terms of Service</p>
+
+        <!-- Web Design Modal -->
+        <div class="service-modal" id="web-design-modal">
+            <div class="modal-content">
+                <button class="close-modal">&times;</button>
+                <h3>Web Design Services</h3>
+                <div class="preview-content">
+                    <div class="preview-features">
+                        <h4>Services Included:</h4>
+                        <ul>
+                            <li>Custom responsive design</li>
+                            <li>SEO optimization</li>
+                            <li>Content management system</li>
+                            <li>E-commerce integration</li>
+                        </ul>
+                    </div>
+                    <div class="preview-pricing">
+                        <h4>Pricing:</h4>
+                        <p>Starting from $999</p>
+                        <small>Package options available</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other modals follow the same pattern -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Elan's Tech World</h3>
+                    <p>Your Partner in Technology Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/services.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="services.js"></script>
 </body>
 </html>
