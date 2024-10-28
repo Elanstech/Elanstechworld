@@ -104,33 +104,16 @@ class Slideshow {
     }
 }
 
-// Header Scroll Effect with throttle
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-const handleScroll = throttle(() => {
-    const header = document.querySelector('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-}, 100);
-
-window.addEventListener('scroll', handleScroll);
-
-// Mobile Navigation with improved accessibility
+// Enhanced Mobile Navigation
 class MobileNav {
     constructor() {
         this.hamburger = document.querySelector('.hamburger');
         this.mobileNav = document.querySelector('.mobile-nav');
         this.isOpen = false;
         
-        this.init();
+        if (this.hamburger && this.mobileNav) {
+            this.init();
+        }
     }
 
     init() {
@@ -147,8 +130,21 @@ class MobileNav {
 
     toggleMenu() {
         this.isOpen = !this.isOpen;
-        this.hamburger.classList.toggle('active');
-        this.mobileNav.classList.toggle('active');
+        
+        // Toggle hamburger animation
+        const bars = this.hamburger.querySelectorAll('div');
+        if (this.isOpen) {
+            bars[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
+            bars[1].style.opacity = '0';
+            bars[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
+        } else {
+            bars[0].style.transform = 'none';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'none';
+        }
+
+        // Toggle mobile nav
+        this.mobileNav.style.transform = this.isOpen ? 'translateX(0)' : 'translateX(100%)';
         
         // Update ARIA attributes
         this.hamburger.setAttribute('aria-expanded', this.isOpen);
@@ -160,14 +156,10 @@ class MobileNav {
 
     setupCloseHandlers() {
         // Close menu when clicking links
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
+        this.mobileNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 this.isOpen = false;
-                this.hamburger.classList.remove('active');
-                this.mobileNav.classList.remove('active');
-                this.hamburger.setAttribute('aria-expanded', 'false');
-                this.mobileNav.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
+                this.toggleMenu();
             });
         });
 
@@ -189,7 +181,24 @@ class MobileNav {
     }
 }
 
-// Smooth scrolling with improved behavior
+// Header Scroll Effect with throttle
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+const handleScroll = throttle(() => {
+    const header = document.querySelector('header');
+    header.classList.toggle('scrolled', window.scrollY > 50);
+}, 100);
+
+// Smooth Scroll Implementation
 class SmoothScroll {
     constructor() {
         this.setupSmoothScroll();
@@ -219,6 +228,19 @@ class SmoothScroll {
     }
 }
 
+// Debounce Function
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize Slideshow
@@ -234,95 +256,82 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Smooth Scroll
     const smoothScroll = new SmoothScroll();
 
-    // Initialize particles.js with optimized config
-    particlesJS('particles-js', {
-        particles: {
-            number: {
-                value: 80,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: { value: "#ffffff" },
-            shape: { type: "circle" },
-            opacity: {
-                value: 0.3,
-                random: false,
-                anim: {
-                    enable: false
-                }
-            },
-            size: {
-                value: 3,
-                random: true,
-                anim: {
-                    enable: false
-                }
-            },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: "#ffffff",
-                opacity: 0.2,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 2,
-                direction: "none",
-                random: false,
-                straight: false,
-                out_mode: "out",
-                bounce: false
-            }
-        },
-        interactivity: {
-            detect_on: "canvas",
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: "repulse"
-                },
-                onclick: {
-                    enable: true,
-                    mode: "push"
-                },
-                resize: true
-            },
-            modes: {
-                repulse: {
-                    distance: 100,
-                    duration: 0.4
-                },
-                push: {
-                    particles_nb: 4
-                }
-            }
-        },
-        retina_detect: true
-    });
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
 
-    // Performance monitoring
-    if (window.performance && window.performance.mark) {
-        window.performance.mark('afterInitialize');
-        console.log('Site initialized successfully');
+    // Initialize particles.js
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: {
+                    value: 0.3,
+                    random: false,
+                    anim: {
+                        enable: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 100,
+                        duration: 0.4
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
     }
 });
 
-// Add resize handler with debounce
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
+// Handle window resize
 const handleResize = debounce(() => {
     // Adjust particles.js canvas
     if (window.pJSDom && window.pJSDom[0]) {
@@ -334,7 +343,7 @@ const handleResize = debounce(() => {
 
 window.addEventListener('resize', handleResize);
 
-// Add page visibility handling
+// Handle page visibility
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         // Pause animations and heavy calculations when page is not visible
