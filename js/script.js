@@ -259,75 +259,156 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
 
+    // Particles Configuration
+const particlesConfig = {
+    particles: {
+        number: {
+            value: 100,
+            density: {
+                enable: true,
+                value_area: 1000
+            }
+        },
+        color: {
+            value: ["#f9c200", "#ff6a00", "#ffffff"]
+        },
+        shape: {
+            type: "circle"
+        },
+        opacity: {
+            value: 0.6,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+            }
+        },
+        size: {
+            value: 3,
+            random: true,
+            anim: {
+                enable: true,
+                speed: 1,
+                size_min: 0.1,
+                sync: false
+            }
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.2,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+                enable: true,
+                rotateX: 600,
+                rotateY: 1200
+            }
+        }
+    },
+    interactivity: {
+        detect_on: "canvas",
+        events: {
+            onhover: {
+                enable: true,
+                mode: "bubble"
+            },
+            onclick: {
+                enable: true,
+                mode: "push"
+            },
+            resize: true
+        },
+        modes: {
+            bubble: {
+                distance: 200,
+                size: 6,
+                duration: 0.2,
+                opacity: 0.8,
+                speed: 3
+            },
+            push: {
+                particles_nb: 4
+            }
+        }
+    },
+    retina_detect: true
+};
+
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Other initializations...
+    
     // Initialize particles.js
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: {
-                    value: 0.3,
-                    random: false,
-                    anim: {
-                        enable: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.2,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "repulse"
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-                    resize: true
-                },
-                modes: {
-                    repulse: {
-                        distance: 100,
-                        duration: 0.4
-                    },
-                    push: {
-                        particles_nb: 4
-                    }
-                }
-            },
-            retina_detect: true
-        });
+    initParticles();
+    
+    // Initialize Slideshow
+    const slideshow = new Slideshow('.slide', {
+        duration: 5000,
+        fadeTime: 1000,
+        pauseOnHover: true
+    });
+    
+    // Initialize Mobile Navigation
+    const mobileNav = new MobileNav();
+    
+    // Initialize Smooth Scroll
+    const smoothScroll = new SmoothScroll();
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+});
+
+// Function to initialize particles
+function initParticles() {
+    try {
+        if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+            particlesJS('particles-js', particlesConfig);
+            console.log('Particles.js initialized successfully');
+        } else {
+            console.warn('Particles.js not loaded or container not found');
+        }
+    } catch (error) {
+        console.error('Error initializing particles:', error);
+    }
+}
+
+// Handle window resize for particles
+const handleResize = debounce(() => {
+    if (window.pJSDom && window.pJSDom[0]) {
+        try {
+            window.pJSDom[0].pJS.fn.vendors.destroypJS();
+            window.pJSDom = [];
+            initParticles();
+        } catch (error) {
+            console.error('Error reinitializing particles on resize:', error);
+        }
+    }
+}, 250);
+
+// Handle page visibility for particles
+document.addEventListener('visibilitychange', () => {
+    if (window.pJSDom && window.pJSDom[0]) {
+        try {
+            if (document.hidden) {
+                window.pJSDom[0].pJS.particles.move.enable = false;
+            } else {
+                window.pJSDom[0].pJS.particles.move.enable = true;
+            }
+        } catch (error) {
+            console.error('Error handling visibility change:', error);
+        }
     }
 });
 
