@@ -149,6 +149,7 @@
     height: 300px;
 }
 
+/* Replace or modify your existing journey card CSS */
 .journey-card-inner {
     position: relative;
     width: 100%;
@@ -157,8 +158,16 @@
     transition: transform 0.8s;
 }
 
-.journey-card:hover .journey-card-inner {
+/* Add this new class */
+.journey-card-inner.flipped {
     transform: rotateY(180deg);
+}
+
+/* Add this media query for desktop hover behavior */
+@media (hover: hover) {
+    .journey-card:hover .journey-card-inner {
+        transform: rotateY(180deg);
+    }
 }
 
 .journey-card-front,
