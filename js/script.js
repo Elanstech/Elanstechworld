@@ -1,110 +1,47 @@
-// Enhanced Slideshow Class
+/ Enhanced Slideshow Class
 class Slideshow {
-    constructor(selector, options = {}) {
+    constructor(selector) {
         this.slides = document.querySelectorAll(selector);
-        this.currentSlide = 0;
-        this.isTransitioning = false;
-        this.options = {
-            duration: options.duration || 5000,
-            fadeTime: options.fadeTime || 1000,
-            autoplay: options.autoplay !== false,
-            pauseOnHover: options.pauseOnHover !== false
-        };
+        this.currentIndex = 0;
+        this.interval = null;
         
-        this.init();
+        if (this.slides.length > 0) {
+            this.init();
+        }
     }
 
     init() {
-        if (this.slides.length <= 1) return;
-        
-        // Initialize first slide
+        // Show first slide
         this.slides[0].style.opacity = '1';
-        this.slides[0].style.zIndex = '1';
-        
-        // Add event listeners for hover pause
-        if (this.options.pauseOnHover) {
-            const container = this.slides[0].parentElement;
-            container.addEventListener('mouseenter', () => this.pause());
-            container.addEventListener('mouseleave', () => this.play());
-        }
         
         // Start slideshow
-        if (this.options.autoplay) {
-            this.play();
-        }
-        
-        // Add progress indicator
-        this.addProgressIndicator();
+        this.start();
     }
 
-    addProgressIndicator() {
-        const container = this.slides[0].parentElement;
-        this.progressBar = document.createElement('div');
-        this.progressBar.className = 'slideshow-progress';
-        this.progressBar.style.cssText = `
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 3px;
-            width: 0%;
-            background: linear-gradient(45deg, #f9c200, #ff6a00);
-            transition: width ${this.options.duration}ms linear;
-            z-index: 2;
-        `;
-        container.appendChild(this.progressBar);
+    start() {
+        this.interval = setInterval(() => this.nextSlide(), 5000);
     }
 
-    async transition() {
-        if (this.isTransitioning) return;
-        this.isTransitioning = true;
-
-        // Reset progress bar
-        this.progressBar.style.width = '0%';
-
+    nextSlide() {
         // Fade out current slide
-        this.slides[this.currentSlide].style.opacity = '0';
-        this.slides[this.currentSlide].style.zIndex = '0';
+        this.slides[this.currentIndex].style.opacity = '0';
         
-        // Update current slide index
-        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        // Update index
+        this.currentIndex = (this.currentIndex + 1) % this.slides.length;
         
         // Fade in next slide
-        this.slides[this.currentSlide].style.opacity = '1';
-        this.slides[this.currentSlide].style.zIndex = '1';
-        
-        // Animate progress bar
-        requestAnimationFrame(() => {
-            this.progressBar.style.width = '100%';
-        });
-
-        // Wait for transition to complete
-        await new Promise(resolve => setTimeout(resolve, this.options.fadeTime));
-        this.isTransitioning = false;
+        this.slides[this.currentIndex].style.opacity = '1';
     }
 
-    play() {
-        if (this.interval) return;
-        this.interval = setInterval(() => this.transition(), this.options.duration);
-        // Start progress bar
-        this.progressBar.style.width = '100%';
-    }
-
-    pause() {
+    stop() {
         if (this.interval) {
             clearInterval(this.interval);
             this.interval = null;
-            // Pause progress bar
-            const width = getComputedStyle(this.progressBar).width;
-            this.progressBar.style.transition = 'none';
-            this.progressBar.style.width = width;
-            requestAnimationFrame(() => {
-                this.progressBar.style.transition = '';
-            });
         }
     }
 }
 
-// Enhanced Mobile Navigation
+// Mobile Navigation Class
 class MobileNav {
     constructor() {
         this.hamburger = document.querySelector('.hamburger');
@@ -181,23 +118,6 @@ class MobileNav {
     }
 }
 
-// Header Scroll Effect with throttle
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-const handleScroll = throttle(() => {
-    const header = document.querySelector('header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
-}, 100);
-
 // Smooth Scroll Implementation
 class SmoothScroll {
     constructor() {
@@ -228,38 +148,13 @@ class SmoothScroll {
     }
 }
 
-// Debounce Function
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
+// Header Scroll Effect
+function handleScroll() {
+    const header = document.querySelector('header');
+    header.classList.toggle('scrolled', window.scrollY > 50);
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Slideshow
-    const slideshow = new Slideshow('.slide', {
-        duration: 5000,
-        fadeTime: 1000,
-        pauseOnHover: true
-    });
-    
-    // Initialize Mobile Navigation
-    const mobileNav = new MobileNav();
-    
-    // Initialize Smooth Scroll
-    const smoothScroll = new SmoothScroll();
-
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-
-    // Particles Configuration
+// Particles Configuration
 const particlesConfig = {
     particles: {
         number: {
@@ -346,31 +241,7 @@ const particlesConfig = {
     retina_detect: true
 };
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Other initializations...
-    
-    // Initialize particles.js
-    initParticles();
-    
-    // Initialize Slideshow
-    const slideshow = new Slideshow('.slide', {
-        duration: 5000,
-        fadeTime: 1000,
-        pauseOnHover: true
-    });
-    
-    // Initialize Mobile Navigation
-    const mobileNav = new MobileNav();
-    
-    // Initialize Smooth Scroll
-    const smoothScroll = new SmoothScroll();
-
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-});
-
-// Function to initialize particles
+// Initialize Particles
 function initParticles() {
     try {
         if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
@@ -384,7 +255,20 @@ function initParticles() {
     }
 }
 
-// Handle window resize for particles
+// Utility: Debounce Function
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Handle Window Resize
 const handleResize = debounce(() => {
     if (window.pJSDom && window.pJSDom[0]) {
         try {
@@ -397,7 +281,28 @@ const handleResize = debounce(() => {
     }
 }, 250);
 
-// Handle page visibility for particles
+// Initialize Everything
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Slideshow
+    new Slideshow('.slide');
+    
+    // Initialize Mobile Navigation
+    new MobileNav();
+    
+    // Initialize Smooth Scroll
+    new SmoothScroll();
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', debounce(handleScroll, 10));
+    
+    // Initialize Particles
+    initParticles();
+    
+    // Add resize event listener
+    window.addEventListener('resize', handleResize);
+});
+
+// Handle Page Visibility
 document.addEventListener('visibilitychange', () => {
     if (window.pJSDom && window.pJSDom[0]) {
         try {
@@ -408,33 +313,6 @@ document.addEventListener('visibilitychange', () => {
             }
         } catch (error) {
             console.error('Error handling visibility change:', error);
-        }
-    }
-});
-
-// Handle window resize
-const handleResize = debounce(() => {
-    // Adjust particles.js canvas
-    if (window.pJSDom && window.pJSDom[0]) {
-        window.pJSDom[0].pJS.fn.vendors.destroypJS();
-        window.pJSDom = [];
-        particlesJS('particles-js');
-    }
-}, 250);
-
-window.addEventListener('resize', handleResize);
-
-// Handle page visibility
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Pause animations and heavy calculations when page is not visible
-        if (window.pJSDom && window.pJSDom[0]) {
-            window.pJSDom[0].pJS.particles.move.enable = false;
-        }
-    } else {
-        // Resume animations when page becomes visible
-        if (window.pJSDom && window.pJSDom[0]) {
-            window.pJSDom[0].pJS.particles.move.enable = true;
         }
     }
 });
