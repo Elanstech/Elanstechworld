@@ -50,17 +50,7 @@
         </ul>
     </div>
 
-<!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-</head>
-<body>
-   <!-- Hero Section -->
-<section class="hero">
-    <div class="slideshow">
-        <div class="slide" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
-        <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
-        <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')"></div>
-    </div>
+    <!-- Move particles-js div before hero-content -->
     <div id="particles-js"></div>
     <div class="hero-content">
         <h1 class="hero-title">Welcome to Elan's Tech World</h1>
@@ -69,7 +59,15 @@
     </div>
 </section>
 
-  
+   <!-- Hero Section -->
+<section class="hero">
+    <div class="slideshow">
+        <!-- Update image paths - make sure these images exist in your assets/images folder -->
+        <div class="slide" style="background-image: url('assets/images/Mainbackround.jpg')"></div>
+        <div class="slide" style="background-image: url('assets/images/backroundcity.jpeg')"></div>
+        <div class="slide" style="background-image: url('assets/images/backround3.jpeg')"></div>
+    </div>
+   
     <!-- Main Content -->
     <main>
         <!-- About Section -->
