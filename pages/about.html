@@ -7,8 +7,6 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- AOS Animation Library -->
@@ -19,61 +17,71 @@
     <link rel="stylesheet" href="../css/about.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo">
-                <a href="../index.html">
-                    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                </a>
-            </div>
+            <a href="/" class="logo">
+                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                <span class="logo-text">Elan's Tech World</span>
+            </a>
+            
             <nav>
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="web-design-services.html">Web Design</a></li>
                     <li><a href="expertbusiness.html">Expert Business</a></li>
                     <li><a href="appleresell.html">Apple Products</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
 
-            <!-- Hamburger Menu for Mobile -->
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
-            </div>
-
-            <ul class="mobile-nav" id="mobile-nav">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="web-design-services.html">Web Design</a></li>
-                <li><a href="expertbusiness.html">Expert Business</a></li>
-                <li><a href="appleresell.html">Apple Products</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
-            </ul>
+            </button>
         </div>
     </header>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html" class="active">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="web-design-services.html">Web Design</a></li>
+            <li><a href="expertbusiness.html">Expert Business</a></li>
+            <li><a href="appleresell.html">Apple Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
     <!-- Hero Section -->
     <section class="about-hero">
+        <div id="particles-js"></div>
         <div class="about-hero-content" data-aos="fade-up">
             <h1>About Elan's Tech World</h1>
-            <p>Empowering businesses through innovative technology solutions</p>
+            <p class="hero-subtitle">Empowering businesses through innovative technology solutions</p>
             <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">Years Experience</span>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-circle">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">100+</span>
-                    <span class="stat-label">Happy Clients</span>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="stat-circle">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Projects Completed</span>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="stat-circle">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,32 +91,36 @@
     <section class="journey-section">
         <div class="container">
             <h2 data-aos="fade-up">Our Journey</h2>
-            <div class="timeline" data-aos="fade-up" data-aos-delay="200">
-                <div class="timeline-item">
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>2019</h3>
+                        <span class="timeline-year">2019</span>
+                        <h3>The Beginning</h3>
                         <p>Founded with a vision to provide innovative tech solutions</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-aos="fade-left">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>2020</h3>
+                        <span class="timeline-year">2020</span>
+                        <h3>Service Expansion</h3>
                         <p>Expanded services to include web development and Apple product sales</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-aos="fade-right">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>2021</h3>
+                        <span class="timeline-year">2021</span>
+                        <h3>Growing Success</h3>
                         <p>Reached milestone of 50+ satisfied clients</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-aos="fade-left">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3>2024</h3>
+                        <span class="timeline-year">2024</span>
+                        <h3>Continuous Innovation</h3>
                         <p>Continuing to grow and innovate in tech solutions</p>
                     </div>
                 </div>
@@ -121,23 +133,31 @@
         <div class="container">
             <h2 data-aos="fade-up">Our Core Values</h2>
             <div class="values-grid">
-                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-lightbulb"></i>
+                <div class="value-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
                     <h3>Innovation</h3>
                     <p>Continuously exploring new solutions to meet evolving tech needs</p>
                 </div>
-                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-users"></i>
+                <div class="value-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h3>Customer Focus</h3>
                     <p>Putting our clients' success at the heart of everything we do</p>
                 </div>
-                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-star"></i>
+                <div class="value-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
                     <h3>Excellence</h3>
                     <p>Delivering top-quality service and support in every interaction</p>
                 </div>
-                <div class="value-card" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-handshake"></i>
+                <div class="value-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
                     <h3>Integrity</h3>
                     <p>Building trust through honest and transparent relationships</p>
                 </div>
@@ -151,8 +171,15 @@
             <h2 data-aos="fade-up">Meet Our Team</h2>
             <div class="team-grid">
                 <div class="team-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="team-image">
-                        <img src="../assets/images/team/elan.jpg" alt="Elan">
+                    <div class="team-image-wrapper">
+                        <div class="team-image">
+                            <img src="../assets/images/team/elan.jpg" alt="Elan">
+                        </div>
+                        <div class="team-overlay">
+                            <div class="team-social">
+                                <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
                     </div>
                     <h3>Elan</h3>
                     <p>Founder & Tech Expert</p>
@@ -193,8 +220,8 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="../js/script.js"></script>
-    <script src="../js/about.js"></script>
 </body>
 </html>
