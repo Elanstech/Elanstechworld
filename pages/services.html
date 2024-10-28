@@ -7,95 +7,97 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS CSS -->
+    
+    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS - Make sure this path is correct -->
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="services.css">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
                 <span class="logo-text">Elan's Tech World</span>
-            </div>
+            </a>
             
-            <nav class="main-nav">
+            <nav>
                 <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services" class="active">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
 
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
         </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
+    <div class="mobile-nav">
         <ul>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-    </nav>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div id="particles-js"></div>
-        <div class="hero-content">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles"></div>
+        <div class="hero-content" data-aos="fade-up">
             <h1 class="glowing-text">Our Services</h1>
             <p class="typing-animation">Innovative technology solutions for your business</p>
         </div>
     </section>
 
     <!-- Services Grid -->
-    <section class="services">
+    <section class="services-grid">
         <div class="container">
-            <!-- Business Setup -->
+            <!-- Service 1 -->
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon">
                     <i class="fas fa-desktop"></i>
                 </div>
-                <h3>Business Computer Setup</h3>
+                <h3>Expert Business Computer Setup</h3>
                 <p>Professional setup and optimization for seamless business operations</p>
                 <div class="service-buttons">
                     <button class="preview-btn" data-service="business-setup">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <button class="details-btn">
+                    <a href="business-setup.html" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
-                    </button>
+                    </a>
                 </div>
             </div>
 
-            <!-- Web Design -->
+            <!-- Service 2 -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-icon">
-                    <i class="fas fa-code"></i>
+                    <i class="fas fa-laptop-code"></i>
                 </div>
-                <h3>Web Design</h3>
-                <p>Custom, responsive websites that elevate your brand</p>
+                <h3>Custom Web Design</h3>
+                <p>Stunning, responsive websites tailored to your brand</p>
                 <div class="service-buttons">
                     <button class="preview-btn" data-service="web-design">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <button class="details-btn">
+                    <a href="web-design.html" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
-                    </button>
+                    </a>
                 </div>
             </div>
 
-            <!-- Service Cards - POS Systems -->
+            <!-- Service 3 -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="service-icon">
                     <i class="fas fa-cash-register"></i>
@@ -103,61 +105,27 @@
                 <h3>POS System Setup</h3>
                 <p>Modern point-of-sale solutions for efficient operations</p>
                 <div class="service-buttons">
-                    <button class="preview-btn" data-service="pos-setup">
+                    <button class="preview-btn" data-service="pos-system">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="#" class="details-btn">
+                    <a href="pos-system.html" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
                     </a>
                 </div>
             </div>
 
-            <!-- Service Cards - Apple Products -->
+            <!-- Service 4 -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="service-icon">
                     <i class="fab fa-apple"></i>
                 </div>
-                <h3>Apple Products</h3>
-                <p>Authorized reseller of genuine Apple products and services</p>
+                <h3>Apple Product Sales</h3>
+                <p>Authorized reseller of genuine Apple products</p>
                 <div class="service-buttons">
-                    <button class="preview-btn" data-service="apple-products">
+                    <button class="preview-btn" data-service="apple-sales">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="#" class="details-btn">
-                        <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
-                </div>
-            </div>
-
-            <!-- Service Cards - Cybersecurity -->
-            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="service-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Cybersecurity Solutions</h3>
-                <p>Comprehensive security for your digital assets</p>
-                <div class="service-buttons">
-                    <button class="preview-btn" data-service="cybersecurity">
-                        <i class="fas fa-search"></i> Quick Preview
-                    </button>
-                    <a href="#" class="details-btn">
-                        <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
-                </div>
-            </div>
-
-            <!-- Service Cards - Custom Software -->
-            <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Custom Software Development</h3>
-                <p>Tailored software solutions for your business needs</p>
-                <div class="service-buttons">
-                    <button class="preview-btn" data-service="custom-software">
-                        <i class="fas fa-search"></i> Quick Preview
-                    </button>
-                    <a href="#" class="details-btn">
+                    <a href="apple-sales.html" class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
                     </a>
                 </div>
@@ -165,94 +133,9 @@
         </div>
     </section>
 
-    <!-- Service Preview Modals -->
-    <div class="modal-container">
-        <!-- Business Setup Modal -->
-        <div class="service-modal" id="business-setup-modal">
-            <div class="modal-content">
-                <button class="close-modal">&times;</button>
-                <h3>Business Computer Setup</h3>
-                <div class="preview-content">
-                    <div class="preview-features">
-                        <h4>Services Included:</h4>
-                        <ul>
-                            <li>Hardware configuration and setup</li>
-                            <li>Software installation and optimization</li>
-                            <li>Network setup and security</li>
-                            <li>Data migration and backup solutions</li>
-                        </ul>
-                    </div>
-                    <div class="preview-pricing">
-                        <h4>Pricing:</h4>
-                        <p>Starting from $499</p>
-                        <small>Custom quotes available for larger setups</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Web Design Modal -->
-        <div class="service-modal" id="web-design-modal">
-            <div class="modal-content">
-                <button class="close-modal">&times;</button>
-                <h3>Web Design Services</h3>
-                <div class="preview-content">
-                    <div class="preview-features">
-                        <h4>Services Included:</h4>
-                        <ul>
-                            <li>Custom responsive design</li>
-                            <li>SEO optimization</li>
-                            <li>Content management system</li>
-                            <li>E-commerce integration</li>
-                        </ul>
-                    </div>
-                    <div class="preview-pricing">
-                        <h4>Pricing:</h4>
-                        <p>Starting from $999</p>
-                        <small>Package options available</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Other modals follow the same pattern -->
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Elan's Tech World</h3>
-                    <p>Your Partner in Technology Solutions</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="https://instagram.com" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-!-- Scripts -->
+    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
+    <script src="services.js"></script>
 </body>
 </html>
