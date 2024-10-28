@@ -5,18 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services - Elan's Tech World</title>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="services.css">
+    <!-- Add styles directly in head to ensure they load -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #0b1f3f;
+            color: white;
+        }
+
+        header {
+            background: #0b1f3f;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            text-decoration: none;
+        }
+
+        .logo-text {
+            color: #f9c200;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #f9c200;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(11, 31, 63, 0.9), rgba(11, 31, 63, 0.95));
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #f9c200;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .services-grid {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: #f9c200;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: #f9c200;
+            margin-bottom: 15px;
+        }
+
+        .service-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .preview-btn, .details-btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        .preview-btn {
+            background: rgba(249, 194, 0, 0.1);
+            color: #f9c200;
+            border: 1px solid #f9c200;
+        }
+
+        .details-btn {
+            background: #f9c200;
+            color: #0b1f3f;
+        }
+
+        .preview-btn:hover, .details-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">
@@ -31,111 +185,68 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
-
-            <button class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
         </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-particles"></div>
-        <div class="hero-content" data-aos="fade-up">
-            <h1 class="glowing-text">Our Services</h1>
-            <p class="typing-animation">Innovative technology solutions for your business</p>
+        <div class="hero-content">
+            <h1>Our Services</h1>
+            <p>Innovative technology solutions for your business</p>
         </div>
     </section>
 
-    <!-- Services Grid -->
     <section class="services-grid">
-        <div class="container">
-            <!-- Service 1 -->
-            <div class="service-card" data-aos="fade-up">
-                <div class="service-icon">
-                    <i class="fas fa-desktop"></i>
-                </div>
-                <h3>Expert Business Computer Setup</h3>
-                <p>Professional setup and optimization for seamless business operations</p>
-                <div class="service-buttons">
-                    <button class="preview-btn" data-service="business-setup">
-                        <i class="fas fa-search"></i> Quick Preview
-                    </button>
-                    <a href="business-setup.html" class="details-btn">
-                        <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
-                </div>
+        <div class="service-card">
+            <div class="service-icon">💻</div>
+            <h3>Expert Business Computer Setup</h3>
+            <p>Professional setup and optimization for seamless business operations</p>
+            <div class="service-buttons">
+                <button class="preview-btn">Quick Preview</button>
+                <button class="details-btn">Full Details</button>
             </div>
+        </div>
 
-            <!-- Service 2 -->
-            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="service-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Custom Web Design</h3>
-                <p>Stunning, responsive websites tailored to your brand</p>
-                <div class="service-buttons">
-                    <button class="preview-btn" data-service="web-design">
-                        <i class="fas fa-search"></i> Quick Preview
-                    </button>
-                    <a href="web-design.html" class="details-btn">
-                        <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
-                </div>
+        <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3>Custom Web Design</h3>
+            <p>Stunning, responsive websites tailored to your brand</p>
+            <div class="service-buttons">
+                <button class="preview-btn">Quick Preview</button>
+                <button class="details-btn">Full Details</button>
             </div>
+        </div>
 
-            <!-- Service 3 -->
-            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="service-icon">
-                    <i class="fas fa-cash-register"></i>
-                </div>
-                <h3>POS System Setup</h3>
-                <p>Modern point-of-sale solutions for efficient operations</p>
-                <div class="service-buttons">
-                    <button class="preview-btn" data-service="pos-system">
-                        <i class="fas fa-search"></i> Quick Preview
-                    </button>
-                    <a href="pos-system.html" class="details-btn">
-                        <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
-                </div>
+        <div class="service-card">
+            <div class="service-icon">🏪</div>
+            <h3>POS System Setup</h3>
+            <p>Modern point-of-sale solutions for efficient operations</p>
+            <div class="service-buttons">
+                <button class="preview-btn">Quick Preview</button>
+                <button class="details-btn">Full Details</button>
             </div>
+        </div>
 
-            <!-- Service 4 -->
-            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="service-icon">
-                    <i class="fab fa-apple"></i>
-                </div>
-                <h3>Apple Product Sales</h3>
-                <p>Authorized reseller of genuine Apple products</p>
-                <div class="service-buttons">
-                    <button class="preview-btn" data-service="apple-sales">
-                        <i class="fas fa-search"></i> Quick Preview
-                    </button>
-                    <a href="apple-sales.html" class="details-btn">
-                        <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
-                </div>
+        <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3>Apple Product Sales</h3>
+            <p>Authorized reseller of genuine Apple products</p>
+            <div class="service-buttons">
+                <button class="preview-btn">Quick Preview</button>
+                <button class="details-btn">Full Details</button>
             </div>
         </div>
     </section>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="services.js"></script>
+    <script>
+        // Simple button hover effect
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </body>
 </html>
