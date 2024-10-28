@@ -1,18 +1,10 @@
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Particles
     initParticles();
-    
-    // Initialize Service Cards
     initServiceCards();
-    
-    // Initialize Modals
     initModals();
-    
-    // Initialize Header Scroll Effect
     initHeaderScroll();
-    
-    // Initialize Typing Animation
+    initMobileNav();
     initTypingAnimation();
 });
 
@@ -21,42 +13,67 @@ function initParticles() {
     const particlesContainer = document.querySelector('.services-particles');
     if (!particlesContainer) return;
 
-    // Create particles
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 4 + 2;
+        const duration = Math.random() * 3 + 2;
+        const startPos = Math.random() * 100;
+        
+        particle.style.cssText = `
+            width: ${size}px;
+            height: ${size}px;
+            left: ${startPos}%;
+            animation-duration: ${duration}s;
+            animation-delay: ${Math.random()}s;
+        `;
+        
+        particle.addEventListener('animationend', () => particle.remove());
+        particlesContainer.appendChild(particle);
+    }
+
+    // Initial particles
     for (let i = 0; i < 50; i++) {
-        createParticle(particlesContainer);
+        createParticle();
     }
 
     // Continuously create particles
-    setInterval(() => {
-        const particles = document.querySelectorAll('.particle');
-        if (particles.length < 50) {
-            createParticle(particlesContainer);
-        }
-    }, 200);
+    setInterval(createParticle, 200);
 }
 
-function createParticle(container) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
+// Mobile Navigation
+function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
     
-    // Random particle properties
-    const size = Math.random() * 4 + 2;
-    const duration = Math.random() * 3 + 2;
-    const delay = Math.random() * 2;
-    
-    particle.style.width = `${size}px`;
-    particle.style.height = `${size}px`;
-    particle.style.left = `${Math.random() * 100}%`;
-    particle.style.animationDuration = `${duration}s`;
-    particle.style.animationDelay = `${delay}s`;
-    particle.style.opacity = Math.random() * 0.5 + 0.2;
-    
-    // Remove particle after animation
-    particle.addEventListener('animationend', () => {
-        particle.remove();
-    });
-    
-    container.appendChild(particle);
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile nav when clicking links
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
 }
 
 // Service Cards Initialization
@@ -64,13 +81,16 @@ function initServiceCards() {
     const cards = document.querySelectorAll('.service-card');
     
     cards.forEach(card => {
-        // Add mouse movement effect
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // Calculate rotation based on mouse position
+            // Update CSS variables for gradient
+            card.style.setProperty('--mouseX', `${x}px`);
+            card.style.setProperty('--mouseY', `${y}px`);
+            
+            // 3D rotation effect
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             const rotateX = (y - centerY) / 20;
@@ -80,33 +100,12 @@ function initServiceCards() {
                 perspective(1000px)
                 rotateX(${rotateX}deg)
                 rotateY(${rotateY}deg)
-                translateZ(10px)
                 scale(1.02)
             `;
-            
-            // Add highlight effect
-            const highlight = `radial-gradient(
-                circle at ${x}px ${y}px,
-                rgba(249, 194, 0, 0.2) 0%,
-                rgba(249, 194, 0, 0.1) 20%,
-                rgba(249, 194, 0, 0) 50%
-            )`;
-            
-            card.style.backgroundImage = highlight;
         });
-        
-        // Reset card on mouse leave
+
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'none';
-            card.style.backgroundImage = 'none';
-        });
-        
-        // Add click animation
-        card.addEventListener('click', () => {
-            card.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                card.style.transform = 'none';
-            }, 150);
         });
     });
 }
@@ -114,7 +113,6 @@ function initServiceCards() {
 // Modal System
 function initModals() {
     const previewButtons = document.querySelectorAll('.preview-btn');
-    const body = document.body;
     
     previewButtons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -124,17 +122,12 @@ function initModals() {
             createModal(modalContent);
         });
     });
-    
-    // Close modal when clicking outside
-    document.addEventListener('click', (e) => {
-        const modal = document.querySelector('.service-modal.active');
-        if (modal && !modal.querySelector('.modal-content').contains(e.target)) {
-            closeModal(modal);
-        }
-    });
 }
 
 function createModal(content) {
+    const existingModal = document.querySelector('.service-modal');
+    if (existingModal) existingModal.remove();
+
     const modal = document.createElement('div');
     modal.className = 'service-modal';
     modal.innerHTML = `
@@ -145,20 +138,28 @@ function createModal(content) {
     `;
     
     document.body.appendChild(modal);
-    requestAnimationFrame(() => {
-        modal.classList.add('active');
-    });
     
-    // Add close button functionality
+    // Activate modal after brief delay for animation
+    setTimeout(() => modal.classList.add('active'), 10);
+    
+    // Close button functionality
     const closeBtn = modal.querySelector('.modal-close');
     closeBtn.addEventListener('click', () => closeModal(modal));
+    
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(modal);
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal(modal);
+    });
 }
 
 function closeModal(modal) {
     modal.classList.remove('active');
-    setTimeout(() => {
-        modal.remove();
-    }, 400);
+    setTimeout(() => modal.remove(), 300);
 }
 
 // Header Scroll Effect
@@ -169,18 +170,10 @@ function initHeaderScroll() {
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         
-        // Add/remove scrolled class
         if (currentScroll > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
-        }
-        
-        // Hide/show header based on scroll direction
-        if (currentScroll > lastScroll && currentScroll > 200) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
         }
         
         lastScroll = currentScroll;
@@ -189,63 +182,32 @@ function initHeaderScroll() {
 
 // Typing Animation
 function initTypingAnimation() {
-    const text = document.querySelector('.services-subtitle');
-    if (!text) return;
+    const subtitle = document.querySelector('.services-subtitle');
+    if (!subtitle) return;
     
-    const content = text.textContent;
-    text.textContent = '';
-    let index = 0;
+    subtitle.style.width = '0';
+    subtitle.style.whiteSpace = 'nowrap';
+    subtitle.style.overflow = 'hidden';
     
-    function type() {
-        if (index < content.length) {
-            text.textContent += content.charAt(index);
-            index++;
-            setTimeout(type, 50);
-        }
-    }
-    
-    // Start typing when element is in view
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                type();
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    observer.observe(text);
+    setTimeout(() => {
+        subtitle.style.width = '100%';
+    }, 500);
 }
 
-// Button Ripple Effect
-document.querySelectorAll('.preview-btn, .details-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const ripple = document.createElement('span');
-        ripple.className = 'ripple';
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        
-        this.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 1000);
-    });
-});
-
-// Helper function to get modal content
+// Service Modal Content
 function getModalContent(serviceId) {
     const services = {
         'business-setup': {
             title: 'Business Computer Setup',
             features: [
-                'Hardware configuration and optimization',
-                'Software installation and setup',
-                'Network configuration',
-                'Security implementation',
-                'Data backup solutions'
+                'Custom hardware configuration and optimization',
+                'Enterprise software installation and setup',
+                'Secure network configuration',
+                'Advanced security implementation',
+                'Automated backup solutions',
+                'Employee training sessions',
+                'Remote support capabilities',
+                '24/7 technical assistance'
             ],
             price: 'Starting from $499'
         },
@@ -253,14 +215,72 @@ function getModalContent(serviceId) {
             title: 'Web Design Services',
             features: [
                 'Custom responsive design',
+                'Mobile-first approach',
                 'SEO optimization',
                 'Content management system',
                 'E-commerce integration',
-                'Performance optimization'
+                'Performance optimization',
+                'Security features',
+                'Analytics integration'
             ],
             price: 'Starting from $999'
         },
-        // Add other services here
+        'pos-system': {
+            title: 'POS System Setup',
+            features: [
+                'Hardware installation',
+                'Software configuration',
+                'Inventory management setup',
+                'Staff training',
+                'Payment processing integration',
+                'Real-time reporting',
+                'Cloud backup',
+                'Technical support'
+            ],
+            price: 'Starting from $799'
+        },
+        'apple-sales': {
+            title: 'Apple Product Sales',
+            features: [
+                'Latest Apple devices',
+                'Professional setup',
+                'Data migration',
+                'AppleCare+ registration',
+                'Business integration',
+                'Custom configurations',
+                'Warranty support',
+                'Trade-in options'
+            ],
+            price: 'Contact for current prices'
+        },
+        'it-support': {
+            title: 'IT Support & Maintenance',
+            features: [
+                '24/7 technical support',
+                'Remote troubleshooting',
+                'System monitoring',
+                'Regular maintenance',
+                'Security updates',
+                'Data backup',
+                'Network management',
+                'Emergency response'
+            ],
+            price: 'Starting from $199/month'
+        },
+        'network-solutions': {
+            title: 'Network Solutions',
+            features: [
+                'Network design and setup',
+                'Wi-Fi optimization',
+                'Security implementation',
+                'VPN configuration',
+                'Firewall setup',
+                'Performance monitoring',
+                'Scalable solutions',
+                'Regular maintenance'
+            ],
+            price: 'Starting from $699'
+        }
     };
     
     const service = services[serviceId] || {
@@ -272,7 +292,7 @@ function getModalContent(serviceId) {
     return `
         <h3>${service.title}</h3>
         <div class="modal-features">
-            <h4>Features</h4>
+            <h4>Features & Benefits</h4>
             <ul>
                 ${service.features.map(feature => `<li>${feature}</li>`).join('')}
             </ul>
@@ -280,6 +300,9 @@ function getModalContent(serviceId) {
         <div class="modal-pricing">
             <strong>${service.price}</strong>
         </div>
+        <button class="contact-btn" onclick="window.location.href='contact.html'">
+            Get Started
+        </button>
     `;
 }
 
@@ -288,11 +311,10 @@ window.addEventListener('resize', debounce(() => {
     const cards = document.querySelectorAll('.service-card');
     cards.forEach(card => {
         card.style.transform = 'none';
-        card.style.backgroundImage = 'none';
     });
 }, 250));
 
-// Debounce helper function
+// Utility: Debounce Function
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
