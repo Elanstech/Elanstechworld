@@ -1,9 +1,10 @@
 /* About Hero Section */
 .about-hero {
     min-height: 100vh;
-    background: linear-gradient(rgba(11, 31, 63, 0.8), rgba(11, 31, 63, 0.9)),
+    background: linear-gradient(rgba(11, 31, 63, 0.5), rgba(11, 31, 63, 0.5)),
                 url('../assets/images/backroundmacbook.jpeg') no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,15 +18,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, transparent 20%, #0b1f3f 90%);
+    background: radial-gradient(circle, transparent 40%, rgba(11, 31, 63, 0.7) 100%);
+    pointer-events: none;
 }
 
 .about-hero-content {
     max-width: 1000px;
-    padding: 0 20px;
+    padding: 40px;
     position: relative;
     z-index: 2;
     text-align: center;
+    background: rgba(11, 31, 63, 0.3);
+    border-radius: 15px;
 }
 
 /* Glowing Text Effect */
@@ -149,7 +153,6 @@
     height: 300px;
 }
 
-/* Replace or modify your existing journey card CSS */
 .journey-card-inner {
     position: relative;
     width: 100%;
@@ -158,12 +161,10 @@
     transition: transform 0.8s;
 }
 
-/* Add this new class */
 .journey-card-inner.flipped {
     transform: rotateY(180deg);
 }
 
-/* Add this media query for desktop hover behavior */
 @media (hover: hover) {
     .journey-card:hover .journey-card-inner {
         transform: rotateY(180deg);
@@ -293,10 +294,10 @@
 
 .team-image-wrapper {
     position: relative;
-    width: 250px;  /* Increased width */
-    height: 300px; /* Increased height and made it rectangular */
+    width: 250px;
+    height: 300px;
     margin: 0 auto;
-    border-radius: 15px; /* Changed from circular to rounded corners */
+    border-radius: 15px;
     overflow: hidden;
     border: 3px solid #f9c200;
     transition: transform 0.3s ease;
@@ -305,8 +306,8 @@
 .team-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Changed from 'cover' to 'contain' */
-    padding: 10px; /* Added some padding */
+    object-fit: contain;
+    padding: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -448,12 +449,34 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .about-hero {
+        background-position: center center;
+        background-size: cover;
+        background-attachment: scroll;
+        min-height: 100vh;
+        padding: 80px 0;
+    }
+    
+    .about-hero-content {
+        padding: 20px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
     .glowing-text {
         font-size: 2.5rem;
     }
 
     .typing-animation {
         font-size: 1.2rem;
+        white-space: normal;
+        border-right: none;
+        animation: none;
+        width: 100% !important;
+    }
+
+    .hero-stats-container {
+        margin-top: 30px;
     }
 
     .stat-items-wrapper {
@@ -480,5 +503,33 @@
 
     .section-title {
         font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        padding: 60px 0;
+    }
+
+    .glowing-text {
+        font-size: 1.8rem;
+    }
+
+    .stat-item {
+        width: 130px;
+        height: 130px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+    
+    .team-image-wrapper {
+        width: 200px;
+        height: 250px;
     }
 }
