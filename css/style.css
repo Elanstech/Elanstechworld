@@ -412,21 +412,51 @@ footer {
 
 /* Instagram Feed Section */
 #social-feed {
-    padding: 4rem 0;
+    width: 90%;
+    margin: 100px auto;
+    padding: 40px 30px;
+    background: rgba(11, 31, 63, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(249, 194, 0, 0.15);
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .instagram-feed {
     width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    min-height: 400px; /* Minimum height for the feed */
+    margin-top: 2rem;
 }
 
-/* Click-to-Call Button Styling */
-.elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479 {
-    margin: 1.5rem 0;
+/* Style the Elfsight Instagram Feed Widget */
+.elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71 {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
+/* Override any iframe within the Instagram widget */
+.elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71 iframe {
+    width: 100% !important;
+    min-height: 400px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #social-feed {
+        width: 95%;
+        padding: 20px 15px;
+    }
+    
+    .instagram-feed {
+        min-height: 300px;
+    }
+    
+    .elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71 iframe {
+        min-height: 300px !important;
+    }
+}
 /* Media Queries */
 @media (max-width: 768px) {
     .hamburger {
