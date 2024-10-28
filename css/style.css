@@ -116,6 +116,63 @@ nav ul li a:hover::before {
     opacity: 1;
 }
 
+/* Mobile Navigation */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(11, 31, 63, 0.98);
+    backdrop-filter: blur(10px);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.mobile-nav ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav ul li a {
+    font-size: 1.4em;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav ul li a:hover {
+    color: #f9c200;
+}
+
 /* Hero Section with Slideshow */
 .hero {
     position: relative;
@@ -149,20 +206,6 @@ nav ul li a:hover::before {
     filter: brightness(0.6);
 }
 
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    filter: brightness(0.6);
-}
-
-/* Ensure particles are above slides but below content */
 #particles-js {
     position: absolute;
     top: 0;
@@ -365,26 +408,21 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Mobile Navigation */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    padding: 5px;
+/* Instagram Feed Section */
+#social-feed {
+    padding: 4rem 0;
 }
 
-.hamburger div {
-    width: 25px;
-    height: 2px;
-    background-color: #fff;
-    transition: 0.3s;
+.instagram-feed {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-.mobile-nav {
-    display: none;
+/* Click-to-Call Button Styling */
+.elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479 {
+    margin: 1.5rem 0;
 }
 
 /* Media Queries */
@@ -399,32 +437,6 @@ footer {
 
     .mobile-nav {
         display: block;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: rgba(11, 31, 63, 0.98);
-        backdrop-filter: blur(10px);
-        transition: 0.3s;
-        z-index: 999;
-    }
-
-    .mobile-nav.active {
-        right: 0;
-    }
-
-    .mobile-nav ul {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .mobile-nav ul li a {
-        font-size: 1.2em;
     }
 
     .hero-title {
@@ -446,33 +458,13 @@ footer {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    /* Instagram Feed Section */
-#social-feed {
-    padding: 4rem 0;
-    background-color: #f9f9f9;
-}
-
-.instagram-feed {
-    width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-/* Click-to-Call Button Styling */
-.elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479 {
-    margin: 1.5rem 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .instagram-feed {
-        padding: 0 0.5rem;
-    }
-}
 
     .social-links {
         justify-content: center;
+    }
+
+    .instagram-feed {
+        padding: 0 0.5rem;
     }
 }
 
