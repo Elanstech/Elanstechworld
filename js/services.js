@@ -1,82 +1,130 @@
-// Initialize when DOM is loaded
+// services.js
 document.addEventListener('DOMContentLoaded', function() {
     initParticles();
+    initMobileNav();
+    initHeaderScroll();
     initServiceCards();
     initModals();
-    initHeaderScroll();
-    initMobileNav();
-    initTypingAnimation();
 });
 
-// Particle System
+// Enhanced Particle System
 function initParticles() {
-    const particlesContainer = document.querySelector('.services-particles');
+    const particlesContainer = document.querySelector('.hero-particles');
     if (!particlesContainer) return;
 
     function createParticle() {
         const particle = document.createElement('div');
         particle.className = 'particle';
         
+        // Enhanced random properties
         const size = Math.random() * 4 + 2;
         const duration = Math.random() * 3 + 2;
-        const startPos = Math.random() * 100;
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+        const delay = Math.random() * 2;
         
         particle.style.cssText = `
             width: ${size}px;
             height: ${size}px;
-            left: ${startPos}%;
-            animation-duration: ${duration}s;
-            animation-delay: ${Math.random()}s;
+            left: ${startX}%;
+            top: ${startY}%;
+            animation: float ${duration}s ease-in-out infinite;
+            animation-delay: ${delay}s;
         `;
         
         particle.addEventListener('animationend', () => particle.remove());
         particlesContainer.appendChild(particle);
     }
 
-    // Initial particles
+    // Create initial particles
     for (let i = 0; i < 50; i++) {
         createParticle();
     }
 
-    // Continuously create particles
-    setInterval(createParticle, 200);
+    // Continuously create new particles
+    setInterval(createParticle, 300);
 }
 
-// Mobile Navigation
+// Enhanced Mobile Navigation
 function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    const body = document.body;
     
-    if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-        });
+    if (!hamburger || !mobileNav) return;
 
-        // Close mobile nav when clicking links
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = '';
+    function toggleNav() {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        
+        // Animate nav items sequentially
+        if (mobileNav.classList.contains('active')) {
+            mobileNavLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.parentElement.style.transform = 'translateX(0)';
+                    link.parentElement.style.opacity = '1';
+                }, 100 * index);
             });
-        });
-
-        // Close mobile nav when clicking outside
-        document.addEventListener('click', (e) => {
-            if (mobileNav.classList.contains('active') && 
-                !mobileNav.contains(e.target) && 
-                !hamburger.contains(e.target)) {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
+        }
     }
+
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleNav();
+    });
+
+    // Close mobile nav when clicking links
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            toggleNav();
+        });
+    });
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+        if (mobileNav.classList.contains('active') && 
+            !mobileNav.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            toggleNav();
+        }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            toggleNav();
+        }
+    });
 }
 
-// Service Cards Initialization
+// Enhanced Header Scroll Effect
+function initHeaderScroll() {
+    const header = document.querySelector('header');
+    const heroContent = document.querySelector('.hero-content');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Add scrolled class to header
+        if (currentScroll > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        // Parallax effect for hero content
+        if (heroContent) {
+            heroContent.style.transform = `translateY(${currentScroll * 0.3}px)`;
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
+// Enhanced Service Cards
 function initServiceCards() {
     const cards = document.querySelectorAll('.service-card');
     
@@ -86,11 +134,11 @@ function initServiceCards() {
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // Update CSS variables for gradient
+            // Update gradient position
             card.style.setProperty('--mouseX', `${x}px`);
             card.style.setProperty('--mouseY', `${y}px`);
             
-            // 3D rotation effect
+            // 3D tilt effect
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             const rotateX = (y - centerY) / 20;
@@ -107,16 +155,27 @@ function initServiceCards() {
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'none';
         });
+
+        // Touch device handling
+        card.addEventListener('touchstart', () => {
+            card.classList.add('touch-active');
+        });
+
+        card.addEventListener('touchend', () => {
+            card.classList.remove('touch-active');
+        });
     });
 }
 
-// Modal System
+// Enhanced Modal System
 function initModals() {
     const previewButtons = document.querySelectorAll('.preview-btn');
     
     previewButtons.forEach(button => {
         button.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
+            
             const serviceId = button.closest('.service-card').dataset.service;
             const modalContent = getModalContent(serviceId);
             createModal(modalContent);
@@ -131,6 +190,7 @@ function createModal(content) {
     const modal = document.createElement('div');
     modal.className = 'service-modal';
     modal.innerHTML = `
+        <div class="modal-overlay"></div>
         <div class="modal-content">
             <button class="modal-close">&times;</button>
             ${content}
@@ -138,191 +198,40 @@ function createModal(content) {
     `;
     
     document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
     
-    // Activate modal after brief delay for animation
-    setTimeout(() => modal.classList.add('active'), 10);
+    // Add active class after brief delay for animation
+    requestAnimationFrame(() => {
+        modal.classList.add('active');
+    });
     
-    // Close button functionality
+    // Setup close handlers
     const closeBtn = modal.querySelector('.modal-close');
-    closeBtn.addEventListener('click', () => closeModal(modal));
+    const overlay = modal.querySelector('.modal-overlay');
     
-    // Close on outside click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal(modal);
-    });
+    function closeModal() {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.remove();
+            document.body.style.overflow = '';
+        }, 300);
+    }
     
-    // Close on escape key
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal(modal);
+        if (e.key === 'Escape') closeModal();
     });
-}
-
-function closeModal(modal) {
-    modal.classList.remove('active');
-    setTimeout(() => modal.remove(), 300);
-}
-
-// Header Scroll Effect
-function initHeaderScroll() {
-    const header = document.querySelector('header');
-    let lastScroll = 0;
-    
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    });
-}
-
-// Typing Animation
-function initTypingAnimation() {
-    const subtitle = document.querySelector('.services-subtitle');
-    if (!subtitle) return;
-    
-    subtitle.style.width = '0';
-    subtitle.style.whiteSpace = 'nowrap';
-    subtitle.style.overflow = 'hidden';
-    
-    setTimeout(() => {
-        subtitle.style.width = '100%';
-    }, 500);
-}
-
-// Service Modal Content
-function getModalContent(serviceId) {
-    const services = {
-        'business-setup': {
-            title: 'Business Computer Setup',
-            features: [
-                'Custom hardware configuration and optimization',
-                'Enterprise software installation and setup',
-                'Secure network configuration',
-                'Advanced security implementation',
-                'Automated backup solutions',
-                'Employee training sessions',
-                'Remote support capabilities',
-                '24/7 technical assistance'
-            ],
-            price: 'Starting from $499'
-        },
-        'web-design': {
-            title: 'Web Design Services',
-            features: [
-                'Custom responsive design',
-                'Mobile-first approach',
-                'SEO optimization',
-                'Content management system',
-                'E-commerce integration',
-                'Performance optimization',
-                'Security features',
-                'Analytics integration'
-            ],
-            price: 'Starting from $999'
-        },
-        'pos-system': {
-            title: 'POS System Setup',
-            features: [
-                'Hardware installation',
-                'Software configuration',
-                'Inventory management setup',
-                'Staff training',
-                'Payment processing integration',
-                'Real-time reporting',
-                'Cloud backup',
-                'Technical support'
-            ],
-            price: 'Starting from $799'
-        },
-        'apple-sales': {
-            title: 'Apple Product Sales',
-            features: [
-                'Latest Apple devices',
-                'Professional setup',
-                'Data migration',
-                'AppleCare+ registration',
-                'Business integration',
-                'Custom configurations',
-                'Warranty support',
-                'Trade-in options'
-            ],
-            price: 'Contact for current prices'
-        },
-        'it-support': {
-            title: 'IT Support & Maintenance',
-            features: [
-                '24/7 technical support',
-                'Remote troubleshooting',
-                'System monitoring',
-                'Regular maintenance',
-                'Security updates',
-                'Data backup',
-                'Network management',
-                'Emergency response'
-            ],
-            price: 'Starting from $199/month'
-        },
-        'network-solutions': {
-            title: 'Network Solutions',
-            features: [
-                'Network design and setup',
-                'Wi-Fi optimization',
-                'Security implementation',
-                'VPN configuration',
-                'Firewall setup',
-                'Performance monitoring',
-                'Scalable solutions',
-                'Regular maintenance'
-            ],
-            price: 'Starting from $699'
-        }
-    };
-    
-    const service = services[serviceId] || {
-        title: 'Service Details',
-        features: ['Details coming soon'],
-        price: 'Contact for pricing'
-    };
-    
-    return `
-        <h3>${service.title}</h3>
-        <div class="modal-features">
-            <h4>Features & Benefits</h4>
-            <ul>
-                ${service.features.map(feature => `<li>${feature}</li>`).join('')}
-            </ul>
-        </div>
-        <div class="modal-pricing">
-            <strong>${service.price}</strong>
-        </div>
-        <button class="contact-btn" onclick="window.location.href='contact.html'">
-            Get Started
-        </button>
-    `;
 }
 
 // Handle window resize
-window.addEventListener('resize', debounce(() => {
-    const cards = document.querySelectorAll('.service-card');
-    cards.forEach(card => {
-        card.style.transform = 'none';
-    });
-}, 250));
-
-// Utility: Debounce Function
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const cards = document.querySelectorAll('.service-card');
+        cards.forEach(card => {
+            card.style.transform = 'none';
+        });
+    }, 250);
+});
