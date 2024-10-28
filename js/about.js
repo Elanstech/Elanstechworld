@@ -113,7 +113,6 @@ function animateCircle(circle, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Mobile Navigation
 function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
