@@ -7,68 +7,61 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
+    <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        /* CSS will be in the next code block */
-    </style>
+    <!-- Custom CSS - Make sure this path is correct -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
+            <div class="logo">
                 <span class="logo-text">Elan's Tech World</span>
-            </a>
+            </div>
             
             <nav class="main-nav">
                 <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services" class="active">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
 
-            <button class="hamburger" aria-label="Toggle menu">
+            <div class="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+            </div>
         </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav">
+    <nav class="mobile-nav">
         <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-    </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="particles-js">
-        <div class="hero-content" data-aos="fade-up">
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
             <h1 class="glowing-text">Our Services</h1>
             <p class="typing-animation">Innovative technology solutions for your business</p>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <div class="arrow"></div>
         </div>
     </section>
 
     <!-- Services Grid -->
     <section class="services">
         <div class="container">
-            <!-- Service Cards - Business Setup -->
+            <!-- Business Setup -->
             <div class="service-card" data-aos="fade-up">
                 <div class="service-icon">
                     <i class="fas fa-desktop"></i>
@@ -79,13 +72,13 @@
                     <button class="preview-btn" data-service="business-setup">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="#" class="details-btn">
+                    <button class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
+                    </button>
                 </div>
             </div>
 
-            <!-- Service Cards - Web Design -->
+            <!-- Web Design -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="service-icon">
                     <i class="fas fa-code"></i>
@@ -96,9 +89,9 @@
                     <button class="preview-btn" data-service="web-design">
                         <i class="fas fa-search"></i> Quick Preview
                     </button>
-                    <a href="#" class="details-btn">
+                    <button class="details-btn">
                         <i class="fas fa-arrow-right"></i> Full Details
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -257,9 +250,9 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
+!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="services.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
