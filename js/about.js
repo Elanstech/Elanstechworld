@@ -35,7 +35,7 @@ function initJourneyCards() {
             cardInner.classList.toggle('flipped');
         });
         
-        // Handle touch start for better mobile response
+        // Optional: Handle touch start for better mobile response
         card.addEventListener('touchstart', function(e) {
             e.preventDefault(); // Prevent default touch behavior
         }, { passive: false });
@@ -113,30 +113,22 @@ function animateCircle(circle, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Mobile Navigation
 function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
     
     if (hamburger && mobileNav) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
             mobileNav.classList.toggle('active');
-            
-            // Toggle body scroll
-            if (mobileNav.classList.contains('active')) {
-                document.body.style.overflow = 'hidden';
-            } else {
-                document.body.style.overflow = '';
-            }
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
         });
 
-        // Close mobile nav when clicking a link
         document.querySelectorAll('.mobile-nav a').forEach(link => {
             link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
                 mobileNav.classList.remove('active');
-                document.body.style.overflow = '';
+                hamburger.classList.remove('active');
+                document.body.style.overflow = 'auto';
             });
         });
     }
@@ -186,5 +178,6 @@ document.addEventListener('touchstart', function(e) {
 
 // Optional: Add resize handler for responsive adjustments
 window.addEventListener('resize', function() {
+    // Add any resize-specific logic here if needed
     AOS.refresh();
 });
