@@ -1,17 +1,66 @@
-// modern-service-scripts.js
-
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initializeServicePage();
+    initializeWebsite();
 });
 
-function initializeServicePage() {
+function initializeWebsite() {
+    initHeaderScroll();
+    initMobileNav();
     initParticles();
     initHeroTyping();
     initScrollAnimations();
-    initServices();
-    initTimeline();
+    initServiceCards();
+    initTimelineAnimations();
     initPricingCards();
     initContactForm();
+    initBackToTop();
+}
+
+// Header Scroll Effect
+function initHeaderScroll() {
+    const header = document.querySelector('header');
+    const scrollThreshold = 50;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
+
+// Mobile Navigation
+function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const body = document.body;
+    let isOpen = false;
+
+    hamburger?.addEventListener('click', () => {
+        isOpen = !isOpen;
+        
+        if (isOpen) {
+            mobileNav.style.transform = 'translateX(0)';
+            hamburger.classList.add('active');
+            body.style.overflow = 'hidden';
+        } else {
+            mobileNav.style.transform = 'translateX(100%)';
+            hamburger.classList.remove('active');
+            body.style.overflow = '';
+        }
+    });
+
+    // Close mobile nav when clicking links
+    const mobileLinks = document.querySelectorAll('.mobile-nav a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileNav.style.transform = 'translateX(100%)';
+            hamburger.classList.remove('active');
+            body.style.overflow = '';
+            isOpen = false;
+        });
+    });
 }
 
 // Particle System
@@ -19,14 +68,14 @@ function initParticles() {
     const container = document.querySelector('.particles-container');
     if (!container) return;
 
-    const particleCount = calculateParticleCount();
+    const particleCount = window.innerWidth < 768 ? 30 : 50;
     const particles = [];
 
     for (let i = 0; i < particleCount; i++) {
         particles.push(createParticle(container));
     }
 
-    // Add mouse interaction
+    // Mouse interaction
     let mouseX = 0;
     let mouseY = 0;
 
@@ -56,10 +105,6 @@ function initParticles() {
     }
 
     animate();
-}
-
-function calculateParticleCount() {
-    return window.innerWidth < 768 ? 30 : 50;
 }
 
 function createParticle(container) {
@@ -121,7 +166,7 @@ function updateParticle(particle, container) {
     particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
 }
 
-// Hero Typing Effect
+// Typing Effect
 function initHeroTyping() {
     const textElement = document.querySelector('.typing-text');
     if (!textElement) return;
@@ -148,10 +193,8 @@ function initHeroTyping() {
             charIndex++;
         }
 
-        // Speed control
         let typeSpeed = isDeleting ? 50 : 100;
         
-        // Handle phrase completion
         if (!isDeleting && charIndex === currentPhrase.length) {
             isDeleting = true;
             typeSpeed = 1500; // Pause at end
@@ -169,10 +212,12 @@ function initHeroTyping() {
 
 // Scroll Animations
 function initScrollAnimations() {
-    const elements = document.querySelectorAll('.service-card, .timeline-item, .pricing-card, .feature-card');
+    const animatedElements = document.querySelectorAll(
+        '.service-card, .timeline-item, .pricing-card, .feature-card'
+    );
     
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
                 
@@ -190,22 +235,22 @@ function initScrollAnimations() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    elements.forEach(element => observer.observe(element));
+    animatedElements.forEach(element => observer.observe(element));
 }
 
 // Service Cards Interaction
-function initServices() {
+function initServiceCards() {
     const cards = document.querySelectorAll('.service-card');
     
     cards.forEach(card => {
-        card.addEventListener('mouseenter', (e) => {
+        card.addEventListener('mouseenter', () => {
             const icon = card.querySelector('.service-icon');
             if (icon) {
                 icon.style.transform = 'rotate(0) scale(1.1)';
             }
         });
 
-        card.addEventListener('mouseleave', (e) => {
+        card.addEventListener('mouseleave', () => {
             const icon = card.querySelector('.service-icon');
             if (icon) {
                 icon.style.transform = 'rotate(-15deg) scale(1)';
@@ -214,8 +259,8 @@ function initServices() {
     });
 }
 
-// Timeline Animation
-function initTimeline() {
+// Timeline Animations
+function initTimelineAnimations() {
     const timelineItems = document.querySelectorAll('.timeline-item');
     
     timelineItems.forEach((item, index) => {
@@ -263,7 +308,7 @@ function initContactForm() {
         }
     });
 
-    // Add floating label animation
+    // Floating label animation
     const inputs = form.querySelectorAll('.form-input');
     inputs.forEach(input => {
         input.addEventListener('focus', () => {
@@ -278,7 +323,57 @@ function initContactForm() {
     });
 }
 
-// Utility Functions
+// Form Validation
+function validateForm(form) {
+    let isValid = true;
+    const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            showInputError(input, 'This field is required');
+        } else {
+            clearInputError(input);
+        }
+        
+        if (input.type === 'email' && !validateEmail(input.value)) {
+            isValid = false;
+            showInputError(input, 'Please enter a valid email address');
+        }
+    });
+    
+    return isValid;
+}
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function showInputError(input, message) {
+    const formGroup = input.closest('.form-group');
+    let errorDiv = formGroup.querySelector('.error-message');
+    
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        formGroup.appendChild(errorDiv);
+    }
+    
+    errorDiv.textContent = message;
+    input.classList.add('error');
+}
+
+function clearInputError(input) {
+    const formGroup = input.closest('.form-group');
+    const errorDiv = formGroup.querySelector('.error-message');
+    if (errorDiv) {
+        errorDiv.remove();
+    }
+    input.classList.remove('error');
+}
+
+// Notification System
 function showNotification(type, message) {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -296,32 +391,37 @@ function showNotification(type, message) {
     }, 3000);
 }
 
-function validateForm(form) {
-    // Add your form validation logic here
-    return true;
+// Back to Top Button
+function initBackToTop() {
+    const backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 
+// Form Submission (Replace with your actual API endpoint)
 function submitForm(form) {
-    // Add your form submission logic here
     return new Promise((resolve) => {
+        // Simulate API call
         setTimeout(resolve, 1000);
     });
 }
 
-// Initialize on load
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
-
-// Handle window resize
-window.addEventListener('resize', debounce(() => {
-    const container = document.querySelector('.particles-container');
-    if (container) {
-        container.innerHTML = '';
-        initParticles();
-    }
-}, 250));
-
+// Utility Functions
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -333,3 +433,17 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// Handle Window Resize
+window.addEventListener('resize', debounce(() => {
+    const container = document.querySelector('.particles-container');
+    if (container) {
+        container.innerHTML = '';
+        initParticles();
+    }
+}, 250));
+
+// Initialize on load
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
