@@ -799,21 +799,73 @@ input:checked + .slider:before {
 }
 
 /* Footer Styles */
-.footer {
+footer {
     background: rgba(0, 0, 0, 0.2);
     padding: 60px 0 20px;
-    position: relative;
-    overflow: hidden;
+    margin-top: 100px;
 }
 
 .footer-content {
     width: 90%;
-    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
+    margin-bottom: 40px;
 }
+
+.footer-info h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #f9c200, #ff6a00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-links h4, .footer-social h4 {
+    color: #f9c200;
+    margin-bottom: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin: 10px 0;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #f9c200;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #f9c200;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 
 /* Animations */
 @keyframes fadeInUp {
