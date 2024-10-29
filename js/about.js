@@ -69,7 +69,7 @@ function initStatsCounter() {
     stats.forEach(stat => statsObserver.observe(stat));
 }
 
-// Mobile Navigation
+// Update the initMobileNav function in about.js
 function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
@@ -78,13 +78,25 @@ function initMobileNav() {
     if (!hamburger || !mobileNav) return;
 
     const toggleMenu = () => {
-        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !isExpanded);
+        hamburger.classList.toggle('active');
         mobileNav.classList.toggle('active');
-        body.style.overflow = isExpanded ? 'auto' : 'hidden';
+        
+        const isExpanded = hamburger.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
+        body.style.overflow = isExpanded ? 'hidden' : 'auto';
     };
 
-    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!mobileNav.contains(e.target) && !hamburger.contains(e.target) && mobileNav.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
 
     // Close menu when clicking a link
     mobileNav.querySelectorAll('a').forEach(link => {
@@ -92,6 +104,34 @@ function initMobileNav() {
             toggleMenu();
         });
     });
+
+    // Handle window resize
+    window.addEventListener('resize', debounce(() => {
+        if (window.innerWidth > 768) {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.style.overflow = 'auto';
+        }
+    }, 250));
+}
+
+// Add this function to prevent scroll when menu is open
+function preventScroll(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+// Update the handleResize function
+function handleResize() {
+    if (window.innerWidth >= 768) {
+        const mobileNav = document.querySelector('.mobile-nav');
+        const hamburger = document.querySelector('.hamburger');
+        
+        document.body.style.overflow = 'auto';
+        mobileNav?.classList.remove('active');
+        hamburger?.classList.remove('active');
+        hamburger?.setAttribute('aria-expanded', 'false');
+    }
 }
 
 // Utility Functions
