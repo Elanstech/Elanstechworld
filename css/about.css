@@ -86,6 +86,76 @@ nav ul {
     gap: 25px;
     list-style: none;
 }
+/* Add to section styles */
+.section-wrapper {
+    width: 90%;
+    margin: 100px auto;
+    padding: 60px 30px;
+    background: rgba(11, 31, 63, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(249, 194, 0, 0.15);
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.section-text {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-text h2 {
+    font-size: 2.5em;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Fix hero section overlay */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.parallax-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    padding-top: 150px;
+}
+
+/* Add proper spacing for mobile menu */
+.mobile-nav ul {
+    padding: 80px 30px;
+}
+
+.mobile-nav ul li {
+    margin-bottom: 20px;
+}
+
+.mobile-nav ul li a {
+    font-size: 1.4em;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 10px 0;
+}
 
 nav ul li a {
     text-decoration: none;
