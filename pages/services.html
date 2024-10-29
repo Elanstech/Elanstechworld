@@ -15,130 +15,105 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="index.html" class="logo">
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="nav-logo">
                 <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                <span class="logo-text">Elan's Tech World</span>
+                <span>Elan's Tech World</span>
             </a>
             
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-
-            <button class="hamburger" aria-label="Toggle menu">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
+            <div class="nav-links">
+                <a href="/about">About</a>
+                <a href="/services" class="active">Services</a>
+                <a href="/projects">Projects</a>
+                <a href="/contact">Contact</a>
+            </div>
+            
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-        </div>
+        </nav>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul>
-            <li style="--i:1"><a href="about.html">About Us</a></li>
-            <li style="--i:2"><a href="services.html" class="active">Services</a></li>
-            <li style="--i:3"><a href="projects.html">Projects</a></li>
-            <li style="--i:4"><a href="contact.html">Contact</a></li>
-        </ul>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="menu-links">
+            <a href="/about">About</a>
+            <a href="/services" class="active">Services</a>
+            <a href="/projects">Projects</a>
+            <a href="/contact">Contact</a>
+        </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-background">
-            <div class="hero-particles"></div>
-            <div class="gradient-overlay"></div>
-        </div>
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Our Services</h1>
-            <div class="hero-subtitle">
-                <div class="text-animation">
-                    <span>Empowering Your Digital Journey</span>
-                    <span>Innovative Technology Solutions</span>
-                    <span>Expert Technical Support</span>
-                </div>
-            </div>
-            <p class="hero-description">Transforming businesses through cutting-edge technology and expert solutions</p>
+            <h1>
+                <span class="typing-text"></span>
+                <span class="cursor">|</span>
+            </h1>
+            <p class="hero-description">Empowering businesses with cutting-edge technology solutions and expert support</p>
         </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll to Explore</span>
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="particle-container"></div>
         </div>
     </section>
 
-    <!-- Services Navigation -->
-    <div class="services-nav">
-        <div class="nav-container">
-            <button class="nav-btn active" data-filter="all">All Services</button>
-            <button class="nav-btn" data-filter="business">Business</button>
-            <button class="nav-btn" data-filter="technical">Technical</button>
-            <button class="nav-btn" data-filter="support">Support</button>
-        </div>
-    </div>
-
     <!-- Services Grid -->
-    <section class="services-grid">
-        <div class="grid-background">
-            <div class="grid-overlay"></div>
-        </div>
-        <div class="grid-container">
-            <!-- Business Setup -->
-            <div class="service-card" data-category="business">
-                <div class="card-content">
-                    <div class="service-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <h3>Business Computer Setup</h3>
-                    <div class="service-details">
-                        <ul>
-                            <li>Complete hardware configuration</li>
-                            <li>Network setup & security</li>
-                            <li>Software installation</li>
-                            <li>Staff training</li>
-                        </ul>
-                    </div>
-                    <div class="card-actions">
-                        <a href="business-setup.html" class="action-btn primary">Learn More</a>
-                        <button class="action-btn secondary preview-btn">Quick View</button>
-                    </div>
+    <section class="services">
+        <div class="services-container">
+            <div class="services-header">
+                <div class="section-title">
+                    <h2>Our Services</h2>
+                    <p>Comprehensive solutions tailored to your needs</p>
                 </div>
-                <div class="card-background">
-                    <div class="glow-effect"></div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="business">Business</button>
+                    <button class="filter-btn" data-filter="technical">Technical</button>
+                    <button class="filter-btn" data-filter="support">Support</button>
                 </div>
             </div>
 
-            <!-- Web Development -->
-            <div class="service-card" data-category="technical">
-                <div class="card-content">
-                    <div class="service-icon">
+            <div class="services-grid">
+                <!-- Business Setup -->
+                <div class="service-card" data-category="business">
+                    <div class="card-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3>Business Setup</h3>
+                    <ul class="service-features">
+                        <li>Complete hardware setup</li>
+                        <li>Network configuration</li>
+                        <li>Software installation</li>
+                        <li>Staff training</li>
+                    </ul>
+                    <div class="card-actions">
+                        <a href="/services/business-setup" class="btn-primary">Learn More</a>
+                        <button class="btn-secondary">Quick View</button>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="service-card" data-category="technical">
+                    <div class="card-icon">
                         <i class="fas fa-code"></i>
                     </div>
                     <h3>Web Development</h3>
-                    <div class="service-details">
-                        <ul>
-                            <li>Custom website design</li>
-                            <li>E-commerce solutions</li>
-                            <li>Mobile optimization</li>
-                            <li>SEO implementation</li>
-                        </ul>
-                    </div>
+                    <ul class="service-features">
+                        <li>Custom websites</li>
+                        <li>E-commerce solutions</li>
+                        <li>Mobile optimization</li>
+                        <li>SEO implementation</li>
+                    </ul>
                     <div class="card-actions">
-                        <a href="web-development.html" class="action-btn primary">Learn More</a>
-                        <button class="action-btn secondary preview-btn">Quick View</button>
+                        <a href="/services/web-development" class="btn-primary">Learn More</a>
+                        <button class="btn-secondary">Quick View</button>
                     </div>
                 </div>
-                <div class="card-background">
-                    <div class="glow-effect"></div>
-                </div>
-            </div>
 
             <!-- POS Systems -->
             <div class="service-card" data-category="business">
@@ -243,36 +218,35 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
             <div class="footer-info">
                 <h3>Elan's Tech World</h3>
-                <p>Your Partner in Technology Solutions</p>
-                <p>&copy; 2024 All rights reserved.</p>
+                <p>Your Technology Partner</p>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+                <a href="/about">About</a>
+                <a href="/services">Services</a>
+                <a href="/projects">Projects</a>
+                <a href="/contact">Contact</a>
             </div>
             <div class="footer-social">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="https://instagram.com/elan_tech_world" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
+        </div>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
-    <script src="../js/script.js"></script>
     <script src="../js/services.js"></script>
 </body>
 </html>
