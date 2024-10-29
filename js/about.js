@@ -1,39 +1,42 @@
-// Initialize everything when the DOM is loaded
+/* about.js */
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS
+    // Initialize AOS with custom settings
     AOS.init({
         duration: 1000,
         once: true,
-        offset: 100
+        offset: 100,
+        disable: window.innerWidth < 768
     });
 
-    // Particles Background
+    // Initialize all features
     initParticles();
-    
-    // Initialize stats counter
     initStatsCounter();
-    
-    // Initialize mobile navigation
     initMobileNav();
-    
-    // Initialize smooth scroll
     initSmoothScroll();
-    
-    // Initialize header scroll effect
     initHeaderScroll();
+    updateCopyrightYear();
+    
+    // Add resize handler for responsive features
+    window.addEventListener('resize', debounce(handleResize, 250));
 });
 
-// Particles Background Initialization
+// Particles Animation
 function initParticles() {
     const particlesContainer = document.querySelector('.hero-particles');
     if (!particlesContainer) return;
 
-    for (let i = 0; i < 50; i++) {
+    const particleCount = window.innerWidth < 768 ? 30 : 50;
+    
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.cssText = `
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            animation-delay: ${Math.random() * 5}s;
+            width: ${Math.random() * 3 + 1}px;
+            height: ${Math.random() * 3 + 1}px;
+        `;
         particlesContainer.appendChild(particle);
     }
 }
@@ -44,10 +47,11 @@ function initStatsCounter() {
     const circles = document.querySelectorAll('.circle-progress path.progress');
     
     const observerOptions = {
-        threshold: 0.5
+        threshold: 0.5,
+        rootMargin: '0px'
     };
 
-    const statsObserver = new IntersectionObserver(function(entries, observer) {
+    const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 const target = entry.target;
@@ -57,66 +61,95 @@ function initStatsCounter() {
                 animateValue(target, 0, finalValue, 2000);
                 animateCircle(circle, 0, parseInt(circle.getAttribute('stroke-dasharray')), 2000);
                 
-                observer.unobserve(target);
+                statsObserver.unobserve(target);
             }
         });
     }, observerOptions);
 
-    stats.forEach(stat => {
-        statsObserver.observe(stat);
-    });
-}
-
-function animateValue(obj, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(progress * (end - start) + start) + '+';
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-function animateCircle(circle, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const value = progress * (end - start) + start;
-        circle.setAttribute('stroke-dasharray', `${value}, 100`);
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
+    stats.forEach(stat => statsObserver.observe(stat));
 }
 
 // Mobile Navigation
 function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
+    const body = document.body;
     
-    if (hamburger && mobileNav) {
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
-        });
+    if (!hamburger || !mobileNav) return;
 
-        document.querySelectorAll('.mobile-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
+    const toggleMenu = () => {
+        const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !isExpanded);
+        mobileNav.classList.toggle('active');
+        body.style.overflow = isExpanded ? 'auto' : 'hidden';
+    };
+
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking a link
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            toggleMenu();
         });
+    });
+}
+
+// Utility Functions
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function handleResize() {
+    if (window.innerWidth >= 768) {
+        document.body.style.overflow = 'auto';
+        document.querySelector('.mobile-nav')?.classList.remove('active');
+        document.querySelector('.hamburger')?.setAttribute('aria-expanded', 'false');
     }
 }
 
-// Smooth Scroll
+function updateCopyrightYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+// Animation Helper Functions
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const animate = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.textContent = Math.floor(progress * (end - start) + start) + '+';
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    };
+    requestAnimationFrame(animate);
+}
+
+function animateCircle(circle, start, end, duration) {
+    let startTimestamp = null;
+    const animate = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = progress * (end - start) + start;
+        circle.setAttribute('stroke-dasharray', `${value}, 100`);
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    };
+    requestAnimationFrame(animate);
+}
+
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -135,18 +168,16 @@ function initSmoothScroll() {
     });
 }
 
-// Header Scroll Effect
 function initHeaderScroll() {
     const header = document.querySelector('header');
+    if (!header) return;
+
     const scrollHandler = () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+        requestAnimationFrame(() => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
     };
 
-    window.addEventListener('scroll', scrollHandler);
-    // Initial check
+    window.addEventListener('scroll', scrollHandler, { passive: true });
     scrollHandler();
 }
