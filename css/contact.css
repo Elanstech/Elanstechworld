@@ -71,6 +71,9 @@
 .mobile-nav ul li a:hover {
     color: #f9c200;
 }
+.mobile-nav.open {
+    transform: translateX(0);
+}
 
 /* Button Styling */
 .btn {
