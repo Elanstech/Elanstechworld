@@ -70,6 +70,38 @@
     padding: 0 20px;
     text-align: center;
 }
+/* Header Styles Fix */
+.header-container {
+    max-width: 1400px; /* Match your site's content width */
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0; /* Remove horizontal padding since we're using width */
+    position: relative;
+}
+
+/* Ensure the header background spans full width while content is contained */
+header {
+    background: rgba(11, 31, 63, 0.8);
+    padding: 0; /* Remove padding from header */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(249, 194, 0, 0.1);
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .header-container {
+        width: 95%; /* Slightly wider on mobile */
+        padding: 0.75rem 0;
+    }
+}
 
 /* Glowing Text Effect */
 .glowing-text {
