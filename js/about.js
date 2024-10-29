@@ -1,85 +1,31 @@
 /* about.js */
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
-    initParticles();
+    initParallax();
     initScrollEffects();
     initMobileMenu();
-    initStatCounters();
     initTypingEffect();
+    initStatCounters();
+    initSectionAnimations();
+    initParticles();
 });
 
-// Initialize particles.js
-function initParticles() {
-    particlesJS('particles-js', {
-        particles: {
-            number: {
-                value: 80,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: {
-                value: '#f9c200'
-            },
-            shape: {
-                type: 'circle'
-            },
-            opacity: {
-                value: 0.5,
-                random: false
-            },
-            size: {
-                value: 3,
-                random: true
-            },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: '#f9c200',
-                opacity: 0.2,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 2,
-                direction: 'none',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: 'grab'
-                },
-                onclick: {
-                    enable: true,
-                    mode: 'push'
-                },
-                resize: true
-            },
-            modes: {
-                grab: {
-                    distance: 140,
-                    line_linked: {
-                        opacity: 0.6
-                    }
-                },
-                push: {
-                    particles_nb: 4
-                }
-            }
-        },
-        retina_detect: true
+function initParallax() {
+    const parallaxLayers = document.querySelectorAll('.parallax-layer');
+    
+    window.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        parallaxLayers.forEach(layer => {
+            const speed = layer.getAttribute('data-speed');
+            const moveX = (x * 100 * speed);
+            const moveY = (y * 100 * speed);
+            layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
     });
 }
 
-// Scroll effects
 function initScrollEffects() {
     const header = document.querySelector('header');
     let lastScroll = 0;
@@ -108,116 +54,152 @@ function initScrollEffects() {
     }, { passive: true });
 }
 
-// Mobile menu
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
     const body = document.body;
 
-    hamburger.addEventListener('click', () => {
+    hamburger?.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         mobileNav.classList.toggle('active');
         body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
+        if (!hamburger?.contains(e.target) && !mobileNav?.contains(e.target)) {
+            hamburger?.classList.remove('active');
+            mobileNav?.classList.remove('active');
             body.style.overflow = '';
         }
     });
-
-    // Close menu when clicking links
-    mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
-            body.style.overflow = '';
-        });
-    });
 }
 
-// Stat counters animation
+function initTypingEffect() {
+    const texts = [
+        "Your Partner in Technology Solutions",
+        "Innovative Tech Services",
+        "Expert Support & Guidance",
+        "Quality That Exceeds Expectations"
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingDelay = 100;
+    const deletingDelay = 50;
+    const newTextDelay = 2000;
+
+    const typingElement = document.querySelector('.typing-text');
+    
+    function type() {
+        const currentText = texts[textIndex];
+        
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        if (!isDeleting && charIndex === currentText.length) {
+            setTimeout(() => isDeleting = true, newTextDelay);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+        }
+        
+        setTimeout(type, isDeleting ? deletingDelay : typingDelay);
+    }
+    
+    type();
+}
+
 function initStatCounters() {
     const stats = document.querySelectorAll('.stat-number');
-    const options = {
-        threshold: 0.5
-    };
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = parseInt(entry.target.getAttribute('data-target'));
+                const target = parseInt(entry.target.getAttribute('data-value'));
                 animateCounter(entry.target, target);
                 observer.unobserve(entry.target);
             }
         });
-    }, options);
+    }, { threshold: 0.5 });
 
     stats.forEach(stat => observer.observe(stat));
 }
 
 function animateCounter(element, target) {
-    let current = 0;
     const duration = 2000;
-    const step = target / (duration / 16);
-    
-    const counter = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(counter);
-        } else {
-            element.textContent = Math.round(current);
-        }
-    }, 16);
-}
+    const start = parseInt(element.textContent) || 0;
+    const range = target - start;
+    const startTime = performance.now();
 
-// Typing effect
-function initTypingEffect() {
-    const text = "Your Partner in Technology Solutions";
-    const typingText = document.querySelector('.typing-text');
-    let index = 0;
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
 
-    function type() {
-        if (index < text.length) {
-            typingText.textContent += text.charAt(index);
-            index++;
-            setTimeout(type, 100);
+        const value = Math.floor(start + (range * progress));
+        element.textContent = value;
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
         }
     }
 
-    type();
+    requestAnimationFrame(update);
 }
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+function initSectionAnimations() {
+    const sections = document.querySelectorAll('.timeline, .value-card, .team-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
 
-// Timeline animation on scroll
-const timelineItems = document.querySelectorAll('.timeline-item');
-const timelineOptions = {
-    threshold: 0.5
-};
+    sections.forEach(section => observer.observe(section));
+}
 
-const timelineObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, timelineOptions);
-
-timelineItems.forEach(item => timelineObserver.observe(item));
+function initParticles() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#f9c200' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#f9c200',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'grab' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+    }
+}
