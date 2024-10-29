@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Business Materials - Elan's Tech World</title>
+    <title>Services - Elan's Tech World</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
@@ -11,13 +11,13 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/service-detail.css">
+    <link rel="stylesheet" href="../css/services.css">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header class="header">
         <div class="header-container">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                 <span class="logo-text">Elan's Tech World</span>
             </a>
@@ -32,7 +32,7 @@
                 </ul>
             </nav>
 
-            <button class="hamburger">
+            <button class="hamburger" aria-label="Toggle Menu">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -53,419 +53,231 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="hero-background"></div>
-        <div class="particles-container"></div>
+        <div class="hero-background">
+            <div class="particles-container"></div>
+        </div>
         <div class="hero-content">
-            <span class="hero-badge">Professional Design Services</span>
-            <h1 class="hero-title">Custom Business Materials</h1>
-            <div class="typing-container">
-                <span class="typing-text"></span>
-            </div>
-            <p class="hero-description">Transform your brand identity with professionally designed business materials that make a lasting impression.</p>
+            <span class="hero-badge">Professional Technology Solutions</span>
+            <h1 class="hero-title">Empowering Your Digital Journey</h1>
+            <p class="hero-description">From custom business solutions to expert technical support, we're here to transform your vision into reality.</p>
             <div class="hero-cta">
-                <a href="#pricing" class="hero-btn primary">
-                    View Pricing
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#contact" class="hero-btn secondary">
-                    Free Consultation
-                    <i class="fas fa-calendar"></i>
-                </a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="scroll-dot"></div>
-            <span class="scroll-text">Scroll Down</span>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section">
-        <div class="section-pattern"></div>
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Why Choose Us</h2>
-                <p class="section-subtitle">Experience excellence in business material design with our premium services</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card" data-animate>
-                    <div class="feature-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 class="feature-title">Premium Quality</h3>
-                    <p class="feature-description">High-end materials and professional design standards that exceed expectations</p>
-                </div>
-                <div class="feature-card" data-animate>
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">Quick Turnaround</h3>
-                    <p class="feature-description">Fast delivery without compromising on quality and attention to detail</p>
-                </div>
-                <div class="feature-card" data-animate>
-                    <div class="feature-icon">
-                        <i class="fas fa-sync"></i>
-                    </div>
-                    <h3 class="feature-title">Free Revisions</h3>
-                    <p class="feature-description">Multiple revision rounds included to ensure your complete satisfaction</p>
-                </div>
-                <div class="feature-card" data-animate>
-                    <div class="feature-icon">
-                        <i class="fas fa-print"></i>
-                    </div>
-                    <h3 class="feature-title">Print Ready</h3>
-                    <p class="feature-description">Files optimized for professional printing with perfect results</p>
-                </div>
+                <a href="#services" class="hero-btn primary">Explore Services</a>
+                <a href="contact.html" class="hero-btn secondary">Get Started</a>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services-section">
+    <section id="services" class="services-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">Comprehensive business material solutions tailored to your needs</p>
+                <p class="section-subtitle">Comprehensive solutions tailored to your needs</p>
             </div>
+
+            <div class="services-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="business">Business</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+                <button class="filter-btn" data-filter="support">Support</button>
+            </div>
+
             <div class="services-grid">
-                <!-- Business Cards -->
-                <div class="service-card" data-animate>
+                <!-- Custom Business Materials -->
+                <div class="service-card" data-category="business">
                     <div class="service-image">
-                        <img src="../assets/images/business-cards.jpg" alt="Business Cards">
+                        <img src="../assets/images/business-materials.jpg" alt="Business Materials">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
-                            <i class="fas fa-id-card"></i>
+                            <i class="fas fa-palette"></i>
                         </div>
-                        <h3 class="service-title">Business Cards</h3>
-                        <p class="service-description">Premium quality business cards that make a lasting first impression</p>
+                        <h3>Custom Business Materials</h3>
+                        <p>Professional design services for your business identity</p>
                         <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Premium paper stocks</li>
-                            <li><i class="fas fa-check"></i> Custom finishes available</li>
-                            <li><i class="fas fa-check"></i> Multiple size options</li>
-                            <li><i class="fas fa-check"></i> Starting at $149</li>
+                            <li>Business Cards</li>
+                            <li>Flyers & Brochures</li>
+                            <li>Marketing Materials</li>
+                            <li>Brand Identity</li>
                         </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
                     </div>
                 </div>
 
-                <!-- Letterheads -->
-                <div class="service-card" data-animate>
+                <!-- Apple Product Resell -->
+                <div class="service-card" data-category="technical">
                     <div class="service-image">
-                        <img src="../assets/images/letterhead.jpg" alt="Letterheads">
+                        <img src="../assets/images/apple-products.jpg" alt="Apple Products">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
-                            <i class="fas fa-file-alt"></i>
+                            <i class="fab fa-apple"></i>
                         </div>
-                        <h3 class="service-title">Letterheads & Stationery</h3>
-                        <p class="service-description">Professional letterheads and stationery for your business communications</p>
+                        <h3>Apple Product Resell</h3>
+                        <p>Quality Apple devices with professional setup</p>
                         <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Professional designs</li>
-                            <li><i class="fas fa-check"></i> Matching envelopes</li>
-                            <li><i class="fas fa-check"></i> Digital templates</li>
-                            <li><i class="fas fa-check"></i> Starting at $199</li>
+                            <li>Certified Products</li>
+                            <li>Professional Setup</li>
+                            <li>Warranty Service</li>
+                            <li>Technical Support</li>
                         </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
                     </div>
                 </div>
 
-                <!-- Marketing Materials -->
-                <div class="service-card" data-animate>
+                <!-- Web Design -->
+                <div class="service-card" data-category="technical">
                     <div class="service-image">
-                        <img src="../assets/images/marketing.jpg" alt="Marketing Materials">
+                        <img src="../assets/images/web-design.jpg" alt="Web Design">
                     </div>
                     <div class="service-content">
                         <div class="service-icon">
-                            <i class="fas fa-bullhorn"></i>
+                            <i class="fas fa-code"></i>
                         </div>
-                        <h3 class="service-title">Marketing Materials</h3>
-                        <p class="service-description">Comprehensive marketing materials to promote your business</p>
+                        <h3>Web Design</h3>
+                        <p>Custom website solutions for your business</p>
                         <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Brochures & Flyers</li>
-                            <li><i class="fas fa-check"></i> Presentation Folders</li>
-                            <li><i class="fas fa-check"></i> Product Catalogs</li>
-                            <li><i class="fas fa-check"></i> Starting at $299</li>
+                            <li>Custom Websites</li>
+                            <li>E-commerce Solutions</li>
+                            <li>Mobile Responsive</li>
+                            <li>SEO Optimization</li>
                         </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Expert Computer Setup -->
+                <div class="service-card" data-category="technical">
+                    <div class="service-image">
+                        <img src="../assets/images/computer-setup.jpg" alt="Computer Setup">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3>Expert Computer Setup</h3>
+                        <p>Professional computer configuration services</p>
+                        <ul class="service-features">
+                            <li>Hardware Installation</li>
+                            <li>Software Setup</li>
+                            <li>Performance Optimization</li>
+                            <li>Security Configuration</li>
+                        </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Custom POS System -->
+                <div class="service-card" data-category="business">
+                    <div class="service-image">
+                        <img src="../assets/images/pos-system.jpg" alt="POS System">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-cash-register"></i>
+                        </div>
+                        <h3>Custom POS System</h3>
+                        <p>Tailored point of sale solutions</p>
+                        <ul class="service-features">
+                            <li>Custom Setup</li>
+                            <li>Hardware Installation</li>
+                            <li>Staff Training</li>
+                            <li>Ongoing Support</li>
+                        </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Website Maintenance -->
+                <div class="service-card" data-category="support">
+                    <div class="service-image">
+                        <img src="../assets/images/website-maintenance.jpg" alt="Website Maintenance">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>Website Maintenance</h3>
+                        <p>Keep your website running smoothly</p>
+                        <ul class="service-features">
+                            <li>Regular Updates</li>
+                            <li>Security Patches</li>
+                            <li>Content Updates</li>
+                            <li>Performance Monitoring</li>
+                        </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
+                    </div>
+                </div>
+
+                <!-- Data Backup & Recovery -->
+                <div class="service-card" data-category="support">
+                    <div class="service-image">
+                        <img src="../assets/images/data-backup.jpg" alt="Data Backup">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Data Backup & Recovery</h3>
+                        <p>Secure data protection solutions</p>
+                        <ul class="service-features">
+                            <li>Automated Backups</li>
+                            <li>Data Recovery</li>
+                            <li>Cloud Storage</li>
+                            <li>Disaster Recovery</li>
+                        </ul>
+                        <a href="contact.html" class="service-btn">Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing">
+    <!-- Call to Action Section -->
+    <section class="cta-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Pricing Plans</h2>
-                <p class="section-subtitle">Choose the perfect package for your business needs</p>
-            </div>
-
-            <div class="pricing-toggle">
-                <span class="toggle-text">Monthly</span>
-                <label class="switch">
-                    <input type="checkbox" id="billingToggle">
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-text">Yearly</span>
-                <span class="save-badge">Save 20%</span>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Starter Package -->
-                <div class="pricing-card" data-animate>
-                    <div class="pricing-header">
-                        <div class="pricing-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="pricing-name">Starter Package</h3>
-                        <div class="pricing-price">
-                            <span class="price monthly">499</span>
-                            <span class="price yearly">399</span>
-                            <span class="period">/month</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Business card design</li>
-                        <li><i class="fas fa-check"></i> Basic letterhead</li>
-                        <li><i class="fas fa-check"></i> Email signature</li>
-                        <li><i class="fas fa-check"></i> 2 revision rounds</li>
-                        <li><i class="fas fa-check"></i> 5-day delivery</li>
-                    </ul>
-                    <div class="pricing-action">
-                        <a href="#contact" class="pricing-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Professional Package -->
-                <div class="pricing-card featured" data-animate>
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <div class="pricing-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <h3 class="pricing-name">Professional Package</h3>
-                        <div class="pricing-price">
-                            <span class="price monthly">999</span>
-                            <span class="price yearly">799</span>
-                            <span class="period">/month</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Starter</li>
-                        <li><i class="fas fa-check"></i> Brochure design</li>
-                        <li><i class="fas fa-check"></i> Presentation template</li>
-                        <li><i class="fas fa-check"></i> 3 revision rounds</li>
-                        <li><i class="fas fa-check"></i> Social media templates</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                    </ul>
-                    <div class="pricing-action">
-                        <a href="#contact" class="pricing-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Enterprise Package -->
-                <div class="pricing-card" data-animate>
-                    <div class="pricing-header">
-                        <div class="pricing-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h3 class="pricing-name">Enterprise Package</h3>
-                        <div class="pricing-price">
-                            <span class="price monthly">1,999</span>
-                            <span class="price yearly">1,599</span>
-                            <span class="period">/month</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Professional</li>
-                        <li><i class="fas fa-check"></i> Complete brand guide</li>
-                        <li><i class="fas fa-check"></i> Custom marketing materials</li>
-                        <li><i class="fas fa-check"></i> Unlimited revisions</li>
-                        <li><i class="fas fa-check"></i> 24/7 support</li>
-                        <li><i class="fas fa-check"></i> Rush delivery available</li>
-                    </ul>
-                    <div class="pricing-action">
-                        <a href="#contact" class="pricing-btn">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Start Your Project</h2>
-                <p class="section-subtitle">Let's discuss your business material needs</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Ready to elevate your brand? Contact us today for a free consultation about your business material needs.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Call Us</h4>
-                                <p>(929) 417-6819</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email Us</h4>
-                                <p>elan@elanstechworld.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <div>
-                                <h4>Business Hours</h4>
-                                <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-          <div class="form-group">
-    <label for="name" class="form-label">Full Name *</label>
-    <div class="input-wrapper">
-        <i class="fas fa-user"></i>
-        <input type="text" id="name" name="name" class="form-input" required>
-    </div>
-</div>
-    </label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-user"></i>
-                                    <input type="text" id="name" name="name" class="form-input" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email Address *</label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-envelope"></i>
-                                    <input type="email" id="email" name="email" class="form-input" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-phone"></i>
-                                    <input type="tel" id="phone" name="phone" class="form-input">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="package" class="form-label">Select Package *</label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-box"></i>
-                                    <select id="package" name="package" class="form-input" required>
-                                        <option value="">Choose a package</option>
-                                        <option value="starter">Starter Package</option>
-                                        <option value="professional">Professional Package</option>
-                                        <option value="enterprise">Enterprise Package</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group full-width">
-                                <label for="message" class="form-label">Project Details *</label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-pencil-alt"></i>
-                                    <textarea id="message" name="message" class="form-input" rows="5" required></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="submit-btn">
-                            <span>Submit Request</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </form>
-                </div>
+            <div class="cta-content">
+                <h2>Ready to Start Your Project?</h2>
+                <p>Let's transform your business with our professional technology solutions.</p>
+                <a href="contact.html" class="cta-btn">Contact Us Now</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-pattern"></div>
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <a href="index.html" class="footer-logo">
-                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                    </a>
-                    <p>Professional business material design services that elevate your brand identity.</p>
-                    <div class="social-links">
-                        <a href="https://instagram.com" target="_blank" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://facebook.com" target="_blank" class="social-link">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
+                    <h3>Elan's Tech World</h3>
+                    <p>Your Partner in Technology</p>
                 </div>
-                
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#contact">Contact</a></li>
                         <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-services">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#">Business Cards</a></li>
-                        <li><a href="#">Letterheads</a></li>
-                        <li><a href="#">Brochures</a></li>
-                        <li><a href="#">Marketing Materials</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact Info</h4>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>elan@elanstechworld.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>(929) 417-6819</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
-                        </div>
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/elan_tech_world" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
-                <div class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
     <!-- Scripts -->
-    <script src="../js/service-detail.js"></script>
-    <script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
+    <script src="../js/services.js"></script>
 </body>
 </html>
