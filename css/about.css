@@ -545,6 +545,11 @@
         flex-direction: column;
         align-items: center;
     }
+    .logo img {
+    width: auto;  /* Change from any fixed width */
+    height: 50px; /* Adjust this value to your preferred height */
+    object-fit: contain; /* This prevents squishing */
+    }
 
     .value-card {
         margin: 0.5rem 1rem;
