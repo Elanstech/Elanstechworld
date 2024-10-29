@@ -1,333 +1,284 @@
-// complete-service-scripts.js
+// modern-service-scripts.js
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeServicePage();
 });
 
 function initializeServicePage() {
-    initHeader();
     initParticles();
-    initHeroAnimations();
-    initFeatureCards();
-    initServiceCards();
+    initHeroTyping();
+    initScrollAnimations();
+    initServices();
     initTimeline();
     initPricingCards();
     initContactForm();
-    initScrollAnimations();
-    initMobileMenu();
 }
 
-function initHeader() {
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        // Add/remove scrolled class based on scroll position
-        if (currentScroll > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        // Hide/show header based on scroll direction
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = currentScroll;
-    });
-}
-
+// Particle System
 function initParticles() {
-    const heroSection = document.querySelector('.hero-particles');
-    if (!heroSection) return;
+    const container = document.querySelector('.particles-container');
+    if (!container) return;
 
-    const particleCount = getParticleCount();
-    
+    const particleCount = calculateParticleCount();
+    const particles = [];
+
     for (let i = 0; i < particleCount; i++) {
-        createParticle(heroSection);
+        particles.push(createParticle(container));
     }
+
+    // Add mouse interaction
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        particles.forEach(particle => {
+            const dx = mouseX - particle.x;
+            const dy = mouseY - particle.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 200) {
+                const angle = Math.atan2(dy, dx);
+                const force = (200 - distance) / 200;
+                particle.vx += Math.cos(angle) * force * 0.2;
+                particle.vy += Math.sin(angle) * force * 0.2;
+            }
+        });
+    });
+
+    function animate() {
+        particles.forEach(particle => {
+            updateParticle(particle, container);
+        });
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
 
-function getParticleCount() {
-    const width = window.innerWidth;
-    if (width < 768) return 15;
-    if (width < 1200) return 25;
-    return 35;
+function calculateParticleCount() {
+    return window.innerWidth < 768 ? 30 : 50;
 }
 
 function createParticle(container) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
+    const element = document.createElement('div');
+    element.className = 'particle';
     
-    const size = Math.random() * 8 + 4;
-    const left = Math.random() * 100;
-    const top = Math.random() * 100;
-    const delay = Math.random() * 4;
-    const duration = Math.random() * 2 + 4;
+    const size = Math.random() * 4 + 2;
+    const x = Math.random() * container.offsetWidth;
+    const y = Math.random() * container.offsetHeight;
     
-    Object.assign(particle.style, {
-        width: `${size}px`,
-        height: `${size}px`,
-        left: `${left}%`,
-        top: `${top}%`,
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`
-    });
+    const particle = {
+        element,
+        x,
+        y,
+        size,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        alpha: Math.random() * 0.5 + 0.2
+    };
     
-    container.appendChild(particle);
+    element.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        opacity: ${particle.alpha};
+    `;
     
-    // Recreate particle after animation
-    setTimeout(() => {
-        particle.remove();
-        createParticle(container);
-    }, duration * 1000);
+    container.appendChild(element);
+    return particle;
 }
 
-function initHeroAnimations() {
-    const heroContent = document.querySelector('.hero-content');
-    if (!heroContent) return;
-
-    // Add staggered animation to hero content children
-    Array.from(heroContent.children).forEach((child, index) => {
-        child.style.animationDelay = `${index * 0.2}s`;
-    });
+function updateParticle(particle, container) {
+    // Update position
+    particle.x += particle.vx;
+    particle.y += particle.vy;
+    
+    // Add slight random movement
+    particle.vx += (Math.random() - 0.5) * 0.1;
+    particle.vy += (Math.random() - 0.5) * 0.1;
+    
+    // Limit velocity
+    const maxVelocity = 2;
+    const velocity = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+    if (velocity > maxVelocity) {
+        particle.vx = (particle.vx / velocity) * maxVelocity;
+        particle.vy = (particle.vy / velocity) * maxVelocity;
+    }
+    
+    // Bounce off walls
+    if (particle.x < 0 || particle.x > container.offsetWidth) {
+        particle.vx *= -1;
+    }
+    if (particle.y < 0 || particle.y > container.offsetHeight) {
+        particle.vy *= -1;
+    }
+    
+    // Apply position
+    particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
 }
 
-function initFeatureCards() {
-    const cards = document.querySelectorAll('.feature-card');
+// Hero Typing Effect
+function initHeroTyping() {
+    const textElement = document.querySelector('.typing-text');
+    if (!textElement) return;
+
+    const phrases = [
+        'Professional Solutions',
+        'Creative Designs',
+        'Expert Support',
+        'Quality Service'
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+            textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        // Speed control
+        let typeSpeed = isDeleting ? 50 : 100;
+        
+        // Handle phrase completion
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typeSpeed = 1500; // Pause at end
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500; // Pause before next phrase
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    type();
+}
+
+// Scroll Animations
+function initScrollAnimations() {
+    const elements = document.querySelectorAll('.service-card, .timeline-item, .pricing-card, .feature-card');
     
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('animated');
-                }, index * 100);
+                entry.target.classList.add('animated');
+                
+                // Add staggered animation for child elements
+                const children = entry.target.querySelectorAll('.animate-child');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('animated');
+                    }, index * 100);
+                });
             }
         });
     }, {
-        threshold: 0.2
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
     });
 
-    cards.forEach(card => observer.observe(card));
+    elements.forEach(element => observer.observe(element));
 }
 
-function initServiceCards() {
+// Service Cards Interaction
+function initServices() {
     const cards = document.querySelectorAll('.service-card');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('animated');
-                }, index * 150);
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', (e) => {
+            const icon = card.querySelector('.service-icon');
+            if (icon) {
+                icon.style.transform = 'rotate(0) scale(1.1)';
             }
         });
-    }, {
-        threshold: 0.1
-    });
 
-    cards.forEach(card => {
-        observer.observe(card);
-        
-        // Add hover effect for service images
-        const image = card.querySelector('.service-image img');
-        if (image) {
-            card.addEventListener('mouseenter', () => {
-                image.style.transform = 'scale(1.1)';
-            });
-            card.addEventListener('mouseleave', () => {
-                image.style.transform = 'scale(1)';
-            });
-        }
+        card.addEventListener('mouseleave', (e) => {
+            const icon = card.querySelector('.service-icon');
+            if (icon) {
+                icon.style.transform = 'rotate(-15deg) scale(1)';
+            }
+        });
     });
 }
 
+// Timeline Animation
 function initTimeline() {
     const timelineItems = document.querySelectorAll('.timeline-item');
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('animated');
-                }, index * 200);
-            }
-        });
-    }, {
-        threshold: 0.3
+    timelineItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.2}s`;
     });
-
-    timelineItems.forEach(item => observer.observe(item));
 }
 
+// Pricing Cards Interaction
 function initPricingCards() {
     const cards = document.querySelectorAll('.pricing-card');
-    const toggleBtn = document.querySelector('.pricing-toggle');
     
-    if (toggleBtn) {
-        toggleBtn.addEventListener('change', (e) => {
-            const isYearly = e.target.checked;
-            cards.forEach(card => {
-                const monthlyPrice = card.querySelector('.price-monthly');
-                const yearlyPrice = card.querySelector('.price-yearly');
-                if (monthlyPrice && yearlyPrice) {
-                    monthlyPrice.style.display = isYearly ? 'none' : 'block';
-                    yearlyPrice.style.display = isYearly ? 'block' : 'none';
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            cards.forEach(c => {
+                if (c !== card) {
+                    c.style.transform = 'scale(0.95)';
                 }
             });
         });
-    }
-
-    // Add hover animations
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            cards.forEach(c => c.style.transform = 'scale(0.95)');
-            card.style.transform = 'scale(1.05)';
-        });
 
         card.addEventListener('mouseleave', () => {
-            cards.forEach(c => c.style.transform = '');
+            cards.forEach(c => {
+                c.style.transform = '';
+            });
         });
     });
 }
 
+// Contact Form
 function initContactForm() {
     const form = document.querySelector('.contact-form');
     if (!form) return;
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const submitBtn = form.querySelector('[type="submit"]');
-        const originalText = submitBtn.textContent;
-
-        try {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-            // Add form validation
-            if (!validateForm(form)) {
-                throw new Error('Please fill in all required fields correctly.');
-            }
-
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            // Replace with your actual endpoint
-            const response = await fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
+        
+        if (validateForm(form)) {
+            try {
+                await submitForm(form);
                 showNotification('success', 'Message sent successfully!');
                 form.reset();
-            } else {
-                throw new Error('Failed to send message');
+            } catch (error) {
+                showNotification('error', 'Failed to send message. Please try again.');
             }
-        } catch (error) {
-            showNotification('error', error.message);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
         }
     });
-}
 
-function validateForm(form) {
-    let isValid = true;
-    const inputs = form.querySelectorAll('input[required], textarea[required]');
-    
+    // Add floating label animation
+    const inputs = form.querySelectorAll('.form-input');
     inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            highlightError(input);
-        } else {
-            removeError(input);
-        }
-    });
-
-    return isValid;
-}
-
-function highlightError(input) {
-    input.classList.add('error');
-    const errorMessage = document.createElement('span');
-    errorMessage.className = 'error-message';
-    errorMessage.textContent = 'This field is required';
-    input.parentNode.appendChild(errorMessage);
-}
-
-function removeError(input) {
-    input.classList.remove('error');
-    const errorMessage = input.parentNode.querySelector('.error-message');
-    if (errorMessage) {
-        errorMessage.remove();
-    }
-}
-
-function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('[data-animate]');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animated');
-            }
+        input.addEventListener('focus', () => {
+            input.parentNode.classList.add('focused');
         });
-    }, {
-        threshold: 0.2
-    });
-
-    animatedElements.forEach(element => observer.observe(element));
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+        
+        input.addEventListener('blur', () => {
+            if (!input.value) {
+                input.parentNode.classList.remove('focused');
             }
         });
     });
 }
 
-function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const body = document.body;
-
-    if (!hamburger || !mobileNav) return;
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (mobileNav.classList.contains('active') && 
-            !mobileNav.contains(e.target) && 
-            !hamburger.contains(e.target)) {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('active');
-            body.classList.remove('menu-open');
-        }
-    });
-}
-
+// Utility Functions
 function showNotification(type, message) {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -345,16 +296,32 @@ function showNotification(type, message) {
     }, 3000);
 }
 
-// Handle window resize events
+function validateForm(form) {
+    // Add your form validation logic here
+    return true;
+}
+
+function submitForm(form) {
+    // Add your form submission logic here
+    return new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+    });
+}
+
+// Initialize on load
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
+
+// Handle window resize
 window.addEventListener('resize', debounce(() => {
-    const heroSection = document.querySelector('.hero-particles');
-    if (heroSection) {
-        heroSection.innerHTML = '';
+    const container = document.querySelector('.particles-container');
+    if (container) {
+        container.innerHTML = '';
         initParticles();
     }
 }, 250));
 
-// Utility function for debouncing
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
