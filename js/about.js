@@ -12,17 +12,26 @@ document.addEventListener('DOMContentLoaded', function() {
 // Parallax Effect for Hero Section
 function initParallax() {
     const parallaxLayers = document.querySelectorAll('.parallax-layer');
+    let ticking = false;
     
     window.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        parallaxLayers.forEach(layer => {
-            const speed = parseFloat(layer.getAttribute('data-speed')) || 0.2;
-            const moveX = (x * 100 * speed);
-            const moveY = (y * 100 * speed);
-            layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
-        });
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                parallaxLayers.forEach(layer => {
+                    const speed = parseFloat(layer.getAttribute('data-speed')) || 0.2;
+                    const moveX = (x * 100 * speed);
+                    const moveY = (y * 100 * speed);
+                    layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+                
+                ticking = false;
+            });
+
+            ticking = true;
+        }
     });
 }
 
@@ -53,13 +62,11 @@ function initScrollEffects() {
             header.classList.remove('scrolled');
         }
 
-        // Parallax effect for sections
-        document.querySelectorAll('.section-wrapper').forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const speed = 0.3;
-                const yPos = -(rect.top * speed);
-                section.style.backgroundPositionY = `${yPos}px`;
+        // Check if elements are in view for animations
+        const animatedElements = document.querySelectorAll('.timeline-item, .value-card, .team-card');
+        animatedElements.forEach(element => {
+            if (isElementInViewport(element)) {
+                element.classList.add('visible');
             }
         });
     }
@@ -154,22 +161,21 @@ function initStatCounters() {
     const stats = document.querySelectorAll('.stat-number');
     if (!stats.length) return;
 
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px'
-    };
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const target = parseInt(entry.target.getAttribute('data-target'));
-                if (!isNaN(target)) {
-                    animateCounter(entry.target, target);
-                    observer.unobserve(entry.target);
+                const stat = entry.target;
+                const target = parseInt(stat.getAttribute('data-target'));
+                if (!isNaN(target) && stat.textContent === '0') {
+                    animateCounter(stat, target);
                 }
+                observer.unobserve(stat);
             }
         });
-    }, observerOptions);
+    }, {
+        threshold: 0.5,
+        rootMargin: '0px'
+    });
 
     stats.forEach(stat => {
         stat.textContent = '0';
@@ -180,12 +186,12 @@ function initStatCounters() {
 function animateCounter(element, target) {
     const duration = 2000;
     const steps = 60;
+    const stepValue = target / steps;
     const stepDuration = duration / steps;
-    const increment = target / steps;
     let current = 0;
     
     const counter = setInterval(() => {
-        current += increment;
+        current += stepValue;
         if (current >= target) {
             element.textContent = target;
             clearInterval(counter);
@@ -197,7 +203,7 @@ function animateCounter(element, target) {
 
 // Section Animations
 function initSectionAnimations() {
-    const animatedElements = document.querySelectorAll('.timeline, .value-card, .team-card');
+    const animatedElements = document.querySelectorAll('.timeline-item, .value-card, .team-card');
     if (!animatedElements.length) return;
 
     const observer = new IntersectionObserver((entries) => {
@@ -239,17 +245,11 @@ function initParticles() {
             },
             opacity: {
                 value: 0.5,
-                random: false,
-                anim: {
-                    enable: false
-                }
+                random: false
             },
             size: {
                 value: 3,
-                random: true,
-                anim: {
-                    enable: false
-                }
+                random: true
             },
             line_linked: {
                 enable: true,
@@ -297,11 +297,21 @@ function initParticles() {
     });
 }
 
+// Utility function to check if element is in viewport
+function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
 // Error Handling for Image Loading
 window.addEventListener('error', function(e) {
     if (e.target.tagName === 'IMG') {
         console.warn('Failed to load image:', e.target.src);
-        // Optionally add a class to handle failed image loads
         e.target.classList.add('image-load-error');
     }
 }, true);
