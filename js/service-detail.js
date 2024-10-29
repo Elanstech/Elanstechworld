@@ -122,6 +122,58 @@ function initScrollEffects() {
         lastScroll = currentScroll;
     });
 }
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const body = document.body;
+    const menuLinks = document.querySelectorAll('.mobile-nav a');
+
+    if (!hamburger || !mobileNav) return;
+
+    hamburger.addEventListener('click', toggleMenu);
+    
+    // Close menu on link click
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+        if (mobileNav.classList.contains('active') &&
+            !mobileNav.contains(e.target) &&
+            !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        body.classList.toggle('menu-open');
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+}
+
+// Add this to the initialize function
+document.addEventListener('DOMContentLoaded', () => {
+    initMobileMenu();
+    // ... other init functions
+});
+}
 
 function showNotification(type, message) {
     const notification = document.createElement('div');
