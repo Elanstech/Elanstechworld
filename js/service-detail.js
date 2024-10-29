@@ -1,20 +1,19 @@
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initializeWebsite();
+    initializeServices();
 });
 
-function initializeWebsite() {
+function initializeServices() {
     initHeaderScroll();
     initMobileNav();
     initParticles();
-    initHeroTyping();
+    initServicesFilter();
     initScrollAnimations();
     initServiceCards();
-    initTimelineAnimations();
+    initFeatureCards();
     initPricingToggle();
     initPricingCards();
-    initContactForm();
-    initBackToTop();
+    initSmoothScroll();
 }
 
 // Header Scroll Effect
@@ -70,9 +69,10 @@ function initParticles() {
     let mouseX = 0;
     let mouseY = 0;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
+    container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
         
         particles.forEach(particle => {
             const dx = mouseX - particle.x;
@@ -122,6 +122,10 @@ function createParticle(container) {
         left: ${x}px;
         top: ${y}px;
         opacity: ${particle.alpha};
+        background: white;
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
     `;
     
     container.appendChild(element);
@@ -155,54 +159,51 @@ function updateParticle(particle, container) {
     particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
 }
 
-// Hero Typing Effect
-function initHeroTyping() {
-    const textElement = document.querySelector('.typing-text');
-    if (!textElement) return;
+// Services Filter
+function initServicesFilter() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const serviceCards = document.querySelectorAll('.service-card');
 
-    const phrases = [
-        'Professional Solutions',
-        'Creative Designs',
-        'Expert Support',
-        'Quality Service'
-    ];
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
 
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function type() {
-        const currentPhrase = phrases[phraseIndex];
-        
-        if (isDeleting) {
-            textElement.textContent = currentPhrase.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            textElement.textContent = currentPhrase.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        let typeSpeed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            isDeleting = true;
-            typeSpeed = 1500; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            typeSpeed = 500; // Pause before next phrase
-        }
-
-        setTimeout(type, typeSpeed);
-    }
-
-    type();
+            const filter = btn.dataset.filter;
+            
+            // GSAP animation for filtering
+            gsap.to(serviceCards, {
+                duration: 0.3,
+                opacity: 0,
+                y: 20,
+                stagger: 0.1,
+                onComplete: () => {
+                    // Filter service cards
+                    serviceCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                            gsap.to(card, {
+                                duration: 0.5,
+                                opacity: 1,
+                                y: 0,
+                                delay: 0.1
+                            });
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+    });
 }
 
 // Scroll Animations
 function initScrollAnimations() {
     const animatedElements = document.querySelectorAll(
-        '.service-card, .timeline-item, .pricing-card, .feature-card'
+        '.service-card, .feature-card, .pricing-card, .section-title, .section-subtitle'
     );
     
     const observer = new IntersectionObserver((entries) => {
@@ -232,28 +233,79 @@ function initServiceCards() {
     const cards = document.querySelectorAll('.service-card');
     
     cards.forEach(card => {
+        // Hover effect for card icon
+        const icon = card.querySelector('.service-icon');
         card.addEventListener('mouseenter', () => {
-            const icon = card.querySelector('.service-icon');
-            if (icon) {
-                icon.style.transform = 'rotate(0) scale(1.1)';
-            }
+            gsap.to(icon, {
+                duration: 0.3,
+                rotation: 0,
+                scale: 1.1,
+                ease: "back.out(1.7)"
+            });
         });
 
         card.addEventListener('mouseleave', () => {
-            const icon = card.querySelector('.service-icon');
-            if (icon) {
-                icon.style.transform = 'rotate(-15deg) scale(1)';
-            }
+            gsap.to(icon, {
+                duration: 0.3,
+                rotation: -15,
+                scale: 1,
+                ease: "power2.out"
+            });
         });
+
+        // Image parallax effect
+        const image = card.querySelector('.service-image img');
+        if (image) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                
+                gsap.to(image, {
+                    duration: 0.5,
+                    x: x * 10,
+                    y: y * 10,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(image, {
+                    duration: 0.5,
+                    x: 0,
+                    y: 0,
+                    ease: "power2.out"
+                });
+            });
+        }
     });
 }
 
-// Timeline Animations
-function initTimelineAnimations() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
+// Feature Cards Animation
+function initFeatureCards() {
+    const featureCards = document.querySelectorAll('.feature-card');
     
-    timelineItems.forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.2}s`;
+    featureCards.forEach(card => {
+        const icon = card.querySelector('.feature-icon');
+        
+        // Hover animations
+        card.addEventListener('mouseenter', () => {
+            gsap.to(icon, {
+                duration: 0.3,
+                rotation: 0,
+                scale: 1.1,
+                ease: "back.out(1.7)"
+            });
+        });
+
+        card.addEventListener('mouseleave', () => {
+            gsap.to(icon, {
+                duration: 0.3,
+                rotation: -15,
+                scale: 1,
+                ease: "power2.out"
+            });
+        });
     });
 }
 
@@ -263,182 +315,98 @@ function initPricingToggle() {
     const monthlyPrices = document.querySelectorAll('.price.monthly');
     const yearlyPrices = document.querySelectorAll('.price.yearly');
     const periods = document.querySelectorAll('.period');
+    const pricingCards = document.querySelectorAll('.pricing-card');
 
     if (!toggle) return;
 
     toggle.addEventListener('change', () => {
         const isYearly = toggle.checked;
         
-        monthlyPrices.forEach(price => {
-            price.style.display = isYearly ? 'none' : 'inline-block';
-        });
-        
-        yearlyPrices.forEach(price => {
-            price.style.display = isYearly ? 'inline-block' : 'none';
-        });
-        
-        periods.forEach(period => {
-            period.textContent = isYearly ? '/year' : '/month';
+        // Animate price change
+        gsap.to(pricingCards, {
+            duration: 0.3,
+            scale: 0.95,
+            opacity: 0.5,
+            stagger: 0.1,
+            onComplete: () => {
+                // Update prices display
+                monthlyPrices.forEach(price => {
+                    price.style.display = isYearly ? 'none' : 'inline-block';
+                });
+                
+                yearlyPrices.forEach(price => {
+                    price.style.display = isYearly ? 'inline-block' : 'none';
+                });
+                
+                // Update period text
+                periods.forEach(period => {
+                    period.textContent = isYearly ? '/year' : '/month';
+                });
+
+                // Animate cards back
+                gsap.to(pricingCards, {
+                    duration: 0.3,
+                    scale: 1,
+                    opacity: 1,
+                    stagger: 0.1
+                });
+            }
         });
     });
 }
 
 // Pricing Cards Interaction
 function initPricingCards() {
-    const cards = document.querySelectorAll('.pricing-card');
+    const pricingCards = document.querySelectorAll('.pricing-card');
     
-    cards.forEach(card => {
+    pricingCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
-            cards.forEach(c => {
-                if (c !== card) {
-                    c.style.transform = 'scale(0.95)';
+            // Scale down other cards
+            pricingCards.forEach(otherCard => {
+                if (otherCard !== card && !otherCard.classList.contains('featured')) {
+                    gsap.to(otherCard, {
+                        duration: 0.3,
+                        scale: 0.95,
+                        opacity: 0.7,
+                        ease: "power2.out"
+                    });
                 }
             });
         });
 
         card.addEventListener('mouseleave', () => {
-            cards.forEach(c => {
-                c.style.transform = '';
+            // Reset other cards
+            pricingCards.forEach(otherCard => {
+                if (!otherCard.classList.contains('featured')) {
+                    gsap.to(otherCard, {
+                        duration: 0.3,
+                        scale: 1,
+                        opacity: 1,
+                        ease: "power2.out"
+                    });
+                }
             });
         });
     });
 }
 
-// Contact Form
-function initContactForm() {
-    const form = document.querySelector('.contact-form');
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        if (validateForm(form)) {
-            try {
-                await submitForm(form);
-                showNotification('success', 'Message sent successfully!');
-                form.reset();
-            } catch (error) {
-                showNotification('error', 'Failed to send message. Please try again.');
-            }
-        }
-    });
-
-    // Floating label animation
-    const inputs = form.querySelectorAll('.form-input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            input.parentNode.classList.add('focused');
-        });
-        
-        input.addEventListener('blur', () => {
-            if (!input.value) {
-                input.parentNode.classList.remove('focused');
+// Smooth Scroll
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                gsap.to(window, {
+                    duration: 1,
+                    scrollTo: {
+                        y: target,
+                        offsetY: 80
+                    },
+                    ease: "power2.inOut"
+                });
             }
         });
-    });
-}
-
-// Form Validation
-function validateForm(form) {
-    let isValid = true;
-    const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-    
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            showInputError(input, 'This field is required');
-        } else {
-            clearInputError(input);
-        }
-        
-        if (input.type === 'email' && !validateEmail(input.value)) {
-            isValid = false;
-            showInputError(input, 'Please enter a valid email address');
-        }
-    });
-    
-    return isValid;
-}
-
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-
-function showInputError(input, message) {
-    const formGroup = input.closest('.form-group');
-    let errorDiv = formGroup.querySelector('.error-message');
-    
-    if (!errorDiv) {
-        errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        formGroup.appendChild(errorDiv);
-    }
-    
-    errorDiv.textContent = message;
-    input.classList.add('error');
-}
-
-function clearInputError(input) {
-    const formGroup = input.closest('.form-group');
-    const errorDiv = formGroup.querySelector('.error-message');
-    if (errorDiv) {
-        errorDiv.remove();
-    }
-    input.classList.remove('error');
-}
-
-// Notification System
-function showNotification(type, message) {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Back to Top Button
-function initBackToTop() {
-    const backToTop = document.querySelector('.back-to-top');
-    if (!backToTop) return;
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
-    backToTop.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Form Submission
-async function submitForm(form) {
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-    
-    // Replace with your actual API endpoint
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('Form submitted:', data);
-            resolve();
-        }, 1000);
     });
 }
 
@@ -463,8 +431,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Initialize on load
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-});
