@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initialize all features
+    initParallax(); // Add parallax initialization
     initParticles();
     initStatsCounter();
     initMobileNav();
@@ -19,6 +20,83 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add resize handler for responsive features
     window.addEventListener('resize', debounce(handleResize, 250));
 });
+
+// Add the Parallax initialization function
+function initParallax() {
+    const parallaxBg = document.querySelector('.parallax-bg');
+    if (!parallaxBg) return;
+
+    // Check if device is mobile or has reduced motion preference
+    const isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (isMobile || prefersReducedMotion) {
+        parallaxBg.style.transform = 'none';
+        return;
+    }
+
+    let lastScrollY = 0;
+    let ticking = false;
+
+    const updateParallax = () => {
+        const scrolled = window.scrollY;
+        if (lastScrollY === scrolled) {
+            requestAnimationFrame(updateParallax);
+            return;
+        }
+
+        const translateY = scrolled * 0.5; // Adjust speed here
+        parallaxBg.style.transform = `translate3d(0, ${translateY}px, 0)`;
+        
+        lastScrollY = scrolled;
+        ticking = false;
+    };
+
+    // Throttled scroll handler
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }, { passive: true });
+}
+
+// Update the handleResize function to include parallax handling
+function handleResize() {
+    if (window.innerWidth >= 768) {
+        const mobileNav = document.querySelector('.mobile-nav');
+        const hamburger = document.querySelector('.hamburger');
+        const parallaxBg = document.querySelector('.parallax-bg');
+        
+        // Reset mobile menu states
+        document.body.style.overflow = 'auto';
+        mobileNav?.classList.remove('active');
+        hamburger?.classList.remove('active');
+        hamburger?.setAttribute('aria-expanded', 'false');
+        
+        // Reinitialize parallax
+        if (parallaxBg) {
+            initParallax();
+        }
+        
+        // Reinitialize AOS for larger screens
+        AOS.refresh();
+        
+        // Reinitialize particles
+        initParticles();
+    } else {
+        // Mobile-specific adjustments
+        const parallaxBg = document.querySelector('.parallax-bg');
+        if (parallaxBg) {
+            parallaxBg.style.transform = 'none';
+        }
+        
+        AOS.init({
+            disable: true
+        });
+    }
+}
+
 
 // Particles Animation
 function initParticles() {
