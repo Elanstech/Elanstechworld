@@ -1,317 +1,152 @@
-// Wait for DOM to be fully loaded before initializing
+// Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initParallax();
-    initScrollEffects();
-    initMobileMenu();
-    initTypingEffect();
-    initStatCounters();
-    initSectionAnimations();
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 100
+    });
+
+    // Particles Background
     initParticles();
+    
+    // Initialize stats counter
+    initStatsCounter();
+    
+    // Initialize mobile navigation
+    initMobileNav();
+    
+    // Initialize smooth scroll
+    initSmoothScroll();
+    
+    // Initialize header scroll effect
+    initHeaderScroll();
 });
 
-// Parallax Effect for Hero Section
-function initParallax() {
-    const parallaxLayers = document.querySelectorAll('.parallax-layer');
-    let ticking = false;
-    
-    window.addEventListener('mousemove', (e) => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                parallaxLayers.forEach(layer => {
-                    const speed = parseFloat(layer.getAttribute('data-speed')) || 0.2;
-                    const moveX = (x * 100 * speed);
-                    const moveY = (y * 100 * speed);
-                    layer.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                });
-                
-                ticking = false;
-            });
+// Particles Background Initialization
+function initParticles() {
+    const particlesContainer = document.querySelector('.hero-particles');
+    if (!particlesContainer) return;
 
-            ticking = true;
-        }
+    for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Stats Counter Animation
+function initStatsCounter() {
+    const stats = document.querySelectorAll('.stat-number');
+    const circles = document.querySelectorAll('.circle-progress path.progress');
+    
+    const observerOptions = {
+        threshold: 0.5
+    };
+
+    const statsObserver = new IntersectionObserver(function(entries, observer) {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalValue = parseInt(target.dataset.target);
+                const circle = circles[index];
+                
+                animateValue(target, 0, finalValue, 2000);
+                animateCircle(circle, 0, parseInt(circle.getAttribute('stroke-dasharray')), 2000);
+                
+                observer.unobserve(target);
+            }
+        });
+    }, observerOptions);
+
+    stats.forEach(stat => {
+        statsObserver.observe(stat);
     });
 }
 
-// Scroll Effects for Header and Sections
-function initScrollEffects() {
-    const header = document.querySelector('header');
-    let lastScroll = 0;
-    let ticking = false;
-
-    window.addEventListener('scroll', () => {
-        lastScroll = window.pageYOffset;
-
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                handleScroll(lastScroll);
-                ticking = false;
-            });
-
-            ticking = true;
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + '+';
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
         }
-    }, { passive: true });
+    };
+    window.requestAnimationFrame(step);
+}
 
-    function handleScroll(scrollPos) {
-        // Header effect
-        if (scrollPos > 50) {
+function animateCircle(circle, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const value = progress * (end - start) + start;
+        circle.setAttribute('stroke-dasharray', `${value}, 100`);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// Mobile Navigation
+function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
+}
+
+// Smooth Scroll
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Header Scroll Effect
+function initHeaderScroll() {
+    const header = document.querySelector('header');
+    const scrollHandler = () => {
+        if (window.scrollY > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
+    };
 
-        // Check if elements are in view for animations
-        const animatedElements = document.querySelectorAll('.timeline-item, .value-card, .team-card');
-        animatedElements.forEach(element => {
-            if (isElementInViewport(element)) {
-                element.classList.add('visible');
-            }
-        });
-    }
+    window.addEventListener('scroll', scrollHandler);
+    // Initial check
+    scrollHandler();
 }
-
-// Mobile Menu Functionality
-function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.querySelector('.mobile-nav');
-    const body = document.body;
-
-    if (!hamburger || !mobileNav) return;
-
-    hamburger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleMobileMenu();
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-            closeMobileMenu();
-        }
-    });
-
-    // Close menu when pressing escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeMobileMenu();
-        }
-    });
-
-    function toggleMobileMenu() {
-        hamburger.classList.toggle('active');
-        mobileNav.classList.toggle('active');
-        body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-    }
-
-    function closeMobileMenu() {
-        hamburger.classList.remove('active');
-        mobileNav.classList.remove('active');
-        body.style.overflow = '';
-    }
-}
-
-// Typing Effect for Hero Section
-function initTypingEffect() {
-    const texts = [
-        "Your Partner in Technology Solutions",
-        "Innovative Tech Services",
-        "Expert Support & Guidance",
-        "Quality That Exceeds Expectations"
-    ];
-    
-    const typingElement = document.querySelector('.typing-text');
-    if (!typingElement) return;
-
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingDelay = 100;
-    const deletingDelay = 50;
-    const newTextDelay = 2000;
-
-    function type() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-            typingElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-        
-        if (!isDeleting && charIndex === currentText.length) {
-            setTimeout(() => isDeleting = true, newTextDelay);
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-        }
-        
-        const nextDelay = isDeleting ? deletingDelay : typingDelay;
-        setTimeout(type, nextDelay);
-    }
-    
-    type();
-}
-
-// Stats Counter Animation
-function initStatCounters() {
-    const stats = document.querySelectorAll('.stat-number');
-    if (!stats.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const stat = entry.target;
-                const target = parseInt(stat.getAttribute('data-target'));
-                if (!isNaN(target) && stat.textContent === '0') {
-                    animateCounter(stat, target);
-                }
-                observer.unobserve(stat);
-            }
-        });
-    }, {
-        threshold: 0.5,
-        rootMargin: '0px'
-    });
-
-    stats.forEach(stat => {
-        stat.textContent = '0';
-        observer.observe(stat);
-    });
-}
-
-function animateCounter(element, target) {
-    const duration = 2000;
-    const steps = 60;
-    const stepValue = target / steps;
-    const stepDuration = duration / steps;
-    let current = 0;
-    
-    const counter = setInterval(() => {
-        current += stepValue;
-        if (current >= target) {
-            element.textContent = target;
-            clearInterval(counter);
-        } else {
-            element.textContent = Math.round(current);
-        }
-    }, stepDuration);
-}
-
-// Section Animations
-function initSectionAnimations() {
-    const animatedElements = document.querySelectorAll('.timeline-item, .value-card, .team-card');
-    if (!animatedElements.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.3,
-        rootMargin: '0px'
-    });
-
-    animatedElements.forEach(element => observer.observe(element));
-}
-
-// Particles.js Initialization
-function initParticles() {
-    if (typeof particlesJS === 'undefined') {
-        console.warn('particles.js not loaded');
-        return;
-    }
-
-    particlesJS('particles-js', {
-        particles: {
-            number: {
-                value: 80,
-                density: {
-                    enable: true,
-                    value_area: 800
-                }
-            },
-            color: {
-                value: '#f9c200'
-            },
-            shape: {
-                type: 'circle'
-            },
-            opacity: {
-                value: 0.5,
-                random: false
-            },
-            size: {
-                value: 3,
-                random: true
-            },
-            line_linked: {
-                enable: true,
-                distance: 150,
-                color: '#f9c200',
-                opacity: 0.2,
-                width: 1
-            },
-            move: {
-                enable: true,
-                speed: 2,
-                direction: 'none',
-                random: false,
-                straight: false,
-                out_mode: 'out',
-                bounce: false
-            }
-        },
-        interactivity: {
-            detect_on: 'canvas',
-            events: {
-                onhover: {
-                    enable: true,
-                    mode: 'grab'
-                },
-                onclick: {
-                    enable: true,
-                    mode: 'push'
-                },
-                resize: true
-            },
-            modes: {
-                grab: {
-                    distance: 140,
-                    line_linked: {
-                        opacity: 1
-                    }
-                },
-                push: {
-                    particles_nb: 4
-                }
-            }
-        },
-        retina_detect: true
-    });
-}
-
-// Utility function to check if element is in viewport
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// Error Handling for Image Loading
-window.addEventListener('error', function(e) {
-    if (e.target.tagName === 'IMG') {
-        console.warn('Failed to load image:', e.target.src);
-        e.target.classList.add('image-load-error');
-    }
-}, true);
