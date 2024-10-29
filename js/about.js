@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Initialize all features
-    initParallax(); // Add parallax initialization
+    initParallax();
     initParticles();
     initStatsCounter();
     initMobileNav();
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', debounce(handleResize, 250));
 });
 
-// Add the Parallax initialization function
+// Parallax Effect
 function initParallax() {
     const parallaxBg = document.querySelector('.parallax-bg');
     if (!parallaxBg) return;
@@ -31,6 +31,7 @@ function initParallax() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (isMobile || prefersReducedMotion) {
+        // Remove any existing transforms and return
         parallaxBg.style.transform = 'none';
         return;
     }
@@ -45,7 +46,7 @@ function initParallax() {
             return;
         }
 
-        const translateY = scrolled * 0.5; // Adjust speed here
+        const translateY = scrolled * 0.5;
         parallaxBg.style.transform = `translate3d(0, ${translateY}px, 0)`;
         
         lastScrollY = scrolled;
@@ -60,43 +61,6 @@ function initParallax() {
         }
     }, { passive: true });
 }
-
-// Update the handleResize function to include parallax handling
-function handleResize() {
-    if (window.innerWidth >= 768) {
-        const mobileNav = document.querySelector('.mobile-nav');
-        const hamburger = document.querySelector('.hamburger');
-        const parallaxBg = document.querySelector('.parallax-bg');
-        
-        // Reset mobile menu states
-        document.body.style.overflow = 'auto';
-        mobileNav?.classList.remove('active');
-        hamburger?.classList.remove('active');
-        hamburger?.setAttribute('aria-expanded', 'false');
-        
-        // Reinitialize parallax
-        if (parallaxBg) {
-            initParallax();
-        }
-        
-        // Reinitialize AOS for larger screens
-        AOS.refresh();
-        
-        // Reinitialize particles
-        initParticles();
-    } else {
-        // Mobile-specific adjustments
-        const parallaxBg = document.querySelector('.parallax-bg');
-        if (parallaxBg) {
-            parallaxBg.style.transform = 'none';
-        }
-        
-        AOS.init({
-            disable: true
-        });
-    }
-}
-
 
 // Particles Animation
 function initParticles() {
@@ -138,7 +102,9 @@ function initStatsCounter() {
                 const circle = circles[index];
                 
                 animateValue(target, 0, finalValue, 2000);
-                animateCircle(circle, 0, parseInt(circle.getAttribute('stroke-dasharray')), 2000);
+                if (circle) {
+                    animateCircle(circle, 0, parseInt(circle.getAttribute('stroke-dasharray')), 2000);
+                }
                 
                 statsObserver.unobserve(target);
             }
@@ -243,23 +209,32 @@ function initHeaderScroll() {
 
 // Resize Handler
 function handleResize() {
+    const parallaxBg = document.querySelector('.parallax-bg');
+    
     if (window.innerWidth >= 768) {
+        // Reset mobile menu states and reinitialize features for desktop
         const mobileNav = document.querySelector('.mobile-nav');
         const hamburger = document.querySelector('.hamburger');
         
-        // Reset mobile menu states
         document.body.style.overflow = 'auto';
         mobileNav?.classList.remove('active');
         hamburger?.classList.remove('active');
         hamburger?.setAttribute('aria-expanded', 'false');
         
-        // Reinitialize AOS for larger screens
-        AOS.refresh();
+        // Reinitialize parallax for desktop
+        if (parallaxBg) {
+            initParallax();
+        }
         
-        // Reinitialize particles
+        AOS.refresh();
         initParticles();
     } else {
         // Mobile-specific adjustments
+        if (parallaxBg) {
+            parallaxBg.style.position = 'absolute';
+            parallaxBg.style.transform = 'none';
+        }
+        
         AOS.init({
             disable: true
         });
@@ -281,6 +256,8 @@ function animateValue(obj, start, end, duration) {
 }
 
 function animateCircle(circle, start, end, duration) {
+    if (!circle) return;
+    
     let startTimestamp = null;
     const animate = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -312,10 +289,4 @@ function updateCopyrightYear() {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
-}
-
-// Prevent scroll when menu is open (utility function)
-function preventScroll(e) {
-    e.preventDefault();
-    e.stopPropagation();
 }
