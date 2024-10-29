@@ -14,236 +14,342 @@
     <link rel="stylesheet" href="../css/services.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with transparent background -->
     <header class="header">
-        <nav class="nav-container">
-            <a href="/" class="nav-logo">
+        <div class="header-container">
+            <a href="/" class="logo">
                 <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                <span>Elan's Tech World</span>
+                <span class="logo-text">Elan's Tech World</span>
             </a>
             
-            <div class="nav-links">
-                <a href="/about">About</a>
-                <a href="/services" class="active">Services</a>
-                <a href="/projects">Projects</a>
-                <a href="/contact">Contact</a>
-            </div>
-            
-            <button class="mobile-menu-btn" aria-label="Toggle Menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/services" class="active">Services</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <button class="hamburger" aria-label="Toggle Menu">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
             </button>
-        </nav>
+        </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="menu-links">
-            <a href="/about">About</a>
-            <a href="/services" class="active">Services</a>
-            <a href="/projects">Projects</a>
-            <a href="/contact">Contact</a>
-        </div>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services" class="active">Services</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Full-width hero section with animated text -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="particle-container"></div>
+            <div class="gradient-overlay"></div>
+        </div>
         <div class="hero-content">
-            <h1>
+            <h1 class="hero-title">
                 <span class="typing-text"></span>
                 <span class="cursor">|</span>
             </h1>
-            <p class="hero-description">Empowering businesses with cutting-edge technology solutions and expert support</p>
+            <div class="hero-subtitle">
+                <span class="slide-up">Transforming Businesses</span>
+                <span class="slide-up">Through Technology</span>
+            </div>
         </div>
-        <div class="hero-background">
-            <div class="gradient-overlay"></div>
-            <div class="particle-container"></div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll to Explore</span>
         </div>
     </section>
 
-    <!-- Services Grid -->
-    <section class="services">
+    <!-- Services Section with Grid Layout -->
+    <section class="services-section">
         <div class="services-container">
-            <div class="services-header">
-                <div class="section-title">
-                    <h2>Our Services</h2>
-                    <p>Comprehensive solutions tailored to your needs</p>
-                </div>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="business">Business</button>
-                    <button class="filter-btn" data-filter="technical">Technical</button>
-                    <button class="filter-btn" data-filter="support">Support</button>
-                </div>
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-filter="all">All Services</button>
+                <button class="filter-btn" data-filter="business">Business</button>
+                <button class="filter-btn" data-filter="technical">Technical</button>
+                <button class="filter-btn" data-filter="support">Support</button>
             </div>
 
-            <div class="services-grid">
-                <!-- Business Setup -->
-                <div class="service-card" data-category="business">
-                    <div class="card-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <h3>Business Setup</h3>
-                    <ul class="service-features">
-                        <li>Complete hardware setup</li>
-                        <li>Network configuration</li>
-                        <li>Software installation</li>
-                        <li>Staff training</li>
-                    </ul>
-                    <div class="card-actions">
-                        <a href="/services/business-setup" class="btn-primary">Learn More</a>
-                        <button class="btn-secondary">Quick View</button>
-                    </div>
+<!-- Services Grid -->
+<div class="services-grid">
+    <!-- Business Computer Setup -->
+    <div class="service-card" data-category="business">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-desktop"></i>
                 </div>
-
-                <!-- Web Development -->
-                <div class="service-card" data-category="technical">
-                    <div class="card-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <ul class="service-features">
-                        <li>Custom websites</li>
-                        <li>E-commerce solutions</li>
-                        <li>Mobile optimization</li>
-                        <li>SEO implementation</li>
-                    </ul>
-                    <div class="card-actions">
-                        <a href="/services/web-development" class="btn-primary">Learn More</a>
-                        <button class="btn-secondary">Quick View</button>
-                    </div>
-                </div>
-
-            <!-- POS Systems -->
-            <div class="service-card" data-category="business">
-                <div class="card-content">
-                    <div class="service-icon">
-                        <i class="fas fa-cash-register"></i>
-                    </div>
-                    <h3>POS System Setup</h3>
-                    <div class="service-details">
-                        <ul>
-                            <li>Hardware installation</li>
-                            <li>Software configuration</li>
-                            <li>Staff training</li>
-                            <li>Ongoing support</li>
-                        </ul>
-                    </div>
-                    <div class="card-actions">
-                        <a href="pos-systems.html" class="action-btn primary">Learn More</a>
-                        <button class="action-btn secondary preview-btn">Quick View</button>
-                    </div>
-                </div>
-                <div class="card-background">
-                    <div class="glow-effect"></div>
-                </div>
+                <h3>Business Computer Setup</h3>
+                <p>Complete hardware and software solutions for your business needs</p>
             </div>
-
-            <!-- Apple Products -->
-            <div class="service-card" data-category="technical">
-                <div class="card-content">
-                    <div class="service-icon">
-                        <i class="fab fa-apple"></i>
-                    </div>
-                    <h3>Apple Product Sales</h3>
-                    <div class="service-details">
-                        <ul>
-                            <li>Latest Apple devices</li>
-                            <li>Professional setup</li>
-                            <li>Business solutions</li>
-                            <li>Technical support</li>
-                        </ul>
-                    </div>
-                    <div class="card-actions">
-                        <a href="apple-products.html" class="action-btn primary">Learn More</a>
-                        <button class="action-btn secondary preview-btn">Quick View</button>
-                    </div>
-                </div>
-                <div class="card-background">
-                    <div class="glow-effect"></div>
-                </div>
-            </div>
-
-            <!-- IT Support -->
-            <div class="service-card" data-category="support">
-                <div class="card-content">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>IT Support</h3>
-                    <div class="service-details">
-                        <ul>
-                            <li>24/7 technical support</li>
-                            <li>Remote assistance</li>
-                            <li>System maintenance</li>
-                            <li>Security updates</li>
-                        </ul>
-                    </div>
-                    <div class="card-actions">
-                        <a href="it-support.html" class="action-btn primary">Learn More</a>
-                        <button class="action-btn secondary preview-btn">Quick View</button>
-                    </div>
-                </div>
-                <div class="card-background">
-                    <div class="glow-effect"></div>
-                </div>
-            </div>
-
-            <!-- Network Solutions -->
-            <div class="service-card" data-category="technical">
-                <div class="card-content">
-                    <div class="service-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <h3>Network Solutions</h3>
-                    <div class="service-details">
-                        <ul>
-                            <li>Network design & setup</li>
-                            <li>Security implementation</li>
-                            <li>Performance monitoring</li>
-                            <li>Ongoing maintenance</li>
-                        </ul>
-                    </div>
-                    <div class="card-actions">
-                        <a href="network-solutions.html" class="action-btn primary">Learn More</a>
-                        <button class="action-btn secondary preview-btn">Quick View</button>
-                    </div>
-                </div>
-                <div class="card-background">
-                    <div class="glow-effect"></div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Complete hardware configuration</li>
+                    <li>Network setup & security</li>
+                    <li>Software installation</li>
+                    <li>Staff training</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/business-setup" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="business-setup">Quick View</button>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Web Development -->
+    <div class="service-card" data-category="technical">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom websites and web applications tailored to your needs</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Custom website design</li>
+                    <li>E-commerce solutions</li>
+                    <li>Mobile optimization</li>
+                    <li>SEO implementation</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/web-development" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="web-development">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POS System Setup -->
+    <div class="service-card" data-category="business">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-cash-register"></i>
+                </div>
+                <h3>POS System Setup</h3>
+                <p>Complete point of sale solutions for retail businesses</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Hardware installation</li>
+                    <li>Software configuration</li>
+                    <li>Staff training</li>
+                    <li>Ongoing support</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/pos-systems" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="pos-systems">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apple Product Sales -->
+    <div class="service-card" data-category="technical">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <h3>Apple Product Sales</h3>
+                <p>Premium Apple devices and professional setup services</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Latest Apple devices</li>
+                    <li>Professional setup</li>
+                    <li>Business solutions</li>
+                    <li>Technical support</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/apple-products" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="apple-products">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IT Support -->
+    <div class="service-card" data-category="support">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>IT Support</h3>
+                <p>Comprehensive technical support and maintenance services</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>24/7 technical support</li>
+                    <li>Remote assistance</li>
+                    <li>System maintenance</li>
+                    <li>Security updates</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/it-support" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="it-support">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Network Solutions -->
+    <div class="service-card" data-category="technical">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Network Solutions</h3>
+                <p>Professional networking and infrastructure services</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Network design & setup</li>
+                    <li>Security implementation</li>
+                    <li>Performance monitoring</li>
+                    <li>Ongoing maintenance</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/network-solutions" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="network-solutions">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Backup & Recovery -->
+    <div class="service-card" data-category="support">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3>Data Backup & Recovery</h3>
+                <p>Secure data protection and recovery solutions</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Automated backups</li>
+                    <li>Cloud storage solutions</li>
+                    <li>Data recovery services</li>
+                    <li>Disaster recovery planning</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/data-backup" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="data-backup">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cybersecurity -->
+    <div class="service-card" data-category="technical">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Cybersecurity</h3>
+                <p>Advanced security solutions for your business</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Security assessments</li>
+                    <li>Firewall configuration</li>
+                    <li>Threat monitoring</li>
+                    <li>Employee training</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/cybersecurity" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="cybersecurity">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Services -->
+    <div class="service-card" data-category="technical">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="service-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3>Cloud Services</h3>
+                <p>Scalable cloud solutions for modern businesses</p>
+            </div>
+            <div class="card-back">
+                <ul class="service-features">
+                    <li>Cloud migration</li>
+                    <li>Microsoft 365 setup</li>
+                    <li>Cloud storage</li>
+                    <li>Remote workspace setup</li>
+                </ul>
+                <div class="card-actions">
+                    <a href="/services/cloud-services" class="btn-primary">Learn More</a>
+                    <button class="btn-secondary modal-trigger" data-service="cloud-services">Quick View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </section>
 
-    <!-- Footer -->
+   <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Elan's Tech World</h3>
-                <p>Your Technology Partner</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="/about">About</a>
-                <a href="/services">Services</a>
-                <a href="/projects">Projects</a>
-                <a href="/contact">Contact</a>
-            </div>
-            <div class="footer-social">
-                <h4>Follow Us</h4>
-                <div class="social-icons">
-                    <a href="https://instagram.com/elan_tech_world" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Elan's Tech World</h3>
+                    <p>Your Partner in Technology</p>
+                    <p>&copy; 2024 All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/elan_tech_world" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Service Modal Template -->
+    <div class="service-modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body"></div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
