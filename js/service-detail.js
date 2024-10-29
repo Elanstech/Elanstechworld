@@ -1,4 +1,4 @@
-// Wait for DOM to be fully loaded
+// Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeWebsite();
 });
@@ -11,6 +11,7 @@ function initializeWebsite() {
     initScrollAnimations();
     initServiceCards();
     initTimelineAnimations();
+    initPricingToggle();
     initPricingCards();
     initContactForm();
     initBackToTop();
@@ -35,30 +36,20 @@ function initMobileNav() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.querySelector('.mobile-nav');
     const body = document.body;
-    let isOpen = false;
 
     hamburger?.addEventListener('click', () => {
-        isOpen = !isOpen;
-        
-        if (isOpen) {
-            mobileNav.style.transform = 'translateX(0)';
-            hamburger.classList.add('active');
-            body.style.overflow = 'hidden';
-        } else {
-            mobileNav.style.transform = 'translateX(100%)';
-            hamburger.classList.remove('active');
-            body.style.overflow = '';
-        }
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
     });
 
     // Close mobile nav when clicking links
     const mobileLinks = document.querySelectorAll('.mobile-nav a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileNav.style.transform = 'translateX(100%)';
             hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
             body.style.overflow = '';
-            isOpen = false;
         });
     });
 }
@@ -138,7 +129,6 @@ function createParticle(container) {
 }
 
 function updateParticle(particle, container) {
-    // Update position
     particle.x += particle.vx;
     particle.y += particle.vy;
     
@@ -162,11 +152,10 @@ function updateParticle(particle, container) {
         particle.vy *= -1;
     }
     
-    // Apply position
     particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
 }
 
-// Typing Effect
+// Hero Typing Effect
 function initHeroTyping() {
     const textElement = document.querySelector('.typing-text');
     if (!textElement) return;
@@ -265,6 +254,32 @@ function initTimelineAnimations() {
     
     timelineItems.forEach((item, index) => {
         item.style.animationDelay = `${index * 0.2}s`;
+    });
+}
+
+// Pricing Toggle
+function initPricingToggle() {
+    const toggle = document.getElementById('billingToggle');
+    const monthlyPrices = document.querySelectorAll('.price.monthly');
+    const yearlyPrices = document.querySelectorAll('.price.yearly');
+    const periods = document.querySelectorAll('.period');
+
+    if (!toggle) return;
+
+    toggle.addEventListener('change', () => {
+        const isYearly = toggle.checked;
+        
+        monthlyPrices.forEach(price => {
+            price.style.display = isYearly ? 'none' : 'inline-block';
+        });
+        
+        yearlyPrices.forEach(price => {
+            price.style.display = isYearly ? 'inline-block' : 'none';
+        });
+        
+        periods.forEach(period => {
+            period.textContent = isYearly ? '/year' : '/month';
+        });
     });
 }
 
@@ -413,13 +428,28 @@ function initBackToTop() {
     });
 }
 
-// Form Submission (Replace with your actual API endpoint)
-function submitForm(form) {
+// Form Submission
+async function submitForm(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Replace with your actual API endpoint
     return new Promise((resolve) => {
-        // Simulate API call
-        setTimeout(resolve, 1000);
+        setTimeout(() => {
+            console.log('Form submitted:', data);
+            resolve();
+        }, 1000);
     });
 }
+
+// Handle Window Resize
+window.addEventListener('resize', debounce(() => {
+    const container = document.querySelector('.particles-container');
+    if (container) {
+        container.innerHTML = '';
+        initParticles();
+    }
+}, 250));
 
 // Utility Functions
 function debounce(func, wait) {
@@ -433,15 +463,6 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Handle Window Resize
-window.addEventListener('resize', debounce(() => {
-    const container = document.querySelector('.particles-container');
-    if (container) {
-        container.innerHTML = '';
-        initParticles();
-    }
-}, 250));
 
 // Initialize on load
 window.addEventListener('load', () => {
