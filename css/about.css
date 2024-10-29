@@ -1,7 +1,17 @@
+/* about.css */
+:root {
+    --primary-color: #f9c200;
+    --secondary-color: #0b1f3f;
+    --text-color: #ffffff;
+    --transition-speed: 0.3s;
+    --gradient-primary: linear-gradient(45deg, #f9c200, #ff6a00);
+    --gradient-dark: linear-gradient(rgba(11, 31, 63, 0.8), rgba(11, 31, 63, 0.9));
+}
+
 /* About Hero Section */
 .about-hero {
     min-height: 100vh;
-    background: linear-gradient(rgba(11, 31, 63, 0.8), rgba(11, 31, 63, 0.9)),
+    background: var(--gradient-dark),
                 url('../assets/images/about-hero-bg.jpg') no-repeat center center;
     background-size: cover;
     display: flex;
@@ -17,7 +27,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, transparent 20%, #0b1f3f 90%);
+    background: radial-gradient(circle, transparent 20%, var(--secondary-color) 90%);
 }
 
 .about-hero-content {
@@ -30,11 +40,12 @@
 
 /* Glowing Text Effect */
 .glowing-text {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 20px;
-    background: linear-gradient(45deg, #f9c200, #ff6a00);
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 10px rgba(249, 194, 0, 0.3);
     animation: glow 2s ease-in-out infinite alternate;
@@ -51,12 +62,15 @@
 
 /* Typing Animation */
 .typing-animation {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     margin-bottom: 40px;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 2px solid #f9c200;
+    border-right: 2px solid var(--primary-color);
     animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @keyframes typing {
@@ -66,7 +80,7 @@
 
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: #f9c200 }
+    50% { border-color: var(--primary-color) }
 }
 
 /* Stats Section */
@@ -77,14 +91,14 @@
 .stat-items-wrapper {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: clamp(30px, 5vw, 60px);
     flex-wrap: wrap;
 }
 
 .stat-item {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: clamp(150px, 20vw, 200px);
+    height: clamp(150px, 20vw, 200px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +122,7 @@
 }
 
 .circle-progress path.progress {
-    stroke: #f9c200;
+    stroke: var(--primary-color);
     stroke-dasharray: 0, 100;
     transition: stroke-dasharray 2s ease;
 }
@@ -119,13 +133,23 @@
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
     font-weight: 700;
-    color: #f9c200;
+    color: var(--primary-color);
     display: block;
 }
 
-/* Journey Cards */
+.stat-label {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    opacity: 0.9;
+}
+
+/* Journey Section Styles */
+.journey-section {
+    padding: 100px 20px;
+    background: var(--secondary-color);
+}
+
 .journey-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -164,29 +188,29 @@
     align-items: center;
     text-align: center;
 }
+
 .journey-card-front {
     background: rgba(249, 194, 0, 0.1);
     border: 1px solid rgba(249, 194, 0, 0.2);
 }
 
 .journey-card-back {
-    background: #f9c200;
-    color: #0b1f3f;
+    background: var(--primary-color);
+    color: var(--secondary-color);
     transform: rotateY(180deg);
 }
 
-.year {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #f9c200;
-    margin-bottom: 15px;
-}
-
-/* Values Section */
+/* Values Section Styles */
 .values-section {
     background: linear-gradient(45deg, rgba(11, 31, 63, 0.95), rgba(11, 31, 63, 0.98));
-    padding: 100px 0;
-    position: relative;
+    padding: 100px 20px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .value-card {
@@ -196,52 +220,21 @@
     text-align: center;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform var(--transition-speed) ease;
     border: 1px solid rgba(249, 194, 0, 0.1);
 }
 
-.value-icon-wrapper {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    background: rgba(249, 194, 0, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-}
-
-.value-card:hover .value-icon-wrapper {
-    transform: scale(1.1);
-}
-
-.value-card i {
-    font-size: 2.5rem;
-    color: #f9c200;
-    transition: transform 0.3s ease;
-}
-
-.value-hover-effect {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(249, 194, 0, 0.1) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.value-card:hover .value-hover-effect {
-    opacity: 1;
-}
-
-/* Team Section */
+/* Team Section Styles */
 .team-section {
-    padding: 100px 0;
+    padding: 100px 20px;
     background: rgba(11, 31, 63, 0.9);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .team-card {
@@ -249,155 +242,24 @@
     overflow: hidden;
     border-radius: 15px;
     background: rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.team-card-inner {
-    padding: 20px;
-}
-
-.team-image-wrapper {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #f9c200;
-    transition: transform 0.3s ease;
-}
-
-.team-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.team-card:hover .team-image-wrapper img {
-    transform: scale(1.1);
-}
-
-.team-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(249, 194, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.team-card:hover .team-overlay {
-    opacity: 1;
-}
-
-.team-social a {
-    color: #0b1f3f;
-    font-size: 2rem;
-    transition: transform 0.3s ease;
-}
-
-.team-social a:hover {
-    transform: scale(1.2);
-}
-
-.team-info {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.team-info h3 {
-    color: #f9c200;
-    margin-bottom: 5px;
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    opacity: 0.7;
-    animation: bounce 2s infinite;
-}
-
-.mouse {
-    width: 30px;
-    height: 50px;
-    border: 2px solid #f9c200;
-    border-radius: 15px;
-    position: relative;
-}
-
-.wheel {
-    width: 4px;
-    height: 8px;
-    background: #f9c200;
-    border-radius: 2px;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scroll 1.5s infinite;
-}
-
-.arrow {
-    width: 20px;
-    height: 20px;
-    border-right: 2px solid #f9c200;
-    border-bottom: 2px solid #f9c200;
-    transform: rotate(45deg);
-}
-
-@keyframes scroll {
-    0% { transform: translate(-50%, 0); opacity: 1; }
-    100% { transform: translate(-50%, 20px); opacity: 0; }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
+    transition: transform var(--transition-speed) ease;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .glowing-text {
-        font-size: 2.5rem;
+    .container {
+        padding: 0 20px;
     }
-
-    .typing-animation {
-        font-size: 1.2rem;
-    }
-
-    .stat-items-wrapper {
-        gap: 30px;
-    }
-
-    .stat-item {
-        width: 150px;
-        height: 150px;
-    }
-
+    
     .journey-cards {
         grid-template-columns: 1fr;
     }
-
+    
     .values-grid {
         grid-template-columns: 1fr;
     }
-
-    .team-image-wrapper {
-        width: 150px;
-        height: 150px;
+    
+    .team-grid {
+        grid-template-columns: 1fr;
     }
 }
