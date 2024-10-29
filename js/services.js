@@ -1,159 +1,84 @@
-// Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initParticles();
-    initServiceFilters();
-    initScrollAnimations();
     initServiceModals();
-    initHoverEffects();
-    observeServices();
+    initScrollAnimations();
 });
 
-// Particle Animation System
+// Particle System
 function initParticles() {
     const particlesContainer = document.querySelector('.hero-particles');
     if (!particlesContainer) return;
 
     const particleCount = window.innerWidth < 768 ? 30 : 50;
-    const particles = [];
-
+    
     function createParticle() {
         const particle = document.createElement('div');
         particle.className = 'particle';
         
         const size = Math.random() * 4 + 2;
-        const initialX = Math.random() * 100;
-        const initialY = Math.random() * 100;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
         
-        particle.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            left: ${initialX}%;
-            top: ${initialY}%;
-            background: rgba(249, 194, 0, ${Math.random() * 0.5 + 0.3});
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            transition: transform 1s ease;
-        `;
+        // Random starting position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
         
-        particles.push(particle);
+        // Random animation properties
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 2;
+        
+        particle.style.animation = `float ${duration}s ease-in-out infinite ${delay}s`;
+        particle.style.opacity = Math.random() * 0.5 + 0.3;
+        
         particlesContainer.appendChild(particle);
         
-        // Animate particle
-        animateParticle(particle);
-    }
-
-    function animateParticle(particle) {
-        const newX = Math.random() * 100;
-        const newY = Math.random() * 100;
-        
-        particle.style.transform = `translate(${newX - parseFloat(particle.style.left)}%, ${newY - parseFloat(particle.style.top)}%)`;
-        
+        // Remove particle after animation
         setTimeout(() => {
             if (particle.parentElement) {
-                particle.remove();
-                particles.splice(particles.indexOf(particle), 1);
-                createParticle();
+                particle.parentElement.removeChild(particle);
             }
-        }, 5000);
+        }, duration * 1000);
     }
-
+    
     // Create initial particles
     for (let i = 0; i < particleCount; i++) {
         createParticle();
     }
-}
-
-// Service Filtering System
-function initServiceFilters() {
-    const filterButtons = document.querySelectorAll('.nav-btn');
-    const serviceCards = document.querySelectorAll('.service-card');
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Update active button state
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            const filter = button.dataset.filter;
-            
-            // Animate cards
-            serviceCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    gsap.to(card, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.4,
-                        ease: "power2.out",
-                        clearProps: "transform"
-                    });
-                } else {
-                    gsap.to(card, {
-                        scale: 0.95,
-                        opacity: 0.5,
-                        duration: 0.4,
-                        ease: "power2.out"
-                    });
-                }
-            });
-        });
-    });
+    // Continuously create new particles
+    setInterval(() => {
+        if (particlesContainer.children.length < particleCount) {
+            createParticle();
+        }
+    }, 300);
 }
 
-// Scroll Animations
-function initScrollAnimations() {
-    const heroContent = document.querySelector('.hero-content');
-    const servicesNav = document.querySelector('.services-nav');
-    
-    // Hero parallax effect
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        if (heroContent) {
-            heroContent.style.transform = `translateY(${scrolled * 0.4}px)`;
-            heroContent.style.opacity = 1 - (scrolled / 500);
-        }
-        
-        // Sticky nav effect
-        if (servicesNav) {
-            if (scrolled > 100) {
-                servicesNav.classList.add('sticky');
-            } else {
-                servicesNav.classList.remove('sticky');
-            }
-        }
-    });
-}
-
-// Service Modal System
+// Service Modals
 function initServiceModals() {
     const previewButtons = document.querySelectorAll('.preview-btn');
     
     previewButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            const serviceCard = button.closest('.service-card');
-            const serviceName = serviceCard.querySelector('h3').textContent;
-            const serviceDetails = serviceCard.querySelector('.service-details').innerHTML;
-            
-            createModal(serviceName, serviceDetails);
+            const serviceId = button.closest('.service-item').dataset.service;
+            createModal(getModalContent(serviceId));
         });
     });
 }
 
-function createModal(title, content) {
+function createModal(content) {
+    // Remove any existing modals
+    const existingModal = document.querySelector('.service-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
     const modal = document.createElement('div');
     modal.className = 'service-modal';
-    
     modal.innerHTML = `
-        <div class="modal-overlay"></div>
         <div class="modal-content">
             <button class="modal-close">&times;</button>
-            <h3>${title}</h3>
             ${content}
-            <div class="modal-cta">
-                <a href="contact.html" class="action-btn primary">Get Started</a>
-                <button class="action-btn secondary">Contact Us</button>
-            </div>
         </div>
     `;
     
@@ -167,104 +92,95 @@ function createModal(title, content) {
     
     // Close handlers
     const closeBtn = modal.querySelector('.modal-close');
-    const overlay = modal.querySelector('.modal-overlay');
     
     function closeModal() {
         modal.classList.remove('active');
+        document.body.style.overflow = '';
         setTimeout(() => {
             modal.remove();
-            document.body.style.overflow = '';
         }, 300);
     }
     
     closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', closeModal);
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-    });
-}
-
-// Card Hover Effects
-function initHoverEffects() {
-    const cards = document.querySelectorAll('.service-card');
     
-    cards.forEach(card => {
-        const cardContent = card.querySelector('.card-content');
-        
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-            
-            card.style.transform = `
-                perspective(1000px)
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                scale(1.02)
-            `;
-            
-            cardContent.style.transform = `translateZ(50px)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'none';
-            cardContent.style.transform = 'none';
-        });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
     });
 }
 
-// Intersection Observer for scroll-based animations
-function observeServices() {
-    const options = {
-        threshold: 0.2,
-        rootMargin: '0px'
+function getModalContent(serviceId) {
+    const services = {
+        'business-setup': {
+            title: 'Business Computer Setup',
+            description: 'Complete IT infrastructure setup tailored for your business needs.',
+            features: [
+                'Hardware procurement and installation',
+                'Network configuration and security',
+                'Software deployment and updates',
+                'Data backup solutions',
+                'Employee training and support',
+                'Performance monitoring'
+            ]
+        },
+        // Add other services here with their details
     };
+    
+    const service = services[serviceId] || {
+        title: 'Service Details',
+        description: 'Contact us for more information about this service.',
+        features: ['Custom solutions available']
+    };
+    
+    return `
+        <div class="modal-header">
+            <h3>${service.title}</h3>
+            <p class="modal-description">${service.description}</p>
+        </div>
+        <div class="modal-features">
+            <h4>Key Features</h4>
+            <ul>
+                ${service.features.map(feature => `
+                    <li>${feature}</li>
+                `).join('')}
+            </ul>
+        </div>
+        <div class="modal-cta">
+            <a href="contact.html" class="btn-primary">Get Started</a>
+            <button class="btn-secondary" onclick="window.location.href='tel:+1234567890'">
+                Call Now
+            </button>
+        </div>
+    `;
+}
+
+// Scroll Animations
+function initScrollAnimations() {
+    const services = document.querySelectorAll('.service-item');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                gsap.from(entry.target, {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power3.out"
-                });
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
                 observer.unobserve(entry.target);
             }
         });
-    }, options);
+    }, {
+        threshold: 0.1
+    });
     
-    document.querySelectorAll('.service-card').forEach(card => {
-        observer.observe(card);
+    services.forEach(service => {
+        service.style.opacity = '0';
+        service.style.transform = 'translateY(20px)';
+        service.style.transition = 'all 0.6s ease';
+        observer.observe(service);
     });
 }
-
-// Utility function to handle window resize
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Handle window resize
-window.addEventListener('resize', debounce(() => {
-    // Reinitialize particles on window resize
-    const particlesContainer = document.querySelector('.hero-particles');
-    if (particlesContainer) {
-        particlesContainer.innerHTML = '';
-        initParticles();
-    }
-}, 250));
