@@ -467,6 +467,95 @@ img {
 .filter-btn.active {
     background: var(--gradient-primary);
 }
+/* Scroll Mouse Styles */
+.scroll-mouse-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-light);
+    border-radius: 25px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.mouse::before {
+    content: '';
+    width: 4px;
+    height: 8px;
+    background: var(--primary-color);
+    position: absolute;
+    top: 8px;
+    border-radius: 2px;
+    animation: scrollWheel 1.5s cubic-bezier(0.76, 0, 0.3, 1) infinite;
+}
+
+.scroll-text {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+@keyframes scrollWheel {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+    .scroll-mouse-container {
+        bottom: 1rem;
+    }
+    
+    .mouse {
+        width: 24px;
+        height: 40px;
+    }
+    
+    .scroll-text {
+        font-size: 0.75rem;
+    }
+}
+
+/* Hide when user has scrolled */
+.scroll-mouse-container.hidden {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    transition: all 0.3s ease;
+}
 
 /* Services Grid */
 .services-grid {
@@ -494,6 +583,7 @@ img {
 .service-card:hover .card-inner {
     transform: rotateY(180deg);
 }
+
 
 .card-front,
 .card-back {
