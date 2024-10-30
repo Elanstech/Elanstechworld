@@ -1,79 +1,25 @@
-// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize GSAP
-    gsap.registerPlugin(ScrollTrigger);
+    initHeaderScroll();
+    initMobileMenu();
+    initSlideshow();
+    initParticles();
+    initAnimations();
+});
 
-    // DOM Elements
-    const header = document.querySelector('.header');
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuItems = document.querySelectorAll('.mobile-menu ul li');
-    const heroTitle = document.querySelector('.hero__title');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    // Preloader
-    const preloader = document.querySelector('.preloader');
-    window.addEventListener('load', () => {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-            // Start hero animations after preloader
-            startHeroAnimations();
-        }, 500);
-    });
-
-    // Hero Animations
-    function startHeroAnimations() {
-        const tl = gsap.timeline();
-
-        tl.from('.hero__badge', {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        })
-        .from('.hero__title-line', {
-            y: 50,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'power3.out'
-        })
-        .from('.hero__description', {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        })
-        .from('.hero__cta', {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        })
-        .from('.scroll-indicator', {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
-    }
-
-    // Header Scroll Effect
+// Header Scroll Effect
+function initHeaderScroll() {
+    const header = document.querySelector('header');
     let lastScroll = 0;
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-
-        // Add/remove scrolled class
+        
         if (currentScroll > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
         }
 
-        // Hide/show header on scroll direction
         if (currentScroll > lastScroll && currentScroll > 500) {
             header.style.transform = 'translateY(-100%)';
         } else {
@@ -82,156 +28,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lastScroll = currentScroll;
     });
+}
 
-    // Mobile Menu Toggle
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
+// Mobile Menu
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const menuLinks = document.querySelectorAll('.mobile-nav a');
+
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
         document.body.classList.toggle('no-scroll');
 
-        // Animate menu items
-        if (mobileMenu.classList.contains('active')) {
-            gsap.to(mobileMenuItems, {
-                y: 0,
-                opacity: 1,
-                duration: 0.5,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
-        } else {
-            gsap.to(mobileMenuItems, {
-                y: 20,
-                opacity: 0,
-                duration: 0.5,
-                stagger: 0.1,
-                ease: 'power3.in'
-            });
-        }
+        // Animate menu items if menu is active
+        menuLinks.forEach((link, index) => {
+            if (mobileNav.classList.contains('active')) {
+                link.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1}s`;
+            } else {
+                link.style.animation = '';
+            }
+        });
     });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (mobileMenu.classList.contains('active') && 
-            !mobileMenu.contains(e.target) && 
-            !menuToggle.contains(e.target)) {
-            menuToggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
+    // Close menu on link click
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
             document.body.classList.remove('no-scroll');
-        }
-    });
-
-    // Smooth Scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                // Close mobile menu if open
-                if (mobileMenu.classList.contains('active')) {
-                    menuToggle.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.classList.remove('no-scroll');
-                }
-
-                // Smooth scroll to target
-                gsap.to(window, {
-                    duration: 1,
-                    scrollTo: {
-                        y: target,
-                        offsetY: 80
-                    },
-                    ease: 'power3.inOut'
-                });
-            }
         });
     });
+}
 
-    // Portfolio Filter
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+// Hero Slideshow
+function initSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
 
-            const filter = btn.getAttribute('data-filter');
+    function nextSlide() {
+        slides[currentSlide].style.opacity = '0';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.opacity = '1';
+    }
 
-            // Filter items with animation
-            portfolioItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
-                    gsap.to(item, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.4,
-                        ease: 'power3.out',
-                        onStart: () => item.style.display = 'block'
-                    });
-                } else {
-                    gsap.to(item, {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.4,
-                        ease: 'power3.in',
-                        onComplete: () => item.style.display = 'none'
-                    });
-                }
-            });
-        });
-    });
+    // Set first slide as visible
+    slides[0].style.opacity = '1';
 
-    // Initialize Swiper for testimonials
-    const testimonialsSwiper = new Swiper('.testimonials-slider', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            768: {
-                slidesPerView: 2,
-            },
-            1200: {
-                slidesPerView: 3,
-            }
-        }
-    });
+    // Change slide every 5 seconds
+    setInterval(nextSlide, 5000);
+}
 
-    // FAQ Accordion
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            const isOpen = item.classList.contains('active');
-            
-            // Close all items
-            faqItems.forEach(faq => {
-                faq.classList.remove('active');
-                const answer = faq.querySelector('.faq-answer');
-                answer.style.maxHeight = null;
-            });
-
-            // Open clicked item if it was closed
-            if (!isOpen) {
-                item.classList.add('active');
-                const answer = item.querySelector('.faq-answer');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-            }
-        });
-    });
-
-    // Initialize AOS
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100
-    });
-
-    // Initialize Particles.js for hero background
+// Particles.js Configuration
+function initParticles() {
     particlesJS('particles-js', {
         particles: {
             number: {
@@ -249,13 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             opacity: {
                 value: 0.5,
-                random: true,
-                animation: {
-                    enable: true,
-                    speed: 1,
-                    minimumValue: 0.1,
-                    sync: false
-                }
+                random: true
             },
             size: {
                 value: 3,
@@ -274,17 +117,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 direction: 'none',
                 random: false,
                 straight: false,
-                outMode: 'out'
+                out_mode: 'out',
+                bounce: false
             }
         },
         interactivity: {
-            detectOn: 'canvas',
+            detect_on: 'canvas',
             events: {
-                onHover: {
+                onhover: {
                     enable: true,
                     mode: 'grab'
                 },
-                onClick: {
+                onclick: {
                     enable: true,
                     mode: 'push'
                 },
@@ -293,52 +137,58 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         retina_detect: true
     });
+}
 
-    // Scroll Animations
-    // Process Section
-    gsap.from('.process-step', {
-        scrollTrigger: {
-            trigger: '.process-timeline',
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse'
-        },
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.3,
-        ease: 'power3.out'
+// Scroll Animations
+function initAnimations() {
+    // Observe sections for animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+            }
+        });
+    }, {
+        threshold: 0.1
     });
 
-    // Stats Counter Animation
-    const statsSection = document.querySelector('.stats');
-    const statNumbers = document.querySelectorAll('.stat-card__number .number');
+    // Observe all sections
+    document.querySelectorAll('.section-wrapper').forEach(section => {
+        observer.observe(section);
+    });
 
-    function animateStats() {
-        statNumbers.forEach(number => {
-            const target = parseInt(number.closest('.stat-card').dataset.value);
-            const increment = target / 50;
-            let current = 0;
+    // Animate package cards
+    document.querySelectorAll('.package-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
 
-            const updateNumber = () => {
-                if (current < target) {
-                    current += increment;
-                    number.textContent = Math.round(current);
-                    requestAnimationFrame(updateNumber);
-                } else {
-                    number.textContent = target;
-                }
-            };
+    // Animate process steps
+    document.querySelectorAll('.process-step').forEach((step, index) => {
+        step.style.animationDelay = `${index * 0.2}s`;
+    });
 
-            updateNumber();
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
-    }
+    });
+}
 
-    // Trigger stats animation when in view
-    ScrollTrigger.create({
-        trigger: statsSection,
-        start: 'top 80%',
-        onEnter: animateStats,
-        once: true
+// Portfolio Items Hover Effect
+document.querySelectorAll('.portfolio-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        this.querySelector('.portfolio-overlay').style.opacity = '1';
+    });
+
+    item.addEventListener('mouseleave', function() {
+        this.querySelector('.portfolio-overlay').style.opacity = '0';
     });
 });
