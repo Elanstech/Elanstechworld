@@ -11,474 +11,634 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="../css/service-detail.css">
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <circle id="test" cx="40" cy="40" r="32"></circle>
+            </svg>
+        </div>
+        <div class="loader triangle">
+            <svg viewBox="0 0 86 80">
+                <polygon points="43 8 79 72 7 72"></polygon>
+            </svg>
+        </div>
+        <div class="loader">
+            <svg viewBox="0 0 80 80">
+                <rect x="8" y="8" width="64" height="64"></rect>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <!-- Header -->
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                <span class="logo-text">Elan's Tech World</span>
+                <div class="logo-wrapper">
+                    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                    <div class="logo-text">
+                        <span class="text-top">Elan's</span>
+                        <span class="text-bottom">Tech World</span>
+                    </div>
+                </div>
             </a>
             
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html" class="active">Services</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#" class="nav-link" data-text="Home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-text="About">About</a></li>
+                    <li><a href="#" class="nav-link active" data-text="Services">Services</a></li>
+                    <li><a href="#" class="nav-link" data-text="Projects">Projects</a></li>
+                    <li><a href="#" class="nav-link" data-text="Contact">Contact</a></li>
                 </ul>
             </nav>
 
-            <button class="hamburger" aria-label="Toggle Menu">
-                <div></div>
-                <div></div>
-                <div></div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <div class="menu-toggle__lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </button>
         </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html" class="active">Services</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <div class="mobile-menu">
+        <div class="mobile-menu__background"></div>
+        <nav class="mobile-menu__content">
+            <ul>
+                <li><a href="#" data-text="Home">Home</a></li>
+                <li><a href="#" data-text="About">About</a></li>
+                <li><a href="#" data-text="Services">Services</a></li>
+                <li><a href="#" data-text="Projects">Projects</a></li>
+                <li><a href="#" data-text="Contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu__footer">
+                <div class="social-links">
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="hero-background">
-            <div class="particles-container"></div>
-            <!-- Gradient overlays for more depth -->
-            <div class="gradient-overlay-1"></div>
-            <div class="gradient-overlay-2"></div>
-            <!-- Animated shapes -->
-            <div class="floating-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-                <div class="shape shape-4"></div>
+    <section class="hero">
+        <div class="hero__background">
+            <canvas id="noiseCanvas"></canvas>
+            <div class="hero__overlay"></div>
+        </div>
+        <div class="hero__content">
+            <div class="hero__text-content">
+                <div class="hero__badge">
+                    <span class="badge__text">Professional Technology Solutions</span>
+                    <div class="badge__decoration"></div>
+                </div>
+                <h1 class="hero__title split-text">
+                    <span class="hero__title-line">Empowering Your</span>
+                    <span class="hero__title-line">Digital Journey</span>
+                </h1>
+                <p class="hero__description split-text">From custom business solutions to expert technical support, we're here to transform your vision into reality.</p>
+                <div class="hero__cta">
+                    <a href="#services" class="btn btn--primary">
+                        <span class="btn__text">Explore Services</span>
+                        <span class="btn__icon">
+                            <svg width="13px" height="10px" viewBox="0 0 13 10">
+                                <path d="M1,5 L11,5"></path>
+                                <polyline points="8 1 12 5 8 9"></polyline>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="#contact" class="btn btn--secondary">
+                        <span class="btn__text">Get Started</span>
+                        <span class="btn__icon">
+                            <i class="fas fa-rocket"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero__scroll-indicator">
+                <div class="scroll-indicator__mouse">
+                    <div class="scroll-indicator__wheel"></div>
+                </div>
+                <span class="scroll-indicator__text">Scroll to Explore</span>
             </div>
         </div>
-        <div class="hero-content">
-            <span class="hero-badge">Professional Technology Solutions</span>
-            <h1 class="hero-title">Empowering Your Digital Journey</h1>
-            <p class="hero-description">From custom business solutions to expert technical support, we're here to transform your vision into reality.</p>
-            <div class="hero-cta">
-                <a href="#services" class="hero-btn primary">
-                    <span>Explore Services</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="contact.html" class="hero-btn secondary">
-                    <span>Get Started</span>
-                    <i class="fas fa-rocket"></i>
-                </a>
+        <div class="hero__particles"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats__grid">
+                <div class="stat-card" data-value="500">
+                    <div class="stat-card__number">
+                        <span class="number">0</span>
+                        <span class="symbol">+</span>
+                    </div>
+                    <div class="stat-card__label">Projects Completed</div>
+                </div>
+                <div class="stat-card" data-value="98">
+                    <div class="stat-card__number">
+                        <span class="number">0</span>
+                        <span class="symbol">%</span>
+                    </div>
+                    <div class="stat-card__label">Client Satisfaction</div>
+                </div>
+                <div class="stat-card" data-value="15">
+                    <div class="stat-card__number">
+                        <span class="number">0</span>
+                        <span class="symbol">+</span>
+                    </div>
+                    <div class="stat-card__label">Years Experience</div>
+                </div>
+                <div class="stat-card" data-value="24">
+                    <div class="stat-card__number">
+                        <span class="number">0</span>
+                        <span class="symbol">/7</span>
+                    </div>
+                    <div class="stat-card__label">Support Available</div>
+                </div>
             </div>
-        </div>
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll to Explore</span>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
+    <section id="services" class="services">
+        <div class="services__background">
+            <div class="background-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">Comprehensive solutions tailored to your needs</p>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-header__subtitle">Our Services</span>
+                <h2 class="section-header__title split-text">
+                    <span class="title-line">Comprehensive solutions</span>
+                    <span class="title-line">tailored to your needs</span>
+                </h2>
             </div>
 
-            <div class="services-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="business">Business</button>
-                <button class="filter-btn" data-filter="technical">Technical</button>
-                <button class="filter-btn" data-filter="support">Support</button>
+            <div class="services__filter" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">
+                    <span class="filter-btn__text">All</span>
+                    <span class="filter-btn__decoration"></span>
+                </button>
+                <button class="filter-btn" data-filter="business">
+                    <span class="filter-btn__text">Business</span>
+                    <span class="filter-btn__decoration"></span>
+                </button>
+                <button class="filter-btn" data-filter="technical">
+                    <span class="filter-btn__text">Technical</span>
+                    <span class="filter-btn__decoration"></span>
+                </button>
+                <button class="filter-btn" data-filter="support">
+                    <span class="filter-btn__text">Support</span>
+                    <span class="filter-btn__decoration"></span>
+                </button>
             </div>
 
-            <div class="services-grid">
+            <div class="services__grid">
                 <!-- Custom Business Materials -->
-                <div class="service-card" data-category="business">
-                    <div class="service-image">
-                        <img src="../assets/images/business-materials.jpg" alt="Business Materials">
+                <div class="service-card" data-category="business" data-aos="fade-up">
+                    <div class="service-card__image">
+                        <img src="assets/images/business-materials.jpg" alt="Business Materials">
+                        <div class="service-card__overlay"></div>
                     </div>
-                    <div class="service-content">
-                        <div class="service-icon">
+                    <div class="service-card__content">
+                        <div class="service-card__icon">
                             <i class="fas fa-palette"></i>
                         </div>
-                        <h3>Custom Business Materials</h3>
-                        <p>Professional design services for your business identity</p>
-                        <ul class="service-features">
+                        <h3 class="service-card__title">Custom Business Materials</h3>
+                        <p class="service-card__description">Professional design services for your business identity</p>
+                        <ul class="service-card__features">
                             <li>Business Cards</li>
                             <li>Flyers & Brochures</li>
                             <li>Marketing Materials</li>
                             <li>Brand Identity</li>
                         </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
+                        <a href="#contact" class="service-card__btn">
+                            <span class="btn__text">Get Started</span>
+                            <span class="btn__icon">→</span>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Apple Product Resell -->
-                <div class="service-card" data-category="technical">
-                    <div class="service-image">
-                        <img src="../assets/images/apple-products.jpg" alt="Apple Products">
+                <div class="service-card" data-category="technical" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card__image">
+                        <img src="assets/images/apple-products.jpg" alt="Apple Products">
+                        <div class="service-card__overlay"></div>
                     </div>
-                    <div class="service-content">
-                        <div class="service-icon">
+                    <div class="service-card__content">
+                        <div class="service-card__icon">
                             <i class="fab fa-apple"></i>
                         </div>
-                        <h3>Apple Product Resell</h3>
-                        <p>Quality Apple devices with professional setup</p>
-                        <ul class="service-features">
+                        <h3 class="service-card__title">Apple Product Resell</h3>
+                        <p class="service-card__description">Quality Apple devices with professional setup</p>
+                        <ul class="service-card__features">
                             <li>Certified Products</li>
                             <li>Professional Setup</li>
                             <li>Warranty Service</li>
                             <li>Technical Support</li>
                         </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
+                        <a href="#contact" class="service-card__btn">
+                            <span class="btn__text">Get Started</span>
+                            <span class="btn__icon">→</span>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Web Design -->
-                <div class="service-card" data-category="technical">
-                    <div class="service-image">
-                        <img src="../assets/images/web-design.jpg" alt="Web Design">
+                <div class="service-card" data-category="technical" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card__image">
+                        <img src="assets/images/web-design.jpg" alt="Web Design">
+                        <div class="service-card__overlay"></div>
                     </div>
-                    <div class="service-content">
-                        <div class="service-icon">
+                    <div class="service-card__content">
+                        <div class="service-card__icon">
                             <i class="fas fa-code"></i>
                         </div>
-                        <h3>Web Design</h3>
-                        <p>Custom website solutions for your business</p>
-                        <ul class="service-features">
+                        <h3 class="service-card__title">Web Design</h3>
+                        <p class="service-card__description">Custom website solutions for your business</p>
+                        <ul class="service-card__features">
                             <li>Custom Websites</li>
                             <li>E-commerce Solutions</li>
                             <li>Mobile Responsive</li>
                             <li>SEO Optimization</li>
                         </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
+                        <a href="#contact" class="service-card__btn">
+                            <span class="btn__text">Get Started</span>
+                            <span class="btn__icon">→</span>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Expert Computer Setup -->
-                <div class="service-card" data-category="technical">
-                    <div class="service-image">
-                        <img src="../assets/images/computer-setup.jpg" alt="Computer Setup">
+                <div class="service-card" data-category="technical" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card__image">
+                        <img src="assets/images/computer-setup.jpg" alt="Computer Setup">
+                        <div class="service-card__overlay"></div>
                     </div>
-                    <div class="service-content">
-                        <div class="service-icon">
+                    <div class="service-card__content">
+                        <div class="service-card__icon">
                             <i class="fas fa-desktop"></i>
                         </div>
-                        <h3>Expert Computer Setup</h3>
-                        <p>Professional computer configuration services</p>
-                        <ul class="service-features">
+                        <h3 class="service-card__title">Expert Computer Setup</h3>
+                        <p class="service-card__description">Professional computer configuration services</p>
+                        <ul class="service-card__features">
                             <li>Hardware Installation</li>
                             <li>Software Setup</li>
                             <li>Performance Optimization</li>
                             <li>Security Configuration</li>
                         </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Custom POS System -->
-                <div class="service-card" data-category="business">
-                    <div class="service-image">
-                        <img src="../assets/images/pos-system.jpg" alt="POS System">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-cash-register"></i>
-                        </div>
-                        <h3>Custom POS System</h3>
-                        <p>Tailored point of sale solutions</p>
-                        <ul class="service-features">
-                            <li>Custom Setup</li>
-                            <li>Hardware Installation</li>
-                            <li>Staff Training</li>
-                            <li>Ongoing Support</li>
-                        </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Website Maintenance -->
-                <div class="service-card" data-category="support">
-                    <div class="service-image">
-                        <img src="../assets/images/website-maintenance.jpg" alt="Website Maintenance">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                        <h3>Website Maintenance</h3>
-                        <p>Keep your website running smoothly</p>
-                        <ul class="service-features">
-                            <li>Regular Updates</li>
-                            <li>Security Patches</li>
-                            <li>Content Updates</li>
-                            <li>Performance Monitoring</li>
-                        </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Data Backup & Recovery -->
-                <div class="service-card" data-category="support">
-                    <div class="service-image">
-                        <img src="../assets/images/data-backup.jpg" alt="Data Backup">
-                    </div>
-                    <div class="service-content">
-                        <div class="service-icon">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h3>Data Backup & Recovery</h3>
-                        <p>Secure data protection solutions</p>
-                        <ul class="service-features">
-                            <li>Automated Backups</li>
-                            <li>Data Recovery</li>
-                            <li>Cloud Storage</li>
-                            <li>Disaster Recovery</li>
-                        </ul>
-                        <a href="contact.html" class="service-btn">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Why Choose Us</h2>
-                <p class="section-subtitle">Experience excellence in technology solutions</p>
-            </div>
-
-            <div class="features-grid">
-                <!-- Expert Team -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <h3>Expert Team</h3>
-                    <p>Certified professionals with years of industry experience delivering quality solutions.</p>
-                </div>
-
-                <!-- Quick Response -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Quick Response</h3>
-                    <p>Fast and reliable support with quick turnaround times for all your tech needs.</p>
-                </div>
-
-                <!-- Reliable Security -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Reliable Security</h3>
-                    <p>Top-notch security measures to protect your data and business assets.</p>
-                </div>
-
-                <!-- Competitive Pricing -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hand-holding-usd"></i>
-                    </div>
-                    <h3>Competitive Pricing</h3>
-                    <p>Cost-effective solutions without compromising on quality and service.</p>
-                </div>
-
-                <!-- Custom Solutions -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Custom Solutions</h3>
-                    <p>Tailored technology solutions designed to meet your specific needs.</p>
-                </div>
-
-                <!-- 24/7 Support -->
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>Round-the-clock technical support to keep your business running smoothly.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Plans Section -->
-    <section class="pricing-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Pricing Plans</h2>
-                <p class="section-subtitle">Choose the perfect plan for your needs</p>
-            </div>
-
-            <div class="pricing-toggle">
-                <span class="toggle-text">Monthly</span>
-                <label class="switch">
-                    <input type="checkbox" id="billingToggle">
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-text">Annual</span>
-                <span class="save-badge">Save 20%</span>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Basic Plan -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="pricing-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="pricing-name">Basic</h3>
-                        <div class="pricing-price">
-                            <span class="price monthly">49</span>
-                            <span class="price yearly">470</span>
-                            <span class="period">/month</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Basic website maintenance</li>
-                        <li><i class="fas fa-check"></i> Monthly backups</li>
-                        <li><i class="fas fa-check"></i> 5 hours technical support</li>
-                        <li><i class="fas fa-check"></i> Basic security updates</li>
-                        <li><i class="fas fa-check"></i> Email support</li>
-                    </ul>
-                <div class="pricing-action">
-                        <a href="contact.html" class="pricing-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Professional Plan -->
-                <div class="pricing-card featured">
-                    <span class="popular-badge">Most Popular</span>
-                    <div class="pricing-header">
-                        <div class="pricing-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3 class="pricing-name">Professional</h3>
-                        <div class="pricing-price">
-                            <span class="price monthly">99</span>
-                            <span class="price yearly">950</span>
-                            <span class="period">/month</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Advanced website maintenance</li>
-                        <li><i class="fas fa-check"></i> Weekly backups</li>
-                        <li><i class="fas fa-check"></i> 15 hours technical support</li>
-                        <li><i class="fas fa-check"></i> Enhanced security suite</li>
-                        <li><i class="fas fa-check"></i> Priority email & phone support</li>
-                        <li><i class="fas fa-check"></i> Performance optimization</li>
-                    </ul>
-                    <div class="pricing-action">
-                        <a href="contact.html" class="pricing-btn">Get Started</a>
-                    </div>
-                </div>
-
-                <!-- Enterprise Plan -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <div class="pricing-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h3 class="pricing-name">Enterprise</h3>
-                        <div class="pricing-price">
-                            <span class="price monthly">199</span>
-                            <span class="price yearly">1,910</span>
-                            <span class="period">/month</span>
-                        </div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Complete website management</li>
-                        <li><i class="fas fa-check"></i> Daily backups</li>
-                        <li><i class="fas fa-check"></i> Unlimited technical support</li>
-                        <li><i class="fas fa-check"></i> Advanced security suite</li>
-                        <li><i class="fas fa-check"></i> 24/7 priority support</li>
-                        <li><i class="fas fa-check"></i> Custom development hours</li>
-                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
-                    </ul>
-                    <div class="pricing-action">
-                        <a href="contact.html" class="pricing-btn">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Start Your Project?</h2>
-                <p>Let's transform your business with our professional technology solutions.</p>
-                <a href="contact.html" class="cta-btn">Contact Us Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Elan's Tech World</h3>
-                    <p>Your Partner in Technology</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="https://instagram.com/elan_tech_world" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-instagram"></i>
+                        <a href="#contact" class="service-card__btn">
+                            <span class="btn__text">Get Started</span>
+                            <span class="btn__icon">→</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-header__subtitle">Why Choose Us</span>
+                <h2 class="section-header__title split-text">
+                    <span class="title-line">Experience excellence</span>
+                    <span class="title-line">in technology solutions</span>
+                </h2>
+            </div>
+
+            <div class="features__grid">
+                <!-- Feature Card 1 -->
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-card__icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="feature-card__title">Expert Team</h3>
+                    <p class="feature-card__description">Certified professionals with years of industry experience delivering quality solutions.</p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card__icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="feature-card__title">Quick Response</h3>
+                    <p class="feature-card__description">Fast and reliable support with quick turnaround times for all your tech needs.</p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card__icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-card__title">Reliable Security</h3>
+                    <p class="feature-card__description">Top-notch security measures to protect your data and business assets.</p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card__icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="feature-card__title">Competitive Pricing</h3>
+                    <p class="feature-card__description">Cost-effective solutions without compromising on quality and service.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-header__subtitle">Client Testimonials</span>
+                <h2 class="section-header__title split-text">
+                    <span class="title-line">What our clients</span>
+                    <span class="title-line">say about us</span>
+                </h2>
+            </div>
+
+            <div class="testimonials__slider" data-aos="fade-up" data-aos-delay="200">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-card__content">
+                        <div class="testimonial-card__quote">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-card__text">Outstanding service! The team at Elan's Tech World transformed our business with their innovative solutions and exceptional support.</p>
+                        <div class="testimonial-card__author">
+                            <img src="assets/images/client1.jpg" alt="John Doe" class="testimonial-card__avatar">
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">John Doe</h4>
+                                <span class="testimonial-card__position">CEO, TechCorp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more testimonials following the same structure -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-header__subtitle">Pricing Plans</span>
+                <h2 class="section-header__title split-text">
+                    <span class="title-line">Choose the perfect</span>
+                    <span class="title-line">plan for your needs</span>
+                </h2>
+            </div>
+
+            <div class="pricing__toggle" data-aos="fade-up" data-aos-delay="200">
+                <span class="toggle__text">Monthly</span>
+                <label class="toggle">
+                    <input type="checkbox" id="billingToggle">
+                    <span class="toggle__slider"></span>
+                </label>
+                <span class="toggle__text">Annual</span>
+                <span class="toggle__badge">Save 20%</span>
+            </div>
+
+            <div class="pricing__grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card__header">
+                        <div class="pricing-card__icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="pricing-card__title">Basic</h3>
+                        <div class="pricing-card__price">
+                            <span class="price monthly">$49</span>
+                            <span class="price annual">$470</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-card__features">
+                        <li><i class="fas fa-check"></i>Basic website maintenance</li>
+                        <li><i class="fas fa-check"></i>Monthly backups</li>
+                        <li><i class="fas fa-check"></i>5 hours technical support</li>
+                        <li><i class="fas fa-check"></i>Basic security updates</li>
+                        <li><i class="fas fa-check"></i>Email support</li>
+                    </ul>
+                    <a href="#contact" class="pricing-card__btn btn btn--primary">
+                        <span class="btn__text">Get Started</span>
+                        <span class="btn__icon">→</span>
+                    </a>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="pricing-card pricing-card--featured" data-aos="fade-up" data-aos-delay="400">
+                    <div class="pricing-card__badge">Most Popular</div>
+                    <div class="pricing-card__header">
+                        <div class="pricing-card__icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="pricing-card__title">Professional</h3>
+                        <div class="pricing-card__price">
+                            <span class="price monthly">$99</span>
+                            <span class="price annual">$950</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-card__features">
+                        <li><i class="fas fa-check"></i>Advanced website maintenance</li>
+                        <li><i class="fas fa-check"></i>Weekly backups</li>
+                        <li><i class="fas fa-check"></i>15 hours technical support</li>
+                        <li><i class="fas fa-check"></i>Enhanced security suite</li>
+                        <li><i class="fas fa-check"></i>Priority support</li>
+                        <li><i class="fas fa-check"></i>Performance optimization</li>
+                    </ul>
+                    <a href="contact.html" class="pricing-card__btn btn btn--secondary">
+                        <span class="btn__text">Get Started</span>
+                        <span class="btn__icon">→</span>
+                    </a>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="pricing-card__header">
+                        <div class="pricing-card__icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="pricing-card__title">Enterprise</h3>
+                        <div class="pricing-card__price">
+                            <span class="price monthly">$199</span>
+                            <span class="price annual">$1,910</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-card__features">
+                        <li><i class="fas fa-check"></i>Complete website management</li>
+                        <li><i class="fas fa-check"></i>Daily backups</li>
+                        <li><i class="fas fa-check"></i>Unlimited technical support</li>
+                        <li><i class="fas fa-check"></i>Advanced security suite</li>
+                        <li><i class="fas fa-check"></i>24/7 priority support</li>
+                        <li><i class="fas fa-check"></i>Custom development hours</li>
+                        <li><i class="fas fa-check"></i>Dedicated account manager</li>
+                    </ul>
+                    <a href="#contact" class="pricing-card__btn btn btn--primary">
+                        <span class="btn__text">Get Started</span>
+                        <span class="btn__icon">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta__background">
+            <div class="cta__overlay"></div>
+            <div class="cta__particles"></div>
+        </div>
+        <div class="container">
+            <div class="cta__content" data-aos="fade-up">
+                <h2 class="cta__title split-text">Ready to Start Your Project?</h2>
+                <p class="cta__description">Let's transform your business with our professional technology solutions.</p>
+                <a href="#contact" class="cta__btn btn btn--light">
+                    <span class="btn__text">Contact Us Now</span>
+                    <span class="btn__icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-header__subtitle">Get In Touch</span>
+                <h2 class="section-header__title split-text">
+                    <span class="title-line">Let's discuss</span>
+                    <span class="title-line">your project</span>
+                </h2>
+            </div>
+
+            <div class="contact__content">
+                <div class="contact__info" data-aos="fade-right">
+                    <div class="contact__info-item">
+                        <div class="contact__info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                    <div class="contact__info-item">
+                        <div class="contact__info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>elan@elanstechworld.com</p>
+                    </div>
+                    <div class="contact__info-item">
+                        <div class="contact__info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+1 (929) 417-6819</p>
+                    </div>
+                </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__info">
+                    <a href="/" class="footer__logo">
+                        <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                        <span>Elan's Tech World</span>
+                    </a>
+                    <p class="footer__description">Your Partner in Technology</p>
+                    <div class="footer__social">
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer__links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#web-design">Web Design</a></li>
+                        <li><a href="#computer-setup">Computer Setup</a></li>
+                        <li><a href="#pos-system">POS System</a></li>
+                        <li><a href="#business-materials">Business Materials</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__newsletter">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates and tech tips.</p>
+                    <form class="newsletter__form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit" class="btn btn--primary">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+    <div class="footer__bottom">
+                <div class="footer__copyright">
+                    <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
+                </div>
+                <div class="footer__legal">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/sitemap">Sitemap</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollToPlugin.min.js"></script>
-    <!-- Custom scripts -->
-    <script src="../js/services.js"></script>
-    
-    <!-- Initialize on page load -->
-    <script>
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-    </script>
-</body>
-</html>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to Top">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+        </svg>
+    </button>
+
+    <!-- Cookie Consent -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-consent__content">
+            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
+            <div class="cookie-consent__actions">
+                <button class="btn btn--primary cookie-consent__accept">Accept</button>
+                <button class="btn btn--secondary cookie-consent__settings">Settings</button>
+            </div>
+        </div>
+    </div>
+
