@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional technology solutions including web design, computer setup, POS systems, and more at Elan's Tech World">
-    <title>Services - Elan's Tech World</title>
+    <meta name="description" content="Professional business material design services including business cards, brochures, flyers, and brand identity materials at Elan's Tech World">
+    <title>Custom Business Materials - Elan's Tech World</title>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/service-detail.css">
 </head>
 <body>
     <!-- Preloader -->
@@ -25,21 +25,7 @@
                 <circle id="test" cx="40" cy="40" r="32"></circle>
             </svg>
         </div>
-        <div class="loader triangle">
-            <svg viewBox="0 0 86 80">
-                <polygon points="43 8 79 72 7 72"></polygon>
-            </svg>
-        </div>
-        <div class="loader">
-            <svg viewBox="0 0 80 80">
-                <rect x="8" y="8" width="64" height="64"></rect>
-            </svg>
-        </div>
     </div>
-
-    <!-- Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
 
     <!-- Header -->
     <header class="header">
@@ -56,11 +42,11 @@
             
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="#" class="nav-link" data-text="Home">Home</a></li>
-                    <li><a href="#" class="nav-link" data-text="About">About</a></li>
-                    <li><a href="#" class="nav-link active" data-text="Services">Services</a></li>
-                    <li><a href="#" class="nav-link" data-text="Projects">Projects</a></li>
-                    <li><a href="#" class="nav-link" data-text="Contact">Contact</a></li>
+                    <li><a href="/" class="nav-link" data-text="Home">Home</a></li>
+                    <li><a href="/about" class="nav-link" data-text="About">About</a></li>
+                    <li><a href="/services" class="nav-link active" data-text="Services">Services</a></li>
+                    <li><a href="/projects" class="nav-link" data-text="Projects">Projects</a></li>
+                    <li><a href="/contact" class="nav-link" data-text="Contact">Contact</a></li>
                 </ul>
             </nav>
 
@@ -79,11 +65,11 @@
         <div class="mobile-menu__background"></div>
         <nav class="mobile-menu__content">
             <ul>
-                <li><a href="#" data-text="Home">Home</a></li>
-                <li><a href="#" data-text="About">About</a></li>
-                <li><a href="#" data-text="Services">Services</a></li>
-                <li><a href="#" data-text="Projects">Projects</a></li>
-                <li><a href="#" data-text="Contact">Contact</a></li>
+                <li><a href="/" data-text="Home">Home</a></li>
+                <li><a href="/about" data-text="About">About</a></li>
+                <li><a href="/services" data-text="Services">Services</a></li>
+                <li><a href="/projects" data-text="Projects">Projects</a></li>
+                <li><a href="/contact" data-text="Contact">Contact</a></li>
             </ul>
             <div class="mobile-menu__footer">
                 <div class="social-links">
@@ -95,274 +81,274 @@
         </nav>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero__background">
-            <canvas id="noiseCanvas"></canvas>
+    <!-- Service Hero -->
+    <section class="service-hero">
+        <div class="service-hero__background">
             <div class="hero__overlay"></div>
+            <div id="particles-js"></div>
         </div>
-        <div class="hero__content">
-            <div class="hero__text-content">
-                <div class="hero__badge">
-                    <span class="badge__text">Professional Technology Solutions</span>
+        <div class="container">
+            <div class="service-hero__content" data-aos="fade-up">
+                <div class="service-hero__badge">
+                    <span class="badge__text">Business Identity Solutions</span>
                     <div class="badge__decoration"></div>
                 </div>
-                <h1 class="hero__title split-text">
-                    <span class="hero__title-line">Empowering Your</span>
-                    <span class="hero__title-line">Digital Journey</span>
+                <h1 class="service-hero__title split-text">
+                    <span class="hero__title-line">Custom Business</span>
+                    <span class="hero__title-line">Materials Design</span>
                 </h1>
-                <p class="hero__description split-text">From custom business solutions to expert technical support, we're here to transform your vision into reality.</p>
-                <div class="hero__cta">
-                    <a href="#services" class="btn btn--primary">
-                        <span class="btn__text">Explore Services</span>
+                <p class="service-hero__description">Transform your brand identity with professionally designed business materials that make a lasting impression and help you stand out in today's competitive market.</p>
+                <div class="service-hero__cta">
+                    <a href="#pricing" class="btn btn--primary">
+                        <span class="btn__text">View Pricing</span>
                         <span class="btn__icon">
-                            <svg width="13px" height="10px" viewBox="0 0 13 10">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
+                            <i class="fas fa-arrow-right"></i>
                         </span>
                     </a>
-                    <a href="#contact" class="btn btn--secondary">
-                        <span class="btn__text">Get Started</span>
+                    <a href="#portfolio" class="btn btn--secondary">
+                        <span class="btn__text">See Our Work</span>
                         <span class="btn__icon">
-                            <i class="fas fa-rocket"></i>
+                            <i class="fas fa-images"></i>
                         </span>
                     </a>
                 </div>
             </div>
-            <div class="hero__scroll-indicator">
-                <div class="scroll-indicator__mouse">
-                    <div class="scroll-indicator__wheel"></div>
-                </div>
-                <span class="scroll-indicator__text">Scroll to Explore</span>
-            </div>
-        </div>
-        <div class="hero__particles"></div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats__grid">
-                <div class="stat-card" data-value="500">
-                    <div class="stat-card__number">
-                        <span class="number">0</span>
-                        <span class="symbol">+</span>
-                    </div>
-                    <div class="stat-card__label">Projects Completed</div>
-                </div>
-                <div class="stat-card" data-value="98">
-                    <div class="stat-card__number">
-                        <span class="number">0</span>
-                        <span class="symbol">%</span>
-                    </div>
-                    <div class="stat-card__label">Client Satisfaction</div>
-                </div>
-                <div class="stat-card" data-value="15">
-                    <div class="stat-card__number">
-                        <span class="number">0</span>
-                        <span class="symbol">+</span>
-                    </div>
-                    <div class="stat-card__label">Years Experience</div>
-                </div>
-                <div class="stat-card" data-value="24">
-                    <div class="stat-card__number">
-                        <span class="number">0</span>
-                        <span class="symbol">/7</span>
-                    </div>
-                    <div class="stat-card__label">Support Available</div>
-                </div>
+            <div class="scroll-indicator">
+                <div class="scroll-indicator__wheel"></div>
+                <span>Scroll to explore</span>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="services__background">
-            <div class="background-shapes">
-                <div class="shape shape-1"></div>
-                <div class="shape shape-2"></div>
-                <div class="shape shape-3"></div>
-            </div>
-        </div>
+    <!-- Service Overview -->
+    <section class="service-overview">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-header__subtitle">Our Services</span>
-                <h2 class="section-header__title split-text">
-                    <span class="title-line">Comprehensive solutions</span>
-                    <span class="title-line">tailored to your needs</span>
-                </h2>
-            </div>
-
-            <div class="services__filter" data-aos="fade-up" data-aos-delay="200">
-                <button class="filter-btn active" data-filter="all">
-                    <span class="filter-btn__text">All</span>
-                    <span class="filter-btn__decoration"></span>
-                </button>
-                <button class="filter-btn" data-filter="business">
-                    <span class="filter-btn__text">Business</span>
-                    <span class="filter-btn__decoration"></span>
-                </button>
-                <button class="filter-btn" data-filter="technical">
-                    <span class="filter-btn__text">Technical</span>
-                    <span class="filter-btn__decoration"></span>
-                </button>
-                <button class="filter-btn" data-filter="support">
-                    <span class="filter-btn__text">Support</span>
-                    <span class="filter-btn__decoration"></span>
-                </button>
-            </div>
-
-            <div class="services__grid">
-                <!-- Custom Business Materials -->
-                <div class="service-card" data-category="business" data-aos="fade-up">
-                    <div class="service-card__image">
-                        <img src="assets/images/business-materials.jpg" alt="Business Materials">
-                        <div class="service-card__overlay"></div>
-                    </div>
-                    <div class="service-card__content">
-                        <div class="service-card__icon">
-                            <i class="fas fa-palette"></i>
+            <div class="overview-grid">
+                <div class="overview-content" data-aos="fade-right">
+                    <h2 class="section-title">Complete Business Material Solutions</h2>
+                    <p class="section-description">We offer comprehensive design services that ensure your business materials not only look professional but also effectively communicate your brand's message and values.</p>
+                    
+                    <div class="services-list">
+                        <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="service-item__icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            <div class="service-item__content">
+                                <h3>Business Cards</h3>
+                                <ul>
+                                    <li>Premium card designs</li>
+                                    <li>High-quality printing options</li>
+                                    <li>Special finishes available</li>
+                                    <li>Multiple size options</li>
+                                </ul>
+                            </div>
                         </div>
-                        <h3 class="service-card__title">Custom Business Materials</h3>
-                        <p class="service-card__description">Professional design services for your business identity</p>
-                        <ul class="service-card__features">
-                            <li>Business Cards</li>
-                            <li>Flyers & Brochures</li>
-                            <li>Marketing Materials</li>
-                            <li>Brand Identity</li>
-                        </ul>
-                        <a href="#contact" class="service-card__btn">
-                            <span class="btn__text">Get Started</span>
-                            <span class="btn__icon">→</span>
-                        </a>
+
+                        <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="service-item__icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="service-item__content">
+                                <h3>Brochures & Flyers</h3>
+                                <ul>
+                                    <li>Custom layouts and designs</li>
+                                    <li>Various fold options</li>
+                                    <li>Digital and print formats</li>
+                                    <li>Marketing campaign integration</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="service-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="service-item__icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="service-item__content">
+                                <h3>Brand Identity</h3>
+                                <ul>
+                                    <li>Logo design & variations</li>
+                                    <li>Color palette selection</li>
+                                    <li>Typography guidelines</li>
+                                    <li>Brand style guides</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="service-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="service-item__icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="service-item__content">
+                                <h3>Stationery Design</h3>
+                                <ul>
+                                    <li>Letterhead design</li>
+                                    <li>Envelope customization</li>
+                                    <li>Compliment slips</li>
+                                    <li>Email signatures</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Apple Product Resell -->
-                <div class="service-card" data-category="technical" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card__image">
-                        <img src="assets/images/apple-products.jpg" alt="Apple Products">
-                        <div class="service-card__overlay"></div>
-                    </div>
-                    <div class="service-card__content">
-                        <div class="service-card__icon">
-                            <i class="fab fa-apple"></i>
-                        </div>
-                        <h3 class="service-card__title">Apple Product Resell</h3>
-                        <p class="service-card__description">Quality Apple devices with professional setup</p>
-                        <ul class="service-card__features">
-                            <li>Certified Products</li>
-                            <li>Professional Setup</li>
-                            <li>Warranty Service</li>
-                            <li>Technical Support</li>
-                        </ul>
-                        <a href="#contact" class="service-card__btn">
-                            <span class="btn__text">Get Started</span>
-                            <span class="btn__icon">→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Web Design -->
-                <div class="service-card" data-category="technical" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card__image">
-                        <img src="assets/images/web-design.jpg" alt="Web Design">
-                        <div class="service-card__overlay"></div>
-                    </div>
-                    <div class="service-card__content">
-                        <div class="service-card__icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3 class="service-card__title">Web Design</h3>
-                        <p class="service-card__description">Custom website solutions for your business</p>
-                        <ul class="service-card__features">
-                            <li>Custom Websites</li>
-                            <li>E-commerce Solutions</li>
-                            <li>Mobile Responsive</li>
-                            <li>SEO Optimization</li>
-                        </ul>
-                        <a href="#contact" class="service-card__btn">
-                            <span class="btn__text">Get Started</span>
-                            <span class="btn__icon">→</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Expert Computer Setup -->
-                <div class="service-card" data-category="technical" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-card__image">
-                        <img src="assets/images/computer-setup.jpg" alt="Computer Setup">
-                        <div class="service-card__overlay"></div>
-                    </div>
-                    <div class="service-card__content">
-                        <div class="service-card__icon">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <h3 class="service-card__title">Expert Computer Setup</h3>
-                        <p class="service-card__description">Professional computer configuration services</p>
-                        <ul class="service-card__features">
-                            <li>Hardware Installation</li>
-                            <li>Software Setup</li>
-                            <li>Performance Optimization</li>
-                            <li>Security Configuration</li>
-                        </ul>
-                        <a href="#contact" class="service-card__btn">
-                            <span class="btn__text">Get Started</span>
-                            <span class="btn__icon">→</span>
-                        </a>
+                <div class="overview-image" data-aos="fade-left">
+                    <div class="image-stack">
+                        <img src="./assets/images/business-cards.jpg" alt="Premium Business Cards" class="image-stack__item image-stack__item--top">
+                        <img src="./assets/images/brochure-design.jpg" alt="Custom Brochure Design" class="image-stack__item image-stack__item--bottom">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Process Section -->
+    <section class="process">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-header__subtitle">Why Choose Us</span>
-                <h2 class="section-header__title split-text">
-                    <span class="title-line">Experience excellence</span>
-                    <span class="title-line">in technology solutions</span>
-                </h2>
+            <h2 class="section-title" data-aos="fade-up">Our Design Process</h2>
+            <p class="section-description" data-aos="fade-up">We follow a systematic approach to ensure your business materials perfectly align with your brand vision.</p>
+
+            <div class="process-timeline">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Discovery</h3>
+                        <p>We begin with a detailed consultation to understand your business, target audience, and design preferences. This helps us align our creative direction with your brand objectives.</p>
+                        <ul class="step-features">
+                            <li>Brand analysis</li>
+                            <li>Target audience review</li>
+                            <li>Competitor research</li>
+                            <li>Goal setting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Concept Development</h3>
+                        <p>Our design team creates initial concepts based on your requirements. We explore different styles, layouts, and creative directions to find the perfect match for your brand.</p>
+                        <ul class="step-features">
+                            <li>Multiple design concepts</li>
+                            <li>Style exploration</li>
+                            <li>Layout variations</li>
+                            <li>Color scheme selection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Design Refinement</h3>
+                        <p>We refine the chosen concept based on your feedback, perfecting every detail until it meets your expectations perfectly.</p>
+                        <ul class="step-features">
+                            <li>Detailed revisions</li>
+                            <li>Typography refinement</li>
+                            <li>Color adjustments</li>
+                            <li>Layout optimization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Production & Delivery</h3>
+                        <p>Once approved, we prepare your materials for production, ensuring the highest quality standards are met in printing and digital formats.</p>
+                        <ul class="step-features">
+                            <li>Print preparation</li>
+                            <li>Quality assurance</li>
+                            <li>Digital file optimization</li>
+                            <li>Final delivery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Work</h2>
+            <p class="section-description" data-aos="fade-up">Explore our collection of custom business materials we've created for various clients.</p>
+
+            <div class="portfolio-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="cards">Business Cards</button>
+                <button class="filter-btn" data-filter="brochures">Brochures</button>
+                <button class="filter-btn" data-filter="stationery">Stationery</button>
+                <button class="filter-btn" data-filter="brand">Brand Identity</button>
             </div>
 
-            <div class="features__grid">
-                <!-- Feature Card 1 -->
-                <div class="feature-card" data-aos="fade-up">
-                    <div class="feature-card__icon">
-                        <i class="fas fa-award"></i>
+            <div class="portfolio-grid">
+                <!-- Business Cards -->
+                <div class="portfolio-item" data-category="cards" data-aos="fade-up">
+                    <div class="portfolio-item__image">
+                        <img src="./assets/images/portfolio/business-card-1.jpg" alt="Luxury Business Card Design">
+                        <div class="portfolio-item__overlay">
+                            <div class="portfolio-item__content">
+                                <h3>Luxury Business Card</h3>
+                                <p>Premium finish with gold foil</p>
+                                <a href="#" class="btn btn--light">View Details</a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card__title">Expert Team</h3>
-                    <p class="feature-card__description">Certified professionals with years of industry experience delivering quality solutions.</p>
                 </div>
 
-                <!-- Feature Card 2 -->
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-card__icon">
-                        <i class="fas fa-clock"></i>
+                <div class="portfolio-item" data-category="cards" data-aos="fade-up">
+                    <div class="portfolio-item__image">
+                        <img src="./assets/images/portfolio/business-card-2.jpg" alt="Minimalist Business Card">
+                        <div class="portfolio-item__overlay">
+                            <div class="portfolio-item__content">
+                                <h3>Minimalist Design</h3>
+                                <p>Clean and modern approach</p>
+                                <a href="#" class="btn btn--light">View Details</a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card__title">Quick Response</h3>
-                    <p class="feature-card__description">Fast and reliable support with quick turnaround times for all your tech needs.</p>
                 </div>
 
-                <!-- Feature Card 3 -->
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-card__icon">
-                        <i class="fas fa-shield-alt"></i>
+                <!-- Continuing Portfolio Items -->
+                <div class="portfolio-item" data-category="brochures" data-aos="fade-up">
+                    <div class="portfolio-item__image">
+                        <img src="./assets/images/portfolio/brochure-2.jpg" alt="Product Catalog">
+                        <div class="portfolio-item__overlay">
+                            <div class="portfolio-item__content">
+                                <h3>Product Catalog</h3>
+                                <p>32-page retail showcase</p>
+                                <a href="#" class="btn btn--light">View Details</a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card__title">Reliable Security</h3>
-                    <p class="feature-card__description">Top-notch security measures to protect your data and business assets.</p>
                 </div>
 
-                <!-- Feature Card 4 -->
-                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-card__icon">
-                        <i class="fas fa-hand-holding-usd"></i>
+                <!-- Stationery -->
+                <div class="portfolio-item" data-category="stationery" data-aos="fade-up">
+                    <div class="portfolio-item__image">
+                        <img src="./assets/images/portfolio/stationery-1.jpg" alt="Corporate Stationery">
+                        <div class="portfolio-item__overlay">
+                            <div class="portfolio-item__content">
+                                <h3>Corporate Stationery</h3>
+                                <p>Complete business package</p>
+                                <a href="#" class="btn btn--light">View Details</a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="feature-card__title">Competitive Pricing</h3>
-                    <p class="feature-card__description">Cost-effective solutions without compromising on quality and service.</p>
+                </div>
+
+                <!-- Brand Identity -->
+                <div class="portfolio-item" data-category="brand" data-aos="fade-up">
+                    <div class="portfolio-item__image">
+                        <img src="./assets/images/portfolio/brand-1.jpg" alt="Brand Identity Package">
+                        <div class="portfolio-item__overlay">
+                            <div class="portfolio-item__content">
+                                <h3>Tech Startup Branding</h3>
+                                <p>Complete brand identity system</p>
+                                <a href="#" class="btn btn--light">View Details</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -371,139 +357,185 @@
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-header__subtitle">Client Testimonials</span>
-                <h2 class="section-header__title split-text">
-                    <span class="title-line">What our clients</span>
-                    <span class="title-line">say about us</span>
-                </h2>
-            </div>
+            <h2 class="section-title" data-aos="fade-up">Client Testimonials</h2>
+            <p class="section-description" data-aos="fade-up">See what our clients say about their experience with our business material design services.</p>
 
-            <div class="testimonials__slider" data-aos="fade-up" data-aos-delay="200">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-card__content">
-                        <div class="testimonial-card__quote">
-                            <i class="fas fa-quote-left"></i>
+            <div class="testimonials-slider swiper-container" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-card__content">
+                                <div class="testimonial-card__quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>The business cards and brochures Elan's Tech World designed for us perfectly capture our brand essence. The attention to detail and quality of materials exceeded our expectations.</p>
+                                <div class="testimonial-card__author">
+                                    <img src="./assets/images/clients/client-1.jpg" alt="Sarah Johnson">
+                                    <div class="author-info">
+                                        <h4>Sarah Johnson</h4>
+                                        <span>Marketing Director, TechCorp</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="testimonial-card__text">Outstanding service! The team at Elan's Tech World transformed our business with their innovative solutions and exceptional support.</p>
-                        <div class="testimonial-card__author">
-                            <img src="assets/images/client1.jpg" alt="John Doe" class="testimonial-card__avatar">
-                            <div class="testimonial-card__info">
-                                <h4 class="testimonial-card__name">John Doe</h4>
-                                <span class="testimonial-card__position">CEO, TechCorp</span>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-card__content">
+                                <div class="testimonial-card__quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>Working with the team was a breeze. They took our vague ideas and transformed them into a cohesive brand identity that we're proud to showcase. The stationery design is simply outstanding.</p>
+                                <div class="testimonial-card__author">
+                                    <img src="./assets/images/clients/client-2.jpg" alt="Michael Chen">
+                                    <div class="author-info">
+                                        <h4>Michael Chen</h4>
+                                        <span>CEO, Innovation Labs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-card__content">
+                                <div class="testimonial-card__quote">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>The premium business cards have significantly improved our networking success. People always comment on the unique design and quality. Great investment for our business.</p>
+                                <div class="testimonial-card__author">
+                                    <img src="./assets/images/clients/client-3.jpg" alt="Emily Rodriguez">
+                                    <div class="author-info">
+                                        <h4>Emily Rodriguez</h4>
+                                        <span>Sales Director, Global Solutions</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Add more testimonials following the same structure -->
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing">
+    <section id="pricing" class="pricing">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-header__subtitle">Pricing Plans</span>
-                <h2 class="section-header__title split-text">
-                    <span class="title-line">Choose the perfect</span>
-                    <span class="title-line">plan for your needs</span>
-                </h2>
-            </div>
+            <h2 class="section-title" data-aos="fade-up">Investment Plans</h2>
+            <p class="section-description" data-aos="fade-up">Choose the perfect package for your business needs</p>
 
-            <div class="pricing__toggle" data-aos="fade-up" data-aos-delay="200">
-                <span class="toggle__text">Monthly</span>
-                <label class="toggle">
-                    <input type="checkbox" id="billingToggle">
-                    <span class="toggle__slider"></span>
-                </label>
-                <span class="toggle__text">Annual</span>
-                <span class="toggle__badge">Save 20%</span>
-            </div>
-
-            <div class="pricing__grid">
-                <!-- Basic Plan -->
-                <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="pricing-grid">
+                <!-- Starter Package -->
+                <div class="pricing-card" data-aos="fade-up">
                     <div class="pricing-card__header">
-                        <div class="pricing-card__icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3 class="pricing-card__title">Basic</h3>
-                        <div class="pricing-card__price">
-                            <span class="price monthly">$49</span>
-                            <span class="price annual">$470</span>
-                            <span class="period">/month</span>
-                        </div>
+                        <h3>Starter Package</h3>
+                        <div class="price">$499</div>
+                        <p>Perfect for small businesses</p>
                     </div>
-                    <ul class="pricing-card__features">
-                        <li><i class="fas fa-check"></i>Basic website maintenance</li>
-                        <li><i class="fas fa-check"></i>Monthly backups</li>
-                        <li><i class="fas fa-check"></i>5 hours technical support</li>
-                        <li><i class="fas fa-check"></i>Basic security updates</li>
-                        <li><i class="fas fa-check"></i>Email support</li>
-                    </ul>
-                    <a href="#contact" class="pricing-card__btn btn btn--primary">
-                        <span class="btn__text">Get Started</span>
-                        <span class="btn__icon">→</span>
-                    </a>
+                    <div class="pricing-card__content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>Business Card Design (2 Concepts)</li>
+                            <li><i class="fas fa-check"></i>Single-page Flyer Design</li>
+                            <li><i class="fas fa-check"></i>Basic Letterhead Design</li>
+                            <li><i class="fas fa-check"></i>Digital Files Included</li>
+                            <li><i class="fas fa-check"></i>2 Rounds of Revisions</li>
+                        </ul>
+                        <a href="#contact" class="btn btn--primary">Get Started</a>
+                    </div>
                 </div>
 
-                <!-- Pro Plan -->
-                <div class="pricing-card pricing-card--featured" data-aos="fade-up" data-aos-delay="400">
+                <!-- Professional Package -->
+                <div class="pricing-card pricing-card--featured" data-aos="fade-up" data-aos-delay="200">
                     <div class="pricing-card__badge">Most Popular</div>
                     <div class="pricing-card__header">
-                        <div class="pricing-card__icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h3 class="pricing-card__title">Professional</h3>
-                        <div class="pricing-card__price">
-                            <span class="price monthly">$99</span>
-                            <span class="price annual">$950</span>
-                            <span class="period">/month</span>
-                        </div>
+                        <h3>Professional Package</h3>
+                        <div class="price">$999</div>
+                        <p>Complete brand identity solution</p>
                     </div>
-                    <ul class="pricing-card__features">
-                        <li><i class="fas fa-check"></i>Advanced website maintenance</li>
-                        <li><i class="fas fa-check"></i>Weekly backups</li>
-                        <li><i class="fas fa-check"></i>15 hours technical support</li>
-                        <li><i class="fas fa-check"></i>Enhanced security suite</li>
-                        <li><i class="fas fa-check"></i>Priority support</li>
-                        <li><i class="fas fa-check"></i>Performance optimization</li>
-                    </ul>
-                    <a href="contact.html" class="pricing-card__btn btn btn--secondary">
-                        <span class="btn__text">Get Started</span>
-                        <span class="btn__icon">→</span>
-                    </a>
+                    <div class="pricing-card__content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>Premium Business Card Design (4 Concepts)</li>
+                            <li><i class="fas fa-check"></i>Tri-fold Brochure Design</li>
+                            <li><i class="fas fa-check"></i>Complete Stationery Design</li>
+                            <li><i class="fas fa-check"></i>Social Media Templates</li>
+                            <li><i class="fas fa-check"></i>Email Signature Design</li>
+                            <li><i class="fas fa-check"></i>Unlimited Revisions</li>
+                            <li><i class="fas fa-check"></i>Print-Ready Files</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn--primary">Get Started</a>
+                    </div>
                 </div>
 
-                <!-- Enterprise Plan -->
-                <div class="pricing-card" data-aos="fade-up" data-aos-delay="500">
+                <!-- Enterprise Package -->
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="pricing-card__header">
-                        <div class="pricing-card__icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h3 class="pricing-card__title">Enterprise</h3>
-                        <div class="pricing-card__price">
-                            <span class="price monthly">$199</span>
-                            <span class="price annual">$1,910</span>
-                            <span class="period">/month</span>
-                        </div>
+                        <h3>Enterprise Package</h3>
+                        <div class="price">Custom</div>
+                        <p>Comprehensive brand solution</p>
                     </div>
-                    <ul class="pricing-card__features">
-                        <li><i class="fas fa-check"></i>Complete website management</li>
-                        <li><i class="fas fa-check"></i>Daily backups</li>
-                        <li><i class="fas fa-check"></i>Unlimited technical support</li>
-                        <li><i class="fas fa-check"></i>Advanced security suite</li>
-                        <li><i class="fas fa-check"></i>24/7 priority support</li>
-                        <li><i class="fas fa-check"></i>Custom development hours</li>
-                        <li><i class="fas fa-check"></i>Dedicated account manager</li>
-                    </ul>
-                    <a href="#contact" class="pricing-card__btn btn btn--primary">
-                        <span class="btn__text">Get Started</span>
-                        <span class="btn__icon">→</span>
-                    </a>
+                    <div class="pricing-card__content">
+                        <ul>
+                            <li><i class="fas fa-check"></i>Everything in Professional Package</li>
+                            <li><i class="fas fa-check"></i>Custom Brand Guidelines</li>
+                            <li><i class="fas fa-check"></i>Marketing Materials Suite</li>
+                            <li><i class="fas fa-check"></i>Product Catalog Design</li>
+                            <li><i class="fas fa-check"></i>Packaging Design</li>
+                            <li><i class="fas fa-check"></i>Priority Support</li>
+                            <li><i class="fas fa-check"></i>Dedicated Project Manager</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn--primary">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>What file formats will I receive?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You'll receive both print-ready files (PDF, AI, EPS) and web-optimized versions (JPG, PNG) of all designs. We also provide source files for future modifications.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>How long does the design process take?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Typical turnaround time is 7-10 business days for standard projects. Complex brand identity projects may take 2-3 weeks. Rush services are available upon request.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Do you handle printing as well?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we partner with premium printing services to ensure the highest quality production of your materials. We can manage the entire process from design to delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Can you work with existing brand guidelines?</h3>
+                        <span class="faq-icon"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We can work within your existing brand guidelines to ensure consistency across all materials while bringing fresh creative ideas to the table.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -511,150 +543,26 @@
 
     <!-- CTA Section -->
     <section class="cta">
-        <div class="cta__background">
-            <div class="cta__overlay"></div>
-            <div class="cta__particles"></div>
-        </div>
         <div class="container">
             <div class="cta__content" data-aos="fade-up">
-                <h2 class="cta__title split-text">Ready to Start Your Project?</h2>
-                <p class="cta__description">Let's transform your business with our professional technology solutions.</p>
-                <a href="#contact" class="cta__btn btn btn--light">
-                    <span class="btn__text">Contact Us Now</span>
-                    <span class="btn__icon">
-                        <i class="fas fa-arrow-right"></i>
-                    </span>
-                </a>
+                <h2>Ready to Elevate Your Brand?</h2>
+                <p>Let's create business materials that make a lasting impression.</p>
+                <a href="contact.html" class="btn btn--light">Start Your Project</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-header__subtitle">Get In Touch</span>
-                <h2 class="section-header__title split-text">
-                    <span class="title-line">Let's discuss</span>
-                    <span class="title-line">your project</span>
-                </h2>
-            </div>
-
-            <div class="contact__content">
-                <div class="contact__info" data-aos="fade-right">
-                    <div class="contact__info-item">
-                        <div class="contact__info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                    <div class="contact__info-item">
-                        <div class="contact__info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3>Email</h3>
-                        <p>elan@elanstechworld.com</p>
-                    </div>
-                    <div class="contact__info-item">
-                        <div class="contact__info-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <h3>Phone</h3>
-                        <p>+1 (929) 417-6819</p>
-                    </div>
-                </div>
-
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__info">
-                    <a href="/" class="footer__logo">
-                        <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                        <span>Elan's Tech World</span>
-                    </a>
-                    <p class="footer__description">Your Partner in Technology</p>
-                    <div class="footer__social">
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer__links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer__services">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#web-design">Web Design</a></li>
-                        <li><a href="#computer-setup">Computer Setup</a></li>
-                        <li><a href="#pos-system">POS System</a></li>
-                        <li><a href="#business-materials">Business Materials</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer__newsletter">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe to our newsletter for updates and tech tips.</p>
-                    <form class="newsletter__form">
-                        <input type="email" placeholder="Enter your email">
-                        <button type="submit" class="btn btn--primary">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-    <div class="footer__bottom">
-                <div class="footer__copyright">
-                    <p>&copy; 2024 Elan's Tech World. All rights reserved.</p>
-                </div>
-                <div class="footer__legal">
-                    <a href="/privacy">Privacy Policy</a>
-                    <a href="/terms">Terms of Service</a>
-                    <a href="/sitemap">Sitemap</a>
-                </div>
-            </div>
-        </div>
+        <!-- Footer content same as main site -->
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" aria-label="Back to Top">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-        </svg>
-    </button>
-
-    <!-- Cookie Consent -->
-    <div class="cookie-consent" id="cookieConsent">
-        <div class="cookie-consent__content">
-            <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.</p>
-            <div class="cookie-consent__actions">
-                <button class="btn btn--primary cookie-consent__accept">Accept</button>
-                <button class="btn btn--secondary cookie-consent__settings">Settings</button>
-            </div>
-        </div>
-    </div>
-
-                        <!-- Libraries -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollToPlugin.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
-    
-    <!-- Custom Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="../js/service-detail.js"></script>
 </body>
 </html>
-
