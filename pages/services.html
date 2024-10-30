@@ -1,38 +1,34 @@
+<!-- File 1: index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Elan's Tech World</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <title>Modern Tech Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header with transparent background -->
+    <!-- Header -->
     <header class="header">
         <div class="header-container">
             <a href="/" class="logo">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                <span class="logo-text">Elan's Tech World</span>
+                <img src="/api/placeholder/40/40" alt="Logo" class="logo-img">
+                <span class="logo-text">TechWorld</span>
             </a>
             
             <nav class="desktop-nav">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="../pages/about.html">About Us</a></li>
-                    <li><a href="../pages/services.html" class="active">Services</a></li>
-                    <li><a href="../pages/projects.html">Projects</a></li>
-                    <li><a href="../pages/contact.html">Contact</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
 
-            <button class="hamburger" aria-label="Toggle Menu">
+            <button class="hamburger" aria-label="Menu">
                 <span class="hamburger-box">
                     <span class="hamburger-inner"></span>
                 </span>
@@ -41,271 +37,52 @@
     </header>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav">
+    <nav class="mobile-nav">
         <ul>
-       <li><a href="index.html">Home</a></li>
-       <li><a href="../pages/about.html">About Us</a></li>
-       <li><a href="../pages/services.html" class="active">Services</a></li>
-       <li><a href="../pages/projects.html">Projects</a></li>
-       <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-    </div>
+    </nav>
 
-    <!-- Full-width hero section with animated text -->
-    <section class="hero-section">
-        <div class="hero-background">
-            <div class="particle-container"></div>
-            <div class="gradient-overlay"></div>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="particle-container"></div>
+        <div class="gradient-overlay"></div>
         <div class="hero-content">
             <h1 class="hero-title">
+                <span class="gradient-text">Professional</span>
                 <span class="typing-text"></span>
                 <span class="cursor">|</span>
             </h1>
-            <div class="hero-subtitle">
-                <span class="slide-up">Transforming Businesses</span>
-                <span class="slide-up">Through Technology</span>
+            <p class="hero-subtitle">Transforming ideas into digital reality</p>
+            <div class="hero-cta">
+                <a href="#services" class="btn-primary">Our Services</a>
+                <a href="#contact" class="btn-secondary">Get in Touch</a>
             </div>
         </div>
         <div class="scroll-indicator">
             <div class="mouse">
                 <div class="wheel"></div>
             </div>
-            <span>Scroll to Explore</span>
+            <span>Scroll Down</span>
         </div>
     </section>
 
-    <!-- Services Section with Grid Layout -->
-    <section class="services-section">
-        <div class="services-container">
-            <!-- Category Filter -->
-            <div class="category-filter">
-                <button class="filter-btn active" data-filter="all">All Services</button>
-                <button class="filter-btn" data-filter="business">Business</button>
-                <button class="filter-btn" data-filter="technical">Technical</button>
-                <button class="filter-btn" data-filter="support">Support</button>
-            </div>
-
-<!-- Services Grid -->
-<!-- Services Grid -->
-<div class="services-grid">
-    <!-- Custom Business Materials -->
-    <div class="service-card" data-category="business">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>Custom Business Materials</h3>
-                <p>Professional design services for your business identity</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Business card design</li>
-                    <li>Custom flyer creation</li>
-                    <li>Brochure design</li>
-                    <li>Marketing materials</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="../pages/business-mat.html" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="business-materials">Quick View</button>
-                </div>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <!-- Service cards will be added dynamically via JavaScript -->
             </div>
         </div>
-    </div>
-
-    <!-- Apple Product Resell -->
-    <div class="service-card" data-category="technical">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fab fa-apple"></i>
-                </div>
-                <h3>Apple Product Resell</h3>
-                <p>Quality Apple devices with professional setup and support</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Certified Apple products</li>
-                    <li>Professional configuration</li>
-                    <li>Warranty services</li>
-                    <li>Technical support</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="/services/apple-products" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="apple-products">Quick View</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Web Design -->
-    <div class="service-card" data-category="technical">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <h3>Web Design</h3>
-                <p>Custom website design and development solutions</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Custom website creation</li>
-                    <li>Mobile-responsive design</li>
-                    <li>E-commerce solutions</li>
-                    <li>SEO optimization</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="/services/web-design" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="web-design">Quick View</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Expert Computer Setup -->
-    <div class="service-card" data-category="technical">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fas fa-desktop"></i>
-                </div>
-                <h3>Expert Computer Setup</h3>
-                <p>Professional computer configuration and optimization</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Hardware installation</li>
-                    <li>Software configuration</li>
-                    <li>Performance optimization</li>
-                    <li>Security setup</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="/services/computer-setup" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="computer-setup">Quick View</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Custom POS System -->
-    <div class="service-card" data-category="business">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fas fa-cash-register"></i>
-                </div>
-                <h3>Custom POS System</h3>
-                <p>Tailored point of sale solutions for your business</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Custom POS setup</li>
-                    <li>Hardware installation</li>
-                    <li>Staff training</li>
-                    <li>Technical support</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="/services/pos-system" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="pos-system">Quick View</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Website Maintenance -->
-    <div class="service-card" data-category="technical">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fas fa-sync-alt"></i>
-                </div>
-                <h3>Website Maintenance</h3>
-                <p>Regular updates and maintenance for your website</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Regular updates</li>
-                    <li>Security patches</li>
-                    <li>Content updates</li>
-                    <li>Performance monitoring</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="/services/website-maintenance" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="website-maintenance">Quick View</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Data Backup & Recovery -->
-    <div class="service-card" data-category="support">
-        <div class="card-inner">
-            <div class="card-front">
-                <div class="service-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3>Data Backup & Recovery</h3>
-                <p>Secure data protection and recovery solutions</p>
-            </div>
-            <div class="card-back">
-                <ul class="service-features">
-                    <li>Data backup setup</li>
-                    <li>Recovery services</li>
-                    <li>Cloud storage</li>
-                    <li>Disaster recovery</li>
-                </ul>
-                <div class="card-actions">
-                    <a href="/services/data-backup" class="btn-primary">Learn More</a>
-                    <button class="btn-secondary modal-trigger" data-service="data-backup">Quick View</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     </section>
 
-   <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Elan's Tech World</h3>
-                    <p>Your Partner in Technology</p>
-                    <p>&copy; 2024 All rights reserved.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/services">Services</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h4>Connect With Us</h4>
-                    <div class="social-links">
-                        <a href="https://instagram.com/elan_tech_world" target="_blank">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Service Modal Template -->
-    <div class="service-modal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <div class="modal-body"></div>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"></script>
-    <script src="../js/services.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
