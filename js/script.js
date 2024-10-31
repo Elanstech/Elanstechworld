@@ -1,3 +1,84 @@
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeAll();
+});
+
+function initializeAll() {
+    // Initialize all components
+    new MobileNav();
+    new Slideshow('.slide');
+    new SmoothScroll();
+    new AnimationObserver();
+    initParticles();
+    setupScrollHandler();
+}
+
+// Mobile Navigation Class
+class MobileNav {
+    constructor() {
+        this.hamburger = document.querySelector('.hamburger');
+        this.mobileNav = document.querySelector('.mobile-nav');
+        this.isOpen = false;
+        
+        if (this.hamburger && this.mobileNav) {
+            this.init();
+        }
+    }
+
+    init() {
+        // Set initial state
+        this.mobileNav.style.visibility = 'hidden';
+        this.mobileNav.style.transform = 'translateX(100%)';
+        
+        // Add event listeners
+        this.hamburger.addEventListener('click', () => this.toggleMenu());
+        this.setupCloseHandlers();
+        this.setupKeyboardNavigation();
+    }
+
+    toggleMenu() {
+        this.isOpen = !this.isOpen;
+        
+        // Toggle hamburger animation
+        this.hamburger.classList.toggle('active');
+        
+        // Toggle mobile nav
+        this.mobileNav.style.visibility = this.isOpen ? 'visible' : 'hidden';
+        this.mobileNav.classList.toggle('active');
+        
+        // Toggle body scroll
+        document.body.style.overflow = this.isOpen ? 'hidden' : '';
+    }
+
+    setupCloseHandlers() {
+        // Close menu when clicking links
+        this.mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (this.isOpen) {
+                    this.toggleMenu();
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (this.isOpen && 
+                !this.mobileNav.contains(e.target) && 
+                !this.hamburger.contains(e.target)) {
+                this.toggleMenu();
+            }
+        });
+    }
+
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.isOpen) {
+                this.toggleMenu();
+            }
+        });
+    }
+}
+
 // Slideshow Class
 class Slideshow {
     constructor(selector) {
@@ -37,132 +118,6 @@ class Slideshow {
         if (this.interval) {
             clearInterval(this.interval);
             this.interval = null;
-        }
-    }
-}
-
-// Mobile Navigation Class
-class MobileNav {
-    constructor() {
-        this.hamburger = document.querySelector('.hamburger');
-        this.mobileNav = document.querySelector('.mobile-nav');
-        this.isOpen = false;
-        
-        if (this.hamburger && this.mobileNav) {
-            this.init();
-        } else {
-            console.warn('Mobile nav elements not found');
-        }
-    }
-
-    init() {
-        // Set initial styles explicitly
-        this.mobileNav.style.transform = 'translateX(100%)';
-        this.mobileNav.style.display = 'block';
-        
-        // Initialize ARIA attributes
-        this.hamburger.setAttribute('aria-label', 'Toggle menu');
-        this.hamburger.setAttribute('aria-expanded', 'false');
-        this.mobileNav.setAttribute('aria-hidden', 'true');
-
-        // Event listeners
-        this.hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            this.toggleMenu();
-        });
-        
-        this.setupCloseHandlers();
-        this.setupKeyboardNavigation();
-    }
-
-    toggleMenu() {
-        this.isOpen = !this.isOpen;
-        
-        // Update hamburger appearance
-        const bars = this.hamburger.querySelectorAll('div');
-        bars.forEach((bar, index) => {
-            if (this.isOpen) {
-                switch(index) {
-                    case 0:
-                        bar.style.transform = 'rotate(-45deg) translate(-5px, 6px)';
-                        break;
-                    case 1:
-                        bar.style.opacity = '0';
-                        break;
-                    case 2:
-                        bar.style.transform = 'rotate(45deg) translate(-5px, -6px)';
-                        break;
-                }
-            } else {
-                bar.style.transform = 'none';
-                bar.style.opacity = '1';
-            }
-        });
-
-        // Toggle mobile nav with transition
-        this.mobileNav.style.transform = this.isOpen ? 'translateX(0)' : 'translateX(100%)';
-        
-        // Update ARIA attributes
-        this.hamburger.setAttribute('aria-expanded', String(this.isOpen));
-        this.mobileNav.setAttribute('aria-hidden', String(!this.isOpen));
-        
-        // Toggle body scroll
-        document.body.style.overflow = this.isOpen ? 'hidden' : '';
-    }
-
-    setupCloseHandlers() {
-        // Close menu when clicking links
-        this.mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (this.isOpen) {
-                    this.isOpen = false;
-                    this.toggleMenu();
-                }
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (this.isOpen && 
-                !this.mobileNav.contains(e.target) && 
-                !this.hamburger.contains(e.target)) {
-                this.toggleMenu();
-            }
-        });
-    }
-
-    setupKeyboardNavigation() {
-        // Close menu on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) {
-                this.toggleMenu();
-            }
-        });
-
-        // Trap focus within mobile nav when open
-        const focusableElements = this.mobileNav.querySelectorAll(
-            'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
-        );
-        
-        if (focusableElements.length > 0) {
-            const firstFocusable = focusableElements[0];
-            const lastFocusable = focusableElements[focusableElements.length - 1];
-
-            this.mobileNav.addEventListener('keydown', (e) => {
-                if (e.key === 'Tab') {
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusable) {
-                            lastFocusable.focus();
-                            e.preventDefault();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusable) {
-                            firstFocusable.focus();
-                            e.preventDefault();
-                        }
-                    }
-                }
-            });
         }
     }
 }
@@ -207,13 +162,13 @@ class AnimationObserver {
         const options = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1
+            threshold: 0.2
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+                    entry.target.classList.add('fade-in');
                     observer.unobserve(entry.target);
                 }
             });
@@ -312,25 +267,28 @@ const particlesConfig = {
     retina_detect: true
 };
 
-// Header Scroll Effect
-function handleScroll() {
-    const header = document.querySelector('header');
-    if (header) {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-    }
-}
-
 // Initialize Particles
 function initParticles() {
     try {
         if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
             particlesJS('particles-js', particlesConfig);
-        } else {
-            console.warn('Particles.js not loaded or container not found');
         }
     } catch (error) {
         console.error('Error initializing particles:', error);
     }
+}
+
+// Header Scroll Effect
+function setupScrollHandler() {
+    const header = document.querySelector('header');
+    const scrollHandler = () => {
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+    };
+
+    window.addEventListener('scroll', debounce(scrollHandler, 10));
+    scrollHandler(); // Initial check
 }
 
 // Utility: Debounce Function
@@ -359,42 +317,14 @@ const handleResize = debounce(() => {
     }
 }, 250);
 
-// Initialize Everything
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Slideshow
-    new Slideshow('.slide');
-    
-    // Initialize Mobile Navigation
-    new MobileNav();
-    
-    // Initialize Smooth Scroll
-    new SmoothScroll();
-    
-    // Initialize Animation Observer
-    new AnimationObserver();
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', debounce(handleScroll, 10));
-    
-    // Initialize Particles
-    initParticles();
-    
-    // Add resize event listener
-    window.addEventListener('resize', handleResize);
-    
-    // Add initial header class if needed
-    handleScroll();
-});
+// Add resize event listener
+window.addEventListener('resize', handleResize);
 
 // Handle Page Visibility
 document.addEventListener('visibilitychange', () => {
     if (window.pJSDom && window.pJSDom[0]) {
         try {
-            if (document.hidden) {
-                window.pJSDom[0].pJS.particles.move.enable = false;
-            } else {
-                window.pJSDom[0].pJS.particles.move.enable = true;
-            }
+            window.pJSDom[0].pJS.particles.move.enable = !document.hidden;
         } catch (error) {
             console.error('Error handling visibility change:', error);
         }
