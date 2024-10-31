@@ -18,10 +18,13 @@ class MobileNav {
     constructor() {
         this.hamburger = document.querySelector('.hamburger');
         this.mobileNav = document.querySelector('.mobile-nav');
+        this.body = document.body;
         this.isOpen = false;
         
         if (this.hamburger && this.mobileNav) {
             this.init();
+        } else {
+            console.warn('Mobile nav elements not found');
         }
     }
 
@@ -30,10 +33,20 @@ class MobileNav {
         this.mobileNav.style.visibility = 'hidden';
         this.mobileNav.style.transform = 'translateX(100%)';
         
+        // Add ARIA attributes
+        this.hamburger.setAttribute('aria-label', 'Toggle menu');
+        this.hamburger.setAttribute('aria-expanded', 'false');
+        this.mobileNav.setAttribute('aria-hidden', 'true');
+
         // Add event listeners
-        this.hamburger.addEventListener('click', () => this.toggleMenu());
+        this.hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleMenu();
+        });
+
         this.setupCloseHandlers();
         this.setupKeyboardNavigation();
+        this.setupLinkHandlers();
     }
 
     toggleMenu() {
@@ -46,20 +59,16 @@ class MobileNav {
         this.mobileNav.style.visibility = this.isOpen ? 'visible' : 'hidden';
         this.mobileNav.classList.toggle('active');
         
+        // Update ARIA attributes
+        this.hamburger.setAttribute('aria-expanded', String(this.isOpen));
+        this.mobileNav.setAttribute('aria-hidden', String(!this.isOpen));
+        
         // Toggle body scroll
-        document.body.style.overflow = this.isOpen ? 'hidden' : '';
+        this.body.style.overflow = this.isOpen ? 'hidden' : '';
+        this.body.classList.toggle('nav-open', this.isOpen);
     }
 
     setupCloseHandlers() {
-        // Close menu when clicking links
-        this.mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (this.isOpen) {
-                    this.toggleMenu();
-                }
-            });
-        });
-
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (this.isOpen && 
@@ -68,13 +77,58 @@ class MobileNav {
                 this.toggleMenu();
             }
         });
+
+        // Close on resize if mobile nav is open
+        window.addEventListener('resize', () => {
+            if (this.isOpen && window.innerWidth > 768) {
+                this.toggleMenu();
+            }
+        });
     }
 
     setupKeyboardNavigation() {
+        // Close menu on Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.toggleMenu();
             }
+        });
+
+        // Trap focus within mobile nav when open
+        const focusableElements = this.mobileNav.querySelectorAll(
+            'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+        );
+        
+        if (focusableElements.length > 0) {
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+
+            this.mobileNav.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            lastFocusable.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            firstFocusable.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    setupLinkHandlers() {
+        // Close menu when clicking links
+        this.mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (this.isOpen) {
+                    this.toggleMenu();
+                }
+            });
         });
     }
 }
@@ -97,6 +151,15 @@ class Slideshow {
         
         // Start slideshow
         this.start();
+        
+        // Pause on page visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.stop();
+            } else {
+                this.start();
+            }
+        });
     }
 
     start() {
