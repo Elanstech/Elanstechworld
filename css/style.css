@@ -117,8 +117,9 @@ nav ul li a:hover::before {
 }
 
 /* Mobile Navigation */
+/* Mobile Navigation */
 .hamburger {
-    display: none; /* Will be shown in media query */
+    display: none;
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
@@ -126,6 +127,7 @@ nav ul li a:hover::before {
     background: none;
     padding: 10px;
     z-index: 1001;
+    position: relative;
 }
 
 .hamburger div {
@@ -135,8 +137,20 @@ nav ul li a:hover::before {
     transition: all 0.3s ease;
 }
 
+.hamburger.active div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
 .mobile-nav {
-    display: none; /* Will be set to block by JavaScript */
+    visibility: hidden;
     position: fixed;
     top: 0;
     right: 0;
@@ -145,10 +159,10 @@ nav ul li a:hover::before {
     background: rgba(11, 31, 63, 0.98);
     backdrop-filter: blur(10px);
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
     z-index: 1000;
 }
-
+/* Add these to your mobile-nav styles */
 .mobile-nav ul {
     height: 100%;
     display: flex;
@@ -156,23 +170,14 @@ nav ul li a:hover::before {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 80px 20px; /* Added padding to ensure content doesn't hide behind header */
 }
 
-.mobile-nav ul li a {
-    font-size: 1.4em;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: color 0.3s ease;
+.mobile-nav.active {
+    visibility: visible;
+    transform: translateX(0);
+    overflow-y: auto; /* Added for better scrolling on smaller devices */
 }
-
-.mobile-nav ul li a:hover {
-    color: #f9c200;
-}
-
 /* Hero Styles */
 .hero {
     position: relative;
