@@ -118,7 +118,7 @@ nav ul li a:hover::before {
 
 /* Mobile Navigation */
 .hamburger {
-    display: none;
+    display: none; /* Will be shown in media query */
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
@@ -136,7 +136,7 @@ nav ul li a:hover::before {
 }
 
 .mobile-nav {
-    display: none;
+    display: none; /* Will be set to block by JavaScript */
     position: fixed;
     top: 0;
     right: 0;
