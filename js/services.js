@@ -1,305 +1,368 @@
-// Wait for DOM to be fully loaded
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    initializeAll();
+    initializeTypewriter();
+    initializeServiceFilters();
+    initializeModals();
+    initializeHamburgerMenu();
+    initializeScrollEffects();
 });
 
-function initializeAll() {
-    // Initialize all components
-    new MobileNav();
-    new Slideshow();
-    new SmoothScroll();
-    new AnimationObserver();
-    initParticles();
-    setupScrollHandler();
-}
+// Typewriter effect for hero section
+function initializeTypewriter() {
+    const words = ["Technology Solutions", "Innovation", "Excellence"];
+    const typingText = document.querySelector('.typing-text');
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isWaiting = false;
 
-// Mobile Navigation Class
-class MobileNav {
-    constructor() {
-        this.hamburger = document.querySelector('.hamburger');
-        this.mobileNav = document.querySelector('.mobile-nav');
-        this.body = document.body;
-        this.isOpen = false;
+    function type() {
+        const currentWord = words[wordIndex];
         
-        if (this.hamburger && this.mobileNav) {
-            this.init();
+        if (isDeleting) {
+            typingText.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
         } else {
-            console.warn('Mobile nav elements not found');
-            return;
+            typingText.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+            isWaiting = true;
+            setTimeout(() => {
+                isDeleting = true;
+                isWaiting = false;
+            }, 2000);
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+
+        const typingSpeed = isDeleting ? 100 : 200;
+        if (!isWaiting) {
+            setTimeout(type, typingSpeed);
+        } else {
+            setTimeout(type, 2000);
         }
     }
 
-    init() {
-        // Remove any initial inline styles that might interfere
-        this.mobileNav.removeAttribute('style');
-        
-        // Add event listeners
-        this.hamburger.addEventListener('click', () => {
-            this.toggleMenu();
-        });
+    if (typingText) {
+        type();
+    }
+}
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (this.isOpen && 
-                !this.mobileNav.contains(e.target) && 
-                !this.hamburger.contains(e.target)) {
-                this.toggleMenu();
-            }
-        });
+// Service category filtering
+function initializeServiceFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const serviceCards = document.querySelectorAll('.service-card');
 
-        // Close on resize if mobile nav is open
-        window.addEventListener('resize', () => {
-            if (this.isOpen && window.innerWidth > 768) {
-                this.toggleMenu();
-            }
-        });
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-        // Close menu when clicking links
-        this.mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (this.isOpen) {
-                    this.toggleMenu();
+            const filter = button.dataset.filter;
+
+            serviceCards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
                 }
             });
         });
-
-        // Handle keyboard navigation
-        this.setupKeyboardNavigation();
-    }
-
-    toggleMenu() {
-        this.isOpen = !this.isOpen;
-        
-        // Toggle classes
-        this.hamburger.classList.toggle('active');
-        this.mobileNav.classList.toggle('active');
-        
-        // Toggle body scroll
-        this.body.style.overflow = this.isOpen ? 'hidden' : '';
-        this.body.classList.toggle('nav-open');
-        
-        // Update ARIA attributes
-        this.hamburger.setAttribute('aria-expanded', String(this.isOpen));
-        this.mobileNav.setAttribute('aria-hidden', String(!this.isOpen));
-    }
-
-    setupKeyboardNavigation() {
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.isOpen) {
-                this.toggleMenu();
-            }
-        });
-    }
+    });
 }
 
-// Slideshow Class
-class Slideshow {
-    constructor() {
-        this.slides = document.querySelectorAll('.slide');
-        this.currentIndex = 0;
-        this.interval = null;
-        
-        if (this.slides.length > 0) {
-            this.init();
-        }
-    }
+// Modal functionality
+function initializeModals() {
+    const modal = document.getElementById('serviceModal');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalBody = modal.querySelector('.modal-body');
+    const modalClose = modal.querySelector('.modal-close');
 
-    init() {
-        // Set initial state
-        this.slides[0].style.opacity = '1';
-        
-        // Start slideshow
-        this.start();
-        
-        // Pause on page visibility change
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                this.stop();
-            } else {
-                this.start();
-            }
-        });
-    }
-
-    start() {
-        this.interval = setInterval(() => this.nextSlide(), 5000);
-    }
-
-    stop() {
-        if (this.interval) {
-            clearInterval(this.interval);
-            this.interval = null;
-        }
-    }
-
-    nextSlide() {
-        // Fade out current slide
-        this.slides[this.currentIndex].style.opacity = '0';
-        
-        // Update index
-        this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-        
-        // Fade in next slide
-        this.slides[this.currentIndex].style.opacity = '1';
-    }
-}
-
-// Smooth Scroll Implementation
-class SmoothScroll {
-    constructor() {
-        this.setupSmoothScroll();
-    }
-
-    setupSmoothScroll() {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = anchor.getAttribute('href');
-                
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const headerOffset = document.querySelector('header').offsetHeight;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    }
-}
-
-// Animation Observer for Section Animations
-class AnimationObserver {
-    constructor() {
-        this.setupObserver();
-    }
-
-    setupObserver() {
-        const options = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, options);
-
-        document.querySelectorAll('.section-wrapper').forEach(section => {
-            observer.observe(section);
-        });
-    }
-}
-
-// Particles Configuration and Initialization
-const particlesConfig = {
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-                value_area: 800
-            }
+    // Service content mapping
+    const serviceContent = {
+        'business-materials': {
+            title: 'Custom Business Materials',
+            content: `
+                <p>Transform your business identity with our professional design services.</p>
+                <h3>Our Services Include:</h3>
+                <ul>
+                    <li>Professional business card design</li>
+                    <li>Eye-catching flyer creation</li>
+                    <li>Compelling brochure design</li>
+                    <li>Comprehensive marketing materials</li>
+                </ul>
+                <h3>Why Choose Us?</h3>
+                <ul>
+                    <li>Expert designers with years of experience</li>
+                    <li>Quick turnaround times</li>
+                    <li>Unlimited revisions until satisfaction</li>
+                    <li>High-quality printing options available</li>
+                </ul>
+            `
         },
-        color: {
-            value: ["#f9c200", "#ff6a00", "#ffffff"]
+        'apple-products': {
+            title: 'Apple Product Setup',
+            content: `
+                <p>Get the most out of your Apple devices with our professional setup and support services.</p>
+                <h3>Services Include:</h3>
+                <ul>
+                    <li>Complete device configuration</li>
+                    <li>Data migration and backup</li>
+                    <li>Software installation and updates</li>
+                    <li>iCloud and Apple ID setup</li>
+                </ul>
+                <h3>Additional Benefits:</h3>
+                <ul>
+                    <li>Post-setup support</li>
+                    <li>Performance optimization</li>
+                    <li>Security configuration</li>
+                    <li>Training sessions available</li>
+                </ul>
+            `
         },
-        shape: {
-            type: "circle"
+        'web-design': {
+            title: 'Web Design Services',
+            content: `
+                <p>Create a stunning online presence with our professional web design services.</p>
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Custom website design</li>
+                    <li>Responsive mobile-first development</li>
+                    <li>E-commerce solutions</li>
+                    <li>SEO optimization</li>
+                </ul>
+                <h3>Our Process:</h3>
+                <ul>
+                    <li>Initial consultation and planning</li>
+                    <li>Design mockups and prototypes</li>
+                    <li>Development and testing</li>
+                    <li>Launch and maintenance support</li>
+                </ul>
+            `
         },
-        opacity: {
-            value: 0.5,
-            random: true
+        'computer-setup': {
+            title: 'Computer Setup & Configuration',
+            content: `
+                <p>Professional computer setup and optimization services for peak performance.</p>
+                <h3>Setup Services:</h3>
+                <ul>
+                    <li>Hardware installation and testing</li>
+                    <li>Operating system configuration</li>
+                    <li>Software installation and setup</li>
+                    <li>Network configuration</li>
+                </ul>
+                <h3>Optimization Services:</h3>
+                <ul>
+                    <li>Performance tuning</li>
+                    <li>Security software installation</li>
+                    <li>Data backup solutions</li>
+                    <li>System maintenance plans</li>
+                </ul>
+            `
         },
-        size: {
-            value: 3,
-            random: true
+        'pos-system': {
+            title: 'POS System Setup',
+            content: `
+                <p>Complete point of sale solutions for your business needs.</p>
+                <h3>Implementation Services:</h3>
+                <ul>
+                    <li>Hardware installation</li>
+                    <li>Software configuration</li>
+                    <li>Payment processing setup</li>
+                    <li>Inventory system integration</li>
+                </ul>
+                <h3>Training & Support:</h3>
+                <ul>
+                    <li>Staff training sessions</li>
+                    <li>Technical support</li>
+                    <li>System updates and maintenance</li>
+                    <li>Troubleshooting assistance</li>
+                </ul>
+            `
         },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.2,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false
-        }
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: {
-                enable: true,
-                mode: "bubble"
-            },
-            onclick: {
-                enable: true,
-                mode: "push"
-            },
-            resize: true
-        },
-        modes: {
-            bubble: {
-                distance: 200,
-                size: 6,
-                duration: 0.2,
-                opacity: 0.8,
-                speed: 3
-            },
-            push: {
-                particles_nb: 4
-            }
-        }
-    },
-    retina_detect: true
-};
-
-function initParticles() {
-    const particlesContainer = document.getElementById('particles-js');
-    if (particlesContainer && typeof particlesJS !== 'undefined') {
-        try {
-            particlesJS('particles-js', particlesConfig);
-        } catch (error) {
-            console.error('Error initializing particles:', error);
-        }
-    }
-}
-
-// Header Scroll Effect
-function setupScrollHandler() {
-    const header = document.querySelector('header');
-    const scrollThreshold = 50;
-    
-    const handleScroll = () => {
-        if (header) {
-            const shouldBeScrolled = window.scrollY > scrollThreshold;
-            header.classList.toggle('scrolled', shouldBeScrolled);
+        'it-support': {
+            title: 'IT Support Services',
+            content: `
+                <p>Comprehensive technical support for all your IT needs.</p>
+                <h3>Support Options:</h3>
+                <ul>
+                    <li>Remote technical assistance</li>
+                    <li>On-site support visits</li>
+                    <li>Network troubleshooting</li>
+                    <li>Hardware and software support</li>
+                </ul>
+                <h3>Additional Services:</h3>
+                <ul>
+                    <li>Preventive maintenance</li>
+                    <li>Security updates</li>
+                    <li>Data backup and recovery</li>
+                    <li>System optimization</li>
+                </ul>
+            `
         }
     };
 
-    window.addEventListener('scroll', debounce(handleScroll, 10));
-    handleScroll(); // Initial check
+    // Handle Quick View button clicks
+    document.querySelectorAll('.modal-trigger').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const serviceId = e.target.dataset.service;
+            const service = serviceContent[serviceId];
+            
+            modalTitle.textContent = service.title;
+            modalBody.innerHTML = service.content;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Handle Learn More button clicks
+    document.querySelectorAll('.btn-primary').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const card = e.target.closest('.service-card');
+            const serviceId = card.querySelector('.modal-trigger').dataset.service;
+            const service = serviceContent[serviceId];
+            
+            modalTitle.textContent = service.title;
+            modalBody.innerHTML = service.content;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    // Close modal
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 }
 
-// Utility: Debounce Function
+// Hamburger menu functionality
+function initializeHamburgerMenu() {
+    // Create hamburger button if it doesn't exist
+    let hamburger = document.querySelector('.hamburger');
+    if (!hamburger) {
+        hamburger = document.createElement('button');
+        hamburger.className = 'hamburger';
+        hamburger.setAttribute('aria-label', 'Menu');
+        hamburger.innerHTML = `
+            <div></div>
+            <div></div>
+            <div></div>
+        `;
+        document.querySelector('.header-container').appendChild(hamburger);
+    }
+
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    });
+
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+        if (mobileNav.classList.contains('active') && 
+            !mobileNav.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+}
+
+// Scroll effects
+function initializeScrollEffects() {
+    const header = document.querySelector('.header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Header scroll effect
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+
+        // Animate service cards on scroll
+        const cards = document.querySelectorAll('.service-card');
+        cards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+            const triggerPoint = window.innerHeight * 0.8;
+
+            if (cardTop < triggerPoint) {
+                card.classList.add('animate');
+            }
+        });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 80;
+                const elementPosition = target.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (window.innerWidth > 768) {
+        hamburger?.classList.remove('active');
+        mobileNav?.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    }
+});
+
+// Utility function for debouncing
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -311,31 +374,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Handle Window Resize
-window.addEventListener('resize', debounce(() => {
-    // Reinitialize particles on resize for better performance
-    if (window.pJSDom && window.pJSDom[0]) {
-        try {
-            window.pJSDom[0].pJS.fn.vendors.destroypJS();
-            window.pJSDom = [];
-            initParticles();
-        } catch (error) {
-            console.error('Error reinitializing particles on resize:', error);
-        }
-    }
-}, 250));
-
-// Handle Page Visibility
-document.addEventListener('visibilitychange', () => {
-    if (window.pJSDom && window.pJSDom[0]) {
-        try {
-            const particles = window.pJSDom[0].pJS.particles;
-            if (particles) {
-                particles.move.enable = !document.hidden;
-            }
-        } catch (error) {
-            console.error('Error handling visibility change:', error);
-        }
-    }
-});
