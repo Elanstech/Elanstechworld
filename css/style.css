@@ -171,9 +171,6 @@ nav ul li a:hover::before {
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
     z-index: 1000;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
 }
 
 .mobile-nav.active {
