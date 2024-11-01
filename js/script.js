@@ -1,4 +1,4 @@
-// Wait for DOM to be fully loaded
+// Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeAll();
 });
@@ -25,13 +25,13 @@ class MobileNav {
             this.init();
         } else {
             console.warn('Mobile nav elements not found');
+            return;
         }
     }
 
     init() {
-        // Set initial state
-        this.mobileNav.style.visibility = 'hidden';
-        this.mobileNav.style.transform = 'translateX(100%)';
+        // Remove any initial inline styles that might interfere
+        this.mobileNav.removeAttribute('style');
         
         // Add ARIA attributes
         this.hamburger.setAttribute('aria-label', 'Toggle menu');
@@ -52,20 +52,17 @@ class MobileNav {
     toggleMenu() {
         this.isOpen = !this.isOpen;
         
-        // Toggle hamburger animation
+        // Toggle classes
         this.hamburger.classList.toggle('active');
-        
-        // Toggle mobile nav
-        this.mobileNav.style.visibility = this.isOpen ? 'visible' : 'hidden';
         this.mobileNav.classList.toggle('active');
+        
+        // Toggle body scroll
+        this.body.style.overflow = this.isOpen ? 'hidden' : '';
+        this.body.classList.toggle('nav-open');
         
         // Update ARIA attributes
         this.hamburger.setAttribute('aria-expanded', String(this.isOpen));
         this.mobileNav.setAttribute('aria-hidden', String(!this.isOpen));
-        
-        // Toggle body scroll
-        this.body.style.overflow = this.isOpen ? 'hidden' : '';
-        this.body.classList.toggle('nav-open', this.isOpen);
     }
 
     setupCloseHandlers() {
@@ -166,6 +163,13 @@ class Slideshow {
         this.interval = setInterval(() => this.nextSlide(), 5000);
     }
 
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    }
+
     nextSlide() {
         // Fade out current slide
         this.slides[this.currentIndex].style.opacity = '0';
@@ -175,13 +179,6 @@ class Slideshow {
         
         // Fade in next slide
         this.slides[this.currentIndex].style.opacity = '1';
-    }
-
-    stop() {
-        if (this.interval) {
-            clearInterval(this.interval);
-            this.interval = null;
-        }
     }
 }
 
@@ -243,111 +240,106 @@ class AnimationObserver {
     }
 }
 
-// Particles Configuration
-const particlesConfig = {
-    particles: {
-        number: {
-            value: 100,
-            density: {
-                enable: true,
-                value_area: 1000
-            }
-        },
-        color: {
-            value: ["#f9c200", "#ff6a00", "#ffffff"]
-        },
-        shape: {
-            type: "circle"
-        },
-        opacity: {
-            value: 0.6,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 1,
-                opacity_min: 0.1,
-                sync: false
-            }
-        },
-        size: {
-            value: 3,
-            random: true,
-            anim: {
-                enable: true,
-                speed: 1,
-                size_min: 0.1,
-                sync: false
-            }
-        },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 0.2,
-            width: 1
-        },
-        move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-            attract: {
-                enable: true,
-                rotateX: 600,
-                rotateY: 1200
-            }
-        }
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: {
-                enable: true,
-                mode: "bubble"
-            },
-            onclick: {
-                enable: true,
-                mode: "push"
-            },
-            resize: true
-        },
-        modes: {
-            bubble: {
-                distance: 200,
-                size: 6,
-                duration: 0.2,
-                opacity: 0.8,
-                speed: 3
-            },
-            push: {
-                particles_nb: 4
-            }
-        }
-    },
-    retina_detect: true
-};
-
 // Initialize Particles
 function initParticles() {
-    try {
-        if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
-            particlesJS('particles-js', particlesConfig);
-        }
-    } catch (error) {
-        console.error('Error initializing particles:', error);
+    if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 100,
+                    density: {
+                        enable: true,
+                        value_area: 1000
+                    }
+                },
+                color: {
+                    value: ["#f9c200", "#ff6a00", "#ffffff"]
+                },
+                shape: {
+                    type: "circle"
+                },
+                opacity: {
+                    value: 0.6,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: true,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "bubble"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    bubble: {
+                        distance: 200,
+                        size: 6,
+                        duration: 0.2,
+                        opacity: 0.8,
+                        speed: 3
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
     }
 }
 
 // Header Scroll Effect
 function setupScrollHandler() {
     const header = document.querySelector('header');
+    if (!header) return;
+
     const scrollHandler = () => {
-        if (header) {
+        requestAnimationFrame(() => {
             header.classList.toggle('scrolled', window.scrollY > 50);
-        }
+        });
     };
 
     window.addEventListener('scroll', debounce(scrollHandler, 10));
