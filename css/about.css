@@ -357,6 +357,80 @@ header {
     border: 3px solid var(--primary-color);
     transition: transform var(--transition-speed) ease;
 }
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between logo and text */
+    text-decoration: none;
+    padding: 5px 0;
+}
+
+.logo img {
+    width: 50px;  /* Set a specific width */
+    height: 50px; /* Keep it square */
+    min-width: 50px; /* Prevent shrinking */
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    object-fit: contain; /* This will ensure the image maintains its aspect ratio */
+}
+
+.logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    white-space: nowrap; /* Prevent text from wrapping */
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Adjust header container to give more space */
+.header-container {
+    max-width: 1400px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    position: relative;
+    will-change: transform;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .logo img {
+        width: 40px; /* Slightly smaller on mobile */
+        height: 40px;
+        min-width: 40px;
+    }
+
+    .logo-text {
+        font-size: 1.2em; /* Smaller text on mobile */
+    }
+
+    .logo {
+        gap: 12px; /* Less space between logo and text on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 35px; /* Even smaller on very small screens */
+        height: 35px;
+        min-width: 35px;
+    }
+
+    .logo-text {
+        font-size: 1.1em;
+    }
+
+    .logo {
+        gap: 10px;
+    }
+}
 
 .team-image-wrapper img {
     width: 100%;
