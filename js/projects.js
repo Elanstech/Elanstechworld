@@ -172,7 +172,7 @@ class ProjectModal {
             appleservice: {
                 title: 'Apple Device Management',
                 description: 'Enterprise-level Apple device deployment and management system for business environments. Includes MDM setup and security protocols.',
-                images: ['project-apple1.jpg'],
+                images: ['../assets/images/Applemanagemnt.jpeg'],
                 client: 'Various Clients',
                 duration: 'Ongoing',
                 technologies: ['MDM Solutions', 'iOS Management', 'macOS Configuration']
