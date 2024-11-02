@@ -223,6 +223,14 @@ class ProjectModal {
                 duration: '1 week',
                 technologies: ['Network Setup', 'Security Implementation', 'Hardware Configuration']
             },
+            appleservice: {
+                title: 'Apple Device Management',
+                description: 'Enterprise-level Apple device deployment and management system for business environments. Includes MDM setup and security protocols.',
+                images: ['Applemanagemnt.jpeg'],
+                client: 'Various Clients',
+                duration: 'Ongoing',
+                technologies: ['MDM Solutions', 'iOS Management', 'macOS Configuration']
+            },
             brochure: {
                 title: 'Business Brochure Design',
                 description: 'Professional marketing materials design including digital and print formats. Custom layouts and brand integration.',
