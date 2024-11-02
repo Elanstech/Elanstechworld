@@ -204,7 +204,7 @@ class ProjectModal {
             pos: {
                 title: 'POS System Implementation',
                 description: 'Modern retail POS system implementation with inventory management, analytics, and reporting features.',
-                images: ['project-pos2.jpg'],
+                images: ['../assets/images/Pos.jpeg'],
                 client: 'Retail Businesses',
                 duration: 'Various',
                 technologies: ['POS Software', 'Inventory Management', 'Payment Processing']
