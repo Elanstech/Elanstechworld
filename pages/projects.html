@@ -6,10 +6,6 @@
     <meta name="description" content="Explore Elan's Tech World's innovative technology projects and solutions">
     <title>Projects - Elan's Tech World</title>
     
-    <!-- Preload critical assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    
     <!-- Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -23,7 +19,6 @@
     <link rel="stylesheet" href="../css/projects.css">
 </head>
 <body>
-    <!-- Header (same as index) -->
     <header>
         <div class="header-container">
             <a href="/" class="logo" aria-label="Home">
@@ -63,109 +58,138 @@
     <main>
         <!-- Projects Hero Section -->
         <section class="projects-hero">
-            <div class="hero-content" data-aos="fade-up">
-                <h1 class="hero-title">Our Projects</h1>
-                <p class="hero-subtitle">Discover our innovative solutions and success stories</p>
+            <div class="hero-content">
+                <h1>Our Latest Projects</h1>
+                <p>Transforming businesses through innovative solutions</p>
             </div>
+            <div class="hero-overlay"></div>
             <div id="particles-js"></div>
         </section>
 
-        <!-- Project Filters -->
-        <section class="filter-section">
+        <!-- Projects Showcase Section -->
+        <section class="projects-showcase">
             <div class="container">
-                <div class="filter-container" data-aos="fade-up">
-                    <h2>Browse Projects</h2>
+                <!-- Category Filters -->
+                <div class="filter-bar">
+                    <h2>Browse Our Work</h2>
                     <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All Projects</button>
+                        <button class="filter-btn active" data-filter="all">All</button>
                         <button class="filter-btn" data-filter="web">Web Development</button>
                         <button class="filter-btn" data-filter="tech">Tech Solutions</button>
                         <button class="filter-btn" data-filter="apple">Apple Services</button>
-                    </div>
-                    <div class="search-container">
-                        <input type="text" id="project-search" placeholder="Search projects...">
-                        <i class="fas fa-search"></i>
+                        <button class="filter-btn" data-filter="pos">POS Systems</button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Projects Grid -->
-        <section class="projects-grid">
-            <div class="container">
-                <div class="projects-wrapper">
-                    <!-- Project Card Template -->
-                    <article class="project-card" data-category="web">
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Website Development Projects -->
+                    <div class="project-item" data-category="web">
                         <div class="project-image">
-                            <img src="../assets/images/project1.jpg" alt="E-commerce Website" loading="lazy">
+                            <img src="../assets/images/project-web1.jpg" alt="E-commerce Website">
                             <div class="project-overlay">
-                                <div class="project-actions">
-                                    <button class="project-preview" data-modal="modal-1">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
+                                <h3>E-commerce Platform</h3>
+                                <p>Custom online store with advanced features</p>
+                                <button class="view-project" data-project="ecommerce">View Details</button>
                             </div>
                         </div>
-                        <div class="project-content">
-                            <span class="project-category">Web Development</span>
-                            <h3>E-commerce Platform</h3>
-                            <p>Custom e-commerce solution with advanced features</p>
-                            <div class="project-tech">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                        </div>
-                    </article>
+                    </div>
 
-                    <!-- Add more project cards following the same structure -->
+                    <div class="project-item" data-category="web">
+                        <div class="project-image">
+                            <img src="../assets/images/project-web2.jpg" alt="Restaurant Website">
+                            <div class="project-overlay">
+                                <h3>Restaurant Website</h3>
+                                <p>Modern website with online ordering system</p>
+                                <button class="view-project" data-project="restaurant">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Solution Projects -->
+                    <div class="project-item" data-category="tech">
+                        <div class="project-image">
+                            <img src="../assets/images/project-tech1.jpg" alt="Office Network Setup">
+                            <div class="project-overlay">
+                                <h3>Office Network Infrastructure</h3>
+                                <p>Complete office network setup and security implementation</p>
+                                <button class="view-project" data-project="network">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-category="tech">
+                        <div class="project-image">
+                            <img src="../assets/images/project-tech2.jpg" alt="Cloud Migration">
+                            <div class="project-overlay">
+                                <h3>Cloud Migration</h3>
+                                <p>Seamless transition to cloud-based infrastructure</p>
+                                <button class="view-project" data-project="cloud">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apple Service Projects -->
+                    <div class="project-item" data-category="apple">
+                        <div class="project-image">
+                            <img src="../assets/images/project-apple1.jpg" alt="Apple Device Management">
+                            <div class="project-overlay">
+                                <h3>Apple Device Fleet Management</h3>
+                                <p>Enterprise-level Apple device deployment and management</p>
+                                <button class="view-project" data-project="apple-fleet">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-category="apple">
+                        <div class="project-image">
+                            <img src="../assets/images/project-apple2.jpg" alt="Mac Integration">
+                            <div class="project-overlay">
+                                <h3>Mac Integration Solutions</h3>
+                                <p>Seamless integration of Mac systems in Windows environment</p>
+                                <button class="view-project" data-project="mac-integration">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- POS System Projects -->
+                    <div class="project-item" data-category="pos">
+                        <div class="project-image">
+                            <img src="../assets/images/project-pos1.jpg" alt="Restaurant POS">
+                            <div class="project-overlay">
+                                <h3>Restaurant POS System</h3>
+                                <p>Complete POS solution with inventory management</p>
+                                <button class="view-project" data-project="restaurant-pos">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-category="pos">
+                        <div class="project-image">
+                            <img src="../assets/images/project-pos2.jpg" alt="Retail POS">
+                            <div class="project-overlay">
+                                <h3>Retail POS Implementation</h3>
+                                <p>Modern retail POS system with analytics</p>
+                                <button class="view-project" data-project="retail-pos">View Details</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Load More Button -->
-                <div class="load-more-container">
-                    <button id="load-more" class="btn">Load More Projects</button>
+                <!-- Project Details Modal -->
+                <div class="project-modal">
+                    <div class="modal-content">
+                        <button class="modal-close">&times;</button>
+                        <div class="modal-body">
+                            <!-- Content will be dynamically inserted here -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Project Modal Template -->
-        <div class="project-modal" id="modal-1">
-            <div class="modal-content">
-                <button class="modal-close">×</button>
-                <div class="modal-body">
-                    <div class="modal-gallery">
-                        <!-- Gallery images will be loaded dynamically -->
-                    </div>
-                    <div class="modal-info">
-                        <h2>E-commerce Platform</h2>
-                        <p class="modal-description">
-                            Comprehensive e-commerce solution featuring advanced product management, 
-                            secure payment integration, and real-time inventory tracking.
-                        </p>
-                        <div class="modal-details">
-                            <div class="detail-item">
-                                <span class="detail-label">Client:</span>
-                                <span class="detail-value">Retail Company</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Timeline:</span>
-                                <span class="detail-value">3 months</span>
-                            </div>
-                            <div class="detail-item">
-                                <span class="detail-label">Technologies:</span>
-                                <div class="tech-stack">
-                                    <span>React</span>
-                                    <span>Node.js</span>
-                                    <span>MongoDB</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
-    <!-- Footer (same as index) -->
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-info">
