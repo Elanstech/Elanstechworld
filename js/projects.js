@@ -39,7 +39,8 @@ function initStats() {
     const stats = document.querySelectorAll('.stat-number');
     
     const observerOptions = {
-        threshold: 0.5
+        threshold: 0.5,
+        rootMargin: '0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -57,22 +58,17 @@ function initStats() {
 }
 
 function animateValue(element, start, end, duration) {
-    const range = end - start;
-    const increment = range / (duration / 16);
-    let current = start;
-    
-    const animate = () => {
-        current += increment;
-        element.textContent = Math.round(current);
-        
-        if (current < end) {
-            requestAnimationFrame(animate);
-        } else {
-            element.textContent = end;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const currentValue = Math.floor(progress * (end - start) + start);
+        element.textContent = currentValue;
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
         }
     };
-    
-    animate();
+    window.requestAnimationFrame(step);
 }
 
 // Projects Filter Class
@@ -80,7 +76,6 @@ class ProjectsFilter {
     constructor() {
         this.filterButtons = document.querySelectorAll('.filter-btn');
         this.projects = document.querySelectorAll('.project-item');
-        
         this.init();
     }
 
@@ -100,34 +95,25 @@ class ProjectsFilter {
         this.projects.forEach(project => {
             const category = project.getAttribute('data-category');
             
-            const tl = gsap.timeline();
-            
-            if (filter === 'all' || filter === category) {
-                tl.to(project, {
-                    duration: 0.5,
-                    opacity: 0,
-                    y: 20,
-                    ease: 'power2.inOut',
-                    onComplete: () => {
-                        project.style.display = 'block';
+            gsap.to(project, {
+                duration: 0.3,
+                opacity: 0,
+                scale: 0.95,
+                ease: 'power2.out',
+                onComplete: () => {
+                    project.style.display = 
+                        filter === 'all' || category === filter ? 'block' : 'none';
+                    
+                    if (filter === 'all' || category === filter) {
+                        gsap.to(project, {
+                            duration: 0.3,
+                            opacity: 1,
+                            scale: 1,
+                            ease: 'power2.out'
+                        });
                     }
-                }).to(project, {
-                    duration: 0.5,
-                    opacity: 1,
-                    y: 0,
-                    ease: 'power2.out'
-                });
-            } else {
-                tl.to(project, {
-                    duration: 0.5,
-                    opacity: 0,
-                    y: 20,
-                    ease: 'power2.inOut',
-                    onComplete: () => {
-                        project.style.display = 'none';
-                    }
-                });
-            }
+                }
+            });
         });
     }
 }
@@ -138,7 +124,6 @@ class ProjectModal {
         this.modal = document.querySelector('.project-modal');
         this.modalContent = document.querySelector('.modal-body');
         this.projectButtons = document.querySelectorAll('.view-project');
-        
         this.init();
     }
 
@@ -175,29 +160,31 @@ class ProjectModal {
         this.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        gsap.from('.modal-gallery', {
-            opacity: 0,
-            y: 30,
-            duration: 0.5,
-            delay: 0.2
-        });
-        
-        gsap.from('.modal-details', {
-            opacity: 0,
-            y: 30,
-            duration: 0.5,
-            delay: 0.4
-        });
+        gsap.fromTo(this.modal, 
+            { opacity: 0 },
+            { opacity: 1, duration: 0.3 }
+        );
+
+        gsap.fromTo('.modal-content',
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
+        );
     }
 
     closeModal() {
+        gsap.to('.modal-content', {
+            y: 50,
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in'
+        });
+
         gsap.to(this.modal, {
             opacity: 0,
             duration: 0.3,
             onComplete: () => {
                 this.modal.classList.remove('active');
                 document.body.style.overflow = '';
-                this.modal.style.opacity = '';
             }
         });
     }
@@ -206,23 +193,23 @@ class ProjectModal {
         const projectsData = {
             ecommerce: {
                 title: 'Iconic Aesthetics Website',
-                description: 'Custom Website with integrated booking system and service management. Features include online appointments, service catalog, and customer reviews.',
-                images: ['iconicwebsiteimage.jpeg', 'iconiclogo.jpeg'],
+                description: 'Custom Website with integrated booking system and service management. Features include online appointments, service catalog, and customer reviews. Built with modern web technologies to ensure a seamless user experience.',
+                images: ['iconicwebsiteimage.jpeg'],
                 client: 'Iconic Aesthetics',
                 duration: '2 weeks',
-                technologies: ['HTML', 'CSS', 'JavaScript', 'Square Integration']
+                technologies: ['HTML', 'CSS', 'JavaScript', 'Square Integration', 'Responsive Design']
             },
             realestate: {
                 title: 'Real Estate Website',
-                description: 'Modern real estate website featuring property listings, agent profiles, and intuitive property search system.',
-                images: ['zarinaswebsite.jpeg', 'zarinasoffice2.jpeg'],
+                description: 'Modern real estate website featuring property listings, agent profiles, and intuitive property search system. Includes advanced filtering and sorting capabilities.',
+                images: ['zarinaswebsite.jpeg'],
                 client: 'East Coast Realty By Zarina',
                 duration: '3 weeks',
                 technologies: ['HTML', 'CSS', 'JavaScript', 'Property Management System']
             },
             accounting: {
                 title: 'Tax Accounting Firm Website',
-                description: 'Professional website for tax and accounting services with secure document handling and client portal.',
+                description: 'Professional website for tax and accounting services with secure document handling and client portal integration.',
                 images: ['cohenlogo.jpg'],
                 client: 'Cohen Tax & Accounting',
                 duration: '2 weeks',
@@ -230,7 +217,7 @@ class ProjectModal {
             },
             officesetup: {
                 title: 'Office Infrastructure Setup',
-                description: 'Complete office computer and network infrastructure implementation including security systems.',
+                description: 'Complete office computer and network infrastructure implementation including security systems and data management.',
                 images: ['zarinasoffice2.jpeg'],
                 client: 'East Coast Realty By Zarina',
                 duration: '1 week',
@@ -238,7 +225,7 @@ class ProjectModal {
             },
             brochure: {
                 title: 'Business Brochure Design',
-                description: 'Professional marketing materials design including digital and print formats.',
+                description: 'Professional marketing materials design including digital and print formats. Custom layouts and brand integration.',
                 images: ['Brochure.jpeg'],
                 client: 'Various Clients',
                 duration: 'Ongoing',
@@ -246,7 +233,7 @@ class ProjectModal {
             },
             businesscard: {
                 title: 'Business Card Design',
-                description: 'Custom business card designs reflecting brand identity and professional image.',
+                description: 'Custom business card designs reflecting brand identity and professional image. Both digital and print formats available.',
                 images: ['aboutsection.jpeg'],
                 client: 'Multiple Clients',
                 duration: 'Various',
@@ -254,15 +241,15 @@ class ProjectModal {
             },
             googleads: {
                 title: 'Google Ads Management',
-                description: 'Complete Google Ads campaign management including setup, optimization, and reporting.',
+                description: 'Complete Google Ads campaign management including setup, optimization, and reporting. Focus on ROI and conversion tracking.',
                 images: ['googleadsimage.jpeg'],
                 client: 'Various Businesses',
                 duration: 'Ongoing',
-                technologies: ['Google Ads', 'Analytics', 'SEO']
+                technologies: ['Google Ads', 'Analytics', 'SEO', 'Conversion Tracking']
             },
             pos: {
                 title: 'POS System Implementation',
-                description: 'Modern retail POS system implementation with inventory management and analytics.',
+                description: 'Modern retail POS system implementation with inventory management, analytics, and comprehensive reporting features.',
                 images: ['project-pos2.jpg'],
                 client: 'Retail Businesses',
                 duration: 'Various',
@@ -337,8 +324,8 @@ function initParticles() {
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Project items animation
-    gsap.utils.toArray('.project-item').forEach(project => {
+    // Animate project items
+    gsap.utils.toArray('.project-item').forEach((project, index) => {
         gsap.from(project, {
             scrollTrigger: {
                 trigger: project,
@@ -348,11 +335,12 @@ function initScrollAnimations() {
             opacity: 0,
             y: 50,
             duration: 0.8,
+            delay: index * 0.1,
             ease: 'power2.out'
         });
     });
 
-    // Filter bar animation
+    // Animate filter bar
     gsap.from('.filter-bar', {
         scrollTrigger: {
             trigger: '.filter-bar',
