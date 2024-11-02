@@ -21,7 +21,7 @@
 <body>
     <header>
         <div class="header-container">
-            <a href="/" class="logo" aria-label="Home">
+            <a href="../index.html" class="logo" aria-label="Home">
                 <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
                 <span class="logo-text">Elan's Tech World</span>
             </a>
@@ -73,23 +73,24 @@
                 <div class="filter-bar">
                     <h2>Browse Our Work</h2>
                     <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn active" data-filter="all">All Projects</button>
                         <button class="filter-btn" data-filter="web">Web Development</button>
                         <button class="filter-btn" data-filter="tech">Tech Solutions</button>
                         <button class="filter-btn" data-filter="apple">Apple Services</button>
+                        <button class="filter-btn" data-filter="marketing">Marketing & Design</button>
                         <button class="filter-btn" data-filter="pos">POS Systems</button>
                     </div>
                 </div>
 
                 <!-- Projects Grid -->
                 <div class="projects-grid">
-                    <!-- Website Development Projects -->
+                    <!-- Web Development Projects -->
                     <div class="project-item" data-category="web">
                         <div class="project-image">
                             <img src="../assets/images/iconicwebsiteimage.jpeg" alt="Iconic Aesthetics Website">
                             <div class="project-overlay">
-                                <h3>Custom online store with advanced features</h3>
-                                <p>Custom Website Where Customers Can Book Appotiments Directly From The Website, Explore Services, View Customer Reviews, and More</p>
+                                <h3>Iconic Aesthetics Website</h3>
+                                <p>Custom Website with Integrated Booking System and Service Management</p>
                                 <button class="view-project" data-project="ecommerce">View Details</button>
                             </div>
                         </div>
@@ -97,11 +98,22 @@
 
                     <div class="project-item" data-category="web">
                         <div class="project-image">
-                            <img src="../assets/images/zarinaswebsite.jpeg" alt="Real State Website">
+                            <img src="../assets/images/zarinaswebsite.jpeg" alt="Real Estate Website">
                             <div class="project-overlay">
                                 <h3>Real Estate Website</h3>
-                                <p>Modern Real Estate State Website with Online Property View System</p>
-                                <button class="view-project" data-project="restaurant">View Details</button>
+                                <p>Modern Real Estate Website with Online Property View System</p>
+                                <button class="view-project" data-project="realestate">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-category="web">
+                        <div class="project-image">
+                            <img src="../assets/images/cohenlogo.jpg" alt="Tax Accounting Firm Website">
+                            <div class="project-overlay">
+                                <h3>Tax Accounting Firm Website</h3>
+                                <p>Professional Website for Tax and Accounting Services</p>
+                                <button class="view-project" data-project="accounting">View Details</button>
                             </div>
                         </div>
                     </div>
@@ -111,20 +123,9 @@
                         <div class="project-image">
                             <img src="../assets/images/zarinasoffice2.jpeg" alt="Office System Setup">
                             <div class="project-overlay">
-                                <h3>Office Computer Infrastructure Setup</h3>
-                                <p>Complete office computer setup and security implementation</p>
-                                <button class="view-project" data-project="network">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-item" data-category="tech">
-                        <div class="project-image">
-                            <img src="../assets/images/project-tech2.jpg" alt="Cloud Migration">
-                            <div class="project-overlay">
-                                <h3>Cloud Migration</h3>
-                                <p>Seamless transition to cloud-based infrastructure</p>
-                                <button class="view-project" data-project="cloud">View Details</button>
+                                <h3>Office Infrastructure Setup</h3>
+                                <p>Complete Office Computer and Network Implementation</p>
+                                <button class="view-project" data-project="officesetup">View Details</button>
                             </div>
                         </div>
                     </div>
@@ -134,20 +135,43 @@
                         <div class="project-image">
                             <img src="../assets/images/project-apple1.jpg" alt="Apple Device Management">
                             <div class="project-overlay">
-                                <h3>Apple Device Fleet Management</h3>
-                                <p>Enterprise-level Apple device deployment and management</p>
-                                <button class="view-project" data-project="apple-fleet">View Details</button>
+                                <h3>Apple Device Management</h3>
+                                <p>Enterprise Apple Device Deployment and Management</p>
+                                <button class="view-project" data-project="appleservice">View Details</button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-item" data-category="apple">
+                    <!-- Marketing & Design Projects -->
+                    <div class="project-item" data-category="marketing">
                         <div class="project-image">
-                            <img src="../assets/images/project-apple2.jpg" alt="Mac Integration">
+                            <img src="../assets/images/Brochure.jpeg" alt="Business Brochure">
                             <div class="project-overlay">
-                                <h3>Mac Integration Solutions</h3>
-                                <p>Seamless integration of Mac systems in Windows environment</p>
-                                <button class="view-project" data-project="mac-integration">View Details</button>
+                                <h3>Business Brochure Design</h3>
+                                <p>Professional Marketing Material Design</p>
+                                <button class="view-project" data-project="brochure">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-category="marketing">
+                        <div class="project-image">
+                            <img src="../assets/images/aboutsection.jpeg" alt="Business Card Design">
+                            <div class="project-overlay">
+                                <h3>Business Card Design</h3>
+                                <p>Custom Business Card Design and Printing</p>
+                                <button class="view-project" data-project="businesscard">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item" data-category="marketing">
+                        <div class="project-image">
+                            <img src="../assets/images/googleadsimage.jpeg" alt="Google Ads Management">
+                            <div class="project-overlay">
+                                <h3>Google Ads Management</h3>
+                                <p>Full Google Ads Campaign Setup and Management</p>
+                                <button class="view-project" data-project="googleads">View Details</button>
                             </div>
                         </div>
                     </div>
@@ -155,22 +179,11 @@
                     <!-- POS System Projects -->
                     <div class="project-item" data-category="pos">
                         <div class="project-image">
-                            <img src="../assets/images/project-pos1.jpg" alt="Restaurant POS">
-                            <div class="project-overlay">
-                                <h3>Restaurant POS System</h3>
-                                <p>Complete POS solution with inventory management</p>
-                                <button class="view-project" data-project="restaurant-pos">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-item" data-category="pos">
-                        <div class="project-image">
                             <img src="../assets/images/project-pos2.jpg" alt="Retail POS">
                             <div class="project-overlay">
                                 <h3>Retail POS Implementation</h3>
-                                <p>Modern retail POS system with analytics</p>
-                                <button class="view-project" data-project="retail-pos">View Details</button>
+                                <p>Modern POS System with Analytics</p>
+                                <button class="view-project" data-project="pos">View Details</button>
                             </div>
                         </div>
                     </div>
