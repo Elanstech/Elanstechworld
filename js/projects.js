@@ -151,21 +151,21 @@ class ProjectModal {
     getProjectData(projectId) {
         // Project data object - replace with your actual project data
         const projectsData = {
-            ecommerce: {
-                title: 'E-commerce Platform',
-                description: 'Custom e-commerce solution with advanced features including inventory management, secure payment processing, and customer analytics.',
-                images: ['project1.jpg', 'project1-detail.jpg'],
-                client: 'Retail Company',
-                duration: '3 months',
-                technologies: ['React', 'Node.js', 'MongoDB']
+            Iconic Aesthetics Website: {
+                title: 'Iconic Aesthetics Website',
+                description: 'Custom Website Where Customers Can Book Appotiments Directly From The Website, Explore Services, View Customer Reviews, and More',
+                images: ['../assets/images/iconiclogo.jpeg', '../assets/images/iconicwebsiteimage.jpeg'],
+                client: 'Iconic Aesthetics',
+                duration: '2 weeks',
+                technologies: ['Html', 'CSS', 'JavaScript','Square']
             },
-            restaurant: {
-                title: 'Restaurant Website',
-                description: 'Modern restaurant website with online ordering system, table reservations, and menu management.',
-                images: ['project2.jpg', 'project2-detail.jpg'],
-                client: 'Local Restaurant',
-                duration: '2 months',
-                technologies: ['Vue.js', 'Firebase', 'Stripe']
+            Real Estate: {
+                title: 'Real Estate Website',
+                description: 'Modern Real Estate State Website with Online Property View System',
+                images: ['../assets/images/zarinaswebsite.jpeg', 'project2-detail.jpg'],
+                client: 'East Coast Realty By Zarina',
+                duration: '3 weeks',
+                technologies: ['Html', 'CSS', 'JavaScript']
             },
             // Add more project data...
         };
