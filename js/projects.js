@@ -22,9 +22,7 @@ class ProjectsFilter {
     init() {
         this.filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
                 this.filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
                 button.classList.add('active');
                 
                 const filter = button.getAttribute('data-filter');
@@ -37,7 +35,6 @@ class ProjectsFilter {
         this.projects.forEach(project => {
             const category = project.getAttribute('data-category');
             
-            // Create GSAP timeline for smooth transitions
             const tl = gsap.timeline();
             
             if (filter === 'all' || filter === category) {
@@ -81,7 +78,6 @@ class ProjectModal {
     }
 
     init() {
-        // Setup event listeners for project buttons
         this.projectButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const projectId = button.getAttribute('data-project');
@@ -89,19 +85,16 @@ class ProjectModal {
             });
         });
 
-        // Close modal on click outside
         this.modal.addEventListener('click', (e) => {
             if (e.target === this.modal) {
                 this.closeModal();
             }
         });
 
-        // Close modal on close button click
         document.querySelector('.modal-close').addEventListener('click', () => {
             this.closeModal();
         });
 
-        // Close modal on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.modal.classList.contains('active')) {
                 this.closeModal();
@@ -110,17 +103,11 @@ class ProjectModal {
     }
 
     openModal(projectId) {
-        // Get project data
         const projectData = this.getProjectData(projectId);
-        
-        // Populate modal content
         this.modalContent.innerHTML = this.generateModalContent(projectData);
-        
-        // Show modal with animation
         this.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        // Animate content
         gsap.from('.modal-gallery', {
             opacity: 0,
             y: 30,
@@ -149,31 +136,87 @@ class ProjectModal {
     }
 
     getProjectData(projectId) {
-        // Project data object - replace with your actual project data
         const projectsData = {
-            Iconic Aesthetics Website: {
+            ecommerce: {
                 title: 'Iconic Aesthetics Website',
-                description: 'Custom Website Where Customers Can Book Appotiments Directly From The Website, Explore Services, View Customer Reviews, and More',
-                images: ['../assets/images/iconiclogo.jpeg', '../assets/images/iconicwebsiteimage.jpeg'],
+                description: 'Custom Website Where Customers Can Book Appointments Directly From The Website, Explore Services, View Customer Reviews, and More. Fully responsive design with integrated Square payment system.',
+                images: ['iconicwebsiteimage.jpeg', 'iconiclogo.jpeg'],
                 client: 'Iconic Aesthetics',
                 duration: '2 weeks',
-                technologies: ['Html', 'CSS', 'JavaScript','Square']
+                technologies: ['HTML', 'CSS', 'JavaScript', 'Square Integration', 'Responsive Design']
             },
-            Real Estate: {
+            realestate: {
                 title: 'Real Estate Website',
-                description: 'Modern Real Estate State Website with Online Property View System',
-                images: ['../assets/images/zarinaswebsite.jpeg', 'project2-detail.jpg'],
+                description: 'Modern Real Estate Website featuring property listings, agent profiles, and an intuitive property search system. Includes automated property updates and lead generation capabilities.',
+                images: ['zarinaswebsite.jpeg', 'zarinasoffice2.jpeg'],
                 client: 'East Coast Realty By Zarina',
                 duration: '3 weeks',
-                technologies: ['Html', 'CSS', 'JavaScript']
+                technologies: ['HTML', 'CSS', 'JavaScript', 'Property Management System']
             },
-            // Add more project data...
+            accounting: {
+                title: 'Tax Accounting Firm Website',
+                description: 'Professional website for a tax accounting firm showcasing services, team members, and client resources. Features secure document upload and client portal integration.',
+                images: ['cohenlogo.jpg', 'cohenlogo.jpg'],
+                client: 'Cohen Tax & Accounting',
+                duration: '2 weeks',
+                technologies: ['HTML', 'CSS', 'JavaScript', 'Secure Portal Integration']
+            },
+            officesetup: {
+                title: 'Office Infrastructure Setup',
+                description: 'Complete office computer and network infrastructure implementation including security systems, data backup, and employee workstations.',
+                images: ['zarinasoffice2.jpeg'],
+                client: 'East Coast Realty By Zarina',
+                duration: '1 week',
+                technologies: ['Network Configuration', 'Security Implementation', 'Hardware Setup']
+            },
+            appleservice: {
+                title: 'Apple Device Management',
+                description: 'Enterprise-level Apple device deployment and management system for business environments. Includes MDM setup and security protocols.',
+                images: ['project-apple1.jpg'],
+                client: 'Various Clients',
+                duration: 'Ongoing',
+                technologies: ['MDM Solutions', 'iOS Management', 'macOS Configuration']
+            },
+            brochure: {
+                title: 'Business Brochure Design',
+                description: 'Professional brochure design showcasing company services, values, and brand identity. Includes print and digital versions.',
+                images: ['Brochure.jpeg'],
+                client: 'Multiple Clients',
+                duration: 'Various',
+                technologies: ['Adobe Creative Suite', 'Print Design', 'Digital Publishing']
+            },
+            businesscard: {
+                title: 'Business Card Design',
+                description: 'Custom business card designs that reflect brand identity and professional image. Includes both digital and print-ready formats.',
+                images: ['aboutsection.jpeg'],
+                client: 'Multiple Clients',
+                duration: 'Various',
+                technologies: ['Adobe Illustrator', 'Print Design', 'Brand Identity']
+            },
+            googleads: {
+                title: 'Google Ads Management',
+                description: 'Complete Google Ads campaign setup and management, including keyword research, ad creation, and performance optimization.',
+                images: ['googleadsimage.jpeg'],
+                client: 'Various Businesses',
+                duration: 'Ongoing',
+                technologies: ['Google Ads', 'Analytics', 'SEO']
+            },
+            pos: {
+                title: 'POS System Implementation',
+                description: 'Modern retail POS system implementation with inventory management, analytics, and reporting features.',
+                images: ['project-pos2.jpg'],
+                client: 'Retail Businesses',
+                duration: 'Various',
+                technologies: ['POS Software', 'Inventory Management', 'Payment Processing']
+            }
         };
 
         return projectsData[projectId];
     }
 
     generateModalContent(project) {
+        if (!project) return '<div class="error">Project details not found</div>';
+        
         return `
             <div class="modal-gallery">
                 <img src="../assets/images/${project.images[0]}" alt="${project.title}" class="gallery-image">
@@ -237,7 +280,6 @@ function initParticles() {
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate project items on scroll
     gsap.utils.toArray('.project-item').forEach(project => {
         gsap.from(project, {
             scrollTrigger: {
@@ -252,7 +294,6 @@ function initScrollAnimations() {
         });
     });
 
-    // Animate filter bar
     gsap.from('.filter-bar', {
         scrollTrigger: {
             trigger: '.filter-bar',
