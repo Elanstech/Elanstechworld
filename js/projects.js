@@ -172,7 +172,7 @@ class ProjectModal {
             appleservice: {
                 title: 'Apple Device Management',
                 description: 'Enterprise-level Apple device deployment and management system for business environments. Includes MDM setup and security protocols.',
-                images: ['../assets/images/Applemanagemnt.jpeg'],
+                images: ['Applemanagemnt.jpeg'],
                 client: 'Various Clients',
                 duration: 'Ongoing',
                 technologies: ['MDM Solutions', 'iOS Management', 'macOS Configuration']
@@ -204,7 +204,7 @@ class ProjectModal {
             pos: {
                 title: 'POS System Implementation',
                 description: 'Modern retail POS system implementation with inventory management, analytics, and reporting features.',
-                images: ['../assets/images/Pos.jpeg'],
+                images: ['Pos.jpeg'],
                 client: 'Retail Businesses',
                 duration: 'Various',
                 technologies: ['POS Software', 'Inventory Management', 'Payment Processing']
