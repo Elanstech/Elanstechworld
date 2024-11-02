@@ -4,11 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeAll() {
-    // Initialize components
+    initParticles();
     new ProjectsFilter();
     new ProjectModal();
-    new LoadMoreProjects();
-    initParticles();
     initScrollAnimations();
 }
 
@@ -16,61 +14,56 @@ function initializeAll() {
 class ProjectsFilter {
     constructor() {
         this.filterButtons = document.querySelectorAll('.filter-btn');
-        this.searchInput = document.getElementById('project-search');
-        this.projects = document.querySelectorAll('.project-card');
-        this.activeFilter = 'all';
-        this.searchQuery = '';
+        this.projects = document.querySelectorAll('.project-item');
         
         this.init();
     }
 
     init() {
-        // Set up filter buttons
-        this.filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.activeFilter = btn.dataset.filter;
-                this.updateActiveButton(btn);
-                this.filterProjects();
+        this.filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                this.filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                this.filterProjects(filter);
             });
         });
-
-        // Set up search functionality
-        this.searchInput.addEventListener('input', (e) => {
-            this.searchQuery = e.target.value.toLowerCase();
-            this.filterProjects();
-        });
-
-        // Initial filtering
-        this.filterProjects();
     }
 
-    updateActiveButton(clickedBtn) {
-        this.filterButtons.forEach(btn => btn.classList.remove('active'));
-        clickedBtn.classList.add('active');
-    }
-
-    filterProjects() {
+    filterProjects(filter) {
         this.projects.forEach(project => {
-            const category = project.dataset.category;
-            const projectTitle = project.querySelector('h3').textContent.toLowerCase();
-            const matchesFilter = this.activeFilter === 'all' || category === this.activeFilter;
-            const matchesSearch = projectTitle.includes(this.searchQuery);
-
-            if (matchesFilter && matchesSearch) {
-                gsap.to(project, {
-                    opacity: 1,
-                    y: 0,
+            const category = project.getAttribute('data-category');
+            
+            // Create GSAP timeline for smooth transitions
+            const tl = gsap.timeline();
+            
+            if (filter === 'all' || filter === category) {
+                tl.to(project, {
                     duration: 0.5,
-                    ease: 'power2.out',
-                    onStart: () => project.style.display = 'block'
-                });
-            } else {
-                gsap.to(project, {
                     opacity: 0,
                     y: 20,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        project.style.display = 'block';
+                    }
+                }).to(project, {
                     duration: 0.5,
-                    ease: 'power2.in',
-                    onComplete: () => project.style.display = 'none'
+                    opacity: 1,
+                    y: 0,
+                    ease: 'power2.out'
+                });
+            } else {
+                tl.to(project, {
+                    duration: 0.5,
+                    opacity: 0,
+                    y: 20,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        project.style.display = 'none';
+                    }
                 });
             }
         });
@@ -80,155 +73,130 @@ class ProjectsFilter {
 // Project Modal Class
 class ProjectModal {
     constructor() {
-        this.modals = document.querySelectorAll('.project-modal');
-        this.previewButtons = document.querySelectorAll('.project-preview');
+        this.modal = document.querySelector('.project-modal');
+        this.modalContent = document.querySelector('.modal-body');
+        this.projectButtons = document.querySelectorAll('.view-project');
         
         this.init();
     }
 
     init() {
-        // Set up modal triggers
-        this.previewButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const modalId = btn.dataset.modal;
-                this.openModal(modalId);
+        // Setup event listeners for project buttons
+        this.projectButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const projectId = button.getAttribute('data-project');
+                this.openModal(projectId);
             });
         });
 
-        // Set up close buttons
-        document.querySelectorAll('.modal-close').forEach(btn => {
-            btn.addEventListener('click', () => {
-                this.closeModal(btn.closest('.project-modal'));
-            });
+        // Close modal on click outside
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.closeModal();
+            }
         });
 
-        // Close on outside click
-        this.modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    this.closeModal(modal);
-                }
-            });
+        // Close modal on close button click
+        document.querySelector('.modal-close').addEventListener('click', () => {
+            this.closeModal();
         });
 
-        // Close on escape key
+        // Close modal on escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                const activeModal = document.querySelector('.project-modal.active');
-                if (activeModal) {
-                    this.closeModal(activeModal);
-                }
+            if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                this.closeModal();
             }
         });
     }
 
-    openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (!modal) return;
-
+    openModal(projectId) {
+        // Get project data
+        const projectData = this.getProjectData(projectId);
+        
+        // Populate modal content
+        this.modalContent.innerHTML = this.generateModalContent(projectData);
+        
+        // Show modal with animation
+        this.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        modal.classList.add('active');
 
-        // Animate modal content
-        const content = modal.querySelector('.modal-content');
-        gsap.fromTo(content,
-            { y: -50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
-        );
+        // Animate content
+        gsap.from('.modal-gallery', {
+            opacity: 0,
+            y: 30,
+            duration: 0.5,
+            delay: 0.2
+        });
+        
+        gsap.from('.modal-details', {
+            opacity: 0,
+            y: 30,
+            duration: 0.5,
+            delay: 0.4
+        });
     }
 
-    closeModal(modal) {
-        const content = modal.querySelector('.modal-content');
-        
-        gsap.to(content, {
-            y: -50,
+    closeModal() {
+        gsap.to(this.modal, {
             opacity: 0,
             duration: 0.3,
-            ease: 'power2.in',
             onComplete: () => {
-                modal.classList.remove('active');
+                this.modal.classList.remove('active');
                 document.body.style.overflow = '';
+                this.modal.style.opacity = '';
             }
         });
     }
-}
 
-// Load More Projects Class
-class LoadMoreProjects {
-    constructor() {
-        this.button = document.getElementById('load-more');
-        this.projectsContainer = document.querySelector('.projects-wrapper');
-        this.page = 1;
-        this.loading = false;
-        
-        this.init();
+    getProjectData(projectId) {
+        // Project data object - replace with your actual project data
+        const projectsData = {
+            ecommerce: {
+                title: 'E-commerce Platform',
+                description: 'Custom e-commerce solution with advanced features including inventory management, secure payment processing, and customer analytics.',
+                images: ['project1.jpg', 'project1-detail.jpg'],
+                client: 'Retail Company',
+                duration: '3 months',
+                technologies: ['React', 'Node.js', 'MongoDB']
+            },
+            restaurant: {
+                title: 'Restaurant Website',
+                description: 'Modern restaurant website with online ordering system, table reservations, and menu management.',
+                images: ['project2.jpg', 'project2-detail.jpg'],
+                client: 'Local Restaurant',
+                duration: '2 months',
+                technologies: ['Vue.js', 'Firebase', 'Stripe']
+            },
+            // Add more project data...
+        };
+
+        return projectsData[projectId];
     }
 
-    init() {
-        if (this.button) {
-            this.button.addEventListener('click', () => this.loadMore());
-        }
-    }
-
-    async loadMore() {
-        if (this.loading) return;
-        
-        this.loading = true;
-        this.button.textContent = 'Loading...';
-
-        try {
-            // Simulate API call with timeout
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Add new projects (replace with actual API call)
-            const newProjects = this.getMoreProjects();
-            if (newProjects.length === 0) {
-                this.button.textContent = 'No More Projects';
-                this.button.disabled = true;
-                return;
-            }
-
-            this.appendProjects(newProjects);
-            this.page++;
-            
-        } catch (error) {
-            console.error('Error loading more projects:', error);
-            this.button.textContent = 'Error Loading Projects';
-        } finally {
-            this.loading = false;
-            if (!this.button.disabled) {
-                this.button.textContent = 'Load More Projects';
-            }
-        }
-    }
-
-    appendProjects(projects) {
-        projects.forEach(project => {
-            const element = this.createProjectElement(project);
-            this.projectsContainer.appendChild(element);
-            
-            // Animate new project
-            gsap.from(element, {
-                opacity: 0,
-                y: 50,
-                duration: 0.5,
-                ease: 'power2.out'
-            });
-        });
-    }
-
-    createProjectElement(project) {
-        // Create project card element (implement based on your HTML structure)
-        const element = document.createElement('article');
-        element.className = 'project-card';
-        element.dataset.category = project.category;
-        // Add project content...
-        return element;
-    }
-
-    getMoreProjects() {
-        // Replace with actual API call
-        return [];
+    generateModalContent(project) {
+        return `
+            <div class="modal-gallery">
+                <img src="../assets/images/${project.images[0]}" alt="${project.title}" class="gallery-image">
+            </div>
+            <div class="modal-details">
+                <h2>${project.title}</h2>
+                <p>${project.description}</p>
+                <div class="project-info">
+                    <div class="info-item">
+                        <h4>Client</h4>
+                        <p>${project.client}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Duration</h4>
+                        <p>${project.duration}</p>
+                    </div>
+                    <div class="info-item">
+                        <h4>Technologies</h4>
+                        <p>${project.technologies.join(', ')}</p>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 }
 
@@ -269,29 +237,29 @@ function initParticles() {
 function initScrollAnimations() {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate project cards on scroll
-    gsap.utils.toArray('.project-card').forEach(card => {
-        gsap.from(card, {
+    // Animate project items on scroll
+    gsap.utils.toArray('.project-item').forEach(project => {
+        gsap.from(project, {
             scrollTrigger: {
-                trigger: card,
+                trigger: project,
                 start: 'top bottom-=100',
                 toggleActions: 'play none none reverse'
             },
-            y: 50,
             opacity: 0,
+            y: 50,
             duration: 0.8,
             ease: 'power2.out'
         });
     });
 
-    // Animate filter container
-    gsap.from('.filter-container', {
+    // Animate filter bar
+    gsap.from('.filter-bar', {
         scrollTrigger: {
-            trigger: '.filter-container',
+            trigger: '.filter-bar',
             start: 'top bottom-=50'
         },
-        y: 30,
         opacity: 0,
+        y: 30,
         duration: 1,
         ease: 'power2.out'
     });
