@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeAll() {
-    // Initialize all components
     new MobileNav();
     new Slideshow('.slide');
     new SmoothScroll();
@@ -30,7 +29,6 @@ class MobileNav {
     }
 
     init() {
-        // Remove any initial inline styles that might interfere
         this.mobileNav.removeAttribute('style');
         
         // Add ARIA attributes
@@ -38,7 +36,7 @@ class MobileNav {
         this.hamburger.setAttribute('aria-expanded', 'false');
         this.mobileNav.setAttribute('aria-hidden', 'true');
 
-        // Add event listeners
+        // Event listeners
         this.hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleMenu();
@@ -52,11 +50,9 @@ class MobileNav {
     toggleMenu() {
         this.isOpen = !this.isOpen;
         
-        // Toggle classes
+        // Toggle classes and styles
         this.hamburger.classList.toggle('active');
         this.mobileNav.classList.toggle('active');
-        
-        // Toggle body scroll
         this.body.style.overflow = this.isOpen ? 'hidden' : '';
         this.body.classList.toggle('nav-open');
         
@@ -68,9 +64,7 @@ class MobileNav {
     setupCloseHandlers() {
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (this.isOpen && 
-                !this.mobileNav.contains(e.target) && 
-                !this.hamburger.contains(e.target)) {
+            if (this.isOpen && !this.mobileNav.contains(e.target) && !this.hamburger.contains(e.target)) {
                 this.toggleMenu();
             }
         });
@@ -95,7 +89,7 @@ class MobileNav {
         const focusableElements = this.mobileNav.querySelectorAll(
             'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
         );
-        
+
         if (focusableElements.length > 0) {
             const firstFocusable = focusableElements[0];
             const lastFocusable = focusableElements[focusableElements.length - 1];
@@ -130,11 +124,6 @@ class MobileNav {
     }
 }
 
-// Initialize everything when the DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    new MobileNav();
-});
-
 // Slideshow Class
 class Slideshow {
     constructor(selector) {
@@ -148,13 +137,9 @@ class Slideshow {
     }
 
     init() {
-        // Show first slide
         this.slides[0].style.opacity = '1';
-        
-        // Start slideshow
         this.start();
         
-        // Pause on page visibility change
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 this.stop();
@@ -176,13 +161,8 @@ class Slideshow {
     }
 
     nextSlide() {
-        // Fade out current slide
         this.slides[this.currentIndex].style.opacity = '0';
-        
-        // Update index
         this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-        
-        // Fade in next slide
         this.slides[this.currentIndex].style.opacity = '1';
     }
 }
