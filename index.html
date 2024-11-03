@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World</title>
 
-        <!-- Google tag (gtag.js) -->
+    <!-- Google Tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SQRB5N4PZ"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -18,8 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css">
     
     <!-- Elfsight App Script -->
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
@@ -29,7 +29,7 @@
 <header>
     <div class="header-container">
         <a href="/" class="logo" aria-label="Home">
-            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
             <span class="logo-text">Elan's Tech World</span>
         </a>
         
@@ -52,7 +52,7 @@
     </div>
 </header>
 
-<!-- Add this after header and remove any other mobile nav sections -->
+<!-- Mobile Navigation -->
 <nav class="mobile-nav" aria-label="Mobile navigation">
     <ul>
         <li><a href="index.html">Home</a></li>
@@ -63,128 +63,128 @@
     </ul>
 </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="slideshow">
-            <div class="slide" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
-            <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
-            <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')"></div>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="slideshow">
+        <div class="slide" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
+        <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
+        <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')"></div>
+    </div>
+    <div id="particles-js"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Welcome to Elan's Tech World</h1>
+        <p class="hero-description">Transforming Businesses Through Technology</p>
+        <a href="#services" class="btn">Explore Services</a>
+    </div>
+</section>
+
+<!-- Main Content -->
+<main>
+    <!-- About Section -->
+    <section id="about" class="section-wrapper">
+        <div class="section-text">
+            <h2>About Us</h2>
+            <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
+            <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
+            <a href="pages/about.html" class="btn">Learn More →</a>
         </div>
-        <div id="particles-js"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Welcome to Elan's Tech World</h1>
-            <p class="hero-description">Transforming Businesses Through Technology</p>
-            <a href="#services" class="btn">Explore Services</a>
+        <img src="./assets/images/aboutsection.jpeg" alt="Modern office workspace">
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-wrapper">
+        <div class="section-text">
+            <h2>Our Services</h2>
+            <p>We provide comprehensive technology services tailored to meet your business needs:</p>
+            <ul>
+                <li>Business Computer Setup and Support</li>
+                <li>Custom Web Design and Development</li>
+                <li>Technology Consulting</li>
+                <li>Apple Product Sales and Service</li>
+                <li>POS System Implementation</li>
+            </ul>
+            <a href="pages/services.html" class="btn">View Services →</a>
+        </div>
+        <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup">
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-wrapper">
+        <div class="section-text">
+            <h2>Featured Projects</h2>
+            <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
+            <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
+            <a href="pages/projects.html" class="btn">See Projects →</a>
+        </div>
+        <img src="./assets/images/iconicwebsiteimage.jpeg" alt="Project showcase">
+    </section>
+
+    <!-- Instagram Feed Section -->
+    <section id="social-feed" class="section-wrapper">
+        <div class="section-text">
+            <h2>Follow Us on Instagram</h2>
+            <p>Stay updated with our latest projects and tech insights</p>
+        </div>
+        <div class="instagram-feed">
+            <!-- Elfsight Instagram Widget -->
+            <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main>
-        <!-- About Section -->
-        <section id="about" class="section-wrapper">
-            <div class="section-text">
-                <h2>About Us</h2>
-                <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
-                <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
-                <a href="pages/about.html" class="btn">Learn More →</a>
+    <!-- Contact Section with Click-to-Call -->
+    <section id="contact" class="section-wrapper">
+        <div class="section-text">
+            <h2>Get In Touch</h2>
+            <p>Ready to transform your business with innovative tech solutions? Contact us today!</p>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> (929) 417-6819</p>
+                <p><i class="fas fa-envelope"></i> elanstechworld@gmail.com</p>
+                <p><i class="fas fa-location-dot"></i> Online or We Come To You</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
             </div>
-            <img src="./assets/images/aboutsection.jpeg" alt="Modern office workspace">
-        </section>
+            <!-- Elfsight Click-to-Call Widget -->
+            <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
+            <a href="pages/contact.html" class="btn">Contact Now →</a>
+        </div>
+        <img src="./assets/images/Elanslogo.jpeg" alt="Our logo">
+    </section>
+</main>
 
-        <!-- Services Section -->
-        <section id="services" class="section-wrapper">
-            <div class="section-text">
-                <h2>Our Services</h2>
-                <p>We provide comprehensive technology services tailored to meet your business needs:</p>
-                <ul>
-                    <li>Business Computer Setup and Support</li>
-                    <li>Custom Web Design and Development</li>
-                    <li>Technology Consulting</li>
-                    <li>Apple Product Sales and Service</li>
-                    <li>POS System Implementation</li>
-                </ul>
-                <a href="pages/services.html" class="btn">View Services →</a>
-            </div>
-            <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup">
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section-wrapper">
-            <div class="section-text">
-                <h2>Featured Projects</h2>
-                <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
-                <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
-                <a href="pages/projects.html" class="btn">See Projects →</a>
-            </div>
-            <img src="./assets/images/iconicwebsiteimage.jpeg" alt="Project showcase">
-        </section>
-
-        <!-- Instagram Feed Section -->
-        <section id="social-feed" class="section-wrapper">
-            <div class="section-text">
-                <h2>Follow Us on Instagram</h2>
-                <p>Stay updated with our latest projects and tech insights</p>
-            </div>
-            <div class="instagram-feed">
-                <!-- Elfsight Instagram Widget -->
-                <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
-            </div>
-        </section>
-
-        <!-- Contact Section with Click-to-Call -->
-        <section id="contact" class="section-wrapper">
-            <div class="section-text">
-                <h2>Get In Touch</h2>
-                <p>Ready to transform your business with innovative tech solutions? Contact us today!</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> (929) 417-6819</p>
-                    <p><i class="fas fa-envelope"></i> elanstechworld@gmail.com</p>
-                    <p><i class="fas fa-location-dot"></i> Online or We Come To You</p>
-                    <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
-                </div>
-                <!-- Elfsight Click-to-Call Widget -->
-                <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
-                <a href="pages/contact.html" class="btn">Contact Now →</a>
-            </div>
-            <img src="./assets/images/Elanslogo.jpeg" alt="Our logo">
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Elan's Tech World</h3>
-                <p>Your Partner in Technology Solutions</p>
-                <p>&copy; 2024 All rights reserved.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-info">
+            <h3>Elan's Tech World</h3>
+            <p>Your Partner in Technology Solutions</p>
+            <p>&copy; 2024 All rights reserved.</p>
+        </div>
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h4>Connect With Us</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Privacy Policy | Terms of Service</p>
-        </div>
-    </footer>
+    </div>
+    <div class="footer-bottom">
+        <p>Privacy Policy | Terms of Service</p>
+    </div>
+</footer>
 
-    <!-- Scripts -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="../js/services.js"></script>
+<script src="./js/main.js"></script>
 </body>
 </html>
