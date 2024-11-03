@@ -33,58 +33,17 @@
     margin-top: 20px;
 }
 
-/* Mobile Navigation Menu Styling */
-.mobile-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(11, 31, 63, 0.98);
-    backdrop-filter: blur(10px);
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 1000;
-}
-
-.mobile-nav ul {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.mobile-nav ul li a {
-    font-size: 1.4em;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    transition: color 0.3s ease;
-}
-
-.mobile-nav ul li a:hover {
-    color: #f9c200;
-}
-.mobile-nav.open {
-    transform: translateX(0);
-}
-
 /* Button Styling */
 .btn {
     display: inline-block;
     padding: 15px 40px;
     background: linear-gradient(45deg, #f9c200, #ff6a00);
     color: #0b1f3f;
-    text-decoration: none;
     font-weight: 700;
     border-radius: 50px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -92,42 +51,14 @@
     box-shadow: 0 10px 20px rgba(249, 194, 0, 0.4);
 }
 
-/* Form Styling */
-.elfsight-app-container input[type="text"],
-.elfsight-app-container input[type="email"],
-.elfsight-app-container input[type="tel"],
-.elfsight-app-container textarea {
-    width: 100%;
-    padding: 15px;
-    font-size: 1em;
-    border: none;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.elfsight-app-container input:focus,
-.elfsight-app-container textarea:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgba(249, 194, 0, 0.5);
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .contact-section {
         padding: 30px 15px;
     }
-
     .contact-section h1 {
         font-size: 2em;
     }
-
-    .mobile-nav {
-        display: block;
-    }
-
     .btn {
         padding: 12px 30px;
     }
