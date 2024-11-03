@@ -28,12 +28,12 @@
 
 <header>
     <div class="header-container">
-       <a href="/" class="logo" aria-label="Home">
-    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
-    <span class="logo-text">Elan's Tech World</span>
-</a>
+        <a href="/" class="logo" aria-label="Home">
+            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
+            <span class="logo-text">Elan's Tech World</span>
+        </a>
         
-        <nav aria-label="Main navigation">
+        <nav class="desktop-nav" aria-label="Main navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="pages/about.html">About Us</a></li>
@@ -52,7 +52,8 @@
     </div>
 </header>
 
-<div class="mobile-nav" aria-label="Mobile navigation">
+<!-- Add this after header and remove any other mobile nav sections -->
+<nav class="mobile-nav" aria-label="Mobile navigation">
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="pages/about.html">About Us</a></li>
@@ -60,17 +61,7 @@
         <li><a href="pages/projects.html">Projects</a></li>
         <li><a href="pages/contact.html">Contact</a></li>
     </ul>
-</div>
-
-<!-- Mobile Navigation Menu -->
-<div class="mobile-nav">
-    <ul>
-        <li><a href="pages/about.html">About Us</a></li>
-        <li><a href="pages/services.html">Services</a></li>
-        <li><a href="pages/projects.html">Projects</a></li>
-        <li><a href="pages/contact.html">Contact</a></li>
-    </ul>
-</div>
+</nav>
 
     <!-- Hero Section -->
     <section class="hero">
