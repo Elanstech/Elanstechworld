@@ -130,6 +130,11 @@ class MobileNav {
     }
 }
 
+// Initialize everything when the DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new MobileNav();
+});
+
 // Slideshow Class
 class Slideshow {
     constructor(selector) {
