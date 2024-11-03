@@ -3,256 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elan's Tech World - Innovative Technology Solutions</title>
-    <meta name="description" content="Transforming businesses through innovative technology solutions. Expert computer setup, web development, and tech consulting services.">
+    <title>Elan's Tech World</title>
 
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="assets/images/Elanslogo.jpeg" as="image">
-    
-    <!-- Google tag (gtag.js) -->
+        <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SQRB5N4PZ"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-6SQRB5N4PZ');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6SQRB5N4PZ');
     </script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="../css/style.css">
     
-    <!-- Elfsight App -->
-    <script src="https://static.elfsight.com/platform/platform.js" defer></script>
+    <!-- Elfsight App Script -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </head>
 <body>
-    <!-- Custom Cursors -->
-    <div class="cursor-outer"></div>
-    <div class="cursor-inner"></div>
 
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo" data-cursor="pointer">
-                <div class="logo-wrapper">
-                    <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
-                    <div class="logo-glow"></div>
-                </div>
-                <span class="logo-text" data-text="Elan's Tech World">Elan's Tech World</span>
-            </a>
-            
-            <nav aria-label="Main navigation">
-                <ul>
-                    <li><a href="#home" class="nav-link active" data-cursor="pointer">Home</a></li>
-                    <li><a href="#about" class="nav-link" data-cursor="pointer">About Us</a></li>
-                    <li><a href="#services" class="nav-link" data-cursor="pointer">Services</a></li>
-                    <li><a href="#projects" class="nav-link" data-cursor="pointer">Projects</a></li>
-                    <li><a href="#contact" class="nav-link" data-cursor="pointer">Contact</a></li>
-                </ul>
-            </nav>
-
-            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" data-cursor="pointer">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" aria-hidden="true">
-        <div class="mobile-nav-content">
+<header>
+    <div class="header-container">
+       <a href="/" class="logo" aria-label="Home">
+    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
+    <span class="logo-text">Elan's Tech World</span>
+</a>
+        
+        <nav aria-label="Main navigation">
             <ul>
-                <li><a href="#home" data-cursor="pointer">Home</a></li>
-                <li><a href="#about" data-cursor="pointer">About Us</a></li>
-                <li><a href="#services" data-cursor="pointer">Services</a></li>
-                <li><a href="#projects" data-cursor="pointer">Projects</a></li>
-                <li><a href="#contact" data-cursor="pointer">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pages/about.html">About Us</a></li>
+                <li><a href="pages/services.html">Services</a></li>
+                <li><a href="pages/projects.html">Projects</a></li>
+                <li><a href="pages/contact.html">Contact</a></li>
             </ul>
-        </div>
+        </nav>
+
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
     </div>
+</header>
+
+<div class="mobile-nav" aria-label="Mobile navigation">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pages/about.html">About Us</a></li>
+        <li><a href="pages/services.html">Services</a></li>
+        <li><a href="pages/projects.html">Projects</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+</div>
+
+<!-- Mobile Navigation Menu -->
+<div class="mobile-nav">
+    <ul>
+        <li><a href="pages/about.html">About Us</a></li>
+        <li><a href="pages/services.html">Services</a></li>
+        <li><a href="pages/projects.html">Projects</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+    </ul>
+</div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-background">
-            <div class="slideshow">
-                <div class="slide active" style="background-image: url('./assets/images/Mainbackround.jpg')">
-                    <div class="slide-overlay"></div>
-                </div>
-                <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')">
-                    <div class="slide-overlay"></div>
-                </div>
-                <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')">
-                    <div class="slide-overlay"></div>
-                </div>
-            </div>
-            <div id="particles-js"></div>
+    <section class="hero">
+        <div class="slideshow">
+            <div class="slide" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
+            <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
+            <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')"></div>
         </div>
-        
+        <div id="particles-js"></div>
         <div class="hero-content">
-            <h1 class="hero-title shine-text" data-text="Welcome to Elan's Tech World">
-                Welcome to Elan's Tech World
-            </h1>
-            <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
-                Transforming Businesses Through Technology
-            </p>
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
-                <a href="#services" class="btn primary-btn" data-cursor="pointer">
-                    Explore Services
-                    <span class="btn-glow"></span>
-                </a>
-                <a href="#contact" class="btn secondary-btn" data-cursor="pointer">
-                    Get in Touch
-                    <span class="btn-glow"></span>
-                </a>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <div class="mouse"></div>
-            <span>Scroll Down</span>
+            <h1 class="hero-title">Welcome to Elan's Tech World</h1>
+            <p class="hero-description">Transforming Businesses Through Technology</p>
+            <a href="#services" class="btn">Explore Services</a>
         </div>
     </section>
 
     <!-- Main Content -->
     <main>
         <!-- About Section -->
-        <section id="about" class="section-wrapper glass-card" data-parallax="scroll">
+        <section id="about" class="section-wrapper">
             <div class="section-text">
-                <h2 class="gradient-text">About Us</h2>
-                <div class="content-grid">
-                    <div class="text-content" data-aos="fade-right">
-                        <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
-                        <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
-                        <a href="pages/about.html" class="btn" data-cursor="pointer">Learn More →</a>
-                    </div>
-                    <div class="image-container" data-aos="fade-left">
-                        <img src="./assets/images/aboutsection.jpeg" alt="Modern office workspace" loading="lazy">
-                        <div class="image-overlay"></div>
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
+                <h2>About Us</h2>
+                <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
+                <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
+                <a href="pages/about.html" class="btn">Learn More →</a>
             </div>
+            <img src="./assets/images/aboutsection.jpeg" alt="Modern office workspace">
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="section-wrapper glass-card" data-parallax="scroll">
+        <section id="services" class="section-wrapper">
             <div class="section-text">
-                <h2 class="gradient-text">Our Services</h2>
-                <div class="content-grid">
-                    <div class="text-content" data-aos="fade-right">
-                        <p>We provide comprehensive technology services tailored to meet your business needs:</p>
-                        <ul class="services-list animated-list">
-                            <li class="service-item" data-aos="fade-up" data-aos-delay="100">
-                                <i class="fas fa-laptop"></i>
-                                <div class="service-content">
-                                    <h3>Business Computer Setup and Support</h3>
-                                    <p>Professional setup and ongoing technical support for your business systems.</p>
-                                </div>
-                            </li>
-                            <li class="service-item" data-aos="fade-up" data-aos-delay="200">
-                                <i class="fas fa-code"></i>
-                                <div class="service-content">
-                                    <h3>Custom Web Design and Development</h3>
-                                    <p>Creating beautiful, functional websites tailored to your needs.</p>
-                                </div>
-                            </li>
-                            <li class="service-item" data-aos="fade-up" data-aos-delay="300">
-                                <i class="fas fa-lightbulb"></i>
-                                <div class="service-content">
-                                    <h3>Technology Consulting</h3>
-                                    <p>Expert guidance for your technology decisions and strategy.</p>
-                                </div>
-                            </li>
-                            <li class="service-item" data-aos="fade-up" data-aos-delay="400">
-                                <i class="fab fa-apple"></i>
-                                <div class="service-content">
-                                    <h3>Apple Product Sales and Service</h3>
-                                    <p>Authorized sales and professional service for Apple products.</p>
-                                </div>
-                            </li>
-                            <li class="service-item" data-aos="fade-up" data-aos-delay="500">
-                                <i class="fas fa-cash-register"></i>
-                                <div class="service-content">
-                                    <h3>POS System Implementation</h3>
-                                    <p>Complete point-of-sale solutions for your business needs.</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <a href="pages/services.html" class="btn" data-cursor="pointer">View All Services →</a>
-                    </div>
-                    <div class="image-container" data-aos="fade-left">
-                        <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup" loading="lazy">
-                        <div class="image-overlay"></div>
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
+                <h2>Our Services</h2>
+                <p>We provide comprehensive technology services tailored to meet your business needs:</p>
+                <ul>
+                    <li>Business Computer Setup and Support</li>
+                    <li>Custom Web Design and Development</li>
+                    <li>Technology Consulting</li>
+                    <li>Apple Product Sales and Service</li>
+                    <li>POS System Implementation</li>
+                </ul>
+                <a href="pages/services.html" class="btn">View Services →</a>
             </div>
+            <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup">
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="section-wrapper glass-card" data-parallax="scroll">
+        <section id="projects" class="section-wrapper">
             <div class="section-text">
-                <h2 class="gradient-text">Featured Projects</h2>
-                <div class="content-grid">
-                    <div class="text-content" data-aos="fade-right">
-                        <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
-                        <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
-                        <a href="pages/projects.html" class="btn" data-cursor="pointer">See All Projects →</a>
-                    </div>
-                    <div class="image-container" data-aos="fade-left">
-                        <img src="./assets/images/iconicwebsiteimage.jpeg" alt="Project showcase" loading="lazy">
-                        <div class="image-overlay"></div>
-                        <div class="image-glow"></div>
-                    </div>
-                </div>
+                <h2>Featured Projects</h2>
+                <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
+                <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
+                <a href="pages/projects.html" class="btn">See Projects →</a>
             </div>
+            <img src="./assets/images/iconicwebsiteimage.jpeg" alt="Project showcase">
         </section>
 
         <!-- Instagram Feed Section -->
-        <section id="social-feed" class="section-wrapper glass-card" data-parallax="scroll">
+        <section id="social-feed" class="section-wrapper">
             <div class="section-text">
-                <h2 class="gradient-text">Follow Us on Instagram</h2>
-                <p data-aos="fade-up">Stay updated with our latest projects and tech insights</p>
+                <h2>Follow Us on Instagram</h2>
+                <p>Stay updated with our latest projects and tech insights</p>
             </div>
-            <div class="instagram-feed" data-aos="fade-up">
+            <div class="instagram-feed">
+                <!-- Elfsight Instagram Widget -->
                 <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section-wrapper glass-card" data-parallax="scroll">
+        <!-- Contact Section with Click-to-Call -->
+        <section id="contact" class="section-wrapper">
             <div class="section-text">
-                <h2 class="gradient-text">Get In Touch</h2>
-                <p data-aos="fade-up">Ready to transform your business with innovative tech solutions? Contact us today!</p>
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your business with innovative tech solutions? Contact us today!</p>
                 <div class="contact-info">
-                    <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
-                        <i class="fas fa-phone"></i>
-                        <h3>Call Us</h3>
-                        <p>(929) 417-6819</p>
-                    </div>
-                    <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Email Us</h3>
-                        <p>elanstechworld@gmail.com</p>
-                    </div>
-                    <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
-                        <i class="fas fa-location-dot"></i>
-                        <h3>Location</h3>
-                        <p>Online or We Come To You</p>
-                    </div>
-                    <div class="contact-card" data-aos="fade-up" data-aos-delay="400">
-                        <i class="fas fa-clock"></i>
-                        <h3>Business Hours</h3>
-                        <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
-                    </div>
+                    <p><i class="fas fa-phone"></i> (929) 417-6819</p>
+                    <p><i class="fas fa-envelope"></i> elanstechworld@gmail.com</p>
+                    <p><i class="fas fa-location-dot"></i> Online or We Come To You</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
                 </div>
+                <!-- Elfsight Click-to-Call Widget -->
                 <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
-                <a href="pages/contact.html" class="btn" data-cursor="pointer">Contact Now →</a>
+                <a href="pages/contact.html" class="btn">Contact Now →</a>
             </div>
+            <img src="./assets/images/Elanslogo.jpeg" alt="Our logo">
         </section>
     </main>
 
@@ -260,26 +163,25 @@
     <footer>
         <div class="footer-content">
             <div class="footer-info">
-                <h3 class="gradient-text">Elan's Tech World</h3>
+                <h3>Elan's Tech World</h3>
                 <p>Your Partner in Technology Solutions</p>
                 <p>&copy; 2024 All rights reserved.</p>
             </div>
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#about" data-cursor="pointer">About Us</a></li>
-                    <li><a href="#services" data-cursor="pointer">Services</a></li>
-                    <li><a href="#projects" data-cursor="pointer">Projects</a></li>
-                    <li><a href="#contact" data-cursor="pointer">Contact</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-social">
                 <h4>Connect With Us</h4>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer" data-cursor="pointer">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
-                </div>
                 </div>
             </div>
         </div>
@@ -289,16 +191,9 @@
     </footer>
 
     <!-- Scripts -->
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- Smooth Scroll -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.min.js"></script>
-    <!-- AOS (Animate On Scroll) -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <!-- Custom JS -->
-    <script src="js/style.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="../js/services.js"></script>
 </body>
 </html>
