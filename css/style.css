@@ -42,7 +42,6 @@ header {
     border-bottom: 1px solid rgba(249, 194, 0, 0.15);
 }
 
-/* Adjust header container to give more space */
 .header-container {
     max-width: 1400px;
     width: 90%;
@@ -50,7 +49,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 1rem 0;
     position: relative;
     will-change: transform;
 }
@@ -64,19 +63,15 @@ header.scrolled {
 .logo {
     display: flex;
     align-items: center;
-    gap: 20px; /* Space between logo and text */
+    gap: 20px;
     text-decoration: none;
-    padding: 5px 0;
 }
 
 .logo img {
-    width: 50px;  /* Set a specific width */
-    height: 50px; /* Keep it square */
-    min-width: 50px; /* Prevent shrinking */
+    height: 60px;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    object-fit: contain; /* This will ensure the image maintains its aspect ratio */
 }
 
 .logo:hover img {
