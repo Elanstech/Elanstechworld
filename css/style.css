@@ -383,7 +383,53 @@ nav ul li a:hover::before {
     transform: scale(1.03) translateY(-10px);
     box-shadow: 0 20px 40px rgba(249, 194, 0, 0.3);
 }
+/* Video Section Styles */
+.video-section {
+    text-align: center;
+}
 
+.video-container {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(249, 194, 0, 0.25);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.video-container:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 25px 50px rgba(249, 194, 0, 0.4);
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Hide mobile video by default */
+.mobile-video {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .video-container {
+        margin: 20px auto;
+    }
+    
+    /* Switch videos on mobile */
+    .desktop-video {
+        display: none;
+    }
+    
+    .mobile-video {
+        display: block;
+    }
+}
 /* Contact Info Styles */
 .contact-info {
     margin: 30px 0;
