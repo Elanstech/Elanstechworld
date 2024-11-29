@@ -10,6 +10,52 @@ function initializeAll() {
     initScrollAnimations();
     initStats();
     initMobileNav();
+    initHeroAnimations();
+}
+
+// Hero Animations
+function initHeroAnimations() {
+    // Animate hero content on load
+    gsap.from('.hero-content', {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power3.out'
+    });
+
+    // Animate stats when they come into view
+    gsap.from('.hero-stats .stat-item', {
+        scrollTrigger: {
+            trigger: '.hero-stats',
+            start: 'top bottom-=100',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+    });
+
+    // Animate scroll indicator
+    gsap.to('.scroll-indicator', {
+        y: 20,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut'
+    });
+
+    // Glitch effect for title
+    const glitchText = document.querySelector('.glitch');
+    if (glitchText) {
+        setInterval(() => {
+            glitchText.classList.add('active');
+            setTimeout(() => {
+                glitchText.classList.remove('active');
+            }, 200);
+        }, 3000);
+    }
 }
 
 // Mobile Navigation
@@ -358,5 +404,17 @@ function initScrollAnimations() {
         y: 30,
         duration: 1,
         ease: 'power2.out'
+    });
+
+    // Animate hero elements on scroll
+    gsap.to('.hero-background', {
+        scrollTrigger: {
+            trigger: '.projects-hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true
+        },
+        y: '30%',
+        ease: 'none'
     });
 }
