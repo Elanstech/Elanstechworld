@@ -201,6 +201,7 @@ function animateValue(element, start, end, duration) {
     };
     window.requestAnimationFrame(step);
 }
+Createsmedia.jpeg
 
 // Project Data
 function getProjectData(projectId) {
@@ -228,6 +229,14 @@ function getProjectData(projectId) {
             client: 'Cohen Tax & Accounting',
             duration: '2 weeks',
             technologies: ['HTML', 'CSS', 'JavaScript', 'Secure Portal Integration', 'Document Management']
+        },
+        createsmedia: {
+            title: 'Creates Media Website',
+            description: 'Modern Photo Block Website with Booking & Design Viewing System',
+            images: ['Createsmedia.jpeg'],
+            client: 'Creates Media',
+            duration: '2 weeks',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'Secure Integration', 'Document Management']
         },
         officesetup: {
             title: 'Office Infrastructure Setup',
