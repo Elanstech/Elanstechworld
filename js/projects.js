@@ -5,56 +5,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeAll() {
     initParticles();
-    new ProjectsFilter();
-    new ProjectModal();
-    initScrollAnimations();
+    initProjectsFilter();
+    initProjectModal();
     initStats();
     initMobileNav();
-    initHeroAnimations();
 }
 
-// Hero Animations
-function initHeroAnimations() {
-    // Animate hero content on load
-    gsap.from('.hero-content', {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power3.out'
-    });
-
-    // Animate stats when they come into view
-    gsap.from('.hero-stats .stat-item', {
-        scrollTrigger: {
-            trigger: '.hero-stats',
-            start: 'top bottom-=100',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power2.out'
-    });
-
-    // Animate scroll indicator
-    gsap.to('.scroll-indicator', {
-        y: 20,
-        duration: 1.5,
-        repeat: -1,
-        yoyo: true,
-        ease: 'power1.inOut'
-    });
-
-    // Glitch effect for title
-    const glitchText = document.querySelector('.glitch');
-    if (glitchText) {
-        setInterval(() => {
-            glitchText.classList.add('active');
-            setTimeout(() => {
-                glitchText.classList.remove('active');
-            }, 200);
-        }, 3000);
+// Initialize Particles.js
+function initParticles() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: '#f9c200'
+                },
+                shape: {
+                    type: 'circle'
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true
+                },
+                size: {
+                    value: 3,
+                    random: true
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: 'repulse'
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: 'push'
+                    },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
     }
 }
 
@@ -80,7 +88,84 @@ function initMobileNav() {
     });
 }
 
-// Stats Counter Animation
+// Projects Filter
+function initProjectsFilter() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project-item');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+            filterProjects(projects, filter);
+        });
+    });
+}
+function filterProjects(projects, filter) {
+    projects.forEach(project => {
+        const category = project.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+            project.style.display = 'block';
+            setTimeout(() => {
+                project.style.opacity = '1';
+                project.style.transform = 'scale(1)';
+            }, 10);
+        } else {
+            project.style.opacity = '0';
+            project.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                project.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+// Project Modal
+function initProjectModal() {
+    const modal = document.querySelector('.project-modal');
+    const modalContent = document.querySelector('.modal-body');
+    const closeBtn = document.querySelector('.modal-close');
+    const viewButtons = document.querySelectorAll('.view-project');
+
+    viewButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const projectId = button.getAttribute('data-project');
+            openModal(projectId, modal, modalContent);
+        });
+    });
+
+    closeBtn?.addEventListener('click', () => closeModal(modal));
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(modal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal?.classList.contains('active')) {
+            closeModal(modal);
+        }
+    });
+}
+
+function openModal(projectId, modal, modalContent) {
+    const projectData = getProjectData(projectId);
+    if (!projectData) return;
+
+    modalContent.innerHTML = generateModalContent(projectData);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Stats Animation
 function initStats() {
     const stats = document.querySelectorAll('.stat-number');
     
@@ -93,8 +178,8 @@ function initStats() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const target = entry.target;
-                const targetValue = parseInt(target.getAttribute('data-value'));
-                animateValue(target, 0, targetValue, 2000);
+                const value = parseInt(target.getAttribute('data-value'));
+                animateValue(target, 0, value, 2000);
                 observer.unobserve(target);
             }
         });
@@ -117,304 +202,108 @@ function animateValue(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-// Projects Filter Class
-class ProjectsFilter {
-    constructor() {
-        this.filterButtons = document.querySelectorAll('.filter-btn');
-        this.projects = document.querySelectorAll('.project-item');
-        this.init();
-    }
+// Project Data
+function getProjectData(projectId) {
+    const projectsData = {
+        ecommerce: {
+            title: 'Iconic Aesthetics Website',
+            description: 'Custom Website with integrated booking system and service management. Features include online appointments, service catalog, and customer reviews. Built with modern web technologies to ensure a seamless user experience.',
+            images: ['iconicwebsiteimage.jpeg'],
+            client: 'Iconic Aesthetics',
+            duration: '2 weeks',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'Square Integration', 'Responsive Design']
+        },
+        realestate: {
+            title: 'Real Estate Website',
+            description: 'Modern real estate website featuring property listings, agent profiles, and intuitive property search system. Includes advanced filtering and sorting capabilities for optimal user experience.',
+            images: ['zarinaswebsite.jpeg'],
+            client: 'East Coast Realty By Zarina',
+            duration: '3 weeks',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'Property Management System', 'IDX Integration']
+        },
+        accounting: {
+            title: 'Tax Accounting Firm Website',
+            description: 'Professional website for tax and accounting services with secure document handling and client portal integration. Features include tax resource library and secure file sharing.',
+            images: ['cohenlogo.jpg'],
+            client: 'Cohen Tax & Accounting',
+            duration: '2 weeks',
+            technologies: ['HTML', 'CSS', 'JavaScript', 'Secure Portal Integration', 'Document Management']
+        },
+        officesetup: {
+            title: 'Office Infrastructure Setup',
+            description: 'Complete office computer and network infrastructure implementation including security systems, data management, and backup solutions. Comprehensive setup for modern business needs.',
+            images: ['zarinasoffice2.jpeg'],
+            client: 'East Coast Realty By Zarina',
+            duration: '1 week',
+            technologies: ['Network Setup', 'Security Implementation', 'Hardware Configuration', 'Cloud Integration']
+        },
+        appleservice: {
+            title: 'Apple Device Management',
+            description: 'Enterprise-level Apple device deployment and management system for business environments. Includes MDM setup, security protocols, and automated deployment solutions.',
+            images: ['Applemanagemnt.jpeg'],
+            client: 'Various Enterprise Clients',
+            duration: 'Ongoing',
+            technologies: ['MDM Solutions', 'iOS Management', 'macOS Configuration', 'Security Protocols']
+        },
+        brochure: {
+            title: 'Business Brochure Design',
+            description: 'Professional marketing materials design including digital and print formats. Custom layouts and brand integration for maximum impact and engagement.',
+            images: ['Brochure.jpeg'],
+            client: 'Multiple Business Clients',
+            duration: 'Ongoing',
+            technologies: ['Adobe Creative Suite', 'Print Design', 'Digital Publishing', 'Brand Strategy']
+        },
+        businesscard: {
+            title: 'Business Card Design',
+            description: 'Custom business card designs reflecting brand identity and professional image. Both digital and print formats available with premium finishing options.',
+            images: ['aboutsection.jpeg'],
+            client: 'Various Professional Clients',
+            duration: 'Various',
+            technologies: ['Adobe Illustrator', 'Print Design', 'Brand Identity', 'Digital Design']
+        },
+        googleads: {
+            title: 'Google Ads Management',
+            description: 'Complete Google Ads campaign management including setup, optimization, and reporting. Focus on ROI and conversion tracking with detailed analytics.',
+            images: ['googleadsimage.jpeg'],
+            client: 'Various Businesses',
+            duration: 'Ongoing',
+            technologies: ['Google Ads', 'Analytics', 'SEO', 'Conversion Tracking', 'Campaign Optimization']
+        },
+        pos: {
+            title: 'POS System Implementation',
+            description: 'Modern retail POS system implementation with inventory management, analytics, and comprehensive reporting features. Complete solution for retail operations.',
+            images: ['Pos.jpeg'],
+            client: 'Retail Businesses',
+            duration: 'Various',
+            technologies: ['POS Software', 'Inventory Management', 'Payment Processing', 'Analytics Integration']
+        }
+    };
 
-    init() {
-        this.filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                this.filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                const filter = button.getAttribute('data-filter');
-                this.filterProjects(filter);
-            });
-        });
-    }
-
-    filterProjects(filter) {
-        this.projects.forEach(project => {
-            const category = project.getAttribute('data-category');
-            
-            gsap.to(project, {
-                duration: 0.3,
-                opacity: 0,
-                scale: 0.95,
-                ease: 'power2.out',
-                onComplete: () => {
-                    project.style.display = 
-                        filter === 'all' || category === filter ? 'block' : 'none';
-                    
-                    if (filter === 'all' || category === filter) {
-                        gsap.to(project, {
-                            duration: 0.3,
-                            opacity: 1,
-                            scale: 1,
-                            ease: 'power2.out'
-                        });
-                    }
-                }
-            });
-        });
-    }
+    return projectsData[projectId];
 }
 
-// Project Modal Class
-class ProjectModal {
-    constructor() {
-        this.modal = document.querySelector('.project-modal');
-        this.modalContent = document.querySelector('.modal-body');
-        this.projectButtons = document.querySelectorAll('.view-project');
-        this.init();
-    }
-
-    init() {
-        this.projectButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const projectId = button.getAttribute('data-project');
-                this.openModal(projectId);
-            });
-        });
-
-        document.querySelector('.modal-close')?.addEventListener('click', () => {
-            this.closeModal();
-        });
-
-        this.modal?.addEventListener('click', (e) => {
-            if (e.target === this.modal) {
-                this.closeModal();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.modal?.classList.contains('active')) {
-                this.closeModal();
-            }
-        });
-    }
-
-    openModal(projectId) {
-        const projectData = this.getProjectData(projectId);
-        if (!projectData) return;
-
-        this.modalContent.innerHTML = this.generateModalContent(projectData);
-        this.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-
-        gsap.fromTo(this.modal, 
-            { opacity: 0 },
-            { opacity: 1, duration: 0.3 }
-        );
-
-        gsap.fromTo('.modal-content',
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }
-        );
-    }
-
-    closeModal() {
-        gsap.to('.modal-content', {
-            y: 50,
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power2.in'
-        });
-
-        gsap.to(this.modal, {
-            opacity: 0,
-            duration: 0.3,
-            onComplete: () => {
-                this.modal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-
-    getProjectData(projectId) {
-        const projectsData = {
-            ecommerce: {
-                title: 'Iconic Aesthetics Website',
-                description: 'Custom Website with integrated booking system and service management. Features include online appointments, service catalog, and customer reviews. Built with modern web technologies to ensure a seamless user experience.',
-                images: ['iconicwebsiteimage.jpeg'],
-                client: 'Iconic Aesthetics',
-                duration: '2 weeks',
-                technologies: ['HTML', 'CSS', 'JavaScript', 'Square Integration', 'Responsive Design']
-            },
-            realestate: {
-                title: 'Real Estate Website',
-                description: 'Modern real estate website featuring property listings, agent profiles, and intuitive property search system. Includes advanced filtering and sorting capabilities.',
-                images: ['zarinaswebsite.jpeg'],
-                client: 'East Coast Realty By Zarina',
-                duration: '3 weeks',
-                technologies: ['HTML', 'CSS', 'JavaScript', 'Property Management System']
-            },
-            accounting: {
-                title: 'Tax Accounting Firm Website',
-                description: 'Professional website for tax and accounting services with secure document handling and client portal integration.',
-                images: ['cohenlogo.jpg'],
-                client: 'Cohen Tax & Accounting',
-                duration: '2 weeks',
-                technologies: ['HTML', 'CSS', 'JavaScript', 'Secure Portal Integration']
-            },
-            officesetup: {
-                title: 'Office Infrastructure Setup',
-                description: 'Complete office computer and network infrastructure implementation including security systems and data management.',
-                images: ['zarinasoffice2.jpeg'],
-                client: 'East Coast Realty By Zarina',
-                duration: '1 week',
-                technologies: ['Network Setup', 'Security Implementation', 'Hardware Configuration']
-            },
-            appleservice: {
-                title: 'Apple Device Management',
-                description: 'Enterprise-level Apple device deployment and management system for business environments. Includes MDM setup and security protocols.',
-                images: ['Applemanagemnt.jpeg'],
-                client: 'Various Clients',
-                duration: 'Ongoing',
-                technologies: ['MDM Solutions', 'iOS Management', 'macOS Configuration']
-            },
-            brochure: {
-                title: 'Business Brochure Design',
-                description: 'Professional marketing materials design including digital and print formats. Custom layouts and brand integration.',
-                images: ['Brochure.jpeg'],
-                client: 'Various Clients',
-                duration: 'Ongoing',
-                technologies: ['Adobe Creative Suite', 'Print Design', 'Digital Publishing']
-            },
-            businesscard: {
-                title: 'Business Card Design',
-                description: 'Custom business card designs reflecting brand identity and professional image. Both digital and print formats available.',
-                images: ['aboutsection.jpeg'],
-                client: 'Multiple Clients',
-                duration: 'Various',
-                technologies: ['Adobe Illustrator', 'Print Design', 'Brand Identity']
-            },
-            googleads: {
-                title: 'Google Ads Management',
-                description: 'Complete Google Ads campaign management including setup, optimization, and reporting. Focus on ROI and conversion tracking.',
-                images: ['googleadsimage.jpeg'],
-                client: 'Various Businesses',
-                duration: 'Ongoing',
-                technologies: ['Google Ads', 'Analytics', 'SEO', 'Conversion Tracking']
-            },
-            pos: {
-                title: 'POS System Implementation',
-                description: 'Modern retail POS system implementation with inventory management, analytics, and comprehensive reporting features.',
-                images: ['Pos.jpeg'],
-                client: 'Retail Businesses',
-                duration: 'Various',
-                technologies: ['POS Software', 'Inventory Management', 'Payment Processing']
-            }
-        };
-
-        return projectsData[projectId];
-    }
-
-    generateModalContent(project) {
-        return `
-            <div class="modal-gallery">
-                <img src="../assets/images/${project.images[0]}" alt="${project.title}" class="gallery-image">
-            </div>
-            <div class="modal-details">
-                <h2>${project.title}</h2>
-                <p>${project.description}</p>
-                <div class="project-info">
-                    <div class="info-item">
-                        <h4>Client</h4>
-                        <p>${project.client}</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>Duration</h4>
-                        <p>${project.duration}</p>
-                    </div>
-                    <div class="info-item">
-                        <h4>Technologies</h4>
-                        <p>${project.technologies.join(', ')}</p>
-                    </div>
+function generateModalContent(project) {
+    return `
+        <div class="modal-gallery">
+            <img src="../assets/images/${project.images[0]}" alt="${project.title}" class="gallery-image">
+        </div>
+        <div class="modal-details">
+            <h2>${project.title}</h2>
+            <p>${project.description}</p>
+            <div class="project-info">
+                <div class="info-item">
+                    <h4>Client</h4>
+                    <p>${project.client}</p>
+                </div>
+                <div class="info-item">
+                    <h4>Duration</h4>
+                    <p>${project.duration}</p>
+                </div>
+                <div class="info-item">
+                    <h4>Technologies</h4>
+                    <p>${project.technologies.join(', ')}</p>
                 </div>
             </div>
-        `;
-    }
-}
-
-// Initialize Particles
-function initParticles() {
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80 },
-                color: { value: '#f9c200' },
-                shape: { type: 'circle' },
-                opacity: {
-                    value: 0.5,
-                    random: true
-                },
-                size: {
-                    value: 3,
-                    random: true
-                },
-                move: {
-                    enable: true,
-                    speed: 2
-                }
-            },
-            interactivity: {
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'repulse'
-                    }
-                }
-            }
-        });
-    }
-}
-
-// Initialize Scroll Animations
-function initScrollAnimations() {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Animate project items
-    gsap.utils.toArray('.project-item').forEach((project, index) => {
-        gsap.from(project, {
-            scrollTrigger: {
-                trigger: project,
-                start: 'top bottom-=100',
-                toggleActions: 'play none none reverse'
-            },
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            delay: index * 0.1,
-            ease: 'power2.out'
-        });
-    });
-
-    // Animate filter bar
-    gsap.from('.filter-bar', {
-        scrollTrigger: {
-            trigger: '.filter-bar',
-            start: 'top bottom-=50'
-        },
-        opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power2.out'
-    });
-
-    // Animate hero elements on scroll
-    gsap.to('.hero-background', {
-        scrollTrigger: {
-            trigger: '.projects-hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-        },
-        y: '30%',
-        ease: 'none'
-    });
+        </div>
+    `;
 }
