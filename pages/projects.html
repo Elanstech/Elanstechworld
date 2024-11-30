@@ -56,23 +56,8 @@
     </div>
 
     <main>
-        <!-- Enhanced Hero Section -->
+        <!-- Hero Section -->
         <section class="projects-hero">
-            <div class="hero-background">
-                <div class="hero-shapes">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                </div>
-                <div class="hero-grid">
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                </div>
-            </div>
-            
             <div class="hero-content">
                 <h1 class="glitch" data-text="Our Latest Projects">Our Latest Projects</h1>
                 <div class="hero-text-animation">
@@ -120,7 +105,7 @@
         </section>
 
         <!-- Projects Showcase Section -->
-        <section class="projects-showcase" id="projects-grid">
+        <section class="projects-showcase">
             <div class="container">
                 <div class="filter-bar">
                     <h2>Browse Our Work</h2>
@@ -138,7 +123,7 @@
                     <!-- Web Development Projects -->
                     <div class="project-item" data-category="web">
                         <div class="project-image">
-                            <img src="../assets/images/iconicwebsiteimage.jpeg" alt="Iconic Aesthetics Website">
+                            <img src="../assets/images/iconicwebsiteimage.jpeg" alt="Iconic Aesthetics Website" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Iconic Aesthetics Website</h3>
                                 <p>Custom Website with Integrated Booking System</p>
@@ -149,7 +134,7 @@
 
                     <div class="project-item" data-category="web">
                         <div class="project-image">
-                            <img src="../assets/images/zarinaswebsite.jpeg" alt="Real Estate Website">
+                            <img src="../assets/images/zarinaswebsite.jpeg" alt="Real Estate Website" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Real Estate Website</h3>
                                 <p>Modern Real Estate Website with Property System</p>
@@ -160,7 +145,7 @@
 
                     <div class="project-item" data-category="web">
                         <div class="project-image">
-                            <img src="../assets/images/cohenlogo.jpg" alt="Tax Accounting Firm Website">
+                            <img src="../assets/images/cohenlogo.jpg" alt="Tax Accounting Firm Website" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Tax Accounting Firm Website</h3>
                                 <p>Professional Website for Tax Services</p>
@@ -172,7 +157,7 @@
                     <!-- Tech Solution Projects -->
                     <div class="project-item" data-category="tech">
                         <div class="project-image">
-                            <img src="../assets/images/zarinasoffice2.jpeg" alt="Office System Setup">
+                            <img src="../assets/images/zarinasoffice2.jpeg" alt="Office System Setup" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Office Infrastructure Setup</h3>
                                 <p>Complete Office Network Implementation</p>
@@ -184,7 +169,7 @@
                     <!-- Apple Service Projects -->
                     <div class="project-item" data-category="apple">
                         <div class="project-image">
-                            <img src="../assets/images/Applemanagemnt.jpeg" alt="Apple Device Management">
+                            <img src="../assets/images/Applemanagemnt.jpeg" alt="Apple Device Management" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Apple Device Management</h3>
                                 <p>Enterprise Apple Device Solutions</p>
@@ -196,7 +181,7 @@
                     <!-- Marketing & Design Projects -->
                     <div class="project-item" data-category="marketing">
                         <div class="project-image">
-                            <img src="../assets/images/Brochure.jpeg" alt="Business Brochure">
+                            <img src="../assets/images/Brochure.jpeg" alt="Business Brochure" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Business Brochure Design</h3>
                                 <p>Professional Marketing Materials</p>
@@ -207,7 +192,7 @@
 
                     <div class="project-item" data-category="marketing">
                         <div class="project-image">
-                            <img src="../assets/images/aboutsection.jpeg" alt="Business Card Design">
+                            <img src="../assets/images/aboutsection.jpeg" alt="Business Card Design" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Business Card Design</h3>
                                 <p>Custom Business Card Solutions</p>
@@ -218,7 +203,7 @@
 
                     <div class="project-item" data-category="marketing">
                         <div class="project-image">
-                            <img src="../assets/images/googleadsimage.jpeg" alt="Google Ads Management">
+                            <img src="../assets/images/googleadsimage.jpeg" alt="Google Ads Management" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Google Ads Management</h3>
                                 <p>Full Campaign Management</p>
@@ -230,7 +215,7 @@
                     <!-- POS System Projects -->
                     <div class="project-item" data-category="pos">
                         <div class="project-image">
-                            <img src="../assets/images/Pos.jpeg" alt="Retail POS">
+                            <img src="../assets/images/Pos.jpeg" alt="Retail POS" loading="lazy">
                             <div class="project-overlay">
                                 <h3>Retail POS Implementation</h3>
                                 <p>Modern POS System with Analytics</p>
@@ -239,18 +224,18 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Project Details Modal -->
-                <div class="project-modal">
-                    <div class="modal-content">
-                        <button class="modal-close">&times;</button>
-                        <div class="modal-body">
-                            <!-- Content will be dynamically inserted here -->
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
+
+        <!-- Project Modal -->
+        <div class="project-modal">
+            <div class="modal-content">
+                <button class="modal-close">&times;</button>
+                <div class="modal-body">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -277,9 +262,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Privacy Policy | Terms of Service</p>
         </div>
     </footer>
 
