@@ -117,7 +117,7 @@ function initFilterTabs() {
 
 /**
  * Initialize project details modal
- * This function now pulls data directly from the HTML structure
+ * This function pulls data directly from the HTML structure
  */
 function initProjectDetails() {
     const detailButtons = document.querySelectorAll('.project-details');
@@ -247,10 +247,12 @@ function initProjectDetails() {
     });
     
     // Close modal
-    modalClose.addEventListener('click', () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    });
+    if (modalClose) {
+        modalClose.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
     
     // Close modal on outside click
     modal.addEventListener('click', (e) => {
@@ -271,16 +273,25 @@ function initProjectDetails() {
 
 /**
  * Initialize stats counter animation
+ * Fixed to ensure proper animation of counters
  */
 function initStatsCounter() {
     const stats = document.querySelectorAll('.stat-number');
     
-    // Create observer for stat elements
-    const observer = new IntersectionObserver((entries) => {
+    // Start animation immediately if elements are in viewport
+    stats.forEach(stat => {
+        const value = parseInt(stat.getAttribute('data-value'));
+        if (isElementInViewport(stat)) {
+            animateCounter(stat, value);
+        }
+    });
+    
+    // Create observer for stats that aren't yet in viewport
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const target = entry.target;
-                const value = parseInt(target.dataset.value);
+                const value = parseInt(target.getAttribute('data-value'));
                 
                 // Animate counter
                 animateCounter(target, value);
@@ -290,26 +301,33 @@ function initStatsCounter() {
             }
         });
     }, {
-        threshold: 0.5,
+        threshold: 0.1, // Trigger when 10% of the element is visible
         rootMargin: '0px'
     });
     
     // Observe all stat elements
-    stats.forEach(stat => observer.observe(stat));
+    stats.forEach(stat => {
+        // Only observe if not already in viewport
+        if (!isElementInViewport(stat)) {
+            observer.observe(stat);
+        }
+    });
     
     // Counter animation function
     function animateCounter(element, finalValue) {
-        let startTime;
+        // Reset the counter to ensure it starts from 0
+        element.textContent = '0';
+        
+        let startValue = 0;
         const duration = 2000; // 2 seconds
+        const startTime = performance.now();
         
         function updateCounter(timestamp) {
-            if (!startTime) startTime = timestamp;
-            
             const elapsed = timestamp - startTime;
             const progress = Math.min(elapsed / duration, 1);
             
             // Easing function for smooth animation
-            const easeOutQuad = t => t * (2 - t);
+            const easeOutQuad = progress => progress * (2 - progress);
             
             // Calculate current value
             const currentValue = Math.floor(easeOutQuad(progress) * finalValue);
@@ -323,6 +341,17 @@ function initStatsCounter() {
         }
         
         requestAnimationFrame(updateCounter);
+    }
+    
+    // Helper function to check if element is in viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
     }
 }
 
@@ -338,20 +367,33 @@ function initServicesCarousel() {
     if (!carousel) return;
     
     const cards = carousel.querySelectorAll('.service-card');
+    if (cards.length === 0) return;
+    
     let currentIndex = 0;
     let cardWidth = 0;
     let visibleCards = 0;
     
     // Initialize carousel
     function initCarousel() {
-        cardWidth = cards[0].offsetWidth + parseInt(window.getComputedStyle(cards[0]).marginRight);
-        visibleCards = Math.floor(carousel.offsetWidth / cardWidth);
+        // Calculate card width including gap
+        const cardStyle = window.getComputedStyle(cards[0]);
+        const marginRight = parseInt(cardStyle.marginRight) || 0;
+        const gapSize = parseInt(window.getComputedStyle(carousel).gap) || 0;
+        
+        cardWidth = cards[0].offsetWidth + (marginRight || gapSize);
+        visibleCards = Math.max(1, Math.floor(carousel.offsetWidth / cardWidth));
+        
+        // Make sure carousel is positioned properly
+        carousel.style.transition = 'none';
+        updateCarousel();
         
         // Generate dots
         createDots();
         
-        // Update carousel
-        updateCarousel();
+        // Restore transition
+        setTimeout(() => {
+            carousel.style.transition = 'transform 0.5s ease';
+        }, 50);
     }
     
     // Create navigation dots
@@ -365,7 +407,7 @@ function initServicesCarousel() {
             const dot = document.createElement('div');
             dot.classList.add('carousel-dot');
             
-            if (i === 0) {
+            if (i === Math.floor(currentIndex / visibleCards)) {
                 dot.classList.add('active');
             }
             
@@ -403,24 +445,27 @@ function initServicesCarousel() {
         // Update buttons state
         if (prevBtn) {
             prevBtn.disabled = currentIndex === 0;
+            prevBtn.setAttribute('aria-disabled', currentIndex === 0);
         }
         
         if (nextBtn) {
-            nextBtn.disabled = currentIndex >= cards.length - visibleCards;
+            const isLast = currentIndex >= cards.length - visibleCards;
+            nextBtn.disabled = isLast;
+            nextBtn.setAttribute('aria-disabled', isLast);
         }
     }
     
     // Add event listeners
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            currentIndex -= visibleCards;
+            currentIndex = Math.max(0, currentIndex - visibleCards);
             updateCarousel();
         });
     }
     
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            currentIndex += visibleCards;
+            currentIndex = Math.min(cards.length - visibleCards, currentIndex + visibleCards);
             updateCarousel();
         });
     }
@@ -501,6 +546,8 @@ function initLoadMore() {
     if (projectCards.length > initialCount) {
         for (let i = initialCount; i < projectCards.length; i++) {
             projectCards[i].style.display = 'none';
+            projectCards[i].style.opacity = '0';
+            projectCards[i].style.transform = 'translateY(20px)';
         }
         
         loadMoreBtn.style.display = 'inline-block';
@@ -628,24 +675,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-// Example of how to use the addNewProject function:
-/*
-addNewProject({
-    id: 'new-project',
-    title: 'New Project',
-    subtitle: 'A brand new project',
-    description: 'Description here',
-    image: '../assets/images/newproject.jpg',
-    categories: ['web', 'tech'],
-    tags: ['Web Development', 'Technology'],
-    features: ['Feature 1', 'Feature 2', 'Feature 3'],
-    websiteUrl: 'https://example.com',
-    galleryImages: [
-        { src: '../assets/images/newproject.jpg', alt: 'New Project' }
-    ],
-    fullDescription: '<p>Full description here...</p>',
-    details: ['Detail 1', 'Detail 2', 'Detail 3'],
-    technologies: ['Tech 1', 'Tech 2', 'Tech 3'],
-    results: 'Results description here.'
-});
