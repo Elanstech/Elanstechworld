@@ -87,7 +87,6 @@ body {
     overflow: hidden;
     z-index: 1;
 }
-
 .hero-particles {
     position: absolute;
     top: 0;
@@ -247,6 +246,8 @@ body {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-light);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover {
@@ -422,7 +423,6 @@ body {
         text-align: center;
     }
 }
-
 /* ======= Services Showcase Section ======= */
 .services-showcase {
     padding: 100px 0;
@@ -439,6 +439,7 @@ body {
     gap: 30px;
     padding: 20px 5px;
     margin-bottom: 30px;
+    transition: transform 0.5s ease;
 }
 
 .services-carousel::-webkit-scrollbar {
@@ -515,6 +516,11 @@ body {
     background: var(--primary-gradient);
     border-color: transparent;
     color: var(--dark-bg);
+}
+
+.carousel-control:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .carousel-dots {
@@ -746,7 +752,94 @@ body {
     padding: 30px;
 }
 
-/* Scrollbar Styling */
+/* Project modal data - hidden on page but used for modals */
+.project-modal-data {
+    display: none;
+}
+
+/* Modal styles automatically applied by JS */
+/* Leaving these in CSS as reference for developers */
+.modal-header {
+    margin-bottom: 30px;
+}
+
+.modal-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.modal-image {
+    width: 100%;
+    border-radius: 10px;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+}
+
+.modal-description {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.modal-description h3 {
+    color: var(--primary);
+    margin: 30px 0 15px;
+    font-size: 1.4rem;
+}
+
+.modal-description ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.modal-description li {
+    margin-bottom: 10px;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.tech-tags span {
+    background: rgba(249, 194, 0, 0.1);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.modal-link {
+    display: inline-block;
+    padding: 15px 40px;
+    background: var(--primary-gradient);
+    color: var(--dark-bg);
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.modal-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(249, 194, 0, 0.3);
+}
+
+/* ======= Scrollbar Styling ======= */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -817,6 +910,11 @@ a:focus {
     outline-offset: 2px;
 }
 
+/* ======= Project Template Styles ======= */
+#project-template {
+    display: none;
+}
+
 /* ======= Responsive Styles ======= */
 @media (max-width: 480px) {
     .filter-tabs {
@@ -835,6 +933,10 @@ a:focus {
     .cta-button {
         padding: 12px 30px;
         font-size: 1rem;
+    }
+
+    .modal-gallery {
+        grid-template-columns: 1fr;
     }
 }
 
