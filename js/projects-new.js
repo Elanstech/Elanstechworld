@@ -1,6 +1,7 @@
 /**
  * Elan's Tech World - Projects Page JavaScript
  * This script handles the dynamic functionality of the projects page
+ * with data pulled directly from HTML
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -116,6 +117,7 @@ function initFilterTabs() {
 
 /**
  * Initialize project details modal
+ * This function now pulls data directly from the HTML structure
  */
 function initProjectDetails() {
     const detailButtons = document.querySelectorAll('.project-details');
@@ -125,334 +127,121 @@ function initProjectDetails() {
     
     if (!modal || !modalBody) return;
     
-    // Project data for modal
-    const projectData = {
-        'iconic-aesthetics': {
-            title: 'Iconic Aesthetics',
-            description: 'Complete business technology solution for a beauty clinic.',
-            fullDescription: `
-                <p>Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience. We delivered a custom-designed website with an integrated booking system, implemented a Square Point of Sale system, created branded business materials, and set up their office technology infrastructure.</p>
-                
-                <h3>Project Details</h3>
-                <ul>
-                    <li>Custom website design with mobile-first approach</li>
-                    <li>Online booking and appointment management system</li>
-                    <li>Square POS system implementation with inventory management</li>
-                    <li>Customer database and loyalty program setup</li>
-                    <li>Business card and marketing material design</li>
-                    <li>Social media integration and branding</li>
-                    <li>Staff training and ongoing technical support</li>
-                </ul>
-                
-                <h3>Technologies Used</h3>
-                <div class="tech-tags">
-                    <span>HTML5/CSS3</span>
-                    <span>JavaScript</span>
-                    <span>Square APIs</span>
-                    <span>Payment Processing</span>
-                    <span>Responsive Design</span>
-                </div>
-                
-                <h3>Results</h3>
-                <p>Since implementing our technology solutions, Iconic Aesthetics has seen a 40% increase in online bookings and significantly improved their customer management process. The integrated POS system has streamlined their payment processing and inventory management.</p>
-            `,
-            images: ['iconicwebsiteimage.jpeg'],
-            link: 'https://iconic-aesthetics.com'
-        },
-        'east-coast-realty': {
-            title: 'East Coast Realty by Zarina',
-            description: 'Technology solution for a real estate firm.',
-            fullDescription: `
-                <p>East Coast Realty needed a modern digital presence and comprehensive office technology setup. We delivered a complete solution that included a professional website with property listings, office network infrastructure, and custom marketing materials.</p>
-                
-                <h3>Project Details</h3>
-                <ul>
-                    <li>Real estate website with property search functionality</li>
-                    <li>MLS integration for automatic property listings</li>
-                    <li>Agent profile management system</li>
-                    <li>Complete office computer network installation</li>
-                    <li>Security system implementation</li>
-                    <li>Custom business cards and marketing materials</li>
-                    <li>Staff training on all systems</li>
-                </ul>
-                
-                <h3>Technologies Used</h3>
-                <div class="tech-tags">
-                    <span>WordPress</span>
-                    <span>MLS Integration</span>
-                    <span>Network Infrastructure</span>
-                    <span>Security Systems</span>
-                    <span>Responsive Design</span>
-                </div>
-                
-                <h3>Results</h3>
-                <p>The technology solutions have helped East Coast Realty establish a strong online presence and streamline their operations. Their new systems have improved property management efficiency and enhanced the client experience.</p>
-            `,
-            images: ['zarinaswebsite.jpeg', 'zarinasoffice2.jpeg'],
-            link: 'https://eastcoastrealtyusa.com'
-        },
-        'cohen-associates': {
-            title: 'Cohen & Associates',
-            description: 'Secure technology solution for tax and accounting services.',
-            fullDescription: `
-                <p>Cohen & Associates required a secure and professional technology infrastructure for their accounting firm. We implemented a comprehensive solution that includes a secure website with client portal, document management system, and office network with enhanced security measures.</p>
-                
-                <h3>Project Details</h3>
-                <ul>
-                    <li>Professional website with secure client portal</li>
-                    <li>Encrypted document sharing system</li>
-                    <li>Appointment scheduling functionality</li>
-                    <li>Secure office network implementation</li>
-                    <li>Data backup and disaster recovery systems</li>
-                    <li>Tax resource library and client education section</li>
-                    <li>Business software integration</li>
-                </ul>
-                
-                <h3>Technologies Used</h3>
-                <div class="tech-tags">
-                    <span>Secure Web Development</span>
-                    <span>Encryption Protocols</span>
-                    <span>Network Security</span>
-                    <span>Cloud Backup Solutions</span>
-                    <span>SSL/TLS Implementation</span>
-                </div>
-                
-                <h3>Results</h3>
-                <p>The implemented solutions have significantly enhanced client data security while improving operational efficiency. Clients now benefit from secure document sharing and a streamlined experience when working with the firm.</p>
-            `,
-            images: ['cohenlogo.jpg'],
-            link: 'https://cohentaxaccounting.com'
-        },
-        'doug-uhlig': {
-            title: 'Doug Uhlig Psychological Services',
-            description: 'HIPAA-compliant technology solution for a psychology practice.',
-            fullDescription: `
-                <p>Doug Uhlig Psychological Services needed a HIPAA-compliant technology solution for their practice. We delivered a secure website with appointment scheduling, integrated Apple devices for practice management, and implemented secure systems for patient records.</p>
-                
-                <h3>Project Details</h3>
-                <ul>
-                    <li>HIPAA-compliant website with secure appointment scheduling</li>
-                    <li>Patient portal for secure communication</li>
-                    <li>Apple device setup and management</li>
-                    <li>Electronic health record system integration</li>
-                    <li>Secure backup and disaster recovery solutions</li>
-                    <li>Staff training on security protocols</li>
-                    <li>Ongoing technical support and maintenance</li>
-                </ul>
-                
-                <h3>Technologies Used</h3>
-                <div class="tech-tags">
-                    <span>HIPAA Compliance</span>
-                    <span>Apple Integration</span>
-                    <span>Secure Communications</span>
-                    <span>EHR Systems</span>
-                    <span>Data Encryption</span>
-                </div>
-                
-                <h3>Results</h3>
-                <p>The practice now benefits from streamlined operations while maintaining the highest levels of patient data security and confidentiality, allowing them to focus more on patient care and less on administrative tasks.</p>
-            `,
-            images: ['psychology.jpg'],
-            link: 'https://douguligpsychology.com'
-        },
-        's-cream': {
-            title: 'S-Cream',
-            description: 'Comprehensive technology solution for an ice cream shop.',
-            fullDescription: `
-                <p>S-Cream required a complete technology ecosystem for their new ice cream shop. We implemented a solution that included an e-commerce website with online ordering, digital menu system, POS integration, and branded materials design.</p>
-                
-                <h3>Project Details</h3>
-                <ul>
-                    <li>E-commerce website with online ordering functionality</li>
-                    <li>Digital menu system with real-time updates</li>
-                    <li>Point of Sale system with inventory management</li>
-                    <li>Customer loyalty program implementation</li>
-                    <li>Brand identity package including logo and marketing materials</li>
-                    <li>Social media integration and management tools</li>
-                    <li>Staff training and technical support</li>
-                </ul>
-                
-                <h3>Technologies Used</h3>
-                <div class="tech-tags">
-                    <span>E-Commerce</span>
-                    <span>Payment Processing</span>
-                    <span>POS Integration</span>
-                    <span>Inventory Management</span>
-                    <span>Brand Design</span>
-                </div>
-                
-                <h3>Results</h3>
-                <p>The technology solutions have helped S-Cream establish a strong market presence with 30% of their sales now coming through online orders. Their integrated systems have improved efficiency and customer satisfaction.</p>
-            `,
-            images: ['scream.jpg'],
-            link: 'https://s-cream.com'
-        },
-        'century-one': {
-            title: 'Century One Management Services',
-            description: 'Property management technology solution.',
-            fullDescription: `
-                <p>Century One Management Services needed a comprehensive property management technology solution. We delivered a complete system including a tenant portal, maintenance request tracking, office network implementation, and security infrastructure.</p>
-                
-                <h3>Project Details</h3>
-                <ul>
-                    <li>Property management portal with tenant accounts</li>
-                    <li>Online rent payment processing</li>
-                    <li>Maintenance request system with tracking</li>
-                    <li>Property listing and availability management</li>
-                    <li>Office network infrastructure implementation</li>
-                    <li>Security camera system installation</li>
-                    <li>Data management and reporting tools</li>
-                </ul>
-                
-                <h3>Technologies Used</h3>
-                <div class="tech-tags">
-                    <span>Web Portal Development</span>
-                    <span>Payment Processing</span>
-                    <span>Network Infrastructure</span>
-                    <span>Security Systems</span>
-                    <span>Data Management</span>
-                </div>
-                
-                <h3>Results</h3>
-                <p>The implemented solution has significantly improved tenant satisfaction with easier communication and payment processing. Management efficiency has increased with automated maintenance tracking and reporting.</p>
-            `,
-            images: ['centuryone.jpg'],
-            link: 'https://centuryonemanagement.com'
-        }
-    };
-    
     // Open modal with project details
     detailButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const projectId = button.dataset.project;
-            const project = projectData[projectId];
+            // Find parent project card
+            const projectCard = button.closest('.project-card');
             
-            if (project) {
-                // Create modal content
-                let modalContent = `
-                    <div class="modal-header">
-                        <h2>${project.title}</h2>
-                        <p class="modal-subtitle">${project.description}</p>
-                    </div>
-                    
-                    <div class="modal-gallery">
-                `;
+            if (projectCard) {
+                // Get modal data div
+                const modalData = projectCard.querySelector('.project-modal-data');
                 
-                // Add images
-                project.images.forEach(image => {
-                    modalContent += `<img src="../assets/images/${image}" alt="${project.title}" class="modal-image">`;
-                });
-                
-                // Add project details
-                modalContent += `
-                    </div>
+                if (modalData) {
+                    // Create a deep clone to preserve the original
+                    const modalContent = modalData.cloneNode(true);
+                    modalContent.removeAttribute('hidden');
                     
-                    <div class="modal-description">
-                        ${project.fullDescription}
-                    </div>
+                    // Set modal content
+                    modalBody.innerHTML = '';
+                    modalBody.appendChild(modalContent);
                     
-                    <div class="modal-footer">
-                        <a href="${project.link}" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                `;
-                
-                modalBody.innerHTML = modalContent;
-                
-                // Open modal
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Add modal styles
-                const modalStyle = document.createElement('style');
-                modalStyle.id = 'modal-dynamic-styles';
-                modalStyle.textContent = `
-                    .modal-header {
-                        margin-bottom: 30px;
+                    // Open modal
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Add modal styles
+                    const modalStyle = document.createElement('style');
+                    modalStyle.id = 'modal-dynamic-styles';
+                    modalStyle.textContent = `
+                        .modal-header {
+                            margin-bottom: 30px;
+                        }
+                        
+                        .modal-subtitle {
+                            color: var(--text-muted);
+                            font-size: 1.1rem;
+                        }
+                        
+                        .modal-gallery {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                            gap: 20px;
+                            margin-bottom: 30px;
+                        }
+                        
+                        .modal-image {
+                            width: 100%;
+                            border-radius: 10px;
+                            height: auto;
+                            object-fit: cover;
+                            aspect-ratio: 16/9;
+                        }
+                        
+                        .modal-description {
+                            color: var(--text-muted);
+                            line-height: 1.7;
+                        }
+                        
+                        .modal-description h3 {
+                            color: var(--primary);
+                            margin: 30px 0 15px;
+                            font-size: 1.4rem;
+                        }
+                        
+                        .modal-description ul {
+                            padding-left: 20px;
+                            margin-bottom: 20px;
+                        }
+                        
+                        .modal-description li {
+                            margin-bottom: 10px;
+                        }
+                        
+                        .tech-tags {
+                            display: flex;
+                            flex-wrap: wrap;
+                            gap: 10px;
+                            margin: 20px 0;
+                        }
+                        
+                        .tech-tags span {
+                            background: rgba(249, 194, 0, 0.1);
+                            color: var(--primary);
+                            padding: 8px 16px;
+                            border-radius: 20px;
+                            font-size: 0.9rem;
+                        }
+                        
+                        .modal-footer {
+                            margin-top: 40px;
+                            text-align: center;
+                        }
+                        
+                        .modal-link {
+                            display: inline-block;
+                            padding: 15px 40px;
+                            background: var(--primary-gradient);
+                            color: var(--dark-bg);
+                            text-decoration: none;
+                            border-radius: 30px;
+                            font-weight: 600;
+                            transition: var(--transition);
+                        }
+                        
+                        .modal-link:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 10px 20px rgba(249, 194, 0, 0.3);
+                        }
+                    `;
+                    
+                    const oldStyle = document.getElementById('modal-dynamic-styles');
+                    if (oldStyle) {
+                        oldStyle.remove();
                     }
                     
-                    .modal-subtitle {
-                        color: var(--text-muted);
-                        font-size: 1.1rem;
-                    }
-                    
-                    .modal-gallery {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                        gap: 20px;
-                        margin-bottom: 30px;
-                    }
-                    
-                    .modal-image {
-                        width: 100%;
-                        border-radius: 10px;
-                        height: auto;
-                        object-fit: cover;
-                        aspect-ratio: 16/9;
-                    }
-                    
-                    .modal-description {
-                        color: var(--text-muted);
-                        line-height: 1.7;
-                    }
-                    
-                    .modal-description h3 {
-                        color: var(--primary);
-                        margin: 30px 0 15px;
-                        font-size: 1.4rem;
-                    }
-                    
-                    .modal-description ul {
-                        padding-left: 20px;
-                        margin-bottom: 20px;
-                    }
-                    
-                    .modal-description li {
-                        margin-bottom: 10px;
-                    }
-                    
-                    .tech-tags {
-                        display: flex;
-                        flex-wrap: wrap;
-                        gap: 10px;
-                        margin: 20px 0;
-                    }
-                    
-                    .tech-tags span {
-                        background: rgba(249, 194, 0, 0.1);
-                        color: var(--primary);
-                        padding: 8px 16px;
-                        border-radius: 20px;
-                        font-size: 0.9rem;
-                    }
-                    
-                    .modal-footer {
-                        margin-top: 40px;
-                        text-align: center;
-                    }
-                    
-                    .modal-link {
-                        display: inline-block;
-                        padding: 15px 40px;
-                        background: var(--primary-gradient);
-                        color: var(--dark-bg);
-                        text-decoration: none;
-                        border-radius: 30px;
-                        font-weight: 600;
-                        transition: var(--transition);
-                    }
-                    
-                    .modal-link:hover {
-                        transform: translateY(-5px);
-                        box-shadow: 0 10px 20px rgba(249, 194, 0, 0.3);
-                    }
-                `;
-                
-                const oldStyle = document.getElementById('modal-dynamic-styles');
-                if (oldStyle) {
-                    oldStyle.remove();
+                    document.head.appendChild(modalStyle);
                 }
-                
-                document.head.appendChild(modalStyle);
             }
         });
     });
@@ -742,6 +531,90 @@ function initLoadMore() {
 }
 
 /**
+ * Function to easily add a new project to the page
+ * @param {Object} projectData - Project data object
+ */
+function addNewProject(projectData) {
+    const template = document.getElementById('project-template');
+    if (!template) return;
+    
+    // Clone template
+    const newProject = template.content.cloneNode(true);
+    const projectCard = newProject.querySelector('.project-card');
+    
+    // Set project data
+    projectCard.dataset.category = projectData.categories.join(' ');
+    projectCard.dataset.projectId = projectData.id;
+    
+    // Set image
+    const img = newProject.querySelector('.project-image img');
+    img.src = projectData.image;
+    img.alt = projectData.title;
+    
+    // Set tags
+    const tagContainer = newProject.querySelector('.project-tags');
+    projectData.tags.forEach(tag => {
+        const span = document.createElement('span');
+        span.textContent = tag;
+        tagContainer.appendChild(span);
+    });
+    
+    // Set content
+    newProject.querySelector('.project-title').textContent = projectData.title;
+    newProject.querySelector('.project-description').textContent = projectData.description;
+    
+    // Set features
+    const featuresContainer = newProject.querySelector('.project-features');
+    projectData.features.forEach(feature => {
+        const span = document.createElement('span');
+        span.innerHTML = `<i class="fas fa-check-circle"></i> ${feature}`;
+        featuresContainer.appendChild(span);
+    });
+    
+    // Set links
+    newProject.querySelector('.project-visit').href = projectData.websiteUrl;
+    
+    // Set modal data
+    const modalData = newProject.querySelector('.project-modal-data');
+    modalData.innerHTML = `
+        <h2>${projectData.title}</h2>
+        <p class="modal-subtitle">${projectData.subtitle}</p>
+        <div class="modal-gallery">
+            ${projectData.galleryImages.map(img => `<img src="${img.src}" alt="${img.alt}">`).join('')}
+        </div>
+        <div class="modal-description">
+            ${projectData.fullDescription}
+            
+            <h3>Project Details</h3>
+            <ul>
+                ${projectData.details.map(detail => `<li>${detail}</li>`).join('')}
+            </ul>
+            
+            <h3>Technologies Used</h3>
+            <div class="tech-tags">
+                ${projectData.technologies.map(tech => `<span>${tech}</span>`).join('')}
+            </div>
+            
+            <h3>Results</h3>
+            <p>${projectData.results}</p>
+        </div>
+        <div class="modal-footer">
+            <a href="${projectData.websiteUrl}" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
+        </div>
+    `;
+    
+    // Add to grid
+    const projectsGrid = document.querySelector('.projects-grid');
+    projectsGrid.appendChild(newProject);
+    
+    // Reinitialize details
+    initProjectDetails();
+    
+    // Update load more button
+    initLoadMore();
+}
+
+/**
  * Utility function: Debounce
  */
 function debounce(func, wait) {
@@ -755,3 +628,24 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// Example of how to use the addNewProject function:
+/*
+addNewProject({
+    id: 'new-project',
+    title: 'New Project',
+    subtitle: 'A brand new project',
+    description: 'Description here',
+    image: '../assets/images/newproject.jpg',
+    categories: ['web', 'tech'],
+    tags: ['Web Development', 'Technology'],
+    features: ['Feature 1', 'Feature 2', 'Feature 3'],
+    websiteUrl: 'https://example.com',
+    galleryImages: [
+        { src: '../assets/images/newproject.jpg', alt: 'New Project' }
+    ],
+    fullDescription: '<p>Full description here...</p>',
+    details: ['Detail 1', 'Detail 2', 'Detail 3'],
+    technologies: ['Tech 1', 'Tech 2', 'Tech 3'],
+    results: 'Results description here.'
+});
