@@ -135,46 +135,85 @@
 
   <!-- Main Content -->
   <main>
-    <!-- Hero Section with Video Background -->
-    <section id="home" class="hero">
-      <div class="hero-video-container">
-        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
-          <source src="herovid.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
+   <!-- Enhanced Hero Section with Video Background -->
+<section id="home" class="hero">
+  <!-- Keeping the video background -->
+  <div class="hero-video-container">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
+      <source src="herovid.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Enhanced overlay with modern gradient -->
+    <div class="hero-overlay">
+      <!-- Added subtle animated mesh grid -->
+      <div class="mesh-grid"></div>
+    </div>
+  </div>
+  
+  <!-- Mouse follow effect container -->
+  <div class="mouse-follow-container">
+    <div class="mouse-follow-circle"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content">
+      <!-- New eyebrow text -->
+      <div class="hero-eyebrow" data-aos="fade-down" data-aos-delay="100">
+        <span class="tech-badge">Innovative Technology Solutions</span>
       </div>
-      <div class="container">
-        <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-          <h1 class="hero-title">Transform Your Digital <span class="hero-title-emphasis">Presence</span></h1>
-          <p class="hero-subtitle">We design and develop cutting-edge digital solutions that elevate your business</p>
-          <div class="hero-cta">
-            <a href="#services" class="btn btn-primary">Explore Services</a>
-            <a href="#work" class="btn btn-outline">See Our Work</a>
-          </div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <div class="stat-number">100+</div>
-              <div class="stat-label">Projects Completed</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">50+</div>
-              <div class="stat-label">Happy Clients</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number">5+</div>
-              <div class="stat-label">Years Experience</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-scroll">
-        <a href="#services" class="scroll-indicator">
-          <span class="scroll-text">Scroll</span>
-          <span class="scroll-icon"></span>
+      
+      <!-- Main headline with animated text reveal -->
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+        Transform Your Digital <span class="title-emphasis">Presence</span>
+        <div class="title-backdrop"></div>
+      </h1>
+      
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+        We design and develop cutting-edge digital solutions 
+        that elevate your business in today's fast-paced world
+      </p>
+      
+      <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+        <a href="#services" class="btn btn-primary btn-glow">
+          <span>Explore Services</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#work" class="btn btn-outline btn-outline-light">
+          <span>See Our Work</span>
         </a>
       </div>
-    </section>
-
+      
+      <!-- Floating 3D cards for stats -->
+      <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
+        <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
+          <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
+          <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
+          <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Enhanced scroll indicator -->
+  <div class="hero-scroll" data-aos="fade-up" data-aos-delay="600">
+    <a href="#services" class="scroll-indicator">
+      <span class="scroll-text">Discover</span>
+      <div class="scroll-arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </a>
+  </div>
+</section>
+    
    <!-- Clients Logos Section -->
 <section class="clients-section">
   <div class="container">
