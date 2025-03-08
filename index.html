@@ -444,79 +444,123 @@
     </section>
 
     <!-- Portfolio/Work Section -->
-    <section id="work" class="work-section">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <h2 class="section-subtitle">Featured Projects</h2>
-          <h3 class="section-title">Our Recent Work</h3>
-          <p class="section-description">Explore our portfolio of successful projects</p>
+    <!-- Featured Projects Section -->
+<section id="featured-projects" class="featured-projects-section">
+  <div class="container">
+    <div class="section-heading" data-aos="fade-up">
+      <h2 class="section-subtitle">Case Studies</h2>
+      <h3 class="section-title">Featured Projects</h3>
+      <p class="section-description">Discover how we've transformed businesses with innovative technology solutions</p>
+    </div>
+    
+    <div class="featured-projects-filter" data-aos="fade-up">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web Development</button>
+      <button class="filter-btn" data-filter="pos">POS Systems</button>
+      <button class="filter-btn" data-filter="tech">Office Technology</button>
+      <button class="filter-btn" data-filter="marketing">Business Materials</button>
+      <button class="filter-btn" data-filter="apple">Apple Services</button>
+    </div>
+    
+    <div class="featured-projects-grid" id="featured-projects-grid">
+      <!-- Projects will be loaded dynamically from JSON -->
+      <div class="grid-loader">
+        <div class="loader-circle"></div>
+        <p>Loading projects...</p>
+      </div>
+    </div>
+    
+    <div class="featured-projects-nav" data-aos="fade-up">
+      <button class="nav-btn prev" id="prev-projects"><i class="fas fa-chevron-left"></i></button>
+      <div class="nav-pagination" id="featured-pagination"></div>
+      <button class="nav-btn next" id="next-projects"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    
+    <div class="featured-projects-cta" data-aos="fade-up">
+      <a href="pages/projects.html" class="btn btn-primary">
+        <span>View All Projects</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Project Details Modal -->
+<div class="project-modal" id="project-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-container">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body">
+        <!-- Content will be dynamically inserted -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Project Card Template (for JS) -->
+<template id="project-card-template">
+  <div class="project-card" data-id="" data-categories="">
+    <div class="project-card-inner">
+      <div class="project-card-front">
+        <div class="project-image">
+          <img src="" alt="">
+          <div class="project-category-tag"></div>
         </div>
-        
-        <div class="work-filters" data-aos="fade-up">
-          <button class="work-filter active" data-filter="all">All</button>
-          <button class="work-filter" data-filter="web">Web Design</button>
-          <button class="work-filter" data-filter="mobile">Mobile Apps</button>
-          <button class="work-filter" data-filter="branding">Branding</button>
-        </div>
-        
-        <div class="work-grid">
-          <div class="work-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
-            <div class="work-image">
-              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Design Project">
-              <div class="work-overlay">
-                <div class="work-overlay-content">
-                  <h4 class="work-title">Modern E-commerce Platform</h4>
-                  <p class="work-category">Web Design</p>
-                  <a href="#" class="work-link">View Project</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="work-item" data-category="mobile" data-aos="fade-up" data-aos-delay="200">
-            <div class="work-image">
-              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mobile App Project">
-              <div class="work-overlay">
-                <div class="work-overlay-content">
-                  <h4 class="work-title">Fitness Tracking App</h4>
-                  <p class="work-category">Mobile App</p>
-                  <a href="#" class="work-link">View Project</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="work-item" data-category="branding" data-aos="fade-up" data-aos-delay="300">
-            <div class="work-image">
-              <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Branding Project">
-              <div class="work-overlay">
-                <div class="work-overlay-content">
-                  <h4 class="work-title">Corporate Identity Design</h4>
-                  <p class="work-category">Branding</p>
-                  <a href="#" class="work-link">View Project</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="work-item" data-category="web" data-aos="fade-up" data-aos-delay="400">
-            <div class="work-image">
-              <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Design Project">
-              <div class="work-overlay">
-                <div class="work-overlay-content">
-                  <h4 class="work-title">Restaurant Booking System</h4>
-                  <p class="work-category">Web Application</p>
-                  <a href="#" class="work-link">View Project</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="work-cta" data-aos="fade-up">
-          <a href="pages/projects.html" class="btn btn-outline">View All Projects</a>
+        <div class="project-content">
+          <h4 class="project-title"></h4>
+          <p class="project-subtitle"></p>
+          <div class="project-tags"></div>
         </div>
       </div>
+      <div class="project-card-back">
+        <div class="project-back-content">
+          <h4 class="project-title"></h4>
+          <p class="project-description"></p>
+          <div class="project-features"></div>
+          <div class="project-actions">
+            <button class="project-details-btn">View Details</button>
+            <a href="" class="project-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Modal Content Template (for JS) -->
+<template id="modal-content-template">
+  <div class="modal-header">
+    <h3 class="modal-title"></h3>
+    <p class="modal-subtitle"></p>
+  </div>
+  <div class="modal-image">
+    <img src="" alt="">
+  </div>
+  <div class="modal-details">
+    <div class="modal-description"></div>
+    <div class="modal-features">
+      <h4>Key Features</h4>
+      <ul class="features-list"></ul>
+    </div>
+    <div class="modal-tags">
+      <h4>Technologies</h4>
+      <div class="tags-list"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="" class="btn btn-primary modal-link" target="_blank">
+      <span>Visit Website</span>
+      <i class="fas fa-external-link-alt"></i>
+    </a>
+    <a href="pages/projects.html" class="btn btn-outline">
+      <span>View All Projects</span>
+      <i class="fas fa-th-large"></i>
+    </a>
+  </div>
+</template>
     </section>
 
     <!-- Technology Icons Section -->
