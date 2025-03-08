@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScrolling();
   initFormValidation();
   handleNavLinks();
+  initFeaturedProjects(); // Initialize the new featured projects section
 });
 
 // ===== Preloader =====
@@ -179,6 +180,35 @@ function initHeroVideo() {
       rect.bottom >= 0
     );
   }
+}
+
+// ===== Utility Functions =====
+
+// Throttle function to limit function calls
+function throttle(callback, delay = 200) {
+  let isThrottled = false;
+  
+  return function(...args) {
+    if (isThrottled) return;
+    
+    isThrottled = true;
+    callback.apply(this, args);
+    
+    setTimeout(() => {
+      isThrottled = false;
+    }, delay);
+  };
+}
+
+// Check if element is in viewport
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom >= 0 &&
+    rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+    rect.right >= 0
+  );
 }
 
 // ===== Mouse Follow Effect =====
@@ -753,31 +783,362 @@ function handleNavLinks() {
   }, 100));
 }
 
-// ===== Utility Functions =====
-
-// Throttle function to limit function calls
-function throttle(callback, delay = 200) {
-  let isThrottled = false;
+/* ===== Featured Projects Section ===== */
+function initFeaturedProjects() {
+  // Configuration
+  const projectsPerPage = 3; // Number of projects to show per page
+  const jsonPath = './assets/data/featured-projects.json'; // Path to JSON file
   
-  return function(...args) {
-    if (isThrottled) return;
+  // DOM Elements
+  const projectsGrid = document.getElementById('featured-projects-grid');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const prevButton = document.getElementById('prev-projects');
+  const nextButton = document.getElementById('next-projects');
+  const paginationContainer = document.getElementById('featured-pagination');
+  const projectModal = document.getElementById('project-modal');
+  const modalCloseBtn = document.getElementById('modal-close');
+  
+  // If any of these elements don't exist, exit the function
+  if (!projectsGrid || !filterButtons.length || !prevButton || !nextButton || !paginationContainer || !projectModal || !modalCloseBtn) return;
+  
+  const modalBody = projectModal.querySelector('.modal-body');
+  
+  // Templates
+  const projectCardTemplate = document.getElementById('project-card-template');
+  const modalContentTemplate = document.getElementById('modal-content-template');
+  
+  // If templates don't exist, exit the function
+  if (!projectCardTemplate || !modalContentTemplate) return;
+  
+  // State variables
+  let allProjects = [];
+  let filteredProjects = [];
+  let currentFilter = 'all';
+  let currentPage = 1;
+  let totalPages = 1;
+  
+  // Initialize
+  fetchProjects();
+  
+  // Event Listeners
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+      filterProjects(filter);
+    });
+  });
+  
+  prevButton.addEventListener('click', () => {
+    if (currentPage > 1) {
+      navigateToPage(currentPage - 1);
+    }
+  });
+  
+  nextButton.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      navigateToPage(currentPage + 1);
+    }
+  });
+  
+  modalCloseBtn.addEventListener('click', closeModal);
+  
+  // Close modal when clicking on backdrop
+  projectModal.addEventListener('click', (e) => {
+    if (e.target === projectModal || e.target.classList.contains('modal-backdrop')) {
+      closeModal();
+    }
+  });
+  
+  // Close modal on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+  
+  /* Functions */
+  
+  // Fetch projects from JSON file
+  async function fetchProjects() {
+    try {
+      const response = await fetch(jsonPath);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      allProjects = data.featuredProjects;
+      
+      // Initialize with all projects
+      filteredProjects = [...allProjects];
+      totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+      
+      // Update UI
+      createPagination();
+      renderProjects();
+      hideLoader();
+      
+    } catch (error) {
+      console.error('Error loading projects:', error);
+      if (projectsGrid) {
+        projectsGrid.innerHTML = `
+          <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>Failed to load projects. Please try again later.</p>
+          </div>
+        `;
+      }
+      hideLoader();
+    }
+  }
+  
+  // Filter projects by category
+  function filterProjects(filter) {
+    currentFilter = filter;
+    currentPage = 1; // Reset to first page when filtering
     
-    isThrottled = true;
-    callback.apply(this, args);
+    // Update active filter button
+    filterButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
+    });
     
-    setTimeout(() => {
-      isThrottled = false;
-    }, delay);
-  };
-}
-
-// Check if element is in viewport
-function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.bottom >= 0 &&
-    rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
-    rect.right >= 0
-  );
+    // Apply filter
+    if (filter === 'all') {
+      filteredProjects = [...allProjects];
+    } else {
+      filteredProjects = allProjects.filter(project => 
+        project.categories.includes(filter)
+      );
+    }
+    
+    // Update pagination and render
+    totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+    createPagination();
+    renderProjects();
+    
+    // Scroll to top of projects section
+    const projectsSection = document.getElementById('featured-projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  
+  // Navigate to a specific page
+  function navigateToPage(page) {
+    if (page < 1 || page > totalPages) return;
+    
+    currentPage = page;
+    renderProjects();
+    updatePaginationActive();
+    
+    // Scroll to top of grid
+    if (projectsGrid) {
+      projectsGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  
+  // Create pagination dots
+  function createPagination() {
+    if (!paginationContainer) return;
+    
+    paginationContainer.innerHTML = '';
+    
+    for (let i = 1; i <= totalPages; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('page-dot');
+      if (i === currentPage) dot.classList.add('active');
+      dot.addEventListener('click', () => navigateToPage(i));
+      paginationContainer.appendChild(dot);
+    }
+    
+    // Update nav buttons state
+    updateNavButtons();
+  }
+  
+  // Update active pagination dot
+  function updatePaginationActive() {
+    if (!paginationContainer) return;
+    
+    const dots = paginationContainer.querySelectorAll('.page-dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index + 1 === currentPage);
+    });
+    
+    // Update nav buttons state
+    updateNavButtons();
+  }
+  
+  // Update navigation buttons state
+  function updateNavButtons() {
+    if (!prevButton || !nextButton) return;
+    
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+  }
+  
+  // Render projects for current page
+  function renderProjects() {
+    if (!projectsGrid) return;
+    
+    // Clear projects grid
+    while (projectsGrid.firstChild) {
+      if (!projectsGrid.firstChild.classList || !projectsGrid.firstChild.classList.contains('grid-loader')) {
+        projectsGrid.removeChild(projectsGrid.firstChild);
+      }
+    }
+    
+    // Calculate slice indexes
+    const startIndex = (currentPage - 1) * projectsPerPage;
+    const endIndex = Math.min(startIndex + projectsPerPage, filteredProjects.length);
+    const currentPageProjects = filteredProjects.slice(startIndex, endIndex);
+    
+    // No projects found message
+    if (currentPageProjects.length === 0) {
+      const noProjectsMessage = document.createElement('div');
+      noProjectsMessage.className = 'no-projects-message';
+      noProjectsMessage.innerHTML = `
+        <i class="fas fa-search"></i>
+        <p>No projects found for the selected filter. Try another category.</p>
+      `;
+      projectsGrid.appendChild(noProjectsMessage);
+      return;
+    }
+    
+    // Render projects
+    currentPageProjects.forEach(project => {
+      const projectCard = createProjectCard(project);
+      projectsGrid.appendChild(projectCard);
+    });
+    
+    // Add animation with delay
+    const cards = projectsGrid.querySelectorAll('.project-card');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('fade-in');
+      }, 100 * index);
+    });
+  }
+  
+  // Create a project card from template
+  function createProjectCard(project) {
+    const template = projectCardTemplate.content.cloneNode(true);
+    const card = template.querySelector('.project-card');
+    
+    // Set data attributes
+    card.setAttribute('data-id', project.id);
+    card.setAttribute('data-categories', project.categories.join(' '));
+    
+    // Front card content
+    const image = template.querySelector('.project-image img');
+    image.src = project.image;
+    image.alt = project.title;
+    
+    const categoryTag = template.querySelector('.project-category-tag');
+    categoryTag.textContent = project.categories[0].charAt(0).toUpperCase() + project.categories[0].slice(1);
+    
+    template.querySelector('.project-title').textContent = project.title;
+    template.querySelector('.project-subtitle').textContent = project.subtitle;
+    
+    // Tags
+    const tagsList = template.querySelector('.project-tags');
+    project.tags.forEach(tag => {
+      const span = document.createElement('span');
+      span.textContent = tag;
+      tagsList.appendChild(span);
+    });
+    
+    // Back card content
+    const backTitle = template.querySelector('.project-card-back .project-title');
+    backTitle.textContent = project.title;
+    
+    template.querySelector('.project-description').textContent = project.description;
+    
+    // Features
+    const featuresList = document.createElement('ul');
+    project.features.slice(0, 3).forEach(feature => {
+      const li = document.createElement('li');
+      li.textContent = feature;
+      featuresList.appendChild(li);
+    });
+    template.querySelector('.project-features').appendChild(featuresList);
+    
+    // Links
+    const websiteLink = template.querySelector('.project-link');
+    websiteLink.href = project.link;
+    
+    // Add event listeners
+    const detailsBtn = template.querySelector('.project-details-btn');
+    detailsBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent card flip
+      openProjectModal(project);
+    });
+    
+    return card;
+  }
+  
+  // Open project details modal
+  function openProjectModal(project) {
+    if (!modalBody || !modalContentTemplate) return;
+    
+    // Clone modal content template
+    const template = modalContentTemplate.content.cloneNode(true);
+    
+    // Fill in content
+    template.querySelector('.modal-title').textContent = project.title;
+    template.querySelector('.modal-subtitle').textContent = project.subtitle;
+    
+    const modalImage = template.querySelector('.modal-image img');
+    modalImage.src = project.image;
+    modalImage.alt = project.title;
+    
+    template.querySelector('.modal-description').textContent = project.description;
+    
+    // Features list
+    const featuresList = template.querySelector('.features-list');
+    project.features.forEach(feature => {
+      const li = document.createElement('li');
+      li.textContent = feature;
+      featuresList.appendChild(li);
+    });
+    
+    // Technology tags
+    const tagsList = template.querySelector('.tags-list');
+    project.tags.forEach(tag => {
+      const span = document.createElement('span');
+      span.textContent = tag;
+      tagsList.appendChild(span);
+    });
+    
+    // Set website link
+    const modalLink = template.querySelector('.modal-link');
+    modalLink.href = project.link;
+    
+    // Clear previous content and add new content
+    modalBody.innerHTML = '';
+    modalBody.appendChild(template);
+    
+    // Show modal with animation
+    projectModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+  
+  // Close project modal
+  function closeModal() {
+    if (!projectModal) return;
+    
+    projectModal.classList.remove('active');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
+  
+  // Hide loader
+  function hideLoader() {
+    const loader = document.querySelector('.grid-loader');
+    if (loader) {
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 300);
+    }
+  }
 }
