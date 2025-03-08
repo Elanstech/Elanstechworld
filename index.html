@@ -951,21 +951,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
   <script src="./js/script.js"></script>
-  
-  <!-- Inline script to handle the preloader immediate visibility -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Forcibly hide preloader after 4 seconds maximum (fallback)
-      setTimeout(function() {
-        const preloader = document.getElementById('preloader');
-        if (preloader && preloader.style.opacity !== '0') {
-          preloader.style.opacity = '0';
-          setTimeout(function() {
-            preloader.style.display = 'none';
-          }, 500);
-        }
-      }, 4000);
-    });
-  </script>
 </body>
 </html>
