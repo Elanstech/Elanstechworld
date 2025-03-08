@@ -11,44 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
   initTiltEffect();
   initAOS();
   initClientCarousel();
-  initTestimonials(); // Updated testimonials function
+  initTestimonialSlider();
+  initWorkFilter();
   initBackToTop();
   initSmoothScrolling();
   initFormValidation();
   handleNavLinks();
-  initFeaturedProjects(); // Projects section
 });
 
 // ===== Preloader =====
 function initPreloader() {
-  const preloader = document.getElementById('preloader');
+  const preloader = document.querySelector('.preloader');
   if (!preloader) return;
-  
-  // Helper function to hide preloader
-  function hidePreloader() {
+
+  window.addEventListener('load', () => {
     preloader.style.opacity = '0';
     setTimeout(() => {
       preloader.style.display = 'none';
-      document.body.classList.remove('no-scroll');
     }, 500);
-  }
-
-  // Hide preloader when window is loaded
-  if (document.readyState === 'complete') {
-    // Document already loaded, hide immediately
-    hidePreloader();
-  } else {
-    // Set a maximum wait time (failsafe)
-    const maxWaitTime = setTimeout(() => {
-      hidePreloader();
-    }, 3000);
-
-    // Normal load handler
-    window.addEventListener('load', () => {
-      clearTimeout(maxWaitTime);
-      hidePreloader();
-    });
-  }
+  });
 }
 
 // ===== Header Scroll Effect =====
@@ -93,10 +74,6 @@ function initMobileMenu() {
     hamburger.classList.toggle('active');
     mobileMenu.classList.toggle('active');
     body.classList.toggle('no-scroll');
-    
-    // Update ARIA attributes
-    const isExpanded = hamburger.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', isExpanded);
   });
 
   // Close mobile menu when clicking on links
@@ -106,7 +83,6 @@ function initMobileMenu() {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('active');
       body.classList.remove('no-scroll');
-      hamburger.setAttribute('aria-expanded', 'false');
     });
   });
 
@@ -116,7 +92,6 @@ function initMobileMenu() {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('active');
       body.classList.remove('no-scroll');
-      hamburger.setAttribute('aria-expanded', 'false');
     }
   });
 
@@ -130,7 +105,6 @@ function initMobileMenu() {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('active');
       body.classList.remove('no-scroll');
-      hamburger.setAttribute('aria-expanded', 'false');
     }
   });
 
@@ -140,7 +114,6 @@ function initMobileMenu() {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('active');
       body.classList.remove('no-scroll');
-      hamburger.setAttribute('aria-expanded', 'false');
     }
   });
 }
@@ -149,11 +122,8 @@ function initMobileMenu() {
 function initHeroVideo() {
   const video = document.querySelector('.hero-video');
   if (!video) return;
-  
-  // Check if we're on a mobile device
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-  // Ensure video plays on mobile devices
+  // Ensure video plays on mobile
   video.setAttribute('playsinline', '');
   video.setAttribute('muted', '');
   video.setAttribute('loop', '');
@@ -161,54 +131,30 @@ function initHeroVideo() {
   
   // Add a slight delay before playing to ensure proper loading
   setTimeout(() => {
-    // For mobile devices, first check if the poster is loaded
-    if (isMobile && video.poster) {
-      const img = new Image();
-      img.src = video.poster;
-      img.onload = () => {
-        playVideo();
-      };
-      // Fallback if poster loading fails
-      setTimeout(playVideo, 500);
-    } else {
-      playVideo();
-    }
-  }, 300);
-
-  function playVideo() {
     video.play().catch(error => {
-      console.log('Video play error:', error);
+      console.error('Video play error:', error);
       
-      // Only create a fallback image if it doesn't already exist
-      if (!document.querySelector('.hero-video.fallback') && video.poster) {
+      // Fallback to image if video fails to play
+      if (video.parentElement) {
         const fallbackImage = document.createElement('img');
-        fallbackImage.src = video.poster;
+        fallbackImage.src = video.getAttribute('poster');
         fallbackImage.className = 'hero-video fallback';
         fallbackImage.alt = "Hero Background";
-        
-        if (video.parentElement) {
-          video.parentElement.appendChild(fallbackImage);
-          video.style.display = 'none';
-        }
+        video.parentElement.appendChild(fallbackImage);
       }
     });
-  }
+  }, 300);
 
   // Optimize video playback based on visibility
   const heroSection = document.querySelector('.hero');
   if (!heroSection) return;
 
-  // Use Intersection Observer to detect when hero is in viewport
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        if (video.paused) {
-          video.play().catch(err => console.log('Autoplay prevented:', err));
-        }
+        video.play().catch(err => console.log(err));
       } else {
-        if (!video.paused) {
-          video.pause();
-        }
+        video.pause();
       }
     });
   }, { threshold: 0.1 });
@@ -221,19 +167,18 @@ function initHeroVideo() {
       video.pause();
     } else {
       if (isElementInViewport(heroSection)) {
-        video.play().catch(err => console.log('Autoplay prevented:', err));
+        video.play().catch(err => console.log(err));
       }
     }
   });
-}
 
-// Helper function to check if element is in viewport
-function isElementInViewport(el) {
-  const rect = el.getBoundingClientRect();
-  return (
-    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.bottom >= 0
-  );
+  function isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.bottom >= 0
+    );
+  }
 }
 
 // ===== Mouse Follow Effect =====
@@ -243,14 +188,10 @@ function initMouseFollowEffect() {
   
   if (!mouseFollowCircle || !heroSection) return;
   
-  // Skip on mobile devices
-  if (window.innerWidth < 992) return;
-
   let mouseX = 0;
   let mouseY = 0;
   let circleX = 0;
   let circleY = 0;
-  let animationFrameId;
   
   // Only activate in hero section
   heroSection.addEventListener('mousemove', (e) => {
@@ -277,31 +218,21 @@ function initMouseFollowEffect() {
       mouseFollowCircle.style.top = `${circleY}px`;
     }
     
-    animationFrameId = requestAnimationFrame(animateCircle);
+    requestAnimationFrame(animateCircle);
   }
   
   animateCircle();
-
-  // Clean up on page unload
-  window.addEventListener('beforeunload', () => {
-    if (animationFrameId) {
-      cancelAnimationFrame(animationFrameId);
-    }
-  });
 }
 
 // ===== Scroll Animations for Hero =====
 function initScrollAnimations() {
   const heroTitle = document.querySelector('.hero-title');
-  const heroContent = document.querySelector('.hero-content');
+  const titleEmphasis = document.querySelector('.title-emphasis');
   
-  if (!heroTitle || !heroContent) return;
-  
-  // Throttle the scroll function
-  let ticking = false;
+  if (!heroTitle) return;
   
   // Dynamic effects based on scroll position
-  function updateOnScroll() {
+  window.addEventListener('scroll', () => {
     const scrollPosition = window.scrollY;
     const heroHeight = document.querySelector('.hero').offsetHeight;
     const scrollPercentage = Math.min(scrollPosition / (heroHeight * 0.5), 1);
@@ -312,18 +243,9 @@ function initScrollAnimations() {
     }
     
     // Fade out content based on scroll
+    const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
       heroContent.style.opacity = 1 - scrollPercentage * 0.7;
-    }
-  }
-  
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateOnScroll();
-        ticking = false;
-      });
-      ticking = true;
     }
   });
 }
@@ -335,8 +257,7 @@ function initCounterAnimation() {
   if (!counters.length) return;
   
   const counterOptions = {
-    threshold: 0.5,
-    rootMargin: "0px"
+    threshold: 0.5
   };
   
   const counterObserver = new IntersectionObserver((entries) => {
@@ -373,17 +294,11 @@ function initCounterAnimation() {
 
 // ===== Tilt Effect for Stat Cards =====
 function initTiltEffect() {
-  // Check if VanillaTilt is available
-  if (typeof VanillaTilt === 'undefined') {
-    console.log('VanillaTilt library not loaded');
-    return;
-  }
-  
-  const tiltElements = document.querySelectorAll('[data-tilt]');
-  
-  if (tiltElements.length) {
-    // Only initialize on desktop, skips mobile
-    if (window.innerWidth > 992) {
+  // Check if VanillaTilt is already available
+  if (typeof VanillaTilt !== 'undefined') {
+    const tiltElements = document.querySelectorAll('[data-tilt]');
+    
+    if (tiltElements.length) {
       VanillaTilt.init(tiltElements, {
         max: 10,
         speed: 300,
@@ -396,23 +311,20 @@ function initTiltEffect() {
 
 // ===== AOS Animations =====
 function initAOS() {
-  if (typeof AOS === 'undefined') {
-    console.log('AOS library not loaded');
-    return;
-  }
-  
-  AOS.init({
-    duration: 800,
-    easing: 'ease-out',
-    once: true,
-    offset: 100,
-    disable: window.innerWidth < 768 ? true : false
-  });
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out',
+      once: true,
+      offset: 100,
+      disable: 'mobile'
+    });
 
-  // Refresh AOS on window resize
-  window.addEventListener('resize', () => {
-    AOS.refresh();
-  });
+    // Refresh AOS on window resize
+    window.addEventListener('resize', () => {
+      AOS.refresh();
+    });
+  }
 }
 
 // ===== Client Logo Carousel =====
@@ -466,15 +378,20 @@ function initClientCarousel() {
 
   // Add touch events for mobile to pause/play on touch
   function addTouchEvents() {
+    let touchStartX = 0;
+    let touchEndX = 0;
     const carousels = document.querySelectorAll('.clients-carousel');
     
-    carouselContainer.addEventListener('touchstart', () => {
+    carouselContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
       carousels.forEach(carousel => {
         carousel.style.animationPlayState = 'paused';
       });
     }, { passive: true });
     
-    carouselContainer.addEventListener('touchend', () => {
+    carouselContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      
       // Resume animation after touch
       carousels.forEach(carousel => {
         carousel.style.animationPlayState = 'running';
@@ -491,167 +408,178 @@ function initClientCarousel() {
   window.addEventListener('resize', adjustCarouselSpeed);
 }
 
-// ===== Testimonials Section =====
-function initTestimonials() {
-  // Elements
-  const testimonialCards = document.querySelectorAll('.testimonial-card');
-  const indicators = document.querySelectorAll('.testimonial-indicator');
-  const prevBtn = document.getElementById('testimonial-prev');
-  const nextBtn = document.getElementById('testimonial-next');
+// ===== Testimonial Slider =====
+function initTestimonialSlider() {
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dots = document.querySelectorAll('.testimonial-dot');
+  const prevBtn = document.querySelector('.testimonial-nav-prev');
+  const nextBtn = document.querySelector('.testimonial-nav-next');
   
-  // Skip if elements don't exist
-  if (!testimonialCards.length || !indicators.length) return;
-  
-  // Variables
-  let currentIndex = 0;
-  let testimonialInterval;
-  const autoPlayDelay = 5000; // 5 seconds
-  
-  // Initialize
-  updateTestimonials();
-  startAutoPlay();
-  
-  // Add event listeners
+  if (!slides.length || !dots.length) return;
+
+  let currentSlide = 0;
+  let slideInterval;
+  const autoSlideTime = 5000; // 5 seconds
+
+  // Show current slide and update dots
+  function showSlide(index) {
+    // Hide all slides
+    slides.forEach(slide => {
+      slide.style.display = 'none';
+    });
+
+    // Remove active class from all dots
+    dots.forEach(dot => {
+      dot.classList.remove('active');
+    });
+
+    // Show current slide and activate corresponding dot
+    slides[index].style.display = 'block';
+    dots[index].classList.add('active');
+    currentSlide = index;
+  }
+
+  // Initialize slider
+  showSlide(currentSlide);
+
+  // Start auto-sliding
+  function startAutoSlide() {
+    slideInterval = setInterval(() => {
+      nextSlide();
+    }, autoSlideTime);
+  }
+
+  // Stop auto-sliding
+  function stopAutoSlide() {
+    clearInterval(slideInterval);
+  }
+
+  // Next slide function
+  function nextSlide() {
+    let next = currentSlide + 1;
+    if (next >= slides.length) {
+      next = 0;
+    }
+    showSlide(next);
+  }
+
+  // Previous slide function
+  function prevSlide() {
+    let prev = currentSlide - 1;
+    if (prev < 0) {
+      prev = slides.length - 1;
+    }
+    showSlide(prev);
+  }
+
+  // Add event listeners to navigation buttons
   if (prevBtn) {
     prevBtn.addEventListener('click', () => {
-      showPrevTestimonial();
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
     });
   }
-  
+
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
-      showNextTestimonial();
+      stopAutoSlide();
+      nextSlide();
+      startAutoSlide();
     });
   }
-  
-  indicators.forEach(indicator => {
-    indicator.addEventListener('click', () => {
-      const index = parseInt(indicator.getAttribute('data-index'));
-      goToTestimonial(index);
-    });
-    
-    // Add keyboard accessibility
-    indicator.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const index = parseInt(indicator.getAttribute('data-index'));
-        goToTestimonial(index);
-      }
+
+  // Add event listeners to dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      stopAutoSlide();
+      showSlide(index);
+      startAutoSlide();
     });
   });
-  
-  // Stop autoplay on hover
-  const testimonialsContainer = document.querySelector('.testimonials-container');
-  if (testimonialsContainer) {
-    testimonialsContainer.addEventListener('mouseenter', stopAutoPlay);
-    testimonialsContainer.addEventListener('mouseleave', startAutoPlay);
+
+  // Start auto-sliding
+  startAutoSlide();
+
+  // Pause auto-slide on hover
+  const testimonialSection = document.querySelector('.testimonials-section');
+  if (testimonialSection) {
+    testimonialSection.addEventListener('mouseenter', stopAutoSlide);
+    testimonialSection.addEventListener('mouseleave', startAutoSlide);
   }
-  
-  // Touch support
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  testimonialCards.forEach(card => {
-    card.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    
-    card.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-  });
-  
-  function handleSwipe() {
-    const minSwipeDistance = 50;
-    const swipeDistance = touchEndX - touchStartX;
-    
-    if (swipeDistance > minSwipeDistance) {
-      // Swiped right
-      showPrevTestimonial();
-    } else if (swipeDistance < -minSwipeDistance) {
-      // Swiped left
-      showNextTestimonial();
-    }
-  }
-  
-  // Control visibility when tab is not active
+
+  // Pause when page is not visible
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
-      stopAutoPlay();
+      stopAutoSlide();
     } else {
-      startAutoPlay();
+      startAutoSlide();
     }
   });
-  
-  // Functions
-  function updateTestimonials() {
-    // Update testimonial cards
-    testimonialCards.forEach((card, index) => {
-      // Remove all classes first
-      card.classList.remove('active', 'prev', 'next');
-      
-      if (index === currentIndex) {
-        card.classList.add('active');
-        card.setAttribute('aria-hidden', 'false');
-      } else {
-        if (index < currentIndex || (currentIndex === 0 && index === testimonialCards.length - 1)) {
-          card.classList.add('prev');
-        } else {
-          card.classList.add('next');
-        }
-        card.setAttribute('aria-hidden', 'true');
-      }
+
+  // Handle touch events for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slides.forEach(slide => {
+    slide.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slide.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipe();
     });
-    
-    // Update indicators
-    indicators.forEach((indicator, index) => {
-      if (index === currentIndex) {
-        indicator.classList.add('active');
-        indicator.setAttribute('aria-current', 'true');
-      } else {
-        indicator.classList.remove('active');
-        indicator.setAttribute('aria-current', 'false');
-      }
-    });
-    
-    // Update button states
-    if (prevBtn && nextBtn) {
-      prevBtn.disabled = false;
-      nextBtn.disabled = false;
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchStartX - touchEndX > swipeThreshold) {
+      // Swipe left
+      stopAutoSlide();
+      nextSlide();
+      startAutoSlide();
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+      // Swipe right
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
     }
   }
+}
+
+// ===== Work/Portfolio Filtering =====
+function initWorkFilter() {
+  const filterButtons = document.querySelectorAll('.work-filter');
+  const workItems = document.querySelectorAll('.work-item');
   
-  function showNextTestimonial() {
-    stopAutoPlay();
-    currentIndex = (currentIndex + 1) % testimonialCards.length;
-    updateTestimonials();
-    startAutoPlay();
-  }
+  if (!filterButtons.length || !workItems.length) return;
   
-  function showPrevTestimonial() {
-    stopAutoPlay();
-    currentIndex = (currentIndex - 1 + testimonialCards.length) % testimonialCards.length;
-    updateTestimonials();
-    startAutoPlay();
-  }
-  
-  function goToTestimonial(index) {
-    if (index < 0 || index >= testimonialCards.length) return;
-    stopAutoPlay();
-    currentIndex = index;
-    updateTestimonials();
-    startAutoPlay();
-  }
-  
-  function startAutoPlay() {
-    stopAutoPlay(); // Clear any existing interval
-    testimonialInterval = setInterval(showNextTestimonial, autoPlayDelay);
-  }
-  
-  function stopAutoPlay() {
-    clearInterval(testimonialInterval);
-  }
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Add active class to clicked button
+      button.classList.add('active');
+      
+      // Get filter value
+      const filterValue = button.getAttribute('data-filter');
+      
+      // Filter work items
+      workItems.forEach(item => {
+        if (filterValue === 'all') {
+          item.style.display = 'block';
+        } else {
+          if (item.getAttribute('data-category') === filterValue) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
 }
 
 // ===== Back to Top Button =====
@@ -659,19 +587,13 @@ function initBackToTop() {
   const backToTopBtn = document.querySelector('.back-to-top');
   if (!backToTopBtn) return;
   
-  function toggleBackToTopBtn() {
+  window.addEventListener('scroll', () => {
     if (window.scrollY > 500) {
       backToTopBtn.classList.add('active');
     } else {
       backToTopBtn.classList.remove('active');
     }
-  }
-  
-  // Throttled scroll event
-  window.addEventListener('scroll', throttle(toggleBackToTopBtn, 200));
-  
-  // Initial check
-  toggleBackToTopBtn();
+  });
   
   backToTopBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -756,12 +678,12 @@ function initFormValidation() {
       formSubmitBtn.disabled = true;
       formSubmitBtn.textContent = 'Sending...';
       
-      // Simulate successful form submission
+      // Simulate AJAX request
       setTimeout(() => {
         // Success message
         contactForm.innerHTML = `
           <div class="form-success">
-            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
             <h3>Message Sent Successfully!</h3>
             <p>Thank you for contacting us. We'll get back to you soon.</p>
           </div>
@@ -776,11 +698,14 @@ function initFormValidation() {
     
     if (!formGroup.querySelector('.error-message')) {
       errorElement.className = 'error-message';
+      errorElement.style.color = 'red';
+      errorElement.style.fontSize = '0.875rem';
+      errorElement.style.marginTop = '0.25rem';
       formGroup.appendChild(errorElement);
     }
     
     errorElement.textContent = message;
-    input.classList.add('error');
+    input.style.borderColor = 'red';
   }
   
   function removeError(input) {
@@ -791,11 +716,10 @@ function initFormValidation() {
       formGroup.removeChild(errorElement);
     }
     
-    input.classList.remove('error');
+    input.style.borderColor = '';
   }
   
   function isValidEmail(email) {
-    // RFC 5322 compliant email regex
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
@@ -829,793 +753,9 @@ function handleNavLinks() {
   }, 100));
 }
 
-/* ===== Featured Projects Section ===== */
-function initFeaturedProjects() {
-  // Configuration
-  const projectsPerPage = 6; // Number of projects per page
-  const jsonPath = './featured-projects.json'; // Path to JSON file
-  
-  // DOM Elements
-  const projectsGrid = document.getElementById('projects-grid');
-  if (!projectsGrid) {
-    // Try with the old ID structure - fallback
-    const projectsGrid = document.getElementById('featured-projects-grid');
-    if (!projectsGrid) return; // Exit if neither exists
-  }
-  
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const prevButton = document.getElementById('prev-page') || document.getElementById('prev-projects');
-  const nextButton = document.getElementById('next-page') || document.getElementById('next-projects');
-  const paginationDots = document.getElementById('pagination-dots') || document.getElementById('featured-pagination');
-  const projectModal = document.getElementById('project-modal');
-  const modalClose = document.getElementById('modal-close');
-  
-  // Templates
-  const projectCardTemplate = document.getElementById('project-card-template');
-  const modalTemplate = document.getElementById('modal-template') || document.getElementById('modal-content-template');
-  
-  // State variables
-  let allProjects = [];
-  let filteredProjects = [];
-  let currentPage = 1;
-  let totalPages = 1;
-  let currentFilter = 'all';
-  
-  // Initialize
-  fetchProjects();
-  
-  // Function to handle image loading with fallback
-  function loadProjectImage(imageUrl, fallbackUrl) {
-    return new Promise((resolve) => {
-      // If no image URL is provided, use fallback immediately
-      if (!imageUrl) {
-        resolve(fallbackUrl || 'https://picsum.photos/800/600?random=' + Math.random());
-        return;
-      }
-      
-      // Create a test image to check if the original URL loads
-      const testImg = new Image();
-      
-      // If original image loads successfully, use it
-      testImg.onload = function() {
-        resolve(imageUrl);
-      };
-      
-      // If original image fails, use fallback
-      testImg.onerror = function() {
-        console.log(`Image failed to load: ${imageUrl}, using fallback`);
-        resolve(fallbackUrl || 'https://picsum.photos/800/600?random=' + Math.random());
-      };
-      
-      // Set a timeout to prevent hanging if image is very slow
-      setTimeout(() => {
-        if (!testImg.complete) {
-          testImg.src = ''; // Cancel the current image request
-          resolve(fallbackUrl || 'https://picsum.photos/800/600?random=' + Math.random());
-        }
-      }, 5000); // 5 second timeout
-      
-      // Start loading the image
-      testImg.src = imageUrl;
-    });
-  }
-  
-  // Fetch projects data
-  async function fetchProjects() {
-    showLoader();
-    
-    try {
-      const response = await fetch(jsonPath);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to fetch projects (${response.status})`);
-      }
-      
-      const data = await response.json();
-      
-      if (!data || !data.featuredProjects || !Array.isArray(data.featuredProjects)) {
-        throw new Error('Invalid project data format');
-      }
-      
-      allProjects = data.featuredProjects;
-      
-      // Process images to ensure they load correctly
-      allProjects = await Promise.all(allProjects.map(async (project) => {
-        // Fix image paths if they start with ./ or if they're relative
-        if (project.image && project.image.startsWith('./')) {
-          project.image = project.image.substring(2); // Remove leading ./
-        }
-        
-        // Add fallback image if not present
-        if (!project.fallbackImage) {
-          project.fallbackImage = `https://picsum.photos/800/600?random=${Math.random()}`;
-        }
-        
-        return project;
-      }));
-      
-      filteredProjects = [...allProjects];
-      
-      // Calculate total pages
-      totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-      
-      // Initialize UI
-      createPagination();
-      renderProjects();
-      hideLoader();
-      
-    } catch (error) {
-      console.error('Error loading projects:', error);
-      
-      // Fallback projects data when API fails
-      const fallbackProjects = [
-        {
-          "id": "iconic-aesthetics",
-          "title": "Iconic Aesthetics",
-          "subtitle": "Web & POS Solution",
-          "description": "Complete business technology solution including custom website with integrated booking system and Point of Sale implementation.",
-          "image": "https://picsum.photos/id/20/800/600",
-          "categories": ["web", "pos"],
-          "tags": ["Web Development", "POS System", "Booking Solution"],
-          "features": [
-            "Custom Web Design",
-            "Appointment Booking System",
-            "Square POS Integration",
-            "Business Card & Brochure Design"
-          ],
-          "link": "#"
-        },
-        {
-          "id": "east-coast-realty",
-          "title": "East Coast Realty",
-          "subtitle": "Real Estate Tech Solution",
-          "description": "Comprehensive technology solution including modern website, office setup with network configuration, and business material design.",
-          "image": "https://picsum.photos/id/25/800/600",
-          "categories": ["web", "tech", "marketing"],
-          "tags": ["Web Development", "Office Setup", "Business Materials"],
-          "features": [
-            "Real Estate Website with MLS Integration",
-            "Computer Network Installation",
-            "Office Technology Setup",
-            "Marketing Materials Design"
-          ],
-          "link": "#"
-        },
-        {
-          "id": "cohen-associates",
-          "title": "Cohen & Associates",
-          "subtitle": "Secure Financial Platform",
-          "description": "Technology solution for a tax accounting firm featuring secure document handling, client portal, and network security implementation.",
-          "image": "https://picsum.photos/id/28/800/600",
-          "categories": ["web", "tech"],
-          "tags": ["Web Development", "Secure Portal", "Office Technology"],
-          "features": [
-            "Professional Website with Client Portal",
-            "Secure Document Handling System",
-            "Office Network & Security Setup",
-            "Business Software Implementation"
-          ],
-          "link": "#"
-        },
-        {
-          "id": "s-cream",
-          "title": "S-Cream",
-          "subtitle": "E-Commerce & POS",
-          "description": "Complete technology solution featuring online ordering, menu management, POS system implementation, and branded materials design.",
-          "image": "https://picsum.photos/id/24/800/600",
-          "categories": ["web", "pos", "marketing"],
-          "tags": ["Web Development", "POS System", "Business Materials"],
-          "features": [
-            "E-Commerce Website",
-            "Digital Menu & Online Ordering",
-            "POS System with Inventory",
-            "Brand Identity Package"
-          ],
-          "link": "#"
-        },
-        {
-          "id": "doug-uhlig",
-          "title": "Doug Uhlig Psychological Services",
-          "subtitle": "Healthcare Technology",
-          "description": "Healthcare technology solution with appointment scheduling, HIPAA-compliant systems, and electronic record integration.",
-          "image": "https://picsum.photos/id/26/800/600",
-          "categories": ["web", "apple"],
-          "tags": ["Web Development", "HIPAA Compliance", "Apple Services"],
-          "features": [
-            "Healthcare Web Platform",
-            "HIPAA-Compliant Systems Setup",
-            "Apple Device Management",
-            "Electronic Health Records Integration"
-          ],
-          "link": "#"
-        },
-        {
-          "id": "century-one",
-          "title": "Century One Management",
-          "subtitle": "Property Management System",
-          "description": "Integrated property management solution with tenant portal, maintenance request system, and office network implementation.",
-          "image": "https://picsum.photos/id/42/800/600",
-          "categories": ["web", "tech"],
-          "tags": ["Web Portal", "Property Management", "Network Setup"],
-          "features": [
-            "Property Management Portal",
-            "Tenant & Maintenance System",
-            "Office Network Infrastructure",
-            "Security Camera Installation"
-          ],
-          "link": "#"
-        }
-      ];
-      
-      allProjects = fallbackProjects;
-      filteredProjects = [...fallbackProjects];
-      
-      // Calculate total pages
-      totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-      
-      // Initialize UI with fallback data
-      createPagination();
-      renderProjects();
-      hideLoader();
-      
-      // Show error message
-      console.warn('Using fallback project data due to loading error');
-    }
-  }
-  
-  // Event Listeners
-  if (filterButtons.length) {
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.getAttribute('data-filter');
-        filterProjects(filter);
-      });
-    });
-  }
-  
-  if (prevButton) {
-    prevButton.addEventListener('click', () => {
-      if (currentPage > 1) {
-        navigateToPage(currentPage - 1);
-      }
-    });
-  }
-  
-  if (nextButton) {
-    nextButton.addEventListener('click', () => {
-      if (currentPage < totalPages) {
-        navigateToPage(currentPage + 1);
-      }
-    });
-  }
-  
-  if (modalClose && projectModal) {
-    // Close modal when clicking the close button
-    modalClose.addEventListener('click', closeModal);
-    
-    // Close modal when clicking on backdrop
-    projectModal.addEventListener('click', (e) => {
-      if (e.target === projectModal || e.target.classList.contains('modal-backdrop')) {
-        closeModal();
-      }
-    });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && (projectModal.classList.contains('open') || projectModal.classList.contains('active'))) {
-        closeModal();
-      }
-    });
-  }
-  
-  // Filter projects
-  function filterProjects(filter) {
-    // Update UI state
-    filterButtons.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-filter') === filter);
-    });
-    
-    // Update filter state
-    currentFilter = filter;
-    currentPage = 1; // Reset to first page
-    
-    showLoader();
-    
-    // Apply filter
-    if (filter === 'all') {
-      filteredProjects = [...allProjects];
-    } else {
-      filteredProjects = allProjects.filter(project => 
-        project.categories && project.categories.includes(filter)
-      );
-    }
-    
-    // Handle no results
-    if (filteredProjects.length === 0) {
-      showMessage('No projects found', `No projects match the "${filter}" filter. Please try another category.`);
-      hideLoader();
-      totalPages = 0;
-      createPagination();
-      return;
-    }
-    
-    // Update totalPages based on filtered results
-    totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
-    
-    // Update pagination and render projects
-    createPagination();
-    renderProjects();
-    hideLoader();
-  }
-  
-  // Render projects for current page
-  async function renderProjects() {
-    // Clear grid (except loader)
-    while (projectsGrid.firstChild) {
-      if (!projectsGrid.firstChild.classList || !projectsGrid.firstChild.classList.contains('loader-container')) {
-        projectsGrid.removeChild(projectsGrid.firstChild);
-      }
-    }
-    
-    // Get projects for current page
-    const startIndex = (currentPage - 1) * projectsPerPage;
-    const endIndex = Math.min(startIndex + projectsPerPage, filteredProjects.length);
-    const currentProjects = filteredProjects.slice(startIndex, endIndex);
-    
-    // Add projects with staggered animation
-    for (let i = 0; i < currentProjects.length; i++) {
-      const project = currentProjects[i];
-      const card = await createProjectCard(project);
-      projectsGrid.appendChild(card);
-      
-      // Stagger animation
-      setTimeout(() => {
-        card.classList.add('fade-in');
-      }, i * 100);
-    }
-  }
-  
-  // Create project card
-  async function createProjectCard(project) {
-    // Determine which template structure we're using (old or new)
-    const isNewDesign = document.querySelector('.projects-wrapper') !== null;
-
-    // Return a basic card if no template exists
-    if (!projectCardTemplate) {
-      const card = document.createElement('div');
-      card.className = 'project-card';
-      
-      // Try to load image with fallback
-      const finalImageUrl = await loadProjectImage(
-        project.image,
-        project.fallbackImage || 'https://picsum.photos/800/600?random=' + Math.random()
-      );
-      
-      if (isNewDesign) {
-        // New design structure
-        card.innerHTML = `
-          <div class="project-image">
-            <img src="${finalImageUrl}" alt="${project.title}" loading="lazy">
-            <div class="project-overlay">
-              <div class="project-buttons">
-                <button class="project-details-btn">View Details</button>
-                <a href="${project.link || '#'}" class="project-link" target="_blank">Visit Website</a>
-              </div>
-            </div>
-            <div class="project-category">${project.categories ? project.categories[0].charAt(0).toUpperCase() + project.categories[0].slice(1) : 'Project'}</div>
-          </div>
-          <div class="project-info">
-            <h4 class="project-title">${project.title}</h4>
-            <p class="project-subtitle">${project.subtitle || ''}</p>
-            <div class="project-tags">
-              ${project.tags ? project.tags.map(tag => `<span>${tag}</span>`).join('') : ''}
-            </div>
-          </div>
-        `;
-      } else {
-        // Old design structure (flip card)
-        card.innerHTML = `
-          <div class="project-card-inner">
-            <div class="project-card-front">
-              <div class="project-image">
-                <img src="${finalImageUrl}" alt="${project.title}" loading="lazy">
-                <div class="project-category-tag">${project.categories ? project.categories[0].charAt(0).toUpperCase() + project.categories[0].slice(1) : 'Project'}</div>
-              </div>
-              <div class="project-content">
-                <h4 class="project-title">${project.title}</h4>
-                <p class="project-subtitle">${project.subtitle || ''}</p>
-                <div class="project-tags">
-                  ${project.tags ? project.tags.map(tag => `<span>${tag}</span>`).join('') : ''}
-                </div>
-              </div>
-            </div>
-            <div class="project-card-back">
-              <div class="project-back-content">
-                <h4 class="project-title">${project.title}</h4>
-                <p class="project-description">${project.description || ''}</p>
-                <div class="project-actions">
-                  <button class="project-details-btn">View Details</button>
-                  <a href="${project.link || '#'}" class="project-link" target="_blank">Visit Website</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-      
-      // Add click handler for details button
-      setTimeout(() => {
-        const detailsBtn = card.querySelector('.project-details-btn');
-        if (detailsBtn && projectModal) {
-          detailsBtn.addEventListener('click', () => openModal(project));
-        }
-      }, 100);
-      
-      return card;
-    }
-    
-    // Use template
-    const template = projectCardTemplate.content.cloneNode(true);
-    const card = template.querySelector('.project-card');
-    
-    // Set project image with fallback
-    const projectImage = card.querySelector('.project-image img');
-    if (projectImage) {
-      // Set a loading placeholder
-      projectImage.src = 'https://via.placeholder.com/800x400?text=Loading...';
-      
-      // Try to load the actual image
-      try {
-        const finalImageUrl = await loadProjectImage(
-          project.image,
-          project.fallbackImage || 'https://picsum.photos/800/600?random=' + Math.random()
-        );
-        
-        projectImage.src = finalImageUrl;
-        projectImage.alt = project.title;
-        projectImage.setAttribute('loading', 'lazy');
-      } catch (error) {
-        console.error('Image loading error:', error);
-        projectImage.src = 'https://via.placeholder.com/800x400?text=Image+Not+Available';
-      }
-    }
-    
-    // Set category
-    if (isNewDesign) {
-      const categoryEl = card.querySelector('.project-category');
-      if (categoryEl && project.categories && project.categories.length > 0) {
-        categoryEl.textContent = project.categories[0].charAt(0).toUpperCase() + project.categories[0].slice(1);
-      }
-    } else {
-      const categoryTag = card.querySelector('.project-category-tag');
-      if (categoryTag && project.categories && project.categories.length > 0) {
-        categoryTag.textContent = project.categories[0].charAt(0).toUpperCase() + project.categories[0].slice(1);
-      }
-    }
-    
-    // Set title and subtitle
-    const titleElements = card.querySelectorAll('.project-title');
-    titleElements.forEach(el => {
-      el.textContent = project.title;
-    });
-    
-    const subtitleEl = card.querySelector('.project-subtitle');
-    if (subtitleEl) {
-      subtitleEl.textContent = project.subtitle || '';
-    }
-    
-    // Add tags
-    const tagsContainer = card.querySelector('.project-tags');
-    if (tagsContainer && project.tags) {
-      project.tags.forEach(tag => {
-        const span = document.createElement('span');
-        span.textContent = tag;
-        tagsContainer.appendChild(span);
-      });
-    }
-    
-    // Set description if it exists (in the back of card)
-    const descriptionEl = card.querySelector('.project-description');
-    if (descriptionEl) {
-      descriptionEl.textContent = project.description || '';
-    }
-    
-    // Add features if they exist (in the back of card)
-    const featuresContainer = card.querySelector('.project-features');
-    if (featuresContainer && project.features) {
-      // Check if there's already a ul element
-      let featuresList = featuresContainer.querySelector('ul');
-      if (!featuresList) {
-        featuresList = document.createElement('ul');
-        featuresContainer.appendChild(featuresList);
-      }
-      
-      project.features.forEach(feature => {
-        const li = document.createElement('li');
-        li.textContent = feature;
-        featuresList.appendChild(li);
-      });
-    }
-    
-    // Set up links
-    const websiteLinks = card.querySelectorAll('.project-link');
-    websiteLinks.forEach(link => {
-      link.href = project.link || '#';
-      if (project.link && !project.link.startsWith('#')) {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-      }
-    });
-    
-    // Add click event for details button
-    const detailsBtn = card.querySelector('.project-details-btn');
-    if (detailsBtn && projectModal) {
-      detailsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (e.stopPropagation) e.stopPropagation(); // Prevent card flip if applicable
-        openModal(project);
-      });
-    }
-    
-    return card;
-  }
-  
-  // Create pagination
-  function createPagination() {
-    if (!paginationDots) return;
-    
-    // Clear previous dots
-    paginationDots.innerHTML = '';
-    
-    // Create a dot for each page
-    for (let i = 1; i <= totalPages; i++) {
-      const dot = document.createElement('div');
-      
-      // Set appropriate class based on which pagination system we're using
-      if (paginationDots.id === 'pagination-dots') {
-        dot.className = 'pagination-dot';
-      } else {
-        dot.className = 'page-dot';
-      }
-      
-      if (i === currentPage) dot.classList.add('active');
-      
-      dot.setAttribute('data-page', i);
-      dot.setAttribute('role', 'button');
-      dot.setAttribute('aria-label', `Go to page ${i}`);
-      dot.setAttribute('tabindex', '0');
-      
-      dot.addEventListener('click', () => navigateToPage(i));
-      
-      paginationDots.appendChild(dot);
-    }
-    
-    // Update button states
-    if (prevButton) prevButton.disabled = currentPage <= 1 || totalPages === 0;
-    if (nextButton) nextButton.disabled = currentPage >= totalPages || totalPages === 0;
-  }
-  
-  // Navigate to specific page
-  function navigateToPage(page) {
-    if (page < 1 || page > totalPages) return;
-    
-    currentPage = page;
-    showLoader();
-    
-    // Update pagination dots
-    if (paginationDots) {
-      const dots = paginationDots.querySelectorAll('.pagination-dot, .page-dot');
-      dots.forEach(dot => {
-        dot.classList.toggle('active', parseInt(dot.getAttribute('data-page')) === page);
-      });
-    }
-    
-    // Update button states
-    if (prevButton) prevButton.disabled = page <= 1;
-    if (nextButton) nextButton.disabled = page >= totalPages;
-    
-    // Render projects for this page
-    renderProjects();
-    
-    // Hide loader after a short delay
-    setTimeout(hideLoader, 300);
-  }
-  
-  // Open project modal
-  async function openModal(project) {
-    if (!projectModal) return;
-    
-    const modalBody = projectModal.querySelector('.modal-body');
-    if (!modalBody) return;
-    
-    // Clear previous content
-    modalBody.innerHTML = '';
-    
-    // Create content from template or a simple fallback
-    if (modalTemplate) {
-      const content = modalTemplate.content.cloneNode(true);
-      
-      // Set title and subtitle
-      content.querySelector('.modal-title').textContent = project.title;
-      
-      const subtitleEl = content.querySelector('.modal-subtitle');
-      if (subtitleEl) {
-        subtitleEl.textContent = project.subtitle || '';
-      }
-      
-      // Load and set main image with fallback
-      const mainImage = content.querySelector('.modal-main-image img, .modal-image img');
-      if (mainImage) {
-        mainImage.src = 'https://via.placeholder.com/800x400?text=Loading...';
-        
-        try {
-          const finalImageUrl = await loadProjectImage(
-            project.image,
-            project.fallbackImage || 'https://picsum.photos/800/600?random=' + Math.random()
-          );
-          
-          mainImage.src = finalImageUrl;
-          mainImage.alt = project.title;
-          mainImage.setAttribute('loading', 'lazy');
-        } catch (error) {
-          console.error('Modal image loading error:', error);
-          mainImage.src = 'https://via.placeholder.com/800x400?text=Image+Not+Available';
-        }
-      }
-      
-      // Set description
-      const descriptionEl = content.querySelector('.modal-description');
-      if (descriptionEl) {
-        descriptionEl.textContent = project.description || '';
-      }
-      
-      // Set features
-      const featuresList = content.querySelector('.features-list');
-      if (featuresList && project.features) {
-        project.features.forEach(feature => {
-          const li = document.createElement('li');
-          li.textContent = feature;
-          featuresList.appendChild(li);
-        });
-      }
-      
-      // Set tags
-      const tagsList = content.querySelector('.tags-list');
-      if (tagsList && project.tags) {
-        project.tags.forEach(tag => {
-          const span = document.createElement('span');
-          span.textContent = tag;
-          tagsList.appendChild(span);
-        });
-      }
-      
-      // Set website link
-      const modalLink = content.querySelector('.modal-link');
-      if (modalLink) {
-        modalLink.href = project.link || '#';
-        if (project.link && !project.link.startsWith('#')) {
-          modalLink.setAttribute('target', '_blank');
-          modalLink.setAttribute('rel', 'noopener noreferrer');
-        }
-      }
-      
-      // Add content to modal
-      modalBody.appendChild(content);
-    } else {
-      // Create a simple fallback if no template exists
-      const finalImageUrl = await loadProjectImage(
-        project.image,
-        project.fallbackImage || 'https://picsum.photos/800/600?random=' + Math.random()
-      );
-      
-      // Simple fallback content
-      modalBody.innerHTML = `
-        <div style="padding: 2rem;">
-          <h3 style="margin-bottom: 1rem;">${project.title}</h3>
-          <p style="margin-bottom: 1rem; color: #6C63FF;">${project.subtitle || ''}</p>
-          <div style="margin-bottom: 2rem;">
-            <img src="${finalImageUrl}" alt="${project.title}" style="width: 100%; height: auto; border-radius: 8px;">
-          </div>
-          <p style="margin-bottom: 2rem; line-height: 1.6;">${project.description || ''}</p>
-          <div style="display: flex; justify-content: center; gap: 1rem;">
-            <a href="${project.link || '#'}" target="_blank" rel="noopener" 
-              style="display: inline-block; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #6C63FF, #8C63FF); 
-              color: white; border-radius: 9999px; text-decoration: none; font-weight: 600;">
-              Visit Website
-            </a>
-            <button 
-              style="padding: 0.75rem 1.5rem; background: transparent; border: 1px solid #6C63FF; 
-              color: #6C63FF; border-radius: 9999px; cursor: pointer; font-weight: 600;"
-              onclick="document.getElementById('project-modal').classList.remove('active'); document.getElementById('project-modal').classList.remove('open'); document.body.classList.remove('no-scroll');">
-              Close
-            </button>
-          </div>
-        </div>
-      `;
-    }
-    
-    // Show modal
-    projectModal.classList.add('active'); // Support for old class name
-    projectModal.classList.add('open');   // Support for new class name
-    document.body.classList.add('no-scroll');
-    
-    // Focus the close button for accessibility
-    if (modalClose) {
-      setTimeout(() => {
-        modalClose.focus();
-      }, 100);
-    }
-  }
-  
-  // Close modal
-  function closeModal() {
-    if (!projectModal) return;
-    
-    projectModal.classList.remove('active');
-    projectModal.classList.remove('open');
-    document.body.classList.remove('no-scroll');
-  }
-  
-  // Show loader
-  function showLoader() {
-    // Try to find the loader using different possible class names
-    let loader = projectsGrid.querySelector('.loader-container, .grid-loader');
-    
-    if (!loader) {
-      // Create a new loader if one doesn't exist
-      const loaderContainer = document.createElement('div');
-      loaderContainer.className = 'loader-container';
-      loaderContainer.innerHTML = `
-        <div class="loader-circle"></div>
-        <p>Loading projects...</p>
-      `;
-      projectsGrid.appendChild(loaderContainer);
-      loader = loaderContainer;
-    }
-    
-    loader.style.display = 'flex';
-    loader.style.opacity = '1';
-    loader.style.visibility = 'visible';
-  }
-  
-  // Hide loader
-  function hideLoader() {
-    // Try to find the loader using different possible class names
-    const loader = projectsGrid.querySelector('.loader-container, .grid-loader');
-    
-    if (loader) {
-      loader.style.opacity = '0';
-      loader.style.visibility = 'hidden';
-      setTimeout(() => {
-        loader.style.display = 'none';
-      }, 300);
-    }
-  }
-  
-  // Show message (for empty states or errors)
-  function showMessage(title, message, type = 'info') {
-    // Create message container
-    const messageContainer = document.createElement('div');
-    messageContainer.className = 'message-container';
-    
-    // Set icon based on type
-    let icon = 'fa-info-circle';
-    if (type === 'error') icon = 'fa-exclamation-circle';
-    if (type === 'empty') icon = 'fa-search';
-    
-    // Create message content
-    messageContainer.innerHTML = `
-      <i class="fas ${icon}"></i>
-      <h4>${title}</h4>
-      <p>${message}</p>
-    `;
-    
-    // Add to grid
-    projectsGrid.appendChild(messageContainer);
-  }
-}
-
 // ===== Utility Functions =====
+
+// Throttle function to limit function calls
 function throttle(callback, delay = 200) {
   let isThrottled = false;
   
@@ -1631,8 +771,13 @@ function throttle(callback, delay = 200) {
   };
 }
 
-// Function to detect user's device type
-function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
-      || window.innerWidth < 768;
+// Check if element is in viewport
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom >= 0 &&
+    rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+    rect.right >= 0
+  );
 }
