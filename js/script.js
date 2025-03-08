@@ -25,12 +25,36 @@ function initPreloader() {
   const preloader = document.querySelector('.preloader');
   if (!preloader) return;
 
+  // Add a timeout to ensure preloader disappears even if load event doesn't fire
+  const forceHideTimeout = setTimeout(() => {
+    hidePreloader();
+  }, 5000); // Force hide after 5 seconds max
+
+  // Normal load event listener
   window.addEventListener('load', () => {
+    clearTimeout(forceHideTimeout); // Clear the timeout if load event fires normally
+    hidePreloader();
+  });
+
+  // DOMContentLoaded can be a backup trigger (fires earlier than load)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Set a shorter timeout after DOM is ready
+    setTimeout(() => {
+      hidePreloader();
+    }, 1000); // Hide 1 second after DOM is ready
+  });
+
+  // Function to hide the preloader with animation
+  function hidePreloader() {
+    if (!preloader || preloader.style.opacity === '0') return; // Prevent running multiple times
+    
     preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.5s ease';
+    
     setTimeout(() => {
       preloader.style.display = 'none';
     }, 500);
-  });
+  }
 }
 
 // ===== Header Scroll Effect =====
