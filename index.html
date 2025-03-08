@@ -43,192 +43,793 @@
   }
   </script>
  
-    <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/style.css">
-
-  <!-- Elfsight App Script (for widgets like Instagram feed) -->
-  <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </head>
 <body>
-<header>
-    <div class="header-container">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
         <a href="/" class="logo" aria-label="Home">
-            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
-            <span class="logo-text">Elan's Tech World</span>
+          <div class="logo-icon">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50">
+          </div>
+          <div class="logo-text">
+            <span class="logo-text-main">Elan's</span>
+            <span class="logo-text-sub">Tech World</span>
+          </div>
         </a>
         
-        <nav class="desktop-nav" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pages/about.html">About Us</a></li>
-                <li><a href="pages/services.html">Services</a></li>
-                <li><a href="pages/projects.html">Projects</a></li>
-                <li><a href="pages/contact.html">Contact</a></li>
-            </ul>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+            <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="#work" class="nav-link">Our Work</a></li>
+            <li class="nav-item"><a href="#process" class="nav-link">Process</a></li>
+            <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
         </nav>
-
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-            <span class="sr-only">Menu</span>
-            <div></div>
-            <div></div>
-            <div></div>
-        </button>
-    </div>
-</header>
-
-<!-- Mobile Navigation -->
-<nav class="mobile-nav" aria-label="Mobile navigation">
-    <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="pages/about.html">About Us</a></li>
-        <li><a href="pages/services.html">Services</a></li>
-        <li><a href="pages/projects.html">Projects</a></li>
-        <li><a href="pages/contact.html">Contact</a></li>
-    </ul>
-</nav>
-
-<!-- Hero Section -->
-<section class="hero">
-    <div class="slideshow">
-        <div class="slide" style="background-image: url('./assets/images/Mainbackround.jpg')"></div>
-        <div class="slide" style="background-image: url('./assets/images/backroundcity.jpeg')"></div>
-        <div class="slide" style="background-image: url('./assets/images/backround3.jpeg')"></div>
-    </div>
-    <div id="particles-js"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">Welcome to Elan's Tech World</h1>
-        <p class="hero-description">Transforming Businesses Through Technology</p>
-        <a href="#services" class="btn">Explore Services</a>
-    </div>
-</section>
-
-<!-- Main Content -->
-<main>
-    <!-- After the hero section and before the about section -->
-<section id="promo-video" class="section-wrapper video-section">
-    <div class="section-text">
-        <h2>Watch Our Story</h2>
-        <p>See how we're transforming businesses through innovative technology solutions.</p>
-    </div>
-    <div class="video-container">
-        <!-- Desktop Video -->
-        <video class="desktop-video" controls poster="/api/placeholder/1280/720">
-            <source src="promodesk.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-</section>
-    <!-- About Section -->
-    <section id="about" class="section-wrapper">
-        <div class="section-text">
-            <h2>About Us</h2>
-            <p>At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
-            <p>With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
-            <a href="pages/about.html" class="btn">Learn More →</a>
+        
+        <div class="header-actions">
+          <a href="#contact" class="btn btn-primary btn-sm header-cta">Get Started</a>
+          <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        <img src="./assets/images/aboutsection.jpeg" alt="Modern office workspace">
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-container">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="#home" class="mobile-nav-link">Home</a></li>
+        <li class="mobile-nav-item"><a href="#services" class="mobile-nav-link">Services</a></li>
+        <li class="mobile-nav-item"><a href="#work" class="mobile-nav-link">Our Work</a></li>
+        <li class="mobile-nav-item"><a href="#process" class="mobile-nav-link">Process</a></li>
+        <li class="mobile-nav-item"><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
+        <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <div class="social-links">
+          <a href="https://www.instagram.com/elan_tech_world/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+        <div class="mobile-contact">
+          <a href="tel:+19294176819" class="mobile-contact-link">
+            <i class="fas fa-phone"></i> (929) 417-6819
+          </a>
+          <a href="mailto:elanstechworld@gmail.com" class="mobile-contact-link">
+            <i class="fas fa-envelope"></i> elanstechworld@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section with Video Background -->
+    <section id="home" class="hero">
+      <div class="hero-video-container">
+        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-city-1028-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+          <h1 class="hero-title">Transform Your Digital <span class="hero-title-emphasis">Presence</span></h1>
+          <p class="hero-subtitle">We design and develop cutting-edge digital solutions that elevate your business</p>
+          <div class="hero-cta">
+            <a href="#services" class="btn btn-primary">Explore Services</a>
+            <a href="#work" class="btn btn-outline">See Our Work</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">100+</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <a href="#services" class="scroll-indicator">
+          <span class="scroll-text">Scroll</span>
+          <span class="scroll-icon"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Clients Logos Section -->
+    <section class="clients-section">
+      <div class="container">
+        <div class="section-heading">
+          <h2 class="section-title-sm">Trusted By</h2>
+        </div>
+        <div class="clients-logos">
+          <div class="client-logo" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNvbXBhbnklMjBsb2dvfGVufDB8fDB8fHww" alt="Client 1" width="150" height="60">
+          </div>
+          <div class="client-logo" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNvbXBhbnklMjBsb2dvfGVufDB8fDB8fHww" alt="Client 2" width="150" height="60">
+          </div>
+          <div class="client-logo" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bG9nb3xlbnwwfHwwfHx8MA%3D%3D" alt="Client 3" width="150" height="60">
+          </div>
+          <div class="client-logo" data-aos="fade-up" data-aos-delay="400">
+            <img src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bG9nb3xlbnwwfHwwfHx8MA%3D%3D" alt="Client 4" width="150" height="60">
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section-wrapper">
-        <div class="section-text">
-            <h2>Our Services</h2>
-            <p>We provide comprehensive technology services tailored to meet your business needs:</p>
-            <ul>
-                <li>Business Computer Setup and Support</li>
-                <li>Custom Web Design and Development</li>
-                <li>Technology Consulting</li>
-                <li>Apple Product Sales and Service</li>
-                <li>POS System Implementation</li>
-            </ul>
-            <a href="pages/services.html" class="btn">View Services →</a>
+    <section id="services" class="services-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">What We Do</h2>
+          <h3 class="section-title">Our Services</h3>
+          <p class="section-description">We provide comprehensive technology solutions to help your business grow</p>
         </div>
-        <img src="./assets/images/backroundimac.jpeg" alt="Professional computer setup">
+        
+        <div class="services-grid">
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <h4 class="service-title">Web Design & Development</h4>
+            <p class="service-description">Custom, responsive websites that drive engagement and convert visitors.</p>
+            <ul class="service-features">
+              <li>Responsive Design</li>
+              <li>E-commerce Solutions</li>
+              <li>CMS Integration</li>
+              <li>Performance Optimization</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h4 class="service-title">Mobile App Development</h4>
+            <p class="service-description">Native and cross-platform mobile applications for iOS and Android.</p>
+            <ul class="service-features">
+              <li>iOS & Android Apps</li>
+              <li>React Native</li>
+              <li>App Store Optimization</li>
+              <li>Maintenance & Support</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          
+          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-icon">
+              <i class="fas fa-store"></i>
+            </div>
+            <h4 class="service-title">POS System Implementation</h4>
+            <p class="service-description">Modern point-of-sale solutions for retail and restaurant businesses.</p>
+            <ul class="service-features">
+              <li>Hardware Selection</li>
+              <li>Software Integration</li>
+              <li>Staff Training</li>
+              <li>Ongoing Support</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          
+          <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h4 class="service-title">Technology Consulting</h4>
+            <p class="service-description">Strategic tech guidance to optimize operations and drive growth.</p>
+            <ul class="service-features">
+              <li>IT Infrastructure</li>
+              <li>Digital Transformation</li>
+              <li>Security Solutions</li>
+              <li>Business Automation</li>
+            </ul>
+            <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section-wrapper">
-        <div class="section-text">
-            <h2>Featured Projects</h2>
-            <p>Browse our portfolio of successful projects, showcasing our commitment to excellence and client satisfaction. From small business websites to enterprise-level solutions, we deliver quality results that exceed expectations.</p>
-            <p>Each project is carefully crafted to meet our clients' unique requirements and business objectives.</p>
-            <a href="pages/projects.html" class="btn">See Projects →</a>
+    <!-- About Section with Floating Images -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-content" data-aos="fade-right">
+            <h2 class="section-subtitle">Who We Are</h2>
+            <h3 class="section-title">We're a team of tech enthusiasts and problem solvers</h3>
+            <p class="about-text">At Elan's Tech World, we specialize in delivering custom technology solutions designed to streamline your business operations and enhance productivity. Our dedicated team provides exceptional service and innovative solutions that drive success.</p>
+            <p class="about-text">With years of experience in the technology industry, we understand the unique challenges businesses face and offer tailored solutions to meet your specific needs.</p>
+            
+            <div class="about-stats">
+              <div class="about-stat-item">
+                <div class="about-stat-number">5+</div>
+                <div class="about-stat-label">Years in Business</div>
+              </div>
+              <div class="about-stat-item">
+                <div class="about-stat-number">15+</div>
+                <div class="about-stat-label">Team Members</div>
+              </div>
+              <div class="about-stat-item">
+                <div class="about-stat-number">24/7</div>
+                <div class="about-stat-label">Support</div>
+              </div>
+            </div>
+            
+            <a href="#team" class="btn btn-primary">Meet Our Team</a>
+          </div>
+          
+          <div class="about-images" data-aos="fade-left">
+            <div class="about-image about-image-1">
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Team working">
+            </div>
+            <div class="about-image about-image-2">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern office space">
+            </div>
+            <div class="about-image about-image-3">
+              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech design">
+            </div>
+          </div>
         </div>
-        <img src="./assets/images/iconicwebsiteimage.jpeg" alt="Project showcase">
+      </div>
+    </section>
+
+    <!-- Work Process Section -->
+    <section id="process" class="process-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">How We Work</h2>
+          <h3 class="section-title">Our Proven Process</h3>
+          <p class="section-description">A streamlined approach to delivering exceptional results</p>
+        </div>
+        
+        <div class="process-timeline">
+          <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+            <div class="process-number">01</div>
+            <div class="process-content">
+              <h4 class="process-title">Discovery</h4>
+              <p class="process-description">We begin by understanding your business goals, challenges, and vision to create a tailored strategy.</p>
+            </div>
+          </div>
+          
+          <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+            <div class="process-number">02</div>
+            <div class="process-content">
+              <h4 class="process-title">Planning</h4>
+              <p class="process-description">We develop a detailed roadmap outlining project scope, timeline, and deliverables.</p>
+            </div>
+          </div>
+          
+          <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+            <div class="process-number">03</div>
+            <div class="process-content">
+              <h4 class="process-title">Design</h4>
+              <p class="process-description">Our creative team crafts visually stunning interfaces that align with your brand identity.</p>
+            </div>
+          </div>
+          
+          <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+            <div class="process-number">04</div>
+            <div class="process-content">
+              <h4 class="process-title">Development</h4>
+              <p class="process-description">We bring designs to life with clean, efficient code and cutting-edge technology.</p>
+            </div>
+          </div>
+          
+          <div class="process-step" data-aos="fade-up" data-aos-delay="500">
+            <div class="process-number">05</div>
+            <div class="process-content">
+              <h4 class="process-title">Testing</h4>
+              <p class="process-description">Rigorous quality assurance ensures your product performs flawlessly across all devices.</p>
+            </div>
+          </div>
+          
+          <div class="process-step" data-aos="fade-up" data-aos-delay="600">
+            <div class="process-number">06</div>
+            <div class="process-content">
+              <h4 class="process-title">Launch & Support</h4>
+              <p class="process-description">We ensure a smooth deployment and provide ongoing maintenance and support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio/Work Section -->
+    <section id="work" class="work-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">Featured Projects</h2>
+          <h3 class="section-title">Our Recent Work</h3>
+          <p class="section-description">Explore our portfolio of successful projects</p>
+        </div>
+        
+        <div class="work-filters" data-aos="fade-up">
+          <button class="work-filter active" data-filter="all">All</button>
+          <button class="work-filter" data-filter="web">Web Design</button>
+          <button class="work-filter" data-filter="mobile">Mobile Apps</button>
+          <button class="work-filter" data-filter="branding">Branding</button>
+        </div>
+        
+        <div class="work-grid">
+          <div class="work-item" data-category="web" data-aos="fade-up" data-aos-delay="100">
+            <div class="work-image">
+              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Design Project">
+              <div class="work-overlay">
+                <div class="work-overlay-content">
+                  <h4 class="work-title">Modern E-commerce Platform</h4>
+                  <p class="work-category">Web Design</p>
+                  <a href="#" class="work-link">View Project</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="work-item" data-category="mobile" data-aos="fade-up" data-aos-delay="200">
+            <div class="work-image">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mobile App Project">
+              <div class="work-overlay">
+                <div class="work-overlay-content">
+                  <h4 class="work-title">Fitness Tracking App</h4>
+                  <p class="work-category">Mobile App</p>
+                  <a href="#" class="work-link">View Project</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="work-item" data-category="branding" data-aos="fade-up" data-aos-delay="300">
+            <div class="work-image">
+              <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Branding Project">
+              <div class="work-overlay">
+                <div class="work-overlay-content">
+                  <h4 class="work-title">Corporate Identity Design</h4>
+                  <p class="work-category">Branding</p>
+                  <a href="#" class="work-link">View Project</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="work-item" data-category="web" data-aos="fade-up" data-aos-delay="400">
+            <div class="work-image">
+              <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Web Design Project">
+              <div class="work-overlay">
+                <div class="work-overlay-content">
+                  <h4 class="work-title">Restaurant Booking System</h4>
+                  <p class="work-category">Web Application</p>
+                  <a href="#" class="work-link">View Project</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="work-cta" data-aos="fade-up">
+          <a href="pages/projects.html" class="btn btn-outline">View All Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Icons Section -->
+    <section class="tech-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">Our Tech Stack</h2>
+          <h3 class="section-title">Technologies We Use</h3>
+          <p class="section-description">We leverage cutting-edge technologies to deliver outstanding results</p>
+        </div>
+        
+        <div class="tech-icons">
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fab fa-react"></i>
+            <span>React</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="150">
+            <i class="fab fa-angular"></i>
+            <span>Angular</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fab fa-vuejs"></i>
+            <span>Vue.js</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="250">
+            <i class="fab fa-node-js"></i>
+            <span>Node.js</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fab fa-php"></i>
+            <span>PHP</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="350">
+            <i class="fab fa-wordpress"></i>
+            <span>WordPress</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="400">
+            <i class="fab fa-aws"></i>
+            <span>AWS</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="450">
+            <i class="fab fa-android"></i>
+            <span>Android</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="500">
+            <i class="fab fa-apple"></i>
+            <span>iOS</span>
+          </div>
+          <div class="tech-icon" data-aos="zoom-in" data-aos-delay="550">
+            <i class="fab fa-figma"></i>
+            <span>Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">What Our Clients Say</h2>
+          <h3 class="section-title">Testimonials</h3>
+          <p class="section-description">Hear from our satisfied clients</p>
+        </div>
+        
+        <div class="testimonials-slider">
+          <div class="testimonial-slide" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">"Elan's Tech World transformed our online presence with a stunning website that perfectly captures our brand. Their team was professional, responsive, and delivered beyond our expectations."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1522&q=80" alt="Client 1">
+                </div>
+                <div class="testimonial-author-info">
+                  <h4 class="testimonial-author-name">Sarah Johnson</h4>
+                  <p class="testimonial-author-position">CEO, Digital Innovations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-slide" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">"Working with Elan's Tech World was a game-changer for our business. They implemented a POS system that streamlined our operations and improved our customer experience dramatically."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                  <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Client 2">
+                </div>
+                <div class="testimonial-author-info">
+                  <h4 class="testimonial-author-name">Michael Rodriguez</h4>
+                  <p class="testimonial-author-position">Owner, The Coffee House</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-slide" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">"The mobile app developed by Elan's Tech World has been instrumental in growing our customer base. Their attention to detail and user experience expertise is unmatched."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Client 3">
+                </div>
+                <div class="testimonial-author-info">
+                  <h4 class="testimonial-author-name">Amanda Chen</h4>
+                  <p class="testimonial-author-position">Marketing Director, Fitness Plus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonials-nav">
+          <button class="testimonial-nav-prev" aria-label="Previous testimonial">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <div class="testimonial-dots">
+            <span class="testimonial-dot active"></span>
+            <span class="testimonial-dot"></span>
+            <span class="testimonial-dot"></span>
+          </div>
+          <button class="testimonial-nav-next" aria-label="Next testimonial">
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content" data-aos="fade-up">
+          <h2 class="cta-title">Ready to Transform Your Business?</h2>
+          <p class="cta-description">Let's work together to create innovative technology solutions tailored to your needs.</p>
+          <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get Started</a>
+            <a href="tel:+19294176819" class="btn btn-outline">Call Us Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info" data-aos="fade-right">
+            <h2 class="section-subtitle">Get In Touch</h2>
+            <h3 class="section-title">Contact Us</h3>
+            <p class="contact-description">We'd love to hear from you. Reach out to us with any questions or to discuss your project.</p>
+            
+            <div class="contact-details">
+              <div class="contact-detail-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Phone</h4>
+                  <a href="tel:+19294176819">(929) 417-6819</a>
+                </div>
+              </div>
+              
+              <div class="contact-detail-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Email</h4>
+                  <a href="mailto:elanstechworld@gmail.com">elanstechworld@gmail.com</a>
+                </div>
+              </div>
+              
+              <div class="contact-detail-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Location</h4>
+                  <p>New York, NY</p>
+                  <p>Online or We Come To You</p>
+                </div>
+              </div>
+              
+              <div class="contact-detail-item">
+                <div class="contact-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="contact-text">
+                  <h4>Working Hours</h4>
+                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                  <p>Saturday: By Appointment</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contact-social">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="https://www.instagram.com/elan_tech_world/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-form-container" data-aos="fade-left">
+            <form class="contact-form" id="contact-form">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Your email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+              </div>
+              
+              <div class="form-group">
+                <label for="service">Service Interested In</label>
+                <select id="service" name="service">
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="web-design">Web Design & Development</option>
+                  <option value="mobile-app">Mobile App Development</option>
+                  <option value="pos">POS System Implementation</option>
+                  <option value="consulting">Technology Consulting</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="form-group full-width">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Instagram Feed Section -->
-    <section id="social-feed" class="section-wrapper">
-        <div class="section-text">
-            <h2>Follow Us on Instagram</h2>
-            <p>Stay updated with our latest projects and tech insights</p>
+    <section class="instagram-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">Follow Our Journey</h2>
+          <h3 class="section-title">Instagram</h3>
+          <p class="section-description">Stay updated with our latest projects and insights</p>
         </div>
-        <div class="instagram-feed">
-            <!-- Elfsight Instagram Widget -->
-            <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
+        
+        <div class="instagram-feed" data-aos="fade-up">
+          <!-- Replace with Elfsight or another Instagram feed widget -->
+          <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
         </div>
+        
+        <div class="instagram-cta" data-aos="fade-up">
+          <a href="https://www.instagram.com/elan_tech_world/" class="btn btn-outline" target="_blank" rel="noopener">Follow Us on Instagram</a>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Contact Section with Click-to-Call -->
-    <section id="contact" class="section-wrapper">
-        <div class="section-text">
-            <h2>Get In Touch</h2>
-            <p>Ready to transform your business with innovative tech solutions? Contact us today!</p>
-            <div class="contact-info">
-                <p><i class="fas fa-phone"></i> (929) 417-6819</p>
-                <p><i class="fas fa-envelope"></i> elanstechworld@gmail.com</p>
-                <p><i class="fas fa-location-dot"></i> Online or We Come To You</p>
-                <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
-            </div>
-            <!-- Elfsight Click-to-Call Widget -->
-            <div class="elfsight-app-e24495ac-f549-47d6-8d36-d954449d3479" data-elfsight-app-lazy></div>
-            <a href="pages/contact.html" class="btn">Contact Now →</a>
-        </div>
-        <img src="./assets/images/Elanslogo.jpeg" alt="Our logo">
-    </section>
-</main>
-
-<!-- Footer -->
-<footer>
-    <div class="footer-content">
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
         <div class="footer-info">
-            <h3>Elan's Tech World</h3>
-            <p>Your Partner in Technology Solutions</p>
-            <p>&copy; 2024 All rights reserved.</p>
+          <a href="/" class="footer-logo">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="60" height="60">
+          </a>
+          <h3 class="footer-title">Elan's Tech World</h3>
+          <p class="footer-description">Transforming businesses through innovative technology solutions.</p>
         </div>
+        
         <div class="footer-links">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#work">Our Work</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
         </div>
-        <div class="footer-social">
-            <h4>Connect With Us</h4>
-            <div class="social-links">
-                <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </div>
+        
+        <div class="footer-services">
+          <h4 class="footer-heading">Our Services</h4>
+          <ul class="footer-nav">
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Mobile App Development</a></li>
+            <li><a href="#">POS Systems</a></li>
+            <li><a href="#">Technology Consulting</a></li>
+            <li><a href="#">Business IT Support</a></li>
+          </ul>
         </div>
+        
+        <div class="footer-contact">
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <i class="fas fa-phone"></i>
+              <a href="tel:+19294176819">(929) 417-6819</a>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:elanstechworld@gmail.com">elanstechworld@gmail.com</a>
+            </li>
+            <li>
+              <i class="fas fa-map-marker-alt"></i>
+              <span>New York, NY</span>
+            </li>
+          </ul>
+          
+          <div class="footer-social">
+            <a href="https://www.instagram.com/elan_tech_world/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="copyright">
+          <p>&copy; 2024 Elan's Tech World. All Rights Reserved.</p>
+        </div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-bottom">
-        <p>Privacy Policy | Terms of Service</p>
-    </div>
-</footer>
+  </footer>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="./js/script.js"></script>
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="./js/script.js"></script>
+  
+  <!-- Elfsight App Script (for widgets like Instagram feed) -->
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
