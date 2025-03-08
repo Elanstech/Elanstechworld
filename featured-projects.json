@@ -5,7 +5,8 @@
       "title": "Iconic Aesthetics",
       "subtitle": "Web & POS Solution",
       "description": "Complete business technology solution including custom website with integrated booking system and Point of Sale implementation.",
-      "image": "./assets/images/iconicwebsiteimage.jpeg",
+      "image": "/assets/images/iconicwebsiteimage.jpeg",
+      "fallbackImage": "https://picsum.photos/id/20/800/600",
       "categories": ["web", "pos"],
       "tags": ["Web Development", "POS System", "Booking Solution"],
       "features": [
@@ -21,7 +22,8 @@
       "title": "East Coast Realty",
       "subtitle": "Real Estate Tech Solution",
       "description": "Comprehensive technology solution including modern website, office setup with network configuration, and business material design.",
-      "image": "./assets/images/eastcoastweb.jpeg",
+      "image": "/assets/images/eastcoastweb.jpeg",
+      "fallbackImage": "https://picsum.photos/id/25/800/600",
       "categories": ["web", "tech", "marketing"],
       "tags": ["Web Development", "Office Setup", "Business Materials"],
       "features": [
@@ -37,7 +39,8 @@
       "title": "Cohen & Associates",
       "subtitle": "Secure Financial Platform",
       "description": "Technology solution for a tax accounting firm featuring secure document handling, client portal, and network security implementation.",
-      "image": "./assets/images/cohen.jpeg",
+      "image": "/assets/images/cohen.jpeg",
+      "fallbackImage": "https://picsum.photos/id/28/800/600",
       "categories": ["web", "tech"],
       "tags": ["Web Development", "Secure Portal", "Office Technology"],
       "features": [
@@ -53,7 +56,8 @@
       "title": "S-Cream",
       "subtitle": "E-Commerce & POS",
       "description": "Complete technology solution featuring online ordering, menu management, POS system implementation, and branded materials design.",
-      "image": "./assets/images/scream.jpeg",
+      "image": "/assets/images/scream.jpeg",
+      "fallbackImage": "https://picsum.photos/id/24/800/600",
       "categories": ["web", "pos", "marketing"],
       "tags": ["Web Development", "POS System", "Business Materials"],
       "features": [
@@ -69,7 +73,8 @@
       "title": "Doug Uhlig Psychological Services",
       "subtitle": "Healthcare Technology",
       "description": "Healthcare technology solution with appointment scheduling, HIPAA-compliant systems, and electronic record integration.",
-      "image": "./assets/images/doug.jpeg",
+      "image": "/assets/images/doug.jpeg",
+      "fallbackImage": "https://picsum.photos/id/26/800/600",
       "categories": ["web", "apple"],
       "tags": ["Web Development", "HIPAA Compliance", "Apple Services"],
       "features": [
@@ -85,7 +90,8 @@
       "title": "Century One Management",
       "subtitle": "Property Management System",
       "description": "Integrated property management solution with tenant portal, maintenance request system, and office network implementation.",
-      "image": "./assets/images/centuryone.jpeg",
+      "image": "/assets/images/centuryone.jpeg",
+      "fallbackImage": "https://picsum.photos/id/42/800/600",
       "categories": ["web", "tech"],
       "tags": ["Web Portal", "Property Management", "Network Setup"],
       "features": [
