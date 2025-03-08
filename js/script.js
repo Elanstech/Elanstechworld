@@ -180,6 +180,94 @@ function initAOS() {
   }
 }
 
+// ===== Client Logo Carousel =====
+function initClientCarousel() {
+  const carouselContainer = document.querySelector('.clients-carousel-container');
+  if (!carouselContainer) return;
+
+  // Function to adjust animation speed based on screen width
+  function adjustCarouselSpeed() {
+    const carousels = document.querySelectorAll('.clients-carousel');
+    const screenWidth = window.innerWidth;
+    
+    let duration;
+    if (screenWidth < 480) {
+      duration = '20s'; // Faster on smallest screens
+    } else if (screenWidth < 768) {
+      duration = '25s'; // Medium speed on tablets
+    } else {
+      duration = '30s'; // Normal speed on desktops
+    }
+    
+    carousels.forEach(carousel => {
+      carousel.style.animationDuration = duration;
+    });
+  }
+
+  // Pause animation when not in viewport to save resources
+  function handleVisibility() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const carousels = entry.target.querySelectorAll('.clients-carousel');
+        
+        if (entry.isIntersecting) {
+          carousels.forEach(carousel => {
+            carousel.style.animationPlayState = 'running';
+          });
+        } else {
+          carousels.forEach(carousel => {
+            carousel.style.animationPlayState = 'paused';
+          });
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(carouselContainer);
+  }
+
+  // Add touch events for mobile to pause/play on touch
+  function addTouchEvents() {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const carousels = document.querySelectorAll('.clients-carousel');
+    
+    carouselContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      carousels.forEach(carousel => {
+        carousel.style.animationPlayState = 'paused';
+      });
+    }, { passive: true });
+    
+    carouselContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].clientX;
+      
+      // Determine swipe direction and adjust animation accordingly
+      if (Math.abs(touchEndX - touchStartX) > 50) {
+        // Can implement manual carousel movement here if desired
+      }
+      
+      // Resume animation after touch
+      carousels.forEach(carousel => {
+        carousel.style.animationPlayState = 'running';
+      });
+    });
+  }
+
+  // Initialize all carousel functionality
+  adjustCarouselSpeed();
+  handleVisibility();
+  addTouchEvents();
+
+  // Update on window resize
+  window.addEventListener('resize', adjustCarouselSpeed);
+}
+
+// Add this function to your document ready function
+document.addEventListener('DOMContentLoaded', () => {
+  // Your existing init functions...
+  initClientCarousel();
+});
+
 // ===== Testimonial Slider =====
 function initTestimonialSlider() {
   const slides = document.querySelectorAll('.testimonial-slide');
