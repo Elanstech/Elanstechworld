@@ -182,35 +182,6 @@ function initHeroVideo() {
   }
 }
 
-// ===== Utility Functions =====
-
-// Throttle function to limit function calls
-function throttle(callback, delay = 200) {
-  let isThrottled = false;
-  
-  return function(...args) {
-    if (isThrottled) return;
-    
-    isThrottled = true;
-    callback.apply(this, args);
-    
-    setTimeout(() => {
-      isThrottled = false;
-    }, delay);
-  };
-}
-
-// Check if element is in viewport
-function isInViewport(element) {
-  const rect = element.getBoundingClientRect();
-  return (
-    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.bottom >= 0 &&
-    rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
-    rect.right >= 0
-  );
-}
-
 // ===== Mouse Follow Effect =====
 function initMouseFollowEffect() {
   const mouseFollowCircle = document.querySelector('.mouse-follow-circle');
@@ -787,7 +758,7 @@ function handleNavLinks() {
 function initFeaturedProjects() {
   // Configuration
   const projectsPerPage = 3; // Number of projects to show per page
-  const jsonPath = 'featured-projects.json'; // Path to JSON file
+  const jsonPath = 'featured-projects.json'; // Updated path to JSON file
   
   // DOM Elements
   const projectsGrid = document.getElementById('featured-projects-grid');
@@ -1141,4 +1112,31 @@ function initFeaturedProjects() {
       }, 300);
     }
   }
+}
+
+// Utility Functions
+function throttle(callback, delay = 200) {
+  let isThrottled = false;
+  
+  return function(...args) {
+    if (isThrottled) return;
+    
+    isThrottled = true;
+    callback.apply(this, args);
+    
+    setTimeout(() => {
+      isThrottled = false;
+    }, delay);
+  };
+}
+
+// Check if element is in viewport
+function isInViewport(element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom >= 0 &&
+    rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+    rect.right >= 0
+  );
 }
