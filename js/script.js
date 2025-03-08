@@ -185,18 +185,23 @@ function initClientCarousel() {
   const carouselContainer = document.querySelector('.clients-carousel-container');
   if (!carouselContainer) return;
 
-  // Function to adjust animation speed based on screen width
+  // Function to adjust animation speed based on screen width and logo count
   function adjustCarouselSpeed() {
     const carousels = document.querySelectorAll('.clients-carousel');
     const screenWidth = window.innerWidth;
+    const logoCount = document.querySelectorAll('.clients-carousel:first-child .client-logo').length;
+    
+    // Adjust speed based on both screen width and number of logos
+    // This ensures consistent visual experience regardless of logo count
+    let baseDuration = logoCount * 4; // 4 seconds per logo as base duration
     
     let duration;
     if (screenWidth < 480) {
-      duration = '20s'; // Faster on smallest screens
+      duration = `${baseDuration * 0.7}s`; // Faster on smallest screens
     } else if (screenWidth < 768) {
-      duration = '25s'; // Medium speed on tablets
+      duration = `${baseDuration * 0.85}s`; // Medium speed on tablets
     } else {
-      duration = '30s'; // Normal speed on desktops
+      duration = `${baseDuration}s`; // Normal speed on desktops
     }
     
     carousels.forEach(carousel => {
@@ -241,11 +246,6 @@ function initClientCarousel() {
     carouselContainer.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].clientX;
       
-      // Determine swipe direction and adjust animation accordingly
-      if (Math.abs(touchEndX - touchStartX) > 50) {
-        // Can implement manual carousel movement here if desired
-      }
-      
       // Resume animation after touch
       carousels.forEach(carousel => {
         carousel.style.animationPlayState = 'running';
@@ -264,7 +264,7 @@ function initClientCarousel() {
 
 // Add this function to your document ready function
 document.addEventListener('DOMContentLoaded', () => {
-  // Your existing init functions...
+  // Make sure you call this function along with your other initialization functions
   initClientCarousel();
 });
 
