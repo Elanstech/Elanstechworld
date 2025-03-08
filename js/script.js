@@ -787,7 +787,7 @@ function handleNavLinks() {
 function initFeaturedProjects() {
   // Configuration
   const projectsPerPage = 3; // Number of projects to show per page
-  const jsonPath = './assets/data/featured-projects.json'; // Path to JSON file
+  const jsonPath = 'featured-projects.json'; // Path to JSON file
   
   // DOM Elements
   const projectsGrid = document.getElementById('featured-projects-grid');
