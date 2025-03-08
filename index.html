@@ -57,45 +57,10 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/style.css">
-  
-  <!-- Critical CSS - Preloader Styles -->
-  <style>
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #0F1729;
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.5s ease;
-    }
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      border-top: 4px solid #6C63FF;
-      animation: spin 1s infinite linear;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    body.no-scroll {
-      overflow: hidden;
-    }
-  </style>
+
 </head>
 <body>
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="loader"></div>
-  </div>
-
+  
   <!-- Header -->
   <header class="header">
     <div class="container">
