@@ -21,7 +21,7 @@
   <meta property="og:locale" content="en_US">
 
   <!-- Favicon -->
-  <link rel="icon" href="./assets/images/favicon.ico">
+  <link rel="icon" href="https://elanstechworld.com/assets/images/favicon.ico">
 
   <!-- Structured Data (Schema.org) -->
   <script type="application/ld+json">
@@ -52,22 +52,22 @@
   <!-- AOS Animation Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 
-  <!-- Vanilla Tilt.js for 3D hover effects -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js" defer></script>
-
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/style.css">
-
 </head>
 <body>
-  
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="loader"></div>
+  </div>
+
   <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="header-inner">
         <a href="/" class="logo" aria-label="Home">
           <div class="logo-icon">
-            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50">
           </div>
           <div class="logo-text">
             <span class="logo-text-main">Elan's</span>
@@ -79,7 +79,7 @@
           <ul class="nav-list">
             <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
             <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="#featured-projects" class="nav-link">Our Work</a></li>
+            <li class="nav-item"><a href="#work" class="nav-link">Our Work</a></li>
             <li class="nav-item"><a href="#process" class="nav-link">Process</a></li>
             <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
             <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
@@ -104,7 +104,7 @@
       <ul class="mobile-nav-list">
         <li class="mobile-nav-item"><a href="#home" class="mobile-nav-link">Home</a></li>
         <li class="mobile-nav-item"><a href="#services" class="mobile-nav-link">Services</a></li>
-        <li class="mobile-nav-item"><a href="#featured-projects" class="mobile-nav-link">Our Work</a></li>
+        <li class="mobile-nav-item"><a href="#work" class="mobile-nav-link">Our Work</a></li>
         <li class="mobile-nav-item"><a href="#process" class="mobile-nav-link">Process</a></li>
         <li class="mobile-nav-item"><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
         <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contact</a></li>
@@ -136,80 +136,80 @@
   <!-- Main Content -->
   <main>
    <!-- Enhanced Hero Section with Video Background -->
-   <section id="home" class="hero">
-    <!-- Video Background Container -->
-    <div class="hero-video-container">
-      <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
-        <source src="herovid.mp4" type="video/mp4">
-      </video>
+<section id="home" class="hero">
+  <!-- Video Background Container -->
+  <div class="hero-video-container">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
+      <source src="herovid.mp4" type="video/mp4">
+    </video>
+    
+    <div class="hero-overlay">
+      <!-- Added mesh grid effect for tech feel -->
+      <div class="mesh-grid"></div>
+    </div>
+  </div>
+  
+  <!-- Mouse follow effect container -->
+  <div class="mouse-follow-container">
+    <div class="mouse-follow-circle"></div>
+  </div>
+  
+  <div class="container">
+    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+      <!-- Tech badge eyebrow text -->
+      <div class="hero-eyebrow">
+        <span class="tech-badge">Innovative Technology Solutions</span>
+      </div>
       
-      <div class="hero-overlay">
-        <!-- Added mesh grid effect for tech feel -->
-        <div class="mesh-grid"></div>
+      <!-- Enhanced title with emphasis -->
+      <h1 class="hero-title">
+        Transform Your Digital <span class="title-emphasis">Presence</span>
+        <div class="title-backdrop"></div>
+      </h1>
+      
+      <p class="hero-subtitle">We design and develop cutting-edge digital solutions that elevate your business in today's fast-paced world</p>
+      
+      <!-- Enhanced CTA buttons -->
+      <div class="hero-cta">
+        <a href="#services" class="btn btn-primary btn-glow">
+          <span>Explore Services</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="#work" class="btn btn-outline btn-outline-light">
+          <span>See Our Work</span>
+        </a>
       </div>
-    </div>
-    
-    <!-- Mouse follow effect container -->
-    <div class="mouse-follow-container">
-      <div class="mouse-follow-circle"></div>
-    </div>
-    
-    <div class="container">
-      <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
-        <!-- Tech badge eyebrow text -->
-        <div class="hero-eyebrow">
-          <span class="tech-badge">Innovative Technology Solutions</span>
+      
+      <!-- Enhanced 3D stats cards -->
+      <div class="hero-stats">
+        <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
+          <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
+          <div class="stat-label">Projects Completed</div>
         </div>
-        
-        <!-- Enhanced title with emphasis -->
-        <h1 class="hero-title">
-          Transform Your Digital <span class="title-emphasis">Presence</span>
-          <div class="title-backdrop"></div>
-        </h1>
-        
-        <p class="hero-subtitle">We design and develop cutting-edge digital solutions that elevate your business in today's fast-paced world</p>
-        
-        <!-- Enhanced CTA buttons -->
-        <div class="hero-cta">
-          <a href="#services" class="btn btn-primary btn-glow">
-            <span>Explore Services</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-          <a href="#featured-projects" class="btn btn-outline btn-outline-light">
-            <span>See Our Work</span>
-          </a>
+        <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
+          <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
+          <div class="stat-label">Happy Clients</div>
         </div>
-        
-        <!-- Enhanced 3D stats cards -->
-        <div class="hero-stats">
-          <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
-            <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
-            <div class="stat-label">Projects Completed</div>
-          </div>
-          <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
-            <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
-            <div class="stat-label">Happy Clients</div>
-          </div>
-          <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
-            <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
+        <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
+          <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
+          <div class="stat-label">Years Experience</div>
         </div>
       </div>
     </div>
-    
-    <!-- Enhanced scroll indicator with animated arrows -->
-    <div class="hero-scroll">
-      <a href="#services" class="scroll-indicator">
-        <span class="scroll-text">Discover</span>
-        <div class="scroll-arrow">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </a>
-    </div>
-  </section>
+  </div>
+  
+  <!-- Enhanced scroll indicator with animated arrows -->
+  <div class="hero-scroll">
+    <a href="#services" class="scroll-indicator">
+      <span class="scroll-text">Discover</span>
+      <div class="scroll-arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </a>
+  </div>
+</section>
     
    <!-- Clients Logos Section -->
 <section class="clients-section">
@@ -222,44 +222,44 @@
       <!-- First row of logos that will be cloned and animated -->
       <div class="clients-carousel">
         <div class="client-logo">
-          <img src="./assets/images/doug.png" alt="Client 1" width="150" height="60" loading="lazy">
+          <img src="./assets/images/doug.png" alt="Client 1" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/logocohen.jpeg" alt="Client 2" width="150" height="60" loading="lazy">
+          <img src="./assets/images/logocohen.jpeg" alt="Client 2" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/east.png" alt="Client 3" width="150" height="60" loading="lazy">
+          <img src="./assets/images/east.png" alt="Client 3" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/iconic.jpeg" alt="Client 4" width="150" height="60" loading="lazy">
+          <img src="./assets/images/iconic.jpeg" alt="Client 4" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/century.png" alt="Client 5" width="150" height="60" loading="lazy">
+          <img src="./assets/images/century.png" alt="Client 5" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/scream.png" alt="Client 6" width="150" height="60" loading="lazy">
+          <img src="./assets/images/scream.png" alt="Client 6" width="150" height="60">
         </div>
       </div>
 
       <!-- Second row of logos (clone of the first row) for seamless infinite animation -->
       <div class="clients-carousel">
         <div class="client-logo">
-          <img src="./assets/images/doug.png" alt="Client 1" width="150" height="60" loading="lazy">
+          <img src="./assets/images/doug.png" alt="Client 1" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/logocohen.jpeg" alt="Client 2" width="150" height="60" loading="lazy">
+          <img src="./assets/images/logocohen.jpeg" alt="Client 2" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/east.png" alt="Client 3" width="150" height="60" loading="lazy">
+          <img src="./assets/images/east.png" alt="Client 3" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/iconic.jpeg" alt="Client 4" width="150" height="60" loading="lazy">
+          <img src="./assets/images/iconic.jpeg" alt="Client 4" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/century.png" alt="Client 5" width="150" height="60" loading="lazy">
+          <img src="./assets/images/century.png" alt="Client 5" width="150" height="60">
         </div>
         <div class="client-logo">
-          <img src="./assets/images/scream.png" alt="Client 6" width="150" height="60" loading="lazy">
+          <img src="./assets/images/scream.png" alt="Client 6" width="150" height="60">
         </div>
       </div>
     </div>
@@ -364,18 +364,18 @@
               </div>
             </div>
             
-            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+            <a href="#team" class="btn btn-primary">Meet Our Team</a>
           </div>
           
           <div class="about-images" data-aos="fade-left">
             <div class="about-image about-image-1">
-              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Team working" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Team working">
             </div>
             <div class="about-image about-image-2">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern office space" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Modern office space">
             </div>
             <div class="about-image about-image-3">
-              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech design" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech design">
             </div>
           </div>
         </div>
@@ -444,7 +444,7 @@
     </section>
 
     <!-- Portfolio/Work Section -->
-<!-- Featured Projects Section - Redesigned -->
+    <!-- Featured Projects Section -->
 <section id="featured-projects" class="featured-projects-section">
   <div class="container">
     <div class="section-heading" data-aos="fade-up">
@@ -453,7 +453,7 @@
       <p class="section-description">Discover how we've transformed businesses with innovative technology solutions</p>
     </div>
     
-    <div class="projects-filter" data-aos="fade-up">
+    <div class="featured-projects-filter" data-aos="fade-up">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="web">Web Development</button>
       <button class="filter-btn" data-filter="pos">POS Systems</button>
@@ -462,43 +462,35 @@
       <button class="filter-btn" data-filter="apple">Apple Services</button>
     </div>
     
-    <div class="projects-wrapper">
-      <div class="projects-grid" id="projects-grid">
-        <!-- Projects will be dynamically loaded here -->
-        <div class="loader-container">
-          <div class="loader-circle"></div>
-          <p>Loading projects...</p>
-        </div>
+    <div class="featured-projects-grid" id="featured-projects-grid">
+      <!-- Projects will be loaded dynamically from JSON -->
+      <div class="grid-loader">
+        <div class="loader-circle"></div>
+        <p>Loading projects...</p>
       </div>
     </div>
     
-    <div class="projects-pagination" data-aos="fade-up">
-      <button class="pagination-btn prev" id="prev-page" aria-label="Previous page" disabled>
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <div class="pagination-dots" id="pagination-dots">
-        <!-- Page dots will be added dynamically -->
-      </div>
-      <button class="pagination-btn next" id="next-page" aria-label="Next page">
-        <i class="fas fa-chevron-right"></i>
-      </button>
+    <div class="featured-projects-nav" data-aos="fade-up">
+      <button class="nav-btn prev" id="prev-projects"><i class="fas fa-chevron-left"></i></button>
+      <div class="nav-pagination" id="featured-pagination"></div>
+      <button class="nav-btn next" id="next-projects"><i class="fas fa-chevron-right"></i></button>
     </div>
     
-    <div class="projects-cta" data-aos="fade-up">
-      <a href="#contact" class="btn btn-primary">
-        <span>Start Your Project</span>
+    <div class="featured-projects-cta" data-aos="fade-up">
+      <a href="pages/projects.html" class="btn btn-primary">
+        <span>View All Projects</span>
         <i class="fas fa-arrow-right"></i>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Project Modal -->
+<!-- Project Details Modal -->
 <div class="project-modal" id="project-modal">
   <div class="modal-backdrop"></div>
   <div class="modal-container">
     <div class="modal-content">
-      <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
+      <button class="modal-close-btn" id="modal-close">
         <i class="fas fa-times"></i>
       </button>
       <div class="modal-body">
@@ -508,37 +500,44 @@
   </div>
 </div>
 
-<!-- Project Card Template (Hidden) -->
+<!-- Project Card Template (for JS) -->
 <template id="project-card-template">
-  <div class="project-card">
-    <div class="project-image">
-      <img src="" alt="">
-      <div class="project-overlay">
-        <div class="project-buttons">
-          <button class="project-details-btn">View Details</button>
-          <a href="" class="project-link" target="_blank">Visit Website</a>
+  <div class="project-card" data-id="" data-categories="">
+    <div class="project-card-inner">
+      <div class="project-card-front">
+        <div class="project-image">
+          <img src="" alt="">
+          <div class="project-category-tag"></div>
+        </div>
+        <div class="project-content">
+          <h4 class="project-title"></h4>
+          <p class="project-subtitle"></p>
+          <div class="project-tags"></div>
         </div>
       </div>
-      <div class="project-category"></div>
-    </div>
-    <div class="project-info">
-      <h4 class="project-title"></h4>
-      <p class="project-subtitle"></p>
-      <div class="project-tags"></div>
+      <div class="project-card-back">
+        <div class="project-back-content">
+          <h4 class="project-title"></h4>
+          <p class="project-description"></p>
+          <div class="project-features"></div>
+          <div class="project-actions">
+            <button class="project-details-btn">View Details</button>
+            <a href="" class="project-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<!-- Project Modal Template (Hidden) -->
-<template id="modal-template">
+<!-- Modal Content Template (for JS) -->
+<template id="modal-content-template">
   <div class="modal-header">
     <h3 class="modal-title"></h3>
     <p class="modal-subtitle"></p>
   </div>
-  <div class="modal-gallery">
-    <div class="modal-main-image">
-      <img src="" alt="">
-    </div>
+  <div class="modal-image">
+    <img src="" alt="">
   </div>
   <div class="modal-details">
     <div class="modal-description"></div>
@@ -556,12 +555,13 @@
       <span>Visit Website</span>
       <i class="fas fa-external-link-alt"></i>
     </a>
-    <a href="#contact" class="btn btn-outline">
-      <span>Start Your Project</span>
+    <a href="pages/projects.html" class="btn btn-outline">
+      <span>View All Projects</span>
       <i class="fas fa-th-large"></i>
     </a>
   </div>
 </template>
+    </section>
 
     <!-- Technology Icons Section -->
     <section class="tech-section">
@@ -617,108 +617,98 @@
       </div>
     </section>
 
-    <!-- Testimonials Section - Redesigned -->
-<section id="testimonials" class="testimonials-section">
-  <div class="container">
-    <div class="section-heading" data-aos="fade-up">
-      <h2 class="section-subtitle">What Our Clients Say</h2>
-      <h3 class="section-title">Testimonials</h3>
-      <p class="section-description">Hear from our satisfied clients about their experience working with us</p>
-    </div>
-    
-    <div class="testimonials-container" data-aos="fade-up">
-      <!-- Testimonials will be displayed here -->
-      <div class="testimonial-card active" data-index="0">
-        <div class="testimonial-content">
-          <div class="testimonial-quote">
-            <i class="fas fa-quote-left"></i>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">What Our Clients Say</h2>
+          <h3 class="section-title">Testimonials</h3>
+          <p class="section-description">Hear from our satisfied clients</p>
+        </div>
+        
+        <div class="testimonials-slider">
+          <div class="testimonial-slide" data-aos="fade-up" data-aos-delay="100">
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">"Elan's Tech World transformed our online presence with a stunning website that perfectly captures our brand. Their team was professional, responsive, and delivered beyond our expectations."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1522&q=80" alt="Client 1">
+                </div>
+                <div class="testimonial-author-info">
+                  <h4 class="testimonial-author-name">Sarah Johnson</h4>
+                  <p class="testimonial-author-position">CEO, Digital Innovations</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class="testimonial-text">"Elan's Tech World transformed our online presence with a stunning website that perfectly captures our brand. Their team was professional, responsive, and delivered beyond our expectations. We've seen a significant increase in leads since the launch."</p>
-          <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
+          
+          <div class="testimonial-slide" data-aos="fade-up" data-aos-delay="200">
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">"Working with Elan's Tech World was a game-changer for our business. They implemented a POS system that streamlined our operations and improved our customer experience dramatically."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                  <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Client 2">
+                </div>
+                <div class="testimonial-author-info">
+                  <h4 class="testimonial-author-name">Michael Rodriguez</h4>
+                  <p class="testimonial-author-position">Owner, The Coffee House</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="testimonial-slide" data-aos="fade-up" data-aos-delay="300">
+            <div class="testimonial-content">
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <p class="testimonial-text">"The mobile app developed by Elan's Tech World has been instrumental in growing our customer base. Their attention to detail and user experience expertise is unmatched."</p>
+              <div class="testimonial-author">
+                <div class="testimonial-author-image">
+                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Client 3">
+                </div>
+                <div class="testimonial-author-info">
+                  <h4 class="testimonial-author-name">Amanda Chen</h4>
+                  <p class="testimonial-author-position">Marketing Director, Fitness Plus</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="testimonial-author">
-          <div class="testimonial-author-image">
-            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1522&q=80" alt="Sarah Johnson" loading="lazy">
+        
+        <div class="testimonials-nav">
+          <button class="testimonial-nav-prev" aria-label="Previous testimonial">
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          <div class="testimonial-dots">
+            <span class="testimonial-dot active"></span>
+            <span class="testimonial-dot"></span>
+            <span class="testimonial-dot"></span>
           </div>
-          <div class="testimonial-author-info">
-            <h4 class="testimonial-author-name">Sarah Johnson</h4>
-            <p class="testimonial-author-position">CEO, Digital Innovations</p>
-          </div>
+          <button class="testimonial-nav-next" aria-label="Next testimonial">
+            <i class="fas fa-arrow-right"></i>
+          </button>
         </div>
       </div>
-      
-      <div class="testimonial-card" data-index="1">
-        <div class="testimonial-content">
-          <div class="testimonial-quote">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <p class="testimonial-text">"Working with Elan's Tech World was a game-changer for our business. They implemented a POS system that streamlined our operations and improved our customer experience dramatically. Their ongoing support has been exceptional."</p>
-          <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </div>
-        <div class="testimonial-author">
-          <div class="testimonial-author-image">
-            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Michael Rodriguez" loading="lazy">
-          </div>
-          <div class="testimonial-author-info">
-            <h4 class="testimonial-author-name">Michael Rodriguez</h4>
-            <p class="testimonial-author-position">Owner, The Coffee House</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="testimonial-card" data-index="2">
-        <div class="testimonial-content">
-          <div class="testimonial-quote">
-            <i class="fas fa-quote-left"></i>
-          </div>
-          <p class="testimonial-text">"The mobile app developed by Elan's Tech World has been instrumental in growing our customer base. Their attention to detail and user experience expertise is unmatched. We've had nothing but positive feedback from our users."</p>
-          <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </div>
-        <div class="testimonial-author">
-          <div class="testimonial-author-image">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Amanda Chen" loading="lazy">
-          </div>
-          <div class="testimonial-author-info">
-            <h4 class="testimonial-author-name">Amanda Chen</h4>
-            <p class="testimonial-author-position">Marketing Director, Fitness Plus</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="testimonials-nav" data-aos="fade-up">
-      <button class="testimonial-nav-btn prev" id="testimonial-prev" aria-label="Previous testimonial">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <div class="testimonial-indicators">
-        <button class="testimonial-indicator active" data-index="0" aria-label="Go to testimonial 1"></button>
-        <button class="testimonial-indicator" data-index="1" aria-label="Go to testimonial 2"></button>
-        <button class="testimonial-indicator" data-index="2" aria-label="Go to testimonial 3"></button>
-      </div>
-      <button class="testimonial-nav-btn next" id="testimonial-next" aria-label="Next testimonial">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -844,25 +834,25 @@
       </div>
     </section>
 
-   <!-- Instagram Feed Section -->
-<section class="instagram-section">
-  <div class="container">
-    <div class="section-heading" data-aos="fade-up">
-      <h2 class="section-subtitle">Follow Our Journey</h2>
-      <h3 class="section-title">Instagram</h3>
-      <p class="section-description">Stay updated with our latest projects and insights</p>
-    </div>
-    
-    <div class="instagram-feed" data-aos="fade-up">
-      <!-- Elfsight Instagram Feed Widget - Do not modify this div ID -->
-      <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71"></div>
-    </div>
-    
-    <div class="instagram-cta" data-aos="fade-up">
-      <a href="https://www.instagram.com/elan_tech_world/" class="btn btn-outline" target="_blank" rel="noopener">Follow Us on Instagram</a>
-    </div>
-  </div>
-</section>
+    <!-- Instagram Feed Section -->
+    <section class="instagram-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2 class="section-subtitle">Follow Our Journey</h2>
+          <h3 class="section-title">Instagram</h3>
+          <p class="section-description">Stay updated with our latest projects and insights</p>
+        </div>
+        
+        <div class="instagram-feed" data-aos="fade-up">
+          <!-- Replace with Elfsight or another Instagram feed widget -->
+          <div class="elfsight-app-8a754ee6-33c3-4ca5-b92e-0b62245a0f71" data-elfsight-app-lazy></div>
+        </div>
+        
+        <div class="instagram-cta" data-aos="fade-up">
+          <a href="https://www.instagram.com/elan_tech_world/" class="btn btn-outline" target="_blank" rel="noopener">Follow Us on Instagram</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -871,7 +861,7 @@
       <div class="footer-content">
         <div class="footer-info">
           <a href="/" class="footer-logo">
-            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="60" height="60" loading="lazy">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="60" height="60">
           </a>
           <h3 class="footer-title">Elan's Tech World</h3>
           <p class="footer-description">Transforming businesses through innovative technology solutions.</p>
@@ -882,7 +872,7 @@
           <ul class="footer-nav">
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#featured-projects">Our Work</a></li>
+            <li><a href="#work">Our Work</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -891,11 +881,11 @@
         <div class="footer-services">
           <h4 class="footer-heading">Our Services</h4>
           <ul class="footer-nav">
-            <li><a href="#services">Web Design</a></li>
-            <li><a href="#services">Mobile App Development</a></li>
-            <li><a href="#services">POS Systems</a></li>
-            <li><a href="#services">Technology Consulting</a></li>
-            <li><a href="#services">Business IT Support</a></li>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Mobile App Development</a></li>
+            <li><a href="#">POS Systems</a></li>
+            <li><a href="#">Technology Consulting</a></li>
+            <li><a href="#">Business IT Support</a></li>
           </ul>
         </div>
         
@@ -949,23 +939,11 @@
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
   <script src="./js/script.js"></script>
   
-  <!-- Inline script to handle the preloader immediate visibility -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Forcibly hide preloader after 4 seconds maximum (fallback)
-      setTimeout(function() {
-        const preloader = document.getElementById('preloader');
-        if (preloader && preloader.style.opacity !== '0') {
-          preloader.style.opacity = '0';
-          setTimeout(function() {
-            preloader.style.display = 'none';
-          }, 500);
-        }
-      }, 4000);
-    });
-  </script>
+  <!-- Elfsight App Script (for widgets like Instagram feed) -->
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+  
 </body>
 </html>
