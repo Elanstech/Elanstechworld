@@ -137,15 +137,14 @@
   <main>
    <!-- Enhanced Hero Section with Video Background -->
 <section id="home" class="hero">
-  <!-- Keeping the video background -->
+  <!-- Video Background Container -->
   <div class="hero-video-container">
     <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b">
       <source src="herovid.mp4" type="video/mp4">
     </video>
     
-    <!-- Enhanced overlay with modern gradient -->
     <div class="hero-overlay">
-      <!-- Added subtle animated mesh grid -->
+      <!-- Added mesh grid effect for tech feel -->
       <div class="mesh-grid"></div>
     </div>
   </div>
@@ -156,24 +155,22 @@
   </div>
   
   <div class="container">
-    <div class="hero-content">
-      <!-- New eyebrow text -->
-      <div class="hero-eyebrow" data-aos="fade-down" data-aos-delay="100">
+    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+      <!-- Tech badge eyebrow text -->
+      <div class="hero-eyebrow">
         <span class="tech-badge">Innovative Technology Solutions</span>
       </div>
       
-      <!-- Main headline with animated text reveal -->
-      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">
+      <!-- Enhanced title with emphasis -->
+      <h1 class="hero-title">
         Transform Your Digital <span class="title-emphasis">Presence</span>
         <div class="title-backdrop"></div>
       </h1>
       
-      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
-        We design and develop cutting-edge digital solutions 
-        that elevate your business in today's fast-paced world
-      </p>
+      <p class="hero-subtitle">We design and develop cutting-edge digital solutions that elevate your business in today's fast-paced world</p>
       
-      <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+      <!-- Enhanced CTA buttons -->
+      <div class="hero-cta">
         <a href="#services" class="btn btn-primary btn-glow">
           <span>Explore Services</span>
           <i class="fas fa-arrow-right"></i>
@@ -183,8 +180,8 @@
         </a>
       </div>
       
-      <!-- Floating 3D cards for stats -->
-      <div class="hero-stats" data-aos="fade-up" data-aos-delay="500">
+      <!-- Enhanced 3D stats cards -->
+      <div class="hero-stats">
         <div class="stat-card" data-tilt data-tilt-max="10" data-tilt-speed="300" data-tilt-glare data-tilt-max-glare="0.3">
           <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
           <div class="stat-label">Projects Completed</div>
@@ -201,8 +198,8 @@
     </div>
   </div>
   
-  <!-- Enhanced scroll indicator -->
-  <div class="hero-scroll" data-aos="fade-up" data-aos-delay="600">
+  <!-- Enhanced scroll indicator with animated arrows -->
+  <div class="hero-scroll">
     <a href="#services" class="scroll-indicator">
       <span class="scroll-text">Discover</span>
       <div class="scroll-arrow">
@@ -898,9 +895,11 @@
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
   <script src="./js/script.js"></script>
   
   <!-- Elfsight App Script (for widgets like Instagram feed) -->
   <script src="https://static.elfsight.com/platform/platform.js" async></script>
+  
 </body>
 </html>
