@@ -479,7 +479,7 @@
     </section>
 
     <!-- Portfolio/Work Section -->
-    <!-- Featured Projects Section -->
+<!-- Featured Projects Section - Redesigned -->
 <section id="featured-projects" class="featured-projects-section">
   <div class="container">
     <div class="section-heading" data-aos="fade-up">
@@ -488,7 +488,7 @@
       <p class="section-description">Discover how we've transformed businesses with innovative technology solutions</p>
     </div>
     
-    <div class="featured-projects-filter" data-aos="fade-up">
+    <div class="projects-filter" data-aos="fade-up">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="web">Web Development</button>
       <button class="filter-btn" data-filter="pos">POS Systems</button>
@@ -497,21 +497,29 @@
       <button class="filter-btn" data-filter="apple">Apple Services</button>
     </div>
     
-    <div class="featured-projects-grid" id="featured-projects-grid">
-      <!-- Projects will be loaded dynamically from JSON -->
-      <div class="grid-loader">
-        <div class="loader-circle"></div>
-        <p>Loading projects...</p>
+    <div class="projects-wrapper">
+      <div class="projects-grid" id="projects-grid">
+        <!-- Projects will be dynamically loaded here -->
+        <div class="loader-container">
+          <div class="loader-circle"></div>
+          <p>Loading projects...</p>
+        </div>
       </div>
     </div>
     
-    <div class="featured-projects-nav" data-aos="fade-up">
-      <button class="nav-btn prev" id="prev-projects" disabled><i class="fas fa-chevron-left"></i></button>
-      <div class="nav-pagination" id="featured-pagination"></div>
-      <button class="nav-btn next" id="next-projects"><i class="fas fa-chevron-right"></i></button>
+    <div class="projects-pagination" data-aos="fade-up">
+      <button class="pagination-btn prev" id="prev-page" aria-label="Previous page" disabled>
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="pagination-dots" id="pagination-dots">
+        <!-- Page dots will be added dynamically -->
+      </div>
+      <button class="pagination-btn next" id="next-page" aria-label="Next page">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </div>
     
-    <div class="featured-projects-cta" data-aos="fade-up">
+    <div class="projects-cta" data-aos="fade-up">
       <a href="#contact" class="btn btn-primary">
         <span>Start Your Project</span>
         <i class="fas fa-arrow-right"></i>
@@ -520,12 +528,12 @@
   </div>
 </section>
 
-<!-- Project Details Modal -->
+<!-- Project Modal -->
 <div class="project-modal" id="project-modal">
   <div class="modal-backdrop"></div>
   <div class="modal-container">
     <div class="modal-content">
-      <button class="modal-close-btn" id="modal-close">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
         <i class="fas fa-times"></i>
       </button>
       <div class="modal-body">
@@ -535,44 +543,37 @@
   </div>
 </div>
 
-<!-- Project Card Template (for JS) -->
+<!-- Project Card Template (Hidden) -->
 <template id="project-card-template">
-  <div class="project-card" data-id="" data-categories="">
-    <div class="project-card-inner">
-      <div class="project-card-front">
-        <div class="project-image">
-          <img src="" alt="">
-          <div class="project-category-tag"></div>
-        </div>
-        <div class="project-content">
-          <h4 class="project-title"></h4>
-          <p class="project-subtitle"></p>
-          <div class="project-tags"></div>
+  <div class="project-card">
+    <div class="project-image">
+      <img src="" alt="">
+      <div class="project-overlay">
+        <div class="project-buttons">
+          <button class="project-details-btn">View Details</button>
+          <a href="" class="project-link" target="_blank">Visit Website</a>
         </div>
       </div>
-      <div class="project-card-back">
-        <div class="project-back-content">
-          <h4 class="project-title"></h4>
-          <p class="project-description"></p>
-          <div class="project-features"></div>
-          <div class="project-actions">
-            <button class="project-details-btn">View Details</button>
-            <a href="" class="project-link" target="_blank">Visit Website <i class="fas fa-external-link-alt"></i></a>
-          </div>
-        </div>
-      </div>
+      <div class="project-category"></div>
+    </div>
+    <div class="project-info">
+      <h4 class="project-title"></h4>
+      <p class="project-subtitle"></p>
+      <div class="project-tags"></div>
     </div>
   </div>
 </template>
 
-<!-- Modal Content Template (for JS) -->
-<template id="modal-content-template">
+<!-- Project Modal Template (Hidden) -->
+<template id="modal-template">
   <div class="modal-header">
     <h3 class="modal-title"></h3>
     <p class="modal-subtitle"></p>
   </div>
-  <div class="modal-image">
-    <img src="" alt="">
+  <div class="modal-gallery">
+    <div class="modal-main-image">
+      <img src="" alt="">
+    </div>
   </div>
   <div class="modal-details">
     <div class="modal-description"></div>
@@ -596,7 +597,6 @@
     </a>
   </div>
 </template>
-    </section>
 
     <!-- Technology Icons Section -->
     <section class="tech-section">
