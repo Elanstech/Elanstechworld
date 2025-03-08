@@ -5,12 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initMobileMenu();
   initHeroVideo();
+  initMouseFollowEffect();
+  initScrollAnimations();
+  initCounterAnimation();
+  initTiltEffect();
   initAOS();
+  initClientCarousel();
   initTestimonialSlider();
   initWorkFilter();
   initBackToTop();
   initSmoothScrolling();
   initFormValidation();
+  handleNavLinks();
 });
 
 // ===== Preloader =====
@@ -112,7 +118,7 @@ function initMobileMenu() {
   });
 }
 
-// ===== Hero Video Background =====
+// ===== Enhanced Hero Video Background =====
 function initHeroVideo() {
   const video = document.querySelector('.hero-video');
   if (!video) return;
@@ -122,11 +128,24 @@ function initHeroVideo() {
   video.setAttribute('muted', '');
   video.setAttribute('loop', '');
   video.muted = true;
-  video.play().catch(error => {
-    console.error('Video play error:', error);
-  });
+  
+  // Add a slight delay before playing to ensure proper loading
+  setTimeout(() => {
+    video.play().catch(error => {
+      console.error('Video play error:', error);
+      
+      // Fallback to image if video fails to play
+      if (video.parentElement) {
+        const fallbackImage = document.createElement('img');
+        fallbackImage.src = video.getAttribute('poster');
+        fallbackImage.className = 'hero-video fallback';
+        fallbackImage.alt = "Hero Background";
+        video.parentElement.appendChild(fallbackImage);
+      }
+    });
+  }, 300);
 
-  // Pause video when not in viewport to save resources
+  // Optimize video playback based on visibility
   const heroSection = document.querySelector('.hero');
   if (!heroSection) return;
 
@@ -162,6 +181,134 @@ function initHeroVideo() {
   }
 }
 
+// ===== Mouse Follow Effect =====
+function initMouseFollowEffect() {
+  const mouseFollowCircle = document.querySelector('.mouse-follow-circle');
+  const heroSection = document.querySelector('.hero');
+  
+  if (!mouseFollowCircle || !heroSection) return;
+  
+  let mouseX = 0;
+  let mouseY = 0;
+  let circleX = 0;
+  let circleY = 0;
+  
+  // Only activate in hero section
+  heroSection.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // Show the effect when mouse moves in hero section
+    mouseFollowCircle.style.opacity = '1';
+  });
+  
+  heroSection.addEventListener('mouseleave', () => {
+    // Hide the effect when mouse leaves hero section
+    mouseFollowCircle.style.opacity = '0';
+  });
+  
+  // Smooth animation using requestAnimationFrame
+  function animateCircle() {
+    // Ease animation - follow mouse with delay
+    circleX += (mouseX - circleX) * 0.1;
+    circleY += (mouseY - circleY) * 0.1;
+    
+    if (mouseFollowCircle) {
+      mouseFollowCircle.style.left = `${circleX}px`;
+      mouseFollowCircle.style.top = `${circleY}px`;
+    }
+    
+    requestAnimationFrame(animateCircle);
+  }
+  
+  animateCircle();
+}
+
+// ===== Scroll Animations for Hero =====
+function initScrollAnimations() {
+  const heroTitle = document.querySelector('.hero-title');
+  const titleEmphasis = document.querySelector('.title-emphasis');
+  
+  if (!heroTitle) return;
+  
+  // Dynamic effects based on scroll position
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+    const scrollPercentage = Math.min(scrollPosition / (heroHeight * 0.5), 1);
+    
+    // Subtle parallax effect
+    if (heroTitle) {
+      heroTitle.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+    }
+    
+    // Fade out content based on scroll
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+      heroContent.style.opacity = 1 - scrollPercentage * 0.7;
+    }
+  });
+}
+
+// ===== Number Counter Animation =====
+function initCounterAnimation() {
+  const counters = document.querySelectorAll('.counter');
+  
+  if (!counters.length) return;
+  
+  const counterOptions = {
+    threshold: 0.5
+  };
+  
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const step = Math.ceil(target / (duration / 30)); // Update roughly every 30ms
+        let current = 0;
+        
+        const updateCounter = () => {
+          current += step;
+          if (current >= target) {
+            counter.textContent = target;
+            clearInterval(interval);
+          } else {
+            counter.textContent = current;
+          }
+        };
+        
+        const interval = setInterval(updateCounter, 30);
+        
+        // Unobserve after animation starts
+        counterObserver.unobserve(counter);
+      }
+    });
+  }, counterOptions);
+  
+  counters.forEach(counter => {
+    counterObserver.observe(counter);
+  });
+}
+
+// ===== Tilt Effect for Stat Cards =====
+function initTiltEffect() {
+  // Check if VanillaTilt is already available
+  if (typeof VanillaTilt !== 'undefined') {
+    const tiltElements = document.querySelectorAll('[data-tilt]');
+    
+    if (tiltElements.length) {
+      VanillaTilt.init(tiltElements, {
+        max: 10,
+        speed: 300,
+        glare: true,
+        "max-glare": 0.3
+      });
+    }
+  }
+}
+
 // ===== AOS Animations =====
 function initAOS() {
   if (typeof AOS !== 'undefined') {
@@ -192,7 +339,6 @@ function initClientCarousel() {
     const logoCount = document.querySelectorAll('.clients-carousel:first-child .client-logo').length;
     
     // Adjust speed based on both screen width and number of logos
-    // This ensures consistent visual experience regardless of logo count
     let baseDuration = logoCount * 4; // 4 seconds per logo as base duration
     
     let duration;
@@ -261,12 +407,6 @@ function initClientCarousel() {
   // Update on window resize
   window.addEventListener('resize', adjustCarouselSpeed);
 }
-
-// Add this function to your document ready function
-document.addEventListener('DOMContentLoaded', () => {
-  // Make sure you call this function along with your other initialization functions
-  initClientCarousel();
-});
 
 // ===== Testimonial Slider =====
 function initTestimonialSlider() {
@@ -585,6 +725,34 @@ function initFormValidation() {
   }
 }
 
+// ===== Handle active nav links based on scroll position =====
+function handleNavLinks() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  
+  if (!sections.length || !navLinks.length) return;
+  
+  // Throttle scroll event
+  window.addEventListener('scroll', throttle(() => {
+    const scrollPosition = window.scrollY + 100;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, 100));
+}
+
 // ===== Utility Functions =====
 
 // Throttle function to limit function calls
@@ -613,34 +781,3 @@ function isInViewport(element) {
     rect.right >= 0
   );
 }
-
-// Handle active nav links based on scroll position
-function handleNavLinks() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-  
-  if (!sections.length || !navLinks.length) return;
-  
-  // Throttle scroll event
-  window.addEventListener('scroll', throttle(() => {
-    const scrollPosition = window.scrollY + 100;
-    
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute('id');
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${sectionId}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-    });
-  }, 100));
-}
-
-// Call this function after DOM is loaded
-document.addEventListener('DOMContentLoaded', handleNavLinks);
