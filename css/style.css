@@ -1112,12 +1112,8 @@ p {
   display: flex;
   gap: var(--space-lg);
   padding: var(--space-md) 0;
-  animation: marquee 30s linear infinite;
   will-change: transform;
-}
-
-.clients-track:hover {
-  animation-play-state: paused;
+  /* Animation will be applied via JavaScript */
 }
 
 .client-card {
@@ -1242,15 +1238,6 @@ p {
   color: var(--gray-400);
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-200px * 6 - var(--space-lg) * 6));
-  }
-}
-
 /* Responsive Styles */
 @media (max-width: 992px) {
   .hero-content {
@@ -1264,15 +1251,6 @@ p {
   .client-card {
     width: 180px;
     height: 140px;
-  }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-180px * 6 - var(--space-lg) * 6));
-    }
   }
 }
 
@@ -1306,15 +1284,6 @@ p {
     flex: 1 1 calc(33.333% - var(--space-md));
     min-width: auto;
   }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-160px * 6 - var(--space-lg) * 6));
-    }
-  }
 }
 
 @media (max-width: 576px) {
@@ -1340,15 +1309,6 @@ p {
   
   .client-hover p {
     font-size: 0.75rem;
-  }
-  
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-140px * 6 - var(--space-lg) * 6));
-    }
   }
 }
 
