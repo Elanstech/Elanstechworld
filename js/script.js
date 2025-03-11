@@ -5,8 +5,10 @@
  * - Page loader animation
  * - Navigation interactions
  * - Scroll animations
+ * - Hero section animations
  * - Portfolio functionality with JSON data
  * - Testimonial slider
+ * - Endless client logo scrolling
  * - Counter animations
  * - Form validation
  */
@@ -21,14 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initMobileMenu();
   initScrollReveal();
-  initPortfolio(); // New portfolio functionality that loads JSON data
+  
+  // Hero and clients section
+  initChangingText();
+  loadFeaturedProjects();
+  initHeroParallax();
+  setupEndlessClientScroll();
+  
+  // Portfolio section
+  initPortfolio();
+  
+  // Other sections
   initTestimonialSlider();
   initCounters();
   initContactForm();
   initBackToTop();
   
   // Additional features
-  initHeroAnimation();
   initServiceCards();
   initProcessSteps();
 });
@@ -43,6 +54,7 @@ function initPageLoader() {
   
   if (!loader || !progressBar) return;
   
+  // Simulate loading progress
   let progress = 0;
   const interval = setInterval(() => {
     progress += Math.random() * 10;
@@ -277,6 +289,264 @@ function initScrollReveal() {
   
   // Check for any elements already in view on load
   window.addEventListener('load', revealOnScroll);
+}
+
+/**
+ * Changing Text Animation
+ * Animates the text in the hero section to create a rotating text effect
+ */
+function initChangingText() {
+  const textElements = document.querySelectorAll('.text-change');
+  if (!textElements.length) return;
+  
+  let currentIndex = 0;
+  
+  function rotateText() {
+    // Remove active class from current text
+    textElements[currentIndex].classList.remove('active');
+    
+    // Move to next text or back to first
+    currentIndex = (currentIndex + 1) % textElements.length;
+    
+    // Add active class to new current text
+    textElements[currentIndex].classList.add('active');
+  }
+  
+  // Set interval for text rotation (3 seconds)
+  setInterval(rotateText, 3000);
+}
+
+/**
+ * Featured Projects Loader
+ * Loads and displays featured projects in the hero section
+ */
+function loadFeaturedProjects() {
+  const featuredContainer = document.getElementById('featured-projects');
+  if (!featuredContainer) return;
+  
+  // Fetch projects data (using the existing projects.json data)
+  fetch('projects.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Get first 3 projects for featured section
+      const featuredProjects = data.projects.slice(0, 3);
+      
+      // Render featured projects
+      featuredProjects.forEach((project, index) => {
+        const projectElement = createProjectElement(project, index);
+        featuredContainer.appendChild(projectElement);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading featured projects:', error);
+      featuredContainer.innerHTML = '<p class="error-message">Unable to load featured projects</p>';
+    });
+}
+
+/**
+ * Create Project Element
+ * Creates a DOM element for a featured project
+ * @param {Object} project - Project data object
+ * @param {Number} index - Index for animation delay
+ * @returns {HTMLElement} Project element
+ */
+function createProjectElement(project, index) {
+  const projectElement = document.createElement('div');
+  projectElement.className = 'featured-project';
+  projectElement.style.animationDelay = `${0.2 * (index + 1)}s`;
+  
+  // Create project content
+  projectElement.innerHTML = `
+    <img src="${project.mainImage}" alt="${project.title}" class="featured-project-image">
+    <div class="featured-project-title">${project.title}</div>
+  `;
+  
+  // Add click event to open project modal
+  projectElement.addEventListener('click', () => {
+    if (typeof openProjectModal === 'function') {
+      openProjectModal(project.id);
+    } else {
+      // If modal function not available, redirect to work section
+      window.location.href = '#work';
+    }
+  });
+  
+  return projectElement;
+}
+
+/**
+ * Hero Parallax Effect
+ * Adds subtle parallax movement to hero section elements
+ */
+function initHeroParallax() {
+  const heroSection = document.querySelector('.hero-section');
+  const heroContent = document.querySelector('.hero-content');
+  
+  if (!heroSection || !heroContent) return;
+  
+  // Add parallax effect on mouse move
+  heroSection.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+    
+    heroContent.style.transform = `translate(${moveX}px, ${moveY}px)`;
+  });
+  
+  // Reset transform when mouse leaves hero section
+  heroSection.addEventListener('mouseleave', () => {
+    heroContent.style.transform = 'translate(0, 0)';
+  });
+}
+
+/**
+ * Setup Endless Client Scrolling
+ * Creates an infinite, continuous scroll effect for client logos
+ */
+function setupEndlessClientScroll() {
+  const clientsTrack = document.querySelector('.clients-track');
+  if (!clientsTrack) return;
+  
+  // Get all client cards
+  const clientCards = clientsTrack.querySelectorAll('.client-card');
+  if (!clientCards.length) return;
+  
+  // Clone all cards and append them to create the endless effect
+  // We need to duplicate the cards multiple times to ensure smooth looping
+  for (let i = 0; i < 3; i++) {
+    clientCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clientsTrack.appendChild(clone);
+      
+      // Ensure event listeners are added to the clones
+      addClientCardInteraction(clone);
+    });
+  }
+  
+  // Calculate the width needed to create a seamless loop
+  const clientWidth = clientCards[0].offsetWidth;
+  const gapWidth = parseInt(window.getComputedStyle(clientsTrack).columnGap || 16);
+  const totalWidth = (clientWidth + gapWidth) * clientCards.length;
+  
+  // Apply appropriate animation
+  updateScrollAnimation(totalWidth);
+  
+  // Handle window resize for responsive behavior
+  window.addEventListener('resize', () => {
+    const updatedClientWidth = clientCards[0].offsetWidth;
+    const updatedGapWidth = parseInt(window.getComputedStyle(clientsTrack).columnGap || 16);
+    const updatedTotalWidth = (updatedClientWidth + updatedGapWidth) * clientCards.length;
+    
+    updateScrollAnimation(updatedTotalWidth);
+  });
+}
+
+/**
+ * Update Scroll Animation
+ * Updates the CSS animation for client logos scrolling
+ * @param {Number} totalWidth - Total width of client cards for seamless loop
+ */
+function updateScrollAnimation(totalWidth) {
+  // Create and update the keyframe animation
+  const styleSheet = document.createElement('style');
+  styleSheet.id = 'client-scroll-animation';
+  
+  // Remove any existing animation style
+  const existingStyle = document.getElementById('client-scroll-animation');
+  if (existingStyle) {
+    existingStyle.remove();
+  }
+  
+  // Create new animation
+  styleSheet.innerHTML = `
+    @keyframes marqueeEndless {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-${totalWidth}px);
+      }
+    }
+    
+    .clients-track {
+      animation: marqueeEndless 40s linear infinite;
+    }
+  `;
+  
+  document.head.appendChild(styleSheet);
+}
+
+/**
+ * Client Cards Interaction
+ * Adds hover effects and interaction to client cards
+ */
+function initClientCards() {
+  const clientCards = document.querySelectorAll('.client-card');
+  if (!clientCards.length) return;
+  
+  clientCards.forEach(card => {
+    addClientCardInteraction(card);
+  });
+}
+
+/**
+ * Add Client Card Interaction
+ * Helper function to add event listeners to client cards
+ * @param {HTMLElement} card - Client card element
+ */
+function addClientCardInteraction(card) {
+  // Pause animation on hover
+  card.addEventListener('mouseenter', () => {
+    const track = card.closest('.clients-track');
+    if (track) {
+      track.style.animationPlayState = 'paused';
+    }
+  });
+  
+  // Resume animation when not hovering
+  card.addEventListener('mouseleave', () => {
+    const track = card.closest('.clients-track');
+    if (track) {
+      track.style.animationPlayState = 'running';
+    }
+  });
+  
+  // Optional: Add click functionality to open project details
+  card.addEventListener('click', () => {
+    const clientId = card.getAttribute('data-client');
+    if (clientId && typeof openProjectModal === 'function') {
+      // Find project with matching client name in project data
+      const projectId = getProjectIdByClient(clientId);
+      if (projectId) {
+        openProjectModal(projectId);
+      }
+    }
+  });
+}
+
+/**
+ * Get Project ID by Client Name
+ * Helper function to find project ID based on client name
+ * @param {String} clientName - Name of the client
+ * @returns {String|null} Project ID or null if not found
+ */
+function getProjectIdByClient(clientName) {
+  // Map client names to project IDs
+  // This is a simple mapping - in a real implementation, this might come from the data
+  const clientToProjectMap = {
+    'Doug': 'doug-uhlig',
+    'Cohen': 'cohen-associates',
+    'East': 'east-coast-realty',
+    'Iconic': 'iconic-aesthetics',
+    'Century': 'century-one',
+    'Scream': 's-cream'
+  };
+  
+  return clientToProjectMap[clientName] || null;
 }
 
 /**
@@ -903,51 +1173,6 @@ function initBackToTop() {
       behavior: 'smooth'
     });
   });
-}
-
-/**
- * Hero Section Animation
- * Adds dynamic effects to the hero section
- */
-function initHeroAnimation() {
-  const heroSection = document.querySelector('.hero-section');
-  const heroContent = document.querySelector('.hero-content');
-  
-  if (!heroSection || !heroContent) return;
-  
-  // Subtle parallax effect on scroll
-  window.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const translateY = scrollPosition * 0.3; // Adjust speed
-    
-    if (scrollPosition <= heroSection.offsetHeight) {
-      heroContent.style.transform = `translateY(${translateY}px)`;
-      
-      // Fade out content as user scrolls
-      const opacity = 1 - (scrollPosition / (heroSection.offsetHeight * 0.7));
-      heroContent.style.opacity = Math.max(opacity, 0);
-    }
-  });
-  
-  // Create spotlight effect that follows mouse in hero section
-  if (window.matchMedia('(min-width: 992px)').matches) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      
-      const spotlight = document.createElement('div');
-      spotlight.classList.add('hero-spotlight');
-      spotlight.style.left = `${mouseX}px`;
-      spotlight.style.top = `${mouseY}px`;
-      
-      heroSection.appendChild(spotlight);
-      
-      // Remove spotlight after animation
-      setTimeout(() => {
-        spotlight.remove();
-      }, 1000);
-    });
-  }
 }
 
 /**
