@@ -16,81 +16,58 @@
     
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
 </head>
-<body class="preload">
-    
-    <!-- Particles Background -->
-    <div id="particles-js" class="particles-container"></div>
-
-    <!-- Custom Loader -->
-    <div class="loader-container">
+<body>
+    <!-- Page Loader -->
+    <div class="loader">
         <div class="loader-content">
-            <div class="logo-loader">
+            <div class="loader-logo">
                 <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
             </div>
-            <div class="loader-progress-wrapper">
-                <div class="loader-progress-container">
-                    <div class="loader-progress-bar"></div>
-                </div>
-                <div class="loader-percentage">0%</div>
+            <div class="loader-progress">
+                <div class="loader-bar"></div>
             </div>
-            <div class="loader-message">Crafting Digital Experience...</div>
         </div>
     </div>
-    
-    <!-- Navigation -->
+
+    <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="header-inner">
-                <a href="#" class="logo" data-animation="logo">
-                    <div class="logo-icon">
-                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                    </div>
-                    <div class="logo-text">
-                        <span class="logo-text-main">Elan's</span>
-                        <span class="logo-text-sub">Tech World</span>
-                    </div>
-                </a>
-                
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li class="nav-item" data-animation="nav-item" data-delay="0.1"><a href="#home" class="nav-link active">Home</a></li>
-                        <li class="nav-item" data-animation="nav-item" data-delay="0.2"><a href="#services" class="nav-link">Services</a></li>
-                        <li class="nav-item" data-animation="nav-item" data-delay="0.3"><a href="#work" class="nav-link">Our Work</a></li>
-                        <li class="nav-item" data-animation="nav-item" data-delay="0.4"><a href="#process" class="nav-link">Process</a></li>
-                        <li class="nav-item" data-animation="nav-item" data-delay="0.5"><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                        <li class="nav-item" data-animation="nav-item" data-delay="0.6"><a href="#contact" class="nav-link">Contact</a></li>
-                    </ul>
-                </nav>
-                
-                <div class="header-actions">
-                    <a href="#contact" class="btn-primary header-cta magnetic-button" data-animation="btn-hover">
-                        <span>Get Started</span>
-                        <div class="btn-liquid-overlay"></div>
-                    </a>
-                    <button class="menu-toggle" aria-label="Toggle menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                 </div>
+                <div class="logo-text">
+                    <span class="logo-text-main">Elan's</span>
+                    <span class="logo-text-sub">Tech World</span>
+                </div>
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#services" class="nav-link">Services</a></li>
+                    <li><a href="#work" class="nav-link">Our Work</a></li>
+                    <li><a href="#process" class="nav-link">Process</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </header>
     
-    <!-- Mobile Navigation -->
+    <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <div class="mobile-menu-backdrop"></div>
+        <div class="mobile-menu-overlay"></div>
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
                 <a href="#" class="logo">
@@ -108,34 +85,30 @@
                 </button>
             </div>
             <nav class="mobile-nav">
-                <ul class="mobile-nav-list">
-                    <li class="mobile-nav-item"><a href="#home" class="mobile-nav-link">Home</a></li>
-                    <li class="mobile-nav-item"><a href="#services" class="mobile-nav-link">Services</a></li>
-                    <li class="mobile-nav-item"><a href="#work" class="mobile-nav-link">Our Work</a></li>
-                    <li class="mobile-nav-item"><a href="#process" class="mobile-nav-link">Process</a></li>
-                    <li class="mobile-nav-item"><a href="#testimonials" class="mobile-nav-link">Testimonials</a></li>
-                    <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contact</a></li>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#work">Our Work</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-footer">
                 <div class="mobile-social">
-                    <a href="https://www.instagram.com/elan_tech_world/" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="Instagram">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="Twitter">
+                    <a href="#" target="_blank" rel="noopener" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="#" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
                 <div class="mobile-contact">
-                    <a href="tel:+19294176819" class="mobile-contact-link">
-                        <i class="fas fa-phone"></i> (929) 417-6819
-                    </a>
-                    <a href="mailto:elan@elanstechworld.com" class="mobile-contact-link">
-                        <i class="fas fa-envelope"></i> elan@elanstechworld.com
-                    </a>
+                    <a href="tel:+19294176819"><i class="fas fa-phone"></i> (929) 417-6819</a>
+                    <a href="mailto:elan@elanstechworld.com"><i class="fas fa-envelope"></i> elan@elanstechworld.com</a>
                 </div>
             </div>
         </div>
@@ -146,47 +119,29 @@
         <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="hero-background">
-                <video class="hero-video" autoplay muted loop playsinline poster="./assets/images/hero-poster.jpg">
+                <video autoplay muted loop playsinline poster="./assets/images/hero-poster.jpg">
                     <source src="https://cdn.pixabay.com/video/2024/08/18/227133_large.mp4" type="video/mp4">
                 </video>
-                <div class="hero-grid">
-                    <div class="hero-grid-line"></div>
-                    <div class="hero-grid-line"></div>
-                    <div class="hero-grid-line"></div>
-                    <div class="hero-grid-line"></div>
-                    <div class="hero-grid-line"></div>
-                </div>
+                <div class="overlay"></div>
             </div>
             
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-badge" data-animation="fade-up" data-delay="0.1">Innovative Digital Solutions</div>
+                    <div class="hero-badge" data-animation="fade-up">Innovative Digital Solutions</div>
                     
-                    <h1 class="hero-title" data-animation="fade-up" data-delay="0.3">
+                    <h1 class="hero-title" data-animation="fade-up">
                         We <span class="text-gradient">transform</span> businesses through
                         <div class="hero-typed-wrapper">
-                            <span id="hero-typed-strings">
-                                <span>innovative design</span>
-                                <span>modern technology</span>
-                                <span>digital innovation</span>
-                                <span>creative solutions</span>
-                            </span>
-                            <span id="hero-typed" class="hero-typed"></span>
+                            <span id="hero-typed"></span>
                         </div>
                     </h1>
                     
-                    <div class="hero-cta-container" data-animation="fade-up" data-delay="0.6">
-                        <a href="#services" class="btn-primary magnetic-button">
-                            <span>Explore Services</span>
-                            <div class="btn-liquid-overlay"></div>
-                        </a>
-                        <a href="#contact" class="btn-contact magnetic-button">
-                            <span>Get in Touch</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
-                        </a>
+                    <div class="hero-cta" data-animation="fade-up">
+                        <a href="#services" class="btn btn-primary">Explore Services</a>
+                        <a href="#contact" class="btn btn-outline">Get in Touch</a>
                     </div>
                     
-                    <div class="hero-featured" data-animation="fade-up" data-delay="0.8">
+                    <div class="hero-featured" data-animation="fade-up">
                         <div class="featured-label">Featured Projects</div>
                         <div class="featured-projects" id="featured-projects">
                             <!-- Projects will be loaded from projects.json -->
@@ -195,32 +150,26 @@
                 </div>
             </div>
             
-            <div class="hero-scroll" data-animation="fade-in" data-delay="1.0">
+            <div class="scroll-indicator">
                 <div class="scroll-text">Scroll to explore</div>
                 <div class="scroll-line"></div>
-            </div>
-            
-            <div class="hero-shapes">
-                <div class="hero-shape hero-shape-1"></div>
-                <div class="hero-shape hero-shape-2"></div>
-                <div class="hero-shape hero-shape-3"></div>
             </div>
         </section>
 
         <!-- Clients Section -->
-        <section class="clients-section" data-scroll-section>
+        <section class="clients-section">
             <div class="container">
-                <div class="section-header" data-animation="fade-up">
+                <div class="section-header">
                     <div class="section-sub-title">Our Partners</div>
-                    <h2 class="section-title reveal-text">Trusted By Industry Leaders</h2>
+                    <h2 class="section-title">Trusted By Industry Leaders</h2>
                     <p class="section-description">We've helped companies of all sizes transform their digital presence</p>
                 </div>
                 
                 <div class="clients-container">
-                    <div class="clients-marquee">
+                    <div class="clients-carousel">
                         <div class="clients-track">
                             <!-- Client cards -->
-                            <div class="client-card tilt-element" data-client="Doug">
+                            <div class="client-card" data-client="Doug">
                                 <div class="client-logo">
                                     <img src="./assets/images/doug.png" alt="Client: Doug">
                                 </div>
@@ -229,7 +178,7 @@
                                     <p>Healthcare Web Platform</p>
                                 </div>
                             </div>
-                            <div class="client-card tilt-element" data-client="Cohen">
+                            <div class="client-card" data-client="Cohen">
                                 <div class="client-logo">
                                     <img src="./assets/images/logocohen.jpeg" alt="Client: Cohen">
                                 </div>
@@ -238,7 +187,7 @@
                                     <p>Secure Document Handling</p>
                                 </div>
                             </div>
-                            <div class="client-card tilt-element" data-client="East">
+                            <div class="client-card" data-client="East">
                                 <div class="client-logo">
                                     <img src="./assets/images/east.png" alt="Client: East">
                                 </div>
@@ -247,7 +196,7 @@
                                     <p>Real Estate Web Solution</p>
                                 </div>
                             </div>
-                            <div class="client-card tilt-element" data-client="Iconic">
+                            <div class="client-card" data-client="Iconic">
                                 <div class="client-logo">
                                     <img src="./assets/images/iconic.jpeg" alt="Client: Iconic">
                                 </div>
@@ -256,7 +205,7 @@
                                     <p>Beauty Clinic Technology</p>
                                 </div>
                             </div>
-                            <div class="client-card tilt-element" data-client="Century">
+                            <div class="client-card" data-client="Century">
                                 <div class="client-logo">
                                     <img src="./assets/images/century.png" alt="Client: Century">
                                 </div>
@@ -265,63 +214,7 @@
                                     <p>Property Management Portal</p>
                                 </div>
                             </div>
-                            <div class="client-card tilt-element" data-client="Scream">
-                                <div class="client-logo">
-                                    <img src="./assets/images/scream.png" alt="Client: Scream">
-                                </div>
-                                <div class="client-hover">
-                                    <h3>S-Cream</h3>
-                                    <p>E-Commerce & POS System</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Duplicated cards for continuous scrolling -->
-                            <div class="client-card tilt-element" data-client="Doug">
-                                <div class="client-logo">
-                                    <img src="./assets/images/doug.png" alt="Client: Doug">
-                                </div>
-                                <div class="client-hover">
-                                    <h3>Doug Psychological</h3>
-                                    <p>Healthcare Web Platform</p>
-                                </div>
-                            </div>
-                            <div class="client-card tilt-element" data-client="Cohen">
-                                <div class="client-logo">
-                                    <img src="./assets/images/logocohen.jpeg" alt="Client: Cohen">
-                                </div>
-                                <div class="client-hover">
-                                    <h3>Cohen & Associates</h3>
-                                    <p>Secure Document Handling</p>
-                                </div>
-                            </div>
-                            <div class="client-card tilt-element" data-client="East">
-                                <div class="client-logo">
-                                    <img src="./assets/images/east.png" alt="Client: East">
-                                </div>
-                                <div class="client-hover">
-                                    <h3>East Coast Realty</h3>
-                                    <p>Real Estate Web Solution</p>
-                                </div>
-                            </div>
-                            <div class="client-card tilt-element" data-client="Iconic">
-                                <div class="client-logo">
-                                    <img src="./assets/images/iconic.jpeg" alt="Client: Iconic">
-                                </div>
-                                <div class="client-hover">
-                                    <h3>Iconic Aesthetics</h3>
-                                    <p>Beauty Clinic Technology</p>
-                                </div>
-                            </div>
-                            <div class="client-card tilt-element" data-client="Century">
-                                <div class="client-logo">
-                                    <img src="./assets/images/century.png" alt="Client: Century">
-                                </div>
-                                <div class="client-hover">
-                                    <h3>Century One</h3>
-                                    <p>Property Management Portal</p>
-                                </div>
-                            </div>
-                            <div class="client-card tilt-element" data-client="Scream">
+                            <div class="client-card" data-client="Scream">
                                 <div class="client-logo">
                                     <img src="./assets/images/scream.png" alt="Client: Scream">
                                 </div>
@@ -333,41 +226,17 @@
                         </div>
                     </div>
                     
-                    <div class="clients-stats" data-animation="fade-up">
-                        <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
-                            <div class="stat-progress-ring">
-                                <svg viewBox="0 0 120 120">
-                                    <defs>
-                                        <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" stop-color="#007aff" />
-                                            <stop offset="100%" stop-color="#00c2ff" />
-                                        </linearGradient>
-                                    </defs>
-                                    <circle class="progress-ring-circle-bg" cx="60" cy="60" r="50"></circle>
-                                    <circle class="progress-ring-circle" cx="60" cy="60" r="50" data-value="100"></circle>
-                                </svg>
-                                <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
-                            </div>
+                    <div class="clients-stats">
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
                             <div class="stat-label">Projects Delivered</div>
                         </div>
-                        <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
-                            <div class="stat-progress-ring">
-                                <svg viewBox="0 0 120 120">
-                                    <circle class="progress-ring-circle-bg" cx="60" cy="60" r="50"></circle>
-                                    <circle class="progress-ring-circle" cx="60" cy="60" r="50" data-value="50"></circle>
-                                </svg>
-                                <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
-                            </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
                             <div class="stat-label">Happy Clients</div>
                         </div>
-                        <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
-                            <div class="stat-progress-ring">
-                                <svg viewBox="0 0 120 120">
-                                    <circle class="progress-ring-circle-bg" cx="60" cy="60" r="50"></circle>
-                                    <circle class="progress-ring-circle" cx="60" cy="60" r="50" data-value="5" data-scale="20"></circle>
-                                </svg>
-                                <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
-                            </div>
+                        <div class="stat-item">
+                            <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
                             <div class="stat-label">Years Experience</div>
                         </div>
                     </div>
@@ -375,331 +244,166 @@
             </div>
             
             <!-- Tech stack showcase -->
-            <div class="tech-stack-showcase">
-                <div class="tech-stack-title">Technologies We Master</div>
-                <div class="tech-stack-carousel">
-                    <div class="tech-stack-track">
-                        <!-- Tech icons -->
-                        <div class="tech-icon"><i class="fab fa-react"></i><span>React</span></div>
-                        <div class="tech-icon"><i class="fab fa-node-js"></i><span>Node.js</span></div>
-                        <div class="tech-icon"><i class="fab fa-vuejs"></i><span>Vue</span></div>
-                        <div class="tech-icon"><i class="fab fa-angular"></i><span>Angular</span></div>
-                        <div class="tech-icon"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                        <div class="tech-icon"><i class="fab fa-shopify"></i><span>Shopify</span></div>
-                        <div class="tech-icon"><i class="fab fa-php"></i><span>PHP</span></div>
-                        <div class="tech-icon"><i class="fab fa-python"></i><span>Python</span></div>
-                        <div class="tech-icon"><i class="fab fa-aws"></i><span>AWS</span></div>
-                        <div class="tech-icon"><i class="fab fa-android"></i><span>Android</span></div>
-                        <div class="tech-icon"><i class="fab fa-apple"></i><span>iOS</span></div>
-                        <div class="tech-icon"><i class="fab fa-figma"></i><span>Figma</span></div>
-                        
-                        <!-- Duplicated icons for infinite scrolling -->
-                        <div class="tech-icon"><i class="fab fa-react"></i><span>React</span></div>
-                        <div class="tech-icon"><i class="fab fa-node-js"></i><span>Node.js</span></div>
-                        <div class="tech-icon"><i class="fab fa-vuejs"></i><span>Vue</span></div>
-                        <div class="tech-icon"><i class="fab fa-angular"></i><span>Angular</span></div>
-                        <div class="tech-icon"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                        <div class="tech-icon"><i class="fab fa-shopify"></i><span>Shopify</span></div>
-                        <div class="tech-icon"><i class="fab fa-php"></i><span>PHP</span></div>
-                        <div class="tech-icon"><i class="fab fa-python"></i><span>Python</span></div>
-                        <div class="tech-icon"><i class="fab fa-aws"></i><span>AWS</span></div>
-                        <div class="tech-icon"><i class="fab fa-android"></i><span>Android</span></div>
-                        <div class="tech-icon"><i class="fab fa-apple"></i><span>iOS</span></div>
-                        <div class="tech-icon"><i class="fab fa-figma"></i><span>Figma</span></div>
+            <div class="tech-stack">
+                <div class="container">
+                    <div class="tech-stack-title">Technologies We Master</div>
+                    <div class="tech-stack-carousel">
+                        <div class="tech-stack-track">
+                            <!-- Tech icons -->
+                            <div class="tech-icon"><i class="fab fa-react"></i><span>React</span></div>
+                            <div class="tech-icon"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+                            <div class="tech-icon"><i class="fab fa-vuejs"></i><span>Vue</span></div>
+                            <div class="tech-icon"><i class="fab fa-angular"></i><span>Angular</span></div>
+                            <div class="tech-icon"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+                            <div class="tech-icon"><i class="fab fa-shopify"></i><span>Shopify</span></div>
+                            <div class="tech-icon"><i class="fab fa-php"></i><span>PHP</span></div>
+                            <div class="tech-icon"><i class="fab fa-python"></i><span>Python</span></div>
+                            <div class="tech-icon"><i class="fab fa-aws"></i><span>AWS</span></div>
+                            <div class="tech-icon"><i class="fab fa-android"></i><span>Android</span></div>
+                            <div class="tech-icon"><i class="fab fa-apple"></i><span>iOS</span></div>
+                            <div class="tech-icon"><i class="fab fa-figma"></i><span>Figma</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="services-section" data-scroll-section>
-            <div class="services-3d-background">
-                <div class="services-3d-grid"></div>
-            </div>
-            
+        <section id="services" class="services-section">
             <div class="container">
-                <div class="section-header" data-animation="fade-up">
+                <div class="section-header">
                     <div class="section-sub-title">What We Offer</div>
-                    <h2 class="section-title reveal-text">Our Expertise</h2>
+                    <h2 class="section-title">Our Expertise</h2>
                     <p class="section-description">We transform businesses through technology, design, and strategic innovation</p>
                 </div>
                 
-                <div class="services-grid" data-animation="stagger-fade-up">
-                    <div class="service-card tilt-element" data-service="web" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
-                        <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3 class="service-title split-text">Web Design & Development</h3>
-                            <p class="service-description">Custom, responsive websites that captivate your audience and drive conversions.</p>
-                            <ul class="service-features">
-                                <li>Responsive Design</li>
-                                <li>E-commerce Solutions</li>
-                                <li>CMS Integration</li>
-                                <li>SEO Optimization</li>
-                            </ul>
-                            <a href="#contact" class="service-link magnetic-button-sm">
-                                <span>Learn More</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                            <div class="service-card-bg"></div>
+                <div class="services-grid">
+                    <div class="service-card" data-service="web">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
                         </div>
+                        <h3 class="service-title">Web Design & Development</h3>
+                        <p class="service-description">Custom, responsive websites that captivate your audience and drive conversions.</p>
+                        <ul class="service-features">
+                            <li>Responsive Design</li>
+                            <li>E-commerce Solutions</li>
+                            <li>CMS Integration</li>
+                            <li>SEO Optimization</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
-                    <div class="service-card tilt-element" data-service="mobile" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
-                        <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h3 class="service-title split-text">Mobile App Development</h3>
-                            <p class="service-description">Native and cross-platform applications that deliver exceptional user experiences.</p>
-                            <ul class="service-features">
-                                <li>iOS & Android Apps</li>
-                                <li>Cross-Platform Solutions</li>
-                                <li>UI/UX Design</li>
-                                <li>Maintenance & Support</li>
-                            </ul>
-                            <a href="#contact" class="service-link magnetic-button-sm">
-                                <span>Learn More</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                            <div class="service-card-bg"></div>
+                    <div class="service-card" data-service="mobile">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
+                        <h3 class="service-title">Mobile App Development</h3>
+                        <p class="service-description">Native and cross-platform applications that deliver exceptional user experiences.</p>
+                        <ul class="service-features">
+                            <li>iOS & Android Apps</li>
+                            <li>Cross-Platform Solutions</li>
+                            <li>UI/UX Design</li>
+                            <li>Maintenance & Support</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
-                    <div class="service-card tilt-element" data-service="pos" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
-                        <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <h3 class="service-title split-text">POS System Implementation</h3>
-                            <p class="service-description">Modern point-of-sale solutions that streamline operations and enhance customer experience.</p>
-                            <ul class="service-features">
-                                <li>Hardware Selection</li>
-                                <li>Software Integration</li>
-                                <li>Staff Training</li>
-                                <li>Ongoing Support</li>
-                            </ul>
-                            <a href="#contact" class="service-link magnetic-button-sm">
-                                <span>Learn More</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                            <div class="service-card-bg"></div>
+                    <div class="service-card" data-service="pos">
+                        <div class="service-icon">
+                            <i class="fas fa-store"></i>
                         </div>
+                        <h3 class="service-title">POS System Implementation</h3>
+                        <p class="service-description">Modern point-of-sale solutions that streamline operations and enhance customer experience.</p>
+                        <ul class="service-features">
+                            <li>Hardware Selection</li>
+                            <li>Software Integration</li>
+                            <li>Staff Training</li>
+                            <li>Ongoing Support</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     
-                    <div class="service-card tilt-element" data-service="consulting" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
-                        <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3 class="service-title split-text">Technology Consulting</h3>
-                            <p class="service-description">Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
-                            <ul class="service-features">
-                                <li>Digital Transformation</li>
-                                <li>IT Infrastructure</li>
-                                <li>Security Solutions</li>
-                                <li>Business Automation</li>
-                            </ul>
-                            <a href="#contact" class="service-link magnetic-button-sm">
-                                <span>Learn More</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                            <div class="service-card-bg"></div>
+                    <div class="service-card" data-service="consulting">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
+                        <h3 class="service-title">Technology Consulting</h3>
+                        <p class="service-description">Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
+                        <ul class="service-features">
+                            <li>Digital Transformation</li>
+                            <li>IT Infrastructure</li>
+                            <li>Security Solutions</li>
+                            <li>Business Automation</li>
+                        </ul>
+                        <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
                 
-                <div class="services-cta-container" data-animation="fade-up">
+                <div class="services-cta">
                     <div class="services-cta-text">
-                        <h3 class="reveal-text">Want to see how our services can help your business?</h3>
+                        <h3>Want to see how our services can help your business?</h3>
                         <p>Schedule a personalized consultation with our team</p>
                     </div>
-                    <a href="#contact" class="btn-primary magnetic-button">
-                        <span>Book a Consultation</span>
-                        <div class="btn-liquid-overlay"></div>
-                    </a>
+                    <a href="#contact" class="btn btn-primary">Book a Consultation</a>
                 </div>
             </div>
         </section>
         
-        <!-- About/Process Section -->
-        <section id="process" class="process-section" data-scroll-section>
-            <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
-            
-            <div class="container process-content-container">
-                <div class="section-header" data-animation="fade-up">
+        <!-- Process Section -->
+        <section id="process" class="process-section">
+            <div class="container">
+                <div class="section-header">
                     <div class="section-sub-title">How We Work</div>
-                    <h2 class="section-title reveal-text">Our Process</h2>
+                    <h2 class="section-title">Our Process</h2>
                     <p class="section-description">A streamlined approach designed to deliver exceptional results</p>
                 </div>
                 
                 <div class="process-timeline">
-                    <div class="process-step" data-animation="slide-up" data-delay="0.1">
+                    <div class="process-step">
                         <div class="process-number">01</div>
-                        <div class="process-content tilt-element" data-tilt data-tilt-max="5">
-                            <h3 class="process-title split-text">Discovery</h3>
+                        <div class="process-content">
+                            <h3 class="process-title">Discovery</h3>
                             <p class="process-description">We begin by understanding your goals, audience, and unique challenges to create a tailored strategy.</p>
-                            <div class="process-icon">
-                                <i class="fas fa-search"></i>
-                            </div>
                         </div>
                     </div>
                     
-                    <div class="process-step" data-animation="slide-up" data-delay="0.2">
+                    <div class="process-step">
                         <div class="process-number">02</div>
-                        <div class="process-content tilt-element" data-tilt data-tilt-max="5">
-                            <h3 class="process-title split-text">Planning</h3>
+                        <div class="process-content">
+                            <h3 class="process-title">Planning</h3>
                             <p class="process-description">We develop a comprehensive roadmap outlining project scope, timeline, and key deliverables.</p>
-                            <div class="process-icon">
-                                <i class="fas fa-tasks"></i>
-                            </div>
                         </div>
                     </div>
                     
-                    <div class="process-step" data-animation="slide-up" data-delay="0.3">
+                    <div class="process-step">
                         <div class="process-number">03</div>
-                        <div class="process-content tilt-element" data-tilt data-tilt-max="5">
-                            <h3 class="process-title split-text">Design</h3>
+                        <div class="process-content">
+                            <h3 class="process-title">Design</h3>
                             <p class="process-description">Our creative team crafts visually stunning interfaces that engage users and reflect your brand identity.</p>
-                            <div class="process-icon">
-                                <i class="fas fa-pencil-ruler"></i>
-                            </div>
                         </div>
                     </div>
                     
-                    <div class="process-step" data-animation="slide-up" data-delay="0.4">
+                    <div class="process-step">
                         <div class="process-number">04</div>
-                        <div class="process-content tilt-element" data-tilt data-tilt-max="5">
-                            <h3 class="process-title split-text">Development</h3>
+                        <div class="process-content">
+                            <h3 class="process-title">Development</h3>
                             <p class="process-description">We bring designs to life with clean, efficient code and cutting-edge technology.</p>
-                            <div class="process-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
                         </div>
                     </div>
                     
-                    <div class="process-step" data-animation="slide-up" data-delay="0.5">
+                    <div class="process-step">
                         <div class="process-number">05</div>
-                        <div class="process-content tilt-element" data-tilt data-tilt-max="5">
-                            <h3 class="process-title split-text">Testing</h3>
+                        <div class="process-content">
+                            <h3 class="process-title">Testing</h3>
                             <p class="process-description">Rigorous quality assurance ensures your product performs flawlessly across all devices.</p>
-                            <div class="process-icon">
-                                <i class="fas fa-vial"></i>
-                            </div>
                         </div>
                     </div>
                     
-                    <div class="process-step" data-animation="slide-up" data-delay="0.6">
+                    <div class="process-step">
                         <div class="process-number">06</div>
-                        <div class="process-content tilt-element" data-tilt data-tilt-max="5">
-                            <h3 class="process-title split-text">Launch & Support</h3>
+                        <div class="process-content">
+                            <h3 class="process-title">Launch & Support</h3>
                             <p class="process-description">We ensure a smooth deployment and provide ongoing maintenance and support.</p>
-                            <div class="process-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="interactive-timeline">
-                <div class="interactive-timeline-wrapper">
-                    <div class="timeline-progress">
-                        <div class="timeline-progress-bar"></div>
-                    </div>
-                    <div class="timeline-points">
-                        <div class="timeline-point active" data-step="1">
-                            <div class="timeline-point-dot"></div>
-                            <div class="timeline-point-label">Discovery</div>
-                        </div>
-                        <div class="timeline-point" data-step="2">
-                            <div class="timeline-point-dot"></div>
-                            <div class="timeline-point-label">Planning</div>
-                        </div>
-                        <div class="timeline-point" data-step="3">
-                            <div class="timeline-point-dot"></div>
-                            <div class="timeline-point-label">Design</div>
-                        </div>
-                        <div class="timeline-point" data-step="4">
-                            <div class="timeline-point-dot"></div>
-                            <div class="timeline-point-label">Development</div>
-                        </div>
-                        <div class="timeline-point" data-step="5">
-                            <div class="timeline-point-dot"></div>
-                            <div class="timeline-point-label">Testing</div>
-                        </div>
-                        <div class="timeline-point" data-step="6">
-                            <div class="timeline-point-dot"></div>
-                            <div class="timeline-point-label">Launch</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-content-container">
-                    <div class="timeline-content active" data-step="1">
-                        <div class="timeline-content-inner">
-                            <div class="timeline-icon">
-                                <div class="lottie-animation" data-animation="discovery"></div>
-                            </div>
-                            <div class="timeline-text">
-                                <h3>Discovery Phase</h3>
-                                <p>We analyze your business needs, target audience, and market position to develop a comprehensive strategy.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-content" data-step="2">
-                        <div class="timeline-content-inner">
-                            <div class="timeline-icon">
-                                <div class="lottie-animation" data-animation="planning"></div>
-                            </div>
-                            <div class="timeline-text">
-                                <h3>Strategic Planning</h3>
-                                <p>Our team creates detailed roadmaps with clear milestones, ensuring alignment with your business goals.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-content" data-step="3">
-                        <div class="timeline-content-inner">
-                            <div class="timeline-icon">
-                                <div class="lottie-animation" data-animation="design"></div>
-                            </div>
-                            <div class="timeline-text">
-                                <h3>Creative Design</h3>
-                                <p>We craft unique visual experiences that capture your brand essence and engage your audience.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-content" data-step="4">
-                        <div class="timeline-content-inner">
-                            <div class="timeline-icon">
-                                <div class="lottie-animation" data-animation="development"></div>
-                            </div>
-                            <div class="timeline-text">
-                                <h3>Development Process</h3>
-                                <p>Our expert developers transform designs into functional, high-performance digital solutions.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-content" data-step="5">
-                        <div class="timeline-content-inner">
-                            <div class="timeline-icon">
-                                <div class="lottie-animation" data-animation="testing"></div>
-                            </div>
-                            <div class="timeline-text">
-                                <h3>Quality Assurance</h3>
-                                <p>Comprehensive testing across devices and platforms ensures a flawless user experience.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-content" data-step="6">
-                        <div class="timeline-content-inner">
-                            <div class="timeline-icon">
-                                <div class="lottie-animation" data-animation="launch"></div>
-                            </div>
-                            <div class="timeline-text">
-                                <h3>Launch & Ongoing Support</h3>
-                                <p>We ensure smooth deployment and provide continuous maintenance to keep your solution running optimally.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -707,17 +411,15 @@
         </section>
         
         <!-- Portfolio Section -->
-        <section id="work" class="portfolio-section" data-scroll-section>
-            <div class="portfolio-3d-scene" id="portfolio-3d-scene"></div>
-            
+        <section id="work" class="portfolio-section">
             <div class="container">
-                <div class="section-header" data-animation="fade-up">
+                <div class="section-header">
                     <div class="section-sub-title">Our Projects</div>
-                    <h2 class="section-title reveal-text">Featured Work</h2>
+                    <h2 class="section-title">Featured Work</h2>
                     <p class="section-description">Explore how we've transformed businesses with innovative technology solutions</p>
                 </div>
                 
-                <div class="portfolio-filter" data-animation="fade-up">
+                <div class="portfolio-filter">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="web">Web Development</button>
                     <button class="filter-btn" data-filter="pos">POS Systems</button>
@@ -726,32 +428,12 @@
                     <button class="filter-btn" data-filter="apple">Apple Services</button>
                 </div>
                 
-                <div class="portfolio-grid" id="portfolio-grid" data-animation="stagger-fade-up">
+                <div class="portfolio-grid" id="portfolio-grid">
                     <!-- Projects will be loaded from projects.json -->
                 </div>
                 
-                <div class="portfolio-showcase-container">
-                    <div class="portfolio-showcase" id="portfolio-showcase">
-                        <div class="showcase-device">
-                            <div class="device-frame">
-                                <div class="device-screen">
-                                    <div class="device-content" id="showcase-content">
-                                        <!-- Content will be injected dynamically -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="showcase-info" id="showcase-info">
-                            <!-- Info will be injected dynamically -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-cta" data-animation="fade-up">
-                    <a href="pages/projects.html" class="btn-primary magnetic-button">
-                        <span>View All Projects</span>
-                        <div class="btn-liquid-overlay"></div>
-                    </a>
+                <div class="portfolio-cta">
+                    <a href="pages/projects.html" class="btn btn-primary">View All Projects</a>
                 </div>
             </div>
         </section>
@@ -770,83 +452,19 @@
                 </div>
             </div>
         </div>
-
-        <!-- Project Card Template -->
-        <template id="project-card-template">
-            <div class="portfolio-item tilt-element" data-category="" data-tilt data-tilt-max="10" data-tilt-perspective="1000">
-                <div class="portfolio-item-inner">
-                    <div class="portfolio-image">
-                        <img src="" alt="">
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-content">
-                            <div class="portfolio-tags"></div>
-                            <h3 class="portfolio-title"></h3>
-                            <a href="#" class="portfolio-link magnetic-button-sm">
-                                <span>View Details</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </template>
-
-        <!-- Modal Template -->
-        <template id="project-modal-template">
-            <div class="modal-header">
-                <h2 class="modal-title reveal-text"></h2>
-                <p class="modal-subtitle"></p>
-            </div>
-            <div class="modal-gallery">
-                <div class="gallery-slider">
-                    <div class="gallery-track">
-                        <!-- Gallery images will be added here dynamically -->
-                    </div>
-                    <div class="gallery-navigation">
-                        <button class="gallery-prev"><i class="fas fa-chevron-left"></i></button>
-                        <div class="gallery-dots"></div>
-                        <button class="gallery-next"><i class="fas fa-chevron-right"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-info">
-                <div class="modal-description"></div>
-                <div class="modal-details">
-                    <h3 class="reveal-text">Project Details</h3>
-                    <ul class="details-list"></ul>
-                </div>
-                <div class="modal-tech">
-                    <h3 class="reveal-text">Technologies Used</h3>
-                    <div class="tech-tags"></div>
-                </div>
-                <div class="modal-results">
-                    <h3 class="reveal-text">Results</h3>
-                    <p class="results-text"></p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#" class="btn-primary magnetic-button modal-website-link" target="_blank">
-                    <span>Visit Website</span>
-                    <i class="fas fa-external-link-alt"></i>
-                    <div class="btn-liquid-overlay"></div>
-                </a>
-            </div>
-        </template>
                 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials-section" data-scroll-section>
+        <section id="testimonials" class="testimonials-section">
             <div class="container">
-                <div class="section-header" data-animation="fade-up">
+                <div class="section-header">
                     <div class="section-sub-title">Client Success</div>
-                    <h2 class="section-title reveal-text">What Our Clients Say</h2>
+                    <h2 class="section-title">What Our Clients Say</h2>
                     <p class="section-description">Hear from the businesses we've helped transform</p>
                 </div>
                 
-                <div class="testimonials-slider" data-animation="fade-up">
+                <div class="testimonials-slider">
                     <div class="testimonials-track">
-                        <!-- Original testimonials -->
-                        <div class="testimonial-card tilt-element" data-tilt data-tilt-max="5">
+                        <div class="testimonial-card">
                             <div class="testimonial-content">
                                 <div class="testimonial-rating">
                                     <i class="fas fa-star"></i>
@@ -854,9 +472,6 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                </div>
-                                <div class="testimonial-quote">
-                                    <i class="fas fa-quote-left"></i>
                                 </div>
                                 <p class="testimonial-text">"Elan's Tech World transformed our online presence with a stunning website that perfectly captures our brand. Their team was professional, responsive, and delivered beyond our expectations."</p>
                             </div>
@@ -871,7 +486,7 @@
                             </div>
                         </div>
                         
-                        <div class="testimonial-card tilt-element" data-tilt data-tilt-max="5">
+                        <div class="testimonial-card">
                             <div class="testimonial-content">
                                 <div class="testimonial-rating">
                                     <i class="fas fa-star"></i>
@@ -879,9 +494,6 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                </div>
-                                <div class="testimonial-quote">
-                                    <i class="fas fa-quote-left"></i>
                                 </div>
                                 <p class="testimonial-text">"Working with Elan's Tech World was a game-changer for our business. They implemented a POS system that streamlined our operations and improved our customer experience dramatically."</p>
                             </div>
@@ -896,7 +508,7 @@
                             </div>
                         </div>
                         
-                        <div class="testimonial-card tilt-element" data-tilt data-tilt-max="5">
+                        <div class="testimonial-card">
                             <div class="testimonial-content">
                                 <div class="testimonial-rating">
                                     <i class="fas fa-star"></i>
@@ -904,9 +516,6 @@
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
-                                </div>
-                                <div class="testimonial-quote">
-                                    <i class="fas fa-quote-left"></i>
                                 </div>
                                 <p class="testimonial-text">"The mobile app developed by Elan's Tech World has been instrumental in growing our customer base. Their attention to detail and user experience expertise is unmatched."</p>
                             </div>
@@ -920,63 +529,12 @@
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Duplicated testimonials for continuous scroll -->
-                        <div class="testimonial-card tilt-element" data-tilt data-tilt-max="5">
-                            <div class="testimonial-content">
-                                <div class="testimonial-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="testimonial-quote">
-                                    <i class="fas fa-quote-left"></i>
-                                </div>
-                                <p class="testimonial-text">"Elan's Tech World transformed our online presence with a stunning website that perfectly captures our brand. Their team was professional, responsive, and delivered beyond our expectations."</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="testimonial-author-image">
-                                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Sarah Johnson">
-                                </div>
-                                <div class="testimonial-author-info">
-                                    <h4 class="testimonial-author-name">Sarah Johnson</h4>
-                                    <p class="testimonial-author-position">CEO, Digital Innovations</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="testimonial-card tilt-element" data-tilt data-tilt-max="5">
-                            <div class="testimonial-content">
-                                <div class="testimonial-rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <div class="testimonial-quote">
-                                    <i class="fas fa-quote-left"></i>
-                                </div>
-                                <p class="testimonial-text">"Working with Elan's Tech World was a game-changer for our business. They implemented a POS system that streamlined our operations and improved our customer experience dramatically."</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="testimonial-author-image">
-                                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Michael Rodriguez">
-                                </div>
-                                <div class="testimonial-author-info">
-                                    <h4 class="testimonial-author-name">Michael Rodriguez</h4>
-                                    <p class="testimonial-author-position">Owner, The Coffee House</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
-                <div class="testimonial-video-container" data-animation="fade-up">
+                <div class="testimonial-video">
                     <div class="testimonial-video-wrapper">
-                        <div class="testimonial-video-play magnetic-button">
+                        <div class="testimonial-video-play">
                             <i class="fas fa-play"></i>
                         </div>
                         <div class="testimonial-video-thumbnail">
@@ -993,33 +551,31 @@
         </section>
         
         <!-- Stats Section -->
-        <section class="stats-section parallax-section" data-scroll-section>
-            <div class="parallax-bg" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
-            
+        <section class="stats-section">
             <div class="container">
-                <div class="stats-grid" data-animation="stagger-fade-up">
-                    <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
+                <div class="stats-grid">
+                    <div class="stat-item">
                         <div class="stat-icon">
                             <i class="fas fa-project-diagram"></i>
                         </div>
                         <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
                         <div class="stat-label">Projects Completed</div>
                     </div>
-                    <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
+                    <div class="stat-item">
                         <div class="stat-icon">
                             <i class="fas fa-smile"></i>
                         </div>
                         <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
                         <div class="stat-label">Happy Clients</div>
                     </div>
-                    <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
+                    <div class="stat-item">
                         <div class="stat-icon">
                             <i class="fas fa-award"></i>
                         </div>
                         <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
-                    <div class="stat-item tilt-element" data-tilt data-tilt-max="10">
+                    <div class="stat-item">
                         <div class="stat-icon">
                             <i class="fas fa-users"></i>
                         </div>
@@ -1027,103 +583,36 @@
                         <div class="stat-label">Team Members</div>
                     </div>
                 </div>
-                
-                <div class="achievements-ticker">
-                    <div class="ticker-track">
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Award-winning designs
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Cross-platform development
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Proven client success
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Cutting-edge technology
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Industry-leading expertise
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Award-winning designs
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Cross-platform development
-                        </div>
-                        <div class="ticker-item">
-                            <span class="ticker-dot"></span>
-                            Proven client success
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         
         <!-- CTA Section -->
-        <section class="cta-section" data-scroll-section>
-            <div class="cta-canvas-bg" id="cta-canvas"></div>
-            
+        <section class="cta-section">
             <div class="container">
-                <div class="cta-content" data-animation="fade-up">
-                    <h2 class="cta-title reveal-text">Ready to transform your business?</h2>
-                    <p class="cta-description split-text">Let's create something extraordinary together</p>
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to transform your business?</h2>
+                    <p class="cta-description">Let's create something extraordinary together</p>
                     <div class="cta-buttons">
-                        <a href="#contact" class="btn-primary magnetic-button">
-                            <span>Start a Project</span>
-                            <div class="btn-liquid-overlay"></div>
-                        </a>
-                        <a href="tel:+19294176819" class="btn-secondary magnetic-button">
-                            <span>Call Us</span>
-                            <i class="fas fa-phone"></i>
-                        </a>
+                        <a href="#contact" class="btn btn-primary">Start a Project</a>
+                        <a href="tel:+19294176819" class="btn btn-outline">Call Us</a>
                     </div>
-                </div>
-            </div>
-            
-            <div class="cta-floating-elements">
-                <div class="floating-element" data-speed="2">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <div class="floating-element" data-speed="1.5">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="floating-element" data-speed="3">
-                    <i class="fas fa-store"></i>
-                </div>
-                <div class="floating-element" data-speed="2.5">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="floating-element" data-speed="1.8">
-                    <i class="fas fa-globe"></i>
                 </div>
             </div>
         </section>
         
         <!-- Contact Section -->
-        <section id="contact" class="contact-section" data-scroll-section>
-            <div class="contact-map-bg" id="contact-map">
-                <!-- Interactive map will be inserted here via JavaScript -->
-            </div>
-            
+        <section id="contact" class="contact-section">
             <div class="container">
                 <div class="contact-grid">
-                    <div class="contact-info" data-animation="fade-up">
+                    <div class="contact-info">
                         <div class="section-header">
                             <div class="section-sub-title">Get In Touch</div>
-                            <h2 class="section-title reveal-text">Contact Us</h2>
+                            <h2 class="section-title">Contact Us</h2>
                             <p class="contact-description">We'd love to hear from you. Reach out to us for any questions or to discuss your project.</p>
                         </div>
                         
                         <div class="contact-details">
-                            <div class="contact-item tilt-element" data-tilt data-tilt-max="10">
+                            <div class="contact-item">
                                 <div class="contact-icon">
                                     <i class="fas fa-phone"></i>
                                 </div>
@@ -1133,7 +622,7 @@
                                 </div>
                             </div>
                             
-                            <div class="contact-item tilt-element" data-tilt data-tilt-max="10">
+                            <div class="contact-item">
                                 <div class="contact-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
@@ -1143,7 +632,7 @@
                                 </div>
                             </div>
                             
-                            <div class="contact-item tilt-element" data-tilt data-tilt-max="10">
+                            <div class="contact-item">
                                 <div class="contact-icon">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
@@ -1158,66 +647,59 @@
                         <div class="contact-social">
                             <h3 class="contact-title">Follow Us</h3>
                             <div class="social-links">
-                                <a href="https://www.instagram.com/elan_tech_world/" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="Instagram">
+                                <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener" aria-label="Instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="#" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="Twitter">
+                                <a href="#" target="_blank" rel="noopener" aria-label="Twitter">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="#" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="contact-form-wrapper" data-animation="fade-up" data-delay="0.3">
-                        <form id="contact-form" class="contact-form tilt-element" data-tilt data-tilt-max="3">
+                    <div class="contact-form-wrapper">
+                        <form id="contact-form" class="contact-form">
                             <div class="form-row">
-                                <div class="form-group floating-label">
-                                    <input type="text" id="name" name="name" placeholder=" " required>
+                                <div class="form-group">
                                     <label for="name">Full Name</label>
-                                    <div class="form-focus-line"></div>
+                                    <input type="text" id="name" name="name" required>
                                 </div>
                                 
-                                <div class="form-group floating-label">
-                                    <input type="email" id="email" name="email" placeholder=" " required>
+                                <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <div class="form-focus-line"></div>
+                                    <input type="email" id="email" name="email" required>
                                 </div>
                             </div>
                             
                             <div class="form-row">
-                                <div class="form-group floating-label">
-                                    <input type="tel" id="phone" name="phone" placeholder=" ">
+                                <div class="form-group">
                                     <label for="phone">Phone Number</label>
-                                    <div class="form-focus-line"></div>
+                                    <input type="tel" id="phone" name="phone">
                                 </div>
                                 
-                                <div class="form-group floating-label">
+                                <div class="form-group">
+                                    <label for="service">Service Interested In</label>
                                     <select id="service" name="service" required>
-                                        <option value="" disabled selected></option>
+                                        <option value="" disabled selected>Select a service</option>
                                         <option value="web">Web Design & Development</option>
                                         <option value="mobile">Mobile App Development</option>
                                         <option value="pos">POS System Implementation</option>
                                         <option value="consulting">Technology Consulting</option>
                                         <option value="other">Other</option>
                                     </select>
-                                    <label for="service">Service Interested In</label>
-                                    <div class="form-focus-line"></div>
                                 </div>
                             </div>
                             
-                            <div class="form-group floating-label">
-                                <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                            <div class="form-group">
                                 <label for="message">Message</label>
-                                <div class="form-focus-line"></div>
+                                <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
                             
-                            <button type="submit" class="btn-primary magnetic-button">
-                                <span>Send Message</span>
-                                <i class="fas fa-paper-plane"></i>
-                                <div class="btn-liquid-overlay"></div>
+                            <button type="submit" class="btn btn-primary">
+                                Send Message <i class="fas fa-paper-plane"></i>
                             </button>
                         </form>
                     </div>
@@ -1227,12 +709,10 @@
     </main>
     
     <!-- Footer -->
-    <footer class="footer" data-scroll-section>
-        <div class="footer-particles" id="footer-particles"></div>
-        
+    <footer class="footer">
         <div class="container">
             <div class="footer-top">
-                <div class="footer-logo" data-animation="fade-up">
+                <div class="footer-logo">
                     <a href="#" class="logo">
                         <div class="logo-icon">
                             <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
@@ -1245,27 +725,27 @@
                     <p class="footer-tagline">Transforming businesses through innovative technology solutions</p>
                 </div>
                 
-                <div class="footer-nav" data-animation="fade-up" data-delay="0.2">
+                <div class="footer-nav">
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Quick Links</h3>
                         <ul class="footer-links">
-                            <li><a href="#home" class="hover-link">Home</a></li>
-                            <li><a href="#services" class="hover-link">Services</a></li>
-                            <li><a href="#work" class="hover-link">Our Work</a></li>
-                            <li><a href="#process" class="hover-link">Process</a></li>
-                            <li><a href="#testimonials" class="hover-link">Testimonials</a></li>
-                            <li><a href="#contact" class="hover-link">Contact</a></li>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#work">Our Work</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Services</h3>
                         <ul class="footer-links">
-                            <li><a href="#" class="hover-link">Web Design</a></li>
-                            <li><a href="#" class="hover-link">Mobile Apps</a></li>
-                            <li><a href="#" class="hover-link">POS Systems</a></li>
-                            <li><a href="#" class="hover-link">Technology Consulting</a></li>
-                            <li><a href="#" class="hover-link">IT Support</a></li>
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Mobile Apps</a></li>
+                            <li><a href="#">POS Systems</a></li>
+                            <li><a href="#">Technology Consulting</a></li>
+                            <li><a href="#">IT Support</a></li>
                         </ul>
                     </div>
                     
@@ -1274,11 +754,11 @@
                         <ul class="footer-contact">
                             <li>
                                 <i class="fas fa-phone"></i>
-                                <a href="tel:+19294176819" class="hover-link">(929) 417-6819</a>
+                                <a href="tel:+19294176819">(929) 417-6819</a>
                             </li>
                             <li>
                                 <i class="fas fa-envelope"></i>
-                                <a href="mailto:elan@elanstechworld.com" class="hover-link">elan@elanstechworld.com</a>
+                                <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
                             </li>
                             <li>
                                 <i class="fas fa-map-marker-alt"></i>
@@ -1287,13 +767,13 @@
                         </ul>
                         
                         <div class="footer-social">
-                            <a href="https://www.instagram.com/elan_tech_world/" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="Instagram">
+                            <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener" aria-label="Instagram">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="#" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="Twitter">
+                            <a href="#" target="_blank" rel="noopener" aria-label="Twitter">
                                 <i class="fab fa-twitter"></i>
                             </a>
-                            <a href="#" class="social-link magnetic-button-sm" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
@@ -1304,50 +784,21 @@
             <div class="footer-bottom">
                 <p class="copyright">&copy; 2024 Elan's Tech World. All Rights Reserved.</p>
                 <div class="footer-legal">
-                    <a href="#" class="hover-link">Privacy Policy</a>
-                    <a href="#" class="hover-link">Terms of Service</a>
-                </div>
-            </div>
-            
-            <div class="marquee-container">
-                <div class="marquee-track">
-                    <div class="marquee-content">
-                        <span>Web Design</span>
-                        <span class="marquee-dot"></span>
-                        <span>Mobile Development</span>
-                        <span class="marquee-dot"></span>
-                        <span>POS Systems</span>
-                        <span class="marquee-dot"></span>
-                        <span>Technology Consulting</span>
-                        <span class="marquee-dot"></span>
-                        <span>Digital Transformation</span>
-                        <span class="marquee-dot"></span>
-                        <span>UI/UX Design</span>
-                        <span class="marquee-dot"></span>
-                        <span>Web Design</span>
-                        <span class="marquee-dot"></span>
-                        <span>Mobile Development</span>
-                        <span class="marquee-dot"></span>
-                        <span>POS Systems</span>
-                    </div>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
     
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top magnetic-button" aria-label="Back to top">
+    <a href="#" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </a>
 
-    <!-- Animated SVG Blob -->
-    <div class="blob-animation">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path class="blob-path" d="M50.4,-47.8C65.5,-39.3,78.5,-21.4,81,-1.5C83.6,18.5,75.8,39.4,60.7,51.7C45.7,64,23.4,67.5,2.7,65C-18.1,62.5,-36.1,53.9,-48,39.9C-59.8,25.9,-65.6,6.3,-62.8,-12.5C-60,-31.3,-48.7,-49.3,-33.6,-57.8C-18.5,-66.3,0.3,-65.2,17.5,-60.7C34.7,-56.3,35.4,-56.3,50.4,-47.8Z" transform="translate(100 100)" />
-        </svg>
-    </div>
-    
     <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
