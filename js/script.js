@@ -1,18 +1,12 @@
 /**
- * Elan's Tech World - Enhanced JavaScript file
+ * Elan's Tech World - Optimized JavaScript file
  * 
- * Contains advanced interactive functionality for the website:
- * - Animated page loader
- * - Custom cursor effects
- * - Particle backgrounds
- * - GSAP animations
- * - Typed.js text effects
- * - ScrollTrigger animations
- * - 3D interactions with Vanilla-tilt
- * - ThreeJS background effects
- * - Interactive timeline
- * - Advanced portfolio showcase
- * - And much more!
+ * Includes fixes for:
+ * - Faster loading time
+ * - Better header visibility
+ * - Continuous scrolling for clients, tech stack, and testimonials
+ * - Enhanced background visuals
+ * - Proper alignment of content
  */
 
 // Store project data globally
@@ -23,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Remove preload class to enable animations
   setTimeout(() => {
     document.body.classList.remove('preload');
-  }, 500);
+  }, 300); // Reduced from 500ms
   
   // Initialize all components
   initPageLoader();
@@ -36,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hero section
   initHeroTyped();
   initHeroParallax();
-  loadFeaturedProjects();
+  // We're showing sample featured projects directly in HTML now
+  // loadFeaturedProjects();
   
   // Services and Process sections
   initMagneticElements();
@@ -50,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPortfolio();
   
   // Testimonials and Stats
-  initTestimonialSlider();
+  initTestimonialsScroll();
   initVideoModal();
   initProgressRings();
   initCounters();
@@ -68,11 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormInteractions();
   initBackToTop();
   initPageTransitions();
+  
+  // Initialize infinite scrolling for clients and tech stack
+  initInfiniteScrolling();
 });
 
 /**
- * Enhanced Page Loader Animation
- * Shows a stylish loading animation with glitch effects and counter
+ * Optimized Page Loader Animation
+ * Faster loading and uses logo instead of glitch text
  */
 function initPageLoader() {
   const loader = document.querySelector('.loader-container');
@@ -89,31 +87,34 @@ function initPageLoader() {
   
   if (!loader || !progressBar) return;
   
-  // Simulate loading progress
+  // Simulate loading progress faster
   let progress = 0;
   let messageIndex = 0;
   
-  // Update loader message periodically
+  // Show message immediately
+  loaderMessage.textContent = loaderMessages[0];
+  
+  // Update loader message periodically but more quickly
   const messageInterval = setInterval(() => {
     messageIndex = (messageIndex + 1) % loaderMessages.length;
-    loaderMessage.textContent = loaderMessages[messageIndex];
     
     // Add fade effect
     loaderMessage.style.opacity = 0;
     setTimeout(() => {
       loaderMessage.textContent = loaderMessages[messageIndex];
       loaderMessage.style.opacity = 1;
-    }, 300);
-  }, 1200);
+    }, 200);
+  }, 800); // Faster message change
   
+  // Accelerated progress animation
   const interval = setInterval(() => {
-    // Non-linear progress simulation to appear more realistic
-    if (progress < 80) {
-      progress += Math.random() * 10;
-    } else if (progress < 95) {
-      progress += Math.random() * 2;
+    // Faster progress simulation
+    if (progress < 50) {
+      progress += Math.random() * 15;
+    } else if (progress < 85) {
+      progress += Math.random() * 5;
     } else {
-      progress += 0.1;
+      progress += 2;
     }
     
     if (progress >= 100) {
@@ -124,11 +125,11 @@ function initPageLoader() {
       // Final message
       loaderMessage.textContent = 'Welcome to Elan\'s Tech World!';
       
-      // Delay to ensure animation completes
+      // Delay to ensure animation completes, but shorter delay
       setTimeout(() => {
         gsap.to(loader, {
           opacity: 0,
-          duration: 0.8,
+          duration: 0.5, // Faster fade-out
           ease: 'power2.inOut',
           onComplete: () => {
             loader.style.display = 'none';
@@ -140,13 +141,13 @@ function initPageLoader() {
             document.body.style.overflow = 'visible';
           }
         });
-      }, 800);
+      }, 500); // Reduced delay
     }
     
     // Update progress bar and percentage
     progressBar.style.width = `${progress}%`;
     percentage.textContent = `${Math.round(progress)}%`;
-  }, 100);
+  }, 50); // Faster updates
   
   // Prevent scroll during loading
   document.body.style.overflow = 'hidden';
@@ -154,7 +155,6 @@ function initPageLoader() {
 
 /**
  * Initialize Custom Cursor
- * Creates a custom cursor that follows the mouse
  */
 function initCustomCursor() {
   const cursor = document.querySelector('.cursor-follower');
@@ -224,8 +224,78 @@ function initCustomCursor() {
 }
 
 /**
- * Initialize Particles.js
- * Sets up particle backgrounds for various sections
+ * Initialize Infinite Scrolling for marquees
+ * Ensures continuous scrolling for clients, tech stack, testimonials
+ */
+function initInfiniteScrolling() {
+  // Make sure there are duplicated elements in the DOM to enable continuous scroll
+  
+  // Ensure client cards are duplicated for infinite scrolling
+  const clientsTrack = document.querySelector('.clients-track');
+  if (clientsTrack) {
+    // Calculate the width of all client cards together for animation
+    const clientCards = clientsTrack.querySelectorAll('.client-card');
+    const halfwayPoint = clientCards.length / 2;
+    
+    if (halfwayPoint > 0) {
+      // Apply animation keyframes dynamically
+      const totalWidth = Array.from(clientCards).slice(0, halfwayPoint).reduce((width, card) => {
+        return width + card.offsetWidth + parseInt(getComputedStyle(card).marginRight, 10);
+      }, 0);
+      
+      // Ensure smooth infinite scrolling
+      clientsTrack.style.setProperty('--scroll-width', `${totalWidth}px`);
+    }
+  }
+  
+  // Set up tech stack infinite scrolling
+  const techStackTrack = document.querySelector('.tech-stack-track');
+  if (techStackTrack) {
+    const techIcons = techStackTrack.querySelectorAll('.tech-icon');
+    const halfwayPoint = techIcons.length / 2;
+    
+    if (halfwayPoint > 0) {
+      // Apply animation keyframes dynamically
+      const totalWidth = Array.from(techIcons).slice(0, halfwayPoint).reduce((width, icon) => {
+        return width + icon.offsetWidth + parseInt(getComputedStyle(icon).marginRight, 10);
+      }, 0);
+      
+      // Ensure smooth infinite scrolling
+      techStackTrack.style.setProperty('--scroll-width', `${totalWidth}px`);
+    }
+  }
+  
+  // Set up testimonials infinite scrolling
+  const testimonialsTrack = document.querySelector('.testimonials-track');
+  if (testimonialsTrack) {
+    const testimonialCards = testimonialsTrack.querySelectorAll('.testimonial-card');
+    const halfwayPoint = testimonialCards.length / 2;
+    
+    if (halfwayPoint > 0) {
+      // Apply animation keyframes dynamically
+      const totalWidth = Array.from(testimonialCards).slice(0, halfwayPoint).reduce((width, card) => {
+        return width + card.offsetWidth + parseInt(getComputedStyle(card).marginRight, 10);
+      }, 0);
+      
+      // Ensure smooth infinite scrolling
+      testimonialsTrack.style.setProperty('--scroll-width', `${totalWidth}px`);
+    }
+  }
+  
+  // Pause animations on hover for better UX
+  document.querySelectorAll('.clients-track, .tech-stack-track, .testimonials-track').forEach(track => {
+    track.addEventListener('mouseenter', () => {
+      track.style.animationPlayState = 'paused';
+    });
+    
+    track.addEventListener('mouseleave', () => {
+      track.style.animationPlayState = 'running';
+    });
+  });
+}
+
+/**
+ * Initialize Particles.js for attractive background particles
  */
 function initParticlesJS() {
   // Hero particles
@@ -341,7 +411,7 @@ function initParticlesJS() {
 
 /**
  * Initialize GSAP Animations
- * Sets up ScrollTrigger and registers necessary plugins
+ * Sets up ScrollTrigger and animations
  */
 function initGSAPAnimations() {
   // Register ScrollTrigger plugin
@@ -355,8 +425,7 @@ function initGSAPAnimations() {
 }
 
 /**
- * Animate Hero Elements
- * Animates the hero section elements when page loads
+ * Animate Hero Elements when page loads
  */
 function animateHeroElements() {
   const heroElements = document.querySelectorAll('[data-animation="fade-up"]');
@@ -376,7 +445,6 @@ function animateHeroElements() {
 
 /**
  * Initialize Split Text Elements
- * Splits text into individual characters for letter animations
  */
 function initSplitTextElements() {
   const splitElements = document.querySelectorAll('.split-text');
@@ -400,7 +468,6 @@ function initSplitTextElements() {
 
 /**
  * Initialize Reveal Text Elements
- * Adds animation to text reveal effects
  */
 function initRevealTextElements() {
   const revealElements = document.querySelectorAll('.reveal-text');
@@ -422,7 +489,6 @@ function initRevealTextElements() {
 
 /**
  * Initialize ScrollTrigger Animations
- * Creates scroll-based animations throughout the page
  */
 function initScrollTriggerAnimations() {
   // Section headers fade in
@@ -539,7 +605,6 @@ function initScrollTriggerAnimations() {
 
 /**
  * Initialize Typed.js for Hero Section
- * Creates the typing effect in the hero heading
  */
 function initHeroTyped() {
   const typedElement = document.getElementById('hero-typed');
@@ -558,8 +623,7 @@ function initHeroTyped() {
 }
 
 /**
- * Enhanced Hero Parallax Effect
- * Adds advanced parallax movement to hero section elements
+ * Hero Parallax Effect
  */
 function initHeroParallax() {
   const heroSection = document.querySelector('.hero-section');
@@ -618,7 +682,6 @@ function initHeroParallax() {
 
 /**
  * Initialize Magnetic Elements
- * Creates magnetic effect for buttons and interactive elements
  */
 function initMagneticElements() {
   const magneticElements = document.querySelectorAll('.magnetic-button, .magnetic-button-sm');
@@ -672,7 +735,6 @@ function initMagneticElements() {
 
 /**
  * Initialize VanillaTilt
- * Adds 3D tilt effect to cards and elements
  */
 function initVanillaTilt() {
   const tiltElements = document.querySelectorAll('.tilt-element');
@@ -690,7 +752,6 @@ function initVanillaTilt() {
 
 /**
  * Navigation Functionality
- * Handles header behavior on scroll and active link highlighting
  */
 function initNavigation() {
   const header = document.querySelector('.header');
@@ -810,7 +871,6 @@ function initNavigation() {
 
 /**
  * Mobile Menu Functionality
- * Handles opening/closing of mobile navigation menu with animations
  */
 function initMobileMenu() {
   const menuToggle = document.querySelector('.menu-toggle');
@@ -883,132 +943,10 @@ function initMobileMenu() {
       });
     }
   });
-  
-  // Close menu on escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-      menuToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      
-      // Reset mobile menu item animations
-      gsap.set('.mobile-nav-item', {
-        y: 20,
-        opacity: 0
-      });
-    }
-  });
-  
-  // Close menu on resize
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 992 && mobileMenu.classList.contains('active')) {
-      menuToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      
-      // Reset mobile menu item animations
-      gsap.set('.mobile-nav-item', {
-        y: 20,
-        opacity: 0
-      });
-    }
-  });
-}
-
-/**
- * Enhanced Featured Projects Loader
- * Loads and displays featured projects in the hero section with animations
- */
-function loadFeaturedProjects() {
-  const featuredContainer = document.getElementById('featured-projects');
-  if (!featuredContainer) return;
-  
-  // Fetch projects data
-  fetch('projects.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      // Get first 3 projects for featured section
-      const featuredProjects = data.projects.slice(0, 3);
-      
-      // Render featured projects with staggered animation
-      featuredProjects.forEach((project, index) => {
-        const projectElement = createProjectElement(project, index);
-        featuredContainer.appendChild(projectElement);
-        
-        // Animate each project
-        gsap.from(projectElement, {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          delay: 1.2 + (index * 0.2), // Delay after page load
-          ease: 'power2.out'
-        });
-      });
-    })
-    .catch(error => {
-      console.error('Error loading featured projects:', error);
-      featuredContainer.innerHTML = '<p class="error-message">Unable to load featured projects</p>';
-    });
-}
-
-/**
- * Create Project Element
- * Creates a DOM element for a featured project with 3D effect
- * @param {Object} project - Project data object
- * @param {Number} index - Index for animation delay
- * @returns {HTMLElement} Project element
- */
-function createProjectElement(project, index) {
-  const projectElement = document.createElement('div');
-  projectElement.className = 'featured-project';
-  projectElement.setAttribute('data-tilt', '');
-  projectElement.setAttribute('data-tilt-max', '10');
-  
-  // Create project content
-  projectElement.innerHTML = `
-    <img src="${project.mainImage}" alt="${project.title}" class="featured-project-image">
-    <div class="featured-project-title">${project.title}</div>
-  `;
-  
-  // Initialize tilt effect
-  if (window.VanillaTilt) {
-    VanillaTilt.init(projectElement, {
-      max: 10,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.2,
-      scale: 1.05
-    });
-  }
-  
-  // Add click event to open project modal
-  projectElement.addEventListener('click', () => {
-    if (typeof openProjectModal === 'function') {
-      openProjectModal(project.id);
-    } else {
-      // If modal function not available, redirect to work section
-      gsap.to(window, {
-        duration: 1,
-        scrollTo: {
-          y: '#work',
-          offsetY: 80
-        },
-        ease: 'power2.inOut'
-      });
-    }
-  });
-  
-  return projectElement;
 }
 
 /**
  * Initialize Service Cards
- * Adds advanced hover effects and animations to service cards
  */
 function initServiceCards() {
   const serviceCards = document.querySelectorAll('.service-card');
@@ -1050,7 +988,6 @@ function initServiceCards() {
 
 /**
  * Initialize Process Timeline
- * Adds scroll animations to process steps
  */
 function initProcessTimeline() {
   const processSteps = document.querySelectorAll('.process-step');
@@ -1074,7 +1011,6 @@ function initProcessTimeline() {
 
 /**
  * Initialize Interactive Timeline
- * Creates an interactive experience for the process timeline
  */
 function initInteractiveTimeline() {
   const timelinePoints = document.querySelectorAll('.timeline-point');
@@ -1178,7 +1114,6 @@ function initInteractiveTimeline() {
 
 /**
  * Initialize 3D Scene for Portfolio
- * Creates a Three.js background for the portfolio section
  */
 function initPortfolio3DScene() {
   const scene = document.getElementById('portfolio-3d-scene');
@@ -1250,149 +1185,70 @@ function initPortfolio3DScene() {
 }
 
 /**
- * Initialize Portfolio Functionality
- * Loads projects from JSON and manages display and filtering with animations
+ * Initialize Portfolio Features
  */
 function initPortfolio() {
-  const portfolioGrid = document.getElementById('portfolio-grid');
-  const loader = document.querySelector('.portfolio-loader');
-  
-  if (!portfolioGrid) return;
-  
-  // Fetch project data from the JSON file
-  fetch('projects.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+  // Sample projects data - we're showing samples directly in HTML now
+  projectsData = [
+    {
+      id: "project1",
+      title: "Doug Psychological",
+      categories: ["web"],
+      tags: ["Web Design", "Healthcare"],
+      mainImage: "./assets/images/doug.png",
+      website: "#",
+      modalContent: {
+        subtitle: "Healthcare Web Platform",
+        detailedDescription: "A comprehensive web platform for psychological services",
+        projectDetails: ["Custom appointment scheduling", "Patient portal"],
+        technologies: ["HTML5", "CSS3", "JavaScript", "PHP"],
+        results: "Increased patient engagement by 40% and streamlined scheduling process.",
+        galleryImages: ["./assets/images/doug.png"]
       }
-      return response.json();
-    })
-    .then(data => {
-      projectsData = data.projects;
-      
-      // Remove loader with animation
-      if (loader) {
-        gsap.to(loader, {
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            loader.style.display = 'none';
-          }
-        });
+    },
+    {
+      id: "project2",
+      title: "Cohen & Associates",
+      categories: ["web", "marketing"],
+      tags: ["Web Design", "Legal"],
+      mainImage: "./assets/images/logocohen.jpeg",
+      website: "#",
+      modalContent: {
+        subtitle: "Legal Services Website",
+        detailedDescription: "Professional website for a law firm with secure document handling",
+        projectDetails: ["Document management system", "Client portal"],
+        technologies: ["JavaScript", "PHP", "MySQL"],
+        results: "Streamlined client communication and document sharing.",
+        galleryImages: ["./assets/images/logocohen.jpeg"]
       }
-      
-      // Render the projects
-      renderProjects(projectsData);
-      
-      // Initialize filter buttons
-      initPortfolioFilter();
-      
-      // Initialize project modals
-      initProjectModals();
-      
-      // Initialize portfolio showcase
-      initPortfolioShowcase();
-    })
-    .catch(error => {
-      console.error('Error loading projects:', error);
-      
-      // Show error message in grid
-      if (portfolioGrid) {
-        portfolioGrid.innerHTML = `
-          <div class="portfolio-error">
-            <p>Sorry, we couldn't load the projects. Please try again later.</p>
-          </div>
-        `;
+    },
+    {
+      id: "project3",
+      title: "Iconic Aesthetics",
+      categories: ["web", "pos"],
+      tags: ["Web Design", "POS System"],
+      mainImage: "./assets/images/iconic.jpeg",
+      website: "#",
+      modalContent: {
+        subtitle: "Beauty Clinic Technology Solution",
+        detailedDescription: "Integrated web and POS system for a beauty clinic",
+        projectDetails: ["Appointment scheduling", "Inventory management"],
+        technologies: ["React", "Node.js", "MongoDB"],
+        results: "Increased bookings by 35% and improved inventory tracking.",
+        galleryImages: ["./assets/images/iconic.jpeg"]
       }
-    });
-}
-
-/**
- * Render projects in the portfolio grid with animations
- * @param {Array} projects - Array of project objects to render
- */
-function renderProjects(projects) {
-  const portfolioGrid = document.getElementById('portfolio-grid');
-  const template = document.getElementById('project-card-template');
-  
-  if (!portfolioGrid || !template) return;
-  
-  // Clear existing content
-  portfolioGrid.innerHTML = '';
-  
-  // Limit to 6 projects for the main page
-  const displayProjects = projects.slice(0, 6);
-  
-  // Add each project to the grid
-  displayProjects.forEach(project => {
-    const clone = document.importNode(template.content, true);
-    const item = clone.querySelector('.portfolio-item');
-    const image = clone.querySelector('.portfolio-image img');
-    const title = clone.querySelector('.portfolio-title');
-    const tagsContainer = clone.querySelector('.portfolio-tags');
-    const link = clone.querySelector('.portfolio-link');
-    
-    // Set project data
-    item.setAttribute('data-project-id', project.id);
-    item.setAttribute('data-category', project.categories.join(' '));
-    
-    image.src = project.mainImage;
-    image.alt = project.title;
-    
-    title.textContent = project.title;
-    
-    // Add tags
-    project.tags.forEach(tag => {
-      const span = document.createElement('span');
-      span.textContent = tag;
-      tagsContainer.appendChild(span);
-    });
-    
-    // Set link behavior to open the modal
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openProjectModal(project.id);
-    });
-    
-    portfolioGrid.appendChild(clone);
-  });
-  
-  // Initialize tilt effect on portfolio items
-  if (window.VanillaTilt) {
-    VanillaTilt.init(portfolioGrid.querySelectorAll('.tilt-element'), {
-      max: 10,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.15,
-      scale: 1.03
-    });
-  }
-  
-  // Add staggered fade-in animation to the grid items
-  const items = portfolioGrid.querySelectorAll('.portfolio-item');
-  
-  gsap.set(items, { 
-    y: 30, 
-    opacity: 0 
-  });
-  
-  gsap.to(items, {
-    y: 0,
-    opacity: 1,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: portfolioGrid,
-      start: 'top 80%'
     }
-  });
+  ];
+  
+  // Initialize portfolio filter
+  initPortfolioFilter();
+  
+  // Initialize project modals
+  initProjectModals();
 }
 
 /**
  * Portfolio Filter With Animation
- * Enables filtering of portfolio items by category with smooth transitions
  */
 function initPortfolioFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
@@ -1469,74 +1325,7 @@ function initPortfolioFilter() {
 }
 
 /**
- * Initialize Portfolio Showcase
- * Creates an interactive showcase for featured project
- */
-function initPortfolioShowcase() {
-  const showcase = document.getElementById('portfolio-showcase');
-  const showcaseContent = document.getElementById('showcase-content');
-  const showcaseInfo = document.getElementById('showcase-info');
-  const showcaseContainer = document.querySelector('.portfolio-showcase-container');
-  
-  if (!showcase || !showcaseContent || !showcaseInfo || !showcaseContainer || !projectsData.length) return;
-  
-  // Get the first project for showcase
-  const featuredProject = projectsData[0];
-  
-  // Update showcase content
-  showcaseContent.innerHTML = `<img src="${featuredProject.mainImage}" alt="${featuredProject.title}">`;
-  
-  // Update showcase info
-  showcaseInfo.innerHTML = `
-    <h3>${featuredProject.title}</h3>
-    <p>${featuredProject.description}</p>
-    <div class="showcase-tags">
-      ${featuredProject.tags.map(tag => `<span>${tag}</span>`).join('')}
-    </div>
-    <a href="#" class="showcase-link" data-project-id="${featuredProject.id}">
-      View Project Details
-      <i class="fas fa-arrow-right"></i>
-    </a>
-  `;
-  
-  // Show showcase with animation
-  showcaseContainer.style.display = 'block';
-  gsap.from(showcase, {
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    delay: 0.5,
-    ease: 'power2.out'
-  });
-  
-  // Add click event for showcase link
-  const showcaseLink = showcaseInfo.querySelector('.showcase-link');
-  if (showcaseLink) {
-    showcaseLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projectId = showcaseLink.getAttribute('data-project-id');
-      if (projectId) {
-        openProjectModal(projectId);
-      }
-    });
-  }
-  
-  // Add 3D tilt effect to device frame
-  const deviceFrame = document.querySelector('.device-frame');
-  if (deviceFrame && window.VanillaTilt) {
-    VanillaTilt.init(deviceFrame, {
-      max: 8,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.3,
-      scale: 1.05
-    });
-  }
-}
-
-/**
  * Initialize project modal functionality
- * Creates an interactive project modal with gallery slider
  */
 function initProjectModals() {
   const modal = document.getElementById('project-modal');
@@ -1544,6 +1333,20 @@ function initProjectModals() {
   const backdrop = modal?.querySelector('.modal-backdrop');
   
   if (!modal) return;
+  
+  // Add click events to all portfolio links
+  document.querySelectorAll('.portfolio-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Find closest portfolio item to get project ID
+      const portfolioItem = link.closest('.portfolio-item');
+      if (portfolioItem) {
+        // Use data-category as a fallback if no project ID
+        // In a real implementation, you would use proper project IDs
+        openProjectModal(portfolioItem.dataset.category.split(' ')[0]);
+      }
+    });
+  });
   
   // Close modal when clicking the close button
   if (closeBtn) {
@@ -1564,23 +1367,17 @@ function initProjectModals() {
 }
 
 /**
- * Open project modal with the specified project data and animations
- * @param {string} projectId - ID of the project to display
+ * Open project modal with the specified project data
  */
 function openProjectModal(projectId) {
   const modal = document.getElementById('project-modal');
   const modalBody = modal?.querySelector('.modal-body');
   const modalTemplate = document.getElementById('project-modal-template');
   
-  if (!modal || !modalBody || !modalTemplate || !projectsData.length) return;
+  if (!modal || !modalBody || !modalTemplate) return;
   
-  // Find the project data
-  const project = projectsData.find(p => p.id === projectId);
-  
-  if (!project) {
-    console.error(`Project with ID "${projectId}" not found.`);
-    return;
-  }
+  // Find the project data - use first project as fallback
+  const project = projectsData.find(p => p.id === projectId) || projectsData[0];
   
   // Clear previous content
   modalBody.innerHTML = '';
@@ -1588,7 +1385,7 @@ function openProjectModal(projectId) {
   // Clone the template
   const clone = document.importNode(modalTemplate.content, true);
   
-  // Populate modal content
+  // Populate modal content with project data
   clone.querySelector('.modal-title').textContent = project.title;
   clone.querySelector('.modal-subtitle').textContent = project.modalContent.subtitle;
   
@@ -1612,7 +1409,7 @@ function openProjectModal(projectId) {
     });
   }
   
-  // Set description
+  // Set description and other details
   clone.querySelector('.modal-description').textContent = project.modalContent.detailedDescription;
   
   // Set project details
@@ -1673,14 +1470,13 @@ function openProjectModal(projectId) {
   
   // Reveal text animations in modal
   const revealElements = modal.querySelectorAll('.reveal-text');
-  revealElements.forEach((element, index) => {
+  revealElements.forEach(element => {
     element.classList.add('animated');
   });
 }
 
 /**
  * Initialize Gallery Slider
- * Creates interactive gallery slider in the project modal
  */
 function initGallerySlider() {
   const galleryTrack = document.querySelector('.gallery-track');
@@ -1723,68 +1519,6 @@ function initGallerySlider() {
       updateGallery();
     });
   });
-  
-  // Autoplay gallery
-  let galleryInterval = setInterval(() => {
-    currentSlide = (currentSlide + 1) % slidesCount;
-    updateGallery();
-  }, 5000);
-  
-  // Pause autoplay on hover
-  galleryTrack.addEventListener('mouseenter', () => {
-    clearInterval(galleryInterval);
-  });
-  
-  // Resume autoplay on mouse leave
-  galleryTrack.addEventListener('mouseleave', () => {
-    galleryInterval = setInterval(() => {
-      currentSlide = (currentSlide + 1) % slidesCount;
-      updateGallery();
-    }, 5000);
-  });
-  
-  // Touch swipe for mobile
-  let startX, moveX;
-  galleryTrack.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    clearInterval(galleryInterval);
-  }, { passive: true });
-  
-  galleryTrack.addEventListener('touchmove', (e) => {
-    if (!startX) return;
-    moveX = e.touches[0].clientX;
-    
-    // Calculate drag distance
-    const diffX = moveX - startX;
-    galleryTrack.style.transform = `translateX(${-currentSlide * slideWidth + diffX}px)`;
-  }, { passive: true });
-  
-  galleryTrack.addEventListener('touchend', () => {
-    if (!startX || !moveX) return;
-    
-    const diffX = moveX - startX;
-    const threshold = slideWidth / 3;
-    
-    if (diffX < -threshold) {
-      // Swipe left, go to next slide
-      currentSlide = Math.min(currentSlide + 1, slidesCount - 1);
-    } else if (diffX > threshold) {
-      // Swipe right, go to previous slide
-      currentSlide = Math.max(currentSlide - 1, 0);
-    }
-    
-    updateGallery();
-    
-    // Reset touch tracking
-    startX = null;
-    moveX = null;
-    
-    // Resume autoplay
-    galleryInterval = setInterval(() => {
-      currentSlide = (currentSlide + 1) % slidesCount;
-      updateGallery();
-    }, 5000);
-  }, { passive: true });
 }
 
 /**
@@ -1809,166 +1543,38 @@ function closeProjectModal() {
 }
 
 /**
- * Testimonial Slider
- * Creates a slider interface for testimonials with advanced animations
+ * Initialize Testimonials Scroll Animation
  */
-function initTestimonialSlider() {
+function initTestimonialsScroll() {
   const slider = document.querySelector('.testimonials-track');
-  const slides = document.querySelectorAll('.testimonial-card');
-  const dots = document.querySelectorAll('.testimonial-dot');
-  const prevBtn = document.querySelector('.testimonial-nav-prev');
-  const nextBtn = document.querySelector('.testimonial-nav-next');
+  if (!slider) return;
   
-  if (!slider || !slides.length) return;
+  // Make sure we have duplicated testimonials for infinite scrolling
+  const originalCards = slider.querySelectorAll('.testimonial-card');
   
-  let currentSlide = 0;
-  let slidesToShow = 3;
-  
-  // Update slider configuration based on window width
-  function updateSliderConfig() {
-    if (window.innerWidth < 768) {
-      slidesToShow = 1;
-    } else if (window.innerWidth < 992) {
-      slidesToShow = 2;
-    } else {
-      slidesToShow = 3;
-    }
-    
-    // Set slide widths based on container
-    const sliderWidth = slider.parentElement.offsetWidth;
-    const gap = 16; // Gap between slides (match CSS)
-    const slideWidth = (sliderWidth - (gap * (slidesToShow - 1))) / slidesToShow;
-    
-    // Update slide widths and container position
-    slides.forEach(slide => {
-      slide.style.width = `${slideWidth}px`;
-      slide.style.flex = `0 0 ${slideWidth}px`;
-    });
-    
-    // Move to current slide without animation
-    goToSlide(currentSlide, false);
-  }
-  
-  // Initialize slider
-  updateSliderConfig();
-  
-  // Go to specific slide with or without animation
-  function goToSlide(index, animate = true) {
-    if (index < 0) {
-      index = 0;
-    } else if (index > slides.length - slidesToShow) {
-      index = slides.length - slidesToShow;
-    }
-    
-    currentSlide = index;
-    
-    // Calculate translation distance
-    const slideWidth = slides[0].offsetWidth;
-    const translateX = -currentSlide * (slideWidth + 16); // 16 is the gap between slides
-    
-    // Apply transform with or without transition
-    if (animate) {
-      gsap.to(slider, {
-        x: translateX,
-        duration: 0.6,
-        ease: 'power3.out'
-      });
-    } else {
-      gsap.set(slider, { x: translateX });
-    }
-    
-    // Update dots
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentSlide);
-    });
-    
-    // Update button states
-    if (prevBtn && nextBtn) {
-      prevBtn.classList.toggle('disabled', currentSlide === 0);
-      nextBtn.classList.toggle('disabled', currentSlide === slides.length - slidesToShow);
-    }
-  }
-  
-  // Event listeners for navigation buttons
-  if (prevBtn) {
-    prevBtn.addEventListener('click', () => {
-      goToSlide(currentSlide - 1);
+  // Apply tilt effect to all testimonial cards
+  if (window.VanillaTilt) {
+    VanillaTilt.init(originalCards, {
+      max: 5,
+      speed: 400,
+      glare: false,
+      'max-glare': 0.2,
+      scale: 1.03
     });
   }
   
-  if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      goToSlide(currentSlide + 1);
-    });
-  }
-  
-  // Event listeners for dots
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      goToSlide(i);
-    });
+  // Pause animation on hover
+  slider.addEventListener('mouseenter', () => {
+    slider.style.animationPlayState = 'paused';
   });
   
-  // Auto-advance slider every 5 seconds
-  let autoplayInterval;
-  
-  function startAutoplay() {
-    autoplayInterval = setInterval(() => {
-      const nextSlide = (currentSlide + 1) % (slides.length - slidesToShow + 1);
-      goToSlide(nextSlide);
-    }, 5000);
-  }
-  
-  function stopAutoplay() {
-    clearInterval(autoplayInterval);
-  }
-  
-  // Start autoplay
-  startAutoplay();
-  
-  // Pause autoplay on hover
-  slider.parentElement.addEventListener('mouseenter', stopAutoplay);
-  slider.parentElement.addEventListener('mouseleave', startAutoplay);
-  
-  // Handle touch events for mobile swipe
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  slider.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    stopAutoplay();
-  }, { passive: true });
-  
-  slider.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
-    startAutoplay();
-  }, { passive: true });
-  
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    if (touchStartX - touchEndX > swipeThreshold) {
-      // Swipe left, go to next slide
-      goToSlide(currentSlide + 1);
-    } else if (touchEndX - touchStartX > swipeThreshold) {
-      // Swipe right, go to previous slide
-      goToSlide(currentSlide - 1);
-    }
-  }
-  
-  // Update slider on window resize
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      updateSliderConfig();
-    }, 200);
+  slider.addEventListener('mouseleave', () => {
+    slider.style.animationPlayState = 'running';
   });
 }
 
 /**
  * Initialize Video Modal
- * Handles video playback for testimonial video
  */
 function initVideoModal() {
   const videoThumbnail = document.querySelector('.testimonial-video-wrapper');
@@ -2002,7 +1608,6 @@ function initVideoModal() {
 
 /**
  * Initialize Progress Rings
- * Animates the circular progress indicators in stats section
  */
 function initProgressRings() {
   const progressRings = document.querySelectorAll('.progress-ring-circle');
@@ -2076,7 +1681,6 @@ function initProgressRings() {
 
 /**
  * Counter Animation
- * Animates number counters when they scroll into view
  */
 function initCounters() {
   const counters = document.querySelectorAll('.counter');
@@ -2115,7 +1719,6 @@ function initCounters() {
 
 /**
  * Initialize CTA Canvas Background
- * Creates an interactive canvas background for the CTA section
  */
 function initCTACanvas() {
   const canvas = document.getElementById('cta-canvas');
@@ -2199,7 +1802,6 @@ function initCTACanvas() {
 
 /**
  * Initialize Contact Map
- * Creates an interactive map in the contact section
  */
 function initContactMap() {
   const mapContainer = document.getElementById('contact-map');
@@ -2214,25 +1816,13 @@ function initContactMap() {
 
 /**
  * Initialize Brands Marquee
- * Creates an infinite scrolling effect for brand logos
  */
 function initBrandsMarquee() {
-  const brandsTrack = document.querySelector('.brands-track');
-  if (!brandsTrack) return;
-  
-  // Clone the brand logos to ensure continuous scroll
-  const brandLogos = brandsTrack.querySelectorAll('.brand-logo');
-  
-  // Clone each logo and append to the track
-  brandLogos.forEach(logo => {
-    const clone = logo.cloneNode(true);
-    brandsTrack.appendChild(clone);
-  });
+  // Already set up with the autoprefixer for continuous scroll
 }
 
 /**
  * Initialize Footer Particles
- * Creates a subtle particle effect in the footer
  */
 function initFooterParticles() {
   // Implementation included in initParticlesJS function
@@ -2240,7 +1830,6 @@ function initFooterParticles() {
 
 /**
  * Form Interactions
- * Adds animations and validation to the contact form
  */
 function initFormInteractions() {
   const form = document.getElementById('contact-form');
@@ -2250,9 +1839,6 @@ function initFormInteractions() {
   
   // Add focus effects
   formInputs.forEach(input => {
-    // Add placeholder for all inputs
-    input.setAttribute('placeholder', ' ');
-    
     // Focus and blur effects
     input.addEventListener('focus', () => {
       input.parentElement.classList.add('focused');
@@ -2422,7 +2008,6 @@ function initFormInteractions() {
 
 /**
  * Back to Top Button
- * Shows/hides the back to top button and handles scroll functionality
  */
 function initBackToTop() {
   const backToTopBtn = document.querySelector('.back-to-top');
@@ -2456,7 +2041,6 @@ function initBackToTop() {
 
 /**
  * Page Transitions
- * Adds smooth transitions between pages
  */
 function initPageTransitions() {
   const transitionElement = document.querySelector('.page-transition');
