@@ -46,6 +46,142 @@ const helpers = {
       timeout = setTimeout(() => func.apply(context, args), wait);
     };
   }
+}
+
+/**
+ * Handle Scroll Events
+ */
+function handleScroll() {
+  // Update header state
+  if (DOM.header) {
+    if (window.scrollY > 50) {
+      DOM.header.classList.add('scrolled');
+    } else {
+      DOM.header.classList.remove('scrolled');
+    }
+  }
+  
+  // Update navigation active state
+  updateNavigation();
+  
+  // Update back to top button visibility
+  updateBackToTopVisibility();
+}
+
+/**
+ * Handle Resize Events
+ */
+function handleResize() {
+  // Update any responsive elements if needed
+  if (window.VanillaTilt && !config.isTouchDevice) {
+    // Reinitialize tilt for consistent behavior
+    VanillaTilt.init(DOM.tiltElements, {
+      max: 5,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.15,
+      scale: 1.03
+    });
+  }
+}
+
+/**
+ * Helper Functions for Services Carousel
+ */
+
+// Load script dynamically
+function loadScript(url, callback) {
+  const script = document.createElement('script');
+  script.src = url;
+  script.onload = callback;
+  document.head.appendChild(script);
+}
+
+// Load CSS dynamically
+function loadCSS(url, callback) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = url;
+  link.onload = callback;
+  document.head.appendChild(link);
+}
+
+/**
+ * Back to Top Button
+ */
+function initBackToTop() {
+  if (!DOM.backToTop) return;
+  
+  // Initial check
+  updateBackToTopVisibility();
+  
+  // Click event
+  DOM.backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Scroll to top with smooth behavior
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+/**
+ * Update Back to Top visibility
+ */
+function updateBackToTopVisibility() {
+  if (!DOM.backToTop) return;
+  
+  if (window.scrollY > 500) {
+    DOM.backToTop.classList.add('active');
+  } else {
+    DOM.backToTop.classList.remove('active');
+  }
+}
+
+/**
+ * Update Portfolio Grid
+ */
+function updatePortfolioGrid() {
+  if (!DOM.portfolioGrid || !window.projectsData) return;
+  
+  // Clear existing content
+  DOM.portfolioGrid.innerHTML = '';
+  
+  // Create HTML for portfolio items
+  const portfolioHTML = window.projectsData.map(project => `
+    <div class="portfolio-item tilt-element" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
+      <div class="portfolio-image">
+        <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-content">
+          <div class="portfolio-tags">
+            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+          </div>
+          <h3 class="portfolio-title">${project.title}</h3>
+          <a href="#" class="portfolio-link" data-project-id="${project.id}">
+            <span>View Details</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  
+  // Add to DOM
+  DOM.portfolioGrid.innerHTML = portfolioHTML;
+  
+  // Re-initialize tilt effect
+  if (window.VanillaTilt && !config.isTouchDevice) {
+    VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
+      max: 5,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.15
+    });
+  }
 };
 
 // Initialize when DOM is fully loaded
@@ -79,6 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
   initProjectModals();
   initFormInteractions();
   
+  // Initialize services carousel
+  initServicesCarousel();
+  initServiceTypedText();
+  
   // Load data and initialize back to top button
   loadProjectsData();
   initBackToTop();
@@ -111,6 +251,9 @@ function cacheDOM() {
   // Forms
   DOM.contactForm = document.getElementById('contact-form');
   DOM.formInputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+  
+  // Services carousel
+  DOM.servicesCarousel = document.querySelector('.services-carousel');
 }
 
 /**
@@ -383,6 +526,255 @@ function initMobileMenu() {
     DOM.mobileMenu.classList.remove('active');
     document.body.classList.remove('no-scroll');
   }
+}
+
+/**
+ * Initialize Services Carousel
+ */
+function initServicesCarousel() {
+  // Check if Swiper is available
+  if (typeof Swiper === 'undefined') {
+    // Load Swiper dynamically if not available
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', function() {
+      // Load Swiper CSS
+      loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', function() {
+        // Initialize carousel after loading dependencies
+        setupServicesCarousel();
+      });
+    });
+  } else {
+    // Initialize immediately if Swiper is already available
+    setupServicesCarousel();
+  }
+}
+
+/**
+ * Setup Services Carousel with Swiper
+ */
+function setupServicesCarousel() {
+  // Determine breakpoints based on screen size
+  const getBreakpoints = () => {
+    return {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20,
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      }
+    };
+  };
+
+  // Initialize Swiper with advanced configuration
+  const servicesSwiper = new Swiper('.services-carousel', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    centeredSlides: false,
+    loop: false,
+    speed: 800,
+    grabCursor: true,
+    mousewheel: {
+      forceToAxis: true,
+      sensitivity: 1,
+    },
+    keyboard: {
+      enabled: true,
+    },
+    pagination: {
+      el: '.services-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: '.services-nav-next',
+      prevEl: '.services-nav-prev',
+    },
+    breakpoints: getBreakpoints(),
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: true,
+      pauseOnMouseEnter: true,
+    },
+    effect: 'slide', // Base effect
+    on: {
+      init: function() {
+        animateActiveSlides(this);
+      },
+      slideChange: function() {
+        animateActiveSlides(this);
+        
+        // Update typed text when slide changes
+        const activeIndex = this.activeIndex;
+        const activeSlide = this.slides[activeIndex];
+        
+        if (activeSlide) {
+          const typedElement = activeSlide.querySelector('.service-typed');
+          if (typedElement && typedElement._typed) {
+            typedElement._typed.reset();
+          }
+        }
+      },
+      resize: function() {
+        // Update breakpoints if necessary on resize
+        this.params.breakpoints = getBreakpoints();
+        this.update();
+      }
+    }
+  });
+
+  // Handle hover pause for autoplay
+  const swiperContainer = document.querySelector('.services-carousel');
+  if (swiperContainer) {
+    swiperContainer.addEventListener('mouseenter', function() {
+      servicesSwiper.autoplay.stop();
+    });
+
+    swiperContainer.addEventListener('mouseleave', function() {
+      servicesSwiper.autoplay.start();
+    });
+  }
+
+  // Add parallax effect to service cards on mouse move
+  const serviceCards = document.querySelectorAll('.service-card');
+  serviceCards.forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      // Only apply effect if device supports hover
+      if (window.matchMedia('(hover: hover)').matches) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Calculate percentage position
+        const xPercent = x / rect.width - 0.5;
+        const yPercent = y / rect.height - 0.5;
+        
+        // Apply subtle rotation based on mouse position (max 3deg)
+        card.style.transform = `perspective(1000px) rotateX(${yPercent * -3}deg) rotateY(${xPercent * 3}deg) translateZ(10px)`;
+        
+        // Move icon slightly
+        const icon = card.querySelector('.service-icon');
+        if (icon) {
+          icon.style.transform = `translateX(${xPercent * 5}px) translateY(${yPercent * 5}px) scale(1.1)`;
+        }
+      }
+    });
+
+    card.addEventListener('mouseleave', function() {
+      // Reset transformation on mouse leave
+      card.style.transform = '';
+      
+      // Reset icon position
+      const icon = card.querySelector('.service-icon');
+      if (icon) {
+        icon.style.transform = '';
+      }
+    });
+  });
+
+  // Add window resize handler to update swiper
+  window.addEventListener('resize', helpers.debounce(function() {
+    servicesSwiper.update();
+  }, 250));
+}
+
+/**
+ * Animate Active Slides
+ */
+function animateActiveSlides(swiper) {
+  // Reset all slides
+  swiper.slides.forEach(slide => {
+    const card = slide.querySelector('.service-card');
+    if (card) {
+      card.style.transform = '';
+      card.style.opacity = '0.7';
+    }
+  });
+
+  // Animate active slide and adjacent slides
+  const activeIndex = swiper.activeIndex;
+  
+  // Get active slide and adjacent slides
+  const activeSlide = swiper.slides[activeIndex];
+  const prevSlide = swiper.slides[activeIndex - 1];
+  const nextSlide = swiper.slides[activeIndex + 1];
+  
+  // Animate active slide
+  if (activeSlide) {
+    const activeCard = activeSlide.querySelector('.service-card');
+    if (activeCard) {
+      activeCard.style.transform = 'translateY(-10px)';
+      activeCard.style.opacity = '1';
+    }
+  }
+  
+  // Animate adjacent slides
+  if (prevSlide) {
+    const prevCard = prevSlide.querySelector('.service-card');
+    if (prevCard) {
+      prevCard.style.transform = 'translateY(-5px)';
+      prevCard.style.opacity = '0.85';
+    }
+  }
+  
+  if (nextSlide) {
+    const nextCard = nextSlide.querySelector('.service-card');
+    if (nextCard) {
+      nextCard.style.transform = 'translateY(-5px)';
+      nextCard.style.opacity = '0.85';
+    }
+  }
+}
+
+/**
+ * Initialize Typed.js for Service Descriptions
+ */
+function initServiceTypedText() {
+  // Check if Typed.js is available
+  if (typeof Typed === 'undefined') {
+    // Load Typed.js dynamically if not available
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', function() {
+      // Initialize typed text after loading dependency
+      setupServiceTypedText();
+    });
+  } else {
+    // Initialize immediately if Typed.js is already available
+    setupServiceTypedText();
+  }
+}
+
+/**
+ * Setup Typed.js for Service Descriptions
+ */
+function setupServiceTypedText() {
+  // Select all elements with service-typed class
+  const typedElements = document.querySelectorAll('.service-typed');
+  
+  // Initialize Typed.js for each element
+  typedElements.forEach(element => {
+    // Get items to type from data attribute
+    const items = element.getAttribute('data-typed-items').split(',');
+    
+    // Create Typed instance
+    const typed = new Typed(element, {
+      strings: items,
+      typeSpeed: 50,
+      backSpeed: 30,
+      backDelay: 2000,
+      startDelay: 300,
+      loop: true,
+      cursorChar: '|',
+      shuffle: false,
+      smartBackspace: true
+    });
+    
+    // Store typed instance on element for later control
+    element._typed = typed;
+  });
 }
 
 /**
@@ -769,121 +1161,6 @@ function updateFeaturedProjects() {
       speed: 400,
       glare: true,
       'max-glare': 0.15
-    });
-  }
-}
-
-/**
- * Update Portfolio Grid
- */
-function updatePortfolioGrid() {
-  if (!DOM.portfolioGrid || !window.projectsData) return;
-  
-  // Clear existing content
-  DOM.portfolioGrid.innerHTML = '';
-  
-  // Create HTML for portfolio items
-  const portfolioHTML = window.projectsData.map(project => `
-    <div class="portfolio-item tilt-element" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
-      <div class="portfolio-image">
-        <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
-      </div>
-      <div class="portfolio-overlay">
-        <div class="portfolio-content">
-          <div class="portfolio-tags">
-            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
-          </div>
-          <h3 class="portfolio-title">${project.title}</h3>
-          <a href="#" class="portfolio-link" data-project-id="${project.id}">
-            <span>View Details</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  
-  // Add to DOM
-  DOM.portfolioGrid.innerHTML = portfolioHTML;
-  
-  // Re-initialize tilt effect
-  if (window.VanillaTilt && !config.isTouchDevice) {
-    VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
-      max: 5,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.15
-    });
-  }
-}
-
-/**
- * Back to Top Button
- */
-function initBackToTop() {
-  if (!DOM.backToTop) return;
-  
-  // Initial check
-  updateBackToTopVisibility();
-  
-  // Click event
-  DOM.backToTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    
-    // Scroll to top with smooth behavior
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-}
-
-/**
- * Update Back to Top visibility
- */
-function updateBackToTopVisibility() {
-  if (!DOM.backToTop) return;
-  
-  if (window.scrollY > 500) {
-    DOM.backToTop.classList.add('active');
-  } else {
-    DOM.backToTop.classList.remove('active');
-  }
-}
-
-/**
- * Handle Scroll Events
- */
-function handleScroll() {
-  // Update header state
-  if (DOM.header) {
-    if (window.scrollY > 50) {
-      DOM.header.classList.add('scrolled');
-    } else {
-      DOM.header.classList.remove('scrolled');
-    }
-  }
-  
-  // Update navigation active state
-  updateNavigation();
-  
-  // Update back to top button visibility
-  updateBackToTopVisibility();
-}
-
-/**
- * Handle Resize Events
- */
-function handleResize() {
-  // Update any responsive elements if needed
-  if (window.VanillaTilt && !config.isTouchDevice) {
-    // Reinitialize tilt for consistent behavior
-    VanillaTilt.init(DOM.tiltElements, {
-      max: 5,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.15,
-      scale: 1.03
     });
   }
 }
