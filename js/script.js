@@ -1,15 +1,9 @@
 /**
- * Elan's Tech World - Optimized JavaScript file
- * 
- * Includes fixes for:
- * - Faster loading time
- * - Better header visibility
- * - Continuous scrolling for clients, tech stack, and testimonials
- * - Enhanced background visuals
- * - Proper alignment of content
+ * Elan's Tech World - Main JavaScript
+ * Optimized and fixed for better performance and full functionality
  */
 
-// Store project data globally
+// Global project data storage
 let projectsData = [];
 
 // Wait for DOM to be fully loaded
@@ -17,11 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Remove preload class to enable animations
   setTimeout(() => {
     document.body.classList.remove('preload');
-  }, 300); // Reduced from 500ms
+  }, 300);
   
   // Initialize all components
   initPageLoader();
-  initCustomCursor();
   initParticlesJS();
   initGSAPAnimations();
   initNavigation();
@@ -30,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hero section
   initHeroTyped();
   initHeroParallax();
-  // We're showing sample featured projects directly in HTML now
-  // loadFeaturedProjects();
   
   // Services and Process sections
   initMagneticElements();
@@ -42,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Portfolio section
   initPortfolio3DScene();
-  initPortfolio();
+  loadProjectsFromJSON();
   
   // Testimonials and Stats
   initTestimonialsScroll();
@@ -53,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // CTA, Contact and Footer
   initCTACanvas();
   initContactMap();
-  initBrandsMarquee();
   initFooterParticles();
   
   // Global elements
@@ -62,15 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollTriggerAnimations();
   initFormInteractions();
   initBackToTop();
-  initPageTransitions();
   
   // Initialize infinite scrolling for clients and tech stack
   initInfiniteScrolling();
 });
 
 /**
- * Optimized Page Loader Animation
- * Faster loading and uses logo instead of glitch text
+ * Page Loader Animation
  */
 function initPageLoader() {
   const loader = document.querySelector('.loader-container');
@@ -87,14 +75,13 @@ function initPageLoader() {
   
   if (!loader || !progressBar) return;
   
-  // Simulate loading progress faster
-  let progress = 0;
-  let messageIndex = 0;
-  
   // Show message immediately
   loaderMessage.textContent = loaderMessages[0];
   
-  // Update loader message periodically but more quickly
+  let progress = 0;
+  let messageIndex = 0;
+  
+  // Update loader message periodically
   const messageInterval = setInterval(() => {
     messageIndex = (messageIndex + 1) % loaderMessages.length;
     
@@ -104,11 +91,11 @@ function initPageLoader() {
       loaderMessage.textContent = loaderMessages[messageIndex];
       loaderMessage.style.opacity = 1;
     }, 200);
-  }, 800); // Faster message change
+  }, 800);
   
-  // Accelerated progress animation
+  // Progress animation
   const interval = setInterval(() => {
-    // Faster progress simulation
+    // Progress simulation
     if (progress < 50) {
       progress += Math.random() * 15;
     } else if (progress < 85) {
@@ -125,11 +112,11 @@ function initPageLoader() {
       // Final message
       loaderMessage.textContent = 'Welcome to Elan\'s Tech World!';
       
-      // Delay to ensure animation completes, but shorter delay
+      // Delay to ensure animation completes
       setTimeout(() => {
         gsap.to(loader, {
           opacity: 0,
-          duration: 0.5, // Faster fade-out
+          duration: 0.5,
           ease: 'power2.inOut',
           onComplete: () => {
             loader.style.display = 'none';
@@ -141,148 +128,23 @@ function initPageLoader() {
             document.body.style.overflow = 'visible';
           }
         });
-      }, 500); // Reduced delay
+      }, 500);
     }
     
     // Update progress bar and percentage
     progressBar.style.width = `${progress}%`;
     percentage.textContent = `${Math.round(progress)}%`;
-  }, 50); // Faster updates
+  }, 50);
   
   // Prevent scroll during loading
   document.body.style.overflow = 'hidden';
 }
 
 /**
- * Initialize Custom Cursor
- */
-function initCustomCursor() {
-  const cursor = document.querySelector('.cursor-follower');
-  if (!cursor) return;
-  
-  // Check if device has touch capabilities
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-    document.body.classList.add('touch-device');
-    cursor.style.display = 'none';
-    return;
-  }
-  
-  let mouseX = -100;
-  let mouseY = -100;
-  let cursorX = -100;
-  let cursorY = -100;
-  
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    
-    // Show cursor when it enters the viewport
-    if (cursor.classList.contains('hidden')) {
-      cursor.classList.remove('hidden');
-    }
-  });
-  
-  document.addEventListener('mouseout', () => {
-    cursor.classList.add('hidden');
-  });
-  
-  // Add hover effect for interactive elements
-  const interactiveElements = document.querySelectorAll('a, button, .tilt-element, input, textarea, select, .interactive');
-  
-  interactiveElements.forEach(element => {
-    element.addEventListener('mouseenter', () => {
-      cursor.classList.add('hover');
-    });
-    
-    element.addEventListener('mouseleave', () => {
-      cursor.classList.remove('hover');
-    });
-    
-    element.addEventListener('mousedown', () => {
-      cursor.classList.add('active');
-    });
-    
-    element.addEventListener('mouseup', () => {
-      cursor.classList.remove('active');
-    });
-  });
-  
-  // Animate cursor with smooth follow
-  function animateCursor() {
-    // Smoothly interpolate cursor position
-    cursorX += (mouseX - cursorX) * 0.1;
-    cursorY += (mouseY - cursorY) * 0.1;
-    
-    if (cursor) {
-      cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
-    }
-    
-    requestAnimationFrame(animateCursor);
-  }
-  
-  animateCursor();
-}
-
-/**
- * Initialize Infinite Scrolling for marquees
- * Ensures continuous scrolling for clients, tech stack, testimonials
+ * Initialize Infinite Scrolling
  */
 function initInfiniteScrolling() {
-  // Make sure there are duplicated elements in the DOM to enable continuous scroll
-  
-  // Ensure client cards are duplicated for infinite scrolling
-  const clientsTrack = document.querySelector('.clients-track');
-  if (clientsTrack) {
-    // Calculate the width of all client cards together for animation
-    const clientCards = clientsTrack.querySelectorAll('.client-card');
-    const halfwayPoint = clientCards.length / 2;
-    
-    if (halfwayPoint > 0) {
-      // Apply animation keyframes dynamically
-      const totalWidth = Array.from(clientCards).slice(0, halfwayPoint).reduce((width, card) => {
-        return width + card.offsetWidth + parseInt(getComputedStyle(card).marginRight, 10);
-      }, 0);
-      
-      // Ensure smooth infinite scrolling
-      clientsTrack.style.setProperty('--scroll-width', `${totalWidth}px`);
-    }
-  }
-  
-  // Set up tech stack infinite scrolling
-  const techStackTrack = document.querySelector('.tech-stack-track');
-  if (techStackTrack) {
-    const techIcons = techStackTrack.querySelectorAll('.tech-icon');
-    const halfwayPoint = techIcons.length / 2;
-    
-    if (halfwayPoint > 0) {
-      // Apply animation keyframes dynamically
-      const totalWidth = Array.from(techIcons).slice(0, halfwayPoint).reduce((width, icon) => {
-        return width + icon.offsetWidth + parseInt(getComputedStyle(icon).marginRight, 10);
-      }, 0);
-      
-      // Ensure smooth infinite scrolling
-      techStackTrack.style.setProperty('--scroll-width', `${totalWidth}px`);
-    }
-  }
-  
-  // Set up testimonials infinite scrolling
-  const testimonialsTrack = document.querySelector('.testimonials-track');
-  if (testimonialsTrack) {
-    const testimonialCards = testimonialsTrack.querySelectorAll('.testimonial-card');
-    const halfwayPoint = testimonialCards.length / 2;
-    
-    if (halfwayPoint > 0) {
-      // Apply animation keyframes dynamically
-      const totalWidth = Array.from(testimonialCards).slice(0, halfwayPoint).reduce((width, card) => {
-        return width + card.offsetWidth + parseInt(getComputedStyle(card).marginRight, 10);
-      }, 0);
-      
-      // Ensure smooth infinite scrolling
-      testimonialsTrack.style.setProperty('--scroll-width', `${totalWidth}px`);
-    }
-  }
-  
-  // Pause animations on hover for better UX
+  // Ensure scrolling animations for marquees work properly
   document.querySelectorAll('.clients-track, .tech-stack-track, .testimonials-track').forEach(track => {
     track.addEventListener('mouseenter', () => {
       track.style.animationPlayState = 'paused';
@@ -295,7 +157,7 @@ function initInfiniteScrolling() {
 }
 
 /**
- * Initialize Particles.js for attractive background particles
+ * Initialize Particles.js
  */
 function initParticlesJS() {
   // Hero particles
@@ -411,7 +273,6 @@ function initParticlesJS() {
 
 /**
  * Initialize GSAP Animations
- * Sets up ScrollTrigger and animations
  */
 function initGSAPAnimations() {
   // Register ScrollTrigger plugin
@@ -425,7 +286,7 @@ function initGSAPAnimations() {
 }
 
 /**
- * Animate Hero Elements when page loads
+ * Animate Hero Elements
  */
 function animateHeroElements() {
   const heroElements = document.querySelectorAll('[data-animation="fade-up"]');
@@ -574,33 +435,6 @@ function initScrollTriggerAnimations() {
       }
     });
   });
-  
-  // Hero grid animation
-  const heroGrid = document.querySelector('.hero-grid');
-  if (heroGrid) {
-    gsap.from(heroGrid, {
-      opacity: 0,
-      duration: 2,
-      ease: 'power2.inOut'
-    });
-  }
-  
-  // Services 3D grid animation
-  const services3dGrid = document.querySelector('.services-3d-grid');
-  if (services3dGrid) {
-    gsap.to(services3dGrid, {
-      backgroundSize: '100px 100px',
-      opacity: 0.15,
-      duration: 3,
-      ease: 'power1.inOut',
-      scrollTrigger: {
-        trigger: '.services-section',
-        start: 'top 80%',
-        end: 'bottom 60%',
-        toggleActions: 'play none none reverse'
-      }
-    });
-  }
 }
 
 /**
@@ -610,7 +444,7 @@ function initHeroTyped() {
   const typedElement = document.getElementById('hero-typed');
   if (!typedElement) return;
   
-  const typed = new Typed('#hero-typed', {
+  new Typed('#hero-typed', {
     stringsElement: '#hero-typed-strings',
     typeSpeed: 50,
     backSpeed: 30,
@@ -646,7 +480,7 @@ function initHeroParallax() {
     
     // Animate hero shapes in opposite direction (parallax effect)
     heroShapes.forEach((shape, index) => {
-      const depth = index * 0.2 + 0.4; // Different depth for each shape
+      const depth = index * 0.2 + 0.4;
       
       gsap.to(shape, {
         x: -moveX * depth * 5,
@@ -691,8 +525,6 @@ function initMagneticElements() {
       const rect = element.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      
-      const strength = element.classList.contains('magnetic-button-sm') ? 10 : 20;
       
       gsap.to(element, {
         x: x * 0.3,
@@ -863,6 +695,7 @@ function initNavigation() {
         if (mobileMenu && mobileMenu.classList.contains('active')) {
           mobileMenu.classList.remove('active');
           menuToggle.classList.remove('active');
+          document.body.classList.remove('no-scroll');
         }
       }
     });
@@ -877,6 +710,7 @@ function initMobileMenu() {
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileMenuClose = document.querySelector('.mobile-menu-close');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileBackdrop = document.querySelector('.mobile-menu-backdrop');
   
   if (!menuToggle || !mobileMenu) return;
   
@@ -888,6 +722,12 @@ function initMobileMenu() {
     
     // Animate mobile menu items when menu opens
     if (mobileMenu.classList.contains('active')) {
+      gsap.to('.mobile-menu-container', {
+        x: 0,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+      
       gsap.to('.mobile-nav-item', {
         y: 0,
         opacity: 1,
@@ -901,48 +741,38 @@ function initMobileMenu() {
   
   // Close button functionality
   if (mobileMenuClose) {
-    mobileMenuClose.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      
-      // Reset mobile menu item animations
-      gsap.set('.mobile-nav-item', {
-        y: 20,
-        opacity: 0
-      });
-    });
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+  }
+  
+  // Close when clicking on backdrop
+  if (mobileBackdrop) {
+    mobileBackdrop.addEventListener('click', closeMobileMenu);
   }
   
   // Close menu when clicking on mobile navigation links
   mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      
-      // Reset mobile menu item animations
-      gsap.set('.mobile-nav-item', {
-        y: 20,
-        opacity: 0
-      });
-    });
+    link.addEventListener('click', closeMobileMenu);
   });
   
-  // Close menu when clicking outside
-  mobileMenu.addEventListener('click', (e) => {
-    if (e.target === mobileMenu) {
-      menuToggle.classList.remove('active');
-      mobileMenu.classList.remove('active');
-      document.body.classList.remove('no-scroll');
-      
-      // Reset mobile menu item animations
-      gsap.set('.mobile-nav-item', {
-        y: 20,
-        opacity: 0
-      });
-    }
-  });
+  function closeMobileMenu() {
+    // Animate mobile menu container out
+    gsap.to('.mobile-menu-container', {
+      x: '100%',
+      duration: 0.4,
+      ease: 'power2.in',
+      onComplete: () => {
+        menuToggle.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        
+        // Reset mobile menu item animations
+        gsap.set('.mobile-nav-item', {
+          y: 20,
+          opacity: 0
+        });
+      }
+    });
+  }
 }
 
 /**
@@ -1185,66 +1015,134 @@ function initPortfolio3DScene() {
 }
 
 /**
- * Initialize Portfolio Features
+ * Fetch Projects from JSON
  */
-function initPortfolio() {
-  // Sample projects data - we're showing samples directly in HTML now
-  projectsData = [
-    {
-      id: "project1",
-      title: "Doug Psychological",
-      categories: ["web"],
-      tags: ["Web Design", "Healthcare"],
-      mainImage: "./assets/images/doug.png",
-      website: "#",
-      modalContent: {
-        subtitle: "Healthcare Web Platform",
-        detailedDescription: "A comprehensive web platform for psychological services",
-        projectDetails: ["Custom appointment scheduling", "Patient portal"],
-        technologies: ["HTML5", "CSS3", "JavaScript", "PHP"],
-        results: "Increased patient engagement by 40% and streamlined scheduling process.",
-        galleryImages: ["./assets/images/doug.png"]
+function loadProjectsFromJSON() {
+  fetch('projects.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    },
-    {
-      id: "project2",
-      title: "Cohen & Associates",
-      categories: ["web", "marketing"],
-      tags: ["Web Design", "Legal"],
-      mainImage: "./assets/images/logocohen.jpeg",
-      website: "#",
-      modalContent: {
-        subtitle: "Legal Services Website",
-        detailedDescription: "Professional website for a law firm with secure document handling",
-        projectDetails: ["Document management system", "Client portal"],
-        technologies: ["JavaScript", "PHP", "MySQL"],
-        results: "Streamlined client communication and document sharing.",
-        galleryImages: ["./assets/images/logocohen.jpeg"]
-      }
-    },
-    {
-      id: "project3",
-      title: "Iconic Aesthetics",
-      categories: ["web", "pos"],
-      tags: ["Web Design", "POS System"],
-      mainImage: "./assets/images/iconic.jpeg",
-      website: "#",
-      modalContent: {
-        subtitle: "Beauty Clinic Technology Solution",
-        detailedDescription: "Integrated web and POS system for a beauty clinic",
-        projectDetails: ["Appointment scheduling", "Inventory management"],
-        technologies: ["React", "Node.js", "MongoDB"],
-        results: "Increased bookings by 35% and improved inventory tracking.",
-        galleryImages: ["./assets/images/iconic.jpeg"]
-      }
-    }
-  ];
+      return response.json();
+    })
+    .then(data => {
+      projectsData = data.projects;
+      
+      // Update featured projects in hero section
+      updateFeaturedProjects(projectsData);
+      
+      // Update portfolio grid
+      updatePortfolioProjects(projectsData);
+      
+      // Initialize portfolio filter
+      initPortfolioFilter();
+      
+      // Initialize project modals
+      initProjectModals();
+      
+      console.log('Projects successfully loaded from JSON');
+    })
+    .catch(error => {
+      console.error('Error loading projects from JSON:', error);
+      
+      // Use default projects if JSON fails to load
+      initPortfolioFilter();
+      initProjectModals();
+    });
+}
+
+/**
+ * Update Featured Projects in Hero Section
+ */
+function updateFeaturedProjects(projects) {
+  const featuredContainer = document.getElementById('featured-projects');
+  if (!featuredContainer) return;
   
-  // Initialize portfolio filter
-  initPortfolioFilter();
+  // Clear existing content
+  featuredContainer.innerHTML = '';
   
-  // Initialize project modals
-  initProjectModals();
+  // Take first 3 projects
+  const featuredProjects = projects.slice(0, 3);
+  
+  featuredProjects.forEach(project => {
+    const projectElement = document.createElement('div');
+    projectElement.className = 'featured-project';
+    projectElement.setAttribute('data-tilt', '');
+    projectElement.setAttribute('data-tilt-max', '10');
+    
+    projectElement.innerHTML = `
+      <img src="${project.mainImage}" alt="${project.title}" class="featured-project-image">
+      <div class="featured-project-title">${project.title}</div>
+    `;
+    
+    featuredContainer.appendChild(projectElement);
+  });
+  
+  // Reinitialize tilt effect
+  if (window.VanillaTilt) {
+    VanillaTilt.init(document.querySelectorAll('.featured-project'), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.15
+    });
+  }
+}
+
+/**
+ * Update Portfolio Projects
+ */
+function updatePortfolioProjects(projects) {
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  if (!portfolioGrid) return;
+  
+  // Clear existing projects
+  portfolioGrid.innerHTML = '';
+  
+  projects.forEach(project => {
+    const projectElement = document.createElement('div');
+    projectElement.className = 'portfolio-item tilt-element';
+    projectElement.setAttribute('data-category', project.categories.join(' '));
+    projectElement.setAttribute('data-project-id', project.id);
+    projectElement.setAttribute('data-tilt', '');
+    projectElement.setAttribute('data-tilt-max', '10');
+    projectElement.setAttribute('data-tilt-perspective', '1000');
+    
+    projectElement.innerHTML = `
+      <div class="portfolio-item-inner">
+        <div class="portfolio-image">
+          <img src="${project.mainImage}" alt="${project.title}">
+        </div>
+        <div class="portfolio-overlay">
+          <div class="portfolio-content">
+            <div class="portfolio-tags">
+              ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+            </div>
+            <h3 class="portfolio-title">${project.title}</h3>
+            <a href="#" class="portfolio-link magnetic-button-sm" data-project-id="${project.id}">
+              <span>View Details</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    portfolioGrid.appendChild(projectElement);
+  });
+  
+  // Reinitialize tilt effect
+  if (window.VanillaTilt) {
+    VanillaTilt.init(document.querySelectorAll('.portfolio-item'), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.15
+    });
+  }
+  
+  // Add magnetic effect to portfolio links
+  initMagneticElements();
 }
 
 /**
@@ -1265,6 +1163,11 @@ function initPortfolioFilter() {
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       // Update active button styles
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+      
       gsap.to(filterButtons, {
         color: '#8e8e93',
         background: '#ffffff',
@@ -1325,7 +1228,7 @@ function initPortfolioFilter() {
 }
 
 /**
- * Initialize project modal functionality
+ * Initialize Project Modals
  */
 function initProjectModals() {
   const modal = document.getElementById('project-modal');
@@ -1335,15 +1238,18 @@ function initProjectModals() {
   if (!modal) return;
   
   // Add click events to all portfolio links
-  document.querySelectorAll('.portfolio-link').forEach(link => {
-    link.addEventListener('click', (e) => {
+  document.querySelectorAll('.portfolio-link, .portfolio-item').forEach(element => {
+    element.addEventListener('click', (e) => {
       e.preventDefault();
-      // Find closest portfolio item to get project ID
-      const portfolioItem = link.closest('.portfolio-item');
-      if (portfolioItem) {
-        // Use data-category as a fallback if no project ID
-        // In a real implementation, you would use proper project IDs
-        openProjectModal(portfolioItem.dataset.category.split(' ')[0]);
+      e.stopPropagation();
+      
+      // Find project ID
+      const projectId = element.dataset.projectId || 
+                      element.closest('.portfolio-item')?.dataset.projectId || 
+                      element.querySelector('[data-project-id]')?.dataset.projectId;
+      
+      if (projectId) {
+        openProjectModal(projectId);
       }
     });
   });
@@ -1367,17 +1273,18 @@ function initProjectModals() {
 }
 
 /**
- * Open project modal with the specified project data
+ * Open Project Modal
  */
 function openProjectModal(projectId) {
   const modal = document.getElementById('project-modal');
   const modalBody = modal?.querySelector('.modal-body');
   const modalTemplate = document.getElementById('project-modal-template');
   
-  if (!modal || !modalBody || !modalTemplate) return;
+  if (!modal || !modalBody || !modalTemplate || !projectsData.length) return;
   
-  // Find the project data - use first project as fallback
-  const project = projectsData.find(p => p.id === projectId) || projectsData[0];
+  // Find the project data
+  const project = projectsData.find(p => p.id === projectId);
+  if (!project) return;
   
   // Clear previous content
   modalBody.innerHTML = '';
@@ -1438,7 +1345,7 @@ function openProjectModal(projectId) {
   // Add content to modal
   modalBody.appendChild(clone);
   
-  // Initialize gallery navigation
+  // Initialize gallery slider
   initGallerySlider();
   
   // Activate modal with animation
@@ -1467,12 +1374,6 @@ function openProjectModal(projectId) {
     delay: 0.4,
     ease: 'power2.inOut'
   });
-  
-  // Reveal text animations in modal
-  const revealElements = modal.querySelectorAll('.reveal-text');
-  revealElements.forEach(element => {
-    element.classList.add('animated');
-  });
 }
 
 /**
@@ -1487,8 +1388,10 @@ function initGallerySlider() {
   if (!galleryTrack || !galleryPrev || !galleryNext || !galleryDots.length) return;
   
   let currentSlide = 0;
-  const slideWidth = galleryTrack.querySelector('.gallery-image').offsetWidth;
+  const slideWidth = galleryTrack.querySelector('.gallery-image')?.offsetWidth || 0;
   const slidesCount = galleryTrack.querySelectorAll('.gallery-image').length;
+  
+  if (slideWidth === 0 || slidesCount === 0) return;
   
   // Update gallery position
   function updateGallery() {
@@ -1522,7 +1425,7 @@ function initGallerySlider() {
 }
 
 /**
- * Close the project modal with animations
+ * Close Project Modal
  */
 function closeProjectModal() {
   const modal = document.getElementById('project-modal');
@@ -1543,18 +1446,15 @@ function closeProjectModal() {
 }
 
 /**
- * Initialize Testimonials Scroll Animation
+ * Initialize Testimonials Scroll
  */
 function initTestimonialsScroll() {
   const slider = document.querySelector('.testimonials-track');
   if (!slider) return;
   
-  // Make sure we have duplicated testimonials for infinite scrolling
-  const originalCards = slider.querySelectorAll('.testimonial-card');
-  
   // Apply tilt effect to all testimonial cards
   if (window.VanillaTilt) {
-    VanillaTilt.init(originalCards, {
+    VanillaTilt.init(document.querySelectorAll('.testimonial-card'), {
       max: 5,
       speed: 400,
       glare: false,
@@ -1614,24 +1514,6 @@ function initProgressRings() {
   
   if (!progressRings.length) return;
   
-  // Set up SVG gradient for progress rings
-  const svgNS = "http://www.w3.org/2000/svg";
-  
-  // Create gradient definition
-  const progressGradient = document.createElementNS(svgNS, "defs");
-  progressGradient.innerHTML = `
-    <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#007aff" />
-      <stop offset="100%" stop-color="#00c2ff" />
-    </linearGradient>
-  `;
-  
-  // Add gradient to first SVG
-  const firstSVG = progressRings[0].closest('svg');
-  if (firstSVG) {
-    firstSVG.insertBefore(progressGradient, firstSVG.firstChild);
-  }
-  
   // Set initial state for all rings
   progressRings.forEach(ring => {
     const radius = ring.getAttribute('r');
@@ -1640,9 +1522,6 @@ function initProgressRings() {
     // Set initial state (full circle)
     ring.style.strokeDasharray = circumference;
     ring.style.strokeDashoffset = circumference;
-    
-    // Set gradient fill
-    ring.style.stroke = 'url(#progress-gradient)';
   });
   
   // Animate progress rings when they become visible
@@ -1680,7 +1559,7 @@ function initProgressRings() {
 }
 
 /**
- * Counter Animation
+ * Initialize Counters
  */
 function initCounters() {
   const counters = document.querySelectorAll('.counter');
@@ -1807,18 +1686,11 @@ function initContactMap() {
   const mapContainer = document.getElementById('contact-map');
   if (!mapContainer) return;
   
-  // For demonstration, we'll just add a static map image
+  // For demonstration, we'll use a static map image
   // In a real implementation, this would integrate with a mapping API
   mapContainer.style.backgroundImage = "url('https://maps.googleapis.com/maps/api/staticmap?center=New+York,NY&zoom=12&size=1200x400&style=feature:road|color:0x007aff|weight:1&style=feature:water|color:0x4da3ff|lightness:50&style=feature:landscape|color:0xf2f2f7&style=feature:poi|color:0xcccccc&key=YOUR_API_KEY')";
   mapContainer.style.backgroundSize = 'cover';
   mapContainer.style.backgroundPosition = 'center';
-}
-
-/**
- * Initialize Brands Marquee
- */
-function initBrandsMarquee() {
-  // Already set up with the autoprefixer for continuous scroll
 }
 
 /**
@@ -2035,34 +1907,6 @@ function initBackToTop() {
         autoKill: false
       },
       ease: 'power2.inOut'
-    });
-  });
-}
-
-/**
- * Page Transitions
- */
-function initPageTransitions() {
-  const transitionElement = document.querySelector('.page-transition');
-  if (!transitionElement) return;
-  
-  // Hijack internal links for page transitions
-  document.querySelectorAll('a[href^="/"]:not([target]), a[href^="./"]:not([target]), a[href^="../"]:not([target])').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      
-      // Don't transition for links to the current page
-      if (href === window.location.pathname) return;
-      
-      e.preventDefault();
-      
-      // Start transition animation
-      transitionElement.classList.add('active');
-      
-      // Navigate to the new page after animation completes
-      setTimeout(() => {
-        window.location.href = href;
-      }, 600); // Half of the animation duration
     });
   });
 }
