@@ -3,24 +3,25 @@
  * 
  * Contains all interactive functionality for the website:
  * - Page loader animation
- * - Custom cursor effects
  * - Navigation interactions
  * - Scroll animations
+ * - Portfolio functionality with JSON data
  * - Testimonial slider
- * - Portfolio filtering
  * - Counter animations
  * - Form validation
  */
+
+// Store project data globally
+let projectsData = [];
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize all components
   initPageLoader();
-  initCustomCursor();
   initNavigation();
   initMobileMenu();
   initScrollReveal();
-  initPortfolioFilter();
+  initPortfolio(); // New portfolio functionality that loads JSON data
   initTestimonialSlider();
   initCounters();
   initContactForm();
@@ -67,81 +68,6 @@ function initPageLoader() {
   
   // Prevent scroll during loading
   document.body.style.overflow = 'hidden';
-}
-
-/**
- * Custom Cursor implementation
- * Creates an Apple-style custom cursor that follows the mouse movement
- */
-function initCustomCursor() {
-  const cursor = document.querySelector('.cursor-follower');
-  const cursorDot = document.querySelector('.cursor-dot');
-  const cursorOutline = document.querySelector('.cursor-outline');
-  
-  if (!cursor || !cursorDot || !cursorOutline) return;
-  
-  // Only initialize on devices with fine pointer (mouse)
-  if (window.matchMedia('(pointer: fine)').matches) {
-    document.addEventListener('mousemove', (e) => {
-      // Update cursor position using transform for better performance
-      const posX = e.clientX;
-      const posY = e.clientY;
-      
-      // Use requestAnimationFrame for smoother animation
-      requestAnimationFrame(() => {
-        cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
-        cursorOutline.style.transform = `translate(${posX}px, ${posY}px)`;
-      });
-    });
-    
-    // Scale cursor on clickable elements
-    const clickables = document.querySelectorAll('a, button, [role="button"], input, textarea, select, .service-card, .portfolio-item');
-    
-    clickables.forEach(element => {
-      element.addEventListener('mouseenter', () => {
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursorOutline.style.opacity = '0.5';
-        cursorOutline.style.background = 'rgba(0, 122, 255, 0.1)';
-      });
-      
-      element.addEventListener('mouseleave', () => {
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorOutline.style.opacity = '0.5';
-        cursorOutline.style.background = 'transparent';
-      });
-    });
-    
-    // Hide cursor when leaving window
-    document.addEventListener('mouseleave', () => {
-      cursor.style.opacity = '0';
-    });
-    
-    document.addEventListener('mouseenter', () => {
-      cursor.style.opacity = '1';
-    });
-    
-    // Change cursor on button hover
-    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary, .service-link, .portfolio-link');
-    
-    buttons.forEach(button => {
-      button.addEventListener('mouseenter', () => {
-        cursorDot.style.opacity = '0';
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        cursorOutline.style.background = 'rgba(0, 122, 255, 0.2)';
-        cursorOutline.style.borderColor = 'rgba(0, 122, 255, 0.6)';
-      });
-      
-      button.addEventListener('mouseleave', () => {
-        cursorDot.style.opacity = '1';
-        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-        cursorOutline.style.background = 'transparent';
-        cursorOutline.style.borderColor = 'var(--primary)';
-      });
-    });
-  } else {
-    // Hide cursor on touch devices
-    cursor.style.display = 'none';
-  }
 }
 
 /**
@@ -354,6 +280,114 @@ function initScrollReveal() {
 }
 
 /**
+ * Portfolio Functionality
+ * Loads projects from JSON and manages display and filtering
+ */
+function initPortfolio() {
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  const loader = document.querySelector('.portfolio-loader');
+  
+  if (!portfolioGrid) return;
+  
+  // Fetch project data from the JSON file
+  fetch('projects.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      projectsData = data.projects;
+      
+      // Remove loader
+      if (loader) {
+        loader.style.display = 'none';
+      }
+      
+      // Render the projects
+      renderProjects(projectsData);
+      
+      // Initialize filter buttons
+      initPortfolioFilter();
+      
+      // Initialize project modals
+      initProjectModals();
+    })
+    .catch(error => {
+      console.error('Error loading projects:', error);
+      
+      // Show error message in grid
+      if (portfolioGrid) {
+        portfolioGrid.innerHTML = `
+          <div class="portfolio-error">
+            <p>Sorry, we couldn't load the projects. Please try again later.</p>
+          </div>
+        `;
+      }
+    });
+}
+
+/**
+ * Render projects in the portfolio grid
+ * @param {Array} projects - Array of project objects to render
+ */
+function renderProjects(projects) {
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  const template = document.getElementById('project-card-template');
+  
+  if (!portfolioGrid || !template) return;
+  
+  // Clear existing content
+  portfolioGrid.innerHTML = '';
+  
+  // Limit to 6 projects for the main page
+  const displayProjects = projects.slice(0, 6);
+  
+  // Add each project to the grid
+  displayProjects.forEach(project => {
+    const clone = document.importNode(template.content, true);
+    const item = clone.querySelector('.portfolio-item');
+    const image = clone.querySelector('.portfolio-image img');
+    const title = clone.querySelector('.portfolio-title');
+    const tagsContainer = clone.querySelector('.portfolio-tags');
+    const link = clone.querySelector('.portfolio-link');
+    
+    // Set project data
+    item.setAttribute('data-project-id', project.id);
+    item.setAttribute('data-category', project.categories.join(' '));
+    
+    image.src = project.mainImage;
+    image.alt = project.title;
+    
+    title.textContent = project.title;
+    
+    // Add tags
+    project.tags.forEach(tag => {
+      const span = document.createElement('span');
+      span.textContent = tag;
+      tagsContainer.appendChild(span);
+    });
+    
+    // Set link behavior to open the modal
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openProjectModal(project.id);
+    });
+    
+    portfolioGrid.appendChild(clone);
+  });
+  
+  // Add fade-in animation to the grid items
+  const items = portfolioGrid.querySelectorAll('.portfolio-item');
+  items.forEach((item, index) => {
+    setTimeout(() => {
+      item.classList.add('fade-in');
+    }, index * 100);
+  });
+}
+
+/**
  * Portfolio Filter
  * Enables filtering of portfolio items by category
  */
@@ -376,27 +410,144 @@ function initPortfolioFilter() {
       
       // Filter portfolio items
       portfolioItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
+        const categories = item.getAttribute('data-category').split(' ');
         
-        // Add animation effect
-        item.style.transition = 'all 0.4s ease';
-        
-        if (filterValue === 'all' || filterValue === itemCategory) {
-          item.style.display = 'block';
-          setTimeout(() => {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
-          }, 100);
-        } else {
+        // Animate the transition
+        if (filterValue === 'all' || categories.includes(filterValue)) {
+          // Show item
           item.style.opacity = '0';
           item.style.transform = 'translateY(20px)';
+          
+          // Using setTimeout to create animation effect
+          setTimeout(() => {
+            item.style.display = 'block';
+            
+            // Force browser reflow
+            void item.offsetWidth;
+            
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, 300);
+        } else {
+          // Hide item
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+          
           setTimeout(() => {
             item.style.display = 'none';
-          }, 400);
+          }, 300);
         }
       });
     });
   });
+}
+
+/**
+ * Initialize project modal functionality
+ */
+function initProjectModals() {
+  const modal = document.getElementById('project-modal');
+  const closeBtn = modal?.querySelector('.modal-close');
+  const backdrop = modal?.querySelector('.modal-backdrop');
+  
+  if (!modal) return;
+  
+  // Close modal when clicking the close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeProjectModal);
+  }
+  
+  // Close modal when clicking the backdrop
+  if (backdrop) {
+    backdrop.addEventListener('click', closeProjectModal);
+  }
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeProjectModal();
+    }
+  });
+}
+
+/**
+ * Open project modal with the specified project data
+ * @param {string} projectId - ID of the project to display
+ */
+function openProjectModal(projectId) {
+  const modal = document.getElementById('project-modal');
+  const modalBody = modal?.querySelector('.modal-body');
+  const modalTemplate = document.getElementById('project-modal-template');
+  
+  if (!modal || !modalBody || !modalTemplate || !projectsData.length) return;
+  
+  // Find the project data
+  const project = projectsData.find(p => p.id === projectId);
+  
+  if (!project) {
+    console.error(`Project with ID "${projectId}" not found.`);
+    return;
+  }
+  
+  // Clear previous content
+  modalBody.innerHTML = '';
+  
+  // Clone the template
+  const clone = document.importNode(modalTemplate.content, true);
+  
+  // Populate modal content
+  clone.querySelector('.modal-title').textContent = project.title;
+  clone.querySelector('.modal-subtitle').textContent = project.modalContent.subtitle;
+  
+  // Set gallery image
+  const galleryImage = clone.querySelector('.gallery-image img');
+  galleryImage.src = project.modalContent.galleryImages[0];
+  galleryImage.alt = project.title;
+  
+  // Set description
+  clone.querySelector('.modal-description').textContent = project.modalContent.detailedDescription;
+  
+  // Set project details
+  const detailsList = clone.querySelector('.details-list');
+  project.modalContent.projectDetails.forEach(detail => {
+    const li = document.createElement('li');
+    li.textContent = detail;
+    detailsList.appendChild(li);
+  });
+  
+  // Set technologies
+  const techTags = clone.querySelector('.tech-tags');
+  project.modalContent.technologies.forEach(tech => {
+    const span = document.createElement('span');
+    span.textContent = tech;
+    techTags.appendChild(span);
+  });
+  
+  // Set results
+  clone.querySelector('.results-text').textContent = project.modalContent.results;
+  
+  // Set website link
+  const websiteLink = clone.querySelector('.modal-website-link');
+  websiteLink.href = project.website;
+  
+  // Add content to modal
+  modalBody.appendChild(clone);
+  
+  // Activate modal
+  document.body.style.overflow = 'hidden'; // Prevent scrolling
+  modal.classList.add('active');
+}
+
+/**
+ * Close the project modal
+ */
+function closeProjectModal() {
+  const modal = document.getElementById('project-modal');
+  
+  if (!modal) return;
+  
+  modal.classList.remove('active');
+  document.body.style.overflow = ''; // Re-enable scrolling
 }
 
 /**
