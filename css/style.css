@@ -1193,61 +1193,187 @@ section {
 }
 
 /* ===== Services Section ===== */
-/**
- * Services Carousel Styles - Elan's Tech World
- */
 
-/* Services Carousel Container */
-.services-carousel-container {
+/* Services Section Background */
+.services-section {
+  background: linear-gradient(135deg, rgba(240, 244, 248, 0.8) 0%, rgba(255, 255, 255, 1) 100%);
   position: relative;
-  width: 100%;
-  margin: 0 auto var(--space-2xl);
   overflow: hidden;
-  padding: var(--space-md) 0;
 }
 
-.services-carousel {
-  overflow: visible;
-  padding-bottom: var(--space-2xl);
+/* Decorative Elements */
+.services-section::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(0, 194, 255, 0.2));
+  z-index: 0;
 }
 
-/* Service Card Styles for Carousel */
-.services-carousel .service-card {
-  height: 100%;
-  border-radius: var(--radius-lg);
-  background-color: var(--white);
-  overflow: hidden;
+.services-section::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(0, 194, 255, 0.2));
+  z-index: 0;
+}
+
+/* Section Header with enhanced styling */
+.services-section .section-header {
   position: relative;
-  transition: all var(--transition-normal);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(0);
-  opacity: 1;
-  will-change: transform, opacity;
+  z-index: 1;
 }
 
-.services-carousel .service-card::before {
+.services-section .section-sub-title {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  box-shadow: 0 5px 15px rgba(0, 122, 255, 0.1);
+  display: inline-block;
+  position: relative;
+}
+
+.services-section .section-sub-title::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: var(--primary-gradient);
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 30px;
+  z-index: -1;
+}
+
+.services-section .section-title {
+  margin-top: var(--space-sm);
+  font-size: clamp(2.2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+/* Services Carousel Container with enhanced styling */
+.services-carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto var(--space-2xl);
+  padding: var(--space-xl) 0;
+  z-index: 2;
+}
+
+/* Card styling with unique designs for each service type */
+.services-carousel .service-card {
+  height: 100%;
+  min-height: 450px;
+  border-radius: var(--radius-lg);
+  background-color: var(--white);
+  overflow: hidden;
+  position: relative;
+  transition: all var(--transition-normal);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  transform: scale(0.95) translateY(0);
+  will-change: transform, box-shadow;
+}
+
+/* Unique gradient borders for different service categories */
+.services-carousel .service-card:nth-child(1)::before,
+.services-carousel .service-card:nth-child(5)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #007aff, #00c2ff);
   transition: height var(--transition-normal);
   z-index: 1;
 }
 
+.services-carousel .service-card:nth-child(2)::before,
+.services-carousel .service-card:nth-child(6)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #ff7a00, #ffc200);
+  transition: height var(--transition-normal);
+  z-index: 1;
+}
+
+.services-carousel .service-card:nth-child(3)::before,
+.services-carousel .service-card:nth-child(7)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #7a00ff, #c200ff);
+  transition: height var(--transition-normal);
+  z-index: 1;
+}
+
+.services-carousel .service-card:nth-child(4)::before,
+.services-carousel .service-card:nth-child(8)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #00ff7a, #00ffc2);
+  transition: height var(--transition-normal);
+  z-index: 1;
+}
+
+/* Corner accents for cards */
+.services-carousel .service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 0 30px;
+  z-index: 1;
+  transform: translate(15px, -15px) rotate(45deg);
+  transition: all var(--transition-normal);
+}
+
+/* Active & Hover States */
 .services-carousel .swiper-slide-active .service-card,
 .services-carousel .swiper-slide-active + .swiper-slide .service-card,
 .services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-card {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-md);
+  transform: scale(1) translateY(-15px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
 }
 
 .services-carousel .swiper-slide-active .service-card::before,
 .services-carousel .swiper-slide-active + .swiper-slide .service-card::before,
 .services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-card::before {
   height: 8px;
+}
+
+.services-carousel .swiper-slide-active .service-card::after,
+.services-carousel .swiper-slide-active + .swiper-slide .service-card::after,
+.services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-card::after {
+  transform: translate(0, 0) rotate(45deg);
 }
 
 .services-carousel .service-card-inner {
@@ -1257,93 +1383,310 @@ section {
   position: relative;
   display: flex;
   flex-direction: column;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
-/* Service Typed Animation Container */
-.service-typed-container {
-  height: 1.5rem;
-  margin-bottom: var(--space-sm);
-  overflow: hidden;
-  opacity: 0.7;
-  font-style: italic;
-  color: var(--primary);
-  font-size: 0.9rem;
+/* Custom background patterns for different service cards */
+.services-carousel .service-card:nth-child(1) .service-card-inner,
+.services-carousel .service-card:nth-child(5) .service-card-inner {
+  background-image: radial-gradient(circle at 90% 10%, rgba(0, 122, 255, 0.07) 0%, transparent 50%);
 }
 
-.service-typed-container .typed-cursor {
-  color: var(--primary);
+.services-carousel .service-card:nth-child(2) .service-card-inner,
+.services-carousel .service-card:nth-child(6) .service-card-inner {
+  background-image: radial-gradient(circle at 90% 10%, rgba(255, 122, 0, 0.07) 0%, transparent 50%);
 }
 
-/* Service Icon */
+.services-carousel .service-card:nth-child(3) .service-card-inner,
+.services-carousel .service-card:nth-child(7) .service-card-inner {
+  background-image: radial-gradient(circle at 90% 10%, rgba(122, 0, 255, 0.07) 0%, transparent 50%);
+}
+
+.services-carousel .service-card:nth-child(4) .service-card-inner,
+.services-carousel .service-card:nth-child(8) .service-card-inner {
+  background-image: radial-gradient(circle at 90% 10%, rgba(0, 255, 122, 0.07) 0%, transparent 50%);
+}
+
+/* Enhanced Service Icon Styling */
 .services-carousel .service-icon {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--light);
-  border-radius: 50%;
+  border-radius: 20px;
   margin-bottom: var(--space-md);
-  font-size: 1.5rem;
-  color: var(--primary);
+  font-size: 1.75rem;
   transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
 }
 
+/* Different icon styles for each service type */
+.services-carousel .service-card:nth-child(1) .service-icon,
+.services-carousel .service-card:nth-child(5) .service-icon {
+  background: linear-gradient(135deg, #e6f3ff, #ffffff);
+  color: #007aff;
+  box-shadow: 0 10px 20px rgba(0, 122, 255, 0.15);
+}
+
+.services-carousel .service-card:nth-child(2) .service-icon,
+.services-carousel .service-card:nth-child(6) .service-icon {
+  background: linear-gradient(135deg, #fff3e6, #ffffff);
+  color: #ff7a00;
+  box-shadow: 0 10px 20px rgba(255, 122, 0, 0.15);
+}
+
+.services-carousel .service-card:nth-child(3) .service-icon,
+.services-carousel .service-card:nth-child(7) .service-icon {
+  background: linear-gradient(135deg, #f0e6ff, #ffffff);
+  color: #7a00ff;
+  box-shadow: 0 10px 20px rgba(122, 0, 255, 0.15);
+}
+
+.services-carousel .service-card:nth-child(4) .service-icon,
+.services-carousel .service-card:nth-child(8) .service-icon {
+  background: linear-gradient(135deg, #e6fff0, #ffffff);
+  color: #00c27a;
+  box-shadow: 0 10px 20px rgba(0, 194, 122, 0.15);
+}
+
+/* Icon animation effect */
+.services-carousel .service-icon::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.3)
+  );
+  transform: rotate(45deg);
+  transition: all 0.8s ease;
+  opacity: 0;
+}
+
+.services-carousel .swiper-slide-active .service-icon::after,
+.services-carousel .swiper-slide-active + .swiper-slide .service-icon::after,
+.services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-icon::after {
+  animation: iconShineSlow 3s infinite;
+}
+
+@keyframes iconShineSlow {
+  0% {
+    opacity: 0;
+    left: -50%;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0;
+    left: 150%;
+  }
+  100% {
+    opacity: 0;
+    left: 150%;
+  }
+}
+
+/* Active slide icon animations */
 .services-carousel .swiper-slide-active .service-icon,
 .services-carousel .swiper-slide-active + .swiper-slide .service-icon,
 .services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-icon {
-  background: var(--primary-gradient);
-  color: var(--white);
-  transform: scale(1.1);
-  box-shadow: var(--shadow-primary);
+  transform: scale(1.1) rotate(-5deg);
 }
 
-/* Service Title */
+/* Enhanced Service Titles */
 .services-carousel .service-title {
-  font-size: 1.375rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: var(--space-xs);
   color: var(--dark);
-  transition: color var(--transition-normal);
+  transition: all var(--transition-normal);
+  position: relative;
+  display: inline-block;
 }
 
-.services-carousel .swiper-slide-active .service-title,
-.services-carousel .swiper-slide-active + .swiper-slide .service-title,
-.services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-title {
-  color: var(--primary);
+/* Title line effect */
+.services-carousel .service-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  transition: width var(--transition-normal);
+  opacity: 0.7;
 }
 
-/* Service Description */
+.services-carousel .service-card:nth-child(1) .service-title::after,
+.services-carousel .service-card:nth-child(5) .service-title::after {
+  background: linear-gradient(90deg, #007aff, #00c2ff);
+}
+
+.services-carousel .service-card:nth-child(2) .service-title::after,
+.services-carousel .service-card:nth-child(6) .service-title::after {
+  background: linear-gradient(90deg, #ff7a00, #ffc200);
+}
+
+.services-carousel .service-card:nth-child(3) .service-title::after,
+.services-carousel .service-card:nth-child(7) .service-title::after {
+  background: linear-gradient(90deg, #7a00ff, #c200ff);
+}
+
+.services-carousel .service-card:nth-child(4) .service-title::after,
+.services-carousel .service-card:nth-child(8) .service-title::after {
+  background: linear-gradient(90deg, #00ff7a, #00ffc2);
+}
+
+.services-carousel .swiper-slide-active .service-title::after,
+.services-carousel .swiper-slide-active + .swiper-slide .service-title::after,
+.services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-title::after {
+  width: 40px;
+}
+
+/* Typed Text Animation Container */
+.service-typed-container {
+  height: 2rem;
+  margin-bottom: var(--space-sm);
+  overflow: hidden;
+  font-style: italic;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Different typing colors for each service */
+.services-carousel .service-card:nth-child(1) .service-typed-container,
+.services-carousel .service-card:nth-child(5) .service-typed-container {
+  color: #007aff;
+}
+
+.services-carousel .service-card:nth-child(2) .service-typed-container,
+.services-carousel .service-card:nth-child(6) .service-typed-container {
+  color: #ff7a00;
+}
+
+.services-carousel .service-card:nth-child(3) .service-typed-container,
+.services-carousel .service-card:nth-child(7) .service-typed-container {
+  color: #7a00ff;
+}
+
+.services-carousel .service-card:nth-child(4) .service-typed-container,
+.services-carousel .service-card:nth-child(8) .service-typed-container {
+  color: #00c27a;
+}
+
+.service-typed-container .typed-cursor {
+  font-size: 1.2rem;
+  opacity: 1;
+  animation: typedCursorBlink 0.7s infinite;
+}
+
+/* Enhanced Service Description */
 .services-carousel .service-description {
   color: var(--gray);
   margin-bottom: var(--space-md);
   font-size: 0.9375rem;
+  line-height: 1.6;
 }
 
-/* Service Features */
+/* Enhanced Service Features */
 .services-carousel .service-features {
   margin-bottom: var(--space-lg);
+  padding-left: 5px;
 }
 
 .services-carousel .service-features li {
   display: flex;
   align-items: center;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-sm);
   font-size: 0.9375rem;
   color: var(--gray);
   position: relative;
-  padding-left: var(--space-sm);
-  transition: transform var(--transition-normal), color var(--transition-normal);
+  padding-left: var(--space-lg);
+  transition: all var(--transition-normal);
 }
 
-.services-carousel .service-features li::before {
-  content: '•';
+/* Custom bullets for different service types */
+.services-carousel .service-card:nth-child(1) .service-features li::before,
+.services-carousel .service-card:nth-child(5) .service-features li::before {
+  content: '✓';
   position: absolute;
   left: 0;
-  color: var(--primary);
-  font-size: 1.25rem;
-  transition: transform var(--transition-normal);
+  color: #007aff;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
 }
 
+.services-carousel .service-card:nth-child(2) .service-features li::before,
+.services-carousel .service-card:nth-child(6) .service-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #ff7a00;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 122, 0, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+.services-carousel .service-card:nth-child(3) .service-features li::before,
+.services-carousel .service-card:nth-child(7) .service-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #7a00ff;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  background: rgba(122, 0, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+.services-carousel .service-card:nth-child(4) .service-features li::before,
+.services-carousel .service-card:nth-child(8) .service-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #00c27a;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 22px;
+  height: 22px;
+  background: rgba(0, 194, 122, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+/* Feature item animation */
 .services-carousel .swiper-slide-active .service-features li,
 .services-carousel .swiper-slide-active + .swiper-slide .service-features li,
 .services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-features li {
@@ -1351,36 +1694,49 @@ section {
   color: var(--gray-dark);
 }
 
-/* Service Link */
+.services-carousel .swiper-slide-active .service-features li::before,
+.services-carousel .swiper-slide-active + .swiper-slide .service-features li::before,
+.services-carousel .swiper-slide-active + .swiper-slide + .swiper-slide .service-features li::before {
+  transform: scale(1.2);
+}
+
+/* Enhanced Service Link */
 .services-carousel .service-link {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
   font-weight: 600;
-  color: var(--primary);
   transition: all var(--transition-normal);
   position: relative;
-  padding-bottom: 4px;
+  padding: 10px 20px;
   margin-top: auto;
+  border-radius: var(--radius-full);
+  overflow: hidden;
 }
 
-.services-carousel .service-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--primary-gradient);
-  transition: width var(--transition-normal);
+/* Different link styles for each service type */
+.services-carousel .service-card:nth-child(1) .service-link,
+.services-carousel .service-card:nth-child(5) .service-link {
+  color: #007aff;
+  background: rgba(0, 122, 255, 0.1);
 }
 
-.services-carousel .service-link:hover {
-  color: var(--primary-dark);
+.services-carousel .service-card:nth-child(2) .service-link,
+.services-carousel .service-card:nth-child(6) .service-link {
+  color: #ff7a00;
+  background: rgba(255, 122, 0, 0.1);
 }
 
-.services-carousel .service-link:hover::after {
-  width: 100%;
+.services-carousel .service-card:nth-child(3) .service-link,
+.services-carousel .service-card:nth-child(7) .service-link {
+  color: #7a00ff;
+  background: rgba(122, 0, 255, 0.1);
+}
+
+.services-carousel .service-card:nth-child(4) .service-link,
+.services-carousel .service-card:nth-child(8) .service-link {
+  color: #00c27a;
+  background: rgba(0, 194, 122, 0.1);
 }
 
 .services-carousel .service-link i {
@@ -1391,7 +1747,7 @@ section {
   transform: translateX(5px);
 }
 
-/* Navigation Buttons */
+/* Enhanced Navigation Buttons */
 .services-nav-prev,
 .services-nav-next {
   position: absolute;
@@ -1406,9 +1762,10 @@ section {
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   color: var(--primary);
   transition: all var(--transition-normal);
+  font-size: 1.2rem;
 }
 
 .services-nav-prev {
@@ -1432,14 +1789,14 @@ section {
   cursor: not-allowed;
 }
 
-/* Pagination */
+/* Enhanced Pagination */
 .services-pagination {
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
 .services-pagination .swiper-pagination-bullet {
@@ -1449,18 +1806,93 @@ section {
   opacity: 1;
   margin: 0 5px;
   transition: all var(--transition-normal);
+  border-radius: 10px;
 }
 
 .services-pagination .swiper-pagination-bullet-active {
   width: 30px;
-  border-radius: 5px;
   background: var(--primary-gradient);
+}
+
+/* Enhanced Services CTA */
+.services-cta {
+  margin-top: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, #007aff, #00c2ff);
+  border-radius: var(--radius-lg);
+  color: var(--white);
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 122, 255, 0.2);
+  text-align: center;
+  overflow: hidden;
+}
+
+.services-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 20%);
+  z-index: 0;
+}
+
+@media (min-width: 768px) {
+  .services-cta {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.services-cta-text {
+  position: relative;
+  z-index: 1;
+}
+
+.services-cta-text h3 {
+  font-size: 1.75rem;
+  margin-bottom: var(--space-xs);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.services-cta-text p {
+  opacity: 0.9;
+  margin-bottom: 0;
+  font-size: 1.1rem;
+}
+
+.services-cta .btn-primary {
+  background: var(--white);
+  color: var(--primary);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  border: none;
+}
+
+.services-cta .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+  background: var(--white);
 }
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
   .services-carousel-container {
-    padding: 0;
+    padding: var(--space-md) 0;
+  }
+  
+  .services-carousel .service-card {
+    min-height: 400px;
   }
   
   .services-carousel .service-card-inner {
@@ -1483,72 +1915,72 @@ section {
   }
   
   .services-carousel .service-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.25rem;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
   }
   
   .services-carousel .service-title {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   }
   
   .service-typed-container {
     height: 2.5rem;
   }
+  
+  .services-cta-text h3 {
+    font-size: 1.5rem;
+  }
 }
 
-/* Animation for active card (3D effect) */
-.services-carousel .swiper-slide-active .service-card {
-  transform: translateY(-10px) perspective(1000px) rotateX(2deg);
+/* Additional Animation Keyframes */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Gradient text highlight */
-.text-gradient {
-  background: var(--primary-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
-/* Card hover states */
-@media (hover: hover) {
-  .services-carousel .service-card:hover {
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-md);
-  }
-  
-  .services-carousel .service-card:hover::before {
-    height: 8px;
-  }
-  
-  .services-carousel .service-card:hover .service-icon {
-    background: var(--primary-gradient);
-    color: var(--white);
-    transform: scale(1.1);
-    box-shadow: var(--shadow-primary);
-  }
-  
-  .services-carousel .service-card:hover .service-title {
-    color: var(--primary);
-  }
-  
-  .services-carousel .service-card:hover .service-features li {
-    transform: translateX(5px);
-    color: var(--gray-dark);
   }
 }
 
-/* Animation keyframes for typed cursor */
-@keyframes typedCursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.typed-cursor {
-  opacity: 1;
-  animation: typedCursorBlink 0.7s infinite;
-  color: var(--primary);
+/* Enhanced dark mode support */
+@media (prefers-color-scheme: dark) {
+  .services-section {
+    background: linear-gradient(135deg, rgba(32, 33, 36, 0.8) 0%, rgba(28, 28, 30, 1) 100%);
+  }
+  
+  .services-carousel .service-card {
+    background-color: var(--gray-dark);
+  }
+  
+  .services-carousel .service-card-inner {
+    background: linear-gradient(180deg, rgba(32, 33, 36, 0) 0%, rgba(28, 28, 30, 1) 100%);
+  }
+  
+  .services-carousel .service-description {
+    color: var(--gray-light);
+  }
+  
+  .services-carousel .service-features li {
+    color: var(--gray-light);
+  }
+  
+  .services-nav-prev,
+  .services-nav-next {
+    background: var(--gray-dark);
+    color: var(--primary-light);
+  }
 }
 
 /* ===== Process Section ===== */
