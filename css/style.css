@@ -633,8 +633,16 @@ p {
   line-height: 1.2;
 }
 
+/* FIX: Make sure navigation is visible on larger screens */
 .nav {
-  display: none;
+  display: flex !important; /* Force display for desktop */
+}
+
+/* Hide on mobile */
+@media (max-width: 991px) {
+  .nav {
+    display: none !important;
+  }
 }
 
 .nav-list {
@@ -653,7 +661,7 @@ p {
   font-size: 1.0625rem;
   padding: var(--space-2xs) 0;
   transition: color var(--transition-normal);
-  color: var(--dark-500); /* Explicit color to ensure visibility */
+  color: var(--dark-500);
 }
 
 .nav-link::after {
@@ -957,8 +965,6 @@ p {
   object-fit: cover;
 }
 
-/* Removed hero-overlay completely */
-
 /* Hero Grid Animation */
 .hero-grid {
   position: absolute;
@@ -1013,6 +1019,7 @@ p {
   -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center; /* FIX: Center all hero content */
 }
 
 .hero-badge {
@@ -1029,7 +1036,7 @@ p {
   text-transform: uppercase;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  margin-bottom: var(--space-sm);
+  margin: 0 auto var(--space-sm); /* FIX: Center the badge */
   transform: translateY(30px);
   opacity: 0;
   animation: fadeInUp 0.6s 0.2s ease forwards;
@@ -1046,6 +1053,7 @@ p {
   animation: fadeInUp 0.6s 0.4s ease forwards;
   color: var(--white);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center; /* FIX: Ensure title is centered */
 }
 
 .text-gradient {
@@ -1064,6 +1072,7 @@ p {
   height: 1.2em;
   margin-top: 0.5rem;
   overflow: hidden;
+  text-align: center; /* FIX: Center typed text */
 }
 
 #hero-typed-strings {
@@ -1095,6 +1104,7 @@ p {
   transform: translateY(30px);
   opacity: 0;
   animation: fadeInUp 0.6s 0.6s ease forwards;
+  justify-content: center; /* FIX: Center the CTA buttons */
 }
 
 .btn-contact {
@@ -1153,6 +1163,7 @@ p {
   transform: translateY(30px);
   opacity: 0;
   animation: fadeInUp 0.6s 0.8s ease forwards;
+  text-align: center; /* FIX: Center featured projects section */
 }
 
 .featured-label {
@@ -1228,6 +1239,7 @@ p {
   z-index: 2;
   transition: transform var(--transition-normal);
   width: 100%;
+  text-align: center; /* FIX: Center project titles */
 }
 
 .featured-project::after {
@@ -1424,10 +1436,12 @@ p {
   overflow: hidden;
 }
 
+/* FIX: Section Header Alignment */
 .section-header {
-  text-align: center;
+  text-align: center !important;
   margin-bottom: var(--space-xl);
   position: relative;
+  width: 100%;
 }
 
 .section-sub-title {
@@ -1439,6 +1453,9 @@ p {
   position: relative;
   display: inline-block;
   padding: 0 var(--space-sm);
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-sub-title::before,
@@ -1464,6 +1481,9 @@ p {
   margin-bottom: var(--space-sm);
   position: relative;
   display: inline-block;
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-description {
@@ -1472,6 +1492,7 @@ p {
   margin: var(--space-md) auto 0;
   font-size: 1.125rem;
   line-height: 1.7;
+  text-align: center !important;
 }
 
 .clients-container {
@@ -1918,6 +1939,7 @@ p {
   transition: color var(--transition-normal);
   position: relative;
   z-index: 2;
+  text-align: left; /* Keep service title left-aligned */
 }
 
 .service-card:hover .service-title {
@@ -2039,6 +2061,7 @@ p {
 .services-cta-text {
   position: relative;
   z-index: 2;
+  text-align: left; /* Keep text left-aligned in CTA */
 }
 
 .services-cta-text h3 {
@@ -2202,6 +2225,7 @@ p {
   margin-bottom: var(--space-xs);
   position: relative;
   z-index: 1;
+  text-align: left; /* Keep process title left-aligned */
 }
 
 .process-description {
@@ -2398,6 +2422,7 @@ p {
   color: var(--primary);
   font-size: 1.25rem;
   margin-bottom: var(--space-xs);
+  text-align: left; /* Keep timeline text left-aligned */
 }
 
 .timeline-text p {
@@ -2563,7 +2588,6 @@ p {
   box-shadow: var(--shadow-lg);
   z-index: 2;
 }
-
 .portfolio-item-inner {
   position: relative;
   width: 100%;
@@ -2611,6 +2635,7 @@ p {
   transition: transform var(--transition-normal);
   transition-delay: 0.1s;
   width: 100%;
+  text-align: left; /* Keep portfolio content left-aligned */
 }
 
 .portfolio-item:hover .portfolio-content {
@@ -2778,6 +2803,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  text-align: left; /* Keep showcase info left-aligned */
 }
 
 .showcase-info h3 {
@@ -2937,6 +2963,7 @@ p {
 .modal-title {
   font-size: 1.75rem;
   margin-bottom: var(--space-xs);
+  text-align: left; /* Keep modal title left-aligned */
 }
 
 .modal-subtitle {
@@ -3031,6 +3058,7 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg);
+  text-align: left; /* Keep modal info left-aligned */
 }
 
 .modal-description {
@@ -3045,6 +3073,7 @@ p {
   font-size: 1.25rem;
   margin-bottom: var(--space-sm);
   color: var(--dark);
+  text-align: left; /* Keep these headings left-aligned */
 }
 
 .details-list {
@@ -3220,6 +3249,7 @@ p {
   line-height: 1.7;
   position: relative;
   z-index: 1;
+  text-align: left; /* Keep testimonial text left-aligned */
 }
 
 .testimonial-author {
@@ -3380,6 +3410,7 @@ p {
   transform: translateY(20px);
   opacity: 0;
   transition: all var(--transition-normal);
+  text-align: center; /* Center video info */
 }
 
 .testimonial-video-wrapper:hover .testimonial-video-info {
@@ -3674,12 +3705,14 @@ p {
   color: transparent;
   position: relative;
   display: inline-block;
+  text-align: center; /* Center CTA title */
 }
 
 .cta-description {
   font-size: 1.25rem;
   margin-bottom: var(--space-xl);
   opacity: 0.8;
+  text-align: center; /* Center CTA description */
 }
 
 .cta-buttons {
@@ -3773,12 +3806,20 @@ p {
   pointer-events: none;
 }
 
+/* FIX: Contact Grid Layout Improvement */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr; /* Make grid 1:1 ratio for better layout */
   gap: var(--space-2xl);
   position: relative;
   z-index: 1;
+}
+
+/* Media query for mobile */
+@media (max-width: 767px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
 }
 
 .contact-description {
@@ -3979,6 +4020,13 @@ p {
   gap: var(--space-md);
 }
 
+/* Fix form rows on mobile */
+@media (max-width: 767px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -4171,6 +4219,13 @@ p {
   z-index: 1;
 }
 
+/* Fix footer grid on desktop */
+@media (min-width: 768px) {
+  .footer-top {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
 .footer-logo {
   display: flex;
   flex-direction: column;
@@ -4263,6 +4318,14 @@ p {
   text-align: center;
   position: relative;
   z-index: 1;
+}
+
+/* Fix footer-bottom on desktop */
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .copyright {
@@ -4429,80 +4492,14 @@ p {
   100% { d: path("M50.4,-47.8C65.5,-39.3,78.5,-21.4,81,-1.5C83.6,18.5,75.8,39.4,60.7,51.7C45.7,64,23.4,67.5,2.7,65C-18.1,62.5,-36.1,53.9,-48,39.9C-59.8,25.9,-65.6,6.3,-62.8,-12.5C-60,-31.3,-48.7,-49.3,-33.6,-57.8C-18.5,-66.3,0.3,-65.2,17.5,-60.7C34.7,-56.3,35.4,-56.3,50.4,-47.8Z"); }
 }
 
-/* Page Transition */
-.page-transition {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: var(--z-extreme);
-  pointer-events: none;
-  display: none;
-}
-
-.transition-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--primary);
-  transform: translateY(100%);
-}
-
-.page-transition.active {
-  display: block;
-}
-
-.page-transition.active .transition-overlay {
-  animation: pageTransition 1.2s var(--transition-normal) forwards;
-}
-
-@keyframes pageTransition {
-  0% { transform: translateY(100%); }
-  100% { transform: translateY(-100%); }
-}
-
 /* ===== Responsive Media Queries ===== */
 @media (min-width: 768px) {
   .header-cta {
     display: block;
   }
   
-  .contact-grid {
+  .form-row {
     grid-template-columns: 1fr 1fr;
-  }
-  
-  .footer-top {
-    grid-template-columns: 300px 1fr;
-  }
-  
-  .footer-bottom {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-@media (min-width: 992px) {
-  .nav {
-    display: block;
-  }
-  
-  .menu-toggle {
-    display: none;
-  }
-  
-  .testimonial-card {
-    flex: 0 0 calc(33.333% - var(--space-md));
-  }
-  
-  .modal-info {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .modal-description {
-    grid-column: span 2;
   }
 }
 
@@ -4514,11 +4511,15 @@ p {
   .portfolio-grid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+  
+  .featured-projects {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }
 
 @media (max-width: 767px) {
-  .form-row {
-    grid-template-columns: 1fr;
+  .hero-content {
+    padding: var(--space-md) var(--space-sm);
   }
   
   .stats-grid {
@@ -4571,6 +4572,15 @@ p {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
   }
+  
+  .timeline-content-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .timeline-icon {
+    margin-bottom: var(--space-md);
+  }
 }
 
 @media (max-width: 576px) {
@@ -4583,10 +4593,6 @@ p {
     font-size: 0.75rem;
   }
   
-  .contact-details {
-    grid-template-columns: 1fr;
-  }
-  
   .modal-gallery {
     height: 200px;
   }
@@ -4597,6 +4603,14 @@ p {
     text-align: center;
     transform: translateX(-50%);
     left: 50%;
+  }
+  
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+  
+  .timeline-points {
+    justify-content: space-around;
   }
 }
 
