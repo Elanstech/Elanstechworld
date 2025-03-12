@@ -1,7 +1,11 @@
 /**
- * Elan's Tech World - Modern JavaScript
- * Enhanced with better animations and effects
+ * Elan's Tech World - Main JavaScript File
+ * A comprehensive script that handles all interactive elements and animations
  */
+
+// ==============================================
+// CONFIGURATION & UTILITIES
+// ==============================================
 
 // Main configuration
 const config = {
@@ -22,7 +26,7 @@ const DOM = {};
 
 // Helper functions
 const helpers = {
-  // Throttle function for performance
+  // Throttle function for performance optimization
   throttle: function(callback, limit) {
     let waiting = false;
     return function() {
@@ -36,7 +40,7 @@ const helpers = {
     };
   },
   
-  // Debounce function for performance
+  // Debounce function for performance optimization
   debounce: function(func, wait) {
     let timeout;
     return function() {
@@ -61,6 +65,10 @@ const helpers = {
     }, { once: true });
   }
 };
+
+// ==============================================
+// EVENT HANDLERS
+// ==============================================
 
 /**
  * Handle Scroll Events
@@ -99,6 +107,10 @@ function handleResize() {
   updateSwiperInstances();
 }
 
+// ==============================================
+// CORE FUNCTIONALITY
+// ==============================================
+
 /**
  * Animate Elements on Scroll
  */
@@ -119,7 +131,110 @@ function animateOnScroll() {
 }
 
 /**
- * Reinitialize Tilt Elements
+ * Load Script Dynamically
+ */
+function loadScript(url, callback) {
+  const script = document.createElement('script');
+  script.src = url;
+  script.onload = callback;
+  document.head.appendChild(script);
+}
+
+/**
+ * Load CSS Dynamically
+ */
+function loadCSS(url, callback) {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = url;
+  link.onload = callback;
+  document.head.appendChild(link);
+}
+
+/**
+ * Cache DOM elements for more efficient access
+ */
+function cacheDOM() {
+  // Header elements
+  DOM.header = document.querySelector('.header');
+  DOM.navLinks = document.querySelectorAll('.nav-link');
+  DOM.menuToggle = document.querySelector('.menu-toggle');
+  DOM.mobileMenu = document.querySelector('.mobile-menu');
+  
+  // Section elements
+  DOM.sections = document.querySelectorAll('section[id]');
+  DOM.portfolioGrid = document.getElementById('portfolio-grid');
+  DOM.featuredProjects = document.getElementById('featured-projects');
+  
+  // Interactive elements
+  DOM.filterButtons = document.querySelectorAll('.filter-btn');
+  DOM.processSteps = document.querySelectorAll('.process-step');
+  DOM.tiltElements = document.querySelectorAll('.tilt-element');
+  DOM.magneticButtons = document.querySelectorAll('.magnetic-button');
+  DOM.backToTop = document.querySelector('.back-to-top');
+  
+  // Forms
+  DOM.contactForm = document.getElementById('contact-form');
+  DOM.formInputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+  
+  // Carousels and sliders
+  DOM.servicesCarousel = document.querySelector('.services-carousel');
+  DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
+  DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
+  DOM.packagesCarousel = document.querySelector('.packages-carousel');
+  DOM.packagesContainer = document.querySelector('.packages-carousel-container');
+  
+  // Interactive elements
+  DOM.faqItems = document.querySelectorAll('.faq-item');
+  DOM.caseStudyModal = document.getElementById('case-study-modal');
+  DOM.projectModal = document.getElementById('project-modal');
+}
+
+/**
+ * Update Swiper Instances on resize
+ */
+function updateSwiperInstances() {
+  if (window.servicesSwiper) {
+    window.servicesSwiper.update();
+  }
+  
+  if (window.testimonialsSwiper) {
+    window.testimonialsSwiper.update();
+  }
+  
+  if (window.caseStudiesSwiper) {
+    window.caseStudiesSwiper.update();
+  }
+}
+
+/**
+ * Initialize Tilt Elements
+ */
+function initTiltElements() {
+  if (!DOM.tiltElements.length) return;
+  
+  if (typeof VanillaTilt !== 'undefined') {
+    // Initialize if VanillaTilt is already loaded
+    initTilt();
+  } else {
+    // Load VanillaTilt dynamically
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js', initTilt);
+  }
+  
+  function initTilt() {
+    VanillaTilt.init(DOM.tiltElements, {
+      max: 8,         // Reduced tilt amount for subtlety
+      speed: 400,
+      glare: true,
+      'max-glare': 0.2,
+      scale: 1.03,    // Subtle scale effect
+      gyroscope: true // Enable gyroscope on mobile
+    });
+  }
+}
+
+/**
+ * Reinitialize Tilt Elements (used after DOM changes)
  */
 function reinitializeTilt() {
   if (!window.VanillaTilt) return;
@@ -143,43 +258,9 @@ function reinitializeTilt() {
   });
 }
 
-/**
- * Update Swiper Instances
- */
-function updateSwiperInstances() {
-  if (window.servicesSwiper) {
-    window.servicesSwiper.update();
-  }
-  
-  if (window.testimonialsSwiper) {
-    window.testimonialsSwiper.update();
-  }
-  
-  if (window.caseStudiesSwiper) {
-    window.caseStudiesSwiper.update();
-  }
-}
-
-/**
- * Load Script Dynamically
- */
-function loadScript(url, callback) {
-  const script = document.createElement('script');
-  script.src = url;
-  script.onload = callback;
-  document.head.appendChild(script);
-}
-
-/**
- * Load CSS Dynamically
- */
-function loadCSS(url, callback) {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = url;
-  link.onload = callback;
-  document.head.appendChild(link);
-}
+// ==============================================
+// UI COMPONENTS
+// ==============================================
 
 /**
  * Back to Top Button
@@ -216,7 +297,88 @@ function updateBackToTopVisibility() {
 }
 
 /**
- * Initialize Bubble Animations
+ * Initialize Magnetic Buttons
+ */
+function initMagneticButtons() {
+  if (!DOM.magneticButtons.length) return;
+  
+  DOM.magneticButtons.forEach(button => {
+    button.addEventListener('mousemove', helpers.throttle((e) => {
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Apply subtle movement
+      if (window.gsap) {
+        gsap.to(button, {
+          x: x * 0.3,
+          y: y * 0.3,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+        
+        // Apply more subtle movement to span inside button
+        if (button.querySelector('span')) {
+          gsap.to(button.querySelector('span'), {
+            x: x * 0.1,
+            y: y * 0.1,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        }
+      } else {
+        button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        if (button.querySelector('span')) {
+          button.querySelector('span').style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+        }
+      }
+      
+      // Animate bubbles if present
+      if (button.querySelector('.btn-bubbles')) {
+        button.querySelector('.btn-bubbles').querySelectorAll('.bubble').forEach(bubble => {
+          bubble.style.opacity = '1';
+        });
+      }
+    }, 16));
+    
+    button.addEventListener('mouseleave', () => {
+      if (window.gsap) {
+        gsap.to(button, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)'
+        });
+        
+        if (button.querySelector('span')) {
+          gsap.to(button.querySelector('span'), {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.5)'
+          });
+        }
+      } else {
+        button.style.transform = 'translate(0, 0)';
+        if (button.querySelector('span')) {
+          button.querySelector('span').style.transform = 'translate(0, 0)';
+        }
+      }
+      
+      // Fade out bubbles if present
+      if (button.querySelector('.btn-bubbles')) {
+        setTimeout(() => {
+          button.querySelector('.btn-bubbles').querySelectorAll('.bubble').forEach(bubble => {
+            bubble.style.opacity = '0';
+          });
+        }, 500);
+      }
+    });
+  });
+}
+
+/**
+ * Initialize Bubble Animations for buttons
  */
 function initBubbleAnimations() {
   const buttonBubbles = document.querySelectorAll('.btn-bubbles');
@@ -229,171 +391,28 @@ function initBubbleAnimations() {
       bubble.style.animationDelay = `${helpers.random(0, 2000) / 1000}s`;
     });
     
-    bubbleContainer.closest('a, button').addEventListener('mouseenter', () => {
-      bubbles.forEach(bubble => {
-        bubble.style.opacity = '1';
-      });
-    });
-    
-    bubbleContainer.closest('a, button').addEventListener('mouseleave', () => {
-      setTimeout(() => {
+    const button = bubbleContainer.closest('a, button');
+    if (button) {
+      button.addEventListener('mouseenter', () => {
         bubbles.forEach(bubble => {
-          bubble.style.opacity = '0';
+          bubble.style.opacity = '1';
         });
-      }, 500);
-    });
+      });
+      
+      button.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+          bubbles.forEach(bubble => {
+            bubble.style.opacity = '0';
+          });
+        }, 500);
+      });
+    }
   });
 }
 
-/**
- * Update Portfolio Grid
- */
-function updatePortfolioGrid() {
-  if (!DOM.portfolioGrid || !window.projectsData) return;
-  
-  // Clear existing content
-  DOM.portfolioGrid.innerHTML = '';
-  
-  // Create HTML for portfolio items
-  const portfolioHTML = window.projectsData.map(project => `
-    <div class="portfolio-item tilt-element" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
-      <div class="portfolio-image">
-        <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
-      </div>
-      <div class="portfolio-overlay">
-        <div class="portfolio-content">
-          <div class="portfolio-tags">
-            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
-          </div>
-          <h3 class="portfolio-title">${project.title}</h3>
-          <a href="#" class="portfolio-link" data-project-id="${project.id}">
-            <span>View Details</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  
-  // Add to DOM
-  DOM.portfolioGrid.innerHTML = portfolioHTML;
-  
-  // Re-initialize tilt effect
-  if (window.VanillaTilt && !config.isTouchDevice) {
-    VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
-      max: 8,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.2,
-      scale: 1.03
-    });
-  }
-  
-  // Add animations to portfolio items
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  portfolioItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(30px)';
-    
-    setTimeout(() => {
-      item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-      item.style.opacity = '1';
-      item.style.transform = 'translateY(0)';
-    }, 100 + index * 100);
-  });
-};
-
-// Initialize when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize DOM selector cache
-  cacheDOM();
-  
-  // Enable animations after small delay to prevent flash of animation
-  setTimeout(() => {
-    document.body.classList.remove('preload');
-  }, 100);
-  
-  // Initialize components in priority order
-  initLoader();
-  initNavigation();
-  initMobileMenu();
-  
-  // Conditional initialization based on device type
-  if (!config.isTouchDevice) {
-    initMagneticButtons();
-    initTiltElements();
-  }
-  
-  // Initialize bubble animations
-  initBubbleAnimations();
-  
-  // Core interactive elements
-  initPortfolioFilter();
-  initProcessTimeline();
-  initCounters();
-  
-  // Initialize modals and form interactions
-  initProjectModals();
-  initFormInteractions();
-  
-  // Initialize carousels
-  initServicesCarousel();
-  initTestimonialsCarousel();
-  
-  // Load data and initialize back to top button
-  loadProjectsData();
-  initBackToTop();
-  
-  // Initialize new sections for Case Studies and FAQ
-  initCaseStudiesSlider();
-  initFaqAccordion();
-  initCaseStudyModal();
-  
-  // Initialize typed text animations
-  initHeroTyped();
-  initServiceTypedText();
-  
-  // Initialize tech stack marquee
-  initMarquee();
-  
-  // Add scroll and resize event listeners with performance optimization
-  window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
-  window.addEventListener('resize', helpers.debounce(handleResize, 250));
-});
-
-// Cache DOM elements for more efficient access
-function cacheDOM() {
-  // Header elements
-  DOM.header = document.querySelector('.header');
-  DOM.navLinks = document.querySelectorAll('.nav-link');
-  DOM.menuToggle = document.querySelector('.menu-toggle');
-  DOM.mobileMenu = document.querySelector('.mobile-menu');
-  
-  // Section elements
-  DOM.sections = document.querySelectorAll('section[id]');
-  DOM.portfolioGrid = document.getElementById('portfolio-grid');
-  DOM.featuredProjects = document.getElementById('featured-projects');
-  
-  // Interactive elements
-  DOM.filterButtons = document.querySelectorAll('.filter-btn');
-  DOM.processSteps = document.querySelectorAll('.process-step');
-  DOM.tiltElements = document.querySelectorAll('.tilt-element');
-  DOM.magneticButtons = document.querySelectorAll('.magnetic-button');
-  DOM.backToTop = document.querySelector('.back-to-top');
-  
-  // Forms
-  DOM.contactForm = document.getElementById('contact-form');
-  DOM.formInputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
-  
-  // Carousels
-  DOM.servicesCarousel = document.querySelector('.services-carousel');
-  DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
-  
-  // New sections
-  DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
-  DOM.faqItems = document.querySelectorAll('.faq-item');
-  DOM.caseStudyModal = document.getElementById('case-study-modal');
-}
+// ==============================================
+// LOADER SECTION
+// ==============================================
 
 /**
  * Page Loader with Optimized Animation
@@ -512,132 +531,9 @@ function animateHeroElements() {
   });
 }
 
-/**
- * Initialize Typed.js for Hero Section
- */
-function initHeroTyped() {
-  const typedElement = document.getElementById('hero-typed');
-  const typedStrings = document.getElementById('hero-typed-strings');
-  
-  if (!typedElement || !typedStrings) return;
-  
-  if (typeof Typed !== 'undefined') {
-    // Initialize if Typed.js is already loaded
-    initTyped();
-  } else {
-    // Load Typed.js dynamically
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', initTyped);
-  }
-  
-  function initTyped() {
-    // Wait a moment to ensure hero section is visible
-    setTimeout(() => {
-      new Typed('#hero-typed', {
-        stringsElement: '#hero-typed-strings',
-        typeSpeed: 60,
-        backSpeed: 30,
-        backDelay: 2000,
-        startDelay: 500,
-        loop: true,
-        showCursor: true,
-        cursorChar: '|'
-      });
-    }, 1500);
-  }
-}
-
-/**
- * Initialize Magnetic Buttons
- */
-function initMagneticButtons() {
-  if (!DOM.magneticButtons.length) return;
-  
-  DOM.magneticButtons.forEach(button => {
-    button.addEventListener('mousemove', helpers.throttle((e) => {
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      // Apply subtle movement
-      gsap.to(button, {
-        x: x * 0.3,
-        y: y * 0.3,
-        duration: 0.3,
-        ease: 'power2.out'
-      });
-      
-      // Apply more subtle movement to span inside button
-      if (button.querySelector('span')) {
-        gsap.to(button.querySelector('span'), {
-          x: x * 0.1,
-          y: y * 0.1,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      }
-      
-      // Animate bubbles if present
-      if (button.querySelector('.btn-bubbles')) {
-        button.querySelector('.btn-bubbles').querySelectorAll('.bubble').forEach(bubble => {
-          bubble.style.opacity = '1';
-        });
-      }
-    }, 16));
-    
-    button.addEventListener('mouseleave', () => {
-      gsap.to(button, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-        ease: 'elastic.out(1, 0.5)'
-      });
-      
-      if (button.querySelector('span')) {
-        gsap.to(button.querySelector('span'), {
-          x: 0,
-          y: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1, 0.5)'
-        });
-      }
-      
-      // Fade out bubbles if present
-      if (button.querySelector('.btn-bubbles')) {
-        setTimeout(() => {
-          button.querySelector('.btn-bubbles').querySelectorAll('.bubble').forEach(bubble => {
-            bubble.style.opacity = '0';
-          });
-        }, 500);
-      }
-    });
-  });
-}
-
-/**
- * Initialize Tilt Effect
- */
-function initTiltElements() {
-  if (!DOM.tiltElements.length) return;
-  
-  if (typeof VanillaTilt !== 'undefined') {
-    // Initialize if VanillaTilt is already loaded
-    initTilt();
-  } else {
-    // Load VanillaTilt dynamically
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js', initTilt);
-  }
-  
-  function initTilt() {
-    VanillaTilt.init(DOM.tiltElements, {
-      max: 8,         // Reduced tilt amount for subtlety
-      speed: 400,
-      glare: true,
-      'max-glare': 0.2,
-      scale: 1.03,    // Subtle scale effect
-      gyroscope: true // Enable gyroscope on mobile
-    });
-  }
-}
+// ==============================================
+// HEADER & NAVIGATION
+// ==============================================
 
 /**
  * Navigation Functionality
@@ -681,7 +577,7 @@ function initNavigation() {
 }
 
 /**
- * Update Navigation State
+ * Update Navigation Active State based on scroll position
  */
 function updateNavigation() {
   if (!DOM.sections.length || !DOM.navLinks.length) return;
@@ -759,6 +655,76 @@ function initMobileMenu() {
     document.body.classList.remove('no-scroll');
   }
 }
+
+// ==============================================
+// HERO SECTION
+// ==============================================
+
+/**
+ * Initialize Typed.js for Hero Section
+ */
+function initHeroTyped() {
+  const typedElement = document.getElementById('hero-typed');
+  const typedStrings = document.getElementById('hero-typed-strings');
+  
+  if (!typedElement || !typedStrings) return;
+  
+  if (typeof Typed !== 'undefined') {
+    // Initialize if Typed.js is already loaded
+    initTyped();
+  } else {
+    // Load Typed.js dynamically
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', initTyped);
+  }
+  
+  function initTyped() {
+    // Wait a moment to ensure hero section is visible
+    setTimeout(() => {
+      new Typed('#hero-typed', {
+        stringsElement: '#hero-typed-strings',
+        typeSpeed: 60,
+        backSpeed: 30,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|'
+      });
+    }, 1500);
+  }
+}
+
+// ==============================================
+// TECH STACK MARQUEE
+// ==============================================
+
+/**
+ * Initialize Marquee Effect for tech stack showcase
+ */
+function initMarquee() {
+  const marquees = document.querySelectorAll('.marquee');
+  
+  marquees.forEach(marquee => {
+    const content = marquee.querySelector('.tech-track-inner');
+    if (!content) return;
+    
+    // Get computed width
+    const contentWidth = content.offsetWidth;
+    
+    // Set animation duration based on content width
+    const duration = contentWidth / 50; // Adjust the divisor to control speed
+    
+    // Set animation duration
+    const trackInners = marquee.querySelectorAll('.tech-track-inner');
+    trackInners.forEach(track => {
+      track.style.animationDuration = `${duration}s`;
+    });
+  });
+}
+
+// ==============================================
+// SERVICES SECTION
+// ==============================================
 
 /**
  * Initialize Services Carousel with Swiper
@@ -844,57 +810,6 @@ function initServicesCarousel() {
 }
 
 /**
- * Initialize Testimonials Carousel
- */
-function initTestimonialsCarousel() {
-  if (!DOM.testimonialsContainer) return;
-  
-  if (typeof Swiper !== 'undefined') {
-    // Initialize if Swiper is already loaded
-    initTestimonialsSwiper();
-  } else {
-    // Load Swiper dynamically
-    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initTestimonialsSwiper);
-    });
-  }
-  
-  function initTestimonialsSwiper() {
-    window.testimonialsSwiper = new Swiper('.testimonials-slider', {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      speed: 800,
-      grabCursor: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false
-      },
-      pagination: {
-        el: '.testimonials-pagination',
-        clickable: true,
-        dynamicBullets: true
-      },
-      navigation: {
-        nextEl: '.testimonials-nav-next',
-        prevEl: '.testimonials-nav-prev'
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 30
-        },
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 40
-        }
-      },
-      effect: 'slide'
-    });
-  }
-}
-
-/**
  * Service Card Effects
  */
 function initServiceCardEffects() {
@@ -913,68 +828,92 @@ function initServiceCardEffects() {
         const yPercent = y / rect.height - 0.5;
         
         // Apply subtle rotation based on mouse position (max 3deg)
-        gsap.to(card, {
-          rotationX: yPercent * -3,
-          rotationY: xPercent * 3,
-          z: 10,
-          ease: 'power1.out',
-          duration: 0.5
-        });
-        
-        // Move icon slightly
-        const icon = card.querySelector('.service-icon');
-        if (icon) {
-          gsap.to(icon, {
-            x: xPercent * 5,
-            y: yPercent * 5,
-            scale: 1.1,
+        if (window.gsap) {
+          gsap.to(card, {
+            rotationX: yPercent * -3,
+            rotationY: xPercent * 3,
+            z: 10,
             ease: 'power1.out',
             duration: 0.5
           });
+          
+          // Move icon slightly
+          const icon = card.querySelector('.service-icon');
+          if (icon) {
+            gsap.to(icon, {
+              x: xPercent * 5,
+              y: yPercent * 5,
+              scale: 1.1,
+              ease: 'power1.out',
+              duration: 0.5
+            });
+          }
+        } else {
+          card.style.transform = `perspective(1000px) rotateX(${yPercent * -3}deg) rotateY(${xPercent * 3}deg) translateZ(10px)`;
+          
+          const icon = card.querySelector('.service-icon');
+          if (icon) {
+            icon.style.transform = `translate(${xPercent * 5}px, ${yPercent * 5}px) scale(1.1)`;
+          }
         }
       }
     });
 
     card.addEventListener('mouseleave', function() {
       // Reset transformation on mouse leave
-      gsap.to(card, {
-        rotationX: 0,
-        rotationY: 0,
-        z: 0,
-        ease: 'power2.out',
-        duration: 0.7
-      });
-      
-      // Reset icon position
-      const icon = card.querySelector('.service-icon');
-      if (icon) {
-        gsap.to(icon, {
-          x: 0,
-          y: 0,
-          scale: 1,
+      if (window.gsap) {
+        gsap.to(card, {
+          rotationX: 0,
+          rotationY: 0,
+          z: 0,
           ease: 'power2.out',
           duration: 0.7
         });
+        
+        // Reset icon position
+        const icon = card.querySelector('.service-icon');
+        if (icon) {
+          gsap.to(icon, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            ease: 'power2.out',
+            duration: 0.7
+          });
+        }
+      } else {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+        
+        const icon = card.querySelector('.service-icon');
+        if (icon) {
+          icon.style.transform = 'translate(0, 0) scale(1)';
+        }
       }
     });
   });
 }
 
 /**
- * Animate Active Slides
+ * Animate Active Slides in Services Carousel
  */
 function animateActiveSlides(swiper) {
   // Reset all slides
   swiper.slides.forEach(slide => {
     const card = slide.querySelector('.service-card');
     if (card) {
-      gsap.to(card, {
-        y: 0,
-        scale: 0.95,
-        opacity: 0.7,
-        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
-        duration: 0.5
-      });
+      if (window.gsap) {
+        gsap.to(card, {
+          y: 0,
+          scale: 0.95,
+          opacity: 0.7,
+          boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
+          duration: 0.5
+        });
+      } else {
+        card.style.transform = 'translateY(0) scale(0.95)';
+        card.style.opacity = '0.7';
+        card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
+      }
     }
   });
 
@@ -990,13 +929,19 @@ function animateActiveSlides(swiper) {
   if (activeSlide) {
     const activeCard = activeSlide.querySelector('.service-card');
     if (activeCard) {
-      gsap.to(activeCard, {
-        y: -15,
-        scale: 1,
-        opacity: 1,
-        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
-        duration: 0.5
-      });
+      if (window.gsap) {
+        gsap.to(activeCard, {
+          y: -15,
+          scale: 1,
+          opacity: 1,
+          boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+          duration: 0.5
+        });
+      } else {
+        activeCard.style.transform = 'translateY(-15px) scale(1)';
+        activeCard.style.opacity = '1';
+        activeCard.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.1)';
+      }
     }
   }
   
@@ -1004,24 +949,34 @@ function animateActiveSlides(swiper) {
   if (prevSlide) {
     const prevCard = prevSlide.querySelector('.service-card');
     if (prevCard) {
-      gsap.to(prevCard, {
-        y: -5,
-        scale: 0.97,
-        opacity: 0.85,
-        duration: 0.5
-      });
+      if (window.gsap) {
+        gsap.to(prevCard, {
+          y: -5,
+          scale: 0.97,
+          opacity: 0.85,
+          duration: 0.5
+        });
+      } else {
+        prevCard.style.transform = 'translateY(-5px) scale(0.97)';
+        prevCard.style.opacity = '0.85';
+      }
     }
   }
   
   if (nextSlide) {
     const nextCard = nextSlide.querySelector('.service-card');
     if (nextCard) {
-      gsap.to(nextCard, {
-        y: -5,
-        scale: 0.97,
-        opacity: 0.85,
-        duration: 0.5
-      });
+      if (window.gsap) {
+        gsap.to(nextCard, {
+          y: -5,
+          scale: 0.97,
+          opacity: 0.85,
+          duration: 0.5
+        });
+      } else {
+        nextCard.style.transform = 'translateY(-5px) scale(0.97)';
+        nextCard.style.opacity = '0.85';
+      }
     }
   }
 }
@@ -1041,70 +996,48 @@ function initServiceTypedText() {
     // Load Typed.js dynamically
     loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', setupServiceTypedText);
   }
+  
+  function setupServiceTypedText() {
+    // Select all elements with service-typed class
+    const typedElements = document.querySelectorAll('.service-typed');
+    
+    // Initialize Typed.js for each element
+    typedElements.forEach(element => {
+      // Get items to type from data attribute
+      const itemsAttr = element.getAttribute('data-typed-items');
+      if (!itemsAttr) return;
+      
+      const items = itemsAttr.split(',');
+      
+      // Create Typed instance
+      const typed = new Typed(element, {
+        strings: items,
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        startDelay: 300,
+        loop: true,
+        cursorChar: '|',
+        shuffle: false,
+        smartBackspace: true
+      });
+      
+      // Store typed instance on element for later control
+      element._typed = typed;
+    });
+  }
 }
 
-/**
- * Setup Typed.js for Service Descriptions
- */
-function setupServiceTypedText() {
-  // Select all elements with service-typed class
-  const typedElements = document.querySelectorAll('.service-typed');
-  
-  // Initialize Typed.js for each element
-  typedElements.forEach(element => {
-    // Get items to type from data attribute
-    const itemsAttr = element.getAttribute('data-typed-items');
-    if (!itemsAttr) return;
-    
-    const items = itemsAttr.split(',');
-    
-    // Create Typed instance
-    const typed = new Typed(element, {
-      strings: items,
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 2000,
-      startDelay: 300,
-      loop: true,
-      cursorChar: '|',
-      shuffle: false,
-      smartBackspace: true
-    });
-    
-    // Store typed instance on element for later control
-    element._typed = typed;
-  });
-}
-
-/**
- * Initialize Marquee Effect
- */
-function initMarquee() {
-  const marquees = document.querySelectorAll('.marquee');
-  
-  marquees.forEach(marquee => {
-    const content = marquee.querySelector('.tech-track-inner');
-    if (!content) return;
-    
-    // Get computed width
-    const contentWidth = content.offsetWidth;
-    
-    // Set animation duration based on content width
-    const duration = contentWidth / 50; // Adjust the divisor to control speed
-    
-    // Set animation duration
-    const trackInners = marquee.querySelectorAll('.tech-track-inner');
-    trackInners.forEach(track => {
-      track.style.animationDuration = `${duration}s`;
-    });
-  });
-}
+// ==============================================
+// PROCESS SECTION
+// ==============================================
 
 /**
  * Process Timeline Animation
  */
 function initProcessTimeline() {
-  if (!DOM.processSteps.length) return;
+  const processCards = document.querySelectorAll('.process-card');
+  if (!processCards.length) return;
   
   // Create intersection observer for animation
   const observer = new IntersectionObserver((entries) => {
@@ -1114,19 +1047,28 @@ function initProcessTimeline() {
         
         // Add staggered animation to process elements
         setTimeout(() => {
-          const number = entry.target.querySelector('.process-number');
-          const content = entry.target.querySelector('.process-content');
+          const card = entry.target.querySelector('.process-card-inner');
+          const number = entry.target.querySelector('.process-step-number');
+          const content = entry.target.querySelector('.process-card-content');
           const icon = entry.target.querySelector('.process-icon');
           
-          if (number) gsap.to(number, { scale: 1.2, rotate: '-10deg', duration: 0.5, ease: 'back.out(1.7)' });
-          if (content) gsap.to(content, { y: -10, opacity: 1, duration: 0.5 });
-          if (icon) gsap.to(icon, { rotate: '0deg', scale: 1.2, opacity: 0.2, duration: 0.5 });
-          
-          setTimeout(() => {
-            if (number) gsap.to(number, { scale: 1, rotate: '0deg', duration: 0.3 });
-            if (content) gsap.to(content, { y: 0, duration: 0.3 });
-            if (icon) gsap.to(icon, { scale: 1, duration: 0.3 });
-          }, 500);
+          if (window.gsap) {
+            if (number) gsap.to(number, { scale: 1.2, rotate: '-10deg', duration: 0.5, ease: 'back.out(1.7)' });
+            if (content) gsap.to(content, { y: -10, opacity: 1, duration: 0.5 });
+            if (icon) gsap.to(icon, { rotate: '0deg', scale: 1.2, opacity: 0.2, duration: 0.5 });
+            
+            setTimeout(() => {
+              if (number) gsap.to(number, { scale: 1, rotate: '0deg', duration: 0.3 });
+              if (content) gsap.to(content, { y: 0, duration: 0.3 });
+              if (icon) gsap.to(icon, { scale: 1, duration: 0.3 });
+            }, 500);
+          } else {
+            // Fallback for non-GSAP browsers
+            if (card) {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }
+          }
         }, 200);
         
         observer.unobserve(entry.target);
@@ -1134,11 +1076,15 @@ function initProcessTimeline() {
     });
   }, { threshold: 0.2 });
   
-  // Observe each process step
-  DOM.processSteps.forEach(step => {
-    observer.observe(step);
+  // Observe each process card
+  processCards.forEach(card => {
+    observer.observe(card);
   });
 }
+
+// ==============================================
+// PORTFOLIO SECTION
+// ==============================================
 
 /**
  * Portfolio Filter Functionality
@@ -1166,15 +1112,37 @@ function initPortfolioFilter() {
         
         if (filterValue === 'all' || categories.includes(filterValue)) {
           // Show item with animation
-          gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+          if (window.gsap) {
+            gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+              item.classList.remove('hidden');
+              gsap.to(item, { opacity: 1, y: 0, duration: 0.5, delay: 0.1 });
+            }});
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
             item.classList.remove('hidden');
-            gsap.to(item, { opacity: 1, y: 0, duration: 0.5, delay: 0.1 });
-          }});
+            
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+              item.style.transition = 'opacity 0.5s, transform 0.5s';
+            }, 10);
+          }
         } else {
           // Hide item with animation
-          gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
-            item.classList.add('hidden');
-          }});
+          if (window.gsap) {
+            gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+              item.classList.add('hidden');
+            }});
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.3s, transform 0.3s';
+            
+            setTimeout(() => {
+              item.classList.add('hidden');
+            }, 300);
+          }
         }
       });
     });
@@ -1383,11 +1351,23 @@ function initProjectModals() {
     modal.classList.add('active');
     
     // Animate modal entrance
-    gsap.fromTo(
-      modal.querySelector('.modal-container'),
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
-    );
+    if (window.gsap) {
+      gsap.fromTo(
+        modal.querySelector('.modal-container'),
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+      );
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      
+      setTimeout(() => {
+        container.style.transform = 'translateY(0)';
+        container.style.opacity = '1';
+        container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      }, 10);
+    }
   }
   
   /**
@@ -1397,229 +1377,36 @@ function initProjectModals() {
     if (!modal) return;
     
     // Animate modal exit
-    gsap.to(modal.querySelector('.modal-container'), {
-      y: 50,
-      opacity: 0,
-      duration: 0.4,
-      ease: 'power2.in',
-      onComplete: () => {
+    if (window.gsap) {
+      gsap.to(modal.querySelector('.modal-container'), {
+        y: 50,
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+          
+          // Remove dynamic styles
+          const dynamicStyles = document.getElementById('modal-dynamic-styles');
+          if (dynamicStyles) dynamicStyles.remove();
+        }
+      });
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      container.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      
+      setTimeout(() => {
         modal.classList.remove('active');
         document.body.style.overflow = ''; // Re-enable scrolling
         
         // Remove dynamic styles
         const dynamicStyles = document.getElementById('modal-dynamic-styles');
         if (dynamicStyles) dynamicStyles.remove();
-      }
-    });
-  }
-}
-
-/**
- * Counter Animation
- */
-function initCounters() {
-  const counters = document.querySelectorAll('.counter');
-  
-  if (!counters.length) return;
-  
-  // Set up intersection observer
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = parseInt(counter.getAttribute('data-target'));
-        let count = 0;
-        
-        const updateCount = () => {
-          const increment = target / 40; // Divide by number of frames
-          
-          if (count < target) {
-            count += increment;
-            counter.textContent = Math.round(count);
-            requestAnimationFrame(updateCount);
-          } else {
-            counter.textContent = target;
-          }
-        };
-        
-        updateCount();
-        
-        // Add pulse animation
-        gsap.to(counter.closest('.stat-item'), {
-          scale: 1.05,
-          duration: 0.5,
-          ease: 'power2.out',
-          onComplete: () => {
-            gsap.to(counter.closest('.stat-item'), {
-              scale: 1,
-              duration: 0.3,
-              ease: 'power2.in'
-            });
-          }
-        });
-        
-        observer.unobserve(counter);
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  // Observe each counter
-  counters.forEach(counter => {
-    observer.observe(counter);
-  });
-}
-
-/**
- * Form Interactions
- */
-function initFormInteractions() {
-  if (!DOM.contactForm || !DOM.formInputs.length) return;
-  
-  // Add focus effects
-  DOM.formInputs.forEach(input => {
-    // Check if input has value on load
-    if (input.value) {
-      input.classList.add('has-value');
+      }, 400);
     }
-    
-    // Update state when value changes
-    input.addEventListener('input', () => {
-      input.classList.toggle('has-value', input.value.length > 0);
-    });
-  });
-  
-  // Form validation
-  DOM.contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    let isValid = true;
-    
-    // Basic validation
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    
-    // Clear previous error messages
-    document.querySelectorAll('.error-message').forEach(error => error.remove());
-    
-    // Validate name
-    if (!name.value.trim()) {
-      showError(name, 'Please enter your name');
-      isValid = false;
-    }
-    
-    // Validate email
-    if (!email.value.trim()) {
-      showError(email, 'Please enter your email address');
-      isValid = false;
-    } else if (!isValidEmail(email.value)) {
-      showError(email, 'Please enter a valid email address');
-      isValid = false;
-    }
-    
-    // Validate message
-    if (!message.value.trim()) {
-      showError(message, 'Please enter your message');
-      isValid = false;
-    }
-    
-    if (isValid) {
-      // Form is valid, simulate form submission
-      const submitButton = DOM.contactForm.querySelector('button[type="submit"]');
-      const originalButtonContent = submitButton.innerHTML;
-      
-      // Show loading state
-      submitButton.innerHTML = '<span>Sending</span> <i class="fas fa-spinner fa-spin"></i>';
-      submitButton.disabled = true;
-      
-      // Simulate API call
-      setTimeout(() => {
-        // Create success animation with GSAP
-        gsap.to(DOM.contactForm, {
-          opacity: 0,
-          y: -20,
-          duration: 0.5,
-          onComplete: () => {
-            // Show success message
-            DOM.contactForm.innerHTML = `
-              <div class="form-success">
-                <div class="success-icon">
-                  <i class="fas fa-check-circle"></i>
-                </div>
-                <h3>Thank You!</h3>
-                <p>Your message has been sent successfully. We'll get back to you shortly.</p>
-              </div>
-            `;
-            
-            // Animate success message
-            gsap.fromTo(
-              DOM.contactForm.querySelector('.form-success'),
-              { opacity: 0, y: 20 },
-              { opacity: 1, y: 0, duration: 0.5 }
-            );
-            
-            // Add success styles
-            const style = document.createElement('style');
-            style.textContent = `
-              .form-success {
-                text-align: center;
-                padding: 2rem;
-              }
-              
-              .success-icon {
-                font-size: 3rem;
-                color: var(--primary);
-                margin-bottom: 1rem;
-                animation: successPulse 2s infinite;
-              }
-              
-              @keyframes successPulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.1); }
-                100% { transform: scale(1); }
-              }
-            `;
-            document.head.appendChild(style);
-          }
-        });
-      }, 1500);
-    }
-  });
-  
-  // Helper functions
-  function showError(input, message) {
-    const formGroup = input.closest('.form-group');
-    const error = document.createElement('div');
-    error.className = 'error-message';
-    error.textContent = message;
-    error.style.color = 'var(--primary)';
-    error.style.fontSize = '0.8125rem';
-    error.style.marginTop = '0.25rem';
-    formGroup.appendChild(error);
-    
-    // Highlight the input
-    input.style.borderColor = 'var(--primary)';
-    
-    // Shake animation
-    gsap.fromTo(
-      input,
-      { x: -5 },
-      { x: 0, duration: 0.3, ease: 'elastic.out(1, 0.3)' }
-    );
-    
-    // Remove highlight on input
-    input.addEventListener('input', function() {
-      input.style.borderColor = '';
-      const errorElement = formGroup.querySelector('.error-message');
-      if (errorElement) {
-        errorElement.remove();
-      }
-    }, { once: true });
-  }
-  
-  function isValidEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
   }
 }
 
@@ -1724,7 +1511,65 @@ function loadProjectsData() {
 }
 
 /**
- * Update Featured Projects
+ * Update Portfolio Grid with project data
+ */
+function updatePortfolioGrid() {
+  if (!DOM.portfolioGrid || !window.projectsData) return;
+  
+  // Clear existing content
+  DOM.portfolioGrid.innerHTML = '';
+  
+  // Create HTML for portfolio items
+  const portfolioHTML = window.projectsData.map(project => `
+    <div class="portfolio-item tilt-element" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
+      <div class="portfolio-image">
+        <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-content">
+          <div class="portfolio-tags">
+            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+          </div>
+          <h3 class="portfolio-title">${project.title}</h3>
+          <a href="#" class="portfolio-link" data-project-id="${project.id}">
+            <span>View Details</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  
+  // Add to DOM
+  DOM.portfolioGrid.innerHTML = portfolioHTML;
+  
+  // Re-initialize tilt effect
+  if (window.VanillaTilt && !config.isTouchDevice) {
+    VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
+      max: 8,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.2,
+      scale: 1.03
+    });
+  }
+  
+  // Add animations to portfolio items
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
+    }, 100 + index * 100);
+  });
+}
+
+/**
+ * Update Featured Projects section on homepage
  */
 function updateFeaturedProjects() {
   if (!DOM.featuredProjects || !window.projectsData) return;
@@ -1758,12 +1603,263 @@ function updateFeaturedProjects() {
   }
 }
 
+// ==============================================
+// PACKAGES SECTION (3D CAROUSEL)
+// ==============================================
+
+/**
+ * Initialize the packages carousel functionality
+ */
+function initPackagesCarousel() {
+  // Get elements
+  const carousel = document.querySelector('.packages-carousel');
+  const categories = document.querySelectorAll('.packages-category');
+  const prevBtn = document.querySelector('.package-nav-btn.prev-btn');
+  const nextBtn = document.querySelector('.package-nav-btn.next-btn');
+  const categoryDots = document.querySelectorAll('.category-dot');
+  const categoryName = document.querySelector('.category-name');
+  
+  // Exit if carousel elements don't exist
+  if (!carousel || !categories.length) return;
+  
+  // Category data
+  const categoryData = [
+    { id: 'business', name: 'Business Solutions', active: true },
+    { id: 'design', name: 'Design Services', active: false },
+    { id: 'property', name: 'Property Management', active: false }
+  ];
+  
+  // Set initial active category
+  let currentIndex = 0;
+  
+  // Initialize the carousel
+  initCarousel();
+  
+  /**
+   * Initialize the carousel with first category active
+   */
+  function initCarousel() {
+    // Set initial active state
+    updateActiveCategory();
+    
+    // Add click events
+    if (prevBtn) prevBtn.addEventListener('click', goToPrevCategory);
+    if (nextBtn) nextBtn.addEventListener('click', goToNextCategory);
+    
+    // Add click events to category dots
+    categoryDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        goToCategory(index);
+      });
+    });
+    
+    // Animate package cards on load
+    animatePackageCards();
+    
+    // Add touch swipe support
+    addSwipeSupport();
+  }
+  
+  /**
+   * Go to previous category
+   */
+  function goToPrevCategory() {
+    // Calculate new index with wraparound
+    currentIndex = (currentIndex - 1 + categoryData.length) % categoryData.length;
+    
+    // Add transition class
+    carousel.classList.add('carousel-slide-prev');
+    
+    // Apply transition
+    setTimeout(() => {
+      // Update active category
+      updateActiveCategory();
+      
+      // Remove transition class
+      setTimeout(() => {
+        carousel.classList.remove('carousel-slide-prev');
+      }, 50);
+    }, 500);
+  }
+  
+  /**
+   * Go to next category
+   */
+  function goToNextCategory() {
+    // Calculate new index with wraparound
+    currentIndex = (currentIndex + 1) % categoryData.length;
+    
+    // Add transition class
+    carousel.classList.add('carousel-slide-next');
+    
+    // Apply transition
+    setTimeout(() => {
+      // Update active category
+      updateActiveCategory();
+      
+      // Remove transition class
+      setTimeout(() => {
+        carousel.classList.remove('carousel-slide-next');
+      }, 50);
+    }, 500);
+  }
+  
+  /**
+   * Go to specific category by index
+   */
+  function goToCategory(index) {
+    if (index === currentIndex) return;
+    
+    if (index > currentIndex) {
+      carousel.classList.add('carousel-slide-next');
+    } else {
+      carousel.classList.add('carousel-slide-prev');
+    }
+    
+    currentIndex = index;
+    
+    // Apply transition
+    setTimeout(() => {
+      // Update active category
+      updateActiveCategory();
+      
+      // Remove transition classes
+      setTimeout(() => {
+        carousel.classList.remove('carousel-slide-next', 'carousel-slide-prev');
+      }, 50);
+    }, 500);
+  }
+  
+  /**
+   * Update which category is active
+   */
+  function updateActiveCategory() {
+    // Update category data
+    categoryData.forEach((category, index) => {
+      category.active = (index === currentIndex);
+    });
+    
+    // Update DOM elements
+    categories.forEach(category => {
+      const categoryId = category.getAttribute('data-category');
+      const isActive = categoryData[currentIndex].id === categoryId;
+      
+      if (isActive) {
+        category.classList.add('active');
+      } else {
+        category.classList.remove('active');
+      }
+    });
+    
+    // Update category name
+    if (categoryName) {
+      categoryName.textContent = categoryData[currentIndex].name;
+    }
+    
+    // Update category dots
+    categoryDots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+    
+    // Update carousel transform based on current index
+    updateCarouselTransform();
+    
+    // Animate package cards
+    animatePackageCards();
+  }
+  
+  /**
+   * Update the 3D transform of the carousel based on current category
+   */
+  function updateCarouselTransform() {
+    // Set the appropriate 3D transform for the current category
+    switch (currentIndex) {
+      case 0: // Business
+        carousel.style.transform = 'translateZ(0) rotateY(0)';
+        break;
+      case 1: // Design
+        carousel.style.transform = 'translateZ(-2000px) rotateY(-90deg)';
+        break;
+      case 2: // Property
+        carousel.style.transform = 'translateZ(-4000px) rotateY(-180deg)';
+        break;
+    }
+  }
+  
+  /**
+   * Animate package cards with staggered delay
+   */
+  function animatePackageCards() {
+    // Find the active category
+    const activeCategory = document.querySelector('.packages-category.active');
+    if (!activeCategory) return;
+    
+    // Get cards in the active category
+    const cards = activeCategory.querySelectorAll('.package-card');
+    
+    // Add animation to each card with staggered delay
+    cards.forEach((card, index) => {
+      // Reset animation by removing and adding the card element
+      const cardClone = card.cloneNode(true);
+      card.parentNode.replaceChild(cardClone, card);
+      
+      // Apply animation with delay
+      setTimeout(() => {
+        cardClone.style.animation = `fadeInScaleUp 0.8s ${index * 0.15}s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
+        cardClone.style.opacity = '0';
+        cardClone.style.transform = 'translateY(40px) scale(0.9)';
+      }, 50);
+    });
+  }
+  
+  /**
+   * Add touch swipe support for mobile devices
+   */
+  function addSwipeSupport() {
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const carouselContainer = document.querySelector('.packages-carousel-container');
+    if (!carouselContainer) return;
+    
+    // Add touch event listeners
+    carouselContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    carouselContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+    
+    // Handle swipe direction
+    function handleSwipe() {
+      const swipeThreshold = 75; // Minimum distance for a swipe
+      
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe left - go to next
+        goToNextCategory();
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe right - go to previous
+        goToPrevCategory();
+      }
+    }
+  }
+}
+
+// ==============================================
+// CASE STUDIES SECTION
+// ==============================================
+
 /**
  * Initialize Case Studies Slider
  */
 function initCaseStudiesSlider() {
-  const caseStudiesContainer = document.querySelector('.case-studies-slider');
-  if (!caseStudiesContainer) return;
+  if (!DOM.caseStudiesContainer) return;
   
   if (typeof Swiper !== 'undefined') {
     // Initialize if Swiper is already loaded
@@ -1838,120 +1934,7 @@ function initCaseStudiesSlider() {
       });
     }, { threshold: 0.2 });
     
-    observer.observe(caseStudiesContainer);
-  }
-}
-
-/**
- * Initialize FAQ Accordion
- */
-function initFaqAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  if (!faqItems.length) return;
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    
-    if (question) {
-      question.addEventListener('click', () => {
-        // Check if item is already active
-        const isActive = item.classList.contains('active');
-        
-        // Close all items
-        faqItems.forEach(faqItem => {
-          // If using GSAP
-          if (window.gsap) {
-            gsap.to(faqItem.querySelector('.faq-answer'), {
-              maxHeight: 0,
-              opacity: 0,
-              duration: 0.3,
-              ease: 'power2.out'
-            });
-            
-            // Reset transform and box shadow
-            gsap.to(faqItem, {
-              y: 0,
-              boxShadow: 'var(--shadow-sm)',
-              duration: 0.3,
-              ease: 'power2.out',
-              onComplete: () => {
-                faqItem.classList.remove('active');
-              }
-            });
-          } else {
-            // Fallback without GSAP
-            faqItem.classList.remove('active');
-          }
-        });
-        
-        // Open clicked item if it wasn't already active
-        if (!isActive) {
-          if (window.gsap) {
-            // Get the content height
-            const answer = item.querySelector('.faq-answer');
-            answer.style.opacity = '0';
-            answer.style.maxHeight = 'none';
-            const height = answer.offsetHeight;
-            answer.style.maxHeight = '0';
-            
-            // Animate opening
-            item.classList.add('active');
-            gsap.to(answer, {
-              maxHeight: height,
-              opacity: 1,
-              duration: 0.5,
-              ease: 'power2.out'
-            });
-            
-            // Animate item
-            gsap.to(item, {
-              y: -3,
-              scale: 1.01,
-              boxShadow: 'var(--shadow-md)',
-              duration: 0.4,
-              ease: 'power2.out'
-            });
-          } else {
-            // Fallback without GSAP
-            item.classList.add('active');
-          }
-        }
-      });
-    }
-  });
-  
-  // Open first FAQ item by default
-  if (faqItems.length > 0) {
-    setTimeout(() => {
-      faqItems[0].querySelector('.faq-question').click();
-    }, 500);
-  }
-  
-  // Add intersection observer for animations
-  const faqContainer = document.querySelector('.faq-container');
-  if (faqContainer) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const faqItems = entry.target.querySelectorAll('.faq-item');
-          
-          faqItems.forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-              item.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
-              item.style.opacity = '1';
-              item.style.transform = 'translateY(0)';
-            }, 100 + index * 100);
-          });
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    
-    observer.observe(faqContainer);
+    observer.observe(DOM.caseStudiesContainer);
   }
 }
 
@@ -2397,6 +2380,16 @@ function initCaseStudyModal() {
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
       );
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      
+      setTimeout(() => {
+        container.style.transform = 'translateY(0)';
+        container.style.opacity = '1';
+        container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      }, 10);
     }
   }
   
@@ -2423,13 +2416,19 @@ function initCaseStudyModal() {
         }
       });
     } else {
-      // Fallback without GSAP
-      modal.classList.remove('active');
-      document.body.style.overflow = ''; // Re-enable scrolling
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      container.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
       
-      // Remove dynamic styles
-      const dynamicStyles = document.getElementById('case-study-modal-styles');
-      if (dynamicStyles) dynamicStyles.remove();
+      setTimeout(() => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        
+        // Remove dynamic styles
+        const dynamicStyles = document.getElementById('case-study-modal-styles');
+        if (dynamicStyles) dynamicStyles.remove();
+      }, 400);
     }
   }
 }
@@ -2438,6 +2437,7 @@ function initCaseStudyModal() {
 window.closeCaseStudyModal = function() {
   const modal = document.getElementById('case-study-modal');
   if (modal && modal.classList.contains('active')) {
+    // Close the modal
     modal.classList.remove('active');
     document.body.style.overflow = ''; // Re-enable scrolling
     
@@ -2458,3 +2458,497 @@ window.closeCaseStudyModal = function() {
     }
   }
 };
+
+// ==============================================
+// FAQ SECTION
+// ==============================================
+
+/**
+ * Initialize FAQ Accordion
+ */
+function initFaqAccordion() {
+  if (!DOM.faqItems.length) return;
+  
+  DOM.faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    if (question) {
+      question.addEventListener('click', () => {
+        // Check if item is already active
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        DOM.faqItems.forEach(faqItem => {
+          // If using GSAP
+          if (window.gsap) {
+            gsap.to(faqItem.querySelector('.faq-answer'), {
+              maxHeight: 0,
+              opacity: 0,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+            
+            // Reset transform and box shadow
+            gsap.to(faqItem, {
+              y: 0,
+              boxShadow: 'var(--shadow-sm)',
+              duration: 0.3,
+              ease: 'power2.out',
+              onComplete: () => {
+                faqItem.classList.remove('active');
+              }
+            });
+          } else {
+            // Fallback without GSAP
+            const answer = faqItem.querySelector('.faq-answer');
+            answer.style.maxHeight = '0';
+            answer.style.opacity = '0';
+            answer.style.transition = 'max-height 0.3s ease, opacity 0.3s ease';
+            
+            faqItem.style.transform = 'translateY(0)';
+            faqItem.style.boxShadow = 'var(--shadow-sm)';
+            faqItem.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+            
+            setTimeout(() => {
+              faqItem.classList.remove('active');
+            }, 300);
+          }
+        });
+        
+        // Open clicked item if it wasn't already active
+        if (!isActive) {
+          if (window.gsap) {
+            // Get the content height
+            const answer = item.querySelector('.faq-answer');
+            answer.style.opacity = '0';
+            answer.style.maxHeight = 'none';
+            const height = answer.offsetHeight;
+            answer.style.maxHeight = '0';
+            
+            // Animate opening
+            item.classList.add('active');
+            gsap.to(answer, {
+              maxHeight: height,
+              opacity: 1,
+              duration: 0.5,
+              ease: 'power2.out'
+            });
+            
+            // Animate item
+            gsap.to(item, {
+              y: -3,
+              scale: 1.01,
+              boxShadow: 'var(--shadow-md)',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          } else {
+            // Fallback without GSAP
+            item.classList.add('active');
+            const answer = item.querySelector('.faq-answer');
+            
+            // Temporarily set maxHeight to none to get content height
+            answer.style.maxHeight = 'none';
+            answer.style.opacity = '0';
+            const height = answer.offsetHeight;
+            answer.style.maxHeight = '0';
+            
+            // Trigger reflow
+            void answer.offsetHeight;
+            
+            // Animate opening
+            answer.style.maxHeight = height + 'px';
+            answer.style.opacity = '1';
+            answer.style.transition = 'max-height 0.5s ease, opacity 0.5s ease';
+            
+            item.style.transform = 'translateY(-3px) scale(1.01)';
+            item.style.boxShadow = 'var(--shadow-md)';
+            item.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+          }
+        }
+      });
+    }
+  });
+  
+  // Open first FAQ item by default
+  if (DOM.faqItems.length > 0) {
+    setTimeout(() => {
+      DOM.faqItems[0].querySelector('.faq-question').click();
+    }, 500);
+  }
+}
+
+// ==============================================
+// TESTIMONIALS SECTION
+// ==============================================
+
+/**
+ * Initialize Testimonials Carousel
+ */
+function initTestimonialsCarousel() {
+  if (!DOM.testimonialsContainer) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initTestimonialsSwiper();
+  } else {
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initTestimonialsSwiper);
+    });
+  }
+  
+  function initTestimonialsSwiper() {
+    window.testimonialsSwiper = new Swiper('.testimonials-slider', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      speed: 800,
+      grabCursor: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.testimonials-pagination',
+        clickable: true,
+        dynamicBullets: true
+      },
+      navigation: {
+        nextEl: '.testimonials-nav-next',
+        prevEl: '.testimonials-nav-prev'
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 40
+        }
+      },
+      effect: 'slide'
+    });
+  }
+}
+
+// ==============================================
+// COUNTER ANIMATION
+// ==============================================
+
+/**
+ * Counter Animation
+ */
+function initCounters() {
+  const counters = document.querySelectorAll('.counter');
+  
+  if (!counters.length) return;
+  
+  // Set up intersection observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.getAttribute('data-target'));
+        let count = 0;
+        
+        const updateCount = () => {
+          const increment = target / 40; // Divide by number of frames
+          
+          if (count < target) {
+            count += increment;
+            counter.textContent = Math.round(count);
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCount();
+        
+        // Add pulse animation
+        if (window.gsap) {
+          gsap.to(counter.closest('.stat-item'), {
+            scale: 1.05,
+            duration: 0.5,
+            ease: 'power2.out',
+            onComplete: () => {
+              gsap.to(counter.closest('.stat-item'), {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.in'
+              });
+            }
+          });
+        } else {
+          const statItem = counter.closest('.stat-item');
+          statItem.style.transform = 'scale(1.05)';
+          statItem.style.transition = 'transform 0.5s ease';
+          
+          setTimeout(() => {
+            statItem.style.transform = 'scale(1)';
+            statItem.style.transition = 'transform 0.3s ease';
+          }, 500);
+        }
+        
+        observer.unobserve(counter);
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  // Observe each counter
+  counters.forEach(counter => {
+    observer.observe(counter);
+  });
+}
+
+// ==============================================
+// CONTACT FORM
+// ==============================================
+
+/**
+ * Form Interactions
+ */
+function initFormInteractions() {
+  if (!DOM.contactForm || !DOM.formInputs.length) return;
+  
+  // Add focus effects
+  DOM.formInputs.forEach(input => {
+    // Check if input has value on load
+    if (input.value) {
+      input.classList.add('has-value');
+    }
+    
+    // Update state when value changes
+    input.addEventListener('input', () => {
+      input.classList.toggle('has-value', input.value.length > 0);
+    });
+  });
+  
+  // Form validation
+  DOM.contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    let isValid = true;
+    
+    // Basic validation
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const message = document.getElementById('message');
+    
+    // Clear previous error messages
+    document.querySelectorAll('.error-message').forEach(error => error.remove());
+    
+    // Validate name
+    if (!name.value.trim()) {
+      showError(name, 'Please enter your name');
+      isValid = false;
+    }
+    
+    // Validate email
+    if (!email.value.trim()) {
+      showError(email, 'Please enter your email address');
+      isValid = false;
+    } else if (!isValidEmail(email.value)) {
+      showError(email, 'Please enter a valid email address');
+      isValid = false;
+    }
+    
+    // Validate message
+    if (!message.value.trim()) {
+      showError(message, 'Please enter your message');
+      isValid = false;
+    }
+    
+    if (isValid) {
+      // Form is valid, simulate form submission
+      const submitButton = DOM.contactForm.querySelector('button[type="submit"]');
+      const originalButtonContent = submitButton.innerHTML;
+      
+      // Show loading state
+      submitButton.innerHTML = '<span>Sending</span> <i class="fas fa-spinner fa-spin"></i>';
+      submitButton.disabled = true;
+      
+      // Simulate API call
+      setTimeout(() => {
+        // Create success animation with GSAP
+        if (window.gsap) {
+          gsap.to(DOM.contactForm, {
+            opacity: 0,
+            y: -20,
+            duration: 0.5,
+            onComplete: () => {
+              // Show success message
+              DOM.contactForm.innerHTML = `
+                <div class="form-success">
+                  <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                  </div>
+                  <h3>Thank You!</h3>
+                  <p>Your message has been sent successfully. We'll get back to you shortly.</p>
+                </div>
+              `;
+              
+              // Animate success message
+              gsap.fromTo(
+                DOM.contactForm.querySelector('.form-success'),
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5 }
+              );
+            }
+          });
+        } else {
+          // Fallback without GSAP
+          DOM.contactForm.style.opacity = '0';
+          DOM.contactForm.style.transform = 'translateY(-20px)';
+          DOM.contactForm.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+          
+          setTimeout(() => {
+            // Show success message
+            DOM.contactForm.innerHTML = `
+              <div class="form-success">
+                <div class="success-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Thank You!</h3>
+                <p>Your message has been sent successfully. We'll get back to you shortly.</p>
+              </div>
+            `;
+            
+            DOM.contactForm.style.opacity = '1';
+            DOM.contactForm.style.transform = 'translateY(0)';
+          }, 500);
+        }
+        
+        // Add success styles
+        const style = document.createElement('style');
+        style.textContent = `
+          .form-success {
+            text-align: center;
+            padding: 2rem;
+          }
+          
+          .success-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: successPulse 2s infinite;
+          }
+          
+          @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+          }
+        `;
+        document.head.appendChild(style);
+      }, 1500);
+    }
+  });
+  
+  // Helper functions
+  function showError(input, message) {
+    const formGroup = input.closest('.form-group');
+    const error = document.createElement('div');
+    error.className = 'error-message';
+    error.textContent = message;
+    error.style.color = 'var(--primary)';
+    error.style.fontSize = '0.8125rem';
+    error.style.marginTop = '0.25rem';
+    formGroup.appendChild(error);
+    
+    // Highlight the input
+    input.style.borderColor = 'var(--primary)';
+    
+    // Shake animation
+    if (window.gsap) {
+      gsap.fromTo(
+        input,
+        { x: -5 },
+        { x: 0, duration: 0.3, ease: 'elastic.out(1, 0.3)' }
+      );
+    } else {
+      input.style.transform = 'translateX(-5px)';
+      setTimeout(() => {
+        input.style.transform = 'translateX(0)';
+        input.style.transition = 'transform 0.3s ease';
+      }, 10);
+    }
+    
+    // Remove highlight on input
+    input.addEventListener('input', function() {
+      input.style.borderColor = '';
+      const errorElement = formGroup.querySelector('.error-message');
+      if (errorElement) {
+        errorElement.remove();
+      }
+    }, { once: true });
+  }
+  
+  function isValidEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+}
+
+// ==============================================
+// DOCUMENT INITIALIZATION
+// ==============================================
+
+// Initialize when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize DOM selector cache
+  cacheDOM();
+  
+  // Enable animations after small delay to prevent flash of animation
+  setTimeout(() => {
+    document.body.classList.remove('preload');
+  }, 100);
+  
+  // Initialize components in priority order
+  initLoader();
+  initNavigation();
+  initMobileMenu();
+  
+  // Conditional initialization based on device type
+  if (!config.isTouchDevice) {
+    initMagneticButtons();
+    initTiltElements();
+  }
+  
+  // Initialize bubble animations
+  initBubbleAnimations();
+  
+  // Initialize core sections
+  initHeroTyped();
+  initMarquee();
+  initServicesCarousel();
+  initServiceTypedText();
+  initProcessTimeline();
+  initPortfolioFilter();
+  initProjectModals();
+  loadProjectsData();
+  
+  // Initialize packages carousel (3D carousel)
+  initPackagesCarousel();
+  
+  // Initialize testimonials and case studies
+  initTestimonialsCarousel();
+  initCaseStudiesSlider();
+  initCaseStudyModal();
+  
+  // Initialize FAQ accordion
+  initFaqAccordion();
+  
+  // Initialize form and counters
+  initFormInteractions();
+  initCounters();
+  
+  // Initialize back to top button
+  initBackToTop();
+  
+  // Add scroll and resize event listeners with performance optimization
+  window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
+  window.addEventListener('resize', helpers.debounce(handleResize, 250));
+});
