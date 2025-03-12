@@ -1607,249 +1607,407 @@ function updateFeaturedProjects() {
 // PACKAGES SECTION (3D CAROUSEL)
 // ==============================================
 
-/**
- * Initialize the packages carousel functionality
- */
-function initPackagesCarousel() {
-  // Get elements
-  const carousel = document.querySelector('.packages-carousel');
-  const categories = document.querySelectorAll('.packages-category');
-  const prevBtn = document.querySelector('.package-nav-btn.prev-btn');
-  const nextBtn = document.querySelector('.package-nav-btn.next-btn');
-  const categoryDots = document.querySelectorAll('.category-dot');
-  const categoryName = document.querySelector('.category-name');
+// ===== Initialize Package Section =====
+function initPackagesSection() {
+  // Slider Elements
+  const sliders = document.querySelectorAll('.packages-slider');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const sliderDots = document.querySelector('.slider-dots');
+  const prevBtn = document.querySelector('.slider-arrow.prev-btn');
+  const nextBtn = document.querySelector('.slider-arrow.next-btn');
+  const billingToggle = document.getElementById('billingToggle');
   
-  // Exit if carousel elements don't exist
-  if (!carousel || !categories.length) return;
+  // Exit if elements don't exist
+  if (!sliders.length || !categoryBtns.length) return;
   
-  // Category data
-  const categoryData = [
-    { id: 'business', name: 'Business Solutions', active: true },
-    { id: 'design', name: 'Design Services', active: false },
-    { id: 'property', name: 'Property Management', active: false }
-  ];
+  // Current slider state
+  let currentCategory = 'business'; // Default category
+  let currentSlideIndex = 0;
+  let slideCount = 0;
   
-  // Set initial active category
-  let currentIndex = 0;
-  
-  // Initialize the carousel
-  initCarousel();
+  // Initialize the package section
+  initPackages();
   
   /**
-   * Initialize the carousel with first category active
+   * Initialize the packages section
    */
-  function initCarousel() {
-    // Set initial active state
-    updateActiveCategory();
+  function initPackages() {
+    // Set up billing toggle
+    if (billingToggle) {
+      billingToggle.addEventListener('change', toggleBilling);
+    }
     
-    // Add click events
-    if (prevBtn) prevBtn.addEventListener('click', goToPrevCategory);
-    if (nextBtn) nextBtn.addEventListener('click', goToNextCategory);
-    
-    // Add click events to category dots
-    categoryDots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        goToCategory(index);
+    // Set up category buttons
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.dataset.category;
+        if (category === currentCategory) return;
+        
+        // Update UI
+        updateActiveCategory(category);
+        
+        // Reset slide index when changing categories
+        currentSlideIndex = 0;
+        updateSliderPosition();
+        updateDots();
+        updateArrows();
       });
     });
     
-    // Animate package cards on load
-    animatePackageCards();
+    // Initial setup of slider dots
+    setupSliderDots();
     
-    // Add touch swipe support
+    // Add click events to navigation arrows
+    if (prevBtn) prevBtn.addEventListener('click', goToPrevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', goToNextSlide);
+    
+    // Set up card animations and hover effects
+    setupCardEffects();
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', handleKeyNavigation);
+    
+    // Add swipe support for mobile
     addSwipeSupport();
+    
+    // Add resize handling for responsive adjustments
+    window.addEventListener('resize', debounce(handleResize, 200));
+    
+    // Initial position update
+    handleResize();
   }
   
   /**
-   * Go to previous category
+   * Toggle between monthly and yearly billing
    */
-  function goToPrevCategory() {
-    // Calculate new index with wraparound
-    currentIndex = (currentIndex - 1 + categoryData.length) % categoryData.length;
-    
-    // Add transition class
-    carousel.classList.add('carousel-slide-prev');
-    
-    // Apply transition
-    setTimeout(() => {
-      // Update active category
-      updateActiveCategory();
-      
-      // Remove transition class
-      setTimeout(() => {
-        carousel.classList.remove('carousel-slide-prev');
-      }, 50);
-    }, 500);
-  }
-  
-  /**
-   * Go to next category
-   */
-  function goToNextCategory() {
-    // Calculate new index with wraparound
-    currentIndex = (currentIndex + 1) % categoryData.length;
-    
-    // Add transition class
-    carousel.classList.add('carousel-slide-next');
-    
-    // Apply transition
-    setTimeout(() => {
-      // Update active category
-      updateActiveCategory();
-      
-      // Remove transition class
-      setTimeout(() => {
-        carousel.classList.remove('carousel-slide-next');
-      }, 50);
-    }, 500);
-  }
-  
-  /**
-   * Go to specific category by index
-   */
-  function goToCategory(index) {
-    if (index === currentIndex) return;
-    
-    if (index > currentIndex) {
-      carousel.classList.add('carousel-slide-next');
+  function toggleBilling() {
+    if (billingToggle.checked) {
+      document.body.classList.add('yearly-billing');
     } else {
-      carousel.classList.add('carousel-slide-prev');
+      document.body.classList.remove('yearly-billing');
     }
     
-    currentIndex = index;
+    // Animate price change
+    animatePriceChange();
+  }
+  
+  /**
+   * Animate price change when toggling billing period
+   */
+  function animatePriceChange() {
+    const prices = document.querySelectorAll('.package-price');
     
-    // Apply transition
-    setTimeout(() => {
-      // Update active category
-      updateActiveCategory();
+    prices.forEach(price => {
+      // Add animation class
+      price.classList.add('price-changing');
       
-      // Remove transition classes
+      // Scale effect
+      price.style.transform = 'scale(1.05)';
+      price.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      
+      // Reset after animation
       setTimeout(() => {
-        carousel.classList.remove('carousel-slide-next', 'carousel-slide-prev');
-      }, 50);
-    }, 500);
+        price.style.transform = 'scale(1)';
+        setTimeout(() => {
+          price.classList.remove('price-changing');
+        }, 300);
+      }, 300);
+    });
+  }
+  
+  /**
+   * Set up slider dots based on visible slides
+   */
+  function setupSliderDots() {
+    if (!sliderDots) return;
+    
+    // Get the active slider
+    const activeSlider = document.querySelector(`.packages-slider[data-category="${currentCategory}"]`);
+    if (!activeSlider) return;
+    
+    // Get all cards in the slider
+    const cards = activeSlider.querySelectorAll('.package-card');
+    slideCount = Math.ceil(cards.length / getVisibleSlides());
+    
+    // Clear existing dots
+    sliderDots.innerHTML = '';
+    
+    // Create dots
+    for (let i = 0; i < slideCount; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('slider-dot');
+      if (i === currentSlideIndex) dot.classList.add('active');
+      
+      dot.addEventListener('click', () => {
+        currentSlideIndex = i;
+        updateSliderPosition();
+        updateDots();
+        updateArrows();
+      });
+      
+      sliderDots.appendChild(dot);
+    }
+    
+    // Update arrows initial state
+    updateArrows();
   }
   
   /**
    * Update which category is active
    */
-  function updateActiveCategory() {
-    // Update category data
-    categoryData.forEach((category, index) => {
-      category.active = (index === currentIndex);
-    });
+  function updateActiveCategory(category) {
+    // Update current category
+    currentCategory = category;
     
-    // Update DOM elements
-    categories.forEach(category => {
-      const categoryId = category.getAttribute('data-category');
-      const isActive = categoryData[currentIndex].id === categoryId;
-      
-      if (isActive) {
-        category.classList.add('active');
+    // Update category buttons
+    categoryBtns.forEach(btn => {
+      if (btn.dataset.category === category) {
+        btn.classList.add('active');
       } else {
-        category.classList.remove('active');
+        btn.classList.remove('active');
       }
     });
     
-    // Update category name
-    if (categoryName) {
-      categoryName.textContent = categoryData[currentIndex].name;
-    }
+    // Update sliders
+    sliders.forEach(slider => {
+      if (slider.dataset.category === category) {
+        slider.classList.add('active');
+      } else {
+        slider.classList.remove('active');
+      }
+    });
     
-    // Update category dots
-    categoryDots.forEach((dot, index) => {
-      if (index === currentIndex) {
+    // Reset dots for new category
+    setupSliderDots();
+  }
+  
+  /**
+   * Go to previous slide
+   */
+  function goToPrevSlide() {
+    if (currentSlideIndex > 0) {
+      currentSlideIndex--;
+      updateSliderPosition();
+      updateDots();
+      updateArrows();
+    }
+  }
+  
+  /**
+   * Go to next slide
+   */
+  function goToNextSlide() {
+    if (currentSlideIndex < slideCount - 1) {
+      currentSlideIndex++;
+      updateSliderPosition();
+      updateDots();
+      updateArrows();
+    }
+  }
+  
+  /**
+   * Update the slider position based on current index
+   */
+  function updateSliderPosition() {
+    const activeSlider = document.querySelector(`.packages-slider[data-category="${currentCategory}"]`);
+    if (!activeSlider) return;
+    
+    const visibleSlides = getVisibleSlides();
+    const cards = activeSlider.querySelectorAll('.package-card');
+    const cardWidth = cards[0]?.offsetWidth || 0;
+    const gap = 24; // Gap between cards in pixels
+    
+    // Calculate slide position
+    const slidePosition = currentSlideIndex * (cardWidth + gap) * visibleSlides;
+    
+    // Apply transform with smooth transition
+    activeSlider.style.transition = 'transform 0.5s ease';
+    activeSlider.style.transform = `translateX(-${slidePosition}px)`;
+  }
+  
+  /**
+   * Update dot indicators
+   */
+  function updateDots() {
+    const dots = sliderDots.querySelectorAll('.slider-dot');
+    
+    dots.forEach((dot, index) => {
+      if (index === currentSlideIndex) {
         dot.classList.add('active');
       } else {
         dot.classList.remove('active');
       }
     });
-    
-    // Update carousel transform based on current index
-    updateCarouselTransform();
-    
-    // Animate package cards
-    animatePackageCards();
   }
   
   /**
-   * Update the 3D transform of the carousel based on current category
+   * Update navigation arrows state
    */
-  function updateCarouselTransform() {
-    // Set the appropriate 3D transform for the current category
-    switch (currentIndex) {
-      case 0: // Business
-        carousel.style.transform = 'translateZ(0) rotateY(0)';
-        break;
-      case 1: // Design
-        carousel.style.transform = 'translateZ(-2000px) rotateY(-90deg)';
-        break;
-      case 2: // Property
-        carousel.style.transform = 'translateZ(-4000px) rotateY(-180deg)';
-        break;
+  function updateArrows() {
+    if (prevBtn) {
+      if (currentSlideIndex === 0) {
+        prevBtn.classList.add('disabled');
+        prevBtn.setAttribute('aria-disabled', 'true');
+      } else {
+        prevBtn.classList.remove('disabled');
+        prevBtn.setAttribute('aria-disabled', 'false');
+      }
+    }
+    
+    if (nextBtn) {
+      if (currentSlideIndex === slideCount - 1) {
+        nextBtn.classList.add('disabled');
+        nextBtn.setAttribute('aria-disabled', 'true');
+      } else {
+        nextBtn.classList.remove('disabled');
+        nextBtn.setAttribute('aria-disabled', 'false');
+      }
     }
   }
   
   /**
-   * Animate package cards with staggered delay
+   * Get number of visible slides based on viewport width
    */
-  function animatePackageCards() {
-    // Find the active category
-    const activeCategory = document.querySelector('.packages-category.active');
-    if (!activeCategory) return;
+  function getVisibleSlides() {
+    const width = window.innerWidth;
     
-    // Get cards in the active category
-    const cards = activeCategory.querySelectorAll('.package-card');
+    if (width >= 1200) {
+      return 3; // Desktop: 3 cards per view
+    } else if (width >= 768) {
+      return 2; // Tablet: 2 cards per view
+    } else {
+      return 1; // Mobile: 1 card per view
+    }
+  }
+  
+  /**
+   * Setup card hover effects and animations
+   */
+  function setupCardEffects() {
+    const cards = document.querySelectorAll('.package-card');
     
-    // Add animation to each card with staggered delay
-    cards.forEach((card, index) => {
-      // Reset animation by removing and adding the card element
-      const cardClone = card.cloneNode(true);
-      card.parentNode.replaceChild(cardClone, card);
+    cards.forEach(card => {
+      // Add mouse move effect for 3D tilt
+      card.addEventListener('mousemove', function(e) {
+        if (!window.matchMedia('(hover: hover)').matches) return;
+        
+        const cardRect = card.getBoundingClientRect();
+        const cardInner = card.querySelector('.package-card-inner');
+        
+        // Calculate mouse position relative to card
+        const x = e.clientX - cardRect.left;
+        const y = e.clientY - cardRect.top;
+        
+        // Calculate rotation (max 5 degrees)
+        const xPercent = (x / cardRect.width - 0.5) * 2; // -1 to 1
+        const yPercent = (y / cardRect.height - 0.5) * 2; // -1 to 1
+        
+        // Apply transformation
+        cardInner.style.transform = `
+          translateZ(20px)
+          rotateX(${yPercent * -3}deg)
+          rotateY(${xPercent * 3}deg)
+        `;
+      });
       
-      // Apply animation with delay
-      setTimeout(() => {
-        cardClone.style.animation = `fadeInScaleUp 0.8s ${index * 0.15}s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
-        cardClone.style.opacity = '0';
-        cardClone.style.transform = 'translateY(40px) scale(0.9)';
-      }, 50);
+      // Reset on mouse leave
+      card.addEventListener('mouseleave', function() {
+        const cardInner = card.querySelector('.package-card-inner');
+        
+        // Check if this is a popular card to keep its elevated state
+        if (card.classList.contains('popular')) {
+          cardInner.style.transform = 'translateY(-10px) scale(1.03)';
+        } else {
+          cardInner.style.transform = 'translateZ(0) rotateX(0) rotateY(0)';
+        }
+      });
     });
+  }
+  
+  /**
+   * Handle keyboard navigation
+   */
+  function handleKeyNavigation(e) {
+    // Only handle events when packages section is in viewport
+    const packagesSection = document.getElementById('packages');
+    const rect = packagesSection.getBoundingClientRect();
+    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    
+    if (!isInViewport) return;
+    
+    if (e.key === 'ArrowLeft') {
+      goToPrevSlide();
+    } else if (e.key === 'ArrowRight') {
+      goToNextSlide();
+    }
   }
   
   /**
    * Add touch swipe support for mobile devices
    */
   function addSwipeSupport() {
+    const packagesSection = document.getElementById('packages');
+    if (!packagesSection) return;
+    
     let touchStartX = 0;
     let touchEndX = 0;
     
-    const carouselContainer = document.querySelector('.packages-carousel-container');
-    if (!carouselContainer) return;
-    
-    // Add touch event listeners
-    carouselContainer.addEventListener('touchstart', (e) => {
+    packagesSection.addEventListener('touchstart', function(e) {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
     
-    carouselContainer.addEventListener('touchend', (e) => {
+    packagesSection.addEventListener('touchend', function(e) {
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     }, { passive: true });
     
-    // Handle swipe direction
     function handleSwipe() {
       const swipeThreshold = 75; // Minimum distance for a swipe
       
       if (touchEndX < touchStartX - swipeThreshold) {
         // Swipe left - go to next
-        goToNextCategory();
+        goToNextSlide();
       } else if (touchEndX > touchStartX + swipeThreshold) {
         // Swipe right - go to previous
-        goToPrevCategory();
+        goToPrevSlide();
       }
     }
   }
+  
+  /**
+   * Handle resize events
+   */
+  function handleResize() {
+    // Reset state to first slide
+    currentSlideIndex = 0;
+    
+    // Recalculate dots
+    setupSliderDots();
+    
+    // Update slider position
+    updateSliderPosition();
+  }
+  
+  /**
+   * Debounce function to limit how often a function is called
+   */
+  function debounce(func, wait) {
+    let timeout;
+    return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+  }
 }
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize the packages section
+  initPackagesSection();
+});
+
 
 // ==============================================
 // CASE STUDIES SECTION
