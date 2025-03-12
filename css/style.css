@@ -1449,6 +1449,8 @@ section {
   text-align: center;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
+  display: block;
 }
 
 .tab-toggle::before {
@@ -1464,11 +1466,17 @@ section {
   z-index: -1;
 }
 
-.tab-toggle.active {
+.tab-toggle.active, 
+#business-panel:target ~ .packages-tabs .tab-toggle[data-tab="business"],
+#design-panel:target ~ .packages-tabs .tab-toggle[data-tab="design"],
+#property-panel:target ~ .packages-tabs .tab-toggle[data-tab="property"] {
   color: var(--white);
 }
 
-.tab-toggle.active::before {
+.tab-toggle.active::before,
+#business-panel:target ~ .packages-tabs .tab-toggle[data-tab="business"]::before,
+#design-panel:target ~ .packages-tabs .tab-toggle[data-tab="design"]::before,
+#property-panel:target ~ .packages-tabs .tab-toggle[data-tab="property"]::before {
   opacity: 1;
 }
 
@@ -1484,6 +1492,7 @@ section {
   z-index: 1;
 }
 
+/* CSS-only tab switching */
 .packages-tab-content {
   display: none;
   opacity: 0;
@@ -1491,11 +1500,28 @@ section {
   transition: all var(--transition-normal);
 }
 
-.packages-tab-content.active {
+.packages-tab-content.active,
+#business-panel:target ~ .packages-content #business-tab,
+#design-panel:target ~ .packages-content #design-tab,
+#property-panel:target ~ .packages-content #property-tab {
   display: block;
   opacity: 1;
   transform: translateY(0);
   animation: fadeIn 0.5s ease forwards;
+}
+
+/* Make sure business tab is visible by default when no hash is present */
+#business-tab {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hide business tab when other tabs are targeted */
+#design-panel:target ~ .packages-content #business-tab,
+#property-panel:target ~ .packages-content #business-tab {
+  display: none;
+  opacity: 0;
 }
 
 @keyframes fadeIn {
@@ -1532,7 +1558,11 @@ section {
   transform: translateY(30px);
 }
 
-.package-card.animate-in {
+.package-card.animate-in,
+.packages-tab-content.active .package-card,
+#business-panel:target ~ .packages-content #business-tab .package-card,
+#design-panel:target ~ .packages-content #design-tab .package-card,
+#property-panel:target ~ .packages-content #property-tab .package-card {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1743,16 +1773,37 @@ section {
   animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.package-card.animate-in:nth-child(1) {
-  animation-delay: 0.1s;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.package-card.animate-in:nth-child(2) {
-  animation-delay: 0.25s;
+/* Animation Delays for Package Cards */
+.packages-tab-content.active .package-card:nth-child(1),
+#business-panel:target ~ .packages-content #business-tab .package-card:nth-child(1),
+#design-panel:target ~ .packages-content #design-tab .package-card:nth-child(1),
+#property-panel:target ~ .packages-content #property-tab .package-card:nth-child(1) {
+  animation: fadeInUp 0.6s 0.1s forwards;
 }
 
-.package-card.animate-in:nth-child(3) {
-  animation-delay: 0.4s;
+.packages-tab-content.active .package-card:nth-child(2),
+#business-panel:target ~ .packages-content #business-tab .package-card:nth-child(2),
+#design-panel:target ~ .packages-content #design-tab .package-card:nth-child(2),
+#property-panel:target ~ .packages-content #property-tab .package-card:nth-child(2) {
+  animation: fadeInUp 0.6s 0.25s forwards;
+}
+
+.packages-tab-content.active .package-card:nth-child(3),
+#business-panel:target ~ .packages-content #business-tab .package-card:nth-child(3),
+#design-panel:target ~ .packages-content #design-tab .package-card:nth-child(3),
+#property-panel:target ~ .packages-content #property-tab .package-card:nth-child(3) {
+  animation: fadeInUp 0.6s 0.4s forwards;
 }
 
 /* Packages CTA */
@@ -1820,10 +1871,15 @@ section {
   display: none;
 }
 
+/* Hide the empty anchor spans that are used for targeting */
+#business-panel, #design-panel, #property-panel {
+  display: none;
+}
+
 /* Responsive Design - Mobile & Tablet */
 @media (max-width: 991px) {
   .packages-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--space-md);
   }
   
