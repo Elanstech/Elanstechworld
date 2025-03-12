@@ -1,6 +1,6 @@
 /**
- * Elan's Tech World - Modernized JavaScript
- * Streamlined code focusing on essential interactivity
+ * Elan's Tech World - Modern JavaScript
+ * Enhanced with better animations and effects
  */
 
 // Main configuration
@@ -45,8 +45,22 @@ const helpers = {
       clearTimeout(timeout);
       timeout = setTimeout(() => func.apply(context, args), wait);
     };
+  },
+  
+  // Random number between min and max
+  random: function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+  
+  // Add animation class and remove after animation is complete
+  animateElement: function(element, animationClass) {
+    if (!element) return;
+    element.classList.add(animationClass);
+    element.addEventListener('animationend', () => {
+      element.classList.remove(animationClass);
+    }, { once: true });
   }
-}
+};
 
 /**
  * Handle Scroll Events
@@ -66,6 +80,9 @@ function handleScroll() {
   
   // Update back to top button visibility
   updateBackToTopVisibility();
+  
+  // Animate elements when they come into view
+  animateOnScroll();
 }
 
 /**
@@ -75,21 +92,73 @@ function handleResize() {
   // Update any responsive elements if needed
   if (window.VanillaTilt && !config.isTouchDevice) {
     // Reinitialize tilt for consistent behavior
-    VanillaTilt.init(DOM.tiltElements, {
-      max: 5,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.15,
-      scale: 1.03
+    reinitializeTilt();
+  }
+  
+  // Update Swiper instances
+  updateSwiperInstances();
+}
+
+/**
+ * Animate Elements on Scroll
+ */
+function animateOnScroll() {
+  const elements = document.querySelectorAll('[data-animation]');
+  
+  elements.forEach(element => {
+    const elementPosition = element.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    
+    if (elementPosition < windowHeight * 0.8) {
+      const animationType = element.dataset.animation;
+      element.classList.add(animationType);
+      element.style.opacity = '1';
+      element.style.visibility = 'visible';
+    }
+  });
+}
+
+/**
+ * Reinitialize Tilt Elements
+ */
+function reinitializeTilt() {
+  if (!window.VanillaTilt) return;
+  
+  // Destroy existing instances
+  if (DOM.tiltElements) {
+    DOM.tiltElements.forEach(element => {
+      if (element.vanillaTilt) {
+        element.vanillaTilt.destroy();
+      }
     });
+  }
+  
+  // Reinitialize
+  VanillaTilt.init(document.querySelectorAll('.tilt-element'), {
+    max: 8,
+    speed: 400,
+    glare: true,
+    'max-glare': 0.2,
+    scale: 1.03
+  });
+}
+
+/**
+ * Update Swiper Instances
+ */
+function updateSwiperInstances() {
+  if (window.servicesSwiper) {
+    window.servicesSwiper.update();
+  }
+  
+  if (window.testimonialsSwiper) {
+    window.testimonialsSwiper.update();
   }
 }
 
 /**
- * Helper Functions for Services Carousel
+ * Load Script Dynamically
  */
-
-// Load script dynamically
 function loadScript(url, callback) {
   const script = document.createElement('script');
   script.src = url;
@@ -97,7 +166,9 @@ function loadScript(url, callback) {
   document.head.appendChild(script);
 }
 
-// Load CSS dynamically
+/**
+ * Load CSS Dynamically
+ */
 function loadCSS(url, callback) {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -141,6 +212,36 @@ function updateBackToTopVisibility() {
 }
 
 /**
+ * Initialize Bubble Animations
+ */
+function initBubbleAnimations() {
+  const buttonBubbles = document.querySelectorAll('.btn-bubbles');
+  
+  buttonBubbles.forEach(bubbleContainer => {
+    const bubbles = bubbleContainer.querySelectorAll('.bubble');
+    
+    bubbles.forEach(bubble => {
+      bubble.style.animationDuration = `${helpers.random(3, 5)}s`;
+      bubble.style.animationDelay = `${helpers.random(0, 2000) / 1000}s`;
+    });
+    
+    bubbleContainer.closest('a, button').addEventListener('mouseenter', () => {
+      bubbles.forEach(bubble => {
+        bubble.style.opacity = '1';
+      });
+    });
+    
+    bubbleContainer.closest('a, button').addEventListener('mouseleave', () => {
+      setTimeout(() => {
+        bubbles.forEach(bubble => {
+          bubble.style.opacity = '0';
+        });
+      }, 500);
+    });
+  });
+}
+
+/**
  * Update Portfolio Grid
  */
 function updatePortfolioGrid() {
@@ -176,12 +277,26 @@ function updatePortfolioGrid() {
   // Re-initialize tilt effect
   if (window.VanillaTilt && !config.isTouchDevice) {
     VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
-      max: 5,
+      max: 8,
       speed: 400,
       glare: true,
-      'max-glare': 0.15
+      'max-glare': 0.2,
+      scale: 1.03
     });
   }
+  
+  // Add animations to portfolio items
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
+    }, 100 + index * 100);
+  });
 };
 
 // Initialize when DOM is fully loaded
@@ -198,13 +313,15 @@ document.addEventListener('DOMContentLoaded', function() {
   initLoader();
   initNavigation();
   initMobileMenu();
-  initHeroTyped();
   
   // Conditional initialization based on device type
   if (!config.isTouchDevice) {
     initMagneticButtons();
     initTiltElements();
   }
+  
+  // Initialize bubble animations
+  initBubbleAnimations();
   
   // Core interactive elements
   initPortfolioFilter();
@@ -215,9 +332,9 @@ document.addEventListener('DOMContentLoaded', function() {
   initProjectModals();
   initFormInteractions();
   
-  // Initialize services carousel
+  // Initialize carousels
   initServicesCarousel();
-  initServiceTypedText();
+  initTestimonialsCarousel();
   
   // Load data and initialize back to top button
   loadProjectsData();
@@ -226,6 +343,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add scroll and resize event listeners with performance optimization
   window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
   window.addEventListener('resize', helpers.debounce(handleResize, 250));
+  
+  // Initialize typed text animations
+  initHeroTyped();
+  initServiceTypedText();
+  
+  // Initialize tech stack marquee
+  initMarquee();
 });
 
 // Cache DOM elements for more efficient access
@@ -252,8 +376,9 @@ function cacheDOM() {
   DOM.contactForm = document.getElementById('contact-form');
   DOM.formInputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
   
-  // Services carousel
+  // Carousels
   DOM.servicesCarousel = document.querySelector('.services-carousel');
+  DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
 }
 
 /**
@@ -304,12 +429,23 @@ function initLoader() {
       // Final message
       loaderMessage.textContent = 'Welcome to Elan\'s Tech World!';
       
-      // Hide loader
+      // Hide loader with fade
       setTimeout(() => {
+        loader.style.transition = 'opacity 0.8s ease, visibility 0.8s ease';
         loader.classList.add('hidden');
         document.body.style.overflow = 'visible';
-        animateHeroElements();
-      }, 500);
+        
+        // Initialize GSAP animations if available
+        if (window.gsap) {
+          animateHeroElements();
+        } else {
+          // Fallback for when GSAP is not available
+          document.querySelectorAll('[data-animation="fade-up"]').forEach(element => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          });
+        }
+      }, 800);
     }
     
     // Update progress bar and percentage
@@ -319,10 +455,20 @@ function initLoader() {
   
   // Prevent scroll during loading
   document.body.style.overflow = 'hidden';
+  
+  // Initialize loader bubbles
+  const bubbles = document.querySelectorAll('.loader-bubbles .bubble');
+  bubbles.forEach(bubble => {
+    const delay = Math.random() * 2;
+    const duration = 4 + Math.random() * 4;
+    
+    bubble.style.animationDelay = `${delay}s`;
+    bubble.style.animationDuration = `${duration}s`;
+  });
 }
 
 /**
- * Hero Section Animations
+ * Hero Section Animations with GSAP
  */
 function animateHeroElements() {
   if (!window.gsap) return;
@@ -339,6 +485,17 @@ function animateHeroElements() {
     ease: 'power2.out',
     clearProps: 'transform'
   });
+  
+  // Animate hero shapes
+  const heroShapes = document.querySelectorAll('.hero-shape');
+  
+  gsap.from(heroShapes, {
+    scale: 0.5,
+    opacity: 0,
+    duration: 1.5,
+    stagger: 0.3,
+    ease: 'power3.out'
+  });
 }
 
 /**
@@ -346,21 +503,33 @@ function animateHeroElements() {
  */
 function initHeroTyped() {
   const typedElement = document.getElementById('hero-typed');
-  if (!typedElement || !window.Typed) return;
+  const typedStrings = document.getElementById('hero-typed-strings');
   
-  // Wait until hero section is visible to initialize
-  setTimeout(() => {
-    new Typed('#hero-typed', {
-      stringsElement: '#hero-typed-strings',
-      typeSpeed: 50,
-      backSpeed: 30,
-      backDelay: 2000,
-      startDelay: 500,
-      loop: true,
-      showCursor: true,
-      cursorChar: '|'
-    });
-  }, 1500); 
+  if (!typedElement || !typedStrings) return;
+  
+  if (typeof Typed !== 'undefined') {
+    // Initialize if Typed.js is already loaded
+    initTyped();
+  } else {
+    // Load Typed.js dynamically
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', initTyped);
+  }
+  
+  function initTyped() {
+    // Wait a moment to ensure hero section is visible
+    setTimeout(() => {
+      new Typed('#hero-typed', {
+        stringsElement: '#hero-typed-strings',
+        typeSpeed: 60,
+        backSpeed: 30,
+        backDelay: 2000,
+        startDelay: 500,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|'
+      });
+    }, 1500);
+  }
 }
 
 /**
@@ -376,19 +545,55 @@ function initMagneticButtons() {
       const y = e.clientY - rect.top - rect.height / 2;
       
       // Apply subtle movement
-      button.style.transform = `translate3d(${x * 0.2}px, ${y * 0.2}px, 0)`;
+      gsap.to(button, {
+        x: x * 0.3,
+        y: y * 0.3,
+        duration: 0.3,
+        ease: 'power2.out'
+      });
       
       // Apply more subtle movement to span inside button
       if (button.querySelector('span')) {
-        button.querySelector('span').style.transform = `translate3d(${x * 0.05}px, ${y * 0.05}px, 0)`;
+        gsap.to(button.querySelector('span'), {
+          x: x * 0.1,
+          y: y * 0.1,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+      
+      // Animate bubbles if present
+      if (button.querySelector('.btn-bubbles')) {
+        button.querySelector('.btn-bubbles').querySelectorAll('.bubble').forEach(bubble => {
+          bubble.style.opacity = '1';
+        });
       }
     }, 16));
     
     button.addEventListener('mouseleave', () => {
-      button.style.transform = 'translate3d(0, 0, 0)';
+      gsap.to(button, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: 'elastic.out(1, 0.5)'
+      });
       
       if (button.querySelector('span')) {
-        button.querySelector('span').style.transform = 'translate3d(0, 0, 0)';
+        gsap.to(button.querySelector('span'), {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'elastic.out(1, 0.5)'
+        });
+      }
+      
+      // Fade out bubbles if present
+      if (button.querySelector('.btn-bubbles')) {
+        setTimeout(() => {
+          button.querySelector('.btn-bubbles').querySelectorAll('.bubble').forEach(bubble => {
+            bubble.style.opacity = '0';
+          });
+        }, 500);
       }
     });
   });
@@ -398,15 +603,26 @@ function initMagneticButtons() {
  * Initialize Tilt Effect
  */
 function initTiltElements() {
-  if (!DOM.tiltElements.length || !window.VanillaTilt) return;
+  if (!DOM.tiltElements.length) return;
   
-  VanillaTilt.init(DOM.tiltElements, {
-    max: 5,         // Reduced tilt amount for subtlety
-    speed: 400,
-    glare: true,
-    'max-glare': 0.15,
-    scale: 1.03      // Subtle scale effect
-  });
+  if (typeof VanillaTilt !== 'undefined') {
+    // Initialize if VanillaTilt is already loaded
+    initTilt();
+  } else {
+    // Load VanillaTilt dynamically
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js', initTilt);
+  }
+  
+  function initTilt() {
+    VanillaTilt.init(DOM.tiltElements, {
+      max: 8,         // Reduced tilt amount for subtlety
+      speed: 400,
+      glare: true,
+      'max-glare': 0.2,
+      scale: 1.03,    // Subtle scale effect
+      gyroscope: true // Enable gyroscope on mobile
+    });
+  }
 }
 
 /**
@@ -456,7 +672,7 @@ function initNavigation() {
 function updateNavigation() {
   if (!DOM.sections.length || !DOM.navLinks.length) return;
   
-  // Get current scroll position
+  // Get current scroll position with some offset
   const scrollPosition = window.scrollY + 100;
   
   // Find the current active section
@@ -465,6 +681,8 @@ function updateNavigation() {
   // Loop through sections from bottom to top
   for (let i = DOM.sections.length - 1; i >= 0; i--) {
     const section = DOM.sections[i];
+    if (!section) continue;
+    
     const sectionTop = section.offsetTop;
     const sectionHeight = section.offsetHeight;
     
@@ -480,12 +698,12 @@ function updateNavigation() {
     const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
     
     DOM.navLinks.forEach(link => {
-      if (link === activeLink) {
-        link.classList.add('active');
-      } else {
-        link.classList.remove('active');
-      }
+      link.classList.remove('active');
     });
+    
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
   }
 }
 
@@ -529,118 +747,145 @@ function initMobileMenu() {
 }
 
 /**
- * Initialize Services Carousel
+ * Initialize Services Carousel with Swiper
  */
 function initServicesCarousel() {
-  // Check if Swiper is available
-  if (typeof Swiper === 'undefined') {
-    // Load Swiper dynamically if not available
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', function() {
-      // Load Swiper CSS
-      loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', function() {
-        // Initialize carousel after loading dependencies
-        setupServicesCarousel();
-      });
-    });
+  if (!DOM.servicesCarousel) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initSwiper();
   } else {
-    // Initialize immediately if Swiper is already available
-    setupServicesCarousel();
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initSwiper);
+    });
+  }
+  
+  function initSwiper() {
+    // Initialize Swiper with advanced configuration
+    window.servicesSwiper = new Swiper('.services-carousel', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      centeredSlides: false,
+      loop: false,
+      speed: 800,
+      grabCursor: true,
+      mousewheel: {
+        forceToAxis: true,
+        sensitivity: 1,
+      },
+      keyboard: {
+        enabled: true,
+      },
+      pagination: {
+        el: '.services-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: '.services-nav-next',
+        prevEl: '.services-nav-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        }
+      },
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: true,
+        pauseOnMouseEnter: true,
+      },
+      effect: 'slide',
+      on: {
+        init: function() {
+          animateActiveSlides(this);
+        },
+        slideChange: function() {
+          animateActiveSlides(this);
+          
+          // Update typed text when slide changes
+          const activeIndex = this.activeIndex;
+          const activeSlide = this.slides[activeIndex];
+          
+          if (activeSlide) {
+            const typedElement = activeSlide.querySelector('.service-typed');
+            if (typedElement && typedElement._typed) {
+              typedElement._typed.reset();
+            }
+          }
+        }
+      }
+    });
+    
+    // Handle hover effects for service cards
+    initServiceCardEffects();
   }
 }
 
 /**
- * Setup Services Carousel with Swiper
+ * Initialize Testimonials Carousel
  */
-function setupServicesCarousel() {
-  // Determine breakpoints based on screen size
-  const getBreakpoints = () => {
-    return {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20,
-      },
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      }
-    };
-  };
-
-  // Initialize Swiper with advanced configuration
-  const servicesSwiper = new Swiper('.services-carousel', {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    centeredSlides: false,
-    loop: false,
-    speed: 800,
-    grabCursor: true,
-    mousewheel: {
-      forceToAxis: true,
-      sensitivity: 1,
-    },
-    keyboard: {
-      enabled: true,
-    },
-    pagination: {
-      el: '.services-pagination',
-      clickable: true,
-      dynamicBullets: true,
-    },
-    navigation: {
-      nextEl: '.services-nav-next',
-      prevEl: '.services-nav-prev',
-    },
-    breakpoints: getBreakpoints(),
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: true,
-      pauseOnMouseEnter: true,
-    },
-    effect: 'slide', // Base effect
-    on: {
-      init: function() {
-        animateActiveSlides(this);
-      },
-      slideChange: function() {
-        animateActiveSlides(this);
-        
-        // Update typed text when slide changes
-        const activeIndex = this.activeIndex;
-        const activeSlide = this.slides[activeIndex];
-        
-        if (activeSlide) {
-          const typedElement = activeSlide.querySelector('.service-typed');
-          if (typedElement && typedElement._typed) {
-            typedElement._typed.reset();
-          }
-        }
-      },
-      resize: function() {
-        // Update breakpoints if necessary on resize
-        this.params.breakpoints = getBreakpoints();
-        this.update();
-      }
-    }
-  });
-
-  // Handle hover pause for autoplay
-  const swiperContainer = document.querySelector('.services-carousel');
-  if (swiperContainer) {
-    swiperContainer.addEventListener('mouseenter', function() {
-      servicesSwiper.autoplay.stop();
-    });
-
-    swiperContainer.addEventListener('mouseleave', function() {
-      servicesSwiper.autoplay.start();
+function initTestimonialsCarousel() {
+  if (!DOM.testimonialsContainer) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initTestimonialsSwiper();
+  } else {
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initTestimonialsSwiper);
     });
   }
+  
+  function initTestimonialsSwiper() {
+    window.testimonialsSwiper = new Swiper('.testimonials-slider', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      speed: 800,
+      grabCursor: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.testimonials-pagination',
+        clickable: true,
+        dynamicBullets: true
+      },
+      navigation: {
+        nextEl: '.testimonials-nav-next',
+        prevEl: '.testimonials-nav-prev'
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 40
+        }
+      },
+      effect: 'slide'
+    });
+  }
+}
 
-  // Add parallax effect to service cards on mouse move
+/**
+ * Service Card Effects
+ */
+function initServiceCardEffects() {
   const serviceCards = document.querySelectorAll('.service-card');
+  
   serviceCards.forEach(card => {
     card.addEventListener('mousemove', function(e) {
       // Only apply effect if device supports hover
@@ -654,32 +899,51 @@ function setupServicesCarousel() {
         const yPercent = y / rect.height - 0.5;
         
         // Apply subtle rotation based on mouse position (max 3deg)
-        card.style.transform = `perspective(1000px) rotateX(${yPercent * -3}deg) rotateY(${xPercent * 3}deg) translateZ(10px)`;
+        gsap.to(card, {
+          rotationX: yPercent * -3,
+          rotationY: xPercent * 3,
+          z: 10,
+          ease: 'power1.out',
+          duration: 0.5
+        });
         
         // Move icon slightly
         const icon = card.querySelector('.service-icon');
         if (icon) {
-          icon.style.transform = `translateX(${xPercent * 5}px) translateY(${yPercent * 5}px) scale(1.1)`;
+          gsap.to(icon, {
+            x: xPercent * 5,
+            y: yPercent * 5,
+            scale: 1.1,
+            ease: 'power1.out',
+            duration: 0.5
+          });
         }
       }
     });
 
     card.addEventListener('mouseleave', function() {
       // Reset transformation on mouse leave
-      card.style.transform = '';
+      gsap.to(card, {
+        rotationX: 0,
+        rotationY: 0,
+        z: 0,
+        ease: 'power2.out',
+        duration: 0.7
+      });
       
       // Reset icon position
       const icon = card.querySelector('.service-icon');
       if (icon) {
-        icon.style.transform = '';
+        gsap.to(icon, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          ease: 'power2.out',
+          duration: 0.7
+        });
       }
     });
   });
-
-  // Add window resize handler to update swiper
-  window.addEventListener('resize', helpers.debounce(function() {
-    servicesSwiper.update();
-  }, 250));
 }
 
 /**
@@ -690,8 +954,13 @@ function animateActiveSlides(swiper) {
   swiper.slides.forEach(slide => {
     const card = slide.querySelector('.service-card');
     if (card) {
-      card.style.transform = '';
-      card.style.opacity = '0.7';
+      gsap.to(card, {
+        y: 0,
+        scale: 0.95,
+        opacity: 0.7,
+        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
+        duration: 0.5
+      });
     }
   });
 
@@ -707,8 +976,13 @@ function animateActiveSlides(swiper) {
   if (activeSlide) {
     const activeCard = activeSlide.querySelector('.service-card');
     if (activeCard) {
-      activeCard.style.transform = 'translateY(-10px)';
-      activeCard.style.opacity = '1';
+      gsap.to(activeCard, {
+        y: -15,
+        scale: 1,
+        opacity: 1,
+        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+        duration: 0.5
+      });
     }
   }
   
@@ -716,16 +990,24 @@ function animateActiveSlides(swiper) {
   if (prevSlide) {
     const prevCard = prevSlide.querySelector('.service-card');
     if (prevCard) {
-      prevCard.style.transform = 'translateY(-5px)';
-      prevCard.style.opacity = '0.85';
+      gsap.to(prevCard, {
+        y: -5,
+        scale: 0.97,
+        opacity: 0.85,
+        duration: 0.5
+      });
     }
   }
   
   if (nextSlide) {
     const nextCard = nextSlide.querySelector('.service-card');
     if (nextCard) {
-      nextCard.style.transform = 'translateY(-5px)';
-      nextCard.style.opacity = '0.85';
+      gsap.to(nextCard, {
+        y: -5,
+        scale: 0.97,
+        opacity: 0.85,
+        duration: 0.5
+      });
     }
   }
 }
@@ -734,16 +1016,16 @@ function animateActiveSlides(swiper) {
  * Initialize Typed.js for Service Descriptions
  */
 function initServiceTypedText() {
-  // Check if Typed.js is available
-  if (typeof Typed === 'undefined') {
-    // Load Typed.js dynamically if not available
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', function() {
-      // Initialize typed text after loading dependency
-      setupServiceTypedText();
-    });
-  } else {
-    // Initialize immediately if Typed.js is already available
+  // Check if there are service typed elements
+  const typedElements = document.querySelectorAll('.service-typed');
+  if (!typedElements.length) return;
+  
+  if (typeof Typed !== 'undefined') {
+    // Initialize if Typed.js is already loaded
     setupServiceTypedText();
+  } else {
+    // Load Typed.js dynamically
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js', setupServiceTypedText);
   }
 }
 
@@ -757,7 +1039,10 @@ function setupServiceTypedText() {
   // Initialize Typed.js for each element
   typedElements.forEach(element => {
     // Get items to type from data attribute
-    const items = element.getAttribute('data-typed-items').split(',');
+    const itemsAttr = element.getAttribute('data-typed-items');
+    if (!itemsAttr) return;
+    
+    const items = itemsAttr.split(',');
     
     // Create Typed instance
     const typed = new Typed(element, {
@@ -778,6 +1063,30 @@ function setupServiceTypedText() {
 }
 
 /**
+ * Initialize Marquee Effect
+ */
+function initMarquee() {
+  const marquees = document.querySelectorAll('.marquee');
+  
+  marquees.forEach(marquee => {
+    const content = marquee.querySelector('.tech-track-inner');
+    if (!content) return;
+    
+    // Get computed width
+    const contentWidth = content.offsetWidth;
+    
+    // Set animation duration based on content width
+    const duration = contentWidth / 50; // Adjust the divisor to control speed
+    
+    // Set animation duration
+    const trackInners = marquee.querySelectorAll('.tech-track-inner');
+    trackInners.forEach(track => {
+      track.style.animationDuration = `${duration}s`;
+    });
+  });
+}
+
+/**
  * Process Timeline Animation
  */
 function initProcessTimeline() {
@@ -788,6 +1097,24 @@ function initProcessTimeline() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('animated');
+        
+        // Add staggered animation to process elements
+        setTimeout(() => {
+          const number = entry.target.querySelector('.process-number');
+          const content = entry.target.querySelector('.process-content');
+          const icon = entry.target.querySelector('.process-icon');
+          
+          if (number) gsap.to(number, { scale: 1.2, rotate: '-10deg', duration: 0.5, ease: 'back.out(1.7)' });
+          if (content) gsap.to(content, { y: -10, opacity: 1, duration: 0.5 });
+          if (icon) gsap.to(icon, { rotate: '0deg', scale: 1.2, opacity: 0.2, duration: 0.5 });
+          
+          setTimeout(() => {
+            if (number) gsap.to(number, { scale: 1, rotate: '0deg', duration: 0.3 });
+            if (content) gsap.to(content, { y: 0, duration: 0.3 });
+            if (icon) gsap.to(icon, { scale: 1, duration: 0.3 });
+          }, 500);
+        }, 200);
+        
         observer.unobserve(entry.target);
       }
     });
@@ -819,14 +1146,21 @@ function initPortfolioFilter() {
       // Get all portfolio items
       const portfolioItems = document.querySelectorAll('.portfolio-item');
       
-      // Filter items
+      // Apply filtering with animation
       portfolioItems.forEach(item => {
         const categories = item.getAttribute('data-category');
         
         if (filterValue === 'all' || categories.includes(filterValue)) {
-          item.classList.remove('hidden');
+          // Show item with animation
+          gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+            item.classList.remove('hidden');
+            gsap.to(item, { opacity: 1, y: 0, duration: 0.5, delay: 0.1 });
+          }});
         } else {
-          item.classList.add('hidden');
+          // Hide item with animation
+          gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+            item.classList.add('hidden');
+          }});
         }
       });
     });
@@ -840,6 +1174,7 @@ function initProjectModals() {
   const modal = document.getElementById('project-modal');
   const closeBtn = modal?.querySelector('.modal-close');
   const backdrop = modal?.querySelector('.modal-backdrop');
+  const modalBody = modal?.querySelector('.modal-body');
   
   if (!modal) return;
   
@@ -847,15 +1182,15 @@ function initProjectModals() {
   document.addEventListener('click', (e) => {
     const portfolioLink = e.target.closest('.portfolio-link');
     const portfolioItem = e.target.closest('.portfolio-item');
+    const featuredProject = e.target.closest('.featured-project');
     
-    if (portfolioLink || (portfolioItem && !e.target.closest('.filter-btn'))) {
+    if (portfolioLink || portfolioItem || featuredProject) {
       e.preventDefault();
       
       const projectId = 
         portfolioLink?.dataset.projectId || 
         portfolioItem?.dataset.projectId || 
-        portfolioLink?.closest('[data-project-id]')?.dataset.projectId ||
-        portfolioItem?.closest('[data-project-id]')?.dataset.projectId;
+        featuredProject?.dataset.projectId;
       
       if (projectId) {
         openProjectModal(projectId);
@@ -879,46 +1214,190 @@ function initProjectModals() {
       closeProjectModal();
     }
   });
-}
-
-/**
- * Open Project Modal
- */
-function openProjectModal(projectId) {
-  const modal = document.getElementById('project-modal');
-  const modalBody = modal?.querySelector('.modal-body');
-  const modalTemplate = document.getElementById('project-modal-template');
   
-  if (!modal || !modalBody) return;
+  /**
+   * Open Project Modal
+   */
+  function openProjectModal(projectId) {
+    if (!modal || !modalBody) return;
+    
+    // Find the project data
+    const project = window.projectsData.find(p => p.id === projectId);
+    if (!project) return;
+    
+    // Create modal content
+    const modalContent = `
+      <div class="modal-project">
+        <div class="modal-header" style="background-image: url('${project.mainImage}')">
+          <div class="modal-header-overlay"></div>
+          <div class="modal-header-content">
+            <h2>${project.title}</h2>
+            <p>${project.modalContent?.subtitle || project.description}</p>
+          </div>
+        </div>
+        <div class="modal-project-content">
+          <div class="modal-project-details">
+            ${project.modalContent?.detailedDescription ? `
+              <div class="modal-section">
+                <h3>Project Overview</h3>
+                <p>${project.modalContent.detailedDescription}</p>
+              </div>
+            ` : ''}
+            
+            ${project.modalContent?.projectDetails ? `
+              <div class="modal-section">
+                <h3>Project Details</h3>
+                <ul class="modal-list">
+                  ${project.modalContent.projectDetails.map(detail => `<li>${detail}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+            
+            ${project.modalContent?.technologies ? `
+              <div class="modal-section">
+                <h3>Technologies Used</h3>
+                <div class="modal-tags">
+                  ${project.modalContent.technologies.map(tech => `<span class="modal-tag">${tech}</span>`).join('')}
+                </div>
+              </div>
+            ` : ''}
+            
+            ${project.modalContent?.results ? `
+              <div class="modal-section">
+                <h3>Results</h3>
+                <p>${project.modalContent.results}</p>
+              </div>
+            ` : ''}
+            
+            ${project.website ? `
+              <div class="modal-section">
+                <a href="${project.website}" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                  <span>Visit Website</span>
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Add content to modal
+    modalBody.innerHTML = modalContent;
+    
+    // Add modal styles
+    const style = document.createElement('style');
+    style.id = 'modal-dynamic-styles';
+    style.textContent = `
+      .modal-project {
+        overflow: hidden;
+      }
+      
+      .modal-header {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+      }
+      
+      .modal-header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+      }
+      
+      .modal-header-content {
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        color: #fff;
+      }
+      
+      .modal-header-content h2 {
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+      
+      .modal-project-content {
+        padding: 2rem;
+      }
+      
+      .modal-section {
+        margin-bottom: 2rem;
+      }
+      
+      .modal-section h3 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+      
+      .modal-list {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .modal-list li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      
+      .modal-tag {
+        background: var(--light);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+    `;
+    
+    document.head.appendChild(style);
+    
+    // Show modal with animation
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    modal.classList.add('active');
+    
+    // Animate modal entrance
+    gsap.fromTo(
+      modal.querySelector('.modal-container'),
+      { y: 50, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+    );
+  }
   
-  // Find the project data
-  const project = window.projectsData.find(p => p.id === projectId);
-  if (!project) return;
-  
-  // Build modal content based on project data
-  // For simplicity in this example, we'll just show a loading state
-  modalBody.innerHTML = `
-    <div style="padding: 40px; text-align: center;">
-      <h2>Loading project details...</h2>
-      <p>Project: ${project.title}</p>
-    </div>
-  `;
-  
-  // Show modal
-  document.body.style.overflow = 'hidden'; // Prevent scrolling
-  modal.classList.add('active');
-}
-
-/**
- * Close Project Modal
- */
-function closeProjectModal() {
-  const modal = document.getElementById('project-modal');
-  
-  if (!modal) return;
-  
-  modal.classList.remove('active');
-  document.body.style.overflow = ''; // Re-enable scrolling
+  /**
+   * Close Project Modal
+   */
+  function closeProjectModal() {
+    if (!modal) return;
+    
+    // Animate modal exit
+    gsap.to(modal.querySelector('.modal-container'), {
+      y: 50,
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.in',
+      onComplete: () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        
+        // Remove dynamic styles
+        const dynamicStyles = document.getElementById('modal-dynamic-styles');
+        if (dynamicStyles) dynamicStyles.remove();
+      }
+    });
+  }
 }
 
 /**
@@ -938,7 +1417,7 @@ function initCounters() {
         let count = 0;
         
         const updateCount = () => {
-          const increment = target / 30; // Divide by number of frames
+          const increment = target / 40; // Divide by number of frames
           
           if (count < target) {
             count += increment;
@@ -950,6 +1429,21 @@ function initCounters() {
         };
         
         updateCount();
+        
+        // Add pulse animation
+        gsap.to(counter.closest('.stat-item'), {
+          scale: 1.05,
+          duration: 0.5,
+          ease: 'power2.out',
+          onComplete: () => {
+            gsap.to(counter.closest('.stat-item'), {
+              scale: 1,
+              duration: 0.3,
+              ease: 'power2.in'
+            });
+          }
+        });
+        
         observer.unobserve(counter);
       }
     });
@@ -1018,7 +1512,7 @@ function initFormInteractions() {
     if (isValid) {
       // Form is valid, simulate form submission
       const submitButton = DOM.contactForm.querySelector('button[type="submit"]');
-      const originalText = submitButton.innerHTML;
+      const originalButtonContent = submitButton.innerHTML;
       
       // Show loading state
       submitButton.innerHTML = '<span>Sending</span> <i class="fas fa-spinner fa-spin"></i>';
@@ -1026,14 +1520,54 @@ function initFormInteractions() {
       
       // Simulate API call
       setTimeout(() => {
-        // Show success message
-        DOM.contactForm.innerHTML = `
-          <div class="form-success">
-            <i class="fas fa-check-circle form-success-icon" style="font-size: 48px; color: var(--primary); margin-bottom: 1rem;"></i>
-            <h3>Thank You!</h3>
-            <p>Your message has been sent successfully. We'll get back to you shortly.</p>
-          </div>
-        `;
+        // Create success animation with GSAP
+        gsap.to(DOM.contactForm, {
+          opacity: 0,
+          y: -20,
+          duration: 0.5,
+          onComplete: () => {
+            // Show success message
+            DOM.contactForm.innerHTML = `
+              <div class="form-success">
+                <div class="success-icon">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Thank You!</h3>
+                <p>Your message has been sent successfully. We'll get back to you shortly.</p>
+              </div>
+            `;
+            
+            // Animate success message
+            gsap.fromTo(
+              DOM.contactForm.querySelector('.form-success'),
+              { opacity: 0, y: 20 },
+              { opacity: 1, y: 0, duration: 0.5 }
+            );
+            
+            // Add success styles
+            const style = document.createElement('style');
+            style.textContent = `
+              .form-success {
+                text-align: center;
+                padding: 2rem;
+              }
+              
+              .success-icon {
+                font-size: 3rem;
+                color: var(--primary);
+                margin-bottom: 1rem;
+                animation: successPulse 2s infinite;
+              }
+              
+              @keyframes successPulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+        });
       }, 1500);
     }
   });
@@ -1052,6 +1586,13 @@ function initFormInteractions() {
     // Highlight the input
     input.style.borderColor = 'var(--primary)';
     
+    // Shake animation
+    gsap.fromTo(
+      input,
+      { x: -5 },
+      { x: 0, duration: 0.3, ease: 'elastic.out(1, 0.3)' }
+    );
+    
     // Remove highlight on input
     input.addEventListener('input', function() {
       input.style.borderColor = '';
@@ -1069,66 +1610,103 @@ function initFormInteractions() {
 }
 
 /**
- * Load Projects Data
+ * Load Projects Data from json file
  */
 function loadProjectsData() {
-  // Sample project data
-  window.projectsData = [
-    {
-      id: "iconic-aesthetics",
-      title: "Iconic Aesthetics",
-      description: "Complete business technology solution including custom website with integrated booking system",
-      categories: ["web", "pos"],
-      mainImage: "./assets/images/iconicwebsiteimage.jpeg",
-      tags: ["Web Development", "POS System", "Booking Solution"]
-    },
-    {
-      id: "east-coast-realty",
-      title: "East Coast Realty",
-      description: "Comprehensive technology solution for a real estate firm",
-      categories: ["web", "tech", "marketing"],
-      mainImage: "./assets/images/eastcoastweb.jpeg",
-      tags: ["Web Development", "Office Setup", "Business Materials"]
-    },
-    {
-      id: "cohen-associates",
-      title: "Cohen & Associates",
-      description: "Technology solution for a tax accounting firm featuring secure document handling",
-      categories: ["web", "tech"],
-      mainImage: "./assets/images/cohen.jpeg",
-      tags: ["Web Development", "Secure Portal", "Office Technology"]
-    },
-    {
-      id: "doug-uhlig",
-      title: "Doug Uhlig",
-      description: "Healthcare technology solution with appointment scheduling",
-      categories: ["web", "apple"],
-      mainImage: "./assets/images/doug.jpeg",
-      tags: ["Web Development", "Apple Product Setup", "HIPAA Compliance"]
-    },
-    {
-      id: "s-cream",
-      title: "S-Cream",
-      description: "Complete technology solution for an ice cream shop",
-      categories: ["web", "pos", "marketing"],
-      mainImage: "./assets/images/scream.jpeg",
-      tags: ["Web Development", "POS System", "Business Materials"]
-    },
-    {
-      id: "century-one",
-      title: "Century One",
-      description: "Integrated property management technology solution",
-      categories: ["web", "tech"],
-      mainImage: "./assets/images/centuryone.jpeg",
-      tags: ["Web Portal", "Property Management System", "Network Setup"]
-    }
-  ];
-  
-  // Update featured projects
-  updateFeaturedProjects();
-  
-  // Update portfolio grid
-  updatePortfolioGrid();
+  // First try to fetch the data from json file
+  fetch('projects.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Could not load projects.json');
+      }
+      return response.json();
+    })
+    .then(data => {
+      window.projectsData = data.projects;
+      updatePortfolioGrid();
+      updateFeaturedProjects();
+    })
+    .catch(error => {
+      console.warn('Using fallback project data:', error);
+      // Fallback to sample data if file can't be loaded
+      window.projectsData = [
+        {
+          id: "iconic-aesthetics",
+          title: "Iconic Aesthetics",
+          description: "Complete business technology solution including custom website with integrated booking system",
+          categories: ["web", "pos"],
+          mainImage: "./assets/images/iconicwebsiteimage.jpeg",
+          tags: ["Web Development", "POS System", "Booking Solution"],
+          modalContent: {
+            subtitle: "Complete business technology solution for a beauty clinic.",
+            detailedDescription: "Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience."
+          }
+        },
+        {
+          id: "east-coast-realty",
+          title: "East Coast Realty",
+          description: "Comprehensive technology solution for a real estate firm",
+          categories: ["web", "tech", "marketing"],
+          mainImage: "./assets/images/eastcoastweb.jpeg",
+          tags: ["Web Development", "Office Setup", "Business Materials"],
+          modalContent: {
+            subtitle: "Technology solution for a real estate firm.",
+            detailedDescription: "East Coast Realty needed a modern digital presence and comprehensive office technology setup."
+          }
+        },
+        {
+          id: "cohen-associates",
+          title: "Cohen & Associates",
+          description: "Technology solution for a tax accounting firm featuring secure document handling",
+          categories: ["web", "tech"],
+          mainImage: "./assets/images/cohen.jpeg",
+          tags: ["Web Development", "Secure Portal", "Office Technology"],
+          modalContent: {
+            subtitle: "Secure technology solution for tax and accounting services.",
+            detailedDescription: "Cohen & Associates required a secure and professional technology infrastructure for their accounting firm."
+          }
+        },
+        {
+          id: "doug-uhlig",
+          title: "Doug Uhlig",
+          description: "Healthcare technology solution with appointment scheduling",
+          categories: ["web", "apple"],
+          mainImage: "./assets/images/doug.jpeg",
+          tags: ["Web Development", "Apple Product Setup", "HIPAA Compliance"],
+          modalContent: {
+            subtitle: "HIPAA-compliant technology solution for a psychology practice.",
+            detailedDescription: "Doug Uhlig Psychological Services needed a HIPAA-compliant technology solution for their practice."
+          }
+        },
+        {
+          id: "s-cream",
+          title: "S-Cream",
+          description: "Complete technology solution for an ice cream shop",
+          categories: ["web", "pos", "marketing"],
+          mainImage: "./assets/images/scream.jpeg",
+          tags: ["Web Development", "POS System", "Business Materials"],
+          modalContent: {
+            subtitle: "Comprehensive technology solution for an ice cream shop.",
+            detailedDescription: "S-Cream required a complete technology ecosystem for their new ice cream shop."
+          }
+        },
+        {
+          id: "century-one",
+          title: "Century One",
+          description: "Integrated property management technology solution",
+          categories: ["web", "tech"],
+          mainImage: "./assets/images/centuryone.jpeg",
+          tags: ["Web Portal", "Property Management System", "Network Setup"],
+          modalContent: {
+            subtitle: "Property management technology solution.",
+            detailedDescription: "Century One Management Services needed a comprehensive property management technology solution."
+          }
+        }
+      ];
+      
+      updatePortfolioGrid();
+      updateFeaturedProjects();
+    });
 }
 
 /**
@@ -1157,10 +1735,11 @@ function updateFeaturedProjects() {
   // Initialize tilt effect if appropriate
   if (window.VanillaTilt && !config.isTouchDevice) {
     VanillaTilt.init(document.querySelectorAll('.featured-project'), {
-      max: 8,
+      max: 15,
       speed: 400,
       glare: true,
-      'max-glare': 0.15
+      'max-glare': 0.3,
+      scale: 1.05
     });
   }
 }
