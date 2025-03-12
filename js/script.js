@@ -154,6 +154,10 @@ function updateSwiperInstances() {
   if (window.testimonialsSwiper) {
     window.testimonialsSwiper.update();
   }
+  
+  if (window.caseStudiesSwiper) {
+    window.caseStudiesSwiper.update();
+  }
 }
 
 /**
@@ -340,9 +344,10 @@ document.addEventListener('DOMContentLoaded', function() {
   loadProjectsData();
   initBackToTop();
   
-  // Add scroll and resize event listeners with performance optimization
-  window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
-  window.addEventListener('resize', helpers.debounce(handleResize, 250));
+  // Initialize new sections for Case Studies and FAQ
+  initCaseStudiesSlider();
+  initFaqAccordion();
+  initCaseStudyModal();
   
   // Initialize typed text animations
   initHeroTyped();
@@ -350,6 +355,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize tech stack marquee
   initMarquee();
+  
+  // Add scroll and resize event listeners with performance optimization
+  window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
+  window.addEventListener('resize', helpers.debounce(handleResize, 250));
 });
 
 // Cache DOM elements for more efficient access
@@ -379,6 +388,11 @@ function cacheDOM() {
   // Carousels
   DOM.servicesCarousel = document.querySelector('.services-carousel');
   DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
+  
+  // New sections
+  DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
+  DOM.faqItems = document.querySelectorAll('.faq-item');
+  DOM.caseStudyModal = document.getElementById('case-study-modal');
 }
 
 /**
@@ -1743,3 +1757,704 @@ function updateFeaturedProjects() {
     });
   }
 }
+
+/**
+ * Initialize Case Studies Slider
+ */
+function initCaseStudiesSlider() {
+  const caseStudiesContainer = document.querySelector('.case-studies-slider');
+  if (!caseStudiesContainer) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initCaseStudiesSwiper();
+  } else {
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initCaseStudiesSwiper);
+    });
+  }
+  
+  function initCaseStudiesSwiper() {
+    window.caseStudiesSwiper = new Swiper('.case-studies-slider', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: false,
+      speed: 800,
+      grabCursor: true,
+      pagination: {
+        el: '.case-studies-pagination',
+        clickable: true,
+        dynamicBullets: true
+      },
+      navigation: {
+        nextEl: '.case-studies-nav-next',
+        prevEl: '.case-studies-nav-prev'
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        }
+      },
+      on: {
+        init: function() {
+          // Initialize tilt effect for case study cards
+          if (window.VanillaTilt && !config.isTouchDevice) {
+            VanillaTilt.init(document.querySelectorAll('.case-study-card.tilt-element'), {
+              max: 8,
+              speed: 400,
+              glare: true,
+              'max-glare': 0.2,
+              scale: 1.02
+            });
+          }
+        }
+      }
+    });
+    
+    // Add animation when slider becomes visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const caseStudyCards = document.querySelectorAll('.case-study-card');
+          caseStudyCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+              card.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 100 + index * 150);
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(caseStudiesContainer);
+  }
+}
+
+/**
+ * Initialize FAQ Accordion
+ */
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (!faqItems.length) return;
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    if (question) {
+      question.addEventListener('click', () => {
+        // Check if item is already active
+        const isActive = item.classList.contains('active');
+        
+        // Close all items
+        faqItems.forEach(faqItem => {
+          // If using GSAP
+          if (window.gsap) {
+            gsap.to(faqItem.querySelector('.faq-answer'), {
+              maxHeight: 0,
+              opacity: 0,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+            
+            // Reset transform and box shadow
+            gsap.to(faqItem, {
+              y: 0,
+              boxShadow: 'var(--shadow-sm)',
+              duration: 0.3,
+              ease: 'power2.out',
+              onComplete: () => {
+                faqItem.classList.remove('active');
+              }
+            });
+          } else {
+            // Fallback without GSAP
+            faqItem.classList.remove('active');
+          }
+        });
+        
+        // Open clicked item if it wasn't already active
+        if (!isActive) {
+          if (window.gsap) {
+            // Get the content height
+            const answer = item.querySelector('.faq-answer');
+            answer.style.opacity = '0';
+            answer.style.maxHeight = 'none';
+            const height = answer.offsetHeight;
+            answer.style.maxHeight = '0';
+            
+            // Animate opening
+            item.classList.add('active');
+            gsap.to(answer, {
+              maxHeight: height,
+              opacity: 1,
+              duration: 0.5,
+              ease: 'power2.out'
+            });
+            
+            // Animate item
+            gsap.to(item, {
+              y: -3,
+              scale: 1.01,
+              boxShadow: 'var(--shadow-md)',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          } else {
+            // Fallback without GSAP
+            item.classList.add('active');
+          }
+        }
+      });
+    }
+  });
+  
+  // Open first FAQ item by default
+  if (faqItems.length > 0) {
+    setTimeout(() => {
+      faqItems[0].querySelector('.faq-question').click();
+    }, 500);
+  }
+  
+  // Add intersection observer for animations
+  const faqContainer = document.querySelector('.faq-container');
+  if (faqContainer) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const faqItems = entry.target.querySelectorAll('.faq-item');
+          
+          faqItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+              item.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 100 + index * 100);
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(faqContainer);
+  }
+}
+
+/**
+ * Initialize Case Study Modal
+ */
+function initCaseStudyModal() {
+  const modal = document.getElementById('case-study-modal');
+  const closeBtn = modal?.querySelector('.modal-close');
+  const backdrop = modal?.querySelector('.modal-backdrop');
+  const modalBody = modal?.querySelector('.modal-body');
+  
+  if (!modal) return;
+  
+  // Add click events to case study links
+  document.addEventListener('click', (e) => {
+    const caseStudyLink = e.target.closest('.case-study-link');
+    
+    if (caseStudyLink) {
+      e.preventDefault();
+      
+      const caseStudyId = caseStudyLink.dataset.caseStudy;
+      
+      if (caseStudyId) {
+        openCaseStudyModal(caseStudyId);
+      }
+    }
+  });
+  
+  // Close modal when clicking the close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeCaseStudyModal);
+  }
+  
+  // Close modal when clicking the backdrop
+  if (backdrop) {
+    backdrop.addEventListener('click', closeCaseStudyModal);
+  }
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeCaseStudyModal();
+    }
+  });
+  
+  /**
+   * Open Case Study Modal
+   */
+  function openCaseStudyModal(caseStudyId) {
+    if (!modal || !modalBody) return;
+    
+    // Case study data - This would ideally come from your API or a JSON file
+    const caseStudies = {
+      'iconic-aesthetics': {
+        title: 'Beauty Clinic Digital Transformation',
+        client: 'Iconic Aesthetics',
+        clientLogo: './assets/images/iconic.jpeg',
+        industry: 'Beauty & Wellness',
+        heroImage: './assets/images/iconicwebsiteimage.jpeg',
+        overview: 'Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience. We identified several pain points in their workflow and customer journey that could be improved through digital transformation.',
+        challenge: 'The clinic was struggling with a manual booking system that led to scheduling errors, double bookings, and significant administrative overhead. Their customer management was fragmented, with client information spread across different systems, making it difficult to provide personalized service and effective follow-ups.',
+        solution: [
+          'Custom website with integrated appointment scheduling system',
+          'Square POS implementation with inventory management',
+          'Customer database with CRM functionality',
+          'Staff training and workflow optimization',
+          'Digital marketing strategy with social media integration'
+        ],
+        results: [
+          '40% increase in online bookings',
+          '25% improvement in revenue',
+          '60% reduction in scheduling errors',
+          '35% increase in repeat customers',
+          'Staff time savings of 15 hours per week'
+        ],
+        testimonial: {
+          quote: "Elan's Tech World transformed our business operations completely. The integrated booking system alone has saved us countless hours and significantly improved our customer experience. The entire digital ecosystem they built works seamlessly together.",
+          author: "Maria Johnson",
+          position: "Owner, Iconic Aesthetics"
+        },
+        images: [
+          './assets/images/iconicwebsiteimage.jpeg'
+        ]
+      },
+      'east-coast-realty': {
+        title: 'Property Management System Overhaul',
+        client: 'East Coast Realty',
+        clientLogo: './assets/images/east.png',
+        industry: 'Real Estate',
+        heroImage: './assets/images/eastcoastweb.jpeg',
+        overview: 'East Coast Realty needed a modern digital presence and comprehensive technology infrastructure to manage their growing portfolio of properties and improve client services.',
+        challenge: 'The real estate firm was using outdated systems that couldn\'t scale with their growth. Property listings were managed manually, tenant communications were inefficient, and the maintenance request system was paper-based, causing delays and frustration.',
+        solution: [
+          'Modern responsive website with MLS integration',
+          'Custom property management portal for staff and clients',
+          'Automated maintenance request system with tracking',
+          'Secure document management system for leases and contracts',
+          'Comprehensive office technology setup with network infrastructure'
+        ],
+        results: [
+          '60% reduction in administrative time',
+          '3x faster client onboarding process',
+          '45% improvement in maintenance response time',
+          '28% increase in leads from the new website',
+          'Enhanced security for sensitive client documents'
+        ],
+        testimonial: {
+          quote: "The technology solutions implemented by Elan's Tech World have completely transformed how we operate. Our property management is now streamlined, our team is more productive, and our clients are happier with the improved communication and service.",
+          author: "Robert Smith",
+          position: "Managing Director, East Coast Realty"
+        },
+        images: [
+          './assets/images/eastcoastweb.jpeg'
+        ]
+      },
+      's-cream': {
+        title: 'Retail Tech Stack Implementation',
+        client: 'S-Cream',
+        clientLogo: './assets/images/scream.png',
+        industry: 'Food & Beverage',
+        heroImage: './assets/images/scream.jpeg',
+        overview: 'S-Cream needed a complete technology ecosystem for their new ice cream shop, from online ordering to in-store point of sale system and inventory management.',
+        challenge: 'As a new business, S-Cream was starting from scratch and needed a comprehensive technology solution that would provide a seamless customer experience both online and in-store, while also efficiently managing inventory and operations.',
+        solution: [
+          'E-commerce website with online ordering functionality',
+          'POS system integration with inventory management',
+          'Customer loyalty program implementation',
+          'Mobile app for order ahead and rewards',
+          'Staff training and operational workflow design'
+        ],
+        results: [
+          '30% of sales now come from online ordering',
+          '15-minute reduction in average wait times',
+          '20% increase in repeat customers through loyalty program',
+          'Real-time inventory tracking reducing waste by 25%',
+          'Seamless integration between online and in-store systems'
+        ],
+        testimonial: {
+          quote: "Working with Elan's Tech World from our pre-launch phase was one of the best decisions we made. They built a technology foundation that has allowed us to operate efficiently from day one and provide an exceptional customer experience across all touchpoints.",
+          author: "Jennifer Lee",
+          position: "Co-founder, S-Cream"
+        },
+        images: [
+          './assets/images/scream.jpeg'
+        ]
+      }
+    };
+    
+    // Get case study data
+    const caseStudy = caseStudies[caseStudyId];
+    if (!caseStudy) return;
+    
+    // Create modal content
+    const modalContent = `
+      <div class="case-study-detail">
+        <div class="case-study-hero" style="background-image: url('${caseStudy.heroImage}')">
+          <div class="case-study-hero-overlay"></div>
+          <div class="case-study-hero-content">
+            <div class="case-study-client-badge">
+              <img src="${caseStudy.clientLogo}" alt="${caseStudy.client}">
+              <div>
+                <h4>${caseStudy.client}</h4>
+                <p>${caseStudy.industry}</p>
+              </div>
+            </div>
+            <h2>${caseStudy.title}</h2>
+          </div>
+        </div>
+        
+        <div class="case-study-sections">
+          <div class="case-study-section">
+            <h3>Overview</h3>
+            <p>${caseStudy.overview}</p>
+          </div>
+          
+          <div class="case-study-section">
+            <h3>Challenge</h3>
+            <p>${caseStudy.challenge}</p>
+          </div>
+          
+          <div class="case-study-section">
+            <h3>Solution</h3>
+            <ul class="case-study-list">
+              ${caseStudy.solution.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+          
+          <div class="case-study-section">
+            <h3>Results</h3>
+            <div class="case-study-results-grid">
+              ${caseStudy.results.map(result => `
+                <div class="case-study-result-box">
+                  <div class="result-icon"><i class="fas fa-chart-line"></i></div>
+                  <p>${result}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="case-study-section">
+            <h3>Client Testimonial</h3>
+            <div class="case-study-testimonial">
+              <div class="testimonial-quote">
+                <i class="fas fa-quote-left"></i>
+                <p>${caseStudy.testimonial.quote}</p>
+              </div>
+              <div class="testimonial-author">
+                <p><strong>${caseStudy.testimonial.author}</strong></p>
+                <p>${caseStudy.testimonial.position}</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="case-study-cta">
+            <a href="#contact" class="btn-primary magnetic-button" onclick="closeCaseStudyModal()">
+              <span>Start Your Project</span>
+              <div class="btn-bubbles">
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+                <div class="bubble"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Add content to modal
+    modalBody.innerHTML = modalContent;
+    
+    // Add modal styles
+    const style = document.createElement('style');
+    style.id = 'case-study-modal-styles';
+    style.textContent = `
+      .case-study-detail {
+        overflow: hidden;
+      }
+      
+      .case-study-hero {
+        height: 350px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+      }
+      
+      .case-study-hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+      }
+      
+      .case-study-hero-content {
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        color: #fff;
+      }
+      
+      .case-study-hero-content h2 {
+        color: #fff;
+        margin-bottom: 0;
+        font-size: 2rem;
+      }
+      
+      .case-study-client-badge {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .case-study-client-badge img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #fff;
+        object-fit: contain;
+      }
+      
+      .case-study-client-badge h4 {
+        color: #fff;
+        margin: 0;
+        font-size: 1rem;
+      }
+      
+      .case-study-client-badge p {
+        color: rgba(255,255,255,0.8);
+        margin: 0;
+        font-size: 0.875rem;
+      }
+      
+      .case-study-sections {
+        padding: 2rem;
+      }
+      
+      .case-study-section {
+        margin-bottom: 2rem;
+      }
+      
+      .case-study-section h3 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+      }
+      
+      .case-study-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: var(--primary-gradient);
+      }
+      
+      .case-study-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .case-study-list li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      
+      .case-study-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--primary);
+        font-weight: bold;
+      }
+      
+      .case-study-results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      
+      .case-study-result-box {
+        background: var(--light);
+        padding: 1.25rem;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all var(--transition-normal);
+      }
+      
+      .case-study-result-box:hover {
+        background: rgba(0, 122, 255, 0.05);
+        transform: translateY(-3px);
+      }
+      
+      .result-icon {
+        color: var(--primary);
+        font-size: 1.25rem;
+      }
+      
+      .case-study-result-box p {
+        margin: 0;
+      }
+      
+      .case-study-testimonial {
+        background: var(--light);
+        padding: 1.5rem;
+        border-radius: var(--radius-md);
+        position: relative;
+      }
+      
+      .testimonial-quote {
+        position: relative;
+        padding-left: 2rem;
+      }
+      
+      .testimonial-quote i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--primary);
+        font-size: 1.5rem;
+        opacity: 0.5;
+      }
+      
+      .testimonial-quote p {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+      
+      .testimonial-author {
+        text-align: right;
+      }
+      
+      .testimonial-author p {
+        margin: 0;
+      }
+      
+      .case-study-cta {
+        text-align: center;
+        margin-top: 3rem;
+      }
+      
+      @media (max-width: 768px) {
+        .case-study-hero {
+          height: 250px;
+        }
+        
+        .case-study-hero-content h2 {
+          font-size: 1.5rem;
+        }
+        
+        .case-study-sections {
+          padding: 1.5rem;
+        }
+        
+        .case-study-results-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    `;
+    
+    document.head.appendChild(style);
+    
+    // Show modal with animation
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    modal.classList.add('active');
+    
+    // Animate modal entrance
+    if (window.gsap) {
+      gsap.fromTo(
+        modal.querySelector('.modal-container'),
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+      );
+    }
+  }
+  
+  /**
+   * Close Case Study Modal
+   */
+  function closeCaseStudyModal() {
+    if (!modal) return;
+    
+    // Animate modal exit
+    if (window.gsap) {
+      gsap.to(modal.querySelector('.modal-container'), {
+        y: 50,
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+          
+          // Remove dynamic styles
+          const dynamicStyles = document.getElementById('case-study-modal-styles');
+          if (dynamicStyles) dynamicStyles.remove();
+        }
+      });
+    } else {
+      // Fallback without GSAP
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // Re-enable scrolling
+      
+      // Remove dynamic styles
+      const dynamicStyles = document.getElementById('case-study-modal-styles');
+      if (dynamicStyles) dynamicStyles.remove();
+    }
+  }
+}
+
+// Expose the closeCaseStudyModal function globally for the CTA button
+window.closeCaseStudyModal = function() {
+  const modal = document.getElementById('case-study-modal');
+  if (modal && modal.classList.contains('active')) {
+    modal.classList.remove('active');
+    document.body.style.overflow = ''; // Re-enable scrolling
+    
+    // Remove dynamic styles
+    const dynamicStyles = document.getElementById('case-study-modal-styles');
+    if (dynamicStyles) dynamicStyles.remove();
+    
+    // Scroll to contact section
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
+      const targetPosition = contactSection.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+};
