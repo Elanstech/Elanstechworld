@@ -1364,15 +1364,15 @@ section {
   }
 }
 
-/* ===== Enhanced Packages Section ===== */
+/* ===== Packages Section with 3D Carousel ===== */
 .packages-section {
-  background: linear-gradient(135deg, #f6f9ff 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #f5f9ff 0%, #ffffff 100%);
   position: relative;
   overflow: hidden;
   padding: var(--space-2xl) 0;
 }
 
-/* Enhanced Background Elements */
+/* Background Elements */
 .packages-shapes {
   position: absolute;
   top: 0;
@@ -1429,7 +1429,7 @@ section {
   }
 }
 
-/* Enhanced Section Header */
+/* Section Header */
 .packages-section .section-header {
   margin-bottom: var(--space-xl);
   position: relative;
@@ -1471,212 +1471,185 @@ section {
   line-height: 1.7;
 }
 
-/* Hide the empty anchor spans that are used for targeting */
-#business-panel, #design-panel, #property-panel {
-  display: none;
-}
-
-/* Enhanced Tab Design */
-.packages-tabs {
+/* Carousel Controls */
+.packages-controls {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-xl);
+  margin-bottom: 2rem;
   position: relative;
   z-index: 1;
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: var(--radius-full);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.tab-toggle {
-  padding: 1rem 2rem;
-  background: transparent;
-  border-radius: var(--radius-full);
-  font-weight: 600;
-  color: var(--gray-dark);
+.package-nav-btn {
+  width: 50px;
+  height: 50px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  color: var(--primary);
+  font-size: 1.25rem;
   cursor: pointer;
   transition: all var(--transition-normal);
+  border: none;
+}
+
+.package-nav-btn:hover {
+  background: linear-gradient(135deg, var(--primary), #7a00ff);
+  color: var(--white);
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 122, 255, 0.2);
+}
+
+.package-category-indicator {
+  margin: 0 2rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
+}
+
+.category-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--primary);
   display: block;
+  margin-bottom: 0.5rem;
+  transition: all var(--transition-normal);
+  background: linear-gradient(90deg, var(--primary), #7a00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.category-dots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--light);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.category-dot.active {
+  width: 30px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--primary), #7a00ff);
+}
+
+/* 3D Carousel Container */
+.packages-carousel-container {
+  position: relative;
+  perspective: 3000px;
+  margin-bottom: 3rem;
+  overflow: hidden;
   z-index: 1;
 }
 
-.tab-toggle::before {
-  content: '';
+.packages-carousel {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.35, 1);
+  height: 650px;
+  width: 100%;
+}
+
+/* Package Categories (Slides) */
+.packages-category {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: var(--primary-gradient);
   opacity: 0;
-  transition: opacity var(--transition-bounce);
-  z-index: -1;
-  border-radius: var(--radius-full);
-  transform: scale(0.9);
-}
-
-.tab-toggle::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 3px;
-  background: var(--primary-gradient);
-  transition: width var(--transition-normal);
-  border-radius: var(--radius-full);
-}
-
-.tab-toggle.active, 
-#business-panel:target ~ .packages-tabs .tab-toggle[data-tab="business"],
-#design-panel:target ~ .packages-tabs .tab-toggle[data-tab="design"],
-#property-panel:target ~ .packages-tabs .tab-toggle[data-tab="property"] {
-  color: var(--white);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 122, 255, 0.2);
-}
-
-.tab-toggle.active::before,
-#business-panel:target ~ .packages-tabs .tab-toggle[data-tab="business"]::before,
-#design-panel:target ~ .packages-tabs .tab-toggle[data-tab="design"]::before,
-#property-panel:target ~ .packages-tabs .tab-toggle[data-tab="property"]::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.tab-toggle:hover:not(.active) {
-  color: var(--primary);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.tab-toggle:hover::after {
-  width: 30px;
-}
-
-/* Packages Content */
-.packages-content {
-  position: relative;
-  z-index: 1;
-  perspective: 1000px;
-}
-
-/* CSS-only tab switching */
-.packages-tab-content {
-  display: none;
-  opacity: 0;
-  transform: translateY(30px) rotateX(5deg);
-  transition: all var(--transition-normal);
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transform-style: preserve-3d;
 }
 
-.packages-tab-content.active,
-#business-panel:target ~ .packages-content #business-tab,
-#design-panel:target ~ .packages-content #design-tab,
-#property-panel:target ~ .packages-content #property-tab {
-  display: block;
+.packages-category.active {
   opacity: 1;
-  transform: translateY(0) rotateX(0);
-  animation: fadeInPackages 0.7s ease forwards;
+  visibility: visible;
+  z-index: 2;
 }
 
-@keyframes fadeInPackages {
-  from {
-    opacity: 0;
-    transform: translateY(30px) rotateX(5deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) rotateX(0);
-  }
+.packages-category[data-category="business"] {
+  transform: translateZ(0) rotateY(0);
 }
 
-/* Make sure business tab is visible by default when no hash is present */
-#business-tab {
-  display: block;
-  opacity: 1;
-  transform: translateY(0) rotateX(0);
+.packages-category[data-category="design"] {
+  transform: translateZ(-2000px) rotateY(90deg);
 }
 
-/* Hide business tab when other tabs are targeted */
-#design-panel:target ~ .packages-content #business-tab,
-#property-panel:target ~ .packages-content #business-tab {
-  display: none;
-  opacity: 0;
+.packages-category[data-category="property"] {
+  transform: translateZ(-4000px) rotateY(180deg);
 }
 
-.packages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-xl);
-  margin-bottom: var(--space-xl);
+/* Package Group */
+.packages-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  transform-style: preserve-3d;
 }
 
-/* Enhanced Package Card */
+/* Package Card */
 .package-card {
+  flex: 0 0 330px;
+  max-width: 330px;
+  height: 580px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.package-card.featured {
+  transform: translateY(-15px) scale(1.05);
+  z-index: 3;
+}
+
+.package-card:hover {
+  transform: translateY(-20px);
+}
+
+.package-card.featured:hover {
+  transform: translateY(-30px) scale(1.05);
+}
+
+.package-card-inner {
   background-color: var(--white);
   border-radius: var(--radius-lg);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-  transition: all var(--transition-normal);
-  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  border: 1px solid transparent;
+  position: relative;
+  transition: all 0.5s ease;
+  transform-style: preserve-3d;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  opacity: 0;
-  transform: translateY(30px);
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  transform: translateZ(0) rotateX(0) rotateY(0);
+  backface-visibility: hidden;
 }
 
-/* Card background effects */
-.package-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
-  z-index: 0;
-  pointer-events: none;
+.package-card:hover .package-card-inner {
+  box-shadow: 0 30px 60px rgba(0, 122, 255, 0.15);
+  transform: translateZ(20px) rotateX(2deg) rotateY(-5deg);
 }
 
-/* Animation for package cards */
-.package-card.animate-in,
-.packages-tab-content.active .package-card,
-#business-panel:target ~ .packages-content #business-tab .package-card,
-#design-panel:target ~ .packages-content #design-tab .package-card,
-#property-panel:target ~ .packages-content #property-tab .package-card {
-  opacity: 1;
-  transform: translateY(0);
-  border-color: rgba(0, 122, 255, 0.05);
+.package-card.featured .package-card-inner {
+  box-shadow: 0 30px 60px rgba(0, 122, 255, 0.2);
+  border: 1px solid rgba(0, 122, 255, 0.1);
 }
 
-/* Featured package styling */
-.package-card.featured {
-  transform: scale(1.05);
-  box-shadow: 0 25px 50px rgba(0, 122, 255, 0.12);
-  border: none;
-  z-index: 2;
-  overflow: visible;
-}
-
-.package-card.featured::before {
+.package-card.featured .package-card-inner::before {
   content: '';
   position: absolute;
   top: -5px;
@@ -1688,23 +1661,10 @@ section {
   z-index: -2;
   opacity: 0.1;
   filter: blur(8px);
-  transition: all var(--transition-normal);
+  transition: all 0.5s ease;
 }
 
-/* Hover effects */
-.package-card:hover {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(0, 122, 255, 0.15);
-  border-color: rgba(0, 122, 255, 0.1);
-  z-index: 3;
-}
-
-.package-card.featured:hover {
-  transform: translateY(-15px) scale(1.07);
-  box-shadow: 0 40px 70px rgba(0, 122, 255, 0.2);
-}
-
-.package-card.featured:hover::before {
+.package-card.featured:hover .package-card-inner::before {
   opacity: 0.2;
   top: -10px;
   left: -10px;
@@ -1712,7 +1672,7 @@ section {
   bottom: -10px;
 }
 
-/* Enhanced Ribbon Design */
+/* Card elements */
 .package-ribbon {
   position: absolute;
   top: 15px;
@@ -1744,9 +1704,8 @@ section {
   100% { transform: translateX(100%); }
 }
 
-/* Enhanced Package Header */
 .package-header {
-  padding: var(--space-lg);
+  padding: 1.5rem;
   text-align: center;
   position: relative;
   border-bottom: none;
@@ -1764,10 +1723,10 @@ section {
   justify-content: center;
   background: var(--white);
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  margin: 0 auto var(--space-md);
+  margin: 0 auto 1rem;
   color: var(--primary);
   font-size: 1.75rem;
-  transition: all var(--transition-bounce);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: 0 15px 35px rgba(0, 122, 255, 0.15);
   position: relative;
   transform-style: preserve-3d;
@@ -1782,11 +1741,11 @@ section {
   border-radius: inherit;
   opacity: 0.1;
   z-index: -1;
-  transition: all var(--transition-normal);
+  transition: all 0.5s ease;
 }
 
 .package-card:hover .package-icon {
-  transform: translateZ(50px) rotateY(15deg) scale(1.1);
+  transform: translateZ(40px) rotateY(15deg) scale(1.1);
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   color: var(--white);
   background: linear-gradient(135deg, var(--primary), #7a00ff);
@@ -1806,7 +1765,7 @@ section {
 
 .package-title {
   font-size: 1.75rem;
-  margin-bottom: var(--space-sm);
+  margin-bottom: 0.5rem;
   color: var(--dark);
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -1831,7 +1790,7 @@ section {
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--primary), #7a00ff);
-  transition: width var(--transition-normal);
+  transition: width 0.5s ease;
   border-radius: var(--radius-full);
 }
 
@@ -1844,7 +1803,7 @@ section {
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
-  margin-top: var(--space-md);
+  margin-top: 1rem;
   transform: translateZ(15px);
 }
 
@@ -1854,7 +1813,7 @@ section {
   color: var(--primary);
   line-height: 1;
   text-shadow: 0 5px 15px rgba(0, 122, 255, 0.15);
-  transition: all var(--transition-normal);
+  transition: all 0.5s ease;
 }
 
 .package-card:hover .price-amount {
@@ -1887,20 +1846,39 @@ section {
   display: inline-block;
 }
 
-/* Enhanced Package Body */
 .package-body {
-  padding: 0 var(--space-lg) var(--space-lg);
+  padding: 0 1.5rem 1.5rem;
   flex-grow: 1;
   position: relative;
   z-index: 1;
   transform: translateZ(5px);
+  display: flex;
+  flex-direction: column;
 }
 
 .package-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 var(--space-md);
+  margin: 0 0 1rem;
   position: relative;
+  max-height: 260px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--light);
+}
+
+.package-features::-webkit-scrollbar {
+  width: 6px;
+}
+
+.package-features::-webkit-scrollbar-track {
+  background: var(--light);
+  border-radius: 10px;
+}
+
+.package-features::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
 }
 
 .package-features::before {
@@ -1923,7 +1901,7 @@ section {
   font-size: 0.9375rem;
   line-height: 1.5;
   padding: 0.5rem 0;
-  transition: all var(--transition-normal);
+  transition: all 0.3s ease;
   position: relative;
   z-index: 1;
 }
@@ -1941,7 +1919,7 @@ section {
   border-radius: 50%;
   box-shadow: 0 5px 15px rgba(0, 122, 255, 0.15);
   flex-shrink: 0;
-  transition: all var(--transition-normal);
+  transition: all 0.3s ease;
   transform-style: preserve-3d;
   transform: translateZ(10px);
 }
@@ -1969,12 +1947,12 @@ section {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  margin-top: var(--space-md);
+  margin-top: auto;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 122, 255, 0.1);
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-normal);
+  transition: all 0.3s ease;
   transform: translateZ(15px);
 }
 
@@ -1987,7 +1965,7 @@ section {
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   transform: translateX(-100%);
-  transition: all var(--transition-normal);
+  transition: all 0.5s ease;
 }
 
 .package-card:hover .package-badge::before {
@@ -2001,9 +1979,8 @@ section {
   box-shadow: 0 8px 20px rgba(122, 0, 255, 0.15);
 }
 
-/* Enhanced Package Footer */
 .package-footer {
-  padding: var(--space-lg);
+  padding: 1.5rem;
   text-align: center;
   border-top: 1px solid rgba(0, 122, 255, 0.05);
   background-color: var(--white);
@@ -2021,7 +1998,7 @@ section {
   letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-bounce);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   border: none;
 }
 
@@ -2054,7 +2031,7 @@ section {
   background: radial-gradient(circle at center, rgba(0, 122, 255, 0.1), transparent 70%);
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   z-index: 0;
-  transition: all var(--transition-normal);
+  transition: all 0.5s ease;
   opacity: 0.3;
   transform: rotate(-15deg);
 }
@@ -2070,42 +2047,9 @@ section {
   height: 250px;
 }
 
-/* Animation Delays for Package Cards */
-.packages-tab-content.active .package-card:nth-child(1),
-#business-panel:target ~ .packages-content #business-tab .package-card:nth-child(1),
-#design-panel:target ~ .packages-content #design-tab .package-card:nth-child(1),
-#property-panel:target ~ .packages-content #property-tab .package-card:nth-child(1) {
-  animation: fadeInCard 0.8s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.packages-tab-content.active .package-card:nth-child(2),
-#business-panel:target ~ .packages-content #business-tab .package-card:nth-child(2),
-#design-panel:target ~ .packages-content #design-tab .package-card:nth-child(2),
-#property-panel:target ~ .packages-content #property-tab .package-card:nth-child(2) {
-  animation: fadeInCard 0.8s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.packages-tab-content.active .package-card:nth-child(3),
-#business-panel:target ~ .packages-content #business-tab .package-card:nth-child(3),
-#design-panel:target ~ .packages-content #design-tab .package-card:nth-child(3),
-#property-panel:target ~ .packages-content #property-tab .package-card:nth-child(3) {
-  animation: fadeInCard 0.8s 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-@keyframes fadeInCard {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 /* Enhanced Packages CTA Section */
 .packages-cta {
-  margin-top: var(--space-2xl);
+  margin-top: 4rem;
   background: linear-gradient(135deg, var(--primary), #7a00ff);
   border-radius: var(--radius-lg);
   padding: 0;
@@ -2115,7 +2059,7 @@ section {
   overflow: hidden;
   box-shadow: 0 25px 50px rgba(0, 122, 255, 0.2);
   transform-style: preserve-3d;
-  transition: all var(--transition-normal);
+  transition: all 0.5s ease;
 }
 
 .packages-cta:hover {
@@ -2166,7 +2110,7 @@ section {
   position: relative;
   z-index: 1;
   flex: 1;
-  padding: var(--space-xl);
+  padding: 2.5rem;
   transform: translateZ(10px);
 }
 
@@ -2204,7 +2148,7 @@ section {
   align-items: center;
   z-index: 1;
   overflow: hidden;
-  transition: all var(--transition-bounce);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   transform: translateZ(20px);
 }
 
@@ -2217,7 +2161,7 @@ section {
   height: 100%;
   background: linear-gradient(90deg, rgba(0, 122, 255, 0.1), rgba(0, 122, 255, 0));
   opacity: 0;
-  transition: opacity var(--transition-normal);
+  transition: opacity 0.5s ease;
   z-index: -1;
 }
 
@@ -2232,25 +2176,61 @@ section {
   opacity: 1;
 }
 
+/* Animation Classes */
+.carousel-slide-next,
+.carousel-slide-prev {
+  transition: transform 1s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+.carousel-slide-next {
+  transform: translateZ(-1000px) rotateY(30deg);
+}
+
+.carousel-slide-prev {
+  transform: translateZ(-1000px) rotateY(-30deg);
+}
+
+/* Animation for package cards */
+@keyframes fadeInScaleUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Mobile & Tablet Adjustments */
-@media (max-width: 991px) {
-  .packages-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-md);
+@media (max-width: 1200px) {
+  .packages-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+  
+  .package-card {
+    flex: 0 0 420px;
+    max-width: 420px;
+    height: auto;
+  }
+  
+  .packages-carousel {
+    height: auto;
+    min-height: 600px;
   }
   
   .package-card.featured {
-    transform: scale(1);
-    order: -1;
-    grid-column: 1 / -1;
-    max-width: 500px;
-    margin: 0 auto;
+    transform: scale(1.05);
   }
   
-  .package-card.featured:hover {
-    transform: translateY(-10px);
+  .packages-category {
+    align-items: flex-start;
   }
-  
+}
+
+@media (max-width: 991px) {
   .packages-cta {
     flex-direction: column;
   }
@@ -2259,68 +2239,26 @@ section {
     border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     border-top: 1px dashed rgba(255, 255, 255, 0.2);
     border-left: none;
-    padding: var(--space-md);
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .packages-tabs {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0.5rem;
+  .package-category-indicator {
+    margin: 0 1rem;
   }
   
-  .tab-toggle {
-    flex: 1 1 auto;
-    min-width: 120px;
-    padding: 0.875rem 1rem;
-    font-size: 0.875rem;
+  .category-name {
+    font-size: 1rem;
   }
   
-  .packages-cta {
-    padding: 0;
-    text-align: center;
+  .package-card {
+    flex: 0 0 350px;
+    max-width: 350px;
   }
   
   .packages-cta-content {
-    padding: var(--space-md);
-  }
-  
-  .packages-cta .btn-primary {
-    width: 100%;
-  }
-  
-  .package-ribbon {
-    font-size: 0.75rem;
-    padding: 0.25rem 2rem;
-    right: -30px;
-    top: 10px;
-  }
-  
-  .package-header {
-    padding: var(--space-md);
-  }
-  
-  .package-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 1.5rem;
-  }
-  
-  .package-title {
-    font-size: 1.5rem;
-  }
-  
-  .price-amount {
-    font-size: 2.25rem;
-  }
-  
-  .package-body {
-    padding: 0 var(--space-sm) var(--space-md);
-  }
-  
-  .package-footer {
-    padding: var(--space-md);
+    padding: 1.5rem;
   }
 }
 
@@ -2333,28 +2271,23 @@ section {
     font-size: 1.75rem;
   }
   
-  .packages-tabs {
-    margin-bottom: var(--space-lg);
-  }
-  
-  .tab-toggle {
-    padding: 0.75rem 1rem;
-    font-size: 0.75rem;
-    flex: 1 1 45%;
-  }
-  
-  .packages-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-  
   .package-card {
-    max-width: 100%;
-    margin: 0 auto;
+    flex: 0 0 320px;
+    max-width: 320px;
   }
   
-  .package-features::before {
-    left: 1rem;
+  .package-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .package-title {
+    font-size: 1.5rem;
+  }
+  
+  .price-amount {
+    font-size: 2.25rem;
   }
   
   .packages-cta-content h3 {
@@ -2370,7 +2303,6 @@ section {
 @media (prefers-reduced-motion: reduce) {
   .packages-shape, 
   .package-card,
-  .tab-toggle,
   .packages-cta,
   .package-icon,
   .package-features li,
