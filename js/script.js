@@ -405,7 +405,6 @@ function initLoader() {
   const loaderMessages = [
     'Initializing Interface...',
     'Loading Assets...',
-    'Preparing Animations...',
     'Almost Ready...'
   ];
   const loaderMessage = document.querySelector('.loader-message');
@@ -418,21 +417,21 @@ function initLoader() {
   let progress = 0;
   let messageIndex = 0;
   
-  // Update loader message periodically
+  // Update loader message less frequently
   const messageInterval = setInterval(() => {
     messageIndex = (messageIndex + 1) % loaderMessages.length;
     loaderMessage.textContent = loaderMessages[messageIndex];
-  }, 800);
+  }, 400); // Faster message updates
   
-  // Progress animation with optimized intervals
+  // Progress animation with optimized intervals - MUCH FASTER
   const interval = setInterval(() => {
-    // Optimized progress simulation
+    // Significantly faster progress simulation
     if (progress < 50) {
-      progress += 5 + Math.random() * 5;
+      progress += 15 + Math.random() * 10; // Much faster initial loading
     } else if (progress < 85) {
-      progress += 2 + Math.random() * 3;
+      progress += 10 + Math.random() * 5; // Much faster middle loading
     } else {
-      progress += 0.5;
+      progress += 3; // Faster final loading
     }
     
     if (progress >= 100) {
@@ -443,9 +442,9 @@ function initLoader() {
       // Final message
       loaderMessage.textContent = 'Welcome to Elan\'s Tech World!';
       
-      // Hide loader with fade
+      // Hide loader with fade - MUCH FASTER
       setTimeout(() => {
-        loader.style.transition = 'opacity 0.8s ease, visibility 0.8s ease';
+        loader.style.transition = 'opacity 0.4s ease, visibility 0.4s ease';
         loader.classList.add('hidden');
         document.body.style.overflow = 'visible';
         
@@ -459,22 +458,22 @@ function initLoader() {
             element.style.transform = 'translateY(0)';
           });
         }
-      }, 800);
+      }, 200); // Reduced from 800ms to 200ms
     }
     
     // Update progress bar and percentage
     progressBar.style.width = `${progress}%`;
     percentage.textContent = `${Math.round(progress)}%`;
-  }, 80);
+  }, 30); // Reduced from 80ms to 30ms
   
   // Prevent scroll during loading
   document.body.style.overflow = 'hidden';
   
-  // Initialize loader bubbles
+  // Initialize loader bubbles with faster animations
   const bubbles = document.querySelectorAll('.loader-bubbles .bubble');
   bubbles.forEach(bubble => {
-    const delay = Math.random() * 2;
-    const duration = 4 + Math.random() * 4;
+    const delay = Math.random() * 1; // Reduced delay
+    const duration = 2 + Math.random() * 2; // Faster duration
     
     bubble.style.animationDelay = `${delay}s`;
     bubble.style.animationDuration = `${duration}s`;
@@ -609,6 +608,16 @@ function initMobileMenu() {
     DOM.menuToggle.classList.toggle('active');
     DOM.mobileMenu.classList.toggle('active');
     document.body.classList.toggle('no-scroll');
+    
+    // Hide header when mobile menu is open
+    if (DOM.mobileMenu.classList.contains('active')) {
+      DOM.header.style.opacity = '0';
+      DOM.header.style.visibility = 'hidden';
+      DOM.header.style.transition = 'opacity 0.3s ease, visibility 0.3s ease';
+    } else {
+      DOM.header.style.opacity = '1';
+      DOM.header.style.visibility = 'visible';
+    }
   });
   
   // Close button functionality
@@ -630,6 +639,10 @@ function initMobileMenu() {
     DOM.menuToggle.classList.remove('active');
     DOM.mobileMenu.classList.remove('active');
     document.body.classList.remove('no-scroll');
+    
+    // Show header when mobile menu is closed
+    DOM.header.style.opacity = '1';
+    DOM.header.style.visibility = 'visible';
   }
 }
 
