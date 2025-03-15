@@ -3078,7 +3078,7 @@ section {
   transform: rotate(90deg);
 }
 
-/* ===== Modern Packages Section Styles (Fixed & Completely Refined) ===== */
+/* ===== Modern Packages Section Styles (Fixed & Optimized) ===== */
 .packages-section {
     background-color: #f8faff;
     position: relative;
@@ -3173,7 +3173,7 @@ section {
 }
 
 /* Consistent slide styling */
-.swiper-slide {
+.packages-carousel .swiper-slide {
     height: auto;
     transition: transform 0.4s ease, opacity 0.4s ease;
     opacity: 0.7;
@@ -3182,10 +3182,11 @@ section {
 }
 
 /* Active slides appear more prominent */
-.swiper-slide-active,
-.swiper-slide-next,
-.swiper-slide-prev {
+.packages-carousel .swiper-slide-active,
+.packages-carousel .swiper-slide-prev,
+.packages-carousel .swiper-slide-next {
     opacity: 1;
+    z-index: 2;
 }
 
 /* Fixed category card styling */
@@ -3328,6 +3329,10 @@ section {
     background: linear-gradient(135deg, #ffffff 0%, #fffaf0 100%);
 }
 
+.package-card.design.enterprise .package-card-inner {
+    background: linear-gradient(135deg, #ffffff 0%, #fff7e8 100%);
+}
+
 /* Property Package Variants */
 .package-card.property.starter .package-card-inner {
     background: linear-gradient(135deg, #ffffff 0%, #f9f0ff 100%);
@@ -3337,6 +3342,10 @@ section {
     background: linear-gradient(135deg, #ffffff 0%, #faf0ff 100%);
 }
 
+.package-card.property.enterprise .package-card-inner {
+    background: linear-gradient(135deg, #ffffff 0%, #f5e8ff 100%);
+}
+
 /* POS Package Variants */
 .package-card.pos.starter .package-card-inner {
     background: linear-gradient(135deg, #ffffff 0%, #f0fff9 100%);
@@ -3344,6 +3353,10 @@ section {
 
 .package-card.pos.premium .package-card-inner {
     background: linear-gradient(135deg, #ffffff 0%, #f0fffa 100%);
+}
+
+.package-card.pos.enterprise .package-card-inner {
+    background: linear-gradient(135deg, #ffffff 0%, #e8fff5 100%);
 }
 
 /* Popular Package Styling */
@@ -3356,7 +3369,6 @@ section {
     border: 2px solid transparent;
     background-origin: border-box;
     background-clip: padding-box, border-box;
-    box-shadow: 0 15px 40px rgba(0, 122, 255, 0.15);
 }
 
 .package-card.popular:hover {
@@ -3373,6 +3385,12 @@ section {
     background-image: 
         linear-gradient(to right, #ffffff, #ffffff), 
         linear-gradient(135deg, #007aff, #7a00ff);
+}
+
+.package-card.enterprise.popular .package-card-inner {
+    background-image: 
+        linear-gradient(to right, #ffffff, #ffffff), 
+        linear-gradient(135deg, #7a00ff, #c200ff);
 }
 
 .package-card.design.popular .package-card-inner {
@@ -3409,6 +3427,8 @@ section {
     border-radius: 0 0 15px 15px;
     box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
     z-index: 5;
+    transform-origin: top center;
+    transition: transform 0.3s ease;
 }
 
 .package-card.design.popular .popular-badge {
@@ -3424,6 +3444,11 @@ section {
 .package-card.pos.popular .popular-badge {
     background: linear-gradient(135deg, #00ff7a, #00ffc2);
     box-shadow: 0 5px 15px rgba(0, 255, 122, 0.3);
+}
+
+.package-card:hover .popular-badge {
+    transform: translateY(-2px) scaleX(1.05);
+    box-shadow: 0 7px 20px rgba(0, 122, 255, 0.4);
 }
 
 /* Package Header - Fixed Spacing */
@@ -3442,6 +3467,7 @@ section {
     background-clip: text;
     color: transparent;
     display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 .package-card.premium .package-name {
@@ -3474,6 +3500,10 @@ section {
     background-clip: text;
 }
 
+.package-card:hover .package-name {
+    transform: translateY(-2px);
+}
+
 /* Price Styling - Fixed Layout */
 .package-price {
     display: flex;
@@ -3481,6 +3511,7 @@ section {
     align-items: center;
     gap: 0.25rem;
     margin-bottom: 1rem;
+    position: relative;
 }
 
 .price {
@@ -3492,6 +3523,7 @@ section {
     align-items: center;
     justify-content: center;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 .currency {
@@ -3516,6 +3548,7 @@ section {
     padding: 0.3rem 0.75rem;
     border-radius: 20px;
     display: inline-block;
+    transition: all 0.3s ease;
 }
 
 .package-card.property .subscription {
@@ -3531,6 +3564,11 @@ section {
 .package-card.pos .subscription {
     color: #00c27a;
     background: rgba(0, 194, 122, 0.08);
+}
+
+.package-card:hover .subscription {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0, 122, 255, 0.1);
 }
 
 /* Package Body - Fixed Layout */
@@ -3555,10 +3593,16 @@ section {
     border-bottom: 1px solid rgba(0, 0, 0, 0.03);
     color: #64748b;
     line-height: 1.4;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .package-features li:last-child {
     border-bottom: none;
+}
+
+.package-card:hover .package-features li {
+    transform: translateX(3px);
+    color: #334155;
 }
 
 .package-features li i {
@@ -3573,6 +3617,7 @@ section {
     border-radius: 50%;
     flex-shrink: 0;
     margin-top: 2px;
+    transition: transform 0.3s ease;
 }
 
 .package-card.premium .package-features li i {
@@ -3593,6 +3638,10 @@ section {
 
 .package-card.pos .package-features li i {
     background: linear-gradient(135deg, #00ff7a, #00ffc2);
+}
+
+.package-card:hover .package-features li i {
+    transform: scale(1.2);
 }
 
 /* Fixed CTA Button Layout */
@@ -3702,6 +3751,32 @@ section {
 
 .package-card.pos .btn-package:hover {
     box-shadow: 0 8px 25px rgba(0, 255, 122, 0.4);
+}
+
+/* Enhanced Button Animation */
+.btn-package::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg) translateX(-100%);
+    z-index: -1;
+}
+
+.btn-package:hover::after {
+    animation: btnShine 1.5s ease;
+}
+
+@keyframes btnShine {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
 }
 
 /* Fixed Package Tag */
@@ -3826,6 +3901,12 @@ section {
     padding: 0.25rem;
     max-width: 900px;
     margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 122, 255, 0.1);
 }
 
 .custom-card-inner {
@@ -3853,6 +3934,11 @@ section {
     box-shadow: 0 10px 25px rgba(0, 122, 255, 0.25);
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.custom-card:hover .custom-icon {
+    transform: rotate(-10deg) scale(1.1);
 }
 
 .custom-icon::after {
@@ -3889,6 +3975,11 @@ section {
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    transition: transform 0.3s ease;
+}
+
+.custom-card:hover .custom-card-inner h3 {
+    transform: translateY(-3px);
 }
 
 .custom-card-inner p {
@@ -3896,6 +3987,11 @@ section {
     color: #64748b;
     max-width: 600px;
     margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.custom-card:hover .custom-card-inner p {
+    transform: translateY(-2px);
 }
 
 .btn-custom {
@@ -3933,6 +4029,23 @@ section {
 
 .btn-custom:hover::before {
     opacity: 1;
+}
+
+/* Enhanced Button Animation */
+.btn-custom::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg) translateX(-100%);
+    z-index: -1;
+}
+
+.btn-custom:hover::after {
+    animation: btnShine 1.5s ease;
 }
 
 /* Fixed Responsive Adjustments */
@@ -4002,7 +4115,7 @@ section {
         right: 10px;
     }
     
-    .swiper-slide {
+    .packages-carousel .swiper-slide {
         display: flex;
         justify-content: center;
     }
@@ -4064,6 +4177,32 @@ section {
     .packages-nav-prev,
     .packages-nav-next {
         display: none;
+    }
+}
+
+/* Prefers reduced motion adjustments */
+@media (prefers-reduced-motion: reduce) {
+    .package-card, 
+    .package-card-inner,
+    .package-category-card,
+    .btn-package,
+    .btn-custom,
+    .popular-badge {
+        transition-duration: 0.1s !important;
+    }
+    
+    .btn-package::after,
+    .btn-custom::after,
+    .custom-icon::after {
+        animation: none !important;
+    }
+    
+    .package-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .bg-shape {
+        animation: none !important;
     }
 }
 
