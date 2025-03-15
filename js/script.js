@@ -2818,41 +2818,382 @@ window.closeCaseStudyModal = function() {
  * Initialize Packages Section - Billing Toggle and Carousel
  */
 function initPackagesSection() {
-  const billingCheckbox = document.getElementById('billing-checkbox');
-  const monthlyOption = document.querySelector('.billing-option.monthly');
-  const yearlyOption = document.querySelector('.billing-option.yearly');
+  // Initialize the carousel
+  initPackagesCarousel();
   
-  if (billingCheckbox) {
-    billingCheckbox.addEventListener('change', function() {
-      if (this.checked) {
-        document.body.classList.add('yearly-billing');
-        monthlyOption.classList.remove('active');
-        yearlyOption.classList.add('active');
+  // Initialize scroll-based reveals
+  initScrollReveal();
+  
+  // Add event handlers for card interactions
+  initCardInteractions();
+}
+
+/**
+ * Initialize the Swiper-based packages carousel with optimal settings
+ */
+function initPackagesCarousel() {
+  // Reference to the carousel container
+  const packagesCarousel = document.querySelector('.packages-carousel');
+  
+  if (!packagesCarousel) return;
+  
+  // Initialize Swiper with properly configured settings
+  const packagesSwiper = new Swiper('.packages-carousel', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: false,
+    speed: 700, // Increased for smoother transitions
+    grabCursor: true,
+    centeredSlides: true,
+    initialSlide: 1, // Start with the first package visible
+    autoHeight: false, // Disabled to ensure consistent card heights
+    watchOverflow: true,
+    watchSlidesProgress: true,
+    preloadImages: true,
+    updateOnImagesReady: true,
+    resistanceRatio: 0.8,
+    observer: true, // Re-initialize on DOM changes
+    observeParents: true,
+    
+    // Responsive breakpoints
+    breakpoints: {
+      576: {
+        slidesPerView: 1.25,
+        spaceBetween: 20,
+      },
+      768: {
+        slidesPerView: 1.5,
+        spaceBetween: 30,
+      },
+      992: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      }
+    },
+    
+    // Pagination
+    pagination: {
+      el: '.packages-pagination',
+      clickable: true,
+      dynamicBullets: true,
+      dynamicMainBullets: 3,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '"></span>';
+      }
+    },
+    
+    // Navigation arrows
+    navigation: {
+      nextEl: '.packages-nav-next',
+      prevEl: '.packages-nav-prev',
+      disabledClass: 'packages-nav-disabled',
+    },
+    
+    // Events
+    on: {
+      init: function() {
+        // Ensure all cards have equal height
+        equalizeCardHeights();
+        
+        // Add animation classes to active slides
+        highlightActiveSlides(this);
+        
+        // Add nice loading animation
+        fadeInPackages();
+      },
+      beforeTransitionStart: function() {
+        // Add transition effects to slides
+        animatePackageSlidesBeforeTransition();
+      },
+      slideChangeTransitionEnd: function() {
+        // After slide change, update active slides
+        highlightActiveSlides(this);
+      },
+      resize: function() {
+        // Re-equalize heights on resize
+        equalizeCardHeights();
+      },
+      imagesReady: function() {
+        // Additional equalization after images load
+        equalizeCardHeights();
+      }
+    }
+  });
+  
+  // Store swiper instance globally for access in other functions
+  window.packagesSwiper = packagesSwiper;
+  
+  // Add window resize handler with debounce
+  window.addEventListener('resize', debounce(function() {
+    equalizeCardHeights();
+    if (window.packagesSwiper) {
+      window.packagesSwiper.update(); // Update swiper on resize
+    }
+  }, 200));
+}
+
+/**
+ * Ensure all package cards have equal height
+ */
+function equalizeCardHeights() {
+  // Reset heights first
+  resetCardHeights();
+  
+  // We need to wait for the DOM to update
+  setTimeout(() => {
+    // Group cards by type (category cards, package cards)
+    const categoryCards = document.querySelectorAll('.package-category-card');
+    const packageCards = document.querySelectorAll('.package-card');
+    
+    // Find the tallest card in each group
+    let maxCategoryHeight = getMaxHeight(categoryCards);
+    let maxPackageHeight = getMaxHeight(packageCards);
+    
+    // Apply heights to ensure consistency
+    applyHeight(categoryCards, maxCategoryHeight);
+    applyHeight(packageCards, maxPackageHeight);
+    
+    // Force a Swiper update after heights are set
+    if (window.packagesSwiper) {
+      window.packagesSwiper.update();
+    }
+  }, 100);
+}
+
+/**
+ * Reset all card heights to auto
+ */
+function resetCardHeights() {
+  const allCards = document.querySelectorAll('.package-category-card, .package-card');
+  allCards.forEach(card => {
+    card.style.height = '';
+    
+    // Also reset inner container heights
+    const inner = card.querySelector('.package-card-inner');
+    if (inner) {
+      inner.style.height = '';
+    }
+  });
+}
+
+/**
+ * Find the maximum height in a collection of elements
+ */
+function getMaxHeight(elements) {
+  let maxHeight = 0;
+  elements.forEach(el => {
+    const height = el.getBoundingClientRect().height;
+    maxHeight = Math.max(maxHeight, height);
+  });
+  return maxHeight;
+}
+
+/**
+ * Apply a consistent height to a collection of elements
+ */
+function applyHeight(elements, height) {
+  if (height <= 0) return;
+  
+  elements.forEach(el => {
+    el.style.height = `${height}px`;
+    
+    // Also set the inner container to the same height
+    const inner = el.querySelector('.package-card-inner');
+    if (inner) {
+      inner.style.height = `${height}px`;
+    }
+  });
+}
+
+/**
+ * Add animation and highlighting to active slides
+ */
+function highlightActiveSlides(swiper) {
+  if (!swiper) return;
+  
+  // Remove existing active classes
+  const allSlides = document.querySelectorAll('.packages-carousel .swiper-slide');
+  allSlides.forEach(slide => {
+    const card = slide.querySelector('.package-card, .package-category-card');
+    if (card) {
+      card.classList.remove('active-card');
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    }
+  });
+  
+  // Add active class and effects to visible slides
+  const activeIndex = swiper.activeIndex;
+  const visibleSlides = [
+    swiper.slides[activeIndex],
+    swiper.slides[activeIndex + 1],
+    swiper.slides[activeIndex - 1]
+  ].filter(Boolean);
+  
+  visibleSlides.forEach(slide => {
+    const card = slide.querySelector('.package-card, .package-category-card');
+    if (card) {
+      card.classList.add('active-card');
+      
+      // Don't add transform to already highlighted cards
+      if (!card.classList.contains('popular')) {
+        card.style.transform = 'translateY(-8px)';
+        card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+      }
+    }
+  });
+}
+
+/**
+ * Animate slides during transitions
+ */
+function animatePackageSlidesBeforeTransition() {
+  const slides = document.querySelectorAll('.packages-carousel .swiper-slide');
+  slides.forEach(slide => {
+    const card = slide.querySelector('.package-card, .package-category-card');
+    if (card) {
+      card.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+    }
+  });
+}
+
+/**
+ * Add fade-in animation when packages first load
+ */
+function fadeInPackages() {
+  const packageSection = document.querySelector('.packages-section');
+  if (!packageSection) return;
+  
+  packageSection.style.opacity = '0';
+  packageSection.style.transform = 'translateY(20px)';
+  
+  // Fade in the section
+  setTimeout(() => {
+    packageSection.style.opacity = '1';
+    packageSection.style.transform = 'translateY(0)';
+    packageSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  }, 100);
+  
+  // Add staggered animations to cards
+  const cards = document.querySelectorAll('.package-card, .package-category-card');
+  cards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      card.style.opacity = '1';
+      card.style.transform = '';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    }, 200 + (index * 100)); // Staggered timing
+  });
+}
+
+/**
+ * Initialize card interaction effects
+ */
+function initCardInteractions() {
+  // Package Cards hover and touch interactions
+  const packageCards = document.querySelectorAll('.package-card');
+  packageCards.forEach(card => {
+    // Mouse hover effects
+    card.addEventListener('mouseenter', function() {
+      if (!window.matchMedia('(hover: hover)').matches) return;
+      
+      if (!this.classList.contains('popular')) {
+        this.style.transform = 'translateY(-10px)';
       } else {
-        document.body.classList.remove('yearly-billing');
-        yearlyOption.classList.remove('active');
-        monthlyOption.classList.add('active');
+        this.style.transform = 'translateY(-15px)';
+      }
+      
+      this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      if (!window.matchMedia('(hover: hover)').matches) return;
+      
+      // Check if this is an active card in the carousel
+      if (this.classList.contains('active-card') && !this.classList.contains('popular')) {
+        this.style.transform = 'translateY(-8px)';
+        this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+      } else if (this.classList.contains('popular')) {
+        this.style.transform = 'translateY(-10px)';
+        this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+      } else {
+        this.style.transform = '';
+        this.style.boxShadow = '';
       }
     });
     
-    // Click events for the text labels
-    if (monthlyOption) {
-      monthlyOption.addEventListener('click', function() {
-        billingCheckbox.checked = false;
-        billingCheckbox.dispatchEvent(new Event('change'));
-      });
-    }
+    // Touch effects for mobile
+    card.addEventListener('touchstart', function() {
+      this.style.transform = 'translateY(-5px)';
+      this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+    }, { passive: true });
     
-    if (yearlyOption) {
-      yearlyOption.addEventListener('click', function() {
-        billingCheckbox.checked = true;
-        billingCheckbox.dispatchEvent(new Event('change'));
-      });
-    }
-  }
+    card.addEventListener('touchend', function() {
+      setTimeout(() => {
+        if (this.classList.contains('popular')) {
+          this.style.transform = 'translateY(-10px)';
+        } else {
+          this.style.transform = '';
+        }
+        this.style.boxShadow = '';
+      }, 300);
+    });
+  });
   
-  // Initialize Packages Carousel
-  initPackagesCarousel();
+  // Package buttons hover effects
+  const packageButtons = document.querySelectorAll('.btn-package, .btn-custom');
+  packageButtons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-3px)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+    });
+  });
+}
+
+/**
+ * Initialize scroll-based reveal animations
+ */
+function initScrollReveal() {
+  const packagesSection = document.querySelector('.packages-section');
+  if (!packagesSection) return;
+  
+  // Create intersection observer for animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Start carousel animation when section comes into view
+        fadeInPackages();
+        
+        // Stop observing after animation is triggered
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  
+  // Start observing the packages section
+  observer.observe(packagesSection);
+}
+
+/**
+ * Debounce function to limit execution frequency
+ */
+function debounce(func, wait) {
+  let timeout;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), wait);
+  };
 }
 
 /**
