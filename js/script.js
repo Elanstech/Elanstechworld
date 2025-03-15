@@ -1044,239 +1044,184 @@ function initServiceTypedText() {
 ======================================*/
 
 /**
- * Initialize Packages Tabs & Carousels
+ * Initialize Package Tabs
  */
-function initPackagesTabs() {
-    // Get tab buttons and carousels
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const packageCarousels = document.querySelectorAll('.packages-carousel');
-    const categoryDescriptions = document.querySelectorAll('.category-description');
+function initPackageTabs() {
+    const categoryButtons = document.querySelectorAll('.category-button');
+    const packageCategories = document.querySelectorAll('.package-category');
     
-    // Check if elements exist
-    if (!tabButtons.length || !packageCarousels.length) return;
+    if (!categoryButtons.length || !packageCategories.length) return;
     
-    // Initialize Swiper instances
-    const swiperInstances = {};
-    
-    // Get Swiper library (check if already loaded or load it)
-    if (typeof Swiper === 'undefined') {
-        loadSwiper(() => initPackageCarousels());
-    } else {
-        initPackageCarousels();
-    }
-    
-    // Set up tab button click events
-    tabButtons.forEach(button => {
+    // Set up click event for category buttons
+    categoryButtons.forEach(button => {
         button.addEventListener('click', () => {
             // Get the category to show
             const category = button.getAttribute('data-category');
             
-            // Update active button
-            tabButtons.forEach(btn => btn.classList.remove('active'));
+            // Update active button state
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             
-            // Hide all category descriptions
-            categoryDescriptions.forEach(desc => desc.classList.remove('active'));
-            
-            // Show active category description
-            const activeDescription = document.getElementById(`${category}-description`);
-            if (activeDescription) {
-                activeDescription.classList.add('active');
-            }
-            
-            // Hide all carousels with nice transitions
-            packageCarousels.forEach(carousel => {
-                if (carousel.classList.contains('active')) {
-                    // Use GSAP if available
+            // Hide all categories first
+            packageCategories.forEach(packageCategory => {
+                const currentlyActive = packageCategory.classList.contains('active');
+                
+                if (currentlyActive) {
+                    // Animate out the currently active category
                     if (window.gsap) {
-                        gsap.to(carousel, {
+                        gsap.to(packageCategory, {
                             opacity: 0,
+                            y: 20,
                             duration: 0.3,
                             onComplete: () => {
-                                carousel.classList.remove('active');
-                                // Show the selected carousel
-                                showCarousel(category);
+                                packageCategory.classList.remove('active');
                             }
                         });
                     } else {
-                        // Fallback for browsers without GSAP
-                        carousel.style.opacity = '0';
-                        carousel.style.transition = 'opacity 0.3s ease';
-                        
+                        packageCategory.style.opacity = '0';
+                        packageCategory.style.transform = 'translateY(20px)';
                         setTimeout(() => {
-                            carousel.classList.remove('active');
-                            // Show the selected carousel
-                            showCarousel(category);
+                            packageCategory.classList.remove('active');
                         }, 300);
                     }
                 }
             });
             
-            // Function to show the selected carousel
-            function showCarousel(category) {
-                const targetCarousel = document.getElementById(`${category}-carousel`);
+            // Show the selected category after a short delay
+            setTimeout(() => {
+                // Find the package category to show
+                const categoryToShow = document.getElementById(`${category}-packages`);
                 
-                if (targetCarousel) {
-                    targetCarousel.classList.add('active');
+                if (categoryToShow) {
+                    categoryToShow.classList.add('active');
                     
-                    // Use GSAP if available
+                    // Animate in the new category
                     if (window.gsap) {
-                        gsap.fromTo(targetCarousel, 
-                            { opacity: 0 }, 
-                            { opacity: 1, duration: 0.5, ease: 'power2.out' }
+                        gsap.fromTo(
+                            categoryToShow,
+                            { opacity: 0, y: 20 },
+                            { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
+                        );
+                        
+                        // Add staggered animation to package cards
+                        const cards = categoryToShow.querySelectorAll('.package-card');
+                        gsap.fromTo(
+                            cards,
+                            { y: 30, opacity: 0 },
+                            { 
+                                y: 0, 
+                                opacity: 1, 
+                                duration: 0.6, 
+                                stagger: 0.1, 
+                                ease: 'power3.out',
+                                delay: 0.1
+                            }
                         );
                     } else {
-                        // Fallback animation
-                        targetCarousel.style.opacity = '0';
-                        setTimeout(() => {
-                            targetCarousel.style.opacity = '1';
-                            targetCarousel.style.transition = 'opacity 0.5s ease';
-                        }, 10);
-                    }
-                    
-                    // Update the Swiper instance if needed
-                    if (swiperInstances[category]) {
-                        swiperInstances[category].update();
+                        // Fallback for browsers without GSAP
+                        categoryToShow.style.opacity = '1';
+                        categoryToShow.style.transform = 'translateY(0)';
+                        
+                        // Animate package cards
+                        const cards = categoryToShow.querySelectorAll('.package-card');
+                        cards.forEach((card, index) => {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(30px)';
+                            
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                            }, 100 + index * 100);
+                        });
                     }
                 }
-            }
+            }, 300);
         });
     });
     
-    // Initialize package carousels with Swiper
-    function initPackageCarousels() {
-        packageCarousels.forEach(carousel => {
-            const category = carousel.id.split('-')[0];
-            
-            // Initialize Swiper with options
-            swiperInstances[category] = new Swiper(`#${category}-carousel`, {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: false,
-                speed: 800,
-                autoHeight: true,
-                navigation: {
-                    nextEl: `#${category}-carousel .swiper-button-next`,
-                    prevEl: `#${category}-carousel .swiper-button-prev`,
-                },
-                pagination: {
-                    el: `#${category}-carousel .swiper-pagination`,
-                    clickable: true,
-                    dynamicBullets: true,
-                },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 1.2,
-                        centeredSlides: true,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                        centeredSlides: false,
-                    },
-                    1200: {
-                        slidesPerView: 3,
-                    }
-                },
-                on: {
-                    init: function() {
-                        addHoverEffects();
-                    },
-                    resize: function() {
-                        this.update();
-                    }
-                }
-            });
-        });
-    }
+    // Initialize package card hover effects
+    initPackageCardEffects();
     
-    // Add hover effects to package cards
-    function addHoverEffects() {
-        const packageCards = document.querySelectorAll('.package-card');
-        
-        packageCards.forEach(card => {
-            // Hover effect with 3D tilt
-            card.addEventListener('mouseenter', function() {
-                if (window.matchMedia('(hover: hover)').matches) {
-                    card.addEventListener('mousemove', moveHandler);
-                }
-            });
-            
-            // Reset on mouse leave
-            card.addEventListener('mouseleave', function() {
-                if (window.matchMedia('(hover: hover)').matches) {
-                    card.removeEventListener('mousemove', moveHandler);
-                    
-                    if (window.gsap) {
-                        gsap.to(card, {
-                            rotationX: 0,
-                            rotationY: 0,
-                            y: 0,
-                            duration: 0.5,
-                            ease: 'power2.out'
-                        });
-                    } else {
-                        card.style.transform = '';
-                    }
-                }
-            });
-            
-            // Mouse move handler for 3D effect
-            function moveHandler(e) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                // Calculate percentage position
-                const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
-                const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
-                
-                // Apply subtle 3D rotation (max 3 degrees)
-                if (window.gsap) {
-                    gsap.to(card, {
-                        rotationX: yPercent * -3,
-                        rotationY: xPercent * 3,
-                        y: -10,
-                        duration: 0.3,
-                        ease: 'power1.out'
-                    });
-                } else {
-                    card.style.transform = `translateY(-10px) perspective(1000px) rotateX(${yPercent * -3}deg) rotateY(${xPercent * 3}deg)`;
-                    card.style.transition = 'transform 0.3s ease';
-                }
-            }
-        });
-    }
-    
-    // Function to load Swiper library dynamically
-    function loadSwiper(callback) {
-        // Load CSS first
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css';
-        document.head.appendChild(link);
-        
-        // Then load JavaScript
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js';
-        script.onload = callback;
-        document.head.appendChild(script);
-    }
-    
-    // Show the first tab by default
-    if (tabButtons.length > 0) {
-        tabButtons[0].click();
+    // Show the first category by default
+    if (categoryButtons.length > 0) {
+        categoryButtons[0].click();
     }
 }
 
-// Initialize when document is ready
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize packages tabs and carousels
-    initPackagesTabs();
-});
-
-// For situations where this script is loaded after DOM content is already loaded
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initPackagesTabs, 1);
+/**
+ * Initialize Package Card Effects
+ */
+function initPackageCardEffects() {
+    const packageCards = document.querySelectorAll('.package-card');
+    
+    if (!packageCards.length) return;
+    
+    packageCards.forEach(card => {
+        // Add hover animation with enhanced depth
+        card.addEventListener('mouseenter', function() {
+            if (window.matchMedia('(hover: hover)').matches) {
+                if (window.gsap) {
+                    gsap.to(card, {
+                        y: -10,
+                        scale: 1.02,
+                        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                    
+                    // Add subtle rotation based on mouse position
+                    card.addEventListener('mousemove', moveHandler);
+                } else {
+                    card.style.transform = 'translateY(-10px) scale(1.02)';
+                    card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+                    card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                }
+            }
+        });
+        
+        // Reset on mouse leave
+        card.addEventListener('mouseleave', function() {
+            if (window.matchMedia('(hover: hover)').matches) {
+                if (window.gsap) {
+                    gsap.to(card, {
+                        y: 0,
+                        scale: 1,
+                        rotationX: 0,
+                        rotationY: 0,
+                        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                    
+                    // Remove mousemove handler
+                    card.removeEventListener('mousemove', moveHandler);
+                } else {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
+                }
+            }
+        });
+        
+        // Mouse move handler for 3D effect
+        function moveHandler(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate percentage position
+            const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
+            const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
+            
+            // Apply subtle rotation (max 3 degrees)
+            gsap.to(card, {
+                rotationX: yPercent * -3,
+                rotationY: xPercent * 3,
+                duration: 0.5,
+                ease: 'power1.out'
+            });
+        }
+    });
 }
 
 
