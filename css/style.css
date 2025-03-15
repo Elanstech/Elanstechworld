@@ -3079,7 +3079,7 @@ section {
 }
 
 /* ===== Packages Section ===== */
-/* ===== Modern Packages Section Styles ===== */
+/* ===== Modern Packages Section Styles (Improved) ===== */
 .packages-section {
     background-color: #f8faff;
     position: relative;
@@ -3149,102 +3149,21 @@ section {
     animation: floatShape 25s infinite alternate linear;
 }
 
-/* Billing Toggle Styles */
-.billing-toggle-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    gap: 1rem;
-}
-
-.billing-option {
-    font-weight: 500;
-    color: var(--gray);
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.billing-option.active {
-    color: var(--dark);
-    font-weight: 600;
-}
-
-.discount-badge {
-    display: inline-block;
-    background: rgba(0, 194, 122, 0.1);
-    color: #00c27a;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.2rem 0.5rem;
-    border-radius: 20px;
-    margin-left: 0.5rem;
-    vertical-align: middle;
-}
-
-.billing-switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 30px;
-}
-
-.billing-switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.billing-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--light);
-    transition: 0.4s;
-    border-radius: 34px;
-}
-
-.billing-slider:before {
-    position: absolute;
-    content: "";
-    height: 22px;
-    width: 22px;
-    left: 4px;
-    bottom: 4px;
-    background: var(--white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: 0.4s;
-    border-radius: 50%;
-}
-
-input:checked + .billing-slider {
-    background: linear-gradient(135deg, #007aff, #00c2ff);
-}
-
-input:focus + .billing-slider {
-    box-shadow: 0 0 1px var(--primary);
-}
-
-input:checked + .billing-slider:before {
-    transform: translateX(30px);
-}
-
 /* Packages Carousel */
 .packages-carousel-container {
     position: relative;
     width: 100%;
     padding: 3rem 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .packages-carousel {
     overflow: visible;
+    padding: 20px 0 60px;
 }
 
 .swiper-slide {
+    height: auto; /* Force equal height for all slides */
     transition: transform 0.5s ease, opacity 0.5s ease;
     opacity: 0.7;
 }
@@ -3340,10 +3259,10 @@ input:checked + .billing-slider:before {
     transform: scale(1);
 }
 
-/* Package Card Styles */
+/* Package Card Styles - Improved for uniformity */
 .package-card {
     height: 100%;
-    min-height: 450px;
+    min-height: 550px; /* Fixed height for all cards */
     border-radius: var(--radius-lg);
     background-color: var(--white);
     overflow: hidden;
@@ -3552,18 +3471,6 @@ input:checked + .billing-slider:before {
     align-items: center;
     justify-content: center;
     position: relative;
-}
-
-.yearly {
-    display: none;
-}
-
-body.yearly-billing .monthly {
-    display: none;
-}
-
-body.yearly-billing .yearly {
-    display: flex;
 }
 
 .currency {
@@ -4047,10 +3954,6 @@ body.yearly-billing .yearly {
 }
 
 @media (max-width: 576px) {
-    .billing-toggle-container {
-        flex-direction: column;
-    }
-    
     .packages-section {
         padding: 3rem 0;
     }
