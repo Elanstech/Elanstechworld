@@ -169,7 +169,6 @@ function cacheDOM() {
   DOM.servicesCarousel = document.querySelector('.services-carousel');
   DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
   DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
-  DOM.packagesCarousel = document.querySelector('.packages-carousel');
   
   // Stats and counters
   DOM.counters = document.querySelectorAll('.counter');
@@ -194,10 +193,6 @@ function updateSwiperInstances() {
   
   if (window.caseStudiesSwiper) {
     window.caseStudiesSwiper.update();
-  }
-  
-  if (window.packagesSwiper) {
-    window.packagesSwiper.update();
   }
 }
 
@@ -793,302 +788,6 @@ function initServicesCarousel() {
 }
 
 /**
- * Initialize Packages Carousel
- */
-function initPackagesCarousel() {
-  if (!DOM.packagesCarousel) return;
-  
-  if (typeof Swiper !== 'undefined') {
-    // Initialize if Swiper is already loaded
-    initPackagesSwiper();
-  } else {
-    // Load Swiper dynamically
-    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initPackagesSwiper);
-    });
-  }
-  
-  function initPackagesSwiper() {
-    // Initialize Swiper for packages with advanced configuration
-    window.packagesSwiper = new Swiper('.packages-carousel', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      centeredSlides: true,
-      loop: false,
-      speed: 800,
-      grabCursor: true,
-      initialSlide: 0,
-      mousewheel: {
-        forceToAxis: true,
-        sensitivity: 1,
-      },
-      keyboard: {
-        enabled: true,
-      },
-      pagination: {
-        el: '.packages-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      navigation: {
-        nextEl: '.packages-nav-next',
-        prevEl: '.packages-nav-prev',
-      },
-      breakpoints: {
-        576: {
-          slidesPerView: 1.2,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 1.5,
-          spaceBetween: 30,
-        },
-        992: {
-          slidesPerView: 2.5,
-          spaceBetween: 40,
-        },
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 40,
-          centeredSlides: false,
-        }
-      },
-      effect: 'slide',
-      on: {
-        init: function() {
-          initPackageCardEffects();
-        },
-        slideChange: function() {
-          // Animation for package cards on slide change
-          const activeIndex = this.activeIndex;
-          const slides = this.slides;
-          
-          slides.forEach((slide, index) => {
-            const packageCard = slide.querySelector('.package-card, .package-category-card');
-            if (!packageCard) return;
-            
-            if (index === activeIndex || index === activeIndex + 1 || index === activeIndex - 1) {
-              // Active slide and adjacent slides
-              if (window.gsap) {
-                gsap.to(packageCard, {
-                  y: -10,
-                  scale: 1,
-                  opacity: 1,
-                  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
-                  duration: 0.4
-                });
-              } else {
-                packageCard.style.transform = 'translateY(-10px) scale(1)';
-                packageCard.style.opacity = '1';
-                packageCard.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.1)';
-                packageCard.style.transition = 'all 0.4s ease';
-              }
-            } else {
-              // Other slides
-              if (window.gsap) {
-                gsap.to(packageCard, {
-                  y: 0,
-                  scale: 0.95,
-                  opacity: 0.7,
-                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
-                  duration: 0.4
-                });
-              } else {
-                packageCard.style.transform = 'translateY(0) scale(0.95)';
-                packageCard.style.opacity = '0.7';
-                packageCard.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
-                packageCard.style.transition = 'all 0.4s ease';
-              }
-            }
-          });
-        }
-      }
-    });
-  }
-}
-
-/**
- * Initialize Package Card Effects
- */
-function initPackageCardEffects() {
-  const packageCards = document.querySelectorAll('.package-card');
-  
-  packageCards.forEach(card => {
-    // Add hover effects for package cards
-    card.addEventListener('mouseenter', function() {
-      if (window.matchMedia('(hover: hover)').matches) {
-        const popular = card.classList.contains('popular');
-        
-        if (!popular) {
-          if (window.gsap) {
-            gsap.to(card, {
-              y: -10,
-              scale: 1.02,
-              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
-              duration: 0.3
-            });
-          } else {
-            card.style.transform = 'translateY(-10px) scale(1.02)';
-            card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.1)';
-            card.style.transition = 'all 0.3s ease';
-          }
-        } else {
-          if (window.gsap) {
-            gsap.to(card, {
-              y: -15,
-              scale: 1.03,
-              boxShadow: '0 30px 60px rgba(0, 0, 0, 0.15)',
-              duration: 0.3
-            });
-          } else {
-            card.style.transform = 'translateY(-15px) scale(1.03)';
-            card.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.15)';
-            card.style.transition = 'all 0.3s ease';
-          }
-        }
-        
-        // Handle package tag
-        const packageTag = card.querySelector('.package-tag');
-        if (packageTag) {
-          if (window.gsap) {
-            gsap.to(packageTag, {
-              backgroundColor: 'rgba(0, 122, 255, 0.08)',
-              color: '#007aff',
-              duration: 0.3
-            });
-          } else {
-            packageTag.style.backgroundColor = 'rgba(0, 122, 255, 0.08)';
-            packageTag.style.color = '#007aff';
-            packageTag.style.transition = 'all 0.3s ease';
-          }
-        }
-      }
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      if (window.matchMedia('(hover: hover)').matches) {
-        const popular = card.classList.contains('popular');
-        
-        if (!popular) {
-          if (window.gsap) {
-            gsap.to(card, {
-              y: 0,
-              scale: 1,
-              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
-              duration: 0.3
-            });
-          } else {
-            card.style.transform = 'translateY(0) scale(1)';
-            card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
-            card.style.transition = 'all 0.3s ease';
-          }
-        } else {
-          if (window.gsap) {
-            gsap.to(card, {
-              y: -10,
-              scale: 1.02,
-              boxShadow: '0 15px 40px rgba(0, 122, 255, 0.15)',
-              duration: 0.3
-            });
-          } else {
-            card.style.transform = 'translateY(-10px) scale(1.02)';
-            card.style.boxShadow = '0 15px 40px rgba(0, 122, 255, 0.15)';
-            card.style.transition = 'all 0.3s ease';
-          }
-        }
-        
-        // Reset package tag
-        const packageTag = card.querySelector('.package-tag');
-        if (packageTag) {
-          if (window.gsap) {
-            gsap.to(packageTag, {
-              backgroundColor: 'rgba(0, 0, 0, 0.03)',
-              color: '#64748b',
-              duration: 0.3
-            });
-          } else {
-            packageTag.style.backgroundColor = 'rgba(0, 0, 0, 0.03)';
-            packageTag.style.color = '#64748b';
-            packageTag.style.transition = 'all 0.3s ease';
-          }
-        }
-      }
-    });
-  });
-  
-  // Add effects for package category cards
-  const categoryCards = document.querySelectorAll('.package-category-card');
-  
-  categoryCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      if (window.matchMedia('(hover: hover)').matches) {
-        if (window.gsap) {
-          gsap.to(card, {
-            y: -10,
-            scale: 1.03,
-            boxShadow: '0 25px 50px rgba(0, 122, 255, 0.3)',
-            duration: 0.3
-          });
-          
-          const icon = card.querySelector('.category-icon');
-          if (icon) {
-            gsap.to(icon, {
-              y: -5,
-              scale: 1.1,
-              rotation: -10,
-              duration: 0.3
-            });
-          }
-        } else {
-          card.style.transform = 'translateY(-10px) scale(1.03)';
-          card.style.boxShadow = '0 25px 50px rgba(0, 122, 255, 0.3)';
-          card.style.transition = 'all 0.3s ease';
-          
-          const icon = card.querySelector('.category-icon');
-          if (icon) {
-            icon.style.transform = 'translateY(-5px) scale(1.1) rotate(-10deg)';
-            icon.style.transition = 'all 0.3s ease';
-          }
-        }
-      }
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      if (window.matchMedia('(hover: hover)').matches) {
-        if (window.gsap) {
-          gsap.to(card, {
-            y: 0,
-            scale: 1,
-            boxShadow: '0 15px 40px rgba(0, 122, 255, 0.25)',
-            duration: 0.3
-          });
-          
-          const icon = card.querySelector('.category-icon');
-          if (icon) {
-            gsap.to(icon, {
-              y: 0,
-              scale: 1,
-              rotation: 0,
-              duration: 0.3
-            });
-          }
-        } else {
-          card.style.transform = 'translateY(0) scale(1)';
-          card.style.boxShadow = '0 15px 40px rgba(0, 122, 255, 0.25)';
-          card.style.transition = 'all 0.3s ease';
-          
-          const icon = card.querySelector('.category-icon');
-          if (icon) {
-            icon.style.transform = 'translateY(0) scale(1) rotate(0)';
-            icon.style.transition = 'all 0.3s ease';
-          }
-        }
-      }
-    });
-  });
-}
-
-/**
  * Service Card Effects
  */
 function initServiceCardEffects() {
@@ -1632,12 +1331,6 @@ function initProjectModals() {
       const container = modal.querySelector('.modal-container');
       container.style.transform = 'translateY(50px)';
       container.style.opacity = '0';
-      
-      setTimeout(() => {
-        container.style.transform = 'translateY(0)';
-        container.style.opacity = '1';
-        container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-      }, 10);style.opacity = '0';
       
       setTimeout(() => {
         container.style.transform = 'translateY(0)';
@@ -2626,27 +2319,26 @@ function initCaseStudyModal() {
     document.head.appendChild(style);
     
     // Show modal with animation
-      document.body.style.overflow = 'hidden'; // Prevent scrolling
-      modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    modal.classList.add('active');
+    
+    // Animate modal entrance
+    if (window.gsap) {
+      gsap.fromTo(
+        modal.querySelector('.modal-container'),
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+      );
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
       
-      // Animate modal entrance
-      if (window.gsap) {
-        gsap.fromTo(
-          modal.querySelector('.modal-container'),
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
-        );
-      } else {
-        const container = modal.querySelector('.modal-container');
-        container.style.transform = 'translateY(50px)';
-        container.style.opacity = '0';
-        
-        setTimeout(() => {
-          container.style.transform = 'translateY(0)';
-          container.style.opacity = '1';
-          container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-        }, 10);
-      }
+      setTimeout(() => {
+        container.style.transform = 'translateY(0)';
+        container.style.opacity = '1';
+        container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      }, 10);
     }
   }
   
@@ -2935,20 +2627,17 @@ document.addEventListener('DOMContentLoaded', function() {
   initProjectModals();
   loadProjectsData();
   
-  // Initialize packages carousel
-  initPackagesCarousel();
-  
   // Initialize testimonials and case studies
   initTestimonialsCarousel();
-  initCaseStudiesSlider();
+  initCaseStudiesSlider(); // FIXED
   initCaseStudyModal();
   
   // Initialize FAQ accordion
-  initFaqAccordion();
+  initFaqAccordion(); // FIXED
   
   // Initialize form and counters
   initFormInteractions();
-  initCounters();
+  initCounters(); // FIXED
   
   // Initialize back to top button
   initBackToTop();
