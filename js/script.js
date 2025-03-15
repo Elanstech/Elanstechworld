@@ -60,6 +60,45 @@ const helpers = {
       element.classList.remove(animationClass);
     }, { once: true });
   }
+  
+  /**
+   * Close Case Study Modal
+   */
+  function closeCaseStudyModal() {
+    if (!modal) return;
+    
+    // Animate modal exit
+    if (window.gsap) {
+      gsap.to(modal.querySelector('.modal-container'), {
+        y: 50,
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+          
+          // Remove dynamic styles
+          const dynamicStyles = document.getElementById('case-study-modal-styles');
+          if (dynamicStyles) dynamicStyles.remove();
+        }
+      });
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      container.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      
+      setTimeout(() => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        
+        // Remove dynamic styles
+        const dynamicStyles = document.getElementById('case-study-modal-styles');
+        if (dynamicStyles) dynamicStyles.remove();
+      }, 400);
+    }
+  }
 };
 
 /**
@@ -169,6 +208,7 @@ function cacheDOM() {
   DOM.servicesCarousel = document.querySelector('.services-carousel');
   DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
   DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
+  DOM.packagesCarousel = document.querySelector('.packages-carousel');
   
   // Stats and counters
   DOM.counters = document.querySelectorAll('.counter');
@@ -193,6 +233,10 @@ function updateSwiperInstances() {
   
   if (window.caseStudiesSwiper) {
     window.caseStudiesSwiper.update();
+  }
+  
+  if (window.packagesSwiper) {
+    window.packagesSwiper.update();
   }
 }
 
@@ -956,6 +1000,479 @@ function animateActiveSlides(swiper) {
         nextCard.style.opacity = '0.85';
       }
     }
+  }
+}
+
+/**
+ * Initialize Packages Carousel with Swiper
+ */
+function initPackagesCarousel() {
+  if (!DOM.packagesCarousel) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initPackagesSwiper();
+  } else {
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initPackagesSwiper);
+    });
+  }
+  
+  function initPackagesSwiper() {
+    window.packagesSwiper = new Swiper('.packages-carousel', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: false,
+      speed: 800,
+      grabCursor: true,
+      pagination: {
+        el: '.packages-pagination',
+        clickable: true,
+        dynamicBullets: true
+      },
+      navigation: {
+        nextEl: '.packages-nav-next',
+        prevEl: '.packages-nav-prev'
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        }
+      },
+      on: {
+        init: function() {
+          initPackageCardEffects();
+        }
+      }
+    });
+    
+    // Add animation when slider becomes visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const packageCards = document.querySelectorAll('.package-card, .package-category-card');
+          packageCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+              card.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 100 + index * 150);
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(DOM.packagesCarousel);
+  }
+}
+
+/**
+ * Package Card Effects
+ */
+function initPackageCardEffects() {
+  const packageCards = document.querySelectorAll('.package-card');
+  
+  packageCards.forEach(card => {
+    // Apply hover effects
+    card.addEventListener('mouseenter', function() {
+      if (window.matchMedia('(hover: hover)').matches) {
+        // Add slight elevation and scale
+        if (window.gsap) {
+          gsap.to(card, {
+            y: -10,
+            scale: 1.02,
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+          
+          // Animate badge if it exists
+          const badge = card.querySelector('.popular-badge');
+          if (badge) {
+            gsap.to(badge, {
+              y: -2,
+              scaleX: 1.05,
+              boxShadow: '0 7px 20px rgba(0, 122, 255, 0.4)',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Animate price
+          const price = card.querySelector('.price');
+          if (price) {
+            gsap.to(price, {
+              scale: 1.05,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Animate features
+          const features = card.querySelectorAll('.package-features li');
+          features.forEach((feature, index) => {
+            gsap.to(feature, {
+              x: 3,
+              color: '#334155',
+              duration: 0.3,
+              delay: index * 0.03,
+              ease: 'power2.out'
+            });
+            
+            const icon = feature.querySelector('i');
+            if (icon) {
+              gsap.to(icon, {
+                scale: 1.2,
+                duration: 0.3,
+                delay: index * 0.03,
+                ease: 'back.out(1.7)'
+              });
+            }
+          });
+          
+          // Animate package tag
+          const tag = card.querySelector('.package-tag');
+          if (tag) {
+            gsap.to(tag, {
+              backgroundColor: 'rgba(0, 122, 255, 0.08)',
+              color: '#007aff',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+        } else {
+          // Fallback without GSAP
+          card.style.transform = 'translateY(-10px) scale(1.02)';
+          card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.1)';
+          card.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+          
+          const badge = card.querySelector('.popular-badge');
+          if (badge) {
+            badge.style.transform = 'translateY(-2px) scaleX(1.05)';
+            badge.style.boxShadow = '0 7px 20px rgba(0, 122, 255, 0.4)';
+            badge.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+          }
+          
+          const features = card.querySelectorAll('.package-features li');
+          features.forEach((feature) => {
+            feature.style.transform = 'translateX(3px)';
+            feature.style.color = '#334155';
+            feature.style.transition = 'transform 0.3s ease, color 0.3s ease';
+            
+            const icon = feature.querySelector('i');
+            if (icon) {
+              icon.style.transform = 'scale(1.2)';
+              icon.style.transition = 'transform 0.3s ease';
+            }
+          });
+          
+          const tag = card.querySelector('.package-tag');
+          if (tag) {
+            tag.style.backgroundColor = 'rgba(0, 122, 255, 0.08)';
+            tag.style.color = '#007aff';
+            tag.style.transition = 'background-color 0.4s ease, color 0.4s ease';
+          }
+        }
+      }
+    });
+    
+    // Reset on mouse leave
+    card.addEventListener('mouseleave', function() {
+      if (window.matchMedia('(hover: hover)').matches) {
+        if (window.gsap) {
+          gsap.to(card, {
+            y: 0,
+            scale: 1,
+            boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+          
+          // Reset badge
+          const badge = card.querySelector('.popular-badge');
+          if (badge) {
+            gsap.to(badge, {
+              y: 0,
+              scaleX: 1,
+              boxShadow: '0 5px 15px rgba(0, 122, 255, 0.3)',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Reset price
+          const price = card.querySelector('.price');
+          if (price) {
+            gsap.to(price, {
+              scale: 1,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Reset features
+          const features = card.querySelectorAll('.package-features li');
+          features.forEach((feature) => {
+            gsap.to(feature, {
+              x: 0,
+              color: '#64748b',
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+            
+            const icon = feature.querySelector('i');
+            if (icon) {
+              gsap.to(icon, {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.out'
+              });
+            }
+          });
+          
+          // Reset package tag
+          const tag = card.querySelector('.package-tag');
+          if (tag) {
+            gsap.to(tag, {
+              backgroundColor: 'rgba(0, 0, 0, 0.03)',
+              color: '#64748b',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+        } else {
+          // Fallback without GSAP
+          card.style.transform = 'translateY(0) scale(1)';
+          card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
+          
+          const badge = card.querySelector('.popular-badge');
+          if (badge) {
+            badge.style.transform = 'translateY(0) scaleX(1)';
+            badge.style.boxShadow = '0 5px 15px rgba(0, 122, 255, 0.3)';
+          }
+          
+          const features = card.querySelectorAll('.package-features li');
+          features.forEach((feature) => {
+            feature.style.transform = 'translateX(0)';
+            feature.style.color = '#64748b';
+            
+            const icon = feature.querySelector('i');
+            if (icon) {
+              icon.style.transform = 'scale(1)';
+            }
+          });
+          
+          const tag = card.querySelector('.package-tag');
+          if (tag) {
+            tag.style.backgroundColor = 'rgba(0, 0, 0, 0.03)';
+            tag.style.color = '#64748b';
+          }
+        }
+      }
+    });
+    
+    // Add special effects for buttons
+    const button = card.querySelector('.btn-package');
+    if (button) {
+      button.addEventListener('mouseenter', function() {
+        if (window.matchMedia('(hover: hover)').matches) {
+          if (window.gsap) {
+            gsap.to(button, {
+              y: -3,
+              boxShadow: '0 8px 25px rgba(0, 122, 255, 0.4)',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+            
+            // Add shine effect animation
+            const buttonAfter = document.createElement('style');
+            buttonAfter.textContent = `
+              .btn-package::after {
+                animation: btnShine 1.5s ease;
+              }
+              
+              @keyframes btnShine {
+                0% {
+                  transform: rotate(45deg) translateX(-100%);
+                }
+                100% {
+                  transform: rotate(45deg) translateX(100%);
+                }
+              }
+            `;
+            document.head.appendChild(buttonAfter);
+            
+            // Remove the style after animation completes
+            setTimeout(() => {
+              document.head.removeChild(buttonAfter);
+            }, 1500);
+          } else {
+            button.style.transform = 'translateY(-3px)';
+            button.style.boxShadow = '0 8px 25px rgba(0, 122, 255, 0.4)';
+            button.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+          }
+        }
+      });
+      
+      button.addEventListener('mouseleave', function() {
+        if (window.matchMedia('(hover: hover)').matches) {
+          if (window.gsap) {
+            gsap.to(button, {
+              y: 0,
+              boxShadow: '0 5px 15px rgba(0, 122, 255, 0.3)',
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          } else {
+            button.style.transform = 'translateY(0)';
+            button.style.boxShadow = '0 5px 15px rgba(0, 122, 255, 0.3)';
+          }
+        }
+      });
+    }
+  });
+  
+  // Handle custom package card
+  const customCard = document.querySelector('.custom-card');
+  if (customCard) {
+    customCard.addEventListener('mouseenter', function() {
+      if (window.matchMedia('(hover: hover)').matches) {
+        if (window.gsap) {
+          gsap.to(customCard, {
+            y: -10,
+            boxShadow: '0 20px 40px rgba(0, 122, 255, 0.1)',
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+          
+          // Animate icon
+          const icon = customCard.querySelector('.custom-icon');
+          if (icon) {
+            gsap.to(icon, {
+              rotation: -10,
+              scale: 1.1,
+              duration: 0.4,
+              ease: 'back.out(1.7)'
+            });
+          }
+          
+          // Animate heading
+          const heading = customCard.querySelector('h3');
+          if (heading) {
+            gsap.to(heading, {
+              y: -3,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Animate paragraph
+          const paragraph = customCard.querySelector('p');
+          if (paragraph) {
+            gsap.to(paragraph, {
+              y: -2,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+        } else {
+          customCard.style.transform = 'translateY(-10px)';
+          customCard.style.boxShadow = '0 20px 40px rgba(0, 122, 255, 0.1)';
+          customCard.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+          
+          const icon = customCard.querySelector('.custom-icon');
+          if (icon) {
+            icon.style.transform = 'rotate(-10deg) scale(1.1)';
+            icon.style.transition = 'transform 0.4s ease';
+          }
+          
+          const heading = customCard.querySelector('h3');
+          if (heading) {
+            heading.style.transform = 'translateY(-3px)';
+            heading.style.transition = 'transform 0.4s ease';
+          }
+          
+          const paragraph = customCard.querySelector('p');
+          if (paragraph) {
+            paragraph.style.transform = 'translateY(-2px)';
+            paragraph.style.transition = 'transform 0.4s ease';
+          }
+        }
+      }
+    });
+    
+    customCard.addEventListener('mouseleave', function() {
+      if (window.matchMedia('(hover: hover)').matches) {
+        if (window.gsap) {
+          gsap.to(customCard, {
+            y: 0,
+            boxShadow: '0 10px 30px rgba(0, 122, 255, 0.05)',
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+          
+          // Reset icon
+          const icon = customCard.querySelector('.custom-icon');
+          if (icon) {
+            gsap.to(icon, {
+              rotation: 0,
+              scale: 1,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Reset heading
+          const heading = customCard.querySelector('h3');
+          if (heading) {
+            gsap.to(heading, {
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+          
+          // Reset paragraph
+          const paragraph = customCard.querySelector('p');
+          if (paragraph) {
+            gsap.to(paragraph, {
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out'
+            });
+          }
+        } else {
+          customCard.style.transform = 'translateY(0)';
+          customCard.style.boxShadow = '0 10px 30px rgba(0, 122, 255, 0.05)';
+          
+          const icon = customCard.querySelector('.custom-icon');
+          if (icon) {
+            icon.style.transform = 'rotate(0) scale(1)';
+          }
+          
+          const heading = customCard.querySelector('h3');
+          if (heading) {
+            heading.style.transform = 'translateY(0)';
+          }
+          
+          const paragraph = customCard.querySelector('p');
+          if (paragraph) {
+            paragraph.style.transform = 'translateY(0)';
+          }
+        }
+      }
+    });
   }
 }
 
@@ -2341,308 +2858,3 @@ function initCaseStudyModal() {
       }, 10);
     }
   }
-  
-  /**
-   * Close Case Study Modal
-   */
-  function closeCaseStudyModal() {
-    if (!modal) return;
-    
-    // Animate modal exit
-    if (window.gsap) {
-      gsap.to(modal.querySelector('.modal-container'), {
-        y: 50,
-        opacity: 0,
-        duration: 0.4,
-        ease: 'power2.in',
-        onComplete: () => {
-          modal.classList.remove('active');
-          document.body.style.overflow = ''; // Re-enable scrolling
-          
-          // Remove dynamic styles
-          const dynamicStyles = document.getElementById('case-study-modal-styles');
-          if (dynamicStyles) dynamicStyles.remove();
-        }
-      });
-    } else {
-      const container = modal.querySelector('.modal-container');
-      container.style.transform = 'translateY(50px)';
-      container.style.opacity = '0';
-      container.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
-      
-      setTimeout(() => {
-        modal.classList.remove('active');
-        document.body.style.overflow = ''; // Re-enable scrolling
-        
-        // Remove dynamic styles
-        const dynamicStyles = document.getElementById('case-study-modal-styles');
-        if (dynamicStyles) dynamicStyles.remove();
-      }, 400);
-    }
-  }
-}
-
-/**
- * Form Interactions
- */
-function initFormInteractions() {
-  if (!DOM.contactForm || !DOM.formInputs.length) return;
-  
-  // Add focus effects
-  DOM.formInputs.forEach(input => {
-    // Check if input has value on load
-    if (input.value) {
-      input.classList.add('has-value');
-    }
-    
-    // Update state when value changes
-    input.addEventListener('input', () => {
-      input.classList.toggle('has-value', input.value.length > 0);
-    });
-  });
-  
-  // Form validation
-  DOM.contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    let isValid = true;
-    
-    // Basic validation
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    
-    // Clear previous error messages
-    document.querySelectorAll('.error-message').forEach(error => error.remove());
-    
-    // Validate name
-    if (!name.value.trim()) {
-      showError(name, 'Please enter your name');
-      isValid = false;
-    }
-    
-    // Validate email
-    if (!email.value.trim()) {
-      showError(email, 'Please enter your email address');
-      isValid = false;
-    } else if (!isValidEmail(email.value)) {
-      showError(email, 'Please enter a valid email address');
-      isValid = false;
-    }
-    
-    // Validate message
-    if (!message.value.trim()) {
-      showError(message, 'Please enter your message');
-      isValid = false;
-    }
-    
-    if (isValid) {
-      // Form is valid, simulate form submission
-      const submitButton = DOM.contactForm.querySelector('button[type="submit"]');
-      const originalButtonContent = submitButton.innerHTML;
-      
-      // Show loading state
-      submitButton.innerHTML = '<span>Sending</span> <i class="fas fa-spinner fa-spin"></i>';
-      submitButton.disabled = true;
-      
-      // Simulate API call
-      setTimeout(() => {
-        // Create success animation with GSAP
-        if (window.gsap) {
-          gsap.to(DOM.contactForm, {
-            opacity: 0,
-            y: -20,
-            duration: 0.5,
-            onComplete: () => {
-              // Show success message
-              DOM.contactForm.innerHTML = `
-                <div class="form-success">
-                  <div class="success-icon">
-                    <i class="fas fa-check-circle"></i>
-                  </div>
-                  <h3>Thank You!</h3>
-                  <p>Your message has been sent successfully. We'll get back to you shortly.</p>
-                </div>
-              `;
-              
-              // Animate success message
-              gsap.fromTo(
-                DOM.contactForm.querySelector('.form-success'),
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.5 }
-              );
-            }
-          });
-        } else {
-          // Fallback without GSAP
-          DOM.contactForm.style.opacity = '0';
-          DOM.contactForm.style.transform = 'translateY(-20px)';
-          DOM.contactForm.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          
-          setTimeout(() => {
-            // Show success message
-            DOM.contactForm.innerHTML = `
-              <div class="form-success">
-                <div class="success-icon">
-                  <i class="fas fa-check-circle"></i>
-                </div>
-                <h3>Thank You!</h3>
-                <p>Your message has been sent successfully. We'll get back to you shortly.</p>
-              </div>
-            `;
-            
-            DOM.contactForm.style.opacity = '1';
-            DOM.contactForm.style.transform = 'translateY(0)';
-          }, 500);
-        }
-        
-        // Add success styles
-        const style = document.createElement('style');
-        style.textContent = `
-          .form-success {
-            text-align: center;
-            padding: 2rem;
-          }
-          
-          .success-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            animation: successPulse 2s infinite;
-          }
-          
-          @keyframes successPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-          }
-        `;
-        document.head.appendChild(style);
-      }, 1500);
-    }
-  });
-  
-  // Helper functions
-  function showError(input, message) {
-    const formGroup = input.closest('.form-group');
-    const error = document.createElement('div');
-    error.className = 'error-message';
-    error.textContent = message;
-    error.style.color = 'var(--primary)';
-    error.style.fontSize = '0.8125rem';
-    error.style.marginTop = '0.25rem';
-    formGroup.appendChild(error);
-    
-    // Highlight the input
-    input.style.borderColor = 'var(--primary)';
-    
-    // Shake animation
-    if (window.gsap) {
-      gsap.fromTo(
-        input,
-        { x: -5 },
-        { x: 0, duration: 0.3, ease: 'elastic.out(1, 0.3)' }
-      );
-    } else {
-      input.style.transform = 'translateX(-5px)';
-      setTimeout(() => {
-        input.style.transform = 'translateX(0)';
-        input.style.transition = 'transform 0.3s ease';
-      }, 10);
-    }
-    
-    // Remove highlight on input
-    input.addEventListener('input', function() {
-      input.style.borderColor = '';
-      const errorElement = formGroup.querySelector('.error-message');
-      if (errorElement) {
-        errorElement.remove();
-      }
-    }, { once: true });
-  }
-  
-  function isValidEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-}
-
-// Expose the closeCaseStudyModal function globally for the CTA button
-window.closeCaseStudyModal = function() {
-  const modal = document.getElementById('case-study-modal');
-  if (modal && modal.classList.contains('active')) {
-    // Close the modal
-    modal.classList.remove('active');
-    document.body.style.overflow = ''; // Re-enable scrolling
-    
-    // Remove dynamic styles
-    const dynamicStyles = document.getElementById('case-study-modal-styles');
-    if (dynamicStyles) dynamicStyles.remove();
-    
-    // Scroll to contact section
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      const headerHeight = document.querySelector('.header')?.offsetHeight || 0;
-      const targetPosition = contactSection.offsetTop - headerHeight;
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  }
-};
-
-// Initialize when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize DOM selector cache
-  cacheDOM();
-  
-  // Enable animations after small delay to prevent flash of animation
-  setTimeout(() => {
-    document.body.classList.remove('preload');
-  }, 100);
-  
-  // Initialize components in priority order
-  initLoader();
-  initNavigation();
-  initMobileMenu();
-  
-  // Conditional initialization based on device type
-  if (!config.isTouchDevice) {
-    initMagneticButtons();
-    initTiltElements();
-  }
-  
-  // Initialize bubble animations
-  initBubbleAnimations();
-  
-  // Initialize core sections
-  initHeroTyped();
-  initMarquee();
-  initServicesCarousel();
-  initServiceTypedText();
-  initProcessTimeline();
-  initPortfolioFilter();
-  initProjectModals();
-  loadProjectsData();
-  
-  // Initialize testimonials and case studies
-  initTestimonialsCarousel();
-  initCaseStudiesSlider(); // FIXED
-  initCaseStudyModal();
-  
-  // Initialize FAQ accordion
-  initFaqAccordion(); // FIXED
-  
-  // Initialize form and counters
-  initFormInteractions();
-  initCounters(); // FIXED
-  
-  // Initialize back to top button
-  initBackToTop();
-  
-  // Add scroll and resize event listeners with performance optimization
-  window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
-  window.addEventListener('resize', helpers.debounce(handleResize, 250));
-});
