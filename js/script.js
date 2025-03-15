@@ -684,23 +684,159 @@ function initHeroTyped() {
  * Initialize Marquee Effect for tech stack showcase
  */
 function initMarquee() {
-  const marquees = document.querySelectorAll('.marquee');
+  // Set random starting positions for ribbons to avoid them all starting at the same point
+  const ribbons = document.querySelectorAll('.tech-ribbon-inner');
+  ribbons.forEach(ribbon => {
+      const randomDelay = Math.random() * -40; // Random delay between 0 and -40s
+      ribbon.style.animationDelay = randomDelay + 's';
+  });
   
-  marquees.forEach(marquee => {
-    const content = marquee.querySelector('.tech-track-inner');
-    if (!content) return;
-    
-    // Get computed width
-    const contentWidth = content.offsetWidth;
-    
-    // Set animation duration based on content width
-    const duration = contentWidth / 50; // Adjust the divisor to control speed
-    
-    // Set animation duration
-    const trackInners = marquee.querySelectorAll('.tech-track-inner');
-    trackInners.forEach(track => {
-      track.style.animationDuration = `${duration}s`;
-    });
+  // Performance optimization: Add intersection observer to pause animations when not in viewport
+  if ('IntersectionObserver' in window) {
+      const techStackSection = document.querySelector('.tech-stack-showcase');
+      
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  // When the section is in view, start animations
+                  ribbons.forEach(ribbon => {
+                      ribbon.style.animationPlayState = 'running';
+                  });
+              } else {
+                  // When out of view, pause animations
+                  ribbons.forEach(ribbon => {
+                      ribbon.style.animationPlayState = 'paused';
+                  });
+              }
+          });
+      }, {
+          rootMargin: '100px 0px', // Start animations slightly before they come into view
+          threshold: 0.1 // Trigger when at least 10% of the element is in view
+      });
+      
+      observer.observe(techStackSection);
+  }
+  
+  // Detect touch devices to apply appropriate interactions
+  const isTouchDevice = ('ontouchstart' in window) || 
+                        (navigator.maxTouchPoints > 0) || 
+                        (navigator.msMaxTouchPoints > 0);
+  
+  // Add touch-specific enhancements for mobile experience
+  if (isTouchDevice) {
+      const techIcons = document.querySelectorAll('.tech-icon');
+      
+      techIcons.forEach(icon => {
+          // Add tap effect for touch devices
+          icon.addEventListener('touchstart', function() {
+              this.style.transform = 'scale(0.95)';
+          });
+          
+          icon.addEventListener('touchend', function() {
+              this.style.transform = 'scale(1)';
+              
+              // Flash effect on tap
+              this.classList.add('tech-icon-tapped');
+              setTimeout(() => {
+                  this.classList.remove('tech-icon-tapped');
+              }, 300);
+          });
+      });
+      
+      // Add some dynamic styles for touch devices
+      const style = document.createElement('style');
+      style.textContent = `
+          .tech-icon-tapped i {
+              color: var(--primary-dark) !important;
+              transform: scale(1.2);
+              transition: transform 0.3s ease, color 0.3s ease;
+          }
+          
+          .tech-icon-tapped span {
+              color: var(--primary);
+              transition: color 0.3s ease;
+          }
+          
+          .tech-icon-tapped::before {
+              opacity: 1;
+              transform: scale(1);
+              transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+      `;
+      document.head.appendChild(style);
+  }
+  
+  // Optional: Add pulsating effect to icons if GSAP is available
+  if (window.gsap) {
+      const techIcons = document.querySelectorAll('.tech-icon i');
+      
+      // Check if the user prefers reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (!prefersReducedMotion) {
+          techIcons.forEach((icon, index) => {
+              // Add subtle pulsating effect with staggered timing
+              gsap.to(icon, {
+                  scale: 1.1,
+                  duration: 1.5,
+                  repeat: -1,
+                  yoyo: true,
+                  ease: "power1.inOut",
+                  delay: index * 0.1 % 1.5 // Stagger effect reset every 15 icons
+              });
+          });
+      }
+  }
+  
+  // Optimize animation performance based on device capabilities
+  const isLowPowerDevice = () => {
+      // Simple heuristic to detect low-power devices
+      return (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) || 
+             (navigator.deviceMemory && navigator.deviceMemory <= 2);
+  };
+  
+  if (isLowPowerDevice()) {
+      // Reduce animation complexity for low-power devices
+      ribbons.forEach(ribbon => {
+          // Slow down the animations
+          const currentDuration = parseFloat(getComputedStyle(ribbon).animationDuration);
+          ribbon.style.animationDuration = (currentDuration * 1.5) + 's';
+      });
+      
+      // Remove background bubble animations for better performance
+      const showcase = document.querySelector('.tech-stack-showcase');
+      if (showcase) {
+          showcase.classList.add('low-power-mode');
+          
+          // Add style to disable background effects
+          const style = document.createElement('style');
+          style.textContent = `
+              .tech-stack-showcase.low-power-mode::before,
+              .tech-stack-showcase.low-power-mode::after {
+                  display: none;
+              }
+          `;
+          document.head.appendChild(style);
+      }
+  }
+  
+  // Add resize handler to ensure animations remain smooth
+  let resizeTimeout;
+  window.addEventListener('resize', function() {
+      // Debounce resize events
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(function() {
+          // Restart animations on resize to prevent stuttering
+          ribbons.forEach(ribbon => {
+              ribbon.style.animationName = 'none';
+              
+              // Force reflow
+              void ribbon.offsetWidth;
+              
+              // Restart animation
+              ribbon.style.animationName = '';
+          });
+      }, 250);
   });
 }
 
