@@ -96,6 +96,7 @@ function cacheDOM() {
   DOM.servicesCarousel = document.querySelector('.services-carousel');
   DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
   DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
+  DOM.packagesCarousel = document.querySelector('.packages-carousel'); 
   
   // Stats and counters
   DOM.counters = document.querySelectorAll('.counter');
@@ -1043,6 +1044,225 @@ function initServiceTypedText() {
 ======================================*/
 
 /**
+ * Initialize Packages Carousel with Swiper
+ */
+function initPackagesCarousel() {
+  const packagesCarousel = document.querySelector('.packages-carousel');
+  if (!packagesCarousel) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initSwiper();
+  } else {
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initSwiper);
+    });
+  }
+  
+  function initSwiper() {
+    // Initialize Swiper with configuration for packages carousel
+    window.packagesSwiper = new Swiper('.packages-carousel', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      centeredSlides: true,
+      loop: false,
+      speed: 800,
+      grabCursor: true,
+      effect: 'slide',
+      mousewheel: {
+        forceToAxis: true,
+        sensitivity: 1,
+      },
+      keyboard: {
+        enabled: true,
+      },
+      pagination: {
+        el: '.packages-pagination',
+        clickable: true,
+        dynamicBullets: true,
+      },
+      navigation: {
+        nextEl: '.packages-nav-next',
+        prevEl: '.packages-nav-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1.5,
+          centeredSlides: true,
+        },
+        992: {
+          slidesPerView: 2.5,
+          centeredSlides: true,
+          spaceBetween: 40,
+        },
+        1200: {
+          slidesPerView: 3.5,
+          centeredSlides: true,
+          spaceBetween: 50,
+        }
+      },
+      on: {
+        init: function() {
+          animateActivePackages(this);
+        },
+        slideChange: function() {
+          animateActivePackages(this);
+        },
+        resize: function() {
+          this.update();
+        }
+      }
+    });
+    
+    // Add hover effects
+    initPackageCardEffects();
+  }
+}
+
+/**
+ * Package Card Effects
+ */
+function initPackageCardEffects() {
+  const packageCards = document.querySelectorAll('.package-card');
+  
+  packageCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      // Apply hover animation
+      if (window.gsap) {
+        gsap.to(card, {
+          y: -10,
+          scale: 1.02,
+          boxShadow: '0 25px 50px rgba(0, 0, 0, 0.1)',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      } else {
+        card.style.transform = 'translateY(-10px) scale(1.02)';
+        card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.1)';
+        card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+      }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      // Reset on mouse leave
+      if (window.gsap) {
+        gsap.to(card, {
+          y: 0,
+          scale: 1,
+          boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      } else {
+        card.style.transform = 'translateY(0) scale(1)';
+        card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
+      }
+    });
+  });
+}
+
+/**
+ * Animate Active Package Cards
+ */
+function animateActivePackages(swiper) {
+  // Get all package cards
+  const allSlides = swiper.slides;
+  
+  // Reset all slides
+  allSlides.forEach(slide => {
+    const card = slide.querySelector('.package-card') || slide.querySelector('.package-category-card');
+    if (!card) return;
+    
+    if (window.gsap) {
+      gsap.to(card, {
+        y: 0,
+        scale: 0.95,
+        opacity: 0.8,
+        duration: 0.4
+      });
+    } else {
+      card.style.transform = 'translateY(0) scale(0.95)';
+      card.style.opacity = '0.8';
+    }
+  });
+  
+  // Get active and neighboring slides
+  const activeIndex = swiper.activeIndex;
+  const activeSlide = swiper.slides[activeIndex];
+  const prevSlide = swiper.slides[activeIndex - 1];
+  const nextSlide = swiper.slides[activeIndex + 1];
+  
+  // Enhance active slide
+  if (activeSlide) {
+    const card = activeSlide.querySelector('.package-card') || activeSlide.querySelector('.package-category-card');
+    if (card) {
+      if (window.gsap) {
+        gsap.to(card, {
+          y: -15,
+          scale: 1,
+          opacity: 1,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+      } else {
+        card.style.transform = 'translateY(-15px) scale(1)';
+        card.style.opacity = '1';
+        card.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      }
+    }
+  }
+  
+  // Slightly enhance adjacent slides
+  [prevSlide, nextSlide].forEach(slide => {
+    if (!slide) return;
+    
+    const card = slide.querySelector('.package-card') || slide.querySelector('.package-category-card');
+    if (card) {
+      if (window.gsap) {
+        gsap.to(card, {
+          y: -5,
+          scale: 0.98,
+          opacity: 0.9,
+          duration: 0.4,
+          ease: 'power2.out'
+        });
+      } else {
+        card.style.transform = 'translateY(-5px) scale(0.98)';
+        card.style.opacity = '0.9';
+        card.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      }
+    }
+  });
+}
+
+/**
+ * Update Swiper Instances on resize
+ */
+function updateSwiperInstances() {
+  if (window.servicesSwiper) {
+    window.servicesSwiper.update();
+  }
+  
+  if (window.testimonialsSwiper) {
+    window.testimonialsSwiper.update();
+  }
+  
+  if (window.caseStudiesSwiper) {
+    window.caseStudiesSwiper.update();
+  }
+  
+  if (window.packagesSwiper) {
+    window.packagesSwiper.update();
+  }
+}
+
+
+/*======================================
+  10. PROCESS SECTION
+======================================*/
+
+/**
  * Process Timeline Animation
  */
 function initProcessTimeline() {
@@ -1093,7 +1313,7 @@ function initProcessTimeline() {
 }
 
 /*======================================
-  10. PORTFOLIO AND PROJECTS
+  11. PORTFOLIO AND PROJECTS
 ======================================*/
 
 /**
@@ -1614,7 +1834,7 @@ function updateFeaturedProjects() {
 }
 
 /*======================================
-  11. CASE STUDIES SECTION
+  12. CASE STUDIES SECTION
 ======================================*/
 
 /**
@@ -2196,7 +2416,7 @@ function initCaseStudyModal() {
 }
 
 /*======================================
-  12. TESTIMONIALS SECTION
+  13. TESTIMONIALS SECTION
 ======================================*/
 
 /**
@@ -2251,7 +2471,7 @@ function initTestimonialsCarousel() {
 }
 
 /*======================================
-  13. FAQ SECTION
+  14. FAQ SECTION
 ======================================*/
 
 /**
@@ -2369,7 +2589,7 @@ function initFaqAccordion() {
 }
 
 /*======================================
-  14. CONTACT FORM AND COUNTERS
+  15. CONTACT FORM AND COUNTERS
 ======================================*/
 
 /**
@@ -2624,7 +2844,7 @@ function initCounters() {
 }
 
 /*======================================
-  15. PUBLIC FUNCTIONS & INITIALIZATION
+  16. PUBLIC FUNCTIONS & INITIALIZATION
 ======================================*/
 
 // Expose the closeCaseStudyModal function globally for the CTA button
