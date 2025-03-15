@@ -782,13 +782,9 @@
             </div>
         </div>
 
-    <section id="packages" class="packages-section">
+  <section id="packages" class="packages-section">
     <div class="packages-background">
         <div class="bg-gradient"></div>
-        <div class="bg-pattern"></div>
-        <div class="bg-shape shape-1"></div>
-        <div class="bg-shape shape-2"></div>
-        <div class="bg-shape shape-3"></div>
     </div>
     
     <div class="container">
@@ -799,654 +795,414 @@
         </div>
         
         <!-- Package Categories Navigation -->
-        <div class="package-categories">
-            <button class="category-button active" data-category="business">Business Solutions</button>
-            <button class="category-button" data-category="design">Design Services</button>
-            <button class="category-button" data-category="property">Property Management</button>
-            <button class="category-button" data-category="pos">POS Solutions</button>
+        <div class="packages-tabs">
+            <button class="tab-button active" data-category="business">Business Solutions</button>
+            <button class="tab-button" data-category="design">Design Services</button>
+            <button class="tab-button" data-category="property">Property Management</button>
+            <button class="tab-button" data-category="pos">POS Solutions</button>
         </div>
         
-        <!-- Category Containers -->
-        <div class="packages-container">
+        <!-- Package Category Description -->
+        <div class="category-description-container">
+            <div class="category-description active" id="business-description">
+                <h3>Complete technology packages for your business growth</h3>
+                <p>From custom websites to full digital solutions, we have the perfect package to take your business to the next level.</p>
+            </div>
+            <div class="category-description" id="design-description">
+                <h3>Professional design solutions for your brand identity</h3>
+                <p>Create a cohesive and impactful visual identity for your business with our professional design packages.</p>
+            </div>
+            <div class="category-description" id="property-description">
+                <h3>Comprehensive solutions for property managers and real estate firms</h3>
+                <p>Streamline your property management with our tech solutions designed for real estate professionals.</p>
+            </div>
+            <div class="category-description" id="pos-description">
+                <h3>Complete point-of-sale systems for retail and service businesses</h3>
+                <p>Optimize your store operations with powerful and user-friendly POS solutions.</p>
+            </div>
+        </div>
+        
+        <!-- Packages Carousel Container -->
+        <div class="packages-carousel-container">
             <!-- BUSINESS SOLUTIONS PACKAGES -->
-            <div class="package-category active" id="business-packages">
-                <div class="packages-grid">
+            <div class="packages-carousel active" id="business-carousel">
+                <div class="swiper-wrapper">
                     <!-- Starter Business Package -->
-                    <div class="package-card starter">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Starter</div>
+                    <div class="swiper-slide">
+                        <div class="package-card starter">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Starter Package">
+                                <div class="package-tag">For Small Businesses</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Starter</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>1,199</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Custom Website (5 Pages)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Mobile Responsive Design</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Basic SEO Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Contact Form</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Social Media Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>3 Months Support</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Custom Website (5 Pages)</li>
+                                    <li><i class="fas fa-check"></i>Mobile Responsive Design</li>
+                                    <li><i class="fas fa-check"></i>Basic SEO Setup</li>
+                                    <li><i class="fas fa-check"></i>Contact Form</li>
+                                    <li><i class="fas fa-check"></i>Social Media Integration</li>
+                                    <li><i class="fas fa-check"></i>3 Months Support</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Small Businesses</div>
                         </div>
                     </div>
                     
                     <!-- Premium Business Package -->
-                    <div class="package-card premium popular">
-                        <div class="popular-badge">Popular</div>
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Premium</div>
+                    <div class="swiper-slide">
+                        <div class="package-card premium">
+                            <div class="popular-badge">Popular</div>
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Premium Package">
+                                <div class="package-tag">For Growing Businesses</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Premium</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>2,499</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Custom Website (10 Pages)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced UI/UX Design</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Comprehensive SEO Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Content Management System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>E-commerce Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Google Analytics Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>6 Months Priority Support</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Custom Website (10 Pages)</li>
+                                    <li><i class="fas fa-check"></i>Advanced UI/UX Design</li>
+                                    <li><i class="fas fa-check"></i>Comprehensive SEO Setup</li>
+                                    <li><i class="fas fa-check"></i>Content Management System</li>
+                                    <li><i class="fas fa-check"></i>E-commerce Integration</li>
+                                    <li><i class="fas fa-check"></i>Google Analytics Setup</li>
+                                    <li><i class="fas fa-check"></i>6 Months Priority Support</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package btn-primary">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Growing Businesses</div>
                         </div>
                     </div>
                     
                     <!-- Enterprise Business Package -->
-                    <div class="package-card enterprise">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Enterprise</div>
+                    <div class="swiper-slide">
+                        <div class="package-card enterprise">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Enterprise Package">
+                                <div class="package-tag">For Established Businesses</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Enterprise</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>4,999</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Custom Website (20+ Pages)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Premium UI/UX Design</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced E-commerce Solution</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Custom Database Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>User Authentication System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Payment Gateway Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>12 Months Priority Support</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Custom Website (20+ Pages)</li>
+                                    <li><i class="fas fa-check"></i>Premium UI/UX Design</li>
+                                    <li><i class="fas fa-check"></i>Advanced E-commerce Solution</li>
+                                    <li><i class="fas fa-check"></i>Custom Database Integration</li>
+                                    <li><i class="fas fa-check"></i>User Authentication System</li>
+                                    <li><i class="fas fa-check"></i>Payment Gateway Integration</li>
+                                    <li><i class="fas fa-check"></i>12 Months Priority Support</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Established Businesses</div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Carousel Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
             
             <!-- DESIGN SERVICES PACKAGES -->
-            <div class="package-category" id="design-packages">
-                <div class="packages-grid">
+            <div class="packages-carousel" id="design-carousel">
+                <div class="swiper-wrapper">
                     <!-- Basic Design Package -->
-                    <div class="package-card starter design">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Basic Design</div>
+                    <div class="swiper-slide">
+                        <div class="package-card starter">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Basic Design Package">
+                                <div class="package-tag">For Startups</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Basic Design</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>799</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Logo Design (3 Concepts)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Business Card Design</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Letterhead Design</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Social Media Profile Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>2 Rounds of Revisions</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Source Files Included</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Logo Design (3 Concepts)</li>
+                                    <li><i class="fas fa-check"></i>Business Card Design</li>
+                                    <li><i class="fas fa-check"></i>Letterhead Design</li>
+                                    <li><i class="fas fa-check"></i>Social Media Profile Setup</li>
+                                    <li><i class="fas fa-check"></i>2 Rounds of Revisions</li>
+                                    <li><i class="fas fa-check"></i>Source Files Included</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Startups</div>
                         </div>
                     </div>
                     
                     <!-- Premium Brand Package -->
-                    <div class="package-card premium design popular">
-                        <div class="popular-badge">Popular</div>
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Premium Brand</div>
+                    <div class="swiper-slide">
+                        <div class="package-card premium">
+                            <div class="popular-badge">Popular</div>
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1621839673705-6617adf9e890?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Premium Brand Package">
+                                <div class="package-tag">For Growing Brands</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Premium Brand</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>1,699</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Logo Design (5 Concepts)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Complete Brand Identity</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Business Cards & Stationery</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Social Media Kit</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Brand Guidelines Document</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>3 Marketing Materials</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Logo Design (5 Concepts)</li>
+                                    <li><i class="fas fa-check"></i>Complete Brand Identity</li>
+                                    <li><i class="fas fa-check"></i>Business Cards & Stationery</li>
+                                    <li><i class="fas fa-check"></i>Social Media Kit</li>
+                                    <li><i class="fas fa-check"></i>Brand Guidelines Document</li>
+                                    <li><i class="fas fa-check"></i>3 Marketing Materials</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package btn-primary">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Growing Brands</div>
                         </div>
                     </div>
                     
                     <!-- Complete Brand Package -->
-                    <div class="package-card enterprise design">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Complete Brand</div>
+                    <div class="swiper-slide">
+                        <div class="package-card enterprise">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Complete Brand Package">
+                                <div class="package-tag">For Established Brands</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Complete Brand</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>2,999</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Premium Logo Design (Unlimited Concepts)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Comprehensive Brand Identity</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Complete Business Stationery</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Extensive Social Media Kit</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Brand Voice Development</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Brand Strategy Consultation</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>5 Custom Marketing Materials</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Premium Logo Design</li>
+                                    <li><i class="fas fa-check"></i>Comprehensive Brand Identity</li>
+                                    <li><i class="fas fa-check"></i>Complete Business Stationery</li>
+                                    <li><i class="fas fa-check"></i>Extensive Social Media Kit</li>
+                                    <li><i class="fas fa-check"></i>Brand Voice Development</li>
+                                    <li><i class="fas fa-check"></i>Brand Strategy Consultation</li>
+                                    <li><i class="fas fa-check"></i>5 Custom Marketing Materials</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Established Brands</div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Carousel Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
             
             <!-- PROPERTY MANAGEMENT PACKAGES -->
-            <div class="package-category" id="property-packages">
-                <div class="packages-grid">
+            <div class="packages-carousel" id="property-carousel">
+                <div class="swiper-wrapper">
                     <!-- Essentials Property Package -->
-                    <div class="package-card starter property">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Essentials</div>
+                    <div class="swiper-slide">
+                        <div class="package-card starter">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Essentials Property Package">
+                                <div class="package-tag">For up to 25 units</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Essentials</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>1,499</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                     <div class="subscription">+$99/mo</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Basic Property Listing Portal</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Tenant Application System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Payment Processing</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Maintenance Request Tracking</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Email Support</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Basic Reporting</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Basic Property Listing Portal</li>
+                                    <li><i class="fas fa-check"></i>Tenant Application System</li>
+                                    <li><i class="fas fa-check"></i>Payment Processing</li>
+                                    <li><i class="fas fa-check"></i>Maintenance Request Tracking</li>
+                                    <li><i class="fas fa-check"></i>Email Support</li>
+                                    <li><i class="fas fa-check"></i>Basic Reporting</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For up to 25 units</div>
                         </div>
                     </div>
                     
                     <!-- Professional Property Package -->
-                    <div class="package-card premium property popular">
-                        <div class="popular-badge">Popular</div>
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Professional</div>
+                    <div class="swiper-slide">
+                        <div class="package-card premium">
+                            <div class="popular-badge">Popular</div>
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Professional Property Package">
+                                <div class="package-tag">For up to 100 units</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Professional</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>2,999</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                     <div class="subscription">+$199/mo</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced Property Portal</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Tenant & Owner Portals</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Online Application & Screening</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Digital Lease Signing</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Maintenance Management System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Financial Reporting</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Advanced Property Portal</li>
+                                    <li><i class="fas fa-check"></i>Tenant & Owner Portals</li>
+                                    <li><i class="fas fa-check"></i>Online Application & Screening</li>
+                                    <li><i class="fas fa-check"></i>Digital Lease Signing</li>
+                                    <li><i class="fas fa-check"></i>Maintenance Management System</li>
+                                    <li><i class="fas fa-check"></i>Financial Reporting</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package btn-primary">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For up to 100 units</div>
                         </div>
                     </div>
                     
                     <!-- Enterprise Property Package -->
-                    <div class="package-card enterprise property">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Enterprise</div>
+                    <div class="swiper-slide">
+                        <div class="package-card enterprise">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Enterprise Property Package">
+                                <div class="package-tag">For unlimited units</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Enterprise</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>5,999</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                     <div class="subscription">+$349/mo</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Custom Property Management Platform</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Multi-property Management</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced Screening & Background Checks</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Automated Accounting System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Integrated Marketing Tools</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced Analytics & Reports</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>24/7 Priority Support</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Custom Property Management Platform</li>
+                                    <li><i class="fas fa-check"></i>Multi-property Management</li>
+                                    <li><i class="fas fa-check"></i>Advanced Screening & Background Checks</li>
+                                    <li><i class="fas fa-check"></i>Automated Accounting System</li>
+                                    <li><i class="fas fa-check"></i>Integrated Marketing Tools</li>
+                                    <li><i class="fas fa-check"></i>Advanced Analytics & Reports</li>
+                                    <li><i class="fas fa-check"></i>24/7 Priority Support</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For unlimited units</div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Carousel Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
             
             <!-- POS INTEGRATION PACKAGES -->
-            <div class="package-category" id="pos-packages">
-                <div class="packages-grid">
+            <div class="packages-carousel" id="pos-carousel">
+                <div class="swiper-wrapper">
                     <!-- Basic POS Package -->
-                    <div class="package-card starter pos">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Basic POS</div>
+                    <div class="swiper-slide">
+                        <div class="package-card starter">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1556741533-974f8e62a92d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Basic POS Package">
+                                <div class="package-tag">For Small Retailers</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Basic POS</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>999</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Square POS Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Payment Processing</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Basic Inventory Management</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Staff Training (2 Hours)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Email Support (30 Days)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Hardware Recommendations</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Square POS Setup</li>
+                                    <li><i class="fas fa-check"></i>Payment Processing</li>
+                                    <li><i class="fas fa-check"></i>Basic Inventory Management</li>
+                                    <li><i class="fas fa-check"></i>Staff Training (2 Hours)</li>
+                                    <li><i class="fas fa-check"></i>Email Support (30 Days)</li>
+                                    <li><i class="fas fa-check"></i>Hardware Recommendations</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Small Retailers</div>
                         </div>
                     </div>
                     
                     <!-- Advanced POS Package -->
-                    <div class="package-card premium pos popular">
-                        <div class="popular-badge">Popular</div>
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Advanced POS</div>
+                    <div class="swiper-slide">
+                        <div class="package-card premium">
+                            <div class="popular-badge">Popular</div>
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Advanced POS Package">
+                                <div class="package-tag">For Growing Businesses</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Advanced POS</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>1,899</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Complete POS System Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Multiple Payment Options</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced Inventory Management</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Customer Database Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Loyalty Program Setup</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Staff Training (4 Hours)</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Complete POS System Setup</li>
+                                    <li><i class="fas fa-check"></i>Multiple Payment Options</li>
+                                    <li><i class="fas fa-check"></i>Advanced Inventory Management</li>
+                                    <li><i class="fas fa-check"></i>Customer Database Integration</li>
+                                    <li><i class="fas fa-check"></i>Loyalty Program Setup</li>
+                                    <li><i class="fas fa-check"></i>Staff Training (4 Hours)</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package btn-primary">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Growing Businesses</div>
                         </div>
                     </div>
                     
                     <!-- Enterprise POS Package -->
-                    <div class="package-card enterprise pos">
-                        <div class="package-card-inner">
-                            <div class="package-header">
-                                <div class="package-name">Enterprise POS</div>
+                    <div class="swiper-slide">
+                        <div class="package-card enterprise">
+                            <div class="package-image">
+                                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Enterprise POS Package">
+                                <div class="package-tag">For Multi-Location Businesses</div>
+                            </div>
+                            <div class="package-content">
+                                <h3 class="package-name">Enterprise POS</h3>
                                 <div class="package-price">
                                     <div class="price"><span class="currency">$</span>3,499</div>
-                                    <div class="price-period">one-time</div>
+                                    <div class="period">one-time</div>
                                 </div>
-                            </div>
-                            
-                            <div class="package-body">
                                 <ul class="package-features">
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Multi-Location POS System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Advanced Reporting & Analytics</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Custom Inventory System</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>CRM & Marketing Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Online Ordering Integration</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>Staff Training (8 Hours)</span>
-                                    </li>
-                                    <li>
-                                        <i class="fas fa-check"></i>
-                                        <span>1 Year Premium Support</span>
-                                    </li>
+                                    <li><i class="fas fa-check"></i>Multi-Location POS System</li>
+                                    <li><i class="fas fa-check"></i>Advanced Reporting & Analytics</li>
+                                    <li><i class="fas fa-check"></i>Custom Inventory System</li>
+                                    <li><i class="fas fa-check"></i>CRM & Marketing Integration</li>
+                                    <li><i class="fas fa-check"></i>Online Ordering Integration</li>
+                                    <li><i class="fas fa-check"></i>Staff Training (8 Hours)</li>
+                                    <li><i class="fas fa-check"></i>1 Year Premium Support</li>
                                 </ul>
-                                
-                                <div class="package-cta">
-                                    <a href="#contact" class="btn-package">Get Started</a>
-                                </div>
+                                <a href="#contact" class="btn-package">Get Started</a>
                             </div>
-                            
-                            <div class="package-tag">For Multi-Location Businesses</div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Carousel Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
 
         <!-- Custom Package CTA -->
         <div class="custom-package-cta">
             <div class="custom-card">
-                <div class="custom-card-inner">
-                    <div class="custom-icon">
-                        <i class="fas fa-cubes"></i>
-                    </div>
-                    <h3>Need a custom solution?</h3>
-                    <p>Tell us about your specific requirements, and we'll create a tailored package just for you.</p>
-                    <a href="#contact" class="btn-custom">Request Custom Quote</a>
+                <div class="custom-icon">
+                    <i class="fas fa-cubes"></i>
                 </div>
+                <h3>Need a custom solution?</h3>
+                <p>Tell us about your specific requirements, and we'll create a tailored package just for you.</p>
+                <a href="#contact" class="btn-custom">Request Custom Quote</a>
             </div>
         </div>
     </div>
 </section>
+
         
         <!-- Case Studies Section -->
         <section id="case-studies" class="case-studies-section">
