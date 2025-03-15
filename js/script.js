@@ -2907,6 +2907,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize all section-specific functionality
   initServicesCarousel();
   initServiceTypedText();
+  initPackagesCarousel();
   initProcessTimeline();
   initPortfolioFilter();
   initProjectModals();
