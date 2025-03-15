@@ -169,6 +169,7 @@ function cacheDOM() {
   DOM.servicesCarousel = document.querySelector('.services-carousel');
   DOM.testimonialsContainer = document.querySelector('.testimonials-slider');
   DOM.caseStudiesContainer = document.querySelector('.case-studies-slider');
+  DOM.packagesCarousel = document.querySelector('.packages-carousel');
   
   // Stats and counters
   DOM.counters = document.querySelectorAll('.counter');
@@ -177,6 +178,11 @@ function cacheDOM() {
   DOM.faqItems = document.querySelectorAll('.faq-item');
   DOM.caseStudyModal = document.getElementById('case-study-modal');
   DOM.projectModal = document.getElementById('project-modal');
+  
+  // Package section elements
+  DOM.billingToggle = document.getElementById('billing-checkbox');
+  DOM.monthlyOption = document.querySelector('.billing-option.monthly');
+  DOM.yearlyOption = document.querySelector('.billing-option.yearly');
 }
 
 /**
@@ -193,6 +199,10 @@ function updateSwiperInstances() {
   
   if (window.caseStudiesSwiper) {
     window.caseStudiesSwiper.update();
+  }
+  
+  if (window.packagesSwiper) {
+    window.packagesSwiper.update();
   }
 }
 
@@ -784,6 +794,159 @@ function initServicesCarousel() {
     
     // Handle hover effects for service cards
     initServiceCardEffects();
+  }
+}
+
+/**
+ * Initialize Packages Carousel with Swiper
+ */
+function initPackagesCarousel() {
+  if (!document.querySelector('.packages-carousel')) return;
+  
+  if (typeof Swiper !== 'undefined') {
+    // Initialize if Swiper is already loaded
+    initPackagesSwiper();
+  } else {
+    // Load Swiper dynamically
+    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initPackagesSwiper);
+    });
+  }
+  
+  function initPackagesSwiper() {
+    // Initialize the packages carousel
+    window.packagesSwiper = new Swiper('.packages-carousel', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: false,
+      speed: 800,
+      grabCursor: true,
+      centeredSlides: false,
+      initialSlide: 1,
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        }
+      },
+      pagination: {
+        el: '.packages-pagination',
+        clickable: true,
+        dynamicBullets: true
+      },
+      navigation: {
+        nextEl: '.packages-nav-next',
+        prevEl: '.packages-nav-prev'
+      },
+      on: {
+        init: function() {
+          // Initialize hover effects and animations
+          initPackageCardEffects();
+        }
+      }
+    });
+    
+    // Initialize billing toggle functionality
+    const billingCheckbox = document.getElementById('billing-checkbox');
+    const monthlyOption = document.querySelector('.billing-option.monthly');
+    const yearlyOption = document.querySelector('.billing-option.yearly');
+    
+    if (billingCheckbox) {
+      billingCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          document.body.classList.add('yearly-billing');
+          monthlyOption.classList.remove('active');
+          yearlyOption.classList.add('active');
+        } else {
+          document.body.classList.remove('yearly-billing');
+          yearlyOption.classList.remove('active');
+          monthlyOption.classList.add('active');
+        }
+      });
+      
+      // Click events for the text labels
+      if (monthlyOption) {
+        monthlyOption.addEventListener('click', function() {
+          billingCheckbox.checked = false;
+          billingCheckbox.dispatchEvent(new Event('change'));
+        });
+      }
+      
+      if (yearlyOption) {
+        yearlyOption.addEventListener('click', function() {
+          billingCheckbox.checked = true;
+          billingCheckbox.dispatchEvent(new Event('change'));
+        });
+      }
+    }
+  }
+  
+  // Package card hover and animation effects
+  function initPackageCardEffects() {
+    const packageCards = document.querySelectorAll('.package-card');
+    
+    packageCards.forEach(card => {
+      card.addEventListener('mousemove', function(e) {
+        // Only apply effect if device supports hover
+        if (window.matchMedia('(hover: hover)').matches) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          // Calculate percentage position
+          const xPercent = x / rect.width - 0.5;
+          const yPercent = y / rect.height - 0.5;
+          
+          // Apply subtle rotation based on mouse position (max 3deg)
+          if (window.gsap) {
+            gsap.to(card, {
+              rotationX: yPercent * -3,
+              rotationY: xPercent * 3,
+              z: 10,
+              ease: 'power1.out',
+              duration: 0.5
+            });
+          } else {
+            card.style.transform = `perspective(1000px) rotateX(${yPercent * -3}deg) rotateY(${xPercent * 3}deg) translateZ(10px)`;
+          }
+        }
+      });
+
+      card.addEventListener('mouseleave', function() {
+        // Reset transformation on mouse leave
+        if (window.gsap) {
+          gsap.to(card, {
+            rotationX: 0,
+            rotationY: 0,
+            z: 0,
+            ease: 'power2.out',
+            duration: 0.7
+          });
+        } else {
+          card.style.transform = '';
+        }
+      });
+    });
+    
+    // Add animation when category cards become visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const categoryCard = entry.target;
+          categoryCard.style.transform = 'scale(1)';
+          categoryCard.style.opacity = '1';
+          observer.unobserve(categoryCard);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    document.querySelectorAll('.package-category-card').forEach(card => {
+      observer.observe(card);
+    });
   }
 }
 
@@ -2593,9 +2756,277 @@ window.closeCaseStudyModal = function() {
   }
 };
 
-// Initialize when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize DOM selector cache
+/**
+ * Initialize Packages Section - Billing Toggle and Carousel
+ */
+function initPackagesSection() {
+  const billingCheckbox = document.getElementById('billing-checkbox');
+  const monthlyOption = document.querySelector('.billing-option.monthly');
+  const yearlyOption = document.querySelector('.billing-option.yearly');
+  
+  if (billingCheckbox) {
+    billingCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+        document.body.classList.add('yearly-billing');
+        monthlyOption.classList.remove('active');
+        yearlyOption.classList.add('active');
+      } else {
+        document.body.classList.remove('yearly-billing');
+        yearlyOption.classList.remove('active');
+        monthlyOption.classList.add('active');
+      }
+    });
+    
+    // Click events for the text labels
+    if (monthlyOption) {
+      monthlyOption.addEventListener('click', function() {
+        billingCheckbox.checked = false;
+        billingCheckbox.dispatchEvent(new Event('change'));
+      });
+    }
+    
+    if (yearlyOption) {
+      yearlyOption.addEventListener('click', function() {
+        billingCheckbox.checked = true;
+        billingCheckbox.dispatchEvent(new Event('change'));
+      });
+    }
+  }
+  
+  // Initialize Packages Carousel
+  initPackagesCarousel();
+}
+
+/**
+ * Lazy Load Images
+ */
+function lazyLoadImages() {
+  if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute('data-src');
+          
+          if (src) {
+            img.src = src;
+            img.removeAttribute('data-src');
+          }
+          
+          imageObserver.unobserve(img);
+        }
+      });
+    });
+    
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    lazyImages.forEach(img => {
+      imageObserver.observe(img);
+    });
+  } else {
+    // Fallback for browsers that don't support IntersectionObserver
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    lazyImages.forEach(img => {
+      img.src = img.getAttribute('data-src');
+      img.removeAttribute('data-src');
+    });
+  }
+}
+
+/**
+ * Initialize Social Share Functionality
+ */
+function initSocialShare() {
+  const shareButtons = document.querySelectorAll('.share-button');
+  
+  shareButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const platform = button.getAttribute('data-platform');
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      let shareUrl = '';
+      
+      switch (platform) {
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+          break;
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+          break;
+        case 'linkedin':
+          shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`;
+          break;
+        case 'pinterest':
+          const image = encodeURIComponent(document.querySelector('meta[property="og:image"]')?.content || '');
+          shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&media=${image}&description=${title}`;
+          break;
+      }
+      
+      if (shareUrl) {
+        window.open(shareUrl, '_blank', 'width=600,height=450');
+      }
+    });
+  });
+}
+
+/**
+ * Handle Scroll Animations with IntersectionObserver
+ */
+function initScrollAnimations() {
+  const animatedElements = document.querySelectorAll('[data-animation]');
+  
+  if (!animatedElements.length) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const animationType = element.dataset.animation;
+        
+        element.classList.add(animationType);
+        element.style.opacity = '1';
+        element.style.visibility = 'visible';
+        
+        // Unobserve after animation is triggered
+        observer.unobserve(element);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -10% 0px'
+  });
+  
+  animatedElements.forEach(element => {
+    observer.observe(element);
+  });
+}
+
+/**
+ * Animate Numbers with Intersection Observer
+ */
+function animateNumbers() {
+  const numberElements = document.querySelectorAll('[data-number]');
+  
+  if (!numberElements.length) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const finalNumber = parseInt(element.dataset.number);
+        const duration = parseInt(element.dataset.duration || 2000);
+        let startTimestamp;
+        
+        function step(timestamp) {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const currentNumber = Math.floor(progress * finalNumber);
+          
+          element.textContent = currentNumber.toLocaleString();
+          
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            element.textContent = finalNumber.toLocaleString();
+          }
+        }
+        
+        window.requestAnimationFrame(step);
+        observer.unobserve(element);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+  
+  numberElements.forEach(element => {
+    observer.observe(element);
+  });
+}
+
+/**
+ * Initialize Elfsight Widgets
+ */
+function initElfsightWidgets() {
+  // Add any custom initialization for Elfsight widgets if needed
+  // Most widgets initialize automatically with their SDK
+  console.log('Elfsight widgets initialized');
+}
+
+/**
+ * Run Performance Optimizations
+ */
+function optimizePerformance() {
+  // Defer non-critical resources
+  document.querySelectorAll('iframe[data-src]').forEach(iframe => {
+    // Only load iframes when they come into view
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          iframe.src = iframe.getAttribute('data-src');
+          observer.unobserve(iframe);
+        }
+      });
+    }, { rootMargin: '200px' });
+    
+    observer.observe(iframe);
+  });
+  
+  // Add browser hints for performance
+  const hints = [
+    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+    { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+    { rel: 'preconnect', href: 'https://cdnjs.cloudflare.com' }
+  ];
+  
+  hints.forEach(hint => {
+    const linkElement = document.createElement('link');
+    linkElement.rel = hint.rel;
+    linkElement.href = hint.href;
+    if (hint.crossorigin) linkElement.crossorigin = hint.crossorigin;
+    document.head.appendChild(linkElement);
+  });
+}
+
+/**
+ * Set Dark/Light Mode based on user preference
+ */
+function initColorSchemePreference() {
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  
+  if (darkModeToggle) {
+    // Check for saved user preference
+    const savedMode = localStorage.getItem('colorScheme');
+    
+    // Check for system preference if no saved preference
+    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    
+    // Apply the appropriate mode
+    const modeToApply = savedMode || systemPreference;
+    
+    if (modeToApply === 'dark') {
+      document.body.classList.add('dark-mode');
+      darkModeToggle.checked = true;
+    }
+    
+    // Add event listener for toggle
+    darkModeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('colorScheme', 'dark');
+      } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('colorScheme', 'light');
+      }
+    });
+  }
+}
+
+/**
+ * Initialize all components
+ */
+function initComponents() {
   cacheDOM();
   
   // Enable animations after small delay to prevent flash of animation
@@ -2635,6 +3066,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize FAQ accordion
   initFaqAccordion(); // FIXED
   
+  // Initialize packages section
+  initPackagesSection();
+  
   // Initialize form and counters
   initFormInteractions();
   initCounters(); // FIXED
@@ -2642,7 +3076,55 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize back to top button
   initBackToTop();
   
+  // Initialize scroll animations
+  initScrollAnimations();
+  
+  // Initialize number animations
+  animateNumbers();
+  
+  // Lazy load images
+  lazyLoadImages();
+  
+  // Initialize Elfsight widgets
+  initElfsightWidgets();
+  
+  // Optimize performance
+  optimizePerformance();
+  
+  // Check for color scheme preference
+  initColorSchemePreference();
+  
+  // Initialize social share functionality
+  initSocialShare();
+}
+
+// Initialize when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize all components
+  initComponents();
+  
   // Add scroll and resize event listeners with performance optimization
   window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
   window.addEventListener('resize', helpers.debounce(handleResize, 250));
+});
+
+// Handle page visibility changes (for animations, videos, etc.)
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'visible') {
+    // Resume animations and video playback when page becomes visible again
+    document.querySelectorAll('video').forEach(video => {
+      if (video.paused) video.play();
+    });
+    
+    // Update any dynamic content that might need refreshing
+    if (window.servicesSwiper) window.servicesSwiper.update();
+    if (window.testimonialsSwiper) window.testimonialsSwiper.update();
+    if (window.caseStudiesSwiper) window.caseStudiesSwiper.update();
+    if (window.packagesSwiper) window.packagesSwiper.update();
+  } else {
+    // Pause videos to save resources when page is not visible
+    document.querySelectorAll('video').forEach(video => {
+      if (!video.paused) video.pause();
+    });
+  }
 });
