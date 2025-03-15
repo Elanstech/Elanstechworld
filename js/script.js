@@ -3,9 +3,7 @@
  * Enhanced with better animations and fixed functionality
  */
 
-/********************************************
- * MAIN CONFIGURATION
- ********************************************/
+// Main configuration
 const config = {
   animations: {
     enabled: true,     // Master toggle for animations
@@ -22,9 +20,7 @@ const config = {
 // Store DOM elements for more efficient access
 const DOM = {};
 
-/********************************************
- * HELPER FUNCTIONS
- ********************************************/
+// Helper functions
 const helpers = {
   // Throttle function for performance optimization
   throttle: function(callback, limit) {
@@ -66,9 +62,6 @@ const helpers = {
   }
 };
 
-/********************************************
- * EVENT HANDLERS
- ********************************************/
 /**
  * Handle Scroll Events
  */
@@ -125,9 +118,6 @@ function animateOnScroll() {
   });
 }
 
-/********************************************
- * UTILITY FUNCTIONS
- ********************************************/
 /**
  * Load Script Dynamically
  */
@@ -206,9 +196,6 @@ function updateSwiperInstances() {
   }
 }
 
-/********************************************
- * TILT EFFECT FUNCTIONS
- ********************************************/
 /**
  * Initialize Tilt Elements
  */
@@ -260,9 +247,6 @@ function reinitializeTilt() {
   });
 }
 
-/********************************************
- * NAVIGATION & UI FUNCTIONS
- ********************************************/
 /**
  * Back to Top Button
  */
@@ -411,9 +395,6 @@ function initBubbleAnimations() {
   });
 }
 
-/********************************************
- * LOADER ANIMATION
- ********************************************/
 /**
  * Page Loader with Optimized Animation
  */
@@ -499,9 +480,6 @@ function initLoader() {
   });
 }
 
-/********************************************
- * HERO SECTION ANIMATIONS
- ********************************************/
 /**
  * Hero Section Animations with GSAP
  */
@@ -533,9 +511,6 @@ function animateHeroElements() {
   });
 }
 
-/********************************************
- * NAVIGATION FUNCTIONALITY
- ********************************************/
 /**
  * Navigation Functionality
  */
@@ -671,9 +646,6 @@ function initMobileMenu() {
   }
 }
 
-/********************************************
- * TYPED.JS INTEGRATION
- ********************************************/
 /**
  * Initialize Typed.js for Hero Section
  */
@@ -708,183 +680,30 @@ function initHeroTyped() {
   }
 }
 
-/********************************************
- * TECH STACK SHOWCASE
- ********************************************/
 /**
- * Enhanced Tech Stack Showcase - Infinite Scroll Functionality
- * Provides smooth, performance-optimized infinite scrolling of technology icons
+ * Initialize Marquee Effect for tech stack showcase
  */
-function initTechShowcase() {
-    // Wait until DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        const ribbons = document.querySelectorAll('.tech-ribbon-inner');
-        if (!ribbons.length) return;
-        
-        // Apply random animation delays to each ribbon for more natural effect
-        ribbons.forEach((ribbon, index) => {
-            // Ensure different starting positions by using different delays
-            // More variance based on index to ensure staggered movement
-            const baseDelay = -10 - (index * 5);
-            const randomDelay = baseDelay - (Math.random() * 15);
-            ribbon.style.animationDelay = `${randomDelay}s`;
-            
-            // Set different animation durations to prevent synchronized movements
-            const baseDuration = 50; // Base duration in seconds
-            const variance = index % 2 === 0 ? 5 : -5; // Add different variances based on position
-            const duration = baseDuration + variance + (Math.random() * 10);
-            ribbon.style.animationDuration = `${duration}s`;
-        });
-        
-        // Performance optimization: Intersection Observer
-        if ('IntersectionObserver' in window) {
-            const techSection = document.querySelector('.tech-stack-showcase');
-            if (!techSection) return;
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // When section enters viewport or is within threshold, start animations
-                    if (entry.isIntersecting) {
-                        ribbons.forEach(ribbon => {
-                            ribbon.style.animationPlayState = 'running';
-                        });
-                        
-                        // Add subtle entrance animation
-                        techSection.classList.add('visible');
-                    } else {
-                        // Save CPU by pausing animations when not visible
-                        ribbons.forEach(ribbon => {
-                            ribbon.style.animationPlayState = 'paused';
-                        });
-                    }
-                });
-            }, {
-                rootMargin: '200px 0px', // Larger margin to start animations before fully in view
-                threshold: 0.1 // Trigger when at least 10% of the element is visible
-            });
-            
-            observer.observe(techSection);
-        }
-        
-        // Check if device is low-powered and optimize accordingly
-        const isLowPowerDevice = () => {
-            return (
-                (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || 
-                (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
-                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-            );
-        };
-        
-        if (isLowPowerDevice()) {
-            // Apply optimizations for lower-powered devices
-            ribbons.forEach(ribbon => {
-                // Slow down animations to reduce CPU usage
-                const currentDuration = parseFloat(getComputedStyle(ribbon).animationDuration);
-                ribbon.style.animationDuration = `${currentDuration * 1.5}s`;
-                
-                // Reduce transform complexity
-                ribbon.style.willChange = 'auto';
-            });
-            
-            // Add a class to apply simpler effects via CSS
-            document.querySelector('.tech-stack-showcase')?.classList.add('low-power-mode');
-        } else {
-            // Add interactive effects for powerful devices
-            addInteractiveEffects();
-        }
-        
-        // Handle window resize events to prevent animation glitches
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            // Debounce resize events
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                ribbons.forEach(ribbon => {
-                    // Reset animation temporarily
-                    const currentState = ribbon.style.animationPlayState;
-                    ribbon.style.animationName = 'none';
-                    
-                    // Force reflow to apply changes immediately
-                    void ribbon.offsetWidth;
-                    
-                    // Restore animation with original state
-                    ribbon.style.animationName = '';
-                    ribbon.style.animationPlayState = currentState;
-                });
-            }, 150);
-        });
-        
-        // Add hover effects on icons for desktop devices
-        if (matchMedia('(hover: hover)').matches) {
-            const techIcons = document.querySelectorAll('.tech-icon');
-            
-            techIcons.forEach(icon => {
-                icon.addEventListener('mouseenter', () => {
-                    icon.style.transform = 'translateY(-5px)';
-                    icon.querySelector('i').style.transform = 'scale(1.2)';
-                    icon.querySelector('span').style.opacity = '1';
-                });
-                
-                icon.addEventListener('mouseleave', () => {
-                    icon.style.transform = 'translateY(0)';
-                    icon.querySelector('i').style.transform = 'scale(1)';
-                    icon.querySelector('span').style.opacity = '0.8';
-                });
-            });
-        }
+function initMarquee() {
+  const marquees = document.querySelectorAll('.marquee');
+  
+  marquees.forEach(marquee => {
+    const content = marquee.querySelector('.tech-track-inner');
+    if (!content) return;
+    
+    // Get computed width
+    const contentWidth = content.offsetWidth;
+    
+    // Set animation duration based on content width
+    const duration = contentWidth / 50; // Adjust the divisor to control speed
+    
+    // Set animation duration
+    const trackInners = marquee.querySelectorAll('.tech-track-inner');
+    trackInners.forEach(track => {
+      track.style.animationDuration = `${duration}s`;
     });
+  });
 }
 
-/**
- * Add interactive effects to the tech showcase for powerful devices
- */
-function addInteractiveEffects() {
-    const techShowcase = document.querySelector('.tech-stack-showcase');
-    if (!techShowcase) return;
-    
-    // Mouse movement parallax effect (subtle)
-    techShowcase.addEventListener('mousemove', (e) => {
-        const icons = techShowcase.querySelectorAll('.tech-icon i');
-        
-        // Calculate mouse position relative to section center
-        const rect = techShowcase.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
-        // Normalize mouse position (-1 to 1 range)
-        const normalizedX = (e.clientX - centerX) / (rect.width / 2);
-        const normalizedY = (e.clientY - centerY) / (rect.height / 2);
-        
-        // Apply subtle movement to icons based on mouse position
-        icons.forEach((icon, index) => {
-            // Alternate direction of movement for more organic feel
-            const direction = index % 2 === 0 ? 1 : -1;
-            const intensity = 2; // Maximum movement in pixels
-            
-            // Calculate transformation values
-            const moveX = normalizedX * intensity * direction;
-            const moveY = normalizedY * intensity * direction;
-            
-            // Apply transform with very slight delay based on index for wave effect
-            setTimeout(() => {
-                icon.style.transform = `translate(${moveX}px, ${moveY}px) scale(1)`;
-            }, index % 3 * 50);
-        });
-    });
-    
-    // Reset icon positions when mouse leaves
-    techShowcase.addEventListener('mouseleave', () => {
-        const icons = techShowcase.querySelectorAll('.tech-icon i');
-        
-        icons.forEach(icon => {
-            icon.style.transform = 'translate(0, 0) scale(1)';
-        });
-    });
-}
-
-/********************************************
- * SERVICES CAROUSEL
- ********************************************/
 /**
  * Initialize Services Carousel with Swiper
  */
@@ -1187,9 +1006,6 @@ function initServiceTypedText() {
   }
 }
 
-/********************************************
- * PROCESS TIMELINE
- ********************************************/
 /**
  * Process Timeline Animation
  */
@@ -1240,9 +1056,6 @@ function initProcessTimeline() {
   });
 }
 
-/********************************************
- * PORTFOLIO FUNCTIONALITY
- ********************************************/
 /**
  * Portfolio Filter Functionality
  */
@@ -1567,9 +1380,6 @@ function initProjectModals() {
   }
 }
 
-/********************************************
- * PROJECTS DATA LOADING
- ********************************************/
 /**
  * Load Projects Data from json file
  */
@@ -1763,9 +1573,6 @@ function updateFeaturedProjects() {
   }
 }
 
-/********************************************
- * COUNTERS & ANIMATIONS
- ********************************************/
 /**
  * Counter Animation - FIXED
  */
@@ -1832,9 +1639,6 @@ function initCounters() {
   });
 }
 
-/********************************************
- * CAROUSEL & SLIDER FUNCTIONS
- ********************************************/
 /**
  * Initialize Testimonials Carousel
  */
@@ -1969,9 +1773,6 @@ function initCaseStudiesSlider() {
   }
 }
 
-/********************************************
- * FAQ ACCORDION
- ********************************************/
 /**
  * Initialize FAQ Accordion - FIXED
  */
@@ -2086,9 +1887,6 @@ function initFaqAccordion() {
   }
 }
 
-/********************************************
- * CASE STUDY MODAL
- ********************************************/
 /**
  * Initialize Case Study Modal
  */
@@ -2584,9 +2382,6 @@ function initCaseStudyModal() {
   }
 }
 
-/********************************************
- * FORM INTERACTIONS
- ********************************************/
 /**
  * Form Interactions
  */
@@ -2665,7 +2460,7 @@ function initFormInteractions() {
                   <div class="success-icon">
                     <i class="fas fa-check-circle"></i>
                   </div>
-                                   <h3>Thank You!</h3>
+                  <h3>Thank You!</h3>
                   <p>Your message has been sent successfully. We'll get back to you shortly.</p>
                 </div>
               `;
@@ -2772,9 +2567,6 @@ function initFormInteractions() {
   }
 }
 
-/********************************************
- * GLOBAL FUNCTIONS
- ********************************************/
 // Expose the closeCaseStudyModal function globally for the CTA button
 window.closeCaseStudyModal = function() {
   const modal = document.getElementById('case-study-modal');
@@ -2801,9 +2593,6 @@ window.closeCaseStudyModal = function() {
   }
 };
 
-/********************************************
- * INITIALIZATION
- ********************************************/
 // Initialize when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize DOM selector cache
@@ -2852,9 +2641,6 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize back to top button
   initBackToTop();
-  
-  // Initialize tech showcase
-  initTechShowcase();
   
   // Add scroll and resize event listeners with performance optimization
   window.addEventListener('scroll', helpers.throttle(handleScroll, 100));
