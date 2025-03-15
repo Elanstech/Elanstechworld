@@ -801,154 +801,212 @@ function initServicesCarousel() {
  * Initialize Packages Carousel with Swiper
  */
 function initPackagesCarousel() {
-  if (!document.querySelector('.packages-carousel')) return;
+  const packagesCarousel = document.querySelector('.packages-carousel');
   
-  if (typeof Swiper !== 'undefined') {
-    // Initialize if Swiper is already loaded
-    initPackagesSwiper();
-  } else {
-    // Load Swiper dynamically
-    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', initPackagesSwiper);
-    });
-  }
+  if (!packagesCarousel) return;
   
-  function initPackagesSwiper() {
-    // Initialize the packages carousel
-    window.packagesSwiper = new Swiper('.packages-carousel', {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: false,
-      speed: 800,
-      grabCursor: true,
-      centeredSlides: false,
-      initialSlide: 1,
-      breakpoints: {
-        768: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        1200: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        }
+  // Initialize the packages carousel with Swiper
+  const packagesSwiper = new Swiper('.packages-carousel', {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    loop: false,
+    speed: 800,
+    grabCursor: true,
+    centeredSlides: true,
+    initialSlide: 1, // Start with the first package card (after category card)
+    effect: 'coverflow', // Use coverflow effect for better visuals
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 30,
       },
-      pagination: {
-        el: '.packages-pagination',
-        clickable: true,
-        dynamicBullets: true
-      },
-      navigation: {
-        nextEl: '.packages-nav-next',
-        prevEl: '.packages-nav-prev'
-      },
-      on: {
-        init: function() {
-          // Initialize hover effects and animations
-          initPackageCardEffects();
-        }
+      1200: {
+        slidesPerView: 3,
+        spaceBetween: 30,
       }
-    });
-    
-    // Initialize billing toggle functionality
-    const billingCheckbox = document.getElementById('billing-checkbox');
-    const monthlyOption = document.querySelector('.billing-option.monthly');
-    const yearlyOption = document.querySelector('.billing-option.yearly');
-    
-    if (billingCheckbox) {
-      billingCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-          document.body.classList.add('yearly-billing');
-          monthlyOption.classList.remove('active');
-          yearlyOption.classList.add('active');
-        } else {
-          document.body.classList.remove('yearly-billing');
-          yearlyOption.classList.remove('active');
-          monthlyOption.classList.add('active');
-        }
-      });
-      
-      // Click events for the text labels
-      if (monthlyOption) {
-        monthlyOption.addEventListener('click', function() {
-          billingCheckbox.checked = false;
-          billingCheckbox.dispatchEvent(new Event('change'));
-        });
-      }
-      
-      if (yearlyOption) {
-        yearlyOption.addEventListener('click', function() {
-          billingCheckbox.checked = true;
-          billingCheckbox.dispatchEvent(new Event('change'));
-        });
+    },
+    pagination: {
+      el: '.packages-pagination',
+      clickable: true,
+      dynamicBullets: true
+    },
+    navigation: {
+      nextEl: '.packages-nav-next',
+      prevEl: '.packages-nav-prev'
+    },
+    on: {
+      init: function() {
+        // Initialize hover effects and animations
+        initPackageCardEffects();
+        
+        // Ensure equal height for all cards
+        equalizeCardHeights();
+      },
+      resize: function() {
+        // Re-equalize heights on resize
+        equalizeCardHeights();
       }
     }
-  }
+  });
   
-  // Package card hover and animation effects
-  function initPackageCardEffects() {
-    const packageCards = document.querySelectorAll('.package-card');
-    
-    packageCards.forEach(card => {
-      card.addEventListener('mousemove', function(e) {
-        // Only apply effect if device supports hover
-        if (window.matchMedia('(hover: hover)').matches) {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          // Calculate percentage position
-          const xPercent = x / rect.width - 0.5;
-          const yPercent = y / rect.height - 0.5;
-          
-          // Apply subtle rotation based on mouse position (max 3deg)
-          if (window.gsap) {
-            gsap.to(card, {
-              rotationX: yPercent * -3,
-              rotationY: xPercent * 3,
-              z: 10,
-              ease: 'power1.out',
-              duration: 0.5
-            });
-          } else {
-            card.style.transform = `perspective(1000px) rotateX(${yPercent * -3}deg) rotateY(${xPercent * 3}deg) translateZ(10px)`;
-          }
-        }
-      });
+  // Store swiper instance for later use
+  window.packagesSwiper = packagesSwiper;
+}
 
-      card.addEventListener('mouseleave', function() {
-        // Reset transformation on mouse leave
+/**
+ * Initialize Package Card hover effects and animations
+ */
+function initPackageCardEffects() {
+  const packageCards = document.querySelectorAll('.package-card');
+  
+  packageCards.forEach(card => {
+    // Add subtle hover animation using transform
+    card.addEventListener('mouseenter', function() {
+      // Only apply effect if device supports hover
+      if (window.matchMedia('(hover: hover)').matches) {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+        this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+        
+        // Add slight rotation for 3D effect
         if (window.gsap) {
-          gsap.to(card, {
-            rotationX: 0,
-            rotationY: 0,
-            z: 0,
-            ease: 'power2.out',
-            duration: 0.7
+          gsap.to(this, {
+            rotationY: 3,
+            duration: 0.5,
+            ease: 'power1.out'
           });
-        } else {
-          card.style.transform = '';
         }
-      });
+      }
     });
     
-    // Add animation when category cards become visible
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const categoryCard = entry.target;
-          categoryCard.style.transform = 'scale(1)';
-          categoryCard.style.opacity = '1';
-          observer.unobserve(categoryCard);
+    card.addEventListener('mouseleave', function() {
+      // Reset transformation on mouse leave
+      if (window.matchMedia('(hover: hover)').matches) {
+        this.style.transform = '';
+        this.style.boxShadow = '';
+        
+        if (window.gsap) {
+          gsap.to(this, {
+            rotationY: 0,
+            duration: 0.5,
+            ease: 'power1.out'
+          });
         }
-      });
-    }, { threshold: 0.2 });
-    
-    document.querySelectorAll('.package-category-card').forEach(card => {
-      observer.observe(card);
+      }
     });
+    
+    // Add click animation for mobile devices
+    card.addEventListener('touchstart', function() {
+      this.style.transform = 'translateY(-5px) scale(1.01)';
+      this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.1)';
+    });
+    
+    card.addEventListener('touchend', function() {
+      setTimeout(() => {
+        this.style.transform = '';
+        this.style.boxShadow = '';
+      }, 300);
+    });
+  });
+  
+  // Animate category cards
+  const categoryCards = document.querySelectorAll('.package-category-card');
+  
+  categoryCards.forEach(card => {
+    // Add subtle scale effect on hover
+    card.addEventListener('mouseenter', function() {
+      // Only apply effect if device supports hover
+      if (window.matchMedia('(hover: hover)').matches) {
+        this.style.transform = 'scale(1.03)';
+      }
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      // Reset transformation on mouse leave
+      if (window.matchMedia('(hover: hover)').matches) {
+        this.style.transform = '';
+      }
+    });
+  });
+}
+
+/**
+ * Ensure all package cards have the same height
+ */
+function equalizeCardHeights() {
+  // Reset heights first
+  const cards = document.querySelectorAll('.package-card, .package-category-card');
+  cards.forEach(card => {
+    card.style.height = 'auto';
+  });
+  
+  // Measure and apply equal heights
+  setTimeout(() => {
+    let maxHeight = 0;
+    
+    // Find the tallest card
+    cards.forEach(card => {
+      const height = card.offsetHeight;
+      maxHeight = Math.max(maxHeight, height);
+    });
+    
+    // Apply height to all cards
+    if (maxHeight > 0) {
+      cards.forEach(card => {
+        card.style.height = `${maxHeight}px`;
+      });
+    }
+  }, 100);
+}
+
+/**
+ * Update package prices and features based on category
+ * This lets you add dynamic pricing updates if needed
+ */
+function updatePackagePricing(category) {
+  const categoryCardsMap = {
+    'business': 0,
+    'design': 4,
+    'property': 8,
+    'pos': 12
+  };
+  
+  // Get the starting index for the selected category
+  const startIndex = categoryCardsMap[category] || 0;
+  
+  // Navigate to the category
+  if (window.packagesSwiper) {
+    window.packagesSwiper.slideTo(startIndex);
   }
 }
+
+// Initialize when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initPackagesCarousel();
+  
+  // Add click handlers for category buttons if they exist
+  const categoryButtons = document.querySelectorAll('[data-package-category]');
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const category = this.getAttribute('data-package-category');
+      updatePackagePricing(category);
+    });
+  });
+});
+
+// Handle window resize events to maintain equal heights
+window.addEventListener('resize', helpers.debounce(function() {
+  if (window.packagesSwiper) {
+    window.packagesSwiper.update();
+    equalizeCardHeights();
+  }
+}, 200));
 
 /**
  * Service Card Effects
