@@ -1437,7 +1437,7 @@ section {
     position: relative;
     overflow: hidden;
     padding: 0;
-    background-color: #333;
+    background-color: #212121; /* Dark background to match reference */
 }
 
 .tech-stack-container {
@@ -1452,28 +1452,32 @@ section {
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 90px;
+    height: 82px; /* Precise height to match reference */
     margin: 0;
     padding: 0;
+    border: none;
+    font-size: 0; /* Remove any inline spacing */
 }
 
 /* Tech Icon Styles */
 .tech-icon {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 120px;
-    height: 90px;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
+    width: 16.666%; /* Exactly 6 icons per row */
+    height: 82px;
     position: relative;
+    padding: 0;
+    margin: 0;
+    vertical-align: top; /* Prevent misalignment */
+    font-size: 16px; /* Reset font size */
+    box-sizing: border-box;
 }
 
 .tech-icon i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: inherit;
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
@@ -1486,15 +1490,16 @@ section {
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
+    text-align: center;
 }
 
-/* Set colors for technology icons */
-.tech-icon:nth-child(6n+1) { color: #8A2BE2; } /* Vue */
-.tech-icon:nth-child(6n+2) { color: #42B883; } /* Angular */
-.tech-icon:nth-child(6n+3) { color: #E44D26; } /* WordPress */
-.tech-icon:nth-child(6n+4) { color: #7AB55C; } /* Shopify */
-.tech-icon:nth-child(6n+5) { color: #61DAFB; } /* React */
-.tech-icon:nth-child(6n+6) { color: #F7DF1E; } /* Node.js */
+/* Set individual tech icon colors */
+.tech-icon:nth-child(6n+1) i { color: #42B883; } /* Angular - green */
+.tech-icon:nth-child(6n+2) i { color: #E44D26; } /* WordPress - orange-red */
+.tech-icon:nth-child(6n+3) i { color: #96BF48; } /* Shopify - green */
+.tech-icon:nth-child(6n+4) i { color: #61DAFB; } /* React - light blue */
+.tech-icon:nth-child(6n+5) i { color: #F7DF1E; } /* Node.js - yellow */
+.tech-icon:nth-child(6n+6) i { color: #8A2BE2; } /* Vue - purple */
 
 /* Animation setup */
 .tech-ribbon-inner {
@@ -1502,14 +1507,12 @@ section {
     align-items: center;
     width: fit-content;
     animation: scrollLeft 35s linear infinite;
+    margin: 0;
+    padding: 0;
 }
 
 .ribbon-reverse {
     animation: scrollRight 35s linear infinite;
-}
-
-.ribbon-fast {
-    animation: scrollLeft 25s linear infinite;
 }
 
 /* Animation keyframes */
@@ -1523,25 +1526,10 @@ section {
     100% { transform: translateX(0); }
 }
 
-/* Optional Hover Effects (for non-touch devices) */
-@media (hover: hover) {
-    .tech-icon:hover {
-        transform: translateY(-5px);
-    }
-
-    .tech-icon:hover i {
-        transform: scale(1.2);
-    }
-}
-
 /* Media queries for responsiveness */
 @media (max-width: 768px) {
-    .tech-icon {
-        width: 100px;
-    }
-    
     .tech-icon i {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
     
     .tech-icon span {
@@ -1549,49 +1537,7 @@ section {
     }
 }
 
-@media (max-width: 480px) {
-    .tech-ribbon {
-        height: 80px;
-    }
-    
-    .tech-icon {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .tech-icon i {
-        font-size: 1.5rem;
-        margin-bottom: 0.25rem;
-    }
-    
-    .tech-icon span {
-        font-size: 0.7rem;
-    }
-}
-
-/* Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    .tech-ribbon-inner {
-        animation-duration: 60s !important; /* Much slower animations */
-    }
-    
-    .tech-icon:hover {
-        transform: none !important;
-    }
-    
-    .tech-icon:hover i {
-        transform: none !important;
-    }
-}
-
-/* Ensure smooth animations on all devices */
-@media (prefers-reduced-motion: no-preference) {
-    .tech-ribbon-inner {
-        will-change: transform;
-    }
-}
-
-/* Hardware acceleration for smoother animations */
+/* Ensure hardware acceleration for smoother animations */
 .tech-ribbon-inner {
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
