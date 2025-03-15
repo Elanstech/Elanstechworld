@@ -1043,185 +1043,339 @@ function initServiceTypedText() {
   9. PROCESS SECTION
 ======================================*/
 
-/**
- * Initialize Package Tabs
- */
+// Initialize Package Tabs
 function initPackageTabs() {
-    const categoryButtons = document.querySelectorAll('.category-button');
-    const packageCategories = document.querySelectorAll('.package-category');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const categoryDescriptions = document.querySelectorAll('.category-description');
+    const packageCarousels = document.querySelectorAll('.packages-carousel');
+    const swiperInstances = {};
     
-    if (!categoryButtons.length || !packageCategories.length) return;
+    if (!tabButtons.length) return;
     
-    // Set up click event for category buttons
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Get the category to show
-            const category = button.getAttribute('data-category');
+    // Initialize Swiper instances for each package type
+    function initPackageCarousels() {
+        packageCarousels.forEach(carousel => {
+            const categoryId = carousel.id;
             
-            // Update active button state
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Hide all categories first
-            packageCategories.forEach(packageCategory => {
-                const currentlyActive = packageCategory.classList.contains('active');
-                
-                if (currentlyActive) {
-                    // Animate out the currently active category
-                    if (window.gsap) {
-                        gsap.to(packageCategory, {
-                            opacity: 0,
-                            y: 20,
-                            duration: 0.3,
-                            onComplete: () => {
-                                packageCategory.classList.remove('active');
-                            }
-                        });
-                    } else {
-                        packageCategory.style.opacity = '0';
-                        packageCategory.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
-                            packageCategory.classList.remove('active');
-                        }, 300);
+            if (typeof Swiper !== 'undefined') {
+                swiperInstances[categoryId] = new Swiper(`#${categoryId}`, {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    centeredSlides: false,
+                    loop: false,
+                    grabCursor: true,
+                    autoHeight: true,
+                    speed: 800,
+                    effect: 'slide',
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: true,
+                        pauseOnMouseEnter: true
+                    },
+                    pagination: {
+                        el: `#${categoryId} .swiper-pagination`,
+                        clickable: true,
+                        dynamicBullets: true
+                    },
+                    navigation: {
+                        nextEl: `#${categoryId} .swiper-button-next`,
+                        prevEl: `#${categoryId} .swiper-button-prev`
+                    },
+                    breakpoints: {
+                        // When window width is >= 640px
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20
+                        },
+                        // When window width is >= 992px
+                        992: {
+                            slidesPerView: 3,
+                            spaceBetween: 30
+                        }
+                    },
+                    on: {
+                        init: function() {
+                            // Initialize hover effects for cards after swiper is initialized
+                            initPackageCardEffects(carousel);
+                        }
                     }
-                }
-            });
-            
-            // Show the selected category after a short delay
-            setTimeout(() => {
-                // Find the package category to show
-                const categoryToShow = document.getElementById(`${category}-packages`);
+                });
+            }
+        });
+    }
+    
+    // Handle tab button clicks with smooth transitions
+    function handleTabButtonClick(button) {
+        const category = button.getAttribute('data-category');
+        
+        // Remove active class from all tabs
+        tabButtons.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Add active class to clicked tab
+        button.classList.add('active');
+        
+        // Hide all descriptions with fade out
+        categoryDescriptions.forEach(desc => {
+            if (desc.classList.contains('active')) {
+                // Fade out active description
+                desc.style.opacity = '0';
+                desc.style.transform = 'translateY(20px)';
                 
-                if (categoryToShow) {
-                    categoryToShow.classList.add('active');
+                // After animation completes, remove active class
+                setTimeout(() => {
+                    desc.classList.remove('active');
                     
-                    // Animate in the new category
-                    if (window.gsap) {
-                        gsap.fromTo(
-                            categoryToShow,
-                            { opacity: 0, y: 20 },
-                            { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
-                        );
+                    // Show the selected description with fade in
+                    const activeDesc = document.getElementById(`${category}-description`);
+                    if (activeDesc) {
+                        activeDesc.classList.add('active');
                         
-                        // Add staggered animation to package cards
-                        const cards = categoryToShow.querySelectorAll('.package-card');
-                        gsap.fromTo(
-                            cards,
-                            { y: 30, opacity: 0 },
-                            { 
-                                y: 0, 
-                                opacity: 1, 
-                                duration: 0.6, 
-                                stagger: 0.1, 
-                                ease: 'power3.out',
-                                delay: 0.1
-                            }
-                        );
-                    } else {
-                        // Fallback for browsers without GSAP
-                        categoryToShow.style.opacity = '1';
-                        categoryToShow.style.transform = 'translateY(0)';
+                        // Force reflow to ensure animation works
+                        void activeDesc.offsetWidth;
                         
-                        // Animate package cards
-                        const cards = categoryToShow.querySelectorAll('.package-card');
-                        cards.forEach((card, index) => {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(30px)';
-                            
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                            }, 100 + index * 100);
-                        });
+                        // Fade in animation
+                        activeDesc.style.opacity = '1';
+                        activeDesc.style.transform = 'translateY(0)';
                     }
-                }
-            }, 300);
+                }, 300);
+            }
+        });
+        
+        // Hide all carousels with fade out
+        packageCarousels.forEach(carousel => {
+            if (carousel.classList.contains('active')) {
+                // Fade out active carousel
+                carousel.style.opacity = '0';
+                carousel.style.transform = 'translateY(20px)';
+                
+                // After animation completes, hide carousel and show the selected one
+                setTimeout(() => {
+                    carousel.classList.remove('active');
+                    
+                    // Show the selected carousel with fade in
+                    const activeCarousel = document.getElementById(`${category}-carousel`);
+                    if (activeCarousel) {
+                        activeCarousel.classList.add('active');
+                        
+                        // Force reflow to ensure animation works
+                        void activeCarousel.offsetWidth;
+                        
+                        // Fade in animation
+                        activeCarousel.style.opacity = '1';
+                        activeCarousel.style.transform = 'translateY(0)';
+                        
+                        // Update Swiper instance if it exists
+                        if (swiperInstances[`${category}-carousel`]) {
+                            swiperInstances[`${category}-carousel`].update();
+                        }
+                    }
+                }, 300);
+            }
+        });
+    }
+    
+    // Add click event listeners to tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            handleTabButtonClick(button);
         });
     });
     
     // Initialize package card hover effects
-    initPackageCardEffects();
+    function initPackageCardEffects(carousel) {
+        const packageCards = carousel.querySelectorAll('.package-card');
+        
+        packageCards.forEach(card => {
+            // 3D hover effect for cards
+            card.addEventListener('mousemove', (e) => {
+                if (window.matchMedia('(hover: hover)').matches) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Calculate percentage position
+                    const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
+                    const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
+                    
+                    // Apply subtle rotation (max 5 degrees)
+                    card.style.transform = `perspective(1000px) rotateY(${xPercent * 5}deg) rotateX(${yPercent * -5}deg) translateZ(10px)`;
+                    
+                    // Apply glow effect based on mouse position
+                    const imageEl = card.querySelector('.package-image');
+                    if (imageEl) {
+                        imageEl.style.boxShadow = `${xPercent * 10}px ${yPercent * 10}px 20px rgba(0, 122, 255, 0.3) inset`;
+                    }
+                }
+            });
+            
+            // Reset on mouse leave
+            card.addEventListener('mouseleave', () => {
+                if (window.matchMedia('(hover: hover)').matches) {
+                    card.style.transform = 'translateY(0) scale(1)';
+                    card.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    
+                    const imageEl = card.querySelector('.package-image');
+                    if (imageEl) {
+                        imageEl.style.boxShadow = 'none';
+                        imageEl.style.transition = 'all 0.5s ease';
+                    }
+                }
+            });
+            
+            // Add subtle animation on hover for buttons
+            const button = card.querySelector('.btn-package');
+            if (button) {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+                });
+                
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = 'none';
+                });
+            }
+        });
+    }
     
-    // Show the first category by default
-    if (categoryButtons.length > 0) {
-        categoryButtons[0].click();
+    // Initialize the swiper instances
+    initPackageCarousels();
+    
+    // Activate the first tab by default
+    if (tabButtons.length > 0) {
+        handleTabButtonClick(tabButtons[0]);
+    }
+    
+    // Initialize the custom package card effects
+    const customCard = document.querySelector('.custom-card');
+    if (customCard) {
+        customCard.addEventListener('mouseenter', () => {
+            const customIcon = customCard.querySelector('.custom-icon');
+            if (customIcon) {
+                customIcon.style.transform = 'rotate(-10deg) scale(1.1)';
+            }
+        });
+        
+        customCard.addEventListener('mouseleave', () => {
+            const customIcon = customCard.querySelector('.custom-icon');
+            if (customIcon) {
+                customIcon.style.transform = 'rotate(0) scale(1)';
+            }
+        });
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        // Update all active Swiper instances
+        for (const key in swiperInstances) {
+            if (swiperInstances[key]) {
+                swiperInstances[key].update();
+            }
+        }
+    });
+}
+
+// Initialize when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initPackageTabs();
+    
+    // Initialize the bubbles/particles effect in the background
+    initBackgroundEffects();
+});
+
+// Background effects for added visual interest
+function initBackgroundEffects() {
+    const packagesSection = document.querySelector('.packages-section');
+    if (!packagesSection) return;
+    
+    // Create particles container
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'packages-particles';
+    particlesContainer.style.position = 'absolute';
+    particlesContainer.style.top = '0';
+    particlesContainer.style.left = '0';
+    particlesContainer.style.width = '100%';
+    particlesContainer.style.height = '100%';
+    particlesContainer.style.overflow = 'hidden';
+    particlesContainer.style.zIndex = '0';
+    particlesContainer.style.pointerEvents = 'none';
+    
+    packagesSection.appendChild(particlesContainer);
+    
+    // Generate random particles
+    const particleCount = 20;
+    
+    for (let i = 0; i < particleCount; i++) {
+        createParticle(particlesContainer);
     }
 }
 
-/**
- * Initialize Package Card Effects
- */
-function initPackageCardEffects() {
-    const packageCards = document.querySelectorAll('.package-card');
+// Create a single floating particle
+function createParticle(container) {
+    const particle = document.createElement('div');
     
-    if (!packageCards.length) return;
+    // Random size
+    const size = Math.random() * 100 + 50;
     
-    packageCards.forEach(card => {
-        // Add hover animation with enhanced depth
-        card.addEventListener('mouseenter', function() {
-            if (window.matchMedia('(hover: hover)').matches) {
-                if (window.gsap) {
-                    gsap.to(card, {
-                        y: -10,
-                        scale: 1.02,
-                        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                    
-                    // Add subtle rotation based on mouse position
-                    card.addEventListener('mousemove', moveHandler);
-                } else {
-                    card.style.transform = 'translateY(-10px) scale(1.02)';
-                    card.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
-                    card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+    // Random position
+    const posX = Math.random() * 100;
+    const posY = Math.random() * 100;
+    
+    // Random opacity
+    const opacity = Math.random() * 0.08 + 0.02;
+    
+    // Random color
+    const colors = [
+        'rgba(0, 122, 255, ' + opacity + ')',
+        'rgba(0, 194, 255, ' + opacity + ')',
+        'rgba(122, 0, 255, ' + opacity + ')'
+    ];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Random animation duration
+    const duration = Math.random() * 60 + 30;
+    
+    // Set styles
+    particle.style.position = 'absolute';
+    particle.style.top = posY + '%';
+    particle.style.left = posX + '%';
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.borderRadius = '50%';
+    particle.style.background = color;
+    particle.style.filter = 'blur(' + (size / 5) + 'px)';
+    particle.style.opacity = opacity;
+    
+    // Set animation
+    particle.style.animation = `floatParticle ${duration}s infinite alternate-reverse ease-in-out`;
+    
+    // Add keyframes dynamically if they don't already exist
+    if (!document.getElementById('particleAnimation')) {
+        const style = document.createElement('style');
+        style.id = 'particleAnimation';
+        style.textContent = `
+            @keyframes floatParticle {
+                0% {
+                    transform: translate(0, 0) rotate(0deg) scale(1);
+                }
+                100% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) rotate(${Math.random() * 360}deg) scale(${Math.random() * 0.5 + 0.8});
                 }
             }
-        });
-        
-        // Reset on mouse leave
-        card.addEventListener('mouseleave', function() {
-            if (window.matchMedia('(hover: hover)').matches) {
-                if (window.gsap) {
-                    gsap.to(card, {
-                        y: 0,
-                        scale: 1,
-                        rotationX: 0,
-                        rotationY: 0,
-                        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.05)',
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                    
-                    // Remove mousemove handler
-                    card.removeEventListener('mousemove', moveHandler);
-                } else {
-                    card.style.transform = 'translateY(0) scale(1)';
-                    card.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.05)';
-                }
-            }
-        });
-        
-        // Mouse move handler for 3D effect
-        function moveHandler(e) {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Calculate percentage position
-            const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
-            const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
-            
-            // Apply subtle rotation (max 3 degrees)
-            gsap.to(card, {
-                rotationX: yPercent * -3,
-                rotationY: xPercent * 3,
-                duration: 0.5,
-                ease: 'power1.out'
-            });
-        }
-    });
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Add to container
+    container.appendChild(particle);
+    
+    // Remove and recreate particle after animation completes (for variety)
+    setTimeout(() => {
+        particle.remove();
+        createParticle(container);
+    }, duration * 1000);
 }
 
 
@@ -2875,6 +3029,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initServicesCarousel();
   initServiceTypedText();
   initPackageTabs();
+  initBackgroundEffects();
   initProcessTimeline();
   initPortfolioFilter();
   initProjectModals();
