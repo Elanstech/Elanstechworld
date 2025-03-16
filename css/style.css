@@ -2178,9 +2178,15 @@ section {
 .services-nav-next:hover {
   background: var(--primary-gradient);
   color: var(--white);
-  transform: translateY(20px);
-  transition: transform var(--transition-normal);
-  width: 100%;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: var(--shadow-primary);
+}
+
+.services-nav-prev::before,
+.services-nav-prev::after,
+.services-nav-next::before,
+.services-nav-next::after {
+  display: none;
 }
 
 .services-pagination {
