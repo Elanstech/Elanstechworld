@@ -1437,6 +1437,15 @@ function initProcessTimeline() {
   11. PORTFOLIO AND PROJECTS
 ======================================*/
 
+/*======================================
+  11. PORTFOLIO AND PROJECTS
+======================================*/
+
+// Global variables
+let currentFilter = 'all';
+let isModalOpen = false;
+let isFiltering = false;
+
 /**
  * Portfolio Filter Functionality
  */
@@ -1445,6 +1454,8 @@ function initPortfolioFilter() {
   
   DOM.filterButtons.forEach(button => {
     button.addEventListener('click', () => {
+      if (isFiltering) return; // Prevent multiple clicks during animation
+      
       // Update active button
       DOM.filterButtons.forEach(btn => {
         btn.classList.remove('active');
@@ -1454,49 +1465,71 @@ function initPortfolioFilter() {
       // Get filter value
       const filterValue = button.getAttribute('data-filter');
       
-      // Get all portfolio items
-      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      // Skip if already on this filter
+      if (filterValue === currentFilter) return;
+      
+      // Update current filter
+      currentFilter = filterValue;
       
       // Apply filtering with animation
-      portfolioItems.forEach(item => {
-        const categories = item.getAttribute('data-category');
-        
-        if (filterValue === 'all' || categories.includes(filterValue)) {
-          // Show item with animation
-          if (window.gsap) {
-            gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
-              item.classList.remove('hidden');
-              gsap.to(item, { opacity: 1, y: 0, duration: 0.5, delay: 0.1 });
-            }});
-          } else {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.classList.remove('hidden');
-            
-            setTimeout(() => {
-              item.style.opacity = '1';
-              item.style.transform = 'translateY(0)';
-              item.style.transition = 'opacity 0.5s, transform 0.5s';
-            }, 10);
-          }
-        } else {
-          // Hide item with animation
-          if (window.gsap) {
-            gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
-              item.classList.add('hidden');
-            }});
-          } else {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = 'opacity 0.3s, transform 0.3s';
-            
-            setTimeout(() => {
-              item.classList.add('hidden');
-            }, 300);
-          }
-        }
-      });
+      filterPortfolioItems(filterValue);
     });
+  });
+}
+
+/**
+ * Filter Portfolio Items with Animation
+ */
+function filterPortfolioItems(filterValue) {
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  if (!portfolioItems.length) return;
+  
+  isFiltering = true;
+  
+  // First, animate out all items
+  let animatedOutCount = 0;
+  portfolioItems.forEach(item => {
+    // Mark items to be hidden later
+    const categories = item.getAttribute('data-category');
+    const shouldShow = filterValue === 'all' || categories.includes(filterValue);
+    
+    if (!shouldShow) {
+      item.classList.add('to-hide');
+    }
+    
+    // Animate out all items
+    item.classList.add('animate-out');
+    
+    // When animation completes
+    item.addEventListener('transitionend', function handler() {
+      item.removeEventListener('transitionend', handler);
+      animatedOutCount++;
+      
+      // When all items have animated out
+      if (animatedOutCount === portfolioItems.length) {
+        // Show/hide items based on filter
+        portfolioItems.forEach(innerItem => {
+          const innerCategories = innerItem.getAttribute('data-category');
+          const innerShouldShow = filterValue === 'all' || innerCategories.includes(filterValue);
+          
+          if (innerShouldShow) {
+            innerItem.classList.remove('hidden');
+            setTimeout(() => {
+              innerItem.classList.remove('animate-out');
+            }, 50);
+          } else {
+            innerItem.classList.add('hidden');
+          }
+        });
+        
+        // Clear the to-hide class
+        document.querySelectorAll('.to-hide').forEach(el => {
+          el.classList.remove('to-hide');
+        });
+        
+        isFiltering = false;
+      }
+    }, { once: true });
   });
 }
 
@@ -1515,15 +1548,13 @@ function initProjectModals() {
   document.addEventListener('click', (e) => {
     const portfolioLink = e.target.closest('.portfolio-link');
     const portfolioItem = e.target.closest('.portfolio-item');
-    const featuredProject = e.target.closest('.featured-project');
     
-    if (portfolioLink || portfolioItem || featuredProject) {
+    if ((portfolioLink || (portfolioItem && !e.target.closest('.portfolio-link'))) && !isModalOpen) {
       e.preventDefault();
       
       const projectId = 
         portfolioLink?.dataset.projectId || 
-        portfolioItem?.dataset.projectId || 
-        featuredProject?.dataset.projectId;
+        portfolioItem?.dataset.projectId;
       
       if (projectId) {
         openProjectModal(projectId);
@@ -1552,7 +1583,9 @@ function initProjectModals() {
    * Open Project Modal
    */
   function openProjectModal(projectId) {
-    if (!modal || !modalBody) return;
+    if (!modal || !modalBody || isModalOpen) return;
+    
+    isModalOpen = true;
     
     // Find the project data
     const project = window.projectsData.find(p => p.id === projectId);
@@ -1577,11 +1610,20 @@ function initProjectModals() {
               </div>
             ` : ''}
             
+            ${project.features ? `
+              <div class="modal-section">
+                <h3>Key Features</h3>
+                <ul class="modal-list">
+                  ${project.features.map((feature, index) => `<li style="--item-index: ${index}">${feature}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
+            
             ${project.modalContent?.projectDetails ? `
               <div class="modal-section">
                 <h3>Project Details</h3>
                 <ul class="modal-list">
-                  ${project.modalContent.projectDetails.map(detail => `<li>${detail}</li>`).join('')}
+                  ${project.modalContent.projectDetails.map((detail, index) => `<li style="--item-index: ${index}">${detail}</li>`).join('')}
                 </ul>
               </div>
             ` : ''}
@@ -1590,7 +1632,7 @@ function initProjectModals() {
               <div class="modal-section">
                 <h3>Technologies Used</h3>
                 <div class="modal-tags">
-                  ${project.modalContent.technologies.map(tech => `<span class="modal-tag">${tech}</span>`).join('')}
+                  ${project.modalContent.technologies.map((tech, index) => `<span class="modal-tag" style="--tag-index: ${index}">${tech}</span>`).join('')}
                 </div>
               </div>
             ` : ''}
@@ -1599,6 +1641,19 @@ function initProjectModals() {
               <div class="modal-section">
                 <h3>Results</h3>
                 <p>${project.modalContent.results}</p>
+              </div>
+            ` : ''}
+            
+            ${project.modalContent?.galleryImages && project.modalContent.galleryImages.length > 0 ? `
+              <div class="modal-section">
+                <h3>Gallery</h3>
+                <div class="modal-gallery">
+                  ${project.modalContent.galleryImages.map((img, index) => `
+                    <div class="modal-gallery-item" style="--gallery-index: ${index}">
+                      <img src="${img}" alt="${project.title} image">
+                    </div>
+                  `).join('')}
+                </div>
               </div>
             ` : ''}
             
@@ -1650,6 +1705,15 @@ function initProjectModals() {
         z-index: 1;
         width: 100%;
         color: #fff;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: 0.3s;
+      }
+      
+      .project-modal.active .modal-header-content {
+        transform: translateY(0);
+        opacity: 1;
       }
       
       .modal-header-content h2 {
@@ -1659,25 +1723,79 @@ function initProjectModals() {
       
       .modal-project-content {
         padding: 2rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: 0.4s;
+      }
+      
+      .project-modal.active .modal-project-content {
+        opacity: 1;
+        transform: translateY(0);
       }
       
       .modal-section {
         margin-bottom: 2rem;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: calc(0.5s + var(--section-index, 0) * 0.1s);
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      
+      .project-modal.active .modal-section {
+        opacity: 1;
+        transform: translateY(0);
       }
       
       .modal-section h3 {
         margin-bottom: 1rem;
         color: var(--primary);
+        position: relative;
+        display: inline-block;
+      }
+      
+      .modal-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-gradient);
+        transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: calc(0.7s + var(--section-index, 0) * 0.1s);
+      }
+      
+      .project-modal.active .modal-section h3::after {
+        width: 40px;
       }
       
       .modal-list {
-        list-style: disc;
+        list-style: none;
         padding-left: 1.5rem;
         margin-bottom: 1rem;
       }
       
       .modal-list li {
         margin-bottom: 0.5rem;
+        position: relative;
+        padding-left: 0.5rem;
+        opacity: 0;
+        transform: translateX(20px);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: calc(0.7s + var(--item-index, 0) * 0.05s);
+      }
+      
+      .project-modal.active .modal-list li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      
+      .modal-list li::before {
+        content: '•';
+        position: absolute;
+        left: -1rem;
+        color: var(--primary);
       }
       
       .modal-tags {
@@ -1692,10 +1810,85 @@ function initProjectModals() {
         border-radius: 2rem;
         font-size: 0.875rem;
         font-weight: 600;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: calc(0.7s + var(--tag-index, 0) * 0.05s);
+      }
+      
+      .project-modal.active .modal-tag {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .modal-gallery {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      
+      .modal-gallery-item {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        aspect-ratio: 16/9;
+        transform: scale(0.9);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition-delay: calc(0.6s + var(--gallery-index, 0) * 0.1s);
+      }
+      
+      .project-modal.active .modal-gallery-item {
+        transform: scale(1);
+        opacity: 1;
+      }
+      
+      .modal-gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      
+      .modal-gallery-item:hover img {
+        transform: scale(1.05);
+      }
+      
+      @media (max-width: 768px) {
+        .modal-header {
+          height: 200px;
+        }
+        
+        .modal-gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .modal-header {
+          height: 180px;
+        }
+        
+        .modal-header-content h2 {
+          font-size: 1.5rem;
+        }
+        
+        .modal-project-content {
+          padding: 1.5rem;
+        }
       }
     `;
     
     document.head.appendChild(style);
+    
+    // Apply animation variables to modal sections
+    setTimeout(() => {
+      const sections = modal.querySelectorAll('.modal-section');
+      sections.forEach((section, index) => {
+        section.style.setProperty('--section-index', index);
+      });
+    }, 10);
     
     // Show modal with animation
     document.body.style.overflow = 'hidden'; // Prevent scrolling
@@ -1705,19 +1898,44 @@ function initProjectModals() {
     if (window.gsap) {
       gsap.fromTo(
         modal.querySelector('.modal-container'),
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+        { y: 60, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.1 }
+      );
+      
+      // Animate close button
+      gsap.fromTo(
+        modal.querySelector('.modal-close'),
+        { scale: 0, rotate: -90, opacity: 0 },
+        { 
+          scale: 1, 
+          rotate: 0, 
+          opacity: 1, 
+          duration: 0.5, 
+          delay: 0.4, 
+          ease: 'back.out(1.7)'
+        }
       );
     } else {
       const container = modal.querySelector('.modal-container');
-      container.style.transform = 'translateY(50px)';
+      const closeBtn = modal.querySelector('.modal-close');
+      
+      container.style.transform = 'translateY(60px)';
       container.style.opacity = '0';
+      
+      closeBtn.style.transform = 'scale(0) rotate(-90deg)';
+      closeBtn.style.opacity = '0';
       
       setTimeout(() => {
         container.style.transform = 'translateY(0)';
         container.style.opacity = '1';
-        container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
-      }, 10);
+        container.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        
+        setTimeout(() => {
+          closeBtn.style.transform = 'scale(1) rotate(0deg)';
+          closeBtn.style.opacity = '1';
+          closeBtn.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease';
+        }, 400);
+      }, 100);
     }
   }
   
@@ -1725,38 +1943,71 @@ function initProjectModals() {
    * Close Project Modal
    */
   function closeProjectModal() {
-    if (!modal) return;
+    if (!modal || !isModalOpen) return;
     
     // Animate modal exit
     if (window.gsap) {
-      gsap.to(modal.querySelector('.modal-container'), {
-        y: 50,
+      // Animate close button out first
+      gsap.to(modal.querySelector('.modal-close'), {
+        scale: 0,
+        rotate: 90,
         opacity: 0,
-        duration: 0.4,
+        duration: 0.3,
+        ease: 'power2.in'
+      });
+      
+      // Animate container out
+      gsap.to(modal.querySelector('.modal-container'), {
+        y: 60,
+        opacity: 0,
+        duration: 0.5,
         ease: 'power2.in',
+        delay: 0.1,
         onComplete: () => {
           modal.classList.remove('active');
           document.body.style.overflow = ''; // Re-enable scrolling
+          isModalOpen = false;
           
           // Remove dynamic styles
           const dynamicStyles = document.getElementById('modal-dynamic-styles');
           if (dynamicStyles) dynamicStyles.remove();
+          
+          // Clear modal content after animation completes
+          setTimeout(() => {
+            modalBody.innerHTML = '';
+          }, 300);
         }
       });
     } else {
       const container = modal.querySelector('.modal-container');
-      container.style.transform = 'translateY(50px)';
-      container.style.opacity = '0';
-      container.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      const closeBtn = modal.querySelector('.modal-close');
       
+      // Animate close button out
+      closeBtn.style.transform = 'scale(0) rotate(90deg)';
+      closeBtn.style.opacity = '0';
+      closeBtn.style.transition = 'transform 0.3s ease, opacity 0.3s ease';
+      
+      // Animate container out
       setTimeout(() => {
-        modal.classList.remove('active');
-        document.body.style.overflow = ''; // Re-enable scrolling
+        container.style.transform = 'translateY(60px)';
+        container.style.opacity = '0';
+        container.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
         
-        // Remove dynamic styles
-        const dynamicStyles = document.getElementById('modal-dynamic-styles');
-        if (dynamicStyles) dynamicStyles.remove();
-      }, 400);
+        setTimeout(() => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
+          isModalOpen = false;
+          
+          // Remove dynamic styles
+          const dynamicStyles = document.getElementById('modal-dynamic-styles');
+          if (dynamicStyles) dynamicStyles.remove();
+          
+          // Clear modal content after animation completes
+          setTimeout(() => {
+            modalBody.innerHTML = '';
+          }, 300);
+        }, 500);
+      }, 100);
     }
   }
 }
@@ -1872,7 +2123,7 @@ function updatePortfolioGrid() {
   
   // Create HTML for portfolio items
   const portfolioHTML = window.projectsData.map(project => `
-    <div class="portfolio-item tilt-element" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
+    <div class="portfolio-item" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
       <div class="portfolio-image">
         <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
       </div>
@@ -1894,9 +2145,26 @@ function updatePortfolioGrid() {
   // Add to DOM
   DOM.portfolioGrid.innerHTML = portfolioHTML;
   
+  // Add animations to portfolio items
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach((item, index) => {
+    item.style.transitionDelay = `${index * 0.05}s`;
+    setTimeout(() => {
+      item.classList.add('loaded');
+    }, 100);
+  });
+  
+  // Add animation to CTA
+  const portfolioCta = document.querySelector('.portfolio-cta');
+  if (portfolioCta) {
+    setTimeout(() => {
+      portfolioCta.classList.add('loaded');
+    }, portfolioItems.length * 50 + 200);
+  }
+  
   // Re-initialize tilt effect
   if (window.VanillaTilt && !config.isTouchDevice) {
-    VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
+    VanillaTilt.init(document.querySelectorAll('.portfolio-item'), {
       max: 8,
       speed: 400,
       glare: true,
@@ -1904,19 +2172,6 @@ function updatePortfolioGrid() {
       scale: 1.03
     });
   }
-  
-  // Add animations to portfolio items
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  portfolioItems.forEach((item, index) => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(30px)';
-    
-    setTimeout(() => {
-      item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-      item.style.opacity = '1';
-      item.style.transform = 'translateY(0)';
-    }, 100 + index * 100);
-  });
 }
 
 /**
