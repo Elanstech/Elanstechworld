@@ -79,8 +79,6 @@ function cacheDOM() {
   // Section elements
   DOM.sections = document.querySelectorAll('section[id]');
   DOM.portfolioGrid = document.getElementById('portfolio-grid');
-  DOM.portfolioCarousel = document.getElementById('portfolio-carousel');
-  DOM.portfolioCarouselWrapper = document.getElementById('portfolio-carousel-wrapper');
   DOM.featuredProjects = document.getElementById('featured-projects');
   
   // Interactive elements
@@ -89,14 +87,6 @@ function cacheDOM() {
   DOM.tiltElements = document.querySelectorAll('.tilt-element');
   DOM.magneticButtons = document.querySelectorAll('.magnetic-button');
   DOM.backToTop = document.querySelector('.back-to-top');
-  
-  // Project modal elements
-  DOM.projectModal = document.getElementById('project-modal');
-  DOM.modalBody = document.querySelector('#project-modal .modal-body');
-  DOM.modalPreview = document.getElementById('modal-preview');
-  DOM.modalClose = document.querySelector('#project-modal .modal-close');
-  DOM.modalBackdrop = document.querySelector('#project-modal .modal-backdrop');
-  DOM.portfolioCta = document.querySelector('.portfolio-cta');
   
   // Forms
   DOM.contactForm = document.getElementById('contact-form');
@@ -114,6 +104,7 @@ function cacheDOM() {
   // Interactive elements
   DOM.faqItems = document.querySelectorAll('.faq-item');
   DOM.caseStudyModal = document.getElementById('case-study-modal');
+  DOM.projectModal = document.getElementById('project-modal');
 }
 
 /*======================================
@@ -1446,27 +1437,14 @@ function initProcessTimeline() {
   11. PORTFOLIO AND PROJECTS
 ======================================*/
 
-/*======================================
-  11. PORTFOLIO AND PROJECTS
-======================================*/
-
-// Global portfolio variables
-let currentFilter = 'all';
-let isModalOpen = false;
-let isFiltering = false;
-let portfolioCarouselInstance = null;
-let lastClickedItem = null;
-
 /**
  * Portfolio Filter Functionality
  */
 function initPortfolioFilter() {
-  if (!DOM.filterButtons || !DOM.filterButtons.length) return;
+  if (!DOM.filterButtons.length) return;
   
   DOM.filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      if (isFiltering) return; // Prevent multiple clicks during animation
-      
       // Update active button
       DOM.filterButtons.forEach(btn => {
         btn.classList.remove('active');
@@ -1476,247 +1454,79 @@ function initPortfolioFilter() {
       // Get filter value
       const filterValue = button.getAttribute('data-filter');
       
-      // Skip if already on this filter
-      if (filterValue === currentFilter) return;
-      
-      // Update current filter
-      currentFilter = filterValue;
+      // Get all portfolio items
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
       
       // Apply filtering with animation
-      filterPortfolioItems(filterValue);
-    });
-  });
-}
-
-/**
- * Filter Portfolio Items with Animation
- */
-function filterPortfolioItems(filterValue) {
-  const portfolioItems = document.querySelectorAll('.portfolio-grid .portfolio-item');
-  if (!portfolioItems.length) return;
-  
-  isFiltering = true;
-  
-  // First, animate out all items
-  let animatedOutCount = 0;
-  const totalItems = portfolioItems.length;
-  
-  portfolioItems.forEach(item => {
-    // Mark items to be hidden later
-    const categories = item.getAttribute('data-category');
-    const shouldShow = filterValue === 'all' || categories.includes(filterValue);
-    
-    if (!shouldShow) {
-      item.classList.add('to-hide');
-    }
-    
-    // Animate out all items
-    item.classList.add('animate-out');
-    
-    // When animation completes
-    item.addEventListener('transitionend', function handler() {
-      item.removeEventListener('transitionend', handler);
-      animatedOutCount++;
-      
-      // When all items have animated out
-      if (animatedOutCount === totalItems) {
-        // Show/hide items based on filter
-        portfolioItems.forEach(innerItem => {
-          const innerCategories = innerItem.getAttribute('data-category');
-          const innerShouldShow = filterValue === 'all' || innerCategories.includes(filterValue);
-          
-          if (innerShouldShow) {
-            innerItem.classList.remove('hidden');
-            setTimeout(() => {
-              innerItem.classList.remove('animate-out');
-            }, 50);
+      portfolioItems.forEach(item => {
+        const categories = item.getAttribute('data-category');
+        
+        if (filterValue === 'all' || categories.includes(filterValue)) {
+          // Show item with animation
+          if (window.gsap) {
+            gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+              item.classList.remove('hidden');
+              gsap.to(item, { opacity: 1, y: 0, duration: 0.5, delay: 0.1 });
+            }});
           } else {
-            innerItem.classList.add('hidden');
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.classList.remove('hidden');
+            
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+              item.style.transition = 'opacity 0.5s, transform 0.5s';
+            }, 10);
           }
-        });
-        
-        // Clear the to-hide class
-        document.querySelectorAll('.to-hide').forEach(el => {
-          el.classList.remove('to-hide');
-        });
-        
-        isFiltering = false;
-      }
-    }, { once: true });
-  });
-  
-  // Filter carousel items if carousel exists
-  if (portfolioCarouselInstance) {
-    // Remove all slides
-    portfolioCarouselInstance.removeAllSlides();
-    
-    // Add filtered slides
-    window.projectsData.forEach(project => {
-      if (filterValue === 'all' || project.categories.includes(filterValue)) {
-        const slideHtml = `
-          <div class="swiper-slide">
-            <div class="portfolio-item" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
-              <div class="portfolio-image">
-                <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
-              </div>
-              <div class="portfolio-overlay">
-                <div class="portfolio-content">
-                  <div class="portfolio-tags">
-                    ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
-                  </div>
-                  <h3 class="portfolio-title">${project.title}</h3>
-                  <a href="#" class="portfolio-link" data-project-id="${project.id}">
-                    <span>View Details</span>
-                    <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-        
-        portfolioCarouselInstance.appendSlide(slideHtml);
-      }
-    });
-    
-    // Update carousel
-    portfolioCarouselInstance.update();
-    
-    // Animate new slides
-    animateCarouselItems();
-  }
-}
-
-/**
- * Initialize Mobile Portfolio Carousel
- */
-function initPortfolioCarousel() {
-  if (!DOM.portfolioCarousel) return;
-  
-  // Initialize carousel only if Swiper is available
-  if (typeof Swiper !== 'undefined') {
-    // Initialize the carousel
-    portfolioCarouselInstance = new Swiper('#portfolio-carousel', {
-      slidesPerView: 1.2,
-      spaceBetween: 15,
-      grabCursor: true,
-      centeredSlides: true,
-      initialSlide: 0,
-      loop: false,
-      watchOverflow: true,
-      pagination: {
-        el: '.portfolio-carousel-pagination',
-        clickable: true,
-        dynamicBullets: true,
-      },
-      navigation: {
-        nextEl: '.portfolio-carousel-next',
-        prevEl: '.portfolio-carousel-prev',
-      },
-      breakpoints: {
-        480: {
-          slidesPerView: 1.5,
-          spaceBetween: 20,
-        },
-        640: {
-          slidesPerView: 2.2,
-          spaceBetween: 20,
+        } else {
+          // Hide item with animation
+          if (window.gsap) {
+            gsap.to(item, { opacity: 0, y: 20, duration: 0.3, onComplete: () => {
+              item.classList.add('hidden');
+            }});
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.3s, transform 0.3s';
+            
+            setTimeout(() => {
+              item.classList.add('hidden');
+            }, 300);
+          }
         }
-      },
-      on: {
-        init: function() {
-          // Add animation to carousel items
-          animateCarouselItems();
-        }
-      }
-    });
-  } else {
-    // Load Swiper dynamically if not available
-    loadCSS('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css', () => {
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js', () => {
-        // Initialize the carousel after Swiper is loaded
-        initPortfolioCarousel();
       });
     });
-  }
-}
-
-/**
- * Animate Carousel Items
- */
-function animateCarouselItems() {
-  const items = document.querySelectorAll('#portfolio-carousel .swiper-slide');
-  
-  items.forEach((item, index) => {
-    // Set initial state
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    
-    // Animate in with staggered delay
-    setTimeout(() => {
-      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      item.style.opacity = '1';
-      item.style.transform = 'translateY(0)';
-    }, 100 + (index * 100));
   });
 }
 
 /**
- * Update Portfolio Layout based on screen size
- */
-function updatePortfolioLayout() {
-  const isMobile = window.innerWidth < 768;
-  if (!DOM.portfolioGrid || !DOM.portfolioCarousel) return;
-  
-  // Toggle visibility based on screen size
-  if (isMobile) {
-    DOM.portfolioGrid.style.display = 'none';
-    DOM.portfolioCarousel.style.display = 'block';
-    
-    // Update carousel if it exists
-    if (portfolioCarouselInstance) {
-      portfolioCarouselInstance.update();
-    }
-  } else {
-    DOM.portfolioGrid.style.display = 'grid';
-    DOM.portfolioCarousel.style.display = 'none';
-  }
-}
-
-/**
- * Project Modals with Morphing Animation
+ * Project Modals
  */
 function initProjectModals() {
-  if (!DOM.projectModal) return;
+  const modal = document.getElementById('project-modal');
+  const closeBtn = modal?.querySelector('.modal-close');
+  const backdrop = modal?.querySelector('.modal-backdrop');
+  const modalBody = modal?.querySelector('.modal-body');
   
-  const modal = DOM.projectModal;
-  const closeBtn = DOM.modalClose;
-  const backdrop = DOM.modalBackdrop;
-  const modalBody = DOM.modalBody;
-  const modalPreview = DOM.modalPreview;
+  if (!modal) return;
   
-  if (!modal || !modalPreview) return;
-  
-  // Add click events to portfolio items
+  // Add click events to portfolio links
   document.addEventListener('click', (e) => {
-    // Target can be the portfolio item, the image, or the link
     const portfolioLink = e.target.closest('.portfolio-link');
     const portfolioItem = e.target.closest('.portfolio-item');
     const featuredProject = e.target.closest('.featured-project');
     
-    if (((portfolioLink || (portfolioItem && !e.target.closest('.portfolio-link'))) || featuredProject) && !isModalOpen) {
+    if (portfolioLink || portfolioItem || featuredProject) {
       e.preventDefault();
-      
-      // Store the clicked item
-      lastClickedItem = portfolioItem || featuredProject;
       
       const projectId = 
         portfolioLink?.dataset.projectId || 
-        portfolioItem?.dataset.projectId ||
+        portfolioItem?.dataset.projectId || 
         featuredProject?.dataset.projectId;
       
       if (projectId) {
-        openProjectModal(projectId, lastClickedItem);
+        openProjectModal(projectId);
       }
     }
   });
@@ -1737,294 +1547,218 @@ function initProjectModals() {
       closeProjectModal();
     }
   });
-}
-
-/**
- * Open Project Modal with Morphing Animation
- */
-function openProjectModal(projectId, clickedItem) {
-  const modal = DOM.projectModal;
-  const modalBody = DOM.modalBody;
-  const modalPreview = DOM.modalPreview;
   
-  if (!modal || !modalBody || !modalPreview || isModalOpen) return;
-  
-  isModalOpen = true;
-  
-  // Find the project data
-  const project = window.projectsData.find(p => p.id === projectId);
-  if (!project) return;
-  
-  // Get clicked item dimensions and position
-  const itemRect = clickedItem.getBoundingClientRect();
-  const itemImage = clickedItem.querySelector('img').src;
-  
-  // Create modal content
-  const modalContent = `
-    <div class="modal-project">
-      <div class="modal-header" style="background-image: url('${project.mainImage}')">
-        <div class="modal-header-overlay"></div>
-        <div class="modal-header-content">
-          <h2>${project.title}</h2>
-          <p>${project.modalContent?.subtitle || project.description}</p>
-        </div>
-      </div>
-      <div class="modal-project-content">
-        <div class="modal-project-details">
-          ${project.modalContent?.detailedDescription ? `
-            <div class="modal-section" style="--section-index: 0;">
-              <h3>Project Overview</h3>
-              <p>${project.modalContent.detailedDescription}</p>
-            </div>
-          ` : ''}
-          
-          ${project.features ? `
-            <div class="modal-section" style="--section-index: 1;">
-              <h3>Key Features</h3>
-              <ul class="modal-list">
-                ${project.features.map((feature, index) => `<li style="--item-index: ${index}">${feature}</li>`).join('')}
-              </ul>
-            </div>
-          ` : ''}
-          
-          ${project.modalContent?.projectDetails ? `
-            <div class="modal-section" style="--section-index: 2;">
-              <h3>Project Details</h3>
-              <ul class="modal-list">
-                ${project.modalContent.projectDetails.map((detail, index) => `<li style="--item-index: ${index}">${detail}</li>`).join('')}
-              </ul>
-            </div>
-          ` : ''}
-          
-          ${project.modalContent?.technologies ? `
-            <div class="modal-section" style="--section-index: 3;">
-              <h3>Technologies Used</h3>
-              <div class="modal-tags">
-                ${project.modalContent.technologies.map((tech, index) => `<span class="modal-tag" style="--tag-index: ${index}">${tech}</span>`).join('')}
-              </div>
-            </div>
-          ` : ''}
-          
-          ${project.modalContent?.results ? `
-            <div class="modal-section" style="--section-index: 4;">
-              <h3>Results</h3>
-              <p>${project.modalContent.results}</p>
-            </div>
-          ` : ''}
-          
-          ${project.modalContent?.galleryImages && project.modalContent.galleryImages.length > 0 ? `
-            <div class="modal-section" style="--section-index: 5;">
-              <h3>Gallery</h3>
-              <div class="modal-gallery">
-                ${project.modalContent.galleryImages.map((img, index) => `
-                  <div class="modal-gallery-item" style="--gallery-index: ${index}">
-                    <img src="${img}" alt="${project.title} image">
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
-          
-          ${project.website ? `
-            <div class="modal-section" style="--section-index: 6;">
-              <a href="${project.website}" class="btn-primary" target="_blank" rel="noopener noreferrer">
-                <span>Visit Website</span>
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          ` : ''}
-        </div>
-      </div>
-    </div>
-  `;
-  
-  // Setup the preview element for morphing
-  modalPreview.style.width = `${itemRect.width}px`;
-  modalPreview.style.height = `${itemRect.height}px`;
-  modalPreview.style.top = `${itemRect.top}px`;
-  modalPreview.style.left = `${itemRect.left}px`;
-  modalPreview.style.borderRadius = 'var(--radius-lg)';
-  
-  // Set the preview image
-  const previewImage = modalPreview.querySelector('.preview-image');
-  previewImage.style.backgroundImage = `url('${itemImage}')`;
-  
-  // Show the preview (invisible at first)
-  modalPreview.style.opacity = '0';
-  modalPreview.classList.add('active');
-  
-  // Fade in preview
-  setTimeout(() => {
-    modalPreview.style.opacity = '1';
-    modalPreview.style.transition = 'opacity 0.3s ease';
+  /**
+   * Open Project Modal
+   */
+  function openProjectModal(projectId) {
+    if (!modal || !modalBody) return;
     
-    // Morph the preview to fill the screen
-    setTimeout(() => {
-      // Use GSAP if available for smoother animation
-      if (window.gsap) {
-        gsap.to(modalPreview, {
-          width: window.innerWidth,
-          height: window.innerHeight,
-          top: 0,
-          left: 0,
-          borderRadius: 0,
-          duration: 0.6,
-          ease: "power3.inOut",
-          onComplete: () => {
-            // Show the actual modal after the morphing effect
-            modal.classList.add('active');
+    // Find the project data
+    const project = window.projectsData.find(p => p.id === projectId);
+    if (!project) return;
+    
+    // Create modal content
+    const modalContent = `
+      <div class="modal-project">
+        <div class="modal-header" style="background-image: url('${project.mainImage}')">
+          <div class="modal-header-overlay"></div>
+          <div class="modal-header-content">
+            <h2>${project.title}</h2>
+            <p>${project.modalContent?.subtitle || project.description}</p>
+          </div>
+        </div>
+        <div class="modal-project-content">
+          <div class="modal-project-details">
+            ${project.modalContent?.detailedDescription ? `
+              <div class="modal-section">
+                <h3>Project Overview</h3>
+                <p>${project.modalContent.detailedDescription}</p>
+              </div>
+            ` : ''}
             
-            // Add content to modal
-            modalBody.innerHTML = modalContent;
+            ${project.modalContent?.projectDetails ? `
+              <div class="modal-section">
+                <h3>Project Details</h3>
+                <ul class="modal-list">
+                  ${project.modalContent.projectDetails.map(detail => `<li>${detail}</li>`).join('')}
+                </ul>
+              </div>
+            ` : ''}
             
-            // Hide the preview after a brief delay
-            setTimeout(() => {
-              modalPreview.classList.remove('active');
-              modalPreview.style.opacity = '0';
-              modalPreview.style.width = '0';
-              modalPreview.style.height = '0';
-            }, 300);
-          }
-        });
-      } else {
-        // Fallback animation without GSAP
-        modalPreview.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        modalPreview.style.width = `${window.innerWidth}px`;
-        modalPreview.style.height = `${window.innerHeight}px`;
-        modalPreview.style.top = '0';
-        modalPreview.style.left = '0';
-        modalPreview.style.borderRadius = '0';
-        
-        // Show the actual modal after the morphing effect
-        setTimeout(() => {
-          modal.classList.add('active');
-          
-          // Add content to modal
-          modalBody.innerHTML = modalContent;
-          
-          // Hide the preview after a brief delay
-          setTimeout(() => {
-            modalPreview.classList.remove('active');
-            modalPreview.style.opacity = '0';
-            modalPreview.style.width = '0';
-            modalPreview.style.height = '0';
-          }, 300);
-        }, 600);
+            ${project.modalContent?.technologies ? `
+              <div class="modal-section">
+                <h3>Technologies Used</h3>
+                <div class="modal-tags">
+                  ${project.modalContent.technologies.map(tech => `<span class="modal-tag">${tech}</span>`).join('')}
+                </div>
+              </div>
+            ` : ''}
+            
+            ${project.modalContent?.results ? `
+              <div class="modal-section">
+                <h3>Results</h3>
+                <p>${project.modalContent.results}</p>
+              </div>
+            ` : ''}
+            
+            ${project.website ? `
+              <div class="modal-section">
+                <a href="${project.website}" class="btn-primary" target="_blank" rel="noopener noreferrer">
+                  <span>Visit Website</span>
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Add content to modal
+    modalBody.innerHTML = modalContent;
+    
+    // Add modal styles
+    const style = document.createElement('style');
+    style.id = 'modal-dynamic-styles';
+    style.textContent = `
+      .modal-project {
+        overflow: hidden;
       }
-    }, 300);
-  }, 10);
-  
-  // Prevent scroll during modal open
-  document.body.style.overflow = 'hidden';
-}
-
-/**
- * Close Project Modal with Reverse Morphing Animation
- */
-function closeProjectModal() {
-  const modal = DOM.projectModal;
-  const modalBody = DOM.modalBody;
-  const modalPreview = DOM.modalPreview;
-  
-  if (!modal || !isModalOpen || !lastClickedItem) {
-    // Simple close if no last clicked item
-    if (modal) modal.classList.remove('active');
-    document.body.style.overflow = '';
-    isModalOpen = false;
-    return;
+      
+      .modal-header {
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+      }
+      
+      .modal-header-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+      }
+      
+      .modal-header-content {
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        color: #fff;
+      }
+      
+      .modal-header-content h2 {
+        color: #fff;
+        margin-bottom: 0.5rem;
+      }
+      
+      .modal-project-content {
+        padding: 2rem;
+      }
+      
+      .modal-section {
+        margin-bottom: 2rem;
+      }
+      
+      .modal-section h3 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+      
+      .modal-list {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .modal-list li {
+        margin-bottom: 0.5rem;
+      }
+      
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      
+      .modal-tag {
+        background: var(--light);
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+    `;
+    
+    document.head.appendChild(style);
+    
+    // Show modal with animation
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+    modal.classList.add('active');
+    
+    // Animate modal entrance
+    if (window.gsap) {
+      gsap.fromTo(
+        modal.querySelector('.modal-container'),
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+      );
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      
+      setTimeout(() => {
+        container.style.transform = 'translateY(0)';
+        container.style.opacity = '1';
+        container.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      }, 10);
+    }
   }
   
-  // Get current position of the item that opened the modal
-  const itemRect = lastClickedItem.getBoundingClientRect();
-  
-  // Get the image from the item
-  const itemImage = lastClickedItem.querySelector('img').src;
-  
-  // Set up the preview for reverse morphing
-  modalPreview.style.width = `${window.innerWidth}px`;
-  modalPreview.style.height = `${window.innerHeight}px`;
-  modalPreview.style.top = '0';
-  modalPreview.style.left = '0';
-  modalPreview.style.borderRadius = '0';
-  modalPreview.style.opacity = '0';
-  
-  // Set the preview image
-  const previewImage = modalPreview.querySelector('.preview-image');
-  previewImage.style.backgroundImage = `url('${itemImage}')`;
-  
-  // Hide modal content first
-  modal.classList.remove('active');
-  
-  // Show the preview for reverse animation
-  setTimeout(() => {
-    modalPreview.classList.add('active');
-    modalPreview.style.opacity = '1';
+  /**
+   * Close Project Modal
+   */
+  function closeProjectModal() {
+    if (!modal) return;
     
-    // Animate back to original position
-    setTimeout(() => {
-      // Use GSAP if available for smoother animation
-      if (window.gsap) {
-        gsap.to(modalPreview, {
-          width: itemRect.width,
-          height: itemRect.height,
-          top: itemRect.top,
-          left: itemRect.left,
-          borderRadius: 'var(--radius-lg)',
-          duration: 0.6,
-          ease: "power3.inOut",
-          onComplete: () => {
-            // Fade out preview
-            gsap.to(modalPreview, {
-              opacity: 0,
-              duration: 0.3,
-              onComplete: () => {
-                // Reset preview
-                modalPreview.classList.remove('active');
-                modalPreview.style.width = '0';
-                modalPreview.style.height = '0';
-                
-                // Clear modal content
-                modalBody.innerHTML = '';
-                
-                // Reset state
-                isModalOpen = false;
-              }
-            });
-          }
-        });
-      } else {
-        // Fallback animation without GSAP
-        modalPreview.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-        modalPreview.style.width = `${itemRect.width}px`;
-        modalPreview.style.height = `${itemRect.height}px`;
-        modalPreview.style.top = `${itemRect.top}px`;
-        modalPreview.style.left = `${itemRect.left}px`;
-        modalPreview.style.borderRadius = 'var(--radius-lg)';
-        
-        // Fade out preview after animation
-        setTimeout(() => {
-          modalPreview.style.opacity = '0';
-          modalPreview.style.transition = 'opacity 0.3s ease';
+    // Animate modal exit
+    if (window.gsap) {
+      gsap.to(modal.querySelector('.modal-container'), {
+        y: 50,
+        opacity: 0,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.remove('active');
+          document.body.style.overflow = ''; // Re-enable scrolling
           
-          // Reset preview
-          setTimeout(() => {
-            modalPreview.classList.remove('active');
-            modalPreview.style.width = '0';
-            modalPreview.style.height = '0';
-            
-            // Clear modal content
-            modalBody.innerHTML = '';
-            
-            // Reset state
-            isModalOpen = false;
-          }, 300);
-        }, 600);
-      }
-    }, 50);
-  }, 300);
-  
-  // Re-enable scrolling
-  document.body.style.overflow = '';
+          // Remove dynamic styles
+          const dynamicStyles = document.getElementById('modal-dynamic-styles');
+          if (dynamicStyles) dynamicStyles.remove();
+        }
+      });
+    } else {
+      const container = modal.querySelector('.modal-container');
+      container.style.transform = 'translateY(50px)';
+      container.style.opacity = '0';
+      container.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      
+      setTimeout(() => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Re-enable scrolling
+        
+        // Remove dynamic styles
+        const dynamicStyles = document.getElementById('modal-dynamic-styles');
+        if (dynamicStyles) dynamicStyles.remove();
+      }, 400);
+    }
+  }
 }
 
 /**
@@ -2041,10 +1775,7 @@ function loadProjectsData() {
     })
     .then(data => {
       window.projectsData = data.projects;
-      
-      // Update all portfolio components with the data
       updatePortfolioGrid();
-      updatePortfolioCarousel();
       updateFeaturedProjects();
     })
     .catch(error => {
@@ -2060,15 +1791,7 @@ function loadProjectsData() {
           tags: ["Web Development", "POS System", "Booking Solution"],
           modalContent: {
             subtitle: "Complete business technology solution for a beauty clinic.",
-            detailedDescription: "Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience.",
-            technologies: ["WordPress", "WooCommerce", "Square POS", "Custom Booking System"],
-            projectDetails: [
-              "Custom website design and development",
-              "Integrated appointment booking system",
-              "Square POS implementation and setup",
-              "Staff training and support"
-            ],
-            results: "The solution increased online bookings by 40% and improved overall customer satisfaction."
+            detailedDescription: "Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience."
           }
         },
         {
@@ -2080,15 +1803,7 @@ function loadProjectsData() {
           tags: ["Web Development", "Office Setup", "Business Materials"],
           modalContent: {
             subtitle: "Technology solution for a real estate firm.",
-            detailedDescription: "East Coast Realty needed a modern digital presence and comprehensive office technology setup.",
-            technologies: ["WordPress", "MLS Integration", "Office 365", "Network Infrastructure"],
-            projectDetails: [
-              "Responsive website with MLS integration",
-              "Complete office technology setup",
-              "Network security implementation",
-              "Staff technology training"
-            ],
-            results: "The implementation significantly improved efficiency and provided a secure, modern platform for growth."
+            detailedDescription: "East Coast Realty needed a modern digital presence and comprehensive office technology setup."
           }
         },
         {
@@ -2100,15 +1815,7 @@ function loadProjectsData() {
           tags: ["Web Development", "Secure Portal", "Office Technology"],
           modalContent: {
             subtitle: "Secure technology solution for tax and accounting services.",
-            detailedDescription: "Cohen & Associates required a secure and professional technology infrastructure for their accounting firm.",
-            technologies: ["Custom Website", "Secure Client Portal", "Document Management", "Office Network"],
-            projectDetails: [
-              "Secure client portal for document exchange",
-              "Office technology infrastructure",
-              "Document management system",
-              "Secure backup solutions"
-            ],
-            results: "The solution improved client communication and ensured regulatory compliance with enhanced security."
+            detailedDescription: "Cohen & Associates required a secure and professional technology infrastructure for their accounting firm."
           }
         },
         {
@@ -2120,15 +1827,7 @@ function loadProjectsData() {
           tags: ["Web Development", "Apple Product Setup", "HIPAA Compliance"],
           modalContent: {
             subtitle: "HIPAA-compliant technology solution for a psychology practice.",
-            detailedDescription: "Doug Uhlig Psychological Services needed a HIPAA-compliant technology solution for their practice.",
-            technologies: ["WordPress", "HIPAA Compliance", "Apple Ecosystem", "Patient Portal"],
-            projectDetails: [
-              "HIPAA-compliant website and systems",
-              "Patient appointment scheduling",
-              "Apple device ecosystem setup",
-              "Secure patient records management"
-            ],
-            results: "The practice achieved full HIPAA compliance while improving patient engagement through technology."
+            detailedDescription: "Doug Uhlig Psychological Services needed a HIPAA-compliant technology solution for their practice."
           }
         },
         {
@@ -2140,15 +1839,7 @@ function loadProjectsData() {
           tags: ["Web Development", "POS System", "Business Materials"],
           modalContent: {
             subtitle: "Comprehensive technology solution for an ice cream shop.",
-            detailedDescription: "S-Cream required a complete technology ecosystem for their new ice cream shop.",
-            technologies: ["E-commerce Website", "Square POS", "Inventory Management", "Marketing Materials"],
-            projectDetails: [
-              "E-commerce website with online ordering",
-              "POS system implementation",
-              "Inventory management setup",
-              "Digital and print marketing materials"
-            ],
-            results: "The comprehensive solution helped launch a successful business with efficient operations from day one."
+            detailedDescription: "S-Cream required a complete technology ecosystem for their new ice cream shop."
           }
         },
         {
@@ -2160,28 +1851,18 @@ function loadProjectsData() {
           tags: ["Web Portal", "Property Management System", "Network Setup"],
           modalContent: {
             subtitle: "Property management technology solution.",
-            detailedDescription: "Century One Management Services needed a comprehensive property management technology solution.",
-            technologies: ["Custom Portal", "Property Management Software", "Payment Processing", "Document Management"],
-            projectDetails: [
-              "Custom property management portal",
-              "Tenant and owner access system",
-              "Payment processing integration",
-              "Maintenance request tracking"
-            ],
-            results: "The solution streamlined operations, reduced administrative overhead, and improved tenant satisfaction."
+            detailedDescription: "Century One Management Services needed a comprehensive property management technology solution."
           }
         }
       ];
       
-      // Update all portfolio components with the fallback data
       updatePortfolioGrid();
-      updatePortfolioCarousel();
       updateFeaturedProjects();
     });
 }
 
 /**
- * Update Portfolio Grid with project data and animations
+ * Update Portfolio Grid with project data
  */
 function updatePortfolioGrid() {
   if (!DOM.portfolioGrid || !window.projectsData) return;
@@ -2191,7 +1872,7 @@ function updatePortfolioGrid() {
   
   // Create HTML for portfolio items
   const portfolioHTML = window.projectsData.map(project => `
-    <div class="portfolio-item" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
+    <div class="portfolio-item tilt-element" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
       <div class="portfolio-image">
         <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
       </div>
@@ -2213,49 +1894,9 @@ function updatePortfolioGrid() {
   // Add to DOM
   DOM.portfolioGrid.innerHTML = portfolioHTML;
   
-  // Add animations to portfolio items
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-  
-  // Create intersection observer for staggered loading animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        // Set staggered delay based on index
-        setTimeout(() => {
-          entry.target.classList.add('loaded');
-        }, index * 100);
-        
-        // Unobserve after animation
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -10% 0px'
-  });
-  
-  // Observe each item
-  portfolioItems.forEach(item => {
-    observer.observe(item);
-  });
-  
-  // Add animation to CTA
-  if (DOM.portfolioCta) {
-    const ctaObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          DOM.portfolioCta.classList.add('loaded');
-          ctaObserver.unobserve(DOM.portfolioCta);
-        }
-      });
-    }, { threshold: 0.2 });
-    
-    ctaObserver.observe(DOM.portfolioCta);
-  }
-  
   // Re-initialize tilt effect
   if (window.VanillaTilt && !config.isTouchDevice) {
-    VanillaTilt.init(document.querySelectorAll('.portfolio-item'), {
+    VanillaTilt.init(document.querySelectorAll('.portfolio-item.tilt-element'), {
       max: 8,
       speed: 400,
       glare: true,
@@ -2263,47 +1904,19 @@ function updatePortfolioGrid() {
       scale: 1.03
     });
   }
-}
-
-/**
- * Update Portfolio Carousel with project data
- */
-function updatePortfolioCarousel() {
-  if (!DOM.portfolioCarouselWrapper || !window.projectsData) return;
   
-  // Create HTML for carousel items
-  const carouselHTML = window.projectsData.map(project => `
-    <div class="swiper-slide">
-      <div class="portfolio-item" data-category="${project.categories.join(' ')}" data-project-id="${project.id}">
-        <div class="portfolio-image">
-          <img loading="lazy" src="${project.mainImage}" alt="${project.title}">
-        </div>
-        <div class="portfolio-overlay">
-          <div class="portfolio-content">
-            <div class="portfolio-tags">
-              ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
-            </div>
-            <h3 class="portfolio-title">${project.title}</h3>
-            <a href="#" class="portfolio-link" data-project-id="${project.id}">
-              <span>View Details</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  `).join('');
-  
-  // Add to DOM
-  DOM.portfolioCarouselWrapper.innerHTML = carouselHTML;
-  
-  // Update the carousel if it's already initialized
-  if (portfolioCarouselInstance) {
-    portfolioCarouselInstance.update();
-  }
-  
-  // Update layout for current screen size
-  updatePortfolioLayout();
+  // Add animations to portfolio items
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(30px)';
+    
+    setTimeout(() => {
+      item.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      item.style.opacity = '1';
+      item.style.transform = 'translateY(0)';
+    }, 100 + index * 100);
+  });
 }
 
 /**
@@ -2340,32 +1953,6 @@ function updateFeaturedProjects() {
     });
   }
 }
-
-// Initialize portfolio functionality
-function initPortfolio() {
-  // Update portfolio layout based on screen size
-  updatePortfolioLayout();
-  
-  // Initialize portfolio filter
-  initPortfolioFilter();
-  
-  // Initialize project modals
-  initProjectModals();
-  
-  // Initialize portfolio carousel
-  initPortfolioCarousel();
-  
-  // Load projects data
-  loadProjectsData();
-  
-  // Handle window resize
-  window.addEventListener('resize', helpers.debounce(() => {
-    updatePortfolioLayout();
-  }, 250));
-}
-
-// Make closeProjectModal globally accessible for CTA buttons
-window.closeProjectModal = closeProjectModal;
 
 /*======================================
   12. CASE STUDIES SECTION
