@@ -979,12 +979,12 @@ section {
   9. HERO SECTION
 ======================================*/
 .hero-section {
-  padding-top: 160px
+  padding-top: 160px;
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 8rem 0 3rem;
+  padding: 8rem 0 6rem;
   overflow: hidden;
 }
 
@@ -1160,7 +1160,8 @@ section {
 }
 
 .hero-featured {
-  margin-top: var(--space-lg);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
   transform: translateY(30px);
   opacity: 0;
   animation: fadeInUp 0.6s 0.8s ease forwards;
@@ -1269,7 +1270,7 @@ section {
 
 .hero-scroll {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1279,33 +1280,77 @@ section {
   z-index: var(--z-10);
   opacity: 0;
   animation: fadeIn 0.6s 1s ease forwards;
+  width: auto;
 }
 
 .scroll-text {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: var(--space-xs);
-  opacity: 0.7;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 60px;
-  background: var(--white);
+  margin-bottom: var(--space-sm);
+  opacity: 0.8;
+  font-weight: 500;
   position: relative;
-  opacity: 0.3;
+  padding: 0.5rem 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  background: var(--primary);
-  animation: scrollLine 1.5s ease infinite;
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.scroll-chevron {
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 0 3px 3px 0;
+  border-color: var(--primary);
+  transform: rotate(45deg);
+  margin-bottom: -12px;
+  opacity: 0;
+  animation: fadeInDown 2s infinite;
+}
+
+.scroll-chevron:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.scroll-chevron:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .hero-scroll {
+    bottom: 2rem;
+  }
+  
+  .scroll-text {
+    font-size: 0.75rem;
+    padding: 0.4rem 1rem;
+  }
 }
 
 /* Hero Animations */
@@ -1332,21 +1377,6 @@ section {
 @keyframes typedCursorBlink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-@keyframes scrollLine {
-  0% {
-    top: 0;
-    height: 30%;
-  }
-  50% {
-    top: 70%;
-    height: 30%;
-  }
-  100% {
-    top: 0;
-    height: 30%;
-  }
 }
 
 @keyframes pulseBlob {
