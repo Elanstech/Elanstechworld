@@ -733,7 +733,7 @@
             </div>
         </section>
         
-      <!-- Portfolio Section -->
+<!-- Portfolio Section -->
 <section id="work" class="portfolio-section">
     <div class="portfolio-shapes">
         <div class="portfolio-shape shape-1"></div>
@@ -746,6 +746,7 @@
             <p class="section-description">Explore how we've transformed businesses with innovative technology solutions</p>
         </div>
         
+        <!-- Portfolio Filter Tabs -->
         <div class="portfolio-filter" id="portfolio-filter">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="web">Web Development</button>
@@ -755,6 +756,22 @@
             <button class="filter-btn" data-filter="apple">Apple Services</button>
         </div>
         
+        <!-- Mobile Carousel (Only visible on mobile) -->
+        <div class="portfolio-carousel swiper" id="portfolio-carousel">
+            <div class="swiper-wrapper" id="portfolio-carousel-wrapper">
+                <!-- Portfolio items will be dynamically loaded from JavaScript -->
+            </div>
+            <!-- Carousel Navigation -->
+            <div class="portfolio-carousel-pagination"></div>
+            <div class="portfolio-carousel-prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="portfolio-carousel-next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        
+        <!-- Desktop Masonry Grid (Hidden on mobile) -->
         <div class="portfolio-grid" id="portfolio-grid">
             <!-- Portfolio items will be dynamically loaded from JavaScript -->
         </div>
@@ -772,7 +789,7 @@
     </div>
 </section>
 
-<!-- Project Modal -->
+<!-- Project Modal with Morphing Animation -->
 <div class="project-modal" id="project-modal">
     <div class="modal-backdrop"></div>
     <div class="modal-container">
@@ -784,6 +801,10 @@
                 <!-- Modal content will be dynamically generated -->
             </div>
         </div>
+    </div>
+    <!-- Preview element that creates the morphing effect -->
+    <div class="modal-preview" id="modal-preview">
+        <div class="preview-image"></div>
     </div>
 </div>
 
