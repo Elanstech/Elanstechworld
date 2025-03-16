@@ -2121,10 +2121,26 @@ section {
   background: rgba(0, 194, 122, 0.1);
 }
 
-.service-link i {
-  transition: transform var(--transition-normal);
+/* Fix for service link hover effect */
+.service-link::before,
+.service-link::after {
+  display: none !important;
 }
 
+/* Add proper hover effect */
+.service-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 122, 255, 0.2);
+}
+
+/* Ensure icon transitions properly */
+.service-link i {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Keep existing icon hover effect */
 .service-link:hover i {
   transform: translateX(5px);
 }
