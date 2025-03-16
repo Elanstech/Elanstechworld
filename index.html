@@ -733,125 +733,59 @@
             </div>
         </section>
         
-<!-- Projects Showcase Section with 3D Effects -->
-<section id="work" class="projects-showcase">
-  <div class="projects-particles" id="particles-js"></div>
-  
-  <div class="container">
-    <div class="section-header">
-      <div class="section-sub-title">Our Projects</div>
-      <h2 class="section-title">Featured <span class="text-gradient">Work</span></h2>
-      <p class="section-description">Explore how we've transformed businesses with innovative technology solutions</p>
-    </div>
-    
-    <!-- Project Categories -->
-    <div class="projects-categories">
-      <button class="category-btn active" data-category="all">All</button>
-      <button class="category-btn" data-category="web">Web Development</button>
-      <button class="category-btn" data-category="pos">POS Systems</button>
-      <button class="category-btn" data-category="tech">Office Technology</button>
-      <button class="category-btn" data-category="marketing">Business Materials</button>
-      <button class="category-btn" data-category="apple">Apple Services</button>
-    </div>
-    
-    <!-- 3D Projects Grid -->
-    <div class="projects-grid">
-      <!-- Projects will be loaded dynamically -->
-    </div>
-    
-    <!-- CTA Button -->
-    <div class="projects-cta">
-      <a href="#contact" class="btn-primary">
-        <span>Start Your Project</span>
-        <div class="btn-glow"></div>
-      </a>
-    </div>
-  </div>
-</section>
+<!-- Portfolio Section -->
+        <section id="work" class="portfolio-section">
+            <div class="portfolio-shapes">
+                <div class="portfolio-shape shape-1"></div>
+                <div class="portfolio-shape shape-2"></div>
+            </div>
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-sub-title">Our Projects</div>
+                    <h2 class="section-title">Featured <span class="text-gradient">Work</span></h2>
+                    <p class="section-description">Explore how we've transformed businesses with innovative technology solutions</p>
+                </div>
+                
+                <div class="portfolio-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Development</button>
+                    <button class="filter-btn" data-filter="pos">POS Systems</button>
+                    <button class="filter-btn" data-filter="tech">Office Technology</button>
+                    <button class="filter-btn" data-filter="marketing">Business Materials</button>
+                    <button class="filter-btn" data-filter="apple">Apple Services</button>
+                </div>
+                
+                <div class="portfolio-grid" id="portfolio-grid">
+                    <!-- Projects will be loaded from projects.json -->
+                </div>
+                
+                <div class="portfolio-cta">
+                    <a href="#contact" class="btn-primary magnetic-button">
+                        <span>Start Your Project</span>
+                        <div class="btn-bubbles">
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-<!-- Project Details Modal -->
-<div class="project-details-modal">
-  <div class="modal-backdrop"></div>
-  <div class="modal-wrapper">
-    <div class="modal-container">
-      <button class="modal-close">
-        <span></span>
-        <span></span>
-      </button>
-      <div class="modal-content">
-        <!-- Content loaded dynamically -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Project Template (Hidden) -->
-<template id="project-card-template">
-  <div class="project-card">
-    <div class="card-inner">
-      <div class="card-front">
-        <div class="project-image">
-          <img src="" alt="">
-          <div class="project-overlay"></div>
+        <!-- Project Modal -->
+        <div class="project-modal" id="project-modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-container">
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="modal-body">
+                        <!-- Modal content will be dynamically generated -->
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="project-info">
-          <h3 class="project-title"></h3>
-          <div class="project-tags"></div>
-        </div>
-      </div>
-      <div class="card-back">
-        <div class="project-details">
-          <h3></h3>
-          <p></p>
-          <div class="project-actions">
-            <button class="view-details-btn">View Details</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<!-- Modal Template (Hidden) -->
-<template id="project-modal-template">
-  <div class="modal-header">
-    <div class="modal-image">
-      <img src="" alt="">
-      <div class="modal-overlay"></div>
-    </div>
-    <div class="modal-title-area">
-      <h2 class="modal-title"></h2>
-      <div class="modal-tags"></div>
-    </div>
-  </div>
-  <div class="modal-body">
-    <div class="modal-section overview-section">
-      <h3>Overview</h3>
-      <p class="modal-description"></p>
-    </div>
-    <div class="modal-section features-section">
-      <h3>Key Features</h3>
-      <ul class="features-list"></ul>
-    </div>
-    <div class="modal-section tech-section">
-      <h3>Technologies</h3>
-      <div class="tech-tags"></div>
-    </div>
-    <div class="modal-section results-section">
-      <h3>Results</h3>
-      <p class="results-text"></p>
-    </div>
-    <div class="modal-actions">
-      <a href="#" class="btn-primary website-link">
-        <span>Visit Website</span>
-        <div class="btn-glow"></div>
-      </a>
-      <a href="#contact" class="btn-secondary contact-link">
-        <span>Get Similar Solution</span>
-      </a>
-    </div>
-  </div>
-</template>
 
         <!-- Packages Section Redesign - Light Modern Style -->
         <section id="packages" class="packages-section">
