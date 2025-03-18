@@ -63,7 +63,7 @@
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <div class="logo-icon">
-                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                     </div>
                     <div class="logo-text">
                         <span class="logo-text-main">Elan's</span>
@@ -73,7 +73,7 @@
                 
                 <nav class="nav">
                     <ul class="nav-list">
-                        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="../pages/about.html" class="nav-link">About Us</a></li>
                         <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
                         <li class="nav-item"><a href="index.html#work" class="nav-link">Work</a></li>
@@ -123,7 +123,7 @@
             </div>
             <nav class="mobile-nav">
                 <ul class="mobile-nav-list">
-                    <li class="mobile-nav-item"><a href="../index.html" class="mobile-nav-link">Home</a></li>
+                    <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link">Home</a></li>
                     <li class="mobile-nav-item"><a href="../pages/about.html" class="mobile-nav-link">About Us</a></li>
                     <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link">Services</a></li>
                     <li class="mobile-nav-item"><a href="index.html#work" class="mobile-nav-link">Work</a></li>
@@ -161,6 +161,7 @@
         <!-- Services Hero Section -->
         <section id="services-hero" class="services-hero">
             <div class="services-hero-background">
+                <div class="services-hero-particles" id="particles-js"></div>
                 <div class="services-hero-overlay"></div>
                 <div class="services-hero-shapes">
                     <div class="services-hero-shape shape-1"></div>
@@ -180,12 +181,17 @@
                         Comprehensive <span class="text-gradient">Technology Solutions</span> for Modern Businesses
                     </h1>
                     
+                    <div class="services-hero-typed-container" data-animation="fade-up">
+                        <span class="typed-prefix">We specialize in </span>
+                        <span id="services-typed"></span>
+                    </div>
+                    
                     <p class="services-hero-subtitle" data-animation="fade-up">
                         From cutting-edge web development to strategic digital marketing, we offer end-to-end technology services to help your business thrive in the digital age.
                     </p>
                     
                     <div class="services-hero-cta" data-animation="fade-up">
-                        <a href="#services-categories" class="btn-primary magnetic-button">
+                        <a href="#featured-services" class="btn-primary magnetic-button">
                             <span>Explore Services</span>
                             <div class="btn-bubbles">
                                 <div class="bubble"></div>
@@ -223,6 +229,16 @@
                                 <i class="fas fa-check-circle"></i>
                             </div>
                             <span>24/7 Support</span>
+                        </div>
+                    </div>
+                    
+                    <div class="services-hero-clients" data-animation="fade-up">
+                        <div class="clients-label">Trusted By:</div>
+                        <div class="clients-logos">
+                            <div class="client-logo"><img src="assets/images/client-1.png" alt="Client Logo"></div>
+                            <div class="client-logo"><img src="assets/images/client-2.png" alt="Client Logo"></div>
+                            <div class="client-logo"><img src="assets/images/client-3.png" alt="Client Logo"></div>
+                            <div class="client-logo"><img src="assets/images/client-4.png" alt="Client Logo"></div>
                         </div>
                     </div>
                 </div>
@@ -314,47 +330,141 @@
             </div>
         </section>
 
-        <!-- Services Categories -->
-        <section id="services-categories" class="services-categories">
-            <div class="category-shapes">
-                <div class="category-shape shape-1"></div>
-                <div class="category-shape shape-2"></div>
+        <!-- Featured Services -->
+        <section id="featured-services" class="featured-services">
+            <div class="featured-services-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
             </div>
             
             <div class="container">
                 <div class="section-header">
-                    <div class="section-sub-title">Browse by Category</div>
-                    <h2 class="section-title">Our Service <span class="text-gradient">Categories</span></h2>
-                    <p class="section-description">Find the perfect service to meet your business needs</p>
+                    <div class="section-sub-title">Our Offerings</div>
+                    <h2 class="section-title">Premium <span class="text-gradient">Services</span> For Your Success</h2>
+                    <p class="section-description">Discover our comprehensive range of technology solutions</p>
                 </div>
                 
-                <div class="categories-tabs">
-                    <button class="category-tab active" data-category="all">
-                        <div class="tab-icon"><i class="fas fa-th-large"></i></div>
-                        <span>All Services</span>
-                    </button>
-                    <button class="category-tab" data-category="web">
-                        <div class="tab-icon"><i class="fas fa-laptop-code"></i></div>
-                        <span>Web Services</span>
-                    </button>
-                    <button class="category-tab" data-category="mobile">
-                        <div class="tab-icon"><i class="fas fa-mobile-alt"></i></div>
-                        <span>Mobile Solutions</span>
-                    </button>
-                    <button class="category-tab" data-category="business">
-                        <div class="tab-icon"><i class="fas fa-store"></i></div>
-                        <span>Business Systems</span>
-                    </button>
-                    <button class="category-tab" data-category="marketing">
-                        <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
-                        <span>Marketing</span>
-                    </button>
+                <div class="services-grid">
+                    <!-- Web Design & Development -->
+                    <div class="service-card">
+                        <div class="service-card-inner">
+                            <div class="service-badge">Most Popular</div>
+                            <div class="service-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="service-title">Web Design & Development</h3>
+                            <p class="service-description">Custom, responsive websites that captivate your audience and drive conversions.</p>
+                            <ul class="service-features">
+                                <li>Custom design tailored to your brand</li>
+                                <li>Responsive across all devices</li>
+                                <li>SEO-friendly structure</li>
+                                <li>Content management system</li>
+                            </ul>
+                            <div class="service-price">Starting at <span>$1,199</span></div>
+                            <a href="#web-development" class="service-btn">Learn More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Mobile App Development -->
+                    <div class="service-card">
+                        <div class="service-card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="service-title">Mobile App Development</h3>
+                            <p class="service-description">Native and cross-platform apps that deliver exceptional user experiences.</p>
+                            <ul class="service-features">
+                                <li>iOS and Android development</li>
+                                <li>User-centered UI/UX design</li>
+                                <li>Backend integration</li>
+                                <li>App store submission assistance</li>
+                            </ul>
+                            <div class="service-price">Starting at <span>$2,499</span></div>
+                            <a href="#mobile-app" class="service-btn">Learn More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- POS System Implementation -->
+                    <div class="service-card">
+                        <div class="service-card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-cash-register"></i>
+                            </div>
+                            <h3 class="service-title">POS System Implementation</h3>
+                            <p class="service-description">Modern point-of-sale solutions that streamline operations and enhance customer experience.</p>
+                            <ul class="service-features">
+                                <li>Hardware & software setup</li>
+                                <li>Inventory management</li>
+                                <li>Staff training</li>
+                                <li>Ongoing technical support</li>
+                            </ul>
+                            <div class="service-price">Starting at <span>$1,899</span></div>
+                            <a href="#pos-system" class="service-btn">Learn More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Digital Marketing -->
+                    <div class="service-card">
+                        <div class="service-card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3 class="service-title">Digital Marketing</h3>
+                            <p class="service-description">Targeted campaigns and strategies that drive traffic, engagement, and conversions.</p>
+                            <ul class="service-features">
+                                <li>Search engine optimization (SEO)</li>
+                                <li>Social media management</li>
+                                <li>Content marketing</li>
+                                <li>Email marketing campaigns</li>
+                            </ul>
+                            <div class="service-price">Starting at <span>$899</span>/month</div>
+                            <a href="#digital-marketing" class="service-btn">Learn More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Google Ads Management -->
+                    <div class="service-card">
+                        <div class="service-card-inner">
+                            <div class="service-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <h3 class="service-title">Google Ads Management</h3>
+                            <p class="service-description">Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business.</p>
+                            <ul class="service-features">
+                                <li>Campaign strategy & setup</li>
+                                <li>Keyword research & targeting</li>
+                                <li>Ad copywriting & design</li>
+                                <li>Performance tracking & reporting</li>
+                            </ul>
+                            <div class="service-price">Starting at <span>$799</span>/month</div>
+                            <a href="#google-ads" class="service-btn">Learn More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Property Management Systems -->
+                    <div class="service-card">
+                        <div class="service-card-inner">
+                            <div class="service-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3 class="service-title">Property Management Systems</h3>
+                            <p class="service-description">Comprehensive solutions to streamline operations and enhance tenant satisfaction.</p>
+                            <ul class="service-features">
+                                <li>Property listing & maintenance tracking</li>
+                                <li>Tenant portal & communication</li>
+                                <li>Rent collection & accounting</li>
+                                <li>Reporting & analytics</li>
+                            </ul>
+                            <div class="service-price">Starting at <span>$2,999</span></div>
+                            <a href="#property-management" class="service-btn">Learn More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Web Design & Development -->
-        <section id="web-development" class="service-detail-section" data-category="web">
+        <section id="web-development" class="service-detail-section">
             <div class="container">
                 <div class="service-detail-container">
                     <div class="service-header">
@@ -606,7 +716,7 @@
         </section>
 
         <!-- Mobile App Development -->
-        <section id="mobile-app" class="service-detail-section" data-category="mobile">
+        <section id="mobile-app" class="service-detail-section">
             <div class="container">
                 <div class="service-detail-container">
                     <div class="service-header">
@@ -858,7 +968,7 @@
         </section>
 
         <!-- POS System Implementation -->
-        <section id="pos-system" class="service-detail-section" data-category="business">
+        <section id="pos-system" class="service-detail-section">
             <div class="container">
                 <div class="service-detail-container">
                     <div class="service-header">
@@ -1137,79 +1247,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Additional Services -->
-        <section id="additional-services" class="additional-services">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-sub-title">More Services</div>
-                    <h2 class="section-title">Explore Our <span class="text-gradient">Other Services</span></h2>
-                    <p class="section-description">Discover our full range of technology solutions to power your business</p>
-                </div>
-                
-                <div class="services-quick-links">
-                    <a href="#digital-marketing" class="quick-link-card tilt-element" data-category="marketing">
-                        <div class="quick-link-icon">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <h3>Digital Marketing</h3>
-                        <p>Targeted campaigns and strategies that drive traffic, engagement, and conversions.</p>
-                        <div class="quick-link-price">From $899/month</div>
-                        <div class="quick-link-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                    
-                    <a href="#google-ads" class="quick-link-card tilt-element" data-category="marketing">
-                        <div class="quick-link-icon">
-                            <i class="fab fa-google"></i>
-                        </div>
-                        <h3>Google Ads Management</h3>
-                        <p>Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business.</p>
-                        <div class="quick-link-price">From $799/month</div>
-                        <div class="quick-link-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                    
-                    <a href="#property-management" class="quick-link-card tilt-element" data-category="business">
-                        <div class="quick-link-icon">
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <h3>Property Management Systems</h3>
-                        <p>Comprehensive solutions to streamline operations and enhance tenant satisfaction.</p>
-                        <div class="quick-link-price">From $2,999</div>
-                        <div class="quick-link-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                    
-                    <a href="#print-design" class="quick-link-card tilt-element" data-category="web">
-                        <div class="quick-link-icon">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <h3>Print & Graphic Design</h3>
-                        <p>Professional print materials and brand assets that elevate your business image.</p>
-                        <div class="quick-link-price">From $799</div>
-                        <div class="quick-link-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                    
-                    <a href="#tech-consulting" class="quick-link-card tilt-element" data-category="business">
-                        <div class="quick-link-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3>Technology Consulting</h3>
-                        <p>Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
-                        <div class="quick-link-price">From $149/hour</div>
-                        <div class="quick-link-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
                 </div>
             </div>
         </section>
@@ -1587,6 +1624,9 @@
     <div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
 
     <!-- Scripts -->  
+    <!-- Particles.js for Hero Section -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <!-- Essential scripts with defer attribute for better page loading performance -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
