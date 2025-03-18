@@ -470,7 +470,7 @@
 /* Mouse Scroll Animation */
 .about-hero-scroll {
   position: absolute;
-  bottom: 3.5rem;
+  bottom: 0.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
