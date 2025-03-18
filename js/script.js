@@ -314,9 +314,16 @@ function initNavigation() {
   // Smooth scrolling for anchor links
   DOM.navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-      
       const targetId = this.getAttribute('href');
+      
+      // Check if this is an external page link (not starting with #)
+      if (!targetId.startsWith('#')) {
+        // This is a link to another page, let the default behavior happen
+        return;
+      }
+      
+      // For same-page section links
+      e.preventDefault();
       const targetElement = document.querySelector(targetId);
       
       if (targetElement) {
@@ -369,16 +376,19 @@ function updateNavigation() {
     }
   }
   
-  // Update active class
+  // Update active class only for links that point to sections (start with #)
   if (currentSection) {
     const sectionId = currentSection.getAttribute('id');
     const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
     
     DOM.navLinks.forEach(link => {
-      link.classList.remove('active');
+      // Only modify classes for same-page links
+      if (link.getAttribute('href').startsWith('#')) {
+        link.classList.remove('active');
+      }
     });
     
-    if (activeLink) {
+    if (activeLink && activeLink.getAttribute('href').startsWith('#')) {
       activeLink.classList.add('active');
     }
   }
@@ -421,9 +431,43 @@ function initMobileMenu() {
     mobileBackdrop.addEventListener('click', closeMobileMenu);
   }
   
-  // Close menu when clicking on mobile navigation links
+  // Handle mobile navigation links
   mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
+    link.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      
+      // Check if this is an external page link (not starting with #)
+      if (!targetId.startsWith('#')) {
+        // This is a link to another page, let the default behavior happen
+        closeMobileMenu();
+        return;
+      }
+      
+      // For same-page section links
+      e.preventDefault();
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        // Close mobile menu
+        closeMobileMenu();
+        
+        // Give time for mobile menu to close before scrolling
+        setTimeout(() => {
+          // Get header height for offset
+          const headerHeight = DOM.header.offsetHeight;
+          const targetPosition = targetElement.offsetTop - headerHeight;
+          
+          // Smooth scroll to target
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update URL hash
+          history.pushState(null, null, targetId);
+        }, 300);
+      }
+    });
   });
   
   function closeMobileMenu() {
