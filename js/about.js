@@ -413,12 +413,386 @@ function initPositionCards() {
 }
 
 /*======================================
-  5. PARALLAX EFFECTS FOR ABOUT HERO
+  5. ADVANCED HERO SECTION EFFECTS
 ======================================*/
 
+/*------ 5.1 Particle Background ------*/
+class ParticleBackground {
+  constructor() {
+    this.canvas = document.getElementById('particles-canvas');
+    if (!this.canvas) return;
+    
+    this.ctx = this.canvas.getContext('2d');
+    this.particles = [];
+    this.particleCount = window.innerWidth < 768 ? 50 : 80;
+    this.mousePosition = { x: null, y: null };
+    this.radius = window.innerWidth < 768 ? 1 : 1.5;
+    this.isAnimating = true;
+    
+    this.init();
+  }
+  
+  init() {
+    // Set canvas to full width and height
+    this.setCanvasDimensions();
+    
+    // Create particles
+    this.createParticles();
+    
+    // Add event listeners
+    window.addEventListener('resize', this.handleResize.bind(this));
+    this.canvas.addEventListener('mousemove', this.handleMouseMove.bind(this));
+    this.canvas.addEventListener('mouseout', this.handleMouseOut.bind(this));
+    
+    // Start animation
+    this.animate();
+  }
+  
+  setCanvasDimensions() {
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
+  }
+  
+  createParticles() {
+    this.particles = [];
+    
+    for (let i = 0; i < this.particleCount; i++) {
+      const x = Math.random() * this.canvas.width;
+      const y = Math.random() * this.canvas.height;
+      const directionX = (Math.random() - 0.5) * 0.5;
+      const directionY = (Math.random() - 0.5) * 0.5;
+      const size = Math.random() * 3 + 1;
+      const color = `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`;
+      
+      this.particles.push({
+        x, y, directionX, directionY, size, color
+      });
+    }
+  }
+  
+  handleResize() {
+    this.setCanvasDimensions();
+    this.createParticles();
+  }
+  
+  handleMouseMove(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    this.mousePosition.x = e.clientX - rect.left;
+    this.mousePosition.y = e.clientY - rect.top;
+  }
+  
+  handleMouseOut() {
+    this.mousePosition.x = null;
+    this.mousePosition.y = null;
+  }
+  
+  drawParticles() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    for (let i = 0; i < this.particles.length; i++) {
+      const particle = this.particles[i];
+      
+      this.ctx.beginPath();
+      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      this.ctx.fillStyle = particle.color;
+      this.ctx.fill();
+      
+      // Update particle position
+      particle.x += particle.directionX;
+      particle.y += particle.directionY;
+      
+      // Bounce off walls
+      if (particle.x < 0 || particle.x > this.canvas.width) {
+        particle.directionX = -particle.directionX;
+      }
+      
+      if (particle.y < 0 || particle.y > this.canvas.height) {
+        particle.directionY = -particle.directionY;
+      }
+      
+      // Mouse interaction
+      if (this.mousePosition.x !== null && this.mousePosition.y !== null) {
+        const dx = this.mousePosition.x - particle.x;
+        const dy = this.mousePosition.y - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          const angle = Math.atan2(dy, dx);
+          const pushForce = (100 - distance) / 1500;
+          
+          particle.x -= Math.cos(angle) * pushForce;
+          particle.y -= Math.sin(angle) * pushForce;
+        }
+      }
+    }
+    
+    this.connectParticles();
+  }
+  
+  connectParticles() {
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const dx = this.particles[i].x - this.particles[j].x;
+        const dy = this.particles[i].y - this.particles[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 150) {
+          this.ctx.beginPath();
+          this.ctx.strokeStyle = `rgba(255, 255, 255, ${(150 - distance) / 750})`;
+          this.ctx.lineWidth = this.radius / 3;
+          this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+          this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+          this.ctx.stroke();
+        }
+      }
+    }
+  }
+  
+  animate() {
+    if (this.isAnimating) {
+      this.drawParticles();
+      requestAnimationFrame(this.animate.bind(this));
+    }
+  }
+  
+  stop() {
+    this.isAnimating = false;
+  }
+}
+
+/*------ 5.2 3D Parallax Effects ------*/
+class ParallaxEffect {
+  constructor() {
+    this.shapes = document.querySelectorAll('.about-hero-shape');
+    this.heroSection = document.querySelector('.about-hero-section');
+    
+    if (!this.shapes.length || !this.heroSection) return;
+    
+    this.init();
+  }
+  
+  init() {
+    // Add parallax effect on mouse move
+    this.heroSection.addEventListener('mousemove', this.handleMouseMove.bind(this));
+    
+    // Add scroll effect
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+  }
+  
+  handleMouseMove(e) {
+    const { clientX, clientY } = e;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
+    // Calculate mouse position relative to center
+    const posX = (clientX - centerX) / centerX;
+    const posY = (clientY - centerY) / centerY;
+    
+    // Apply transform to shapes
+    this.shapes.forEach((shape, index) => {
+      const depth = (index + 1) * 50; // Different depth for each shape
+      const translateX = posX * depth;
+      const translateY = posY * depth;
+      
+      // Apply transform with transitions
+      if (window.gsap) {
+        gsap.to(shape, {
+          x: translateX,
+          y: translateY,
+          rotation: posX * posY * 10,
+          duration: 1,
+          ease: "power2.out"
+        });
+      } else {
+        shape.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) rotate(${posX * posY * 10}deg)`;
+        shape.style.transition = 'transform 1s cubic-bezier(0.25, 0.1, 0.25, 1)';
+      }
+    });
+  }
+  
+  handleScroll() {
+    const scrollTop = window.scrollY;
+    
+    this.shapes.forEach((shape, index) => {
+      const speed = (index + 1) * 0.1;
+      const yPos = scrollTop * speed;
+      
+      // Add scroll-based parallax
+      if (window.gsap) {
+        gsap.to(shape, {
+          y: yPos,
+          duration: 0.5,
+          ease: "power1.out"
+        });
+      } else {
+        const currentTransform = shape.style.transform || '';
+        // Extract existing translate values or set to 0
+        const translateX = currentTransform.includes('translate3d') 
+          ? parseFloat(currentTransform.split('translate3d(')[1].split('px')[0]) 
+          : 0;
+        
+        shape.style.transform = `translate3d(${translateX}px, ${yPos}px, 0)`;
+      }
+    });
+  }
+}
+
+/*------ 5.3 Text Typing Animation ------*/
+class TypingAnimation {
+  constructor() {
+    this.typingTextElement = document.getElementById('typing-text');
+    if (!this.typingTextElement) return;
+    
+    this.words = ['Designers', 'Developers', 'Innovators', 'Problem Solvers', 'Tech Experts'];
+    this.currentWordIndex = 0;
+    this.currentCharIndex = 0;
+    this.isDeleting = false;
+    this.typingSpeed = 100; // base typing speed
+    
+    this.init();
+  }
+  
+  init() {
+    this.type();
+  }
+  
+  type() {
+    // Current word being processed
+    const currentWord = this.words[this.currentWordIndex];
+    
+    // Set typing speed based on state
+    let speed = this.typingSpeed;
+    
+    if (this.isDeleting) {
+      // Faster when deleting
+      speed = this.typingSpeed / 2;
+    } else if (this.currentCharIndex === currentWord.length) {
+      // Pause at end of word
+      speed = this.typingSpeed * 3;
+    }
+    
+    // Add or remove characters
+    if (this.isDeleting) {
+      // Remove character
+      this.typingTextElement.textContent = currentWord.substring(0, this.currentCharIndex - 1);
+      this.currentCharIndex--;
+    } else {
+      // Add character
+      this.typingTextElement.textContent = currentWord.substring(0, this.currentCharIndex + 1);
+      this.currentCharIndex++;
+    }
+    
+    // If completed typing current word
+    if (!this.isDeleting && this.currentCharIndex === currentWord.length) {
+      // Start deleting after pause
+      this.isDeleting = true;
+      speed = this.typingSpeed * 3; // Pause before deleting
+    } else if (this.isDeleting && this.currentCharIndex === 0) {
+      // Move to next word after deleting
+      this.isDeleting = false;
+      this.currentWordIndex = (this.currentWordIndex + 1) % this.words.length;
+    }
+    
+    // Continue the animation
+    setTimeout(() => this.type(), speed);
+  }
+}
+
+/*------ 5.4 Interactive Tech Icons ------*/
+class TechIcons {
+  constructor() {
+    this.techIconsWrapper = document.querySelector('.tech-icons-wrapper');
+    this.techIcons = document.querySelectorAll('.tech-icon');
+    if (!this.techIconsWrapper || !this.techIcons.length) return;
+    
+    this.isSpinning = true;
+    this.rotationSpeed = 20; // seconds for full rotation
+    
+    this.init();
+  }
+  
+  init() {
+    // Set rotation for each icon
+    this.techIcons.forEach((icon, index) => {
+      const rotation = (360 / this.techIcons.length) * index;
+      icon.style.setProperty('--rotation', `${rotation}deg`);
+    });
+    
+    // Pause rotation on hover
+    this.techIconsWrapper.addEventListener('mouseenter', this.pauseAnimation.bind(this));
+    this.techIconsWrapper.addEventListener('mouseleave', this.resumeAnimation.bind(this));
+    
+    // Add click handlers for icons
+    this.techIcons.forEach(icon => {
+      icon.addEventListener('click', this.handleIconClick.bind(this));
+    });
+  }
+  
+  pauseAnimation() {
+    this.techIconsWrapper.style.animationPlayState = 'paused';
+  }
+  
+  resumeAnimation() {
+    this.techIconsWrapper.style.animationPlayState = 'running';
+  }
+  
+  handleIconClick(e) {
+    const icon = e.currentTarget;
+    // Add pulse animation on click
+    icon.classList.add('icon-pulse');
+    
+    // Remove animation class after animation completes
+    setTimeout(() => {
+      icon.classList.remove('icon-pulse');
+    }, 500);
+  }
+}
+
 /**
- * Initialize parallax effects for the hero section
+ * Initialize advanced hero section effects
  */
+function initHeroEffects() {
+  // Initialize particle background
+  const particleBackground = new ParticleBackground();
+  
+  // Initialize parallax effects
+  const parallaxEffect = new ParallaxEffect();
+  
+  // Initialize typing animation
+  const typingAnimation = new TypingAnimation();
+  
+  // Initialize tech icons
+  const techIcons = new TechIcons();
+  
+  // Add dynamic class to body for Hero section
+  document.body.classList.add('has-advanced-hero');
+  
+  // Optimize performance on scroll
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        // Use page scroll % to adjust hero elements
+        const scrollPercent = Math.min(window.scrollY / window.innerHeight, 1);
+        const heroContent = document.querySelector('.about-hero-content');
+        
+        if (heroContent) {
+          // Fade out content as user scrolls
+          heroContent.style.opacity = Math.max(1 - scrollPercent * 1.5, 0);
+          heroContent.style.transform = `translateY(${scrollPercent * 50}px)`;
+        }
+        
+        ticking = false;
+      });
+      
+      ticking = true;
+    }
+  });
+}
+
+/*======================================
+  6. ORIGINAL PARALLAX EFFECTS FOR ABOUT HERO
+======================================*/
 function initParallax() {
   const heroShapes = document.querySelectorAll('.about-hero-shape');
   
@@ -456,7 +830,7 @@ function initParallax() {
 }
 
 /*======================================
-  6. SCROLL ANIMATIONS AND EFFECTS
+  7. SCROLL ANIMATIONS AND EFFECTS
 ======================================*/
 
 /**
@@ -555,12 +929,15 @@ function animateOnScroll(selector, animationType, staggerDelay = 0) {
 }
 
 /*======================================
-  7. INITIALIZATION
+  8. INITIALIZATION
 ======================================*/
 
 // Initialize when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize animation effects
+  // Initialize advanced hero section effects
+  initHeroEffects();
+  
+  // Initialize other animation effects
   initTimelineAnimations();
   initSkillBars();
   initGallery();
