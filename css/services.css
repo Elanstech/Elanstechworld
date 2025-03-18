@@ -662,6 +662,7 @@
 /*======================================
   3. FEATURED SERVICES SECTION
 ======================================*/
+/* Services Carousel Styling */
 .featured-services {
   position: relative;
   padding: var(--space-2xl) 0;
@@ -672,76 +673,110 @@
   overflow: hidden;
 }
 
-.featured-services-shapes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
+/* Controls layout and styling */
+.services-carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  gap: var(--space-sm);
 }
 
-.featured-services-shapes .shape {
-  position: absolute;
+.services-nav-prev,
+.services-nav-next {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  filter: blur(70px);
-  z-index: -1;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: var(--primary);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  z-index: 10;
 }
 
-.featured-services-shapes .shape-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle at center, rgba(0, 122, 255, 0.08), rgba(0, 122, 255, 0.01) 70%, transparent);
-  top: -150px;
-  right: -150px;
-  animation: shapeFloat 25s infinite alternate ease-in-out;
+.services-nav-prev:hover,
+.services-nav-next:hover {
+  background: var(--primary-gradient);
+  color: var(--white);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-primary);
 }
 
-.featured-services-shapes .shape-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle at center, rgba(255, 122, 0, 0.05), rgba(255, 122, 0, 0.01) 70%, transparent);
-  bottom: -100px;
-  left: -100px;
-  animation: shapeFloat 20s infinite alternate-reverse ease-in-out;
+.services-nav-prev:focus,
+.services-nav-next:focus {
+  outline: none;
 }
 
-@keyframes shapeFloat {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(50px, 50px) rotate(20deg);
-    opacity: 0.8;
-  }
+.services-pagination {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin: 0 var(--space-md);
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-lg);
-  margin-top: var(--space-xl);
+.services-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: var(--gray-light);
+  opacity: 0.7;
+  margin: 0 5px;
+  transition: all var(--transition-normal);
+  border-radius: 6px;
 }
 
-.service-card {
+.services-pagination .swiper-pagination-bullet-active {
+  background: var(--primary);
+  opacity: 1;
+  width: 30px;
+}
+
+/* Carousel container styling */
+.services-carousel {
+  width: 100%;
+  padding: var(--space-md) var(--space-sm) var(--space-xl);
+  overflow: visible;
+}
+
+/* Individual service card styling */
+.services-carousel .service-card {
+  height: 100%;
   background: var(--white);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
-  height: 100%;
   transform-style: preserve-3d;
   perspective: 1000px;
 }
 
-.service-card:hover {
+.services-carousel .swiper-slide {
+  height: auto;
+  opacity: 0.7;
+  transform: scale(0.85);
+  transition: all var(--transition-normal);
+}
+
+.services-carousel .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.services-carousel .swiper-slide-active .service-card {
+  box-shadow: var(--shadow-lg);
+}
+
+.services-carousel .service-card:hover {
   transform: translateY(-15px);
   box-shadow: var(--shadow-lg);
 }
 
-.service-card-inner {
+.services-carousel .service-card-inner {
   height: 100%;
   padding: var(--space-xl) var(--space-lg);
   display: flex;
@@ -751,7 +786,7 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), #ffffff);
 }
 
-.service-card-inner::before {
+.services-carousel .service-card-inner::before {
   content: '';
   position: absolute;
   top: 0;
@@ -763,11 +798,12 @@
   transition: opacity var(--transition-normal);
 }
 
-.service-card:hover .service-card-inner::before {
+.services-carousel .service-card:hover .service-card-inner::before {
   opacity: 1;
 }
 
-.service-badge {
+/* Service badge styling */
+.services-carousel .service-badge {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -781,11 +817,12 @@
   transition: all var(--transition-normal);
 }
 
-.service-card:hover .service-badge {
+.services-carousel .service-card:hover .service-badge {
   transform: scale(1.1);
 }
 
-.service-icon {
+/* Service icon styling */
+.services-carousel .service-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -801,37 +838,38 @@
   border: 1px solid rgba(0, 0, 0, 0.02);
 }
 
-.service-card:hover .service-icon {
+.services-carousel .service-card:hover .service-icon {
   background: var(--primary-gradient);
   color: var(--white);
   transform: rotate(-10deg) scale(1.1);
   box-shadow: var(--shadow-primary);
 }
 
-.service-title {
+/* Service content styling */
+.services-carousel .service-title {
   font-size: 1.4rem;
   color: var(--dark);
   margin-bottom: var(--space-sm);
   transition: color var(--transition-normal);
 }
 
-.service-card:hover .service-title {
+.services-carousel .service-card:hover .service-title {
   color: var(--primary);
 }
 
-.service-description {
+.services-carousel .service-description {
   font-size: 0.95rem;
   color: var(--gray);
   margin-bottom: var(--space-md);
   line-height: 1.6;
 }
 
-.service-features {
+.services-carousel .service-features {
   margin-bottom: var(--space-md);
   padding-left: 0;
 }
 
-.service-features li {
+.services-carousel .service-features li {
   font-size: 0.9rem;
   color: var(--gray-dark);
   margin-bottom: 0.6rem;
@@ -839,7 +877,7 @@
   padding-left: 1.5rem;
 }
 
-.service-features li::before {
+.services-carousel .service-features li::before {
   content: '✓';
   position: absolute;
   left: 0;
@@ -847,19 +885,19 @@
   font-weight: bold;
 }
 
-.service-price {
+.services-carousel .service-price {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--gray-dark);
   margin: auto 0 var(--space-md);
 }
 
-.service-price span {
+.services-carousel .service-price span {
   color: var(--primary);
   font-size: 1.2rem;
 }
 
-.service-btn {
+.services-carousel .service-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -874,19 +912,96 @@
   border: 1px solid rgba(0, 122, 255, 0.1);
 }
 
-.service-btn i {
+.services-carousel .service-btn i {
   transition: transform var(--transition-normal);
 }
 
-.service-btn:hover {
+.services-carousel .service-btn:hover {
   background: var(--primary-gradient);
   color: var(--white);
   box-shadow: var(--shadow-primary);
   transform: translateY(-3px);
 }
 
-.service-btn:hover i {
+.services-carousel .service-btn:hover i {
   transform: translateX(3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .services-carousel {
+    padding: var(--space-md) var(--space-sm) var(--space-xl);
+  }
+  
+  .services-carousel .service-card-inner {
+    padding: var(--space-lg) var(--space-md);
+  }
+}
+
+@media (max-width: 992px) {
+  .services-carousel .swiper-slide {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-carousel-controls {
+    margin-bottom: var(--space-md);
+  }
+  
+  .services-nav-prev, 
+  .services-nav-next {
+    width: 40px;
+    height: 40px;
+    font-size: 0.875rem;
+  }
+  
+  .services-carousel .service-title {
+    font-size: 1.25rem;
+  }
+  
+  .services-carousel .service-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .services-carousel .service-features li {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .services-carousel {
+    padding: var(--space-sm) 0 var(--space-lg);
+  }
+  
+  .services-carousel .service-card-inner {
+    padding: var(--space-md);
+  }
+  
+  .services-carousel .service-features {
+    display: none;
+  }
+  
+  .services-carousel .service-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+  
+  .services-carousel .service-title {
+    font-size: 1.1rem;
+  }
+  
+  .services-carousel .service-description {
+    font-size: 0.875rem;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 /*======================================
