@@ -159,42 +159,96 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section id="about-hero" class="about-hero-section">
-            <div class="about-hero-background">
-                <video class="about-hero-video" autoplay muted loop playsinline>
-                    <source src="https://cdn.pixabay.com/video/2023/12/12/35204_large.mp4" type="video/mp4">
-                </video>
-                <div class="about-hero-overlay"></div>
-                <div class="about-hero-shapes">
-                    <div class="about-hero-shape shape-1"></div>
-                    <div class="about-hero-shape shape-2"></div>
-                    <div class="about-hero-shape shape-3"></div>
-                </div>
+<section id="about-hero" class="about-hero-section">
+    <!-- 3D Parallax Background -->
+    <div class="about-hero-background">
+        <!-- Animated particles canvas -->
+        <canvas id="particles-canvas"></canvas>
+        
+        <!-- Dynamic gradient overlay -->
+        <div class="about-hero-overlay"></div>
+        
+        <!-- Interactive 3D shapes -->
+        <div class="about-hero-shapes">
+            <div class="about-hero-shape shape-1"></div>
+            <div class="about-hero-shape shape-2"></div>
+            <div class="about-hero-shape shape-3"></div>
+            <div class="about-hero-shape shape-4"></div>
+            <div class="about-hero-shape shape-5"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="about-hero-content">
+            <!-- Animated badge with glow effect -->
+            <div class="about-hero-badge" data-animation="fade-up">
+                <span class="badge-text">OUR STORY</span>
+                <div class="badge-shine"></div>
             </div>
             
-            <div class="container">
-                <div class="about-hero-content">
-                    <div class="about-hero-badge" data-animation="fade-up">OUR STORY</div>
-                    
-                    <h1 class="about-hero-title" data-animation="fade-up">
-                        Behind the <span class="text-gradient">Technology</span>
-                    </h1>
-                    
-                    <p class="about-hero-subtitle" data-animation="fade-up">
-                        We're more than just a tech company. We're innovators, problem-solvers, and passionate creators dedicated to transforming businesses through technology.
-                    </p>
-                    
-                    <div class="about-hero-scroll" data-animation="fade-up">
-                        <div class="scroll-indicator">
-                            <div class="scroll-chevron"></div>
-                            <div class="scroll-chevron"></div>
-                            <div class="scroll-chevron"></div>
-                        </div>
+            <!-- Split text animation for title -->
+            <h1 class="about-hero-title" data-animation="fade-up">
+                <div class="title-wrapper">
+                    <span class="title-word">Crafting</span>
+                    <span class="title-word">Digital</span>
+                    <span class="title-word"><span class="text-gradient">Experiences</span></span>
+                </div>
+            </h1>
+            
+            <!-- Typing animation container -->
+            <div class="typing-container">
+                <span class="typing-prefix">We are </span>
+                <span id="typing-text"></span>
+                <span class="typing-cursor">|</span>
+            </div>
+            
+            <p class="about-hero-subtitle" data-animation="fade-up">
+                More than just a tech company. We're innovative designers and passionate creators dedicated to transforming businesses through cutting-edge web technology.
+            </p>
+            
+            <!-- Interactive CTA buttons -->
+            <div class="about-hero-cta" data-animation="fade-up">
+                <a href="#our-work" class="btn-primary magnetic-button">
+                    <span>See Our Work</span>
+                    <div class="btn-bubbles">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                    </div>
+                </a>
+                <a href="#contact" class="btn-secondary magnetic-button">
+                    <span>Let's Talk</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <!-- 3D rotating tech stack display -->
+            <div class="tech-showcase">
+                <div class="tech-icons-wrapper">
+                    <div class="tech-icons-inner">
+                        <div class="tech-icon"><i class="fab fa-html5"></i></div>
+                        <div class="tech-icon"><i class="fab fa-css3-alt"></i></div>
+                        <div class="tech-icon"><i class="fab fa-js"></i></div>
+                        <div class="tech-icon"><i class="fab fa-react"></i></div>
+                        <div class="tech-icon"><i class="fab fa-node-js"></i></div>
+                        <div class="tech-icon"><i class="fab fa-wordpress"></i></div>
                     </div>
                 </div>
             </div>
-        </section>
-
+            
+            <!-- Mouse-based interactive scroll indicator -->
+            <div class="about-hero-scroll" data-animation="fade-up">
+                <div class="mouse-scroll">
+                    <div class="mouse">
+                        <div class="mouse-wheel"></div>
+                    </div>
+                    <div class="mouse-label">Scroll to explore</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        
         <!-- Our Story Section -->
         <section class="our-story-section">
             <div class="container">
