@@ -1,6 +1,6 @@
 /**
  * Elan's Tech World - Services Page JavaScript
- * A comprehensive and organized script for all interactions and animations
+ * A comprehensive script for animations, interactions, and functionality
  */
 
 // Wait for the DOM to be fully loaded
@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 loaderContainer.classList.add('hidden');
                 document.body.classList.remove('preload');
                 
+                // Initialize particles
+                initParticles();
+                
                 // Trigger initial animations
                 triggerHeroAnimations();
                 
@@ -34,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 initScrollObserver();
                 initStatCounter();
                 initTiltElements();
+                initTyped();
             }, 500);
         }
         
@@ -55,6 +59,138 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Initialize particles.js for hero background
+    function initParticles() {
+        if (typeof particlesJS !== 'undefined' && document.getElementById('particles-js')) {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.5
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
+    }
+    
+    // Initialize typed.js for hero section
+    function initTyped() {
+        if (typeof Typed !== 'undefined' && document.getElementById('services-typed')) {
+            new Typed('#services-typed', {
+                strings: [
+                    'Web Development', 
+                    'Mobile Applications', 
+                    'POS Systems', 
+                    'Digital Marketing', 
+                    'Technology Solutions'
+                ],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                startDelay: 500,
+                loop: true,
+                smartBackspace: true
+            });
+        }
+    }
+    
     // ============================================
     // 3. SCROLL ANIMATIONS
     // ============================================
@@ -69,13 +205,31 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, {
             root: null,
-            threshold: 0.1,
+            threshold: 0.15,
             rootMargin: '0px 0px -10% 0px'
         });
         
         // Observe all elements with fade-up animation
         document.querySelectorAll('[data-animation="fade-up"]:not(.animated)').forEach(element => {
             fadeObserver.observe(element);
+        });
+        
+        // Create observer for animated elements
+        const elementsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    elementsObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -10% 0px'
+        });
+        
+        // Observe all animated elements
+        document.querySelectorAll('.animated-element').forEach(element => {
+            elementsObserver.observe(element);
         });
         
         // Handle sticky header
@@ -140,26 +294,36 @@ document.addEventListener('DOMContentLoaded', function() {
     function initTiltElements() {
         const tiltElements = document.querySelectorAll('.tilt-element');
         
-        tiltElements.forEach(element => {
-            element.addEventListener('mousemove', e => {
-                const rect = element.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                
-                element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-                element.style.transition = 'transform 0.1s ease';
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(tiltElements, {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+                scale: 1.05
             });
-            
-            element.addEventListener('mouseleave', () => {
-                element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-                element.style.transition = 'transform 0.5s ease';
+        } else {
+            tiltElements.forEach(element => {
+                element.addEventListener('mousemove', e => {
+                    const rect = element.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 20;
+                    const rotateY = (centerX - x) / 20;
+                    
+                    element.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    element.style.transition = 'transform 0.1s ease';
+                });
+                
+                element.addEventListener('mouseleave', () => {
+                    element.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                    element.style.transition = 'transform 0.5s ease';
+                });
             });
-        });
+        }
     }
     
     // ============================================
@@ -193,44 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // 7. CATEGORIES TABS & SERVICE FILTERING
-    // ============================================
-    const categoryTabs = document.querySelectorAll('.category-tab');
-    const serviceDetailSections = document.querySelectorAll('.service-detail-section');
-    
-    categoryTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Update active tab
-            categoryTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            
-            const category = tab.getAttribute('data-category');
-            
-            // Show/hide service sections based on category
-            serviceDetailSections.forEach(section => {
-                section.classList.remove('active');
-                
-                if (category === 'all' || section.getAttribute('data-category') === category) {
-                    setTimeout(() => {
-                        section.classList.add('active');
-                    }, 300);
-                }
-            });
-            
-            // Also filter quick link cards
-            const quickLinkCards = document.querySelectorAll('.quick-link-card');
-            quickLinkCards.forEach(card => {
-                card.style.display = 'flex';
-                
-                if (category !== 'all' && card.getAttribute('data-category') !== category) {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-    
-    // ============================================
-    // 8. FAQ ACCORDION
+    // 7. FAQ ACCORDION
     // ============================================
     const faqItems = document.querySelectorAll('.faq-item');
     
@@ -253,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ============================================
-    // 9. TESTIMONIALS SLIDER
+    // 8. TESTIMONIALS SLIDER
     // ============================================
     let testimonialsSwiper;
     
@@ -291,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // 10. FORM VALIDATION
+    // 9. FORM VALIDATION
     // ============================================
     const contactForm = document.getElementById('contact-form');
     
@@ -354,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // 11. SMOOTH SCROLL
+    // 10. SMOOTH SCROLL
     // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -391,33 +518,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ============================================
-    // 12. PACKAGE PRICING TABS
-    // ============================================
-    const pricingTabs = document.querySelectorAll('.pricing-tab');
-    const pricingPeriods = document.querySelectorAll('.pricing-period');
-    
-    if (pricingTabs.length > 0 && pricingPeriods.length > 0) {
-        pricingTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const period = tab.getAttribute('data-period');
-                
-                // Update active tab
-                pricingTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Show corresponding pricing
-                pricingPeriods.forEach(p => {
-                    p.style.display = 'none';
-                    if (p.getAttribute('data-period') === period) {
-                        p.style.display = 'block';
-                    }
-                });
-            });
-        });
-    }
-    
-    // ============================================
-    // 13. MAGNETIC BUTTONS
+    // 11. MAGNETIC BUTTONS
     // ============================================
     const magneticButtons = document.querySelectorAll('.magnetic-button');
     
@@ -441,7 +542,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ============================================
-    // 14. BUBBLE ANIMATIONS
+    // 12. BUBBLE ANIMATIONS
     // ============================================
     function createBubbles() {
         document.querySelectorAll('.btn-bubbles').forEach(container => {
@@ -471,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(createBubbles, 8000);
     
     // ============================================
-    // 15. IMAGE LIGHTBOX
+    // 13. PORTFOLIO IMAGES LIGHTBOX
     // ============================================
     const portfolioImages = document.querySelectorAll('.portfolio-image');
     
@@ -513,62 +614,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
-        });
-    }
-});
-
-// Additional Swiper initialization for service sliders if needed
-window.addEventListener('load', function() {
-    if (typeof Swiper !== 'undefined') {
-        // Services Carousel
-        const servicesSwiper = new Swiper('.services-carousel', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            centeredSlides: true,
-            loop: true,
-            pagination: {
-                el: '.services-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.services-nav-next',
-                prevEl: '.services-nav-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                992: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                }
-            }
-        });
-        
-        // Case Studies Slider
-        const caseStudiesSwiper = new Swiper('.case-studies-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            pagination: {
-                el: '.case-studies-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.case-studies-nav-next',
-                prevEl: '.case-studies-nav-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                992: {
-                    slidesPerView: 3,
-                    spaceBetween: 30,
-                }
-            }
         });
     }
 });
