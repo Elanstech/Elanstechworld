@@ -3,273 +3,1602 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Elan's Tech World</title>
+    <title>Our Services | Elan's Tech World</title>
+    <meta name="description" content="Explore our comprehensive range of technology solutions - from web development and mobile apps to POS systems and digital marketing.">
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Preconnect to External Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS and Resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services.css">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/services.css">
+    <!-- Favicon Implementation -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#007aff">
+    
+    <!-- Deferred Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css">
 </head>
-<body>
-    <!-- Header -->
+
+<body class="preload">
+    <!-- Page Loader -->
+    <div class="loader-container">
+        <div class="loader-content">
+            <div class="logo-loader">
+                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+            </div>
+            <div class="loader-progress-wrapper">
+                <div class="loader-progress-container">
+                    <div class="loader-progress-bar"></div>
+                </div>
+                <div class="loader-percentage">0%</div>
+            </div>
+            <div class="loader-message">Exploring Our Services...</div>
+        </div>
+        <div class="loader-bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+    </div>
+    
+    <!-- Header & Navigation -->
     <header class="header">
-        <div class="header-container">
-            <a href="/" class="logo">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                <span class="logo-text">Elan's Tech World</span>
-            </a>
-            
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../pages/about.html">About Us</a></li>
-                    <li><a href="../pages/services.html" class="active">Services</a></li>
-                    <li><a href="../pages/projects.html">Projects</a></li>
-                    <li><a href="../pages/contact.html">Contact</a></li>
-                </ul>
-            </nav>
+        <div class="header-background">
+            <div class="header-blob"></div>
+            <div class="header-glow"></div>
+        </div>
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-text-main">Elan's</span>
+                        <span class="logo-text-sub">Tech World</span>
+                    </div>
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="pages/about.html" class="nav-link">About Us</a></li>
+                        <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
+                        <li class="nav-item"><a href="index.html#work" class="nav-link">Work</a></li>
+                        <li class="nav-item"><a href="index.html#process" class="nav-link">Process</a></li>
+                        <li class="nav-item"><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+                        <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions">
+                    <a href="#contact" class="btn-primary header-cta magnetic-button">
+                        <span>Get Started</span>
+                        <div class="btn-bubbles">
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                            <div class="bubble"></div>
+                        </div>
+                    </a>
+                    <button class="menu-toggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
-
+    
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/about.html">About Us</a></li>
-            <li><a href="../pages/services.html">Services</a></li>
-            <li><a href="../pages/projects.html">Projects</a></li>
-            <li><a href="../pages/contact.html">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="particle-container"></div>
-        <div class="gradient-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="gradient-text">Professional</span>
-                <span class="typing-text"></span>
-                <span class="cursor">|</span>
-            </h1>
-            <p class="hero-subtitle">Transforming Businesses Through Technology</p>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-backdrop"></div>
+        <div class="mobile-menu-container">
+            <div class="mobile-menu-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-text-main">Elan's</span>
+                        <span class="logo-text-sub">Tech World</span>
+                    </div>
+                </a>
+                <button class="mobile-menu-close" aria-label="Close menu">
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <span>Scroll Down</span>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="services-container">
-            <!-- Category Filter -->
-            <div class="category-filter">
-                <button class="filter-btn active" data-filter="all">All Services</button>
-                <button class="filter-btn" data-filter="business">Business</button>
-                <button class="filter-btn" data-filter="technical">Technical</button>
-                <button class="filter-btn" data-filter="support">Support</button>
-            </div>
-
-            <!-- Services Grid -->
-            <div class="services-grid">
-                <!-- Business Materials Card -->
-                <div class="service-card" data-category="business">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-palette"></i>
-                            </div>
-                            <h3>Custom Business Materials</h3>
-                            <p>Professional design services for your business identity</p>
-                        </div>
-                        <div class="card-back">
-                            <ul class="service-features">
-                                <li>Business card design</li>
-                                <li>Custom flyer creation</li>
-                                <li>Brochure design</li>
-                                <li>Marketing materials</li>
-                            </ul>
-                            <div class="card-actions">
-                                <a href="#" class="btn-primary">Learn More</a>
-                                <button class="btn-secondary modal-trigger" data-service="business-materials">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Apple Product Resell -->
-                <div class="service-card" data-category="technical">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="service-icon">
-                                <i class="fab fa-apple"></i>
-                            </div>
-                            <h3>Apple Product Setup</h3>
-                            <p>Quality Apple devices with professional setup and support</p>
-                        </div>
-                        <div class="card-back">
-                            <ul class="service-features">
-                                <li>Device configuration</li>
-                                <li>Software installation</li>
-                                <li>Data transfer</li>
-                                <li>Technical support</li>
-                            </ul>
-                            <div class="card-actions">
-                                <a href="#" class="btn-primary">Learn More</a>
-                                <button class="btn-secondary modal-trigger" data-service="apple-products">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Web Design -->
-                <div class="service-card" data-category="technical">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3>Web Design</h3>
-                            <p>Custom website design and development solutions</p>
-                        </div>
-                        <div class="card-back">
-                            <ul class="service-features">
-                                <li>Custom website creation</li>
-                                <li>Mobile-responsive design</li>
-                                <li>E-commerce solutions</li>
-                                <li>SEO optimization</li>
-                            </ul>
-                            <div class="card-actions">
-                                <a href="#" class="btn-primary">Learn More</a>
-                                <button class="btn-secondary modal-trigger" data-service="web-design">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Computer Setup -->
-                <div class="service-card" data-category="technical">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <h3>Computer Setup</h3>
-                            <p>Professional computer configuration and optimization</p>
-                        </div>
-                        <div class="card-back">
-                            <ul class="service-features">
-                                <li>Hardware installation</li>
-                                <li>Software configuration</li>
-                                <li>Performance optimization</li>
-                                <li>Security setup</li>
-                            </ul>
-                            <div class="card-actions">
-                                <a href="#" class="btn-primary">Learn More</a>
-                                <button class="btn-secondary modal-trigger" data-service="computer-setup">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- POS System -->
-                <div class="service-card" data-category="business">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-cash-register"></i>
-                            </div>
-                            <h3>POS System Setup</h3>
-                            <p>Complete point of sale solutions for your business</p>
-                        </div>
-                        <div class="card-back">
-                            <ul class="service-features">
-                                <li>System installation</li>
-                                <li>Staff training</li>
-                                <li>Custom configuration</li>
-                                <li>Ongoing support</li>
-                            </ul>
-                            <div class="card-actions">
-                                <a href="#" class="btn-primary">Learn More</a>
-                                <button class="btn-secondary modal-trigger" data-service="pos-system">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- IT Support -->
-                <div class="service-card" data-category="support">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <div class="service-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <h3>IT Support</h3>
-                            <p>Comprehensive technical support services</p>
-                        </div>
-                        <div class="card-back">
-                            <ul class="service-features">
-                                <li>Remote assistance</li>
-                                <li>On-site support</li>
-                                <li>Network setup</li>
-                                <li>Troubleshooting</li>
-                            </ul>
-                            <div class="card-actions">
-                                <a href="#" class="btn-primary">Learn More</a>
-                                <button class="btn-secondary modal-trigger" data-service="it-support">Quick View</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Elan's Tech World</h3>
-                <p>Your Partner in Technology Solutions</p>
-                <p>&copy; 2024 All rights reserved.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="../pages/about.html">About Us</a></li>
-                    <li><a href="../pages/services.html">Services</a></li>
-                    <li><a href="../pages/projects.html">Projects</a></li>
-                    <li><a href="../pages/contact.html">Contact</a></li>
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link">Home</a></li>
+                    <li class="mobile-nav-item"><a href="pages/about.html" class="mobile-nav-link">About Us</a></li>
+                    <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link">Services</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#work" class="mobile-nav-link">Work</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#process" class="mobile-nav-link">Process</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#testimonials" class="mobile-nav-link">Testimonials</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
                 </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="https://instagram.com/elan_tech_world" target="_blank" rel="noopener noreferrer">
+            </nav>
+            <div class="mobile-menu-footer">
+                <div class="mobile-contact">
+                    <a href="tel:+19294176819" class="mobile-contact-link">
+                        <i class="fas fa-phone"></i> (929) 417-6819
+                    </a>
+                    <a href="mailto:elan@elanstechworld.com" class="mobile-contact-link">
+                        <i class="fas fa-envelope"></i> elan@elanstechworld.com
+                    </a>
+                </div>
+                <div class="mobile-social">
+                    <a href="https://www.instagram.com/elan_tech_world/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
             </div>
         </div>
-    </footer>
-
-    <!-- Modal Template -->
-    <div class="service-modal" id="serviceModal">
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h2 class="modal-title"></h2>
-            <div class="modal-body"></div>
-        </div>
     </div>
+    
+    <!-- Main Content -->
+    <main>
+        <!-- Services Hero Section -->
+        <section id="services-hero" class="services-hero">
+            <div class="services-hero-background">
+                <div class="services-hero-overlay"></div>
+                <div class="services-hero-shapes">
+                    <div class="services-hero-shape shape-1"></div>
+                    <div class="services-hero-shape shape-2"></div>
+                    <div class="services-hero-shape shape-3"></div>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="services-hero-content">
+                    <div class="services-hero-badge" data-animation="fade-up">
+                        <span>OUR EXPERTISE</span>
+                        <div class="badge-shine"></div>
+                    </div>
+                    
+                    <h1 class="services-hero-title" data-animation="fade-up">
+                        Comprehensive <span class="text-gradient">Technology Solutions</span> for Modern Businesses
+                    </h1>
+                    
+                    <p class="services-hero-subtitle" data-animation="fade-up">
+                        From cutting-edge web development to strategic digital marketing, we offer end-to-end technology services to help your business thrive in the digital age.
+                    </p>
+                    
+                    <div class="services-hero-cta" data-animation="fade-up">
+                        <a href="#services-categories" class="btn-primary magnetic-button">
+                            <span>Explore Services</span>
+                            <div class="btn-bubbles">
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                            </div>
+                        </a>
+                        <a href="#contact" class="btn-secondary magnetic-button">
+                            <span>Get a Quote</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="services-hero-features" data-animation="fade-up">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span>Tailored Solutions</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span>Expert Team</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span>Affordable Packages</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="services-scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <div class="scroll-arrows">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </section>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="../js/services.js"></script>
+        <!-- Services Overview -->
+        <section class="services-overview">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-sub-title">Why Choose Us</div>
+                    <h2 class="section-title">Technology <span class="text-gradient">Partner</span> You Can Trust</h2>
+                    <p class="section-description">We deliver innovative technology solutions that drive real business results</p>
+                </div>
+                
+                <div class="overview-grid">
+                    <div class="overview-content">
+                        <p class="overview-text">
+                            At Elan's Tech World, we understand that every business has unique technology needs. That's why we offer a comprehensive range of customizable services designed to help you achieve your specific goals. Whether you're looking to establish a strong online presence, streamline operations, or engage customers more effectively, our expert team has the skills and experience to deliver results.
+                        </p>
+                        
+                        <div class="overview-stats">
+                            <div class="stat-card tilt-element">
+                                <div class="stat-value"><span class="counter" data-count="100">0</span>+</div>
+                                <div class="stat-label">Projects Delivered</div>
+                            </div>
+                            <div class="stat-card tilt-element">
+                                <div class="stat-value"><span class="counter" data-count="50">0</span>+</div>
+                                <div class="stat-label">Happy Clients</div>
+                            </div>
+                            <div class="stat-card tilt-element">
+                                <div class="stat-value"><span class="counter" data-count="5">0</span>+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overview-image tilt-element">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team collaboration">
+                        <div class="image-overlay"></div>
+                        <div class="image-badge">
+                            <div class="badge-icon"><i class="fas fa-star"></i></div>
+                            <div class="badge-text">Premium Quality</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-cards">
+                    <div class="overview-card tilt-element">
+                        <div class="card-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Custom Solutions</h3>
+                        <p>We don't believe in one-size-fits-all. Every solution we deliver is tailored to your specific business needs.</p>
+                    </div>
+                    <div class="overview-card tilt-element">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Fast Delivery</h3>
+                        <p>We understand the importance of time-to-market and strive to deliver high-quality solutions efficiently.</p>
+                    </div>
+                    <div class="overview-card tilt-element">
+                        <div class="card-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Ongoing Support</h3>
+                        <p>Our relationship doesn't end at delivery. We provide continuous support to ensure your success.</p>
+                    </div>
+                    <div class="overview-card tilt-element">
+                        <div class="card-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <h3>Competitive Pricing</h3>
+                        <p>Premium solutions don't have to break the bank. We offer competitive rates without compromising quality.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Categories -->
+        <section id="services-categories" class="services-categories">
+            <div class="category-shapes">
+                <div class="category-shape shape-1"></div>
+                <div class="category-shape shape-2"></div>
+            </div>
+            
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-sub-title">Browse by Category</div>
+                    <h2 class="section-title">Our Service <span class="text-gradient">Categories</span></h2>
+                    <p class="section-description">Find the perfect service to meet your business needs</p>
+                </div>
+                
+                <div class="categories-tabs">
+                    <button class="category-tab active" data-category="all">
+                        <div class="tab-icon"><i class="fas fa-th-large"></i></div>
+                        <span>All Services</span>
+                    </button>
+                    <button class="category-tab" data-category="web">
+                        <div class="tab-icon"><i class="fas fa-laptop-code"></i></div>
+                        <span>Web Services</span>
+                    </button>
+                    <button class="category-tab" data-category="mobile">
+                        <div class="tab-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <span>Mobile Solutions</span>
+                    </button>
+                    <button class="category-tab" data-category="business">
+                        <div class="tab-icon"><i class="fas fa-store"></i></div>
+                        <span>Business Systems</span>
+                    </button>
+                    <button class="category-tab" data-category="marketing">
+                        <div class="tab-icon"><i class="fas fa-bullhorn"></i></div>
+                        <span>Marketing</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Design & Development -->
+        <section id="web-development" class="service-detail-section" data-category="web">
+            <div class="container">
+                <div class="service-detail-container">
+                    <div class="service-header">
+                        <div class="service-badge">Most Popular</div>
+                        <h2 class="service-title">Web Design & Development</h2>
+                        <p class="service-subtitle">Custom, responsive websites that captivate your audience and drive conversions</p>
+                        <div class="service-price">
+                            <div class="price-tag">Starting at <span>$1,199</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-content-grid">
+                        <div class="service-info">
+                            <div class="info-section">
+                                <h3>Service Overview</h3>
+                                <p>Our web design and development service creates stunning, functional websites that not only look great but also perform exceptionally well. We focus on creating user-friendly interfaces with seamless navigation to enhance user experience and increase conversions.</p>
+                                
+                                <p>Whether you need a simple informational site, a complex e-commerce platform, or anything in between, our team of expert designers and developers can deliver a solution that meets your unique business needs.</p>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>What's Included</h3>
+                                <ul class="service-checklist">
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Custom design tailored to your brand identity</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Responsive layout that works on all devices</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>SEO-friendly structure and optimization</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Content management system (WordPress, Shopify, etc.)</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Contact forms and integration with your email</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Social media integration</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Google Analytics setup for tracking performance</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Basic SEO setup (meta titles, descriptions, alt tags)</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Cross-browser compatibility testing</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>3 months of technical support</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Service Options</h3>
+                                <div class="package-cards">
+                                    <div class="package-card">
+                                        <h4>Starter</h4>
+                                        <div class="package-price">$1,199</div>
+                                        <ul>
+                                            <li>5-page responsive website</li>
+                                            <li>Basic SEO setup</li>
+                                            <li>Content management system</li>
+                                            <li>Contact form</li>
+                                            <li>90 days support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                    
+                                    <div class="package-card featured">
+                                        <div class="featured-label">MOST POPULAR</div>
+                                        <h4>Premium</h4>
+                                        <div class="package-price">$2,499</div>
+                                        <ul>
+                                            <li>10-page responsive website</li>
+                                            <li>Advanced SEO optimization</li>
+                                            <li>Content management system</li>
+                                            <li>Custom forms & integrations</li>
+                                            <li>E-commerce functionality</li>
+                                            <li>Google Analytics setup</li>
+                                            <li>180 days support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                    
+                                    <div class="package-card">
+                                        <h4>Enterprise</h4>
+                                        <div class="package-price">$4,999</div>
+                                        <ul>
+                                            <li>20+ page responsive website</li>
+                                            <li>Comprehensive SEO strategy</li>
+                                            <li>Advanced CMS with custom features</li>
+                                            <li>Custom database integration</li>
+                                            <li>User authentication system</li>
+                                            <li>Payment gateway integration</li>
+                                            <li>365 days priority support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Our Process</h3>
+                                <div class="process-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Discovery & Planning</h4>
+                                            <p>We begin by understanding your business, target audience, and website requirements through in-depth consultation.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Design & Prototyping</h4>
+                                            <p>Our designers create wireframes and visual mockups for your approval, ensuring the design aligns with your brand.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Development</h4>
+                                            <p>We transform the approved designs into fully functional, responsive websites with all the requested features.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Testing & Quality Assurance</h4>
+                                            <p>We conduct thorough testing on various devices and browsers to ensure your website works flawlessly.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Launch & Support</h4>
+                                            <p>After your approval, we deploy your website and provide ongoing support to ensure everything runs smoothly.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>FAQ</h3>
+                                <div class="faq-list">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>How long does it take to build a website?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>The timeline varies depending on the complexity of your website. A basic website typically takes 3-4 weeks, while more complex projects can take 2-3 months. We'll provide a detailed timeline during our initial consultation.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Will my website be mobile-friendly?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Absolutely! All our websites are built with responsive design, ensuring they look and function perfectly on all devices, including smartphones, tablets, and desktops.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Can I update the website myself?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, we implement user-friendly content management systems that allow you to easily update content, add pages, and manage your website without technical knowledge. We also provide training on how to use your CMS effectively.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Do you provide ongoing maintenance?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, we offer website maintenance packages to keep your site secure, up-to-date, and performing optimally. These packages include regular updates, security monitoring, backups, and technical support.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-sidebar">
+                            <div class="sidebar-card cta-card">
+                                <h3>Ready to Get Started?</h3>
+                                <p>Let's discuss how we can help you achieve your business goals with a custom website solution.</p>
+                                <a href="#contact" class="btn-primary magnetic-button">
+                                    <span>Request a Quote</span>
+                                    <div class="btn-bubbles">
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="sidebar-card portfolio-card">
+                                <h3>Recent Work</h3>
+                                <div class="portfolio-images">
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Web Design Portfolio">
+                                    </div>
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Web Design Portfolio">
+                                    </div>
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Web Design Portfolio">
+                                    </div>
+                                </div>
+                                <a href="index.html#work" class="view-portfolio-btn">View All Projects <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            
+                            <div class="sidebar-card testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                    <p>"Elan's Tech World transformed our online presence with a stunning, functional website that perfectly represents our brand. Their attention to detail and expertise resulted in a significant increase in leads and conversions."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Testimonial Author">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Sarah Johnson</h4>
+                                        <p>Marketing Director, ABC Company</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile App Development -->
+        <section id="mobile-app" class="service-detail-section" data-category="mobile">
+            <div class="container">
+                <div class="service-detail-container">
+                    <div class="service-header">
+                        <h2 class="service-title">Mobile App Development</h2>
+                        <p class="service-subtitle">Native and cross-platform applications that deliver exceptional user experiences</p>
+                        <div class="service-price">
+                            <div class="price-tag">Starting at <span>$2,499</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-content-grid">
+                        <div class="service-info">
+                            <div class="info-section">
+                                <h3>Service Overview</h3>
+                                <p>Our mobile app development service creates powerful, intuitive applications that engage users and enhance your business capabilities. We develop apps for iOS, Android, or both platforms using either native or cross-platform technologies, depending on your specific requirements.</p>
+                                
+                                <p>From concept to deployment and beyond, our experienced development team works closely with you to ensure your app meets your business objectives while providing an outstanding user experience.</p>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>What's Included</h3>
+                                <ul class="service-checklist">
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Comprehensive app strategy and planning</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Custom UI/UX design for optimal user experience</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Native iOS development (Swift/Objective-C)</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Native Android development (Kotlin/Java)</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Cross-platform development options (React Native, Flutter)</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Backend development and API integration</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Third-party service integration</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Comprehensive testing and quality assurance</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>App store submission assistance</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Post-launch support and maintenance</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Service Options</h3>
+                                <div class="package-cards">
+                                    <div class="package-card">
+                                        <h4>Basic</h4>
+                                        <div class="package-price">$2,499</div>
+                                        <ul>
+                                            <li>Single platform (iOS or Android)</li>
+                                            <li>Up to 5 core screens</li>
+                                            <li>Basic functionality</li>
+                                            <li>Standard UI components</li>
+                                            <li>90 days support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                    
+                                    <div class="package-card featured">
+                                        <div class="featured-label">MOST POPULAR</div>
+                                        <h4>Professional</h4>
+                                        <div class="package-price">$4,999</div>
+                                        <ul>
+                                            <li>Multi-platform (iOS and Android)</li>
+                                            <li>Up to 10 screens</li>
+                                            <li>Advanced features</li>
+                                            <li>Custom UI/UX design</li>
+                                            <li>User authentication</li>
+                                            <li>Backend integration</li>
+                                            <li>6 months support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                    
+                                    <div class="package-card">
+                                        <h4>Enterprise</h4>
+                                        <div class="package-price">$8,999+</div>
+                                        <ul>
+                                            <li>Multi-platform with web dashboard</li>
+                                            <li>Unlimited screens</li>
+                                            <li>Complex functionality</li>
+                                            <li>Custom animations</li>
+                                            <li>Advanced security features</li>
+                                            <li>Analytics integration</li>
+                                            <li>Push notifications</li>
+                                            <li>12 months support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Our Process</h3>
+                                <div class="process-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Discovery & Strategy</h4>
+                                            <p>We begin with a deep dive into your business goals, target audience, and app requirements to develop a comprehensive strategy.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>UI/UX Design</h4>
+                                            <p>Our designers create wireframes, prototypes, and visual designs to ensure an intuitive and engaging user experience.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Development</h4>
+                                            <p>Our developers bring the designs to life, building both the frontend and backend components of your mobile application.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Testing & QA</h4>
+                                            <p>We conduct rigorous testing across devices to ensure your app functions flawlessly in all scenarios.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Deployment & Support</h4>
+                                            <p>We assist with app store submissions and provide ongoing support and maintenance after launch.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>FAQ</h3>
+                                <div class="faq-list">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>How long does it take to develop a mobile app?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>The development timeline varies based on complexity. A basic app typically takes 2-3 months, while complex apps can take 4-6 months or more. We'll provide a detailed timeline during our initial consultation.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Should I develop for iOS, Android, or both?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>This depends on your target audience. If your users are primarily on one platform, you might start there. However, most businesses benefit from being on both platforms. We can help you make this decision based on your specific goals and budget.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>What's the difference between native and cross-platform development?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Native apps are built specifically for one platform (iOS or Android) using platform-specific languages. Cross-platform apps use frameworks like React Native or Flutter to deploy to multiple platforms from a single codebase. Native apps typically offer better performance and access to platform features, while cross-platform development can be more cost-effective and faster to market.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Do you handle app store submissions?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, we provide comprehensive assistance with app store submissions, including preparing all necessary assets, documentation, and addressing any feedback from app store reviewers.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-sidebar">
+                            <div class="sidebar-card cta-card">
+                                <h3>Ready to Build Your App?</h3>
+                                <p>Contact us today to discuss your mobile app idea and how we can bring it to life.</p>
+                                <a href="#contact" class="btn-primary magnetic-button">
+                                    <span>Request a Quote</span>
+                                    <div class="btn-bubbles">
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="sidebar-card portfolio-card">
+                                <h3>Recent Work</h3>
+                                <div class="portfolio-images">
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1551650992-ee4fd57ad202?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Mobile App Portfolio">
+                                    </div>
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Mobile App Portfolio">
+                                    </div>
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1602192509154-0b900ee1f851?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mobile App Portfolio">
+                                    </div>
+                                </div>
+                                <a href="index.html#work" class="view-portfolio-btn">View All Projects <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            
+                            <div class="sidebar-card testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                    <p>"Working with Elan's Tech World on our mobile app was an exceptional experience. They understood our vision and delivered a polished, user-friendly app that has received outstanding feedback from our customers."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Testimonial Author">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>David Rodriguez</h4>
+                                        <p>CEO, Tech Innovations</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- POS System Implementation -->
+        <section id="pos-system" class="service-detail-section" data-category="business">
+            <div class="container">
+                <div class="service-detail-container">
+                    <div class="service-header">
+                        <h2 class="service-title">POS System Implementation</h2>
+                        <p class="service-subtitle">Modern point-of-sale solutions that streamline operations and enhance customer experience</p>
+                        <div class="service-price">
+                            <div class="price-tag">Starting at <span>$1,899</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-content-grid">
+                        <div class="service-info">
+                            <div class="info-section">
+                                <h3>Service Overview</h3>
+                                <p>Our POS system implementation service provides comprehensive point-of-sale solutions tailored to your business needs. Whether you run a retail store, restaurant, salon, or any other brick-and-mortar business, we can help you streamline operations, improve customer service, and increase profitability with modern POS technology.</p>
+                                
+                                <p>We work with leading POS platforms such as Square, Clover, Shopify POS, and more to deliver a solution that integrates seamlessly with your existing business processes.</p>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>What's Included</h3>
+                                <ul class="service-checklist">
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Comprehensive needs assessment and consulting</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Hardware recommendation and procurement</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Software installation and configuration</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Inventory setup and management</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Payment processing integration</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Customer relationship management setup</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Staff training and onboarding</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Reporting and analytics configuration</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Integration with other business systems</span>
+                                    </li>
+                                    <li>
+                                        <span class="check-icon"><i class="fas fa-check"></i></span>
+                                        <span>Ongoing technical support</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Service Options</h3>
+                                <div class="package-cards">
+                                    <div class="package-card">
+                                        <h4>Basic Setup</h4>
+                                        <div class="package-price">$1,899</div>
+                                        <ul>
+                                            <li>Single terminal setup</li>
+                                            <li>Basic inventory management</li>
+                                            <li>Payment processing integration</li>
+                                            <li>Staff training (2 hours)</li>
+                                            <li>30 days support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                    
+                                    <div class="package-card featured">
+                                        <div class="featured-label">MOST POPULAR</div>
+                                        <h4>Standard Setup</h4>
+                                        <div class="package-price">$3,499</div>
+                                        <ul>
+                                            <li>Multi-terminal setup (up to 3)</li>
+                                            <li>Advanced inventory management</li>
+                                            <li>Customer database integration</li>
+                                            <li>Loyalty program setup</li>
+                                            <li>Staff training (4 hours)</li>
+                                            <li>90 days support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                    
+                                    <div class="package-card">
+                                        <h4>Enterprise Setup</h4>
+                                        <div class="package-price">$5,999</div>
+                                        <ul>
+                                            <li>Multi-location setup</li>
+                                            <li>Complete inventory management</li>
+                                            <li>Advanced reporting & analytics</li>
+                                            <li>E-commerce integration</li>
+                                            <li>Custom features development</li>
+                                            <li>Staff training (8 hours)</li>
+                                            <li>12 months support</li>
+                                        </ul>
+                                        <a href="#contact" class="package-btn">Get Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Benefits of Modern POS Systems</h3>
+                                <div class="benefits-grid">
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="fas fa-cash-register"></i>
+                                        </div>
+                                        <h4>Streamlined Operations</h4>
+                                        <p>Automate tasks, reduce manual errors, and save time with efficient checkout processes.</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <h4>Real-time Insights</h4>
+                                        <p>Access detailed sales reports and analytics to make data-driven business decisions.</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="fas fa-boxes"></i>
+                                        </div>
+                                        <h4>Inventory Management</h4>
+                                        <p>Track inventory in real-time, set reorder points, and manage stock across locations.</p>
+                                    </div>
+                                    <div class="benefit-card">
+                                        <div class="benefit-icon">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <h4>Enhanced Customer Experience</h4>
+                                        <p>Provide faster service, personalized offers, and loyalty programs to increase customer satisfaction.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>Our Process</h3>
+                                <div class="process-timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Needs Assessment</h4>
+                                            <p>We evaluate your business operations, challenges, and goals to identify the right POS solution for you.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>System Selection</h4>
+                                            <p>Based on your needs, we recommend the most suitable hardware and software components.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Implementation</h4>
+                                            <p>We handle the installation, configuration, and customization of your POS system.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Data Migration & Setup</h4>
+                                            <p>We import your existing inventory, customer data, and other information into the new system.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-point"></div>
+                                        <div class="timeline-content">
+                                            <h4>Training & Go-Live</h4>
+                                            <p>We train your staff and provide support during the transition to ensure a smooth launch.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-section">
+                                <h3>FAQ</h3>
+                                <div class="faq-list">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Which POS systems do you work with?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>We work with popular POS systems including Square, Clover, Shopify POS, Toast, Lightspeed, and others. We'll recommend the best option based on your specific business needs.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>Can I integrate my existing systems?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, in most cases we can integrate your new POS system with your existing business systems such as accounting software, e-commerce platforms, CRM systems, and more.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>How long does implementation take?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>The implementation timeline varies depending on the complexity of your business and the selected solution. Basic setups can be completed in 1-2 weeks, while more complex implementations may take 3-4 weeks or longer.</p>
+                                        </div>
+                                    </div>
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h4>What about ongoing support?</h4>
+                                            <div class="faq-toggle"><i class="fas fa-plus"></i></div>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>We provide initial support periods with all our packages. After that, we offer ongoing support plans to ensure your POS system continues to run smoothly and efficiently.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-sidebar">
+                            <div class="sidebar-card cta-card">
+                                <h3>Ready to Modernize Your Business?</h3>
+                                <p>Contact us today to discuss how a modern POS system can transform your operations.</p>
+                                <a href="#contact" class="btn-primary magnetic-button">
+                                    <span>Request a Quote</span>
+                                    <div class="btn-bubbles">
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                    </div>
+                                </a>
+                            </div>
+                            
+                            <div class="sidebar-card portfolio-card">
+                                <h3>Recent Work</h3>
+                                <div class="portfolio-images">
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="POS System Portfolio">
+                                    </div>
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1556740732-1f077c8f988d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="POS System Portfolio">
+                                    </div>
+                                    <div class="portfolio-image">
+                                        <img src="https://images.unsplash.com/photo-1537191072641-5a33e7853c34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="POS System Portfolio">
+                                    </div>
+                                </div>
+                                <a href="index.html#work" class="view-portfolio-btn">View All Projects <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            
+                            <div class="sidebar-card testimonial-card">
+                                <div class="testimonial-quote">
+                                    <i class="fas fa-quote-left"></i>
+                                    <p>"The POS system implemented by Elan's Tech World has revolutionized our retail operations. We've seen significant improvements in transaction speed, inventory management, and customer satisfaction."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="author-image">
+                                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Testimonial Author">
+                                    </div>
+                                    <div class="author-info">
+                                        <h4>Emily Chang</h4>
+                                        <p>Owner, Boutique Retail Store</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services -->
+        <section id="additional-services" class="additional-services">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-sub-title">More Services</div>
+                    <h2 class="section-title">Explore Our <span class="text-gradient">Other Services</span></h2>
+                    <p class="section-description">Discover our full range of technology solutions to power your business</p>
+                </div>
+                
+                <div class="services-quick-links">
+                    <a href="#digital-marketing" class="quick-link-card tilt-element" data-category="marketing">
+                        <div class="quick-link-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3>Digital Marketing</h3>
+                        <p>Targeted campaigns and strategies that drive traffic, engagement, and conversions.</p>
+                        <div class="quick-link-price">From $899/month</div>
+                        <div class="quick-link-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#google-ads" class="quick-link-card tilt-element" data-category="marketing">
+                        <div class="quick-link-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <h3>Google Ads Management</h3>
+                        <p>Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business.</p>
+                        <div class="quick-link-price">From $799/month</div>
+                        <div class="quick-link-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#property-management" class="quick-link-card tilt-element" data-category="business">
+                        <div class="quick-link-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Property Management Systems</h3>
+                        <p>Comprehensive solutions to streamline operations and enhance tenant satisfaction.</p>
+                        <div class="quick-link-price">From $2,999</div>
+                        <div class="quick-link-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#print-design" class="quick-link-card tilt-element" data-category="web">
+                        <div class="quick-link-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3>Print & Graphic Design</h3>
+                        <p>Professional print materials and brand assets that elevate your business image.</p>
+                        <div class="quick-link-price">From $799</div>
+                        <div class="quick-link-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                    
+                    <a href="#tech-consulting" class="quick-link-card tilt-element" data-category="business">
+                        <div class="quick-link-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Technology Consulting</h3>
+                        <p>Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
+                        <div class="quick-link-price">From $149/hour</div>
+                        <div class="quick-link-arrow">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="why-choose-us">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-sub-title">Client Success</div>
+                    <h2 class="section-title">Why Clients <span class="text-gradient">Choose Us</span></h2>
+                    <p class="section-description">What makes Elan's Tech World different from other service providers</p>
+                </div>
+                
+                <div class="choose-us-grid">
+                    <div class="choose-us-content">
+                        <div class="choose-us-item">
+                            <div class="choose-us-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="choose-us-text">
+                                <h3>Expert Team</h3>
+                                <p>Our team consists of highly skilled professionals with years of experience in their respective fields. We stay up-to-date with the latest technologies and industry trends to deliver cutting-edge solutions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="choose-us-item">
+                            <div class="choose-us-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="choose-us-text">
+                                <h3>Personalized Approach</h3>
+                                <p>We take the time to understand your unique business challenges and goals, and develop customized solutions that address your specific needs rather than offering one-size-fits-all packages.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="choose-us-item">
+                            <div class="choose-us-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="choose-us-text">
+                                <h3>End-to-End Solutions</h3>
+                                <p>From initial concept to post-launch support, we provide complete solutions that cover all aspects of your technology needs, eliminating the need to work with multiple vendors.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="choose-us-item">
+                            <div class="choose-us-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="choose-us-text">
+                                <h3>Clear Communication</h3>
+                                <p>We believe in transparent, jargon-free communication throughout the project lifecycle. You'll always know the status of your project and what to expect next.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="choose-us-image">
+                        <div class="image-container tilt-element">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Team collaboration">
+                            <div class="image-overlay"></div>
+                            <div class="experience-badge">
+                                <div class="years">5+</div>
+                                <div class="text">Years of Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonials-slider swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-card tilt-element">
+                                <div class="testimonial-content">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">"Elan's Tech World transformed our beauty clinic with a stunning website and integrated booking system. The Square POS implementation has streamlined our operations, allowing us to focus on our clients. Our online bookings have increased by 40%!"</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-author-image">
+                                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Illanit Shalom">
+                                    </div>
+                                    <div class="testimonial-author-info">
+                                        <h4 class="testimonial-author-name">Illanit Shalom</h4>
+                                        <p class="testimonial-author-position">Owner, Iconic Aesthetics</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-card tilt-element">
+                                <div class="testimonial-content">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">"Working with Elan's Tech World has completely elevated my real estate business. The MLS-integrated website, office network setup, and professional marketing materials have given us a competitive edge. Their technology solutions have streamlined our property management and improved client experience."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-author-image">
+                                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Zarina Yusupova">
+                                    </div>
+                                    <div class="testimonial-author-info">
+                                        <h4 class="testimonial-author-name">Zarina Yusupova</h4>
+                                        <p class="testimonial-author-position">Broker, East Coast Realty</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide">
+                            <div class="testimonial-card tilt-element">
+                                <div class="testimonial-content">
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="testimonial-text">"As a psychology practice, patient confidentiality and HIPAA compliance are our top priorities. Elan created a secure, professional website with integrated appointment scheduling that meets all our requirements. Their Apple device setup and electronic records integration have revolutionized our practice management."</p>
+                                </div>
+                                <div class="testimonial-author">
+                                    <div class="testimonial-author-image">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Douglas Uhlig">
+                                    </div>
+                                    <div class="testimonial-author-info">
+                                        <h4 class="testimonial-author-name">Douglas Uhlig</h4>
+                                        <p class="testimonial-author-position">Director, Psychological Services</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonials navigation -->
+                    <div class="testimonials-pagination"></div>
+                    <div class="testimonials-nav-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="testimonials-nav-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-shapes">
+                <div class="contact-shape shape-1"></div>
+                <div class="contact-shape shape-2"></div>
+            </div>
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="section-header">
+                            <div class="section-sub-title">Get In Touch</div>
+                            <h2 class="section-title">Ready to <span class="text-gradient">Transform</span> Your Business?</h2>
+                            <p class="contact-description">Contact us today to discuss your project requirements and how we can help you achieve your business goals.</p>
+                        </div>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item tilt-element">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3 class="contact-title">Phone</h3>
+                                    <a href="tel:+19294176819" class="contact-link">(929) 417-6819</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item tilt-element">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3 class="contact-title">Email</h3>
+                                    <a href="mailto:elan@elanstechworld.com" class="contact-link">elan@elanstechworld.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item tilt-element">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h3 class="contact-title">Location</h3>
+                                    <p>New York, NY</p>
+                                    <p>We come to you</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-social">
+                            <a href="https://www.instagram.com/elan_tech_world/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-wrapper">
+                        <!-- Contact Form -->
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-header">
+                                <h3>Request a Quote</h3>
+                                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">Service of Interest</label>
+                                <select id="service" name="service" required>
+                                    <option value="" disabled selected>Select a service</option>
+                                    <option value="web-development">Web Design & Development</option>
+                                    <option value="mobile-app">Mobile App Development</option>
+                                    <option value="pos-system">POS System Implementation</option>
+                                    <option value="digital-marketing">Digital Marketing</option>
+                                    <option value="google-ads">Google Ads Management</option>
+                                    <option value="property-management">Property Management Systems</option>
+                                    <option value="print-design">Print & Graphic Design</option>
+                                    <option value="tech-consulting">Technology Consulting</option>
+                                    <option value="other">Other / Multiple Services</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Project Details</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project requirements" rows="5" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Estimated Budget</label>
+                                <select id="budget" name="budget">
+                                    <option value="" disabled selected>Select your budget range</option>
+                                    <option value="less-than-1000">Less than $1,000</option>
+                                    <option value="1000-3000">$1,000 - $3,000</option>
+                                    <option value="3000-5000">$3,000 - $5,000</option>
+                                    <option value="5000-10000">$5,000 - $10,000</option>
+                                    <option value="10000-plus">$10,000+</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">
+                                <span>Submit Request</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-waves">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+                </g>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">
+                            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-text-main">Elan's</span>
+                            <span class="logo-text-sub">Tech World</span>
+                        </div>
+                    </a>
+                    <p class="footer-tagline">Transforming businesses through innovative technology solutions</p>
+                </div>
+                
+                <div class="footer-nav">
+                    <div class="footer-nav-col">
+                        <h3 class="footer-title">Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="pages/about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="index.html#work">Our Work</a></li>
+                            <li><a href="index.html#process">Process</a></li>
+                            <li><a href="index.html#testimonials">Testimonials</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-nav-col">
+                        <h3 class="footer-title">Services</h3>
+                        <ul class="footer-links">
+                            <li><a href="#web-development">Web Design</a></li>
+                            <li><a href="#mobile-app">Mobile Apps</a></li>
+                            <li><a href="#pos-system">POS Systems</a></li>
+                            <li><a href="#digital-marketing">Digital Marketing</a></li>
+                            <li><a href="#property-management">Property Management</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-nav-col">
+                        <h3 class="footer-title">Contact</h3>
+                        <ul class="footer-contact">
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+19294176819">(929) 417-6819</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>New York, NY</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 Elan's Tech World. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <!-- Elfsight AI Chatbot -->
+    <div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
+
+    <!-- Scripts -->  
+    <!-- Essential scripts with defer attribute for better page loading performance -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js" defer></script>
+    
+    <!-- Main JavaScript file loaded at the end -->
+    <script src="js/script.js" defer></script>
+    <script src="js/services.js" defer></script>
+    
+    <!-- Elfsight Platform Script -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
