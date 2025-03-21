@@ -14,12 +14,37 @@ document.addEventListener('DOMContentLoaded', () => {
  * Initialize all services page functionality
  */
 function initServicesPage() {
+    // First ensure all service sections are visible
+    document.querySelectorAll('.service-detail-section').forEach(section => {
+        section.style.display = 'block';
+        section.style.visibility = 'visible';
+        section.style.opacity = '1';
+    });
+    
+    // Initialize components
     initServicesTabs();
     initServicesNavigation();
     initFaqAccordion();
     initAnimations();
     initFloatingImages();
     updateActiveTabIndicator();
+    
+    // Add event listener for window load to ensure all elements are properly displayed
+    window.addEventListener('load', () => {
+        // Force display of all sections after complete page load
+        document.querySelectorAll('.service-detail-section').forEach(section => {
+            section.style.display = 'block';
+            section.style.visibility = 'visible';
+            section.style.opacity = '1';
+        });
+        
+        // Reinitialize animations
+        document.querySelectorAll('[data-animation]').forEach(element => {
+            const animation = element.getAttribute('data-animation');
+            element.classList.add('animated');
+            element.classList.add(animation);
+        });
+    });
 }
 
 /**
@@ -29,6 +54,13 @@ function initServicesPage() {
 function initServicesTabs() {
     const serviceTabs = document.querySelectorAll('.service-tab');
     const serviceDetailSections = document.querySelectorAll('.service-detail-section');
+    
+    // First make sure all service sections are visible initially
+    serviceDetailSections.forEach(section => {
+        section.style.display = 'block';
+        section.style.visibility = 'visible';
+        section.style.opacity = '1';
+    });
     
     serviceTabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -42,6 +74,8 @@ function initServicesTabs() {
             if (serviceType === 'all') {
                 serviceDetailSections.forEach(section => {
                     section.style.display = 'block';
+                    section.style.visibility = 'visible';
+                    section.style.opacity = '1';
                     // Reset animations
                     resetSectionAnimations(section);
                 });
@@ -50,6 +84,8 @@ function initServicesTabs() {
                     const sectionType = section.getAttribute('data-service');
                     if (sectionType === serviceType) {
                         section.style.display = 'block';
+                        section.style.visibility = 'visible';
+                        section.style.opacity = '1';
                         // Reset animations
                         resetSectionAnimations(section);
                     } else {
@@ -69,6 +105,13 @@ function initServicesTabs() {
             });
         });
     });
+    
+    // Ensure "all" tab is active on load
+    const allTab = document.querySelector('.service-tab[data-service="all"]');
+    if (allTab) {
+        allTab.classList.add('active');
+        updateActiveTabIndicator();
+    }
 }
 
 /**
@@ -199,13 +242,25 @@ function initFaqAccordion() {
 function initAnimations() {
     const animatedElements = document.querySelectorAll('[data-animation]');
     
-    // Initialize Intersection Observer for animations
+    // Make sure all service sections are visible first
+    document.querySelectorAll('.service-detail-section').forEach(section => {
+        section.style.display = 'block';
+        section.style.visibility = 'visible';
+        section.style.opacity = '1';
+    });
+    
+    // Initialize Intersection Observer for animations with more sensitive threshold
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
                 const animation = element.getAttribute('data-animation');
                 
+                // Make sure element is visible
+                element.style.visibility = 'visible';
+                element.style.opacity = '1';
+                
+                // Add animation classes
                 element.classList.add('animated');
                 element.classList.add(animation);
                 
@@ -213,10 +268,18 @@ function initAnimations() {
                 observer.unobserve(element);
             }
         });
-    }, { threshold: 0.1 });
+    }, { 
+        threshold: 0.01, // More sensitive threshold
+        rootMargin: "0px 0px 100px 0px" // Trigger before element comes into view
+    });
     
     // Observe all animated elements
     animatedElements.forEach(element => {
+        // First ensure the element is visible
+        element.style.visibility = 'visible';
+        element.style.opacity = '1';
+        
+        // Then observe for animation
         observer.observe(element);
     });
     
@@ -224,6 +287,20 @@ function initAnimations() {
     if (window.gsap) {
         initGsapAnimations();
     }
+    
+    // Fallback in case observer fails
+    setTimeout(() => {
+        document.querySelectorAll('[data-animation]').forEach(element => {
+            if (!element.classList.contains('animated')) {
+                element.style.visibility = 'visible';
+                element.style.opacity = '1';
+                
+                const animation = element.getAttribute('data-animation');
+                element.classList.add('animated');
+                element.classList.add(animation);
+            }
+        });
+    }, 1000);
 }
 
 /**
