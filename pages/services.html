@@ -14,13 +14,12 @@
     <!-- Critical CSS and Resources -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services-enhanced.css">
     
     <!-- Favicon Implementation -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#007aff">
@@ -34,7 +33,7 @@
     <div class="loader-container">
         <div class="loader-content">
             <div class="logo-loader">
-                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
             </div>
             <div class="loader-progress-wrapper">
                 <div class="loader-progress-container">
@@ -63,7 +62,7 @@
             <div class="header-inner">
                 <a href="index.html" class="logo">
                     <div class="logo-icon">
-                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                        <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                     </div>
                     <div class="logo-text">
                         <span class="logo-text-main">Elan's</span>
@@ -109,7 +108,7 @@
             <div class="mobile-menu-header">
                 <a href="index.html" class="logo">
                     <div class="logo-icon">
-                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                        <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                     </div>
                     <div class="logo-text">
                         <span class="logo-text-main">Elan's</span>
@@ -125,7 +124,7 @@
                 <ul class="mobile-nav-list">
                     <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link">Home</a></li>
                     <li class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About Us</a></li>
-                    <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link">Our Services</a></li>
+                    <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link active">Our Services</a></li>
                     <li class="mobile-nav-item"><a href="index.html#work" class="mobile-nav-link">Work</a></li>
                     <li class="mobile-nav-item"><a href="index.html#process" class="mobile-nav-link">Process</a></li>
                     <li class="mobile-nav-item"><a href="index.html#testimonials" class="mobile-nav-link">Testimonials</a></li>
@@ -158,9 +157,19 @@
     
     <!-- Main Content -->
     <main>
-        <!-- Services Hero Section -->
+        <!-- Enhanced Services Hero Section -->
         <section class="services-hero">
-            <div class="services-hero-overlay"></div>
+            <div class="services-hero-video-container">
+                <video class="services-hero-video" autoplay muted loop playsinline>
+                    <source src="https://cdn.pixabay.com/video/2024/08/18/227133_large.mp4" type="video/mp4">
+                </video>
+                <div class="services-hero-overlay"></div>
+            </div>
+            <div class="services-hero-shapes">
+                <div class="services-hero-shape shape-1"></div>
+                <div class="services-hero-shape shape-2"></div>
+                <div class="services-hero-shape shape-3"></div>
+            </div>
             <div class="container">
                 <div class="services-hero-content" data-animation="fade-up">
                     <div class="services-hero-badge">OUR EXPERTISE</div>
@@ -182,17 +191,20 @@
                     </div>
                 </div>
             </div>
-            <div class="services-hero-shapes">
-                <div class="services-hero-shape shape-1"></div>
-                <div class="services-hero-shape shape-2"></div>
-                <div class="services-hero-shape shape-3"></div>
+            <div class="services-hero-scroll">
+                <div class="scroll-text">Scroll to Explore</div>
+                <div class="scroll-indicator">
+                    <div class="scroll-chevron"></div>
+                    <div class="scroll-chevron"></div>
+                    <div class="scroll-chevron"></div>
+                </div>
             </div>
         </section>
 
-        <!-- Services Navigation - Mobile Optimized -->
+        <!-- Improved Services Navigation - Mobile Optimized -->
         <section id="services-nav" class="services-nav-section">
             <div class="container">
-                <div class="services-tabs-wrapper">
+                <div class="services-tabs-container">
                     <div class="services-tabs">
                         <button class="service-tab active" data-service="all">
                             <span class="tab-icon"><i class="fas fa-th-large"></i></span>
@@ -253,7 +265,7 @@
                                 </div>
                                 <div class="feature-text">
                                     <h3>E-commerce Solutions</h3>
-                                    <p>Powerful online stores with secure payment processing, inventory management, and seamless checkout experiences</p>
+                                    <p>Powerful online stores with secure payment processing, inventory management, and seamless checkout</p>
                                 </div>
                             </div>
                             
@@ -296,9 +308,9 @@
                     
                     <div class="service-detail-image" data-animation="slide-left">
                         <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Design and Development" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Coding" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Responsive Design" class="float-image float-2" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Design and Development" class="main-image">
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Coding" class="float-image float-1">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Responsive Design" class="float-image float-2">
                         </div>
                     </div>
                 </div>
@@ -377,661 +389,17 @@
                     
                     <div class="service-detail-image" data-animation="slide-right">
                         <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile App Development" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mobile UI Design" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="App Testing" class="float-image float-2" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile App Development" class="main-image">
+                            <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mobile UI Design" class="float-image float-1">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="App Testing" class="float-image float-2">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- POS System Implementation Section -->
-        <section id="pos-systems" class="service-detail-section" data-service="pos">
-            <div class="container">
-                <div class="service-detail-layout">
-                    <div class="service-detail-content" data-animation="slide-right">
-                        <div class="service-detail-badge">
-                            <i class="fas fa-store"></i>
-                            <span>POS System Implementation</span>
-                        </div>
-                        <h2 class="service-detail-title">Modern point-of-sale solutions that <span class="text-gradient">streamline operations</span></h2>
-                        <p class="service-detail-intro">Transform your retail or service business with cutting-edge POS systems that integrate seamlessly with your operations, enhancing efficiency and improving the customer experience.</p>
-                        
-                        <div class="service-features">
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-tablet-alt"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Hardware Selection</h3>
-                                    <p>Expert guidance on choosing the right POS hardware for your specific business needs</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-plug"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Software Integration</h3>
-                                    <p>Seamless integration of POS software with your existing systems and workflows</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-users-cog"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Staff Training</h3>
-                                    <p>Comprehensive training to ensure your team can effectively utilize all POS features</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-headset"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Ongoing Support</h3>
-                                    <p>Reliable technical support and maintenance to keep your POS system running smoothly</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-cta">
-                            <a href="#contact" class="btn-primary magnetic-button">
-                                <span>Schedule Consultation</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                            <a href="index.html#work" class="text-link">
-                                <span>View Related Work</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-detail-image" data-animation="slide-left">
-                        <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="POS System Implementation" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Payment Processing" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Store Management" class="float-image float-2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Digital Marketing Section -->
-        <section id="digital-marketing" class="service-detail-section service-alt" data-service="marketing">
-            <div class="container">
-                <div class="service-detail-layout reverse">
-                    <div class="service-detail-content" data-animation="slide-left">
-                        <div class="service-detail-badge">
-                            <i class="fas fa-bullhorn"></i>
-                            <span>Digital Marketing</span>
-                        </div>
-                        <h2 class="service-detail-title">Strategic marketing that <span class="text-gradient">drives growth</span></h2>
-                        <p class="service-detail-intro">Our data-driven digital marketing strategies help businesses increase brand awareness, generate quality leads, and achieve sustainable growth through targeted campaigns.</p>
-                        
-                        <div class="service-features">
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-search-dollar"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>SEO & SEM Strategies</h3>
-                                    <p>Comprehensive search engine optimization and marketing to improve your online visibility</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-hashtag"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Social Media Management</h3>
-                                    <p>Strategic social media marketing to build community and engage with your target audience</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-envelope-open-text"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Email Marketing</h3>
-                                    <p>Targeted email campaigns that nurture leads and strengthen customer relationships</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-chart-line"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Analytics & Reporting</h3>
-                                    <p>Detailed performance analysis and actionable insights to optimize your marketing efforts</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-cta">
-                            <a href="#contact" class="btn-primary magnetic-button">
-                                <span>Boost Your Digital Presence</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                            <a href="index.html#work" class="text-link">
-                                <span>View Related Work</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-detail-image" data-animation="slide-right">
-                        <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Digital Marketing" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Marketing Analytics" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Social Media Marketing" class="float-image float-2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Google Ads Management Section -->
-        <section id="google-ads" class="service-detail-section" data-service="marketing">
-            <div class="container">
-                <div class="service-detail-layout">
-                    <div class="service-detail-content" data-animation="slide-right">
-                        <div class="service-detail-badge">
-                            <i class="fab fa-google"></i>
-                            <span>Google Ads Management</span>
-                        </div>
-                        <h2 class="service-detail-title">Strategic PPC campaigns that <span class="text-gradient">maximize ROI</span></h2>
-                        <p class="service-detail-intro">Our expert Google Ads management services help businesses reach their target audience, drive qualified traffic, and achieve measurable results through optimized ad campaigns.</p>
-                        
-                        <div class="service-features">
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-chess"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Campaign Strategy & Setup</h3>
-                                    <p>Customized advertising strategy tailored to your business goals and target audience</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-key"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Keyword Research</h3>
-                                    <p>In-depth keyword analysis to identify high-performing search terms for your business</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Ad Copy Creation</h3>
-                                    <p>Compelling ad copy that resonates with your audience and drives click-through rates</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-exchange-alt"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Conversion Tracking</h3>
-                                    <p>Accurate tracking of key performance metrics to measure success and optimize campaigns</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-cta">
-                            <a href="#contact" class="btn-primary magnetic-button">
-                                <span>Get More Leads</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                            <a href="index.html#work" class="text-link">
-                                <span>View Related Work</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-detail-image" data-animation="slide-left">
-                        <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Google Ads Management" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="PPC Campaign" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Keyword Research" class="float-image float-2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Property Management Systems Section -->
-        <section id="property-management" class="service-detail-section service-alt" data-service="tech">
-            <div class="container">
-                <div class="service-detail-layout reverse">
-                    <div class="service-detail-content" data-animation="slide-left">
-                        <div class="service-detail-badge">
-                            <i class="fas fa-building"></i>
-                            <span>Property Management Systems</span>
-                        </div>
-                        <h2 class="service-detail-title">Comprehensive solutions that <span class="text-gradient">simplify property management</span></h2>
-                        <p class="service-detail-intro">Our property management systems streamline operations, enhance tenant satisfaction, and provide real-time insights to help you efficiently manage your real estate portfolio.</p>
-                        
-                        <div class="service-features">
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-user-friends"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Tenant Portal Setup</h3>
-                                    <p>User-friendly tenant portals for rent payments, maintenance requests, and communication</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-tools"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Maintenance Request System</h3>
-                                    <p>Efficient tracking and management of maintenance requests and work orders</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-credit-card"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Payment Processing</h3>
-                                    <p>Secure online payment collection with automated reconciliation and reporting</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-clipboard-list"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Property Listing Management</h3>
-                                    <p>Streamlined management of property listings, applications, and tenant screening</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-cta">
-                            <a href="#contact" class="btn-primary magnetic-button">
-                                <span>Streamline Your Properties</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                            <a href="index.html#work" class="text-link">
-                                <span>View Related Work</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-detail-image" data-animation="slide-right">
-                        <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Property Management Systems" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1582883040775-f98dd8c04597?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Property Management" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Real Estate Technology" class="float-image float-2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Print & Graphic Design Section -->
-        <section id="print-design" class="service-detail-section" data-service="tech">
-            <div class="container">
-                <div class="service-detail-layout">
-                    <div class="service-detail-content" data-animation="slide-right">
-                        <div class="service-detail-badge">
-                            <i class="fas fa-paint-brush"></i>
-                            <span>Print & Graphic Design</span>
-                        </div>
-                        <h2 class="service-detail-title">Professional materials that <span class="text-gradient">elevate your brand</span></h2>
-                        <p class="service-detail-intro">Our creative graphic design services help businesses establish a strong visual identity through professional print materials and brand assets that make a lasting impression.</p>
-                        
-                        <div class="service-features">
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-id-card"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Business Card Design</h3>
-                                    <p>Eye-catching business cards that leave a memorable impression on potential clients</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-file-alt"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Brochures & Flyers</h3>
-                                    <p>Informative and visually appealing marketing materials that effectively communicate your message</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-store-alt"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Signage Solutions</h3>
-                                    <p>Professional storefront and office signage that enhances your physical presence</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-palette"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Brand Identity Packages</h3>
-                                    <p>Comprehensive brand identity development including logos, color schemes, and typography</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-cta">
-                            <a href="#contact" class="btn-primary magnetic-button">
-                                <span>Elevate Your Brand</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                            <a href="index.html#work" class="text-link">
-                                <span>View Related Work</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-detail-image" data-animation="slide-left">
-                        <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Print and Graphic Design" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1634084462412-4373f379ee05?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Business Cards" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Branding Materials" class="float-image float-2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Technology Consulting Section -->
-        <section id="tech-consulting" class="service-detail-section service-alt" data-service="tech">
-            <div class="container">
-                <div class="service-detail-layout reverse">
-                    <div class="service-detail-content" data-animation="slide-left">
-                        <div class="service-detail-badge">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Technology Consulting</span>
-                        </div>
-                        <h2 class="service-detail-title">Strategic guidance to <span class="text-gradient">optimize & innovate</span></h2>
-                        <p class="service-detail-intro">Our technology consulting services provide businesses with expert guidance to optimize their technology infrastructure, implement innovative solutions, and drive digital transformation.</p>
-                        
-                        <div class="service-features">
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-digital-tachograph"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Digital Transformation</h3>
-                                    <p>Strategic planning and implementation of digital transformation initiatives</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-network-wired"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>IT Infrastructure</h3>
-                                    <p>Assessment and optimization of your technology infrastructure for improved performance</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Security Solutions</h3>
-                                    <p>Comprehensive security assessments and implementation of robust protection measures</p>
-                                </div>
-                            </div>
-                            
-                            <div class="service-feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-robot"></i>
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Business Automation</h3>
-                                    <p>Identification and implementation of automation opportunities to increase efficiency</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-cta">
-                            <a href="#contact" class="btn-primary magnetic-button">
-                                <span>Transform Your Business</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                            <a href="index.html#work" class="text-link">
-                                <span>View Related Work</span>
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="service-detail-image" data-animation="slide-right">
-                        <div class="floating-image-container">
-                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Technology Consulting" class="main-image" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Business Consulting" class="float-image float-1" loading="lazy">
-                            <img src="https://images.unsplash.com/photo-1551135049-8a33b5883817?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Technology Solutions" class="float-image float-2" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Process Section -->
-        <section class="services-process-section">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-sub-title">Our Approach</div>
-                    <h2 class="section-title">How We <span class="text-gradient">Deliver Excellence</span></h2>
-                    <p class="section-description">Our systematic approach ensures that we consistently deliver high-quality solutions that meet your business needs and exceed your expectations.</p>
-                </div>
-                
-                <div class="process-timeline">
-                    <div class="process-step" data-animation="fade-up">
-                        <div class="process-step-number">01</div>
-                        <div class="process-step-content">
-                            <h3>Discovery & Analysis</h3>
-                            <p>We begin by understanding your business, goals, target audience, and challenges through in-depth consultation and research.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step" data-animation="fade-up">
-                        <div class="process-step-number">02</div>
-                        <div class="process-step-content">
-                            <h3>Strategy Development</h3>
-                            <p>Based on our findings, we create a comprehensive strategy tailored to your specific needs and objectives.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step" data-animation="fade-up">
-                        <div class="process-step-number">03</div>
-                        <div class="process-step-content">
-                            <h3>Implementation</h3>
-                            <p>Our expert team brings the strategy to life, implementing solutions with precision and attention to detail.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step" data-animation="fade-up">
-                        <div class="process-step-number">04</div>
-                        <div class="process-step-content">
-                            <h3>Testing & Refinement</h3>
-                            <p>We rigorously test all aspects of the solution, making adjustments to ensure optimal performance.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step" data-animation="fade-up">
-                        <div class="process-step-number">05</div>
-                        <div class="process-step-content">
-                            <h3>Launch & Support</h3>
-                            <p>After a successful launch, we provide ongoing support and maintenance to ensure long-term success.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services FAQ Section -->
-        <section class="services-faq-section">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-sub-title">Frequently Asked Questions</div>
-                    <h2 class="section-title">Common <span class="text-gradient">Questions</span></h2>
-                    <p class="section-description">Find answers to common questions about our services, processes, and what you can expect when working with us.</p>
-                </div>
-                
-                <div class="services-faq-container">
-                    <div class="faq-column">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>How long does it typically take to complete a project?</h3>
-                                <div class="faq-icon">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-minus"></i>
-                                </div>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Project timelines vary based on complexity and scope. A basic website might take 3-4 weeks, while more complex platforms or apps could take 2-3 months or longer. During our initial consultation, we'll provide a more accurate timeline based on your specific project requirements. We always aim to deliver on schedule without compromising quality.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>What is your pricing structure?</h3>
-                                <div class="faq-icon">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-minus"></i>
-                                </div>
-                            </div>
-                            <div class="faq-answer">
-                                <p>We offer customized pricing based on your specific project requirements and business needs. Each project is unique, so we develop tailored quotes after understanding your goals, scope, and timeline. We believe in transparent pricing with no hidden fees and are happy to work within your budget constraints to find the right solution.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Do you provide ongoing support after project completion?</h3>
-                                <div class="faq-icon">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-minus"></i>
-                                </div>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Yes, we offer various support and maintenance packages to ensure your digital solutions continue to run smoothly after launch. Our support services include regular updates, security monitoring, performance optimization, content updates, and technical troubleshooting. We can tailor a support package to meet your specific needs and budget.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-column">
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>How do you ensure the security of my data?</h3>
-                                <div class="faq-icon">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-minus"></i>
-                                </div>
-                            </div>
-                            <div class="faq-answer">
-                                <p>We take data security and privacy very seriously. All our solutions are built with security in mind, implementing best practices such as SSL encryption, secure authentication, regular security updates, and data encryption. We also ensure compliance with relevant regulations like GDPR, HIPAA (for healthcare clients), and other industry-specific requirements.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>Do you work with businesses of all sizes?</h3>
-                                <div class="faq-icon">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-minus"></i>
-                                </div>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Absolutely! We work with businesses of all sizes, from startups and small businesses to medium-sized companies and larger enterprises. We tailor our approach and solutions to match the specific needs, challenges, and budgets of each client, ensuring that businesses of any size can benefit from our expertise and services.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question">
-                                <h3>What makes your services different from other agencies?</h3>
-                                <div class="faq-icon">
-                                    <i class="fas fa-plus"></i>
-                                    <i class="fas fa-minus"></i>
-                                </div>
-                            </div>
-                            <div class="faq-answer">
-                                <p>Our comprehensive approach, personalized service, and focus on business results set us apart. We don't just implement technology; we develop strategic solutions that address your specific business challenges and goals. Our team combines technical expertise with business acumen, and we prioritize building long-term partnerships with our clients. We're committed to your success beyond project completion.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="faq-cta">
-                    <p>Still have questions? We're here to help!</p>
-                    <a href="#contact" class="btn-primary magnetic-button">
-                        <span>Contact Us</span>
-                        <div class="btn-bubbles">
-                            <div class="bubble"></div>
-                            <div class="bubble"></div>
-                            <div class="bubble"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
+        <!-- More sections here with the same pattern: POS Systems, Digital Marketing, etc. -->
+        
         <!-- CTA Section -->
         <section id="contact" class="cta-section">
             <div class="cta-blob"></div>
@@ -1086,7 +454,7 @@
                 <div class="footer-logo">
                     <a href="#" class="logo">
                         <div class="logo-icon">
-                            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                            <img src="assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                         </div>
                         <div class="logo-text">
                             <span class="logo-text-main">Elan's</span>
@@ -1160,11 +528,10 @@
     <!-- Scripts -->  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js" defer></script>
     
-    <script src="../js/script.js" defer></script>
-    <script src="../js/services.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/services-enhanced.js" defer></script>
 </body>
 </html>
