@@ -16,7 +16,7 @@ function initServicePage() {
     // Initialize services filtering
     initServicesFilter();
     
-    // Initialize service detail modal
+    // Initialize service detail modal with improved design
     initServiceDetailModal();
     
     // Initialize case studies slider
@@ -84,7 +84,7 @@ function initServicesFilter() {
 }
 
 /**
- * Service Detail Modal Functionality
+ * Service Detail Modal Functionality with Improved Design
  */
 function initServiceDetailModal() {
     const modal = document.getElementById('service-detail-modal');
@@ -95,11 +95,13 @@ function initServiceDetailModal() {
     const modalContent = modal.querySelector('.modal-content');
     const serviceLinks = document.querySelectorAll('.js-service-detail-trigger');
     
-    // Service detail content mapping
+    // Service detail content mapping with design attributes
     const serviceDetails = {
         'web-design': {
             title: 'Web Design & Development',
             icon: '<i class="fas fa-laptop-code"></i>',
+            color: '#007aff',
+            gradient: 'linear-gradient(135deg, #007aff, #00c2ff)',
             description: `Our web design and development services create stunning, responsive websites that captivate your audience and drive conversions. We combine creative design with technical expertise to deliver websites that not only look great but also perform exceptionally well.`,
             features: [
                 'Custom responsive website design',
@@ -128,6 +130,8 @@ function initServiceDetailModal() {
         'mobile-app': {
             title: 'Mobile App Development',
             icon: '<i class="fas fa-mobile-alt"></i>',
+            color: '#ff7a00',
+            gradient: 'linear-gradient(135deg, #ff7a00, #ffc200)',
             description: `We create engaging, high-performance mobile applications for iOS and Android platforms that help businesses connect with customers, streamline operations, and drive growth. Our mobile solutions are built with scalability, security, and user experience in mind.`,
             features: [
                 'Native iOS app development',
@@ -156,6 +160,8 @@ function initServiceDetailModal() {
         'pos': {
             title: 'POS System Implementation',
             icon: '<i class="fas fa-store"></i>',
+            color: '#7a00ff',
+            gradient: 'linear-gradient(135deg, #7a00ff, #c200ff)',
             description: `Our POS system implementation services help businesses streamline sales, inventory management, and customer interactions. We provide end-to-end solutions from hardware selection to staff training, ensuring a seamless transition to a modern point-of-sale ecosystem.`,
             features: [
                 'POS hardware selection and setup',
@@ -185,6 +191,8 @@ function initServiceDetailModal() {
         'digital-marketing': {
             title: 'Digital Marketing',
             icon: '<i class="fas fa-bullhorn"></i>',
+            color: '#00c27a',
+            gradient: 'linear-gradient(135deg, #00c27a, #00e988)',
             description: `Our digital marketing services help businesses increase their online visibility, generate qualified leads, and drive conversions. We create data-driven strategies across multiple channels to reach your target audience effectively and deliver measurable results.`,
             features: [
                 'Search Engine Optimization (SEO)',
@@ -212,6 +220,8 @@ function initServiceDetailModal() {
         'google-ads': {
             title: 'Google Ads Management',
             icon: '<i class="fab fa-google"></i>',
+            color: '#ea4335',
+            gradient: 'linear-gradient(135deg, #ea4335, #fbbc05)',
             description: `Our Google Ads management services help businesses maximize their return on investment through strategic campaign planning, expert optimization, and continuous performance analysis. We create targeted campaigns that drive quality traffic and conversions.`,
             features: [
                 'Comprehensive account setup',
@@ -240,6 +250,8 @@ function initServiceDetailModal() {
         'property-management': {
             title: 'Property Management Systems',
             icon: '<i class="fas fa-building"></i>',
+            color: '#4a6da7',
+            gradient: 'linear-gradient(135deg, #4a6da7, #8baaf0)',
             description: `Our property management system solutions help real estate companies streamline operations, improve tenant satisfaction, and maximize property performance. We implement comprehensive digital systems that handle everything from listings to maintenance requests.`,
             features: [
                 'Property listing management',
@@ -269,6 +281,8 @@ function initServiceDetailModal() {
         'print-design': {
             title: 'Print & Graphic Design',
             icon: '<i class="fas fa-paint-brush"></i>',
+            color: '#ff5ca8',
+            gradient: 'linear-gradient(135deg, #ff5ca8, #ff9bce)',
             description: `Our print and graphic design services help businesses create compelling visual assets that reinforce brand identity and engage audiences. From business cards to signage, we deliver high-quality designs that make a lasting impression.`,
             features: [
                 'Logo design and brand identity',
@@ -297,6 +311,8 @@ function initServiceDetailModal() {
         'tech-consulting': {
             title: 'Technology Consulting',
             icon: '<i class="fas fa-chart-line"></i>',
+            color: '#607d8b',
+            gradient: 'linear-gradient(135deg, #607d8b, #90a4ae)',
             description: `Our technology consulting services provide strategic guidance to help businesses leverage technology for growth, efficiency, and competitive advantage. We assess your current infrastructure, identify opportunities, and develop roadmaps for digital transformation.`,
             features: [
                 'IT infrastructure assessment',
@@ -324,6 +340,9 @@ function initServiceDetailModal() {
         }
     };
     
+    // Add necessary styles for the new modal design
+    addModalStyles();
+    
     // Open modal when clicking on service links
     serviceLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -333,61 +352,96 @@ function initServiceDetailModal() {
             const serviceData = serviceDetails[serviceId];
             
             if (serviceData) {
-                // Populate modal content
+                // Populate modal content with improved design
                 modalContent.innerHTML = `
-                    <div class="service-detail">
-                        <div class="service-detail-header">
-                            <div class="service-detail-icon">${serviceData.icon}</div>
-                            <h2 class="service-detail-title">${serviceData.title}</h2>
+                    <div class="service-detail-modern">
+                        <!-- Header Section with Gradient Background -->
+                        <div class="service-header" style="background: ${serviceData.gradient}">
+                            <div class="service-header-content">
+                                <div class="service-icon-wrapper">
+                                    <div class="service-icon-container">
+                                        ${serviceData.icon}
+                                    </div>
+                                </div>
+                                <h2 class="service-title">${serviceData.title}</h2>
+                                <div class="service-description">
+                                    <p>${serviceData.description}</p>
+                                </div>
+                            </div>
+                            <div class="service-header-shape">
+                                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                                    <path d="M0,0 C720,120 1440,120 1440,0 L1440,120 L0,120 Z" fill="white"></path>
+                                </svg>
+                            </div>
                         </div>
                         
-                        <div class="service-detail-content">
-                            <div class="service-detail-description">
-                                <p>${serviceData.description}</p>
+                        <!-- Main Content Section -->
+                        <div class="service-content">
+                            <!-- Features Section with Modern Cards -->
+                            <div class="service-section">
+                                <div class="section-header">
+                                    <h3 class="section-title">Key Features</h3>
+                                    <div class="section-line" style="background: ${serviceData.gradient}"></div>
+                                </div>
+                                
+                                <div class="features-grid">
+                                    ${serviceData.features.map(feature => `
+                                        <div class="feature-card">
+                                            <div class="feature-icon" style="color: ${serviceData.color}">
+                                                <i class="fas fa-check-circle"></i>
+                                            </div>
+                                            <div class="feature-text">${feature}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
                             </div>
                             
-                            <div class="service-detail-section">
-                                <h3>Key Features</h3>
-                                <ul class="service-detail-features">
-                                    ${serviceData.features.map(feature => `<li><i class="fas fa-check"></i>${feature}</li>`).join('')}
-                                </ul>
-                            </div>
-                            
-                            <div class="service-detail-section">
-                                <h3>Our Process</h3>
-                                <div class="service-detail-process">
+                            <!-- Process Section with Timeline -->
+                            <div class="service-section">
+                                <div class="section-header">
+                                    <h3 class="section-title">Our Process</h3>
+                                    <div class="section-line" style="background: ${serviceData.gradient}"></div>
+                                </div>
+                                
+                                <div class="process-timeline">
                                     ${serviceData.process.map((step, index) => `
-                                        <div class="process-step">
-                                            <div class="step-number">${String(index + 1).padStart(2, '0')}</div>
-                                            <div class="step-content">
-                                                <h4>${step.title}</h4>
-                                                <p>${step.description}</p>
+                                        <div class="process-item">
+                                            <div class="process-number" style="background: ${serviceData.gradient}">${index + 1}</div>
+                                            <div class="process-content">
+                                                <h4 class="process-title">${step.title}</h4>
+                                                <p class="process-description">${step.description}</p>
                                             </div>
                                         </div>
                                     `).join('')}
                                 </div>
                             </div>
                             
-                            <div class="service-detail-section">
-                                <h3>Case Studies</h3>
-                                <div class="service-detail-cases">
+                            <!-- Case Studies Section with Cards -->
+                            <div class="service-section">
+                                <div class="section-header">
+                                    <h3 class="section-title">Success Stories</h3>
+                                    <div class="section-line" style="background: ${serviceData.gradient}"></div>
+                                </div>
+                                
+                                <div class="case-studies-grid">
                                     ${serviceData.caseStudies.map(study => `
-                                        <div class="case-item">
-                                            <h4>${study.title}</h4>
-                                            <p>${study.description}</p>
+                                        <div class="case-study-card">
+                                            <div class="case-study-header" style="background: ${serviceData.gradient}">
+                                                <h4 class="case-study-title">${study.title}</h4>
+                                            </div>
+                                            <div class="case-study-body">
+                                                <p>${study.description}</p>
+                                            </div>
                                         </div>
                                     `).join('')}
                                 </div>
                             </div>
                             
-                            <div class="service-detail-cta">
-                                <a href="../index.html#contact" class="btn-primary">
-                                    <span>Get Started</span>
+                            <!-- CTA Section -->
+                            <div class="service-cta">
+                                <a href="../index.html#contact" class="cta-button" style="background: ${serviceData.gradient}">
+                                    <span>Start Your Project</span>
                                     <i class="fas fa-arrow-right"></i>
-                                </a>
-                                <a href="#" class="btn-secondary close-modal">
-                                    <span>Close</span>
-                                    <i class="fas fa-times"></i>
                                 </a>
                             </div>
                         </div>
@@ -397,15 +451,6 @@ function initServiceDetailModal() {
                 // Open modal
                 modal.classList.add('active');
                 document.body.classList.add('no-scroll');
-                
-                // Add event listener to close button inside modal content
-                const closeModalBtn = modalContent.querySelector('.close-modal');
-                if (closeModalBtn) {
-                    closeModalBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        closeServiceModal();
-                    });
-                }
                 
                 // Animate modal entrance
                 setTimeout(() => {
@@ -440,6 +485,339 @@ function initServiceDetailModal() {
             modal.classList.remove('active');
             document.body.classList.remove('no-scroll');
         }, 300);
+    }
+    
+    // Add modal styles function
+    function addModalStyles() {
+        // Create a style element if it doesn't exist
+        let styleEl = document.getElementById('service-modal-styles');
+        
+        if (!styleEl) {
+            styleEl = document.createElement('style');
+            styleEl.id = 'service-modal-styles';
+            document.head.appendChild(styleEl);
+        }
+        
+        // Add modern modal styles
+        styleEl.textContent = `
+            /* Modal Base Styles */
+            .service-detail-modal .modal-container {
+                max-width: 900px;
+                max-height: 85vh;
+                width: 95%;
+                background: #fff;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+                opacity: 0;
+                transform: scale(0.95);
+                transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            
+            .service-detail-modal .modal-container.show {
+                opacity: 1;
+                transform: scale(1);
+            }
+            
+            .service-detail-modal .modal-content {
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            /* Modern Service Detail Styles */
+            .service-detail-modern {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                max-height: 85vh;
+                overflow: hidden;
+            }
+            
+            /* Header Section */
+            .service-header {
+                position: relative;
+                color: white;
+                padding: 3rem 2rem 4rem;
+                overflow: hidden;
+            }
+            
+            .service-header-content {
+                position: relative;
+                z-index: 2;
+                text-align: center;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            .service-icon-wrapper {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+            }
+            
+            .service-icon-container {
+                width: 80px;
+                height: 80px;
+                background: rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(5px);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2rem;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .service-title {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+            
+            .service-description {
+                font-size: 1.125rem;
+                opacity: 0.9;
+                line-height: 1.6;
+            }
+            
+            .service-header-shape {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 120px;
+                z-index: 1;
+            }
+            
+            /* Content Section */
+            .service-content {
+                padding: 2rem;
+                overflow-y: auto;
+                flex: 1;
+            }
+            
+            .service-section {
+                margin-bottom: 3rem;
+            }
+            
+            .section-header {
+                margin-bottom: 1.5rem;
+                position: relative;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+            
+            .section-line {
+                width: 60px;
+                height: 4px;
+                border-radius: 2px;
+            }
+            
+            /* Features Grid */
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .feature-card {
+                background: #f8f9fa;
+                border-radius: 12px;
+                padding: 1.25rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 1rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            }
+            
+            .feature-icon {
+                font-size: 1.25rem;
+                flex-shrink: 0;
+            }
+            
+            .feature-text {
+                font-size: 1rem;
+                line-height: 1.5;
+                color: #4a4a4a;
+            }
+            
+            /* Process Timeline */
+            .process-timeline {
+                position: relative;
+                padding-left: 3rem;
+            }
+            
+            .process-timeline::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 15px;
+                height: 100%;
+                width: 2px;
+                background: #e9ecef;
+            }
+            
+            .process-item {
+                position: relative;
+                margin-bottom: 2rem;
+                padding-bottom: 1rem;
+            }
+            
+            .process-item:last-child {
+                margin-bottom: 0;
+            }
+            
+            .process-number {
+                position: absolute;
+                left: -3rem;
+                top: 0;
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 600;
+                z-index: 2;
+            }
+            
+            .process-content {
+                background: white;
+                border-radius: 12px;
+                padding: 1.25rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+            
+            .process-item:hover .process-content {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .process-title {
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+            }
+            
+            .process-description {
+                color: #6c757d;
+                margin: 0;
+                line-height: R1.5;
+            }
+            
+            /* Case Studies */
+            .case-studies-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .case-study-card {
+                background: white;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                transition: all 0.3s ease;
+            }
+            
+            .case-study-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .case-study-header {
+                padding: 1.25rem;
+                color: white;
+            }
+            
+            .case-study-title {
+                margin: 0;
+                font-size: 1.25rem;
+                font-weight: 600;
+            }
+            
+            .case-study-body {
+                padding: 1.25rem;
+            }
+            
+            .case-study-body p {
+                margin: 0;
+                color: #6c757d;
+                line-height: 1.5;
+            }
+            
+            /* CTA Section */
+            .service-cta {
+                text-align: center;
+                margin-top: 1rem;
+            }
+            
+            .cta-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 1rem 2.5rem;
+                border-radius: 50px;
+                color: white;
+                font-weight: 600;
+                font-size: 1.125rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .cta-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            }
+            
+            .cta-button i {
+                transition: transform 0.3s ease;
+            }
+            
+            .cta-button:hover i {
+                transform: translateX(5px);
+            }
+            
+            /* Mobile Responsiveness */
+            @media (max-width: 768px) {
+                .service-title {
+                    font-size: 2rem;
+                }
+                
+                .service-content {
+                    padding: 1.5rem;
+                }
+                
+                .features-grid,
+                .case-studies-grid {
+                    grid-template-columns: 1fr;
+                }
+                
+                .process-timeline {
+                    padding-left: 2.5rem;
+                }
+                
+                .process-number {
+                    left: -2.5rem;
+                    width: 28px;
+                    height: 28px;
+                    font-size: 0.875rem;
+                }
+            }
+        `;
     }
 }
 
