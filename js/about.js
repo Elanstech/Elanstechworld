@@ -257,7 +257,7 @@ function initTeamCards() {
             if (entry.isIntersecting) {
                 setTimeout(() => {
                     entry.target.classList.add('animate');
-                }, index * 150);
+                }, index * 200); // Slightly longer delay for better effect with fewer cards
                 
                 observer.unobserve(entry.target);
             }
@@ -268,6 +268,14 @@ function initTeamCards() {
     teamCards.forEach(card => {
         observer.observe(card);
     });
+    
+    // Center the team grid when only 2 members
+    if (teamCards.length === 2) {
+        const teamGrid = document.querySelector('.team-grid');
+        if (teamGrid) {
+            teamGrid.classList.add('two-members');
+        }
+    }
     
     // Add animation styles
     const style = document.createElement('style');
@@ -281,6 +289,22 @@ function initTeamCards() {
         .team-card.animate {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Styling for two team members */
+        .team-grid.two-members {
+            grid-template-columns: repeat(2, minmax(300px, 1fr));
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            gap: 3rem;
+        }
+        
+        @media (max-width: 767px) {
+            .team-grid.two-members {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
         }
     `;
     document.head.appendChild(style);
