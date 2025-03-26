@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elan's Tech World | Our Services</title>
-    <meta name="description" content="Explore our comprehensive range of digital solutions including web design, mobile app development, POS systems, digital marketing, and technology consulting.">
+    <title>Our Services | Elan's Tech World</title>
+    <meta name="description" content="Explore our comprehensive range of digital services designed to transform your business - web design, mobile apps, digital marketing, and more.">
     
     <!-- Preconnect to External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,11 +18,15 @@
     <link rel="stylesheet" href="../css/services.css">
     
     <!-- Favicon Implementation -->
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <link rel="manifest" href="../site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#007aff">
+    
+    <!-- Deferred Resources -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
 <body class="preload">
@@ -71,16 +75,16 @@
                     <ul class="nav-list">
                         <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="../pages/about.html" class="nav-link">About Us</a></li>
-                        <li class="nav-item"><a href="services.html" class="nav-link active">Services</a></li>
-                        <li class="nav-item"><a href="../index.html#work" class="nav-link">Work</a></li>
-                        <li class="nav-item"><a href="../index.html#process" class="nav-link">Process</a></li>
-                        <li class="nav-item"><a href="../index.html#testimonials" class="nav-link">Testimonials</a></li>
-                        <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="../pages/services.html" class="nav-link active">Services</a></li>
+                        <li class="nav-item"><a href="index.html#work" class="nav-link">Work</a></li>
+                        <li class="nav-item"><a href="index.html#process" class="nav-link">Process</a></li>
+                        <li class="nav-item"><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
+                        <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
                     </ul>
                 </nav>
                 
                 <div class="header-actions">
-                    <a href="../index.html#contact" class="btn-primary header-cta magnetic-button">
+                    <a href="index.html#contact" class="btn-primary header-cta magnetic-button">
                         <span>Get Started</span>
                         <div class="btn-bubbles">
                             <div class="bubble"></div>
@@ -103,7 +107,7 @@
         <div class="mobile-menu-backdrop"></div>
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <a href="../index.html" class="logo">
+                <a href="index.html" class="logo">
                     <div class="logo-icon">
                         <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                     </div>
@@ -121,11 +125,11 @@
                 <ul class="mobile-nav-list">
                     <li class="mobile-nav-item"><a href="../index.html" class="mobile-nav-link">Home</a></li>
                     <li class="mobile-nav-item"><a href="../pages/about.html" class="mobile-nav-link">About Us</a></li>
-                    <li class="mobile-nav-item"><a href="services.html" class="mobile-nav-link active">Our Services</a></li>
-                    <li class="mobile-nav-item"><a href="../index.html#work" class="mobile-nav-link">Work</a></li>
-                    <li class="mobile-nav-item"><a href="../index.html#process" class="mobile-nav-link">Process</a></li>
-                    <li class="mobile-nav-item"><a href="../index.html#testimonials" class="mobile-nav-link">Testimonials</a></li>
-                    <li class="mobile-nav-item"><a href="../index.html#contact" class="mobile-nav-link">Contact</a></li>
+                    <li class="mobile-nav-item"><a href="../pages/services.html" class="mobile-nav-link">Our Services</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#work" class="mobile-nav-link">Work</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#process" class="mobile-nav-link">Process</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#testimonials" class="mobile-nav-link">Testimonials</a></li>
+                    <li class="mobile-nav-item"><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-footer">
@@ -154,53 +158,66 @@
     
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Services Hero Section -->
         <section class="services-hero">
-            <div class="services-hero-bg">
-                <video class="services-hero-video" autoplay muted loop playsinline>
-                    <source src="https://cdn.pixabay.com/video/2024/08/18/227133_large.mp4" type="video/mp4">
-                </video>
+            <div class="services-hero-background">
                 <div class="services-hero-overlay"></div>
-                <div class="services-particles-container">
-                    <div class="particles"></div>
+                <div class="services-hero-shapes">
+                    <div class="services-hero-shape shape-1"></div>
+                    <div class="services-hero-shape shape-2"></div>
+                    <div class="services-hero-shape shape-3"></div>
                 </div>
             </div>
+            
             <div class="container">
-                <div class="services-hero-content">
-                    <span class="hero-badge">Premium Digital Solutions</span>
-                    <h1 class="hero-title">Transforming <span class="text-accent">Ideas</span> into <span class="text-accent">Digital Reality</span></h1>
-                    <p class="hero-description">We craft cutting-edge solutions that elevate your business through strategic innovation, stunning design, and flawless execution.</p>
-                    <div class="hero-actions">
-                        <a href="#services-grid" class="btn-primary">
-                            <span>Discover Our Services</span>
+                <div class="services-hero-content" data-aos="fade-up">
+                    <div class="services-hero-badge">Our Services</div>
+                    <h1 class="services-hero-title">
+                        Elevate Your <span class="gradient-text">Digital Presence</span> With Our Solutions
+                    </h1>
+                    <p class="services-hero-subtitle">
+                        We combine innovation, strategic thinking, and technical expertise to deliver solutions that drive growth and create meaningful digital experiences.
+                    </p>
+                    <div class="services-hero-actions">
+                        <a href="#services-grid" class="btn-primary magnetic-button">
+                            <span>Explore Services</span>
+                            <div class="btn-bubbles">
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                            </div>
+                        </a>
+                        <a href="#contact" class="btn-secondary magnetic-button">
+                            <span>Get in Touch</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="../index.html#contact" class="btn-secondary">
-                            <span>Let's Talk</span>
-                            <i class="fas fa-comments"></i>
-                        </a>
-                    </div>
-                    <div class="scroll-indicator">
-                        <div class="mouse">
-                            <div class="wheel"></div>
-                        </div>
-                        <div class="scroll-text">Scroll to explore</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Navigation -->
-        <section id="services-navigation" class="services-nav">
+        <!-- Services Introduction -->
+        <section class="services-intro">
             <div class="container">
-                <div class="services-nav-wrapper">
-                    <div class="nav-filters">
-                        <button class="filter-btn active" data-filter="all">All Services</button>
-                        <button class="filter-btn" data-filter="web">Web</button>
-                        <button class="filter-btn" data-filter="mobile">Mobile</button>
-                        <button class="filter-btn" data-filter="commerce">Commerce</button>
-                        <button class="filter-btn" data-filter="marketing">Marketing</button>
-                        <button class="filter-btn" data-filter="consulting">Consulting</button>
+                <div class="services-intro-grid">
+                    <div class="services-intro-content" data-aos="fade-right">
+                        <div class="section-sub-title">Why Choose Us</div>
+                        <h2 class="section-title">We Deliver <span class="gradient-text">Excellence</span></h2>
+                        <p class="services-intro-text">
+                            At Elan's Tech World, we don't just build websites or implement technology – we create transformative digital solutions tailored to your unique business needs. Our multidisciplinary team brings together expertise across web development, design, marketing, and technology to deliver holistic services that drive real results.
+                        </p>
+                        <ul class="services-intro-features">
+                            <li><i class="fas fa-check-circle"></i> Custom Solutions Tailored to Your Business</li>
+                            <li><i class="fas fa-check-circle"></i> Strategic Approach to Digital Transformation</li>
+                            <li><i class="fas fa-check-circle"></i> Cutting-Edge Technology & Innovation</li>
+                            <li><i class="fas fa-check-circle"></i> Dedicated Support & Ongoing Partnership</li>
+                        </ul>
+                    </div>
+                    <div class="services-intro-image-container" data-aos="fade-left">
+                        <div class="services-intro-image">
+                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1080&auto=format&fit=crop" alt="Team collaboration meeting">
+                            <div class="services-intro-image-shape"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -208,731 +225,389 @@
 
         <!-- Services Grid Section -->
         <section id="services-grid" class="services-grid-section">
+            <div class="services-grid-shapes">
+                <div class="services-grid-shape shape-1"></div>
+                <div class="services-grid-shape shape-2"></div>
+            </div>
             <div class="container">
-                <div class="section-header">
-                    <div class="section-pretitle">What We Do</div>
-                    <h2 class="section-title">Our <span class="text-accent">Expertise</span></h2>
-                    <p class="section-description">We offer a comprehensive range of digital services to help your business thrive in today's competitive landscape.</p>
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-sub-title">Our Expertise</div>
+                    <h2 class="section-title">Comprehensive <span class="gradient-text">Services</span></h2>
+                    <p class="section-description">Discover our full range of digital solutions designed to transform your business</p>
                 </div>
                 
-                <div class="services-grid">
-                    <!-- Web Design & Development Card -->
-                    <div class="service-card" data-category="web">
+                <!-- Services Filter -->
+                <div class="services-filter" data-aos="fade-up">
+                    <button class="filter-btn active" data-filter="all">All Services</button>
+                    <button class="filter-btn" data-filter="web">Web & Mobile</button>
+                    <button class="filter-btn" data-filter="marketing">Marketing</button>
+                    <button class="filter-btn" data-filter="systems">Business Systems</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                </div>
+                
+                <!-- Services Cards Grid -->
+                <div class="services-cards">
+                    <!-- Web Design & Development -->
+                    <div class="service-card" data-category="web" data-aos="fade-up">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-laptop-code"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3 class="service-title">Web Design & Development</h3>
+                                <p class="service-description">Custom, responsive websites that captivate your audience and drive conversions.</p>
                             </div>
-                            <h3 class="service-title">Web Design & Development</h3>
-                            <p class="service-description">Custom, responsive websites that captivate your audience and drive conversions through optimized user experiences.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Responsive Design</li>
-                                <li><i class="fas fa-check"></i>E-commerce Solutions</li>
-                                <li><i class="fas fa-check"></i>CMS Integration</li>
-                                <li><i class="fas fa-check"></i>SEO Optimization</li>
-                            </ul>
-                            <a href="#web-design-detail" class="service-link js-service-detail-trigger" data-service="web-design">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Web Design & Development</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Responsive Design</li>
+                                    <li><i class="fas fa-check"></i> E-commerce Solutions</li>
+                                    <li><i class="fas fa-check"></i> CMS Integration</li>
+                                    <li><i class="fas fa-check"></i> SEO Optimization</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- Mobile App Development Card -->
-                    <div class="service-card" data-category="mobile">
+
+                    <!-- Mobile App Development -->
+                    <div class="service-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-mobile-alt"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <h3 class="service-title">Mobile App Development</h3>
+                                <p class="service-description">Native and cross-platform applications that deliver exceptional user experiences.</p>
                             </div>
-                            <h3 class="service-title">Mobile App Development</h3>
-                            <p class="service-description">Native and cross-platform applications that deliver exceptional user experiences and drive engagement.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>iOS & Android Apps</li>
-                                <li><i class="fas fa-check"></i>Cross-Platform Solutions</li>
-                                <li><i class="fas fa-check"></i>UI/UX Design</li>
-                                <li><i class="fas fa-check"></i>App Maintenance</li>
-                            </ul>
-                            <a href="#mobile-app-detail" class="service-link js-service-detail-trigger" data-service="mobile-app">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Mobile App Development</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> iOS & Android Apps</li>
+                                    <li><i class="fas fa-check"></i> Cross-Platform Solutions</li>
+                                    <li><i class="fas fa-check"></i> UI/UX Design</li>
+                                    <li><i class="fas fa-check"></i> Maintenance & Support</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- POS System Implementation Card -->
-                    <div class="service-card" data-category="commerce">
+
+                    <!-- POS System Implementation -->
+                    <div class="service-card" data-category="systems" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-store"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <h3 class="service-title">POS System Implementation</h3>
+                                <p class="service-description">Modern point-of-sale solutions that streamline operations and enhance customer experience.</p>
                             </div>
-                            <h3 class="service-title">POS System Implementation</h3>
-                            <p class="service-description">Modern point-of-sale solutions that streamline operations and enhance customer experience.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Hardware Selection</li>
-                                <li><i class="fas fa-check"></i>Software Integration</li>
-                                <li><i class="fas fa-check"></i>Staff Training</li>
-                                <li><i class="fas fa-check"></i>Ongoing Support</li>
-                            </ul>
-                            <a href="#pos-detail" class="service-link js-service-detail-trigger" data-service="pos">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">POS System Implementation</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Hardware Selection</li>
+                                    <li><i class="fas fa-check"></i> Software Integration</li>
+                                    <li><i class="fas fa-check"></i> Staff Training</li>
+                                    <li><i class="fas fa-check"></i> Ongoing Support</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- Digital Marketing Card -->
-                    <div class="service-card" data-category="marketing">
+
+                    <!-- Digital Marketing -->
+                    <div class="service-card" data-category="marketing" data-aos="fade-up">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-bullhorn"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <h3 class="service-title">Digital Marketing</h3>
+                                <p class="service-description">Targeted campaigns and strategies that drive traffic, engagement, and conversions.</p>
                             </div>
-                            <h3 class="service-title">Digital Marketing</h3>
-                            <p class="service-description">Targeted campaigns and strategies that drive traffic, engagement, and conversions for lasting growth.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>SEO & SEM Strategies</li>
-                                <li><i class="fas fa-check"></i>Social Media Management</li>
-                                <li><i class="fas fa-check"></i>Email Marketing</li>
-                                <li><i class="fas fa-check"></i>Analytics & Reporting</li>
-                            </ul>
-                            <a href="#digital-marketing-detail" class="service-link js-service-detail-trigger" data-service="digital-marketing">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Digital Marketing</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> SEO & SEM Strategies</li>
+                                    <li><i class="fas fa-check"></i> Social Media Management</li>
+                                    <li><i class="fas fa-check"></i> Email Marketing</li>
+                                    <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- Google Ads Management Card -->
-                    <div class="service-card" data-category="marketing">
+
+                    <!-- Google Ads Management -->
+                    <div class="service-card" data-category="marketing" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fab fa-google"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fab fa-google"></i>
+                                </div>
+                                <h3 class="service-title">Google Ads Management</h3>
+                                <p class="service-description">Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business.</p>
                             </div>
-                            <h3 class="service-title">Google Ads Management</h3>
-                            <p class="service-description">Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Campaign Strategy</li>
-                                <li><i class="fas fa-check"></i>Keyword Research</li>
-                                <li><i class="fas fa-check"></i>Ad Copy Creation</li>
-                                <li><i class="fas fa-check"></i>Conversion Tracking</li>
-                            </ul>
-                            <a href="#google-ads-detail" class="service-link js-service-detail-trigger" data-service="google-ads">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Google Ads Management</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Campaign Strategy & Setup</li>
+                                    <li><i class="fas fa-check"></i> Keyword Research</li>
+                                    <li><i class="fas fa-check"></i> Ad Copy Creation</li>
+                                    <li><i class="fas fa-check"></i> Conversion Tracking</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- Property Management Systems Card -->
-                    <div class="service-card" data-category="consulting">
+
+                    <!-- Property Management Systems -->
+                    <div class="service-card" data-category="systems" data-aos="fade-up" data-aos-delay="200">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-building"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3 class="service-title">Property Management Systems</h3>
+                                <p class="service-description">Comprehensive property management solutions to streamline operations and enhance tenant satisfaction.</p>
                             </div>
-                            <h3 class="service-title">Property Management Systems</h3>
-                            <p class="service-description">Comprehensive property management solutions to streamline operations and enhance tenant satisfaction.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Tenant Portal Setup</li>
-                                <li><i class="fas fa-check"></i>Maintenance Request System</li>
-                                <li><i class="fas fa-check"></i>Payment Processing</li>
-                                <li><i class="fas fa-check"></i>Listing Management</li>
-                            </ul>
-                            <a href="#property-management-detail" class="service-link js-service-detail-trigger" data-service="property-management">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Property Management Systems</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Tenant Portal Setup</li>
+                                    <li><i class="fas fa-check"></i> Maintenance Request System</li>
+                                    <li><i class="fas fa-check"></i> Payment Processing</li>
+                                    <li><i class="fas fa-check"></i> Property Listing Management</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- Print Design Card -->
-                    <div class="service-card" data-category="web">
+
+                    <!-- Print Design -->
+                    <div class="service-card" data-category="design" data-aos="fade-up">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-paint-brush"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <h3 class="service-title">Print & Graphic Design</h3>
+                                <p class="service-description">Professional print materials and brand assets that elevate your business image.</p>
                             </div>
-                            <h3 class="service-title">Print & Graphic Design</h3>
-                            <p class="service-description">Professional print materials and brand assets that elevate your business image in the physical world.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Business Card Design</li>
-                                <li><i class="fas fa-check"></i>Brochures & Flyers</li>
-                                <li><i class="fas fa-check"></i>Signage Solutions</li>
-                                <li><i class="fas fa-check"></i>Brand Identity Packages</li>
-                            </ul>
-                            <a href="#print-design-detail" class="service-link js-service-detail-trigger" data-service="print-design">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Print & Graphic Design</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Business Card Design</li>
+                                    <li><i class="fas fa-check"></i> Brochures & Flyers</li>
+                                    <li><i class="fas fa-check"></i> Signage Solutions</li>
+                                    <li><i class="fas fa-check"></i> Brand Identity Packages</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="service-card-bg"></div>
                     </div>
-                    
-                    <!-- Technology Consulting Card -->
-                    <div class="service-card" data-category="consulting">
+
+                    <!-- Technology Consulting -->
+                    <div class="service-card" data-category="systems" data-aos="fade-up" data-aos-delay="100">
                         <div class="service-card-inner">
-                            <div class="service-icon">
-                                <i class="fas fa-chart-line"></i>
+                            <div class="service-card-front">
+                                <div class="service-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h3 class="service-title">Technology Consulting</h3>
+                                <p class="service-description">Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
                             </div>
-                            <h3 class="service-title">Technology Consulting</h3>
-                            <p class="service-description">Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i>Digital Transformation</li>
-                                <li><i class="fas fa-check"></i>IT Infrastructure</li>
-                                <li><i class="fas fa-check"></i>Security Solutions</li>
-                                <li><i class="fas fa-check"></i>Business Automation</li>
-                            </ul>
-                            <a href="#tech-consulting-detail" class="service-link js-service-detail-trigger" data-service="tech-consulting">
-                                <span>Learn More</span>
-                                <i class="fas fa-arrow-right"></i>
+                            <div class="service-card-back">
+                                <h3 class="service-title">Technology Consulting</h3>
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Digital Transformation</li>
+                                    <li><i class="fas fa-check"></i> IT Infrastructure</li>
+                                    <li><i class="fas fa-check"></i> Security Solutions</li>
+                                    <li><i class="fas fa-check"></i> Business Automation</li>
+                                </ul>
+                                <a href="#contact" class="service-link">
+                                    <span>Learn More</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Service Section -->
+        <section class="featured-service-section">
+            <div class="container">
+                <div class="featured-service-grid">
+                    <div class="featured-service-content" data-aos="fade-right">
+                        <div class="section-sub-title">Featured Service</div>
+                        <h2 class="section-title">Comprehensive <span class="gradient-text">Web Solutions</span></h2>
+                        <p class="featured-service-description">
+                            Our web development services go beyond just building websites. We create comprehensive digital ecosystems that integrate with your business workflows, enhance customer experience, and drive meaningful results.
+                        </p>
+                        <div class="featured-service-stats">
+                            <div class="stat-box">
+                                <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
+                                <div class="stat-text">Websites Delivered</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number"><span class="counter" data-target="40">0</span>%</div>
+                                <div class="stat-text">Avg. Conversion Increase</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number"><span class="counter" data-target="24">0</span>/7</div>
+                                <div class="stat-text">Support Available</div>
+                            </div>
+                        </div>
+                        <div class="featured-service-actions">
+                            <a href="#contact" class="btn-primary magnetic-button">
+                                <span>Discuss Your Project</span>
+                                <div class="btn-bubbles">
+                                    <div class="bubble"></div>
+                                    <div class="bubble"></div>
+                                    <div class="bubble"></div>
+                                </div>
                             </a>
                         </div>
-                        <div class="service-card-bg"></div>
+                    </div>
+                    <div class="featured-service-image-container" data-aos="fade-left">
+                        <div class="featured-service-showcase">
+                            <div class="device-mockup">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1080&auto=format&fit=crop" alt="Website design on laptop and mobile">
+                            </div>
+                            <div class="featured-service-badge">
+                                <i class="fas fa-award"></i>
+                                <span>Award-Winning Designs</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Service Detail Modal -->
-        <div class="service-detail-modal" id="service-detail-modal">
-            <div class="modal-overlay"></div>
-            <div class="modal-container">
-                <button class="modal-close-btn">
-                    <i class="fas fa-times"></i>
-                </button>
-                <div class="modal-content">
-                    <!-- Content will be loaded dynamically via JavaScript -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Case Studies Section -->
-        <section class="case-studies-section">
+        <!-- Process Overview Section -->
+        <section class="process-overview-section">
             <div class="container">
-                <div class="section-header">
-                    <div class="section-pretitle">Success Stories</div>
-                    <h2 class="section-title">Our <span class="text-accent">Case Studies</span></h2>
-                    <p class="section-description">See how our services have transformed businesses and delivered measurable results.</p>
-                </div>
-                
-                <div class="case-studies-slider">
-                    <!-- Case Study 1 -->
-                    <div class="case-study-card">
-                        <div class="case-study-image">
-                            <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Iconic Aesthetics Case Study">
-                            <div class="case-study-overlay"></div>
-                        </div>
-                        <div class="case-study-content">
-                            <div class="case-study-tag">Web Development & POS</div>
-                            <h3 class="case-study-title">Iconic Aesthetics Transformation</h3>
-                            <p class="case-study-description">How we helped a beauty clinic streamline bookings and increase customer retention with an integrated digital solution.</p>
-                            <div class="case-study-stats">
-                                <div class="stat">
-                                    <span class="stat-value">40%</span>
-                                    <span class="stat-label">Booking Increase</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-value">25%</span>
-                                    <span class="stat-label">Revenue Growth</span>
-                                </div>
-                            </div>
-                            <a href="#" class="case-study-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    
-                    <!-- Case Study 2 -->
-                    <div class="case-study-card">
-                        <div class="case-study-image">
-                            <img src="https://images.unsplash.com/photo-1565462900119-a16a68c2bc65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="East Coast Realty Case Study">
-                            <div class="case-study-overlay"></div>
-                        </div>
-                        <div class="case-study-content">
-                            <div class="case-study-tag">Property Management</div>
-                            <h3 class="case-study-title">East Coast Realty Systems</h3>
-                            <p class="case-study-description">Transforming a real estate firm's outdated systems into a modern, integrated property management solution.</p>
-                            <div class="case-study-stats">
-                                <div class="stat">
-                                    <span class="stat-value">60%</span>
-                                    <span class="stat-label">Time Savings</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-value">3x</span>
-                                    <span class="stat-label">Faster Onboarding</span>
-                                </div>
-                            </div>
-                            <a href="#" class="case-study-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    
-                    <!-- Case Study 3 -->
-                    <div class="case-study-card">
-                        <div class="case-study-image">
-                            <img src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="S-Cream Case Study">
-                            <div class="case-study-overlay"></div>
-                        </div>
-                        <div class="case-study-content">
-                            <div class="case-study-tag">E-commerce & POS</div>
-                            <h3 class="case-study-title">S-Cream Tech Ecosystem</h3>
-                            <p class="case-study-description">Building a complete technology ecosystem for a new ice cream shop, from online ordering to in-store experience.</p>
-                            <div class="case-study-stats">
-                                <div class="stat">
-                                    <span class="stat-value">30%</span>
-                                    <span class="stat-label">Online Sales</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="stat-value">-15min</span>
-                                    <span class="stat-label">Wait Times</span>
-                                </div>
-                            </div>
-                            <a href="#" class="case-study-link">View Case Study <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="slider-nav">
-                    <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
-                    <div class="slider-dots"></div>
-                    <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="process-section">
-            <div class="container">
-                <div class="section-header">
-                    <div class="section-pretitle">How We Work</div>
-                    <h2 class="section-title">Our <span class="text-accent">Process</span></h2>
-                    <p class="section-description">We follow a streamlined approach to deliver exceptional results</p>
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-sub-title">Our Approach</div>
+                    <h2 class="section-title">How We <span class="gradient-text">Deliver Excellence</span></h2>
+                    <p class="section-description">Our streamlined process ensures we deliver high-quality solutions tailored to your business needs</p>
                 </div>
                 
                 <div class="process-timeline">
-                    <!-- Step 1 -->
-                    <div class="process-step">
-                        <div class="step-number">01</div>
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <h3 class="step-title">Discovery</h3>
-                            <p class="step-description">We begin by understanding your goals, audience, and unique challenges to create a tailored strategy.</p>
+                    <div class="process-step" data-aos="fade-up">
+                        <div class="process-step-number">01</div>
+                        <div class="process-step-content">
+                            <h3>Discovery</h3>
+                            <p>We begin by understanding your goals, audience, and unique challenges to create a tailored strategy that aligns with your business objectives.</p>
                         </div>
                     </div>
-                    
-                    <!-- Step 2 -->
-                    <div class="process-step">
-                        <div class="step-number">02</div>
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="fas fa-sitemap"></i>
-                            </div>
-                            <h3 class="step-title">Planning</h3>
-                            <p class="step-description">We develop a comprehensive roadmap outlining project scope, timeline, and key deliverables.</p>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="process-step-number">02</div>
+                        <div class="process-step-content">
+                            <h3>Planning</h3>
+                            <p>We develop a comprehensive roadmap outlining project scope, timeline, and key deliverables to ensure a smooth execution.</p>
                         </div>
                     </div>
-                    
-                    <!-- Step 3 -->
-                    <div class="process-step">
-                        <div class="step-number">03</div>
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="fas fa-pencil-ruler"></i>
-                            </div>
-                            <h3 class="step-title">Design</h3>
-                            <p class="step-description">Our creative team crafts visually stunning interfaces that engage users and reflect your brand identity.</p>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="process-step-number">03</div>
+                        <div class="process-step-content">
+                            <h3>Design</h3>
+                            <p>Our creative team crafts visually stunning interfaces that engage users and reflect your brand identity while enhancing usability.</p>
                         </div>
                     </div>
-                    
-                    <!-- Step 4 -->
-                    <div class="process-step">
-                        <div class="step-number">04</div>
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3 class="step-title">Development</h3>
-                            <p class="step-description">We bring designs to life with clean, efficient code and cutting-edge technology.</p>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="process-step-number">04</div>
+                        <div class="process-step-content">
+                            <h3>Development</h3>
+                            <p>We bring designs to life with clean, efficient code and cutting-edge technology, ensuring scalability and performance.</p>
                         </div>
                     </div>
-                    
-                    <!-- Step 5 -->
-                    <div class="process-step">
-                        <div class="step-number">05</div>
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="fas fa-vial"></i>
-                            </div>
-                            <h3 class="step-title">Testing</h3>
-                            <p class="step-description">Rigorous quality assurance ensures your product performs flawlessly across all devices.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 6 -->
-                    <div class="process-step">
-                        <div class="step-number">06</div>
-                        <div class="step-content">
-                            <div class="step-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3 class="step-title">Launch & Support</h3>
-                            <p class="step-description">We ensure a smooth deployment and provide ongoing maintenance and support.</p>
+                    <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                        <div class="process-step-number">05</div>
+                        <div class="process-step-content">
+                            <h3>Launch & Support</h3>
+                            <p>We ensure a smooth deployment and provide ongoing maintenance and support to help your business grow and adapt.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Packages Section -->
-        <section class="packages-section">
+        <!-- Testimonial Spotlight -->
+        <section class="testimonial-spotlight">
+            <div class="testimonial-spotlight-background">
+                <div class="testimonial-spotlight-overlay"></div>
+            </div>
             <div class="container">
-                <div class="section-header">
-                    <div class="section-pretitle">Pricing Plans</div>
-                    <h2 class="section-title">Our <span class="text-accent">Packages</span></h2>
-                    <p class="section-description">Choose the perfect solution tailored to your business needs</p>
-                </div>
-                
-                <div class="packages-tabs">
-                    <button class="package-tab active" data-package="business">Business Solutions</button>
-                    <button class="package-tab" data-package="design">Design Services</button>
-                    <button class="package-tab" data-package="property">Property Management</button>
-                    <button class="package-tab" data-package="pos">POS Solutions</button>
-                </div>
-                
-                <div class="packages-container">
-                    <!-- Business Solutions Packages -->
-                    <div class="package-group active" data-group="business">
-                        <div class="packages-cards">
-                            <!-- Starter Package -->
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Starter</h3>
-                                    <p class="package-tagline">For Small Businesses</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">1,199</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Custom Website (5 Pages)</li>
-                                    <li><i class="fas fa-check"></i>Mobile Responsive Design</li>
-                                    <li><i class="fas fa-check"></i>Basic SEO Setup</li>
-                                    <li><i class="fas fa-check"></i>Contact Form</li>
-                                    <li><i class="fas fa-check"></i>Social Media Integration</li>
-                                    <li><i class="fas fa-check"></i>3 Months Support</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <!-- Premium Package -->
-                            <div class="package-card featured">
-                                <div class="package-badge">Popular</div>
-                                <div class="package-header">
-                                    <h3 class="package-name">Premium</h3>
-                                    <p class="package-tagline">For Growing Businesses</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">2,499</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Custom Website (10 Pages)</li>
-                                    <li><i class="fas fa-check"></i>Advanced UI/UX Design</li>
-                                    <li><i class="fas fa-check"></i>Comprehensive SEO Setup</li>
-                                    <li><i class="fas fa-check"></i>Content Management System</li>
-                                    <li><i class="fas fa-check"></i>E-commerce Integration</li>
-                                    <li><i class="fas fa-check"></i>Google Analytics Setup</li>
-                                    <li><i class="fas fa-check"></i>6 Months Priority Support</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <!-- Enterprise Package -->
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Enterprise</h3>
-                                    <p class="package-tagline">For Established Businesses</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">4,999</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Custom Website (20+ Pages)</li>
-                                    <li><i class="fas fa-check"></i>Premium UI/UX Design</li>
-                                    <li><i class="fas fa-check"></i>Advanced E-commerce Solution</li>
-                                    <li><i class="fas fa-check"></i>Custom Database Integration</li>
-                                    <li><i class="fas fa-check"></i>User Authentication System</li>
-                                    <li><i class="fas fa-check"></i>Payment Gateway Integration</li>
-                                    <li><i class="fas fa-check"></i>12 Months Priority Support</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                        </div>
+                <div class="testimonial-spotlight-content" data-aos="fade-up">
+                    <div class="testimonial-quote-icon">
+                        <i class="fas fa-quote-left"></i>
                     </div>
-                    
-                    <!-- Design Services Packages -->
-                    <div class="package-group" data-group="design">
-                        <div class="packages-cards">
-                            <!-- Basic Design Package -->
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Basic Design</h3>
-                                    <p class="package-tagline">For Startups</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">799</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Logo Design (3 Concepts)</li>
-                                    <li><i class="fas fa-check"></i>Business Card Design</li>
-                                    <li><i class="fas fa-check"></i>Letterhead Design</li>
-                                    <li><i class="fas fa-check"></i>Social Media Profile Setup</li>
-                                    <li><i class="fas fa-check"></i>2 Rounds of Revisions</li>
-                                    <li><i class="fas fa-check"></i>Source Files Included</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <!-- Premium Brand Package -->
-                            <div class="package-card featured">
-                                <div class="package-badge">Popular</div>
-                                <div class="package-header">
-                                    <h3 class="package-name">Premium Brand</h3>
-                                    <p class="package-tagline">For Growing Brands</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">1,699</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Logo Design (5 Concepts)</li>
-                                    <li><i class="fas fa-check"></i>Complete Brand Identity</li>
-                                    <li><i class="fas fa-check"></i>Business Cards & Stationery</li>
-                                    <li><i class="fas fa-check"></i>Social Media Kit</li>
-                                    <li><i class="fas fa-check"></i>Brand Guidelines Document</li>
-                                    <li><i class="fas fa-check"></i>3 Marketing Materials</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <!-- Complete Brand Package -->
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Complete Brand</h3>
-                                    <p class="package-tagline">For Established Brands</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">2,999</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Premium Logo Design</li>
-                                    <li><i class="fas fa-check"></i>Comprehensive Brand Identity</li>
-                                    <li><i class="fas fa-check"></i>Complete Business Stationery</li>
-                                    <li><i class="fas fa-check"></i>Extensive Social Media Kit</li>
-                                    <li><i class="fas fa-check"></i>Brand Voice Development</li>
-                                    <li><i class="fas fa-check"></i>Brand Strategy Consultation</li>
-                                    <li><i class="fas fa-check"></i>5 Custom Marketing Materials</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
+                    <blockquote class="testimonial-spotlight-quote">
+                        Elan's Tech World transformed our beauty clinic with a stunning website and integrated booking system. The Square POS implementation has streamlined our operations, allowing us to focus on our clients. Our online bookings have increased by 40%!
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-image">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=88&auto=format&fit=crop" alt="Testimonial author">
                         </div>
-                    </div>
-                    
-                    <!-- Property Management Packages -->
-                    <div class="package-group" data-group="property">
-                        <!-- Package content will be similar structure to above -->
-                        <div class="packages-cards">
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Essentials</h3>
-                                    <p class="package-tagline">For up to 25 units</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">1,499</span>
-                                    <span class="period">one-time</span>
-                                    <span class="subscription">+$99/mo</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Basic Property Listing Portal</li>
-                                    <li><i class="fas fa-check"></i>Tenant Application System</li>
-                                    <li><i class="fas fa-check"></i>Payment Processing</li>
-                                    <li><i class="fas fa-check"></i>Maintenance Request Tracking</li>
-                                    <li><i class="fas fa-check"></i>Email Support</li>
-                                    <li><i class="fas fa-check"></i>Basic Reporting</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <div class="package-card featured">
-                                <div class="package-badge">Popular</div>
-                                <div class="package-header">
-                                    <h3 class="package-name">Professional</h3>
-                                    <p class="package-tagline">For up to 100 units</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">2,999</span>
-                                    <span class="period">one-time</span>
-                                    <span class="subscription">+$199/mo</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Advanced Property Portal</li>
-                                    <li><i class="fas fa-check"></i>Tenant & Owner Portals</li>
-                                    <li><i class="fas fa-check"></i>Online Application & Screening</li>
-                                    <li><i class="fas fa-check"></i>Digital Lease Signing</li>
-                                    <li><i class="fas fa-check"></i>Maintenance Management System</li>
-                                    <li><i class="fas fa-check"></i>Financial Reporting</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Enterprise</h3>
-                                    <p class="package-tagline">For unlimited units</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">5,999</span>
-                                    <span class="period">one-time</span>
-                                    <span class="subscription">+$349/mo</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Custom Property Management Platform</li>
-                                    <li><i class="fas fa-check"></i>Multi-property Management</li>
-                                    <li><i class="fas fa-check"></i>Advanced Screening & Background Checks</li>
-                                    <li><i class="fas fa-check"></i>Automated Accounting System</li>
-                                    <li><i class="fas fa-check"></i>Integrated Marketing Tools</li>
-                                    <li><i class="fas fa-check"></i>Advanced Analytics & Reports</li>
-                                    <li><i class="fas fa-check"></i>24/7 Priority Support</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
+                        <div class="testimonial-author-info">
+                            <h4 class="testimonial-author-name">Illanit Shalom</h4>
+                            <p class="testimonial-author-position">Owner, Iconic Aesthetics</p>
                         </div>
-                    </div>
-                    
-                    <!-- POS Solutions Packages -->
-                    <div class="package-group" data-group="pos">
-                        <!-- Package content will be similar structure to above -->
-                        <div class="packages-cards">
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Basic POS</h3>
-                                    <p class="package-tagline">For Small Retailers</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">999</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Square POS Setup</li>
-                                    <li><i class="fas fa-check"></i>Payment Processing</li>
-                                    <li><i class="fas fa-check"></i>Basic Inventory Management</li>
-                                    <li><i class="fas fa-check"></i>Staff Training (2 Hours)</li>
-                                    <li><i class="fas fa-check"></i>Email Support (30 Days)</li>
-                                    <li><i class="fas fa-check"></i>Hardware Recommendations</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <div class="package-card featured">
-                                <div class="package-badge">Popular</div>
-                                <div class="package-header">
-                                    <h3 class="package-name">Advanced POS</h3>
-                                    <p class="package-tagline">For Growing Businesses</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">1,899</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Complete POS System Setup</li>
-                                    <li><i class="fas fa-check"></i>Multiple Payment Options</li>
-                                    <li><i class="fas fa-check"></i>Advanced Inventory Management</li>
-                                    <li><i class="fas fa-check"></i>Customer Database Integration</li>
-                                    <li><i class="fas fa-check"></i>Loyalty Program Setup</li>
-                                    <li><i class="fas fa-check"></i>Staff Training (4 Hours)</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                            
-                            <div class="package-card">
-                                <div class="package-header">
-                                    <h3 class="package-name">Enterprise POS</h3>
-                                    <p class="package-tagline">For Multi-Location Businesses</p>
-                                </div>
-                                <div class="package-price">
-                                    <span class="currency">$</span>
-                                    <span class="amount">3,499</span>
-                                    <span class="period">one-time</span>
-                                </div>
-                                <ul class="package-features">
-                                    <li><i class="fas fa-check"></i>Multi-Location POS System</li>
-                                    <li><i class="fas fa-check"></i>Advanced Reporting & Analytics</li>
-                                    <li><i class="fas fa-check"></i>Custom Inventory System</li>
-                                    <li><i class="fas fa-check"></i>CRM & Marketing Integration</li>
-                                    <li><i class="fas fa-check"></i>Online Ordering Integration</li>
-                                    <li><i class="fas fa-check"></i>Staff Training (8 Hours)</li>
-                                    <li><i class="fas fa-check"></i>1 Year Premium Support</li>
-                                </ul>
-                                <a href="../index.html#contact" class="package-cta">Get Started</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="custom-package">
-                    <div class="custom-package-inner">
-                        <div class="custom-package-icon">
-                            <i class="fas fa-cubes"></i>
-                        </div>
-                        <h3>Need a Custom Solution?</h3>
-                        <p>Tell us about your specific requirements, and we'll create a tailored package just for you.</p>
-                        <a href="../index.html#contact" class="custom-package-cta">Request Custom Quote</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-particles"></div>
+        <section class="services-cta-section">
+            <div class="services-cta-blob"></div>
+            <div class="services-cta-blob alt"></div>
             <div class="container">
-                <div class="cta-content">
-                    <h2 class="cta-title">Ready to Transform Your Business?</h2>
-                    <p class="cta-description">Let's create something extraordinary together</p>
-                    <div class="cta-actions">
-                        <a href="../index.html#contact" class="btn-primary">
+                <div class="services-cta-content" data-aos="fade-up">
+                    <h2 class="services-cta-title">Ready to transform your business?</h2>
+                    <p class="services-cta-description">Let's create something extraordinary together</p>
+                    <div class="services-cta-actions">
+                        <a href="#contact" class="btn-primary magnetic-button">
                             <span>Start Your Project</span>
-                            <i class="fas fa-rocket"></i>
+                            <div class="btn-bubbles">
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                            </div>
                         </a>
-                        <a href="tel:+19294176819" class="btn-secondary">
-                            <span>Call Us Today</span>
+                        <a href="tel:+19294176819" class="btn-secondary magnetic-button">
+                            <span>Call Us</span>
                             <i class="fas fa-phone"></i>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Floating Action Button -->
-        <a href="../index.html#contact" class="floating-action-button">
-            <i class="fas fa-comment"></i>
-            <span class="btn-label">Get in Touch</span>
-        </a>
     </main>
     
     <!-- Footer -->
@@ -943,7 +618,7 @@
                     <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
                 </defs>
                 <g class="parallax">
-                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
                     <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
                     <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
                     <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
@@ -953,9 +628,9 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-logo">
-                    <a href="../index.html" class="logo">
+                    <a href="#" class="logo">
                         <div class="logo-icon">
-                            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
+                            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                         </div>
                         <div class="logo-text">
                             <span class="logo-text-main">Elan's</span>
@@ -969,25 +644,24 @@
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Quick Links</h3>
                         <ul class="footer-links">
-                            <li><a href="../index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="../index.html#work">Our Work</a></li>
-                            <li><a href="../index.html#process">Process</a></li>
-                            <li><a href="../index.html#testimonials">Testimonials</a></li>
-                            <li><a href="../index.html#contact">Contact</a></li>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#work">Our Work</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="#testimonials">Testimonials</a></li>
+                            <li><a href="#instagram">Instagram</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Services</h3>
                         <ul class="footer-links">
-                            <li><a href="#web-design-detail">Web Design</a></li>
-                            <li><a href="#mobile-app-detail">Mobile Apps</a></li>
-                            <li><a href="#pos-detail">POS Systems</a></li>
-                            <li><a href="#digital-marketing-detail">Digital Marketing</a></li>
-                            <li><a href="#property-management-detail">Property Management</a></li>
-                            <li><a href="#tech-consulting-detail">Technology Consulting</a></li>
+                            <li><a href="#services">Web Design</a></li>
+                            <li><a href="#services">Mobile Apps</a></li>
+                            <li><a href="#services">POS Systems</a></li>
+                            <li><a href="#services">Technology Consulting</a></li>
+                            <li><a href="#services">IT Support</a></li>
                         </ul>
                     </div>
                     
@@ -1026,9 +700,11 @@
         <i class="fas fa-arrow-up"></i>
     </a>
     
-    <!-- Scripts -->
+    <!-- Scripts -->  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
     <script src="../js/script.js" defer></script>
     <script src="../js/services.js" defer></script>
 </body>
