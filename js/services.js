@@ -4,28 +4,29 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize AOS animation library
-  AOS.init({
-    duration: 800,
-    easing: 'ease-out',
-    once: false,
-    mirror: false,
-    offset: 120
-  });
+  // Initialize AOS animation library if available
+  if (typeof AOS !== 'undefined') {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out',
+      once: false,
+      mirror: false,
+      offset: 120
+    });
+  } else {
+    console.warn('AOS is not loaded. Some animations may not work.');
+  }
   
-  // Counter Animation
+  // Check for GSAP availability
+  if (typeof gsap === 'undefined') {
+    console.warn('GSAP is not loaded. Some animations may not work properly.');
+  }
+  
+  // Initialize components
   initCounters();
-  
-  // Initialize Services Filter
   initServicesFilter();
-  
-  // Initialize Card Tilt Effect
   initCardTilt();
-  
-  // Initialize Enhanced Services Grid
   initEnhancedServicesGrid();
-  
-  // Add Scroll Animations
   addScrollAnimations();
   
   // Initialize Magnetic Buttons from main script
@@ -41,7 +42,10 @@ function initServicesFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const serviceCards = document.querySelectorAll('.service-card');
   
-  if (!filterButtons.length || !serviceCards.length) return;
+  if (!filterButtons.length || !serviceCards.length) {
+    console.warn('Filter buttons or service cards not found.');
+    return;
+  }
   
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -58,32 +62,37 @@ function initServicesFilter() {
         
         if (filterValue === 'all' || cardCategory === filterValue) {
           // Show card with animation
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          
-          setTimeout(() => {
-            card.style.display = 'block';
-            
-            // Force reflow
-            void card.offsetWidth;
-            
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-          }, 50);
+          showCard(card);
         } else {
           // Hide card with animation
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-          
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
+          hideCard(card);
         }
       });
     });
   });
+  
+  function showCard(card) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.display = 'block';
+    
+    // Force reflow
+    void card.offsetWidth;
+    
+    card.style.opacity = '1';
+    card.style.transform = 'translateY(0)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  }
+  
+  function hideCard(card) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    
+    setTimeout(() => {
+      card.style.display = 'none';
+    }, 300);
+  }
 }
 
 /**
@@ -100,14 +109,18 @@ function initCardTilt() {
       return;
     }
     
-    // Initialize tilt effect
-    VanillaTilt.init(tiltElements, {
-      max: 10,
-      speed: 400,
-      glare: true,
-      'max-glare': 0.3,
-      gyroscope: false
-    });
+    if (tiltElements.length) {
+      // Initialize tilt effect
+      VanillaTilt.init(tiltElements, {
+        max: 10,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.3,
+        gyroscope: false
+      });
+    }
+  } else {
+    console.warn('VanillaTilt is not loaded. Tilt effects will not work.');
   }
 }
 
@@ -118,11 +131,25 @@ function initEnhancedServicesGrid() {
     // Service card hover effects
     const serviceCards = document.querySelectorAll('.service-card');
     const serviceModal = document.getElementById('service-modal');
-    const serviceModalContent = document.querySelector('.service-modal-content');
-    const serviceModalClose = document.querySelector('.service-modal-close');
-    const serviceModalBackdrop = document.querySelector('.service-modal-backdrop');
     
-    if (!serviceCards.length || !serviceModal) return;
+    if (!serviceCards.length) {
+        console.warn('Service cards not found.');
+        return;
+    }
+    
+    if (!serviceModal) {
+        console.warn('Service modal not found. Make sure to add it to your HTML.');
+        return;
+    }
+    
+    const serviceModalContent = serviceModal.querySelector('.service-modal-content');
+    const serviceModalClose = serviceModal.querySelector('.service-modal-close');
+    const serviceModalBackdrop = serviceModal.querySelector('.service-modal-backdrop');
+    
+    if (!serviceModalContent || !serviceModalClose || !serviceModalBackdrop) {
+        console.warn('Service modal elements missing. Check your HTML structure.');
+        return;
+    }
     
     // Service data for modal content
     const serviceData = {
@@ -291,7 +318,12 @@ function initEnhancedServicesGrid() {
         
         // Add hover effects - 3D tilt effect
         card.addEventListener('mousemove', function(e) {
-            if (window.matchMedia('(hover: hover)').matches) {
+            if (window.matchMedia('(hover: hover)').matches && typeof gsap !== 'undefined') {
+                const cardInner = this.querySelector('.service-card-inner');
+                const serviceIcon = this.querySelector('.service-icon');
+                
+                if (!cardInner || !serviceIcon) return;
+                
                 const rect = this.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
@@ -300,41 +332,54 @@ function initEnhancedServicesGrid() {
                 const xPercent = (x / rect.width - 0.5) * 2; // -1 to 1
                 const yPercent = (y / rect.height - 0.5) * 2; // -1 to 1
                 
-                // Apply subtle rotation (max 3 degrees)
-                gsap.to(this.querySelector('.service-card-inner'), {
-                    rotationY: xPercent * 3,
-                    rotationX: yPercent * -3,
-                    duration: 0.4,
-                    ease: 'power1.out',
-                    transformPerspective: 1000
-                });
-                
-                // Move icon slightly
-                gsap.to(this.querySelector('.service-icon'), {
-                    x: xPercent * 5,
-                    y: yPercent * 5,
-                    duration: 0.4,
-                    ease: 'power1.out'
-                });
+                try {
+                    // Apply subtle rotation (max 3 degrees)
+                    gsap.to(cardInner, {
+                        rotationY: xPercent * 3,
+                        rotationX: yPercent * -3,
+                        duration: 0.4,
+                        ease: 'power1.out',
+                        transformPerspective: 1000
+                    });
+                    
+                    // Move icon slightly
+                    gsap.to(serviceIcon, {
+                        x: xPercent * 5,
+                        y: yPercent * 5,
+                        duration: 0.4,
+                        ease: 'power1.out'
+                    });
+                } catch (error) {
+                    console.warn('GSAP animation error:', error);
+                }
             }
         });
         
         // Reset on mouse leave
         card.addEventListener('mouseleave', function() {
-            if (window.matchMedia('(hover: hover)').matches) {
-                gsap.to(this.querySelector('.service-card-inner'), {
-                    rotationY: 0,
-                    rotationX: 0,
-                    duration: 0.6,
-                    ease: 'elastic.out(1, 0.5)'
-                });
+            if (window.matchMedia('(hover: hover)').matches && typeof gsap !== 'undefined') {
+                const cardInner = this.querySelector('.service-card-inner');
+                const serviceIcon = this.querySelector('.service-icon');
                 
-                gsap.to(this.querySelector('.service-icon'), {
-                    x: 0,
-                    y: 0,
-                    duration: 0.6,
-                    ease: 'elastic.out(1, 0.5)'
-                });
+                if (!cardInner || !serviceIcon) return;
+                
+                try {
+                    gsap.to(cardInner, {
+                        rotationY: 0,
+                        rotationX: 0,
+                        duration: 0.6,
+                        ease: 'elastic.out(1, 0.5)'
+                    });
+                    
+                    gsap.to(serviceIcon, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.6,
+                        ease: 'elastic.out(1, 0.5)'
+                    });
+                } catch (error) {
+                    console.warn('GSAP animation error:', error);
+                }
             }
         });
     });
@@ -438,7 +483,9 @@ function initEnhancedServicesGrid() {
         
         // Clear modal content after animation
         setTimeout(() => {
-            serviceModalContent.innerHTML = '';
+            if (serviceModalContent) {
+                serviceModalContent.innerHTML = '';
+            }
         }, 400);
     }
     
@@ -459,7 +506,7 @@ function initCounters() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const counter = entry.target;
-        const target = parseInt(counter.getAttribute('data-target'));
+        const target = parseInt(counter.getAttribute('data-target') || '0');
         let count = 0;
         const duration = 2000; // 2 seconds
         const interval = 20; // 20ms between updates
@@ -468,10 +515,10 @@ function initCounters() {
         const updateCount = () => {
           if (count < target) {
             count = Math.min(count + increment, target);
-            counter.textContent = count;
+            counter.textContent = count.toString();
             requestAnimationFrame(updateCount);
           } else {
-            counter.textContent = target;
+            counter.textContent = target.toString();
           }
         };
         
@@ -497,31 +544,6 @@ function initCounters() {
   // Observe each counter
   counters.forEach(counter => {
     observer.observe(counter);
-  });
-}
-
-/**
- * Handle Mobile Card Flip Animation for Touch Devices
- */
-function initMobileCardFlip() {
-  // Only run on touch devices
-  if (!('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
-    return;
-  }
-  
-  const serviceCards = document.querySelectorAll('.service-card');
-  
-  serviceCards.forEach(card => {
-    card.addEventListener('click', function() {
-      const cardInner = this.querySelector('.service-card-inner');
-      
-      // Toggle flipped state
-      if (cardInner.style.transform === 'rotateY(180deg)') {
-        cardInner.style.transform = 'rotateY(0deg)';
-      } else {
-        cardInner.style.transform = 'rotateY(180deg)';
-      }
-    });
   });
 }
 
