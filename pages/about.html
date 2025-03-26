@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css">
 </head>
 
-<body class="preload">
+<body class="about-page">
     <!-- Page Loader -->
     <div class="loader-container">
         <div class="loader-content">
@@ -76,15 +76,15 @@
                         <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="about.html" class="nav-link active">About Us</a></li>
                         <li class="nav-item"><a href="../pages/services.html" class="nav-link">Services</a></li>
-                        <li class="nav-item"><a href="index.html#work" class="nav-link">Work</a></li>
-                        <li class="nav-item"><a href="index.html#process" class="nav-link">Process</a></li>
-                        <li class="nav-item"><a href="index.html#testimonials" class="nav-link">Testimonials</a></li>
-                        <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="../index.html#work" class="nav-link">Work</a></li>
+                        <li class="nav-item"><a href="../index.html#process" class="nav-link">Process</a></li>
+                        <li class="nav-item"><a href="../index.html#testimonials" class="nav-link">Testimonials</a></li>
+                        <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
                     </ul>
                 </nav>
                 
                 <div class="header-actions">
-                    <a href="index.html#contact" class="btn-primary header-cta magnetic-button">
+                    <a href="../index.html#contact" class="btn-primary header-cta magnetic-button">
                         <span>Get Started</span>
                         <div class="btn-bubbles">
                             <div class="bubble"></div>
@@ -107,7 +107,7 @@
         <div class="mobile-menu-backdrop"></div>
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <a href="index.html" class="logo">
+                <a href="../index.html" class="logo">
                     <div class="logo-icon">
                         <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                     </div>
@@ -126,10 +126,10 @@
                     <li class="mobile-nav-item"><a href="../index.html" class="mobile-nav-link">Home</a></li>
                     <li class="mobile-nav-item"><a href="about.html" class="mobile-nav-link">About Us</a></li>
                     <li class="mobile-nav-item"><a href="../pages/services.html" class="mobile-nav-link">Services</a></li>
-                    <li class="mobile-nav-item"><a href="index.html#work" class="mobile-nav-link">Work</a></li>
-                    <li class="mobile-nav-item"><a href="index.html#process" class="mobile-nav-link">Process</a></li>
-                    <li class="mobile-nav-item"><a href="index.html#testimonials" class="mobile-nav-link">Testimonials</a></li>
-                    <li class="mobile-nav-item"><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+                    <li class="mobile-nav-item"><a href="../index.html#work" class="mobile-nav-link">Work</a></li>
+                    <li class="mobile-nav-item"><a href="../index.html#process" class="mobile-nav-link">Process</a></li>
+                    <li class="mobile-nav-item"><a href="../index.html#testimonials" class="mobile-nav-link">Testimonials</a></li>
+                    <li class="mobile-nav-item"><a href="../index.html#contact" class="mobile-nav-link">Contact</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-footer">
@@ -158,180 +158,154 @@
     
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-<section id="about-hero" class="about-hero-section">
-    <!-- 3D Parallax Background -->
-    <div class="about-hero-background">
-        <!-- Animated particles canvas -->
-        <canvas id="particles-canvas"></canvas>
-        
-        <!-- Dynamic gradient overlay -->
-        <div class="about-hero-overlay"></div>
-        
-        <!-- Interactive 3D shapes -->
-        <div class="about-hero-shapes">
-            <div class="about-hero-shape shape-1"></div>
-            <div class="about-hero-shape shape-2"></div>
-            <div class="about-hero-shape shape-3"></div>
-            <div class="about-hero-shape shape-4"></div>
-            <div class="about-hero-shape shape-5"></div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="about-hero-content">
-            <!-- Animated badge with glow effect -->
-            <div class="about-hero-badge" data-animation="fade-up">
-                <span class="badge-text">OUR STORY</span>
-                <div class="badge-shine"></div>
+        <!-- Hero Section with Floating Elements and Particle Background -->
+        <section id="about-hero" class="about-hero-section">
+            <div class="hero-backdrop"></div>
+            <div class="particles-container" id="particles-js"></div>
+            <div class="floating-shapes">
+                <div class="floating-shape shape1"></div>
+                <div class="floating-shape shape2"></div>
+                <div class="floating-shape shape3"></div>
+                <div class="floating-shape shape4"></div>
             </div>
             
-            <!-- Split text animation for title -->
-            <h1 class="about-hero-title" data-animation="fade-up">
-                <div class="title-wrapper">
-                    <span class="title-word">Crafting</span>
-                    <span class="title-word">Digital</span>
-                    <span class="title-word"><span class="text-gradient">Experiences</span></span>
-                </div>
-            </h1>
-            
-            <!-- Typing animation container -->
-            <div class="typing-container">
-                <span class="typing-prefix">We are </span>
-                <span id="typing-text"></span>
-                <span class="typing-cursor">|</span>
-            </div>
-            
-            <p class="about-hero-subtitle" data-animation="fade-up">
-                More than just a tech company. We're innovative designers and passionate creators dedicated to transforming businesses through cutting-edge web technology.
-            </p>
-            
-            <!-- Interactive CTA buttons -->
-            <div class="about-hero-cta" data-animation="fade-up">
-                <a href="#our-work" class="btn-primary magnetic-button">
-                    <span>See Our Work</span>
-                    <div class="btn-bubbles">
-                        <div class="bubble"></div>
-                        <div class="bubble"></div>
-                        <div class="bubble"></div>
+            <div class="container">
+                <div class="about-hero-content">
+                    <div class="hero-badge" data-aos="fade-up">
+                        <span>OUR STORY</span>
                     </div>
-                </a>
-                <a href="#contact" class="btn-secondary magnetic-button">
-                    <span>Let's Talk</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-                
-            <!-- Mouse-based interactive scroll indicator -->
-            <div class="about-hero-scroll" data-animation="fade-up">
-                <div class="mouse-scroll">
-                    <div class="mouse">
-                        <div class="mouse-wheel"></div>
+                    
+                    <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+                        <span class="title-line">Crafting Digital</span>
+                        <span class="title-line"><span class="gradient-text">Experiences</span></span>
+                    </h1>
+                    
+                    <div class="hero-typing-container" data-aos="fade-up" data-aos-delay="200">
+                        <span class="typing-prefix">We are </span>
+                        <span id="typing-text"></span>
+                        <span class="typing-cursor">|</span>
                     </div>
-                    <div class="mouse-label">Scroll to explore</div>
+                    
+                    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
+                        More than just a tech company. We're innovative designers and passionate creators dedicated to transforming businesses through cutting-edge web technology.
+                    </p>
+                    
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#our-story" class="btn-primary magnetic-button">
+                            <span>Explore Our Story</span>
+                            <div class="btn-bubbles">
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                                <div class="bubble"></div>
+                            </div>
+                        </a>
+                        <a href="../index.html#contact" class="btn-outline magnetic-button">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="scroll-indicator">
+                        <div class="mouse">
+                            <div class="mouse-wheel"></div>
+                        </div>
+                        <span>Scroll to explore</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
         
-        <!-- Our Story Section -->
-        <section class="our-story-section">
+        <!-- Our Story Section with Modern Timeline -->
+        <section id="our-story" class="story-section">
+            <div class="section-shapes">
+                <div class="section-shape shape1"></div>
+                <div class="section-shape shape2"></div>
+            </div>
+            
             <div class="container">
                 <div class="section-header">
-                    <div class="section-sub-title">Who We Are</div>
-                    <h2 class="section-title">Our <span class="text-gradient">Journey</span></h2>
-                    <p class="section-description">The story of passion, innovation, and dedication</p>
+                    <div class="section-tag" data-aos="fade-up">Who We Are</div>
+                    <h2 class="section-title" data-aos="fade-up">Our <span class="gradient-text">Journey</span></h2>
+                    <p class="section-description" data-aos="fade-up">The story of passion, innovation, and dedication</p>
                 </div>
                 
-                <div class="story-content">
-                    <div class="story-timeline">
-                        <div class="timeline-item" data-aos="fade-up">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card tilt-element">
-                                <div class="timeline-card-inner">
-                                    <div class="timeline-year">2018</div>
-                                    <h3 class="timeline-title">The Beginning</h3>
-                                    <p class="timeline-description">
-                                        Elan's Tech World was founded with a simple mission: to make technology accessible, understandable, and valuable for businesses of all sizes. What started as a one-person operation has grown into a diverse team of experts.
-                                    </p>
-                                </div>
-                            </div>
+                <div class="modern-timeline" data-aos="fade-up">
+                    <div class="timeline-progress"></div>
+                    
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2018</div>
+                            <h3 class="timeline-title">The Beginning</h3>
+                            <p class="timeline-description">
+                                Elan's Tech World was founded with a simple mission: to make technology accessible, understandable, and valuable for businesses of all sizes. What started as a one-person operation has grown into a diverse team of experts.
+                            </p>
                         </div>
-                        
-                        <div class="timeline-item" data-aos="fade-up">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card tilt-element">
-                                <div class="timeline-card-inner">
-                                    <div class="timeline-year">2020</div>
-                                    <h3 class="timeline-title">Expanding Horizons</h3>
-                                    <p class="timeline-description">
-                                        As the world adapted to new challenges, we expanded our services to help businesses navigate the digital transformation. We doubled our team and launched our comprehensive POS and property management solutions.
-                                    </p>
-                                </div>
-                            </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020</div>
+                            <h3 class="timeline-title">Expanding Horizons</h3>
+                            <p class="timeline-description">
+                                As the world adapted to new challenges, we expanded our services to help businesses navigate the digital transformation. We doubled our team and launched our comprehensive POS and property management solutions.
+                            </p>
                         </div>
-                        
-                        <div class="timeline-item" data-aos="fade-up">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card tilt-element">
-                                <div class="timeline-card-inner">
-                                    <div class="timeline-year">2022</div>
-                                    <h3 class="timeline-title">Innovation Breakthrough</h3>
-                                    <p class="timeline-description">
-                                        We reached a significant milestone with the development of our integrated technology ecosystem approach, allowing businesses to seamlessly connect all their digital touchpoints for maximum efficiency.
-                                    </p>
-                                </div>
-                            </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2022</div>
+                            <h3 class="timeline-title">Innovation Breakthrough</h3>
+                            <p class="timeline-description">
+                                We reached a significant milestone with the development of our integrated technology ecosystem approach, allowing businesses to seamlessly connect all their digital touchpoints for maximum efficiency.
+                            </p>
                         </div>
-                        
-                        <div class="timeline-item" data-aos="fade-up">
-                            <div class="timeline-marker"></div>
-                            <div class="timeline-card tilt-element">
-                                <div class="timeline-card-inner">
-                                    <div class="timeline-year">Today</div>
-                                    <h3 class="timeline-title">Looking to the Future</h3>
-                                    <p class="timeline-description">
-                                        Today, we continue to innovate and adapt to the ever-changing technological landscape. Our focus remains on helping businesses leverage technology to achieve their goals and create exceptional experiences for their customers.
-                                    </p>
-                                </div>
-                            </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Today</div>
+                            <h3 class="timeline-title">Looking to the Future</h3>
+                            <p class="timeline-description">
+                                Today, we continue to innovate and adapt to the ever-changing technological landscape. Our focus remains on helping businesses leverage technology to achieve their goals and create exceptional experiences for their customers.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Mission & Values Section -->
-        <section class="mission-values-section">
-            <div class="mission-shapes">
-                <div class="mission-shape shape-1"></div>
-                <div class="mission-shape shape-2"></div>
+        <!-- Mission & Values Section with Floating Cards -->
+        <section class="mission-section">
+            <div class="section-shapes">
+                <div class="section-shape shape3"></div>
+                <div class="section-shape shape4"></div>
             </div>
+            
             <div class="container">
                 <div class="section-header">
-                    <div class="section-sub-title">Our Foundation</div>
-                    <h2 class="section-title">Mission & <span class="text-gradient">Values</span></h2>
-                    <p class="section-description">The principles that guide our work and define our culture</p>
+                    <div class="section-tag" data-aos="fade-up">Our Foundation</div>
+                    <h2 class="section-title" data-aos="fade-up">Mission & <span class="gradient-text">Values</span></h2>
+                    <p class="section-description" data-aos="fade-up">The principles that guide our work and define our culture</p>
                 </div>
                 
                 <div class="mission-values-container">
-                    <!-- Mission Statement -->
-                    <div class="mission-statement">
-                        <div class="mission-card tilt-element">
-                            <div class="mission-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3>Our Mission</h3>
-                            <p>
-                                To empower businesses through innovative technology solutions that simplify operations, enhance customer experiences, and drive sustainable growth.
-                            </p>
+                    <div class="mission-card" data-aos="fade-up">
+                        <div class="mission-icon">
+                            <i class="fas fa-rocket"></i>
                         </div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            To empower businesses through innovative technology solutions that simplify operations, enhance customer experiences, and drive sustainable growth.
+                        </p>
                     </div>
                     
-                    <!-- Values Grid -->
                     <div class="values-grid">
-                        <div class="value-card tilt-element">
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="100">
                             <div class="value-icon">
                                 <i class="fas fa-lightbulb"></i>
                             </div>
@@ -339,7 +313,7 @@
                             <p>We constantly push boundaries to create forward-thinking solutions that anticipate and address tomorrow's challenges.</p>
                         </div>
                         
-                        <div class="value-card tilt-element">
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
                             <div class="value-icon">
                                 <i class="fas fa-handshake"></i>
                             </div>
@@ -347,7 +321,7 @@
                             <p>We operate with transparency and honesty, building lasting relationships founded on trust and mutual respect.</p>
                         </div>
                         
-                        <div class="value-card tilt-element">
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="300">
                             <div class="value-icon">
                                 <i class="fas fa-users"></i>
                             </div>
@@ -355,7 +329,7 @@
                             <p>We believe in the power of teamwork and partnership to create solutions greater than the sum of their parts.</p>
                         </div>
                         
-                        <div class="value-card tilt-element">
+                        <div class="value-card" data-aos="fade-up" data-aos-delay="400">
                             <div class="value-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
@@ -367,35 +341,36 @@
             </div>
         </section>
 
-        <!-- Team Section -->
+        <!-- Team Section with Hover Effects -->
         <section class="team-section">
-            <div class="team-shapes">
-                <div class="team-shape shape-1"></div>
-                <div class="team-shape shape-2"></div>
+            <div class="section-shapes">
+                <div class="section-shape shape5"></div>
+                <div class="section-shape shape6"></div>
             </div>
+            
             <div class="container">
                 <div class="section-header">
-                    <div class="section-sub-title">Meet Our Team</div>
-                    <h2 class="section-title">The <span class="text-gradient">Innovators</span></h2>
-                    <p class="section-description">Passionate experts committed to your success</p>
+                    <div class="section-tag" data-aos="fade-up">Meet Our Team</div>
+                    <h2 class="section-title" data-aos="fade-up">The <span class="gradient-text">Innovators</span></h2>
+                    <p class="section-description" data-aos="fade-up">Passionate experts committed to your success</p>
                 </div>
                 
                 <div class="team-grid">
                     <!-- Team Member 1 -->
-                    <div class="team-member tilt-element">
-                        <div class="team-member-inner">
-                            <div class="team-member-image">
+                    <div class="team-card" data-aos="fade-up">
+                        <div class="team-card-inner">
+                            <div class="team-image">
                                 <img src="../assets/images/elan.jpg" alt="Elan Cohen">
-                                <div class="team-member-social">
+                                <div class="team-social">
                                     <a href="#" class="team-social-link"><i class="fab fa-linkedin-in"></i></a>
                                     <a href="#" class="team-social-link"><i class="fab fa-twitter"></i></a>
                                     <a href="#" class="team-social-link"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
-                            <div class="team-member-info">
-                                <h3 class="team-member-name">Elan Cohen</h3>
-                                <p class="team-member-position">Founder & CEO</p>
-                                <p class="team-member-bio">
+                            <div class="team-info">
+                                <h3 class="team-name">Elan Cohen</h3>
+                                <p class="team-position">Founder & CEO</p>
+                                <p class="team-bio">
                                     With over 10 years in tech, Elan brings vision, leadership, and a passion for solving complex business challenges through innovative technology.
                                 </p>
                             </div>
@@ -403,28 +378,49 @@
                     </div>
                     
                     <!-- Team Member 2 -->
-                    <div class="team-member tilt-element">
-                        <div class="team-member-inner">
-                            <div class="team-member-image">
-                                <img src="" alt="NULL">
-                                <div class="team-member-social">
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="team-card-inner">
+                            <div class="team-image">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Creative Director">
+                                <div class="team-social">
                                     <a href="#" class="team-social-link"><i class="fab fa-linkedin-in"></i></a>
                                     <a href="#" class="team-social-link"><i class="fab fa-twitter"></i></a>
                                     <a href="#" class="team-social-link"><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
-                            <div class="team-member-info">
-                                <h3 class="team-member-name">NULL</h3>
-                                <p class="team-member-position">Creative Director</p>
-                                <p class="team-member-bio">
-                                    NULL exceptional design sensibility and strategic thinking help our clients stand out in crowded markets with visually striking digital experiences.
+                            <div class="team-info">
+                                <h3 class="team-name">David Mitchell</h3>
+                                <p class="team-position">Creative Director</p>
+                                <p class="team-bio">
+                                    David's exceptional design sensibility and strategic thinking help our clients stand out in crowded markets with visually striking digital experiences.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="team-card-inner">
+                            <div class="team-image">
+                                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Lead Developer">
+                                <div class="team-social">
+                                    <a href="#" class="team-social-link"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="team-social-link"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="team-social-link"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-info">
+                                <h3 class="team-name">Sarah Johnson</h3>
+                                <p class="team-position">Lead Developer</p>
+                                <p class="team-bio">
+                                    Sarah transforms creative concepts into functional reality with clean, efficient code and a keen eye for technical excellence and innovation.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="team-cta">
+                <div class="team-cta" data-aos="fade-up">
                     <a href="#join-team" class="btn-primary magnetic-button">
                         <span>Join Our Team</span>
                         <div class="btn-bubbles">
@@ -437,27 +433,28 @@
             </div>
         </section>
 
-        <!-- Expertise Section -->
+        <!-- Expertise Section with Animated Progress Bars -->
         <section class="expertise-section">
-            <div class="expertise-shapes">
-                <div class="expertise-shape shape-1"></div>
-                <div class="expertise-shape shape-2"></div>
+            <div class="section-shapes">
+                <div class="section-shape shape7"></div>
+                <div class="section-shape shape8"></div>
             </div>
+            
             <div class="container">
                 <div class="section-header">
-                    <div class="section-sub-title">What Sets Us Apart</div>
-                    <h2 class="section-title">Our <span class="text-gradient">Expertise</span></h2>
-                    <p class="section-description">Years of experience, continuous learning, and specialized knowledge</p>
+                    <div class="section-tag" data-aos="fade-up">What Sets Us Apart</div>
+                    <h2 class="section-title" data-aos="fade-up">Our <span class="gradient-text">Expertise</span></h2>
+                    <p class="section-description" data-aos="fade-up">Years of experience, continuous learning, and specialized knowledge</p>
                 </div>
                 
                 <div class="expertise-container">
-                    <div class="expertise-content">
+                    <div class="expertise-content" data-aos="fade-up">
                         <p class="expertise-intro">
                             At Elan's Tech World, we've cultivated deep expertise across multiple technology domains. Our team combines technical knowledge with industry insights to deliver solutions that truly transform businesses.
                         </p>
                         
-                        <div class="expertise-highlights">
-                            <div class="expertise-item">
+                        <div class="expertise-grid">
+                            <div class="expertise-card" data-aos="fade-up">
                                 <div class="expertise-icon">
                                     <i class="fas fa-code"></i>
                                 </div>
@@ -467,7 +464,7 @@
                                 </div>
                             </div>
                             
-                            <div class="expertise-item">
+                            <div class="expertise-card" data-aos="fade-up" data-aos-delay="100">
                                 <div class="expertise-icon">
                                     <i class="fas fa-paint-brush"></i>
                                 </div>
@@ -477,7 +474,7 @@
                                 </div>
                             </div>
                             
-                            <div class="expertise-item">
+                            <div class="expertise-card" data-aos="fade-up" data-aos-delay="200">
                                 <div class="expertise-icon">
                                     <i class="fas fa-server"></i>
                                 </div>
@@ -489,56 +486,56 @@
                         </div>
                     </div>
                     
-                    <div class="expertise-skills">
+                    <div class="skills-container" data-aos="fade-up">
                         <h3>Technical Proficiencies</h3>
-                        <div class="skills-container">
-                            <div class="skill-item">
+                        <div class="skill-bars">
+                            <div class="skill-bar">
                                 <div class="skill-info">
                                     <span class="skill-name">Web Development</span>
                                     <span class="skill-percentage">95%</span>
                                 </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress web"></div>
+                                <div class="skill-progress">
+                                    <div class="skill-progress-bar web" data-width="95%"></div>
                                 </div>
                             </div>
                             
-                            <div class="skill-item">
+                            <div class="skill-bar">
                                 <div class="skill-info">
                                     <span class="skill-name">Mobile Applications</span>
                                     <span class="skill-percentage">90%</span>
                                 </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress mobile"></div>
+                                <div class="skill-progress">
+                                    <div class="skill-progress-bar mobile" data-width="90%"></div>
                                 </div>
                             </div>
                             
-                            <div class="skill-item">
+                            <div class="skill-bar">
                                 <div class="skill-info">
                                     <span class="skill-name">POS Systems</span>
                                     <span class="skill-percentage">92%</span>
                                 </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress pos"></div>
+                                <div class="skill-progress">
+                                    <div class="skill-progress-bar pos" data-width="92%"></div>
                                 </div>
                             </div>
                             
-                            <div class="skill-item">
+                            <div class="skill-bar">
                                 <div class="skill-info">
                                     <span class="skill-name">UI/UX Design</span>
                                     <span class="skill-percentage">88%</span>
                                 </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress uiux"></div>
+                                <div class="skill-progress">
+                                    <div class="skill-progress-bar uiux" data-width="88%"></div>
                                 </div>
                             </div>
                             
-                            <div class="skill-item">
+                            <div class="skill-bar">
                                 <div class="skill-info">
                                     <span class="skill-name">Cloud Solutions</span>
                                     <span class="skill-percentage">85%</span>
                                 </div>
-                                <div class="skill-bar">
-                                    <div class="skill-progress cloud"></div>
+                                <div class="skill-progress">
+                                    <div class="skill-progress-bar cloud" data-width="85%"></div>
                                 </div>
                             </div>
                         </div>
@@ -547,143 +544,135 @@
             </div>
         </section>
 
-        <!-- Workspace Section -->
+        <!-- Workspace Gallery with Modern Layout -->
         <section class="workspace-section">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-sub-title">Where Innovation Happens</div>
-                    <h2 class="section-title">Our <span class="text-gradient">Workspace</span></h2>
-                    <p class="section-description">The creative environment where we bring ideas to life</p>
+                    <div class="section-tag" data-aos="fade-up">Where Innovation Happens</div>
+                    <h2 class="section-title" data-aos="fade-up">Our <span class="gradient-text">Workspace</span></h2>
+                    <p class="section-description" data-aos="fade-up">The creative environment where we bring ideas to life</p>
                 </div>
                 
-                <div class="workspace-gallery">
-                    <div class="gallery-grid">
-                        <div class="gallery-item large tilt-element">
-                            <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Modern Office Space">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">Our collaborative workspace</div>
-                            </div>
+                <div class="modern-gallery" data-aos="fade-up">
+                    <div class="gallery-item gallery-item-large">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Modern Office Space">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Our collaborative workspace</div>
                         </div>
-                        
-                        <div class="gallery-item tilt-element">
-                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Meeting Room">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">Where ideas are born</div>
-                            </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Meeting Room">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Where ideas are born</div>
                         </div>
-                        
-                        <div class="gallery-item tilt-element">
-                            <img src="https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Development Setup">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">Cutting-edge technology</div>
-                            </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1565843708714-52ecf69ab81f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Development Setup">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Cutting-edge technology</div>
                         </div>
-                        
-                        <div class="gallery-item tilt-element">
-                            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Team Brainstorming">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">Collaborative problem-solving</div>
-                            </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Team Brainstorming">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Collaborative problem-solving</div>
                         </div>
-                        
-                        <div class="gallery-item tilt-element">
-                            <img src="https://images.unsplash.com/photo-1573164574001-518958d9baa2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Creative Corner">
-                            <div class="gallery-overlay">
-                                <div class="gallery-caption">Creativity in action</div>
-                            </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1573164574001-518958d9baa2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Creative Corner">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Creativity in action</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Join Our Team -->
+        <!-- Join Our Team Section with Modern Cards -->
         <section id="join-team" class="join-team-section">
-            <div class="join-team-shapes">
-                <div class="join-team-shape shape-1"></div>
-                <div class="join-team-shape shape-2"></div>
+            <div class="section-shapes">
+                <div class="section-shape shape9"></div>
+                <div class="section-shape shape10"></div>
             </div>
+            
             <div class="container">
-                <div class="join-team-content">
-                    <div class="join-team-info">
-                        <div class="section-sub-title">Careers</div>
-                        <h2 class="section-title">Join Our <span class="text-gradient">Team</span></h2>
-                        <p class="join-team-description">
-                            We're always looking for talented individuals who are passionate about technology and innovation. Join our team and be part of something extraordinary.
-                        </p>
-                        <div class="join-team-benefits">
-                            <div class="benefit-item">
-                                <div class="benefit-icon">
-                                    <i class="fas fa-laptop-code"></i>
-                                </div>
-                                <div class="benefit-info">
-                                    <h3>Cutting-Edge Projects</h3>
-                                    <p>Work on innovative solutions that push the boundaries of what's possible with technology.</p>
-                                </div>
+                <div class="section-header">
+                    <div class="section-tag" data-aos="fade-up">Careers</div>
+                    <h2 class="section-title" data-aos="fade-up">Join Our <span class="gradient-text">Team</span></h2>
+                    <p class="section-description" data-aos="fade-up">We're always looking for talented individuals who are passionate about technology and innovation</p>
+                </div>
+                
+                <div class="join-team-container">
+                    <div class="benefits-container" data-aos="fade-up">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-laptop-code"></i>
                             </div>
-                            
-                            <div class="benefit-item">
-                                <div class="benefit-icon">
-                                    <i class="fas fa-brain"></i>
-                                </div>
-                                <div class="benefit-info">
-                                    <h3>Continuous Learning</h3>
-                                    <p>Access to training, workshops, and resources to help you grow your skills and advance your career.</p>
-                                </div>
+                            <h3>Cutting-Edge Projects</h3>
+                            <p>Work on innovative solutions that push the boundaries of what's possible with technology.</p>
+                        </div>
+                        
+                        <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+                            <div class="benefit-icon">
+                                <i class="fas fa-brain"></i>
                             </div>
-                            
-                            <div class="benefit-item">
-                                <div class="benefit-icon">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="benefit-info">
-                                    <h3>Collaborative Culture</h3>
-                                    <p>Be part of a supportive team that values collaboration, creativity, and open communication.</p>
-                                </div>
+                            <h3>Continuous Learning</h3>
+                            <p>Access to training, workshops, and resources to help you grow your skills and advance your career.</p>
+                        </div>
+                        
+                        <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
                             </div>
+                            <h3>Collaborative Culture</h3>
+                            <p>Be part of a supportive team that values collaboration, creativity, and open communication.</p>
                         </div>
                     </div>
                     
-                    <div class="join-team-positions">
+                    <div class="positions-container" data-aos="fade-up">
                         <h3>Current Opportunities</h3>
                         <div class="positions-list">
-                            <a href="#" class="position-card tilt-element">
-                                <div class="position-card-inner">
+                            <a href="#" class="position-card">
+                                <div class="position-content">
                                     <h4 class="position-title">Senior Web Developer</h4>
                                     <p class="position-type"><i class="fas fa-map-marker-alt"></i> New York, NY (On-site)</p>
-                                    <div class="position-arrow">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </div>
+                                </div>
+                                <div class="position-arrow">
+                                    <i class="fas fa-arrow-right"></i>
                                 </div>
                             </a>
                             
-                            <a href="#" class="position-card tilt-element">
-                                <div class="position-card-inner">
+                            <a href="#" class="position-card">
+                                <div class="position-content">
                                     <h4 class="position-title">UX/UI Designer</h4>
                                     <p class="position-type"><i class="fas fa-laptop-house"></i> Remote</p>
-                                    <div class="position-arrow">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </div>
+                                </div>
+                                <div class="position-arrow">
+                                    <i class="fas fa-arrow-right"></i>
                                 </div>
                             </a>
                             
-                            <a href="#" class="position-card tilt-element">
-                                <div class="position-card-inner">
+                            <a href="#" class="position-card">
+                                <div class="position-content">
                                     <h4 class="position-title">Project Manager</h4>
                                     <p class="position-type"><i class="fas fa-map-marker-alt"></i> New York, NY (On-site)</p>
-                                    <div class="position-arrow">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </div>
+                                </div>
+                                <div class="position-arrow">
+                                    <i class="fas fa-arrow-right"></i>
                                 </div>
                             </a>
                             
-                            <a href="#" class="position-card tilt-element">
-                                <div class="position-card-inner">
+                            <a href="#" class="position-card">
+                                <div class="position-content">
                                     <h4 class="position-title">Marketing Specialist</h4>
                                     <p class="position-type"><i class="fas fa-laptop-house"></i> Remote</p>
-                                    <div class="position-arrow">
-                                        <i class="fas fa-arrow-right"></i>
-                                    </div>
+                                </div>
+                                <div class="position-arrow">
+                                    <i class="fas fa-arrow-right"></i>
                                 </div>
                             </a>
                         </div>
@@ -699,16 +688,16 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
+        <!-- CTA Section with Gradient Background -->
         <section class="cta-section">
             <div class="cta-blob"></div>
             <div class="cta-blob alt"></div>
             <div class="container">
-                <div class="cta-content">
+                <div class="cta-content" data-aos="fade-up">
                     <h2 class="cta-title">Ready to transform your business?</h2>
                     <p class="cta-description">Let's create something extraordinary together</p>
                     <div class="cta-buttons">
-                        <a href="index.html#contact" class="btn-primary magnetic-button">
+                        <a href="../index.html#contact" class="btn-primary magnetic-button">
                             <span>Start a Project</span>
                             <div class="btn-bubbles">
                                 <div class="bubble"></div>
@@ -744,7 +733,7 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-logo">
-                    <a href="index.html" class="logo">
+                    <a href="../index.html" class="logo">
                         <div class="logo-icon">
                             <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                         </div>
@@ -760,24 +749,24 @@
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Quick Links</h3>
                         <ul class="footer-links">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="../index.html">Home</a></li>
                             <li><a href="about.html">About Us</a></li>
-                            <li><a href="index.html#services">Services</a></li>
-                            <li><a href="index.html#work">Our Work</a></li>
-                            <li><a href="index.html#process">Process</a></li>
-                            <li><a href="index.html#testimonials">Testimonials</a></li>
-                            <li><a href="index.html#contact">Contact</a></li>
+                            <li><a href="../pages/services.html">Services</a></li>
+                            <li><a href="../index.html#work">Our Work</a></li>
+                            <li><a href="../index.html#process">Process</a></li>
+                            <li><a href="../index.html#testimonials">Testimonials</a></li>
+                            <li><a href="../index.html#contact">Contact</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Services</h3>
                         <ul class="footer-links">
-                            <li><a href="index.html#services">Web Design</a></li>
-                            <li><a href="index.html#services">Mobile Apps</a></li>
-                            <li><a href="index.html#services">POS Systems</a></li>
-                            <li><a href="index.html#services">Technology Consulting</a></li>
-                            <li><a href="index.html#services">IT Support</a></li>
+                            <li><a href="../index.html#services">Web Design</a></li>
+                            <li><a href="../index.html#services">Mobile Apps</a></li>
+                            <li><a href="../index.html#services">POS Systems</a></li>
+                            <li><a href="../index.html#services">Technology Consulting</a></li>
+                            <li><a href="../index.html#services">IT Support</a></li>
                         </ul>
                     </div>
                     
@@ -825,7 +814,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" defer></script>
     
     <!-- Main JavaScript file loaded at the end -->
     <script src="../js/script.js" defer></script>
