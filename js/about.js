@@ -1,6 +1,5 @@
 /**
  * Elan's Tech World - About Page JavaScript
- * Handles specific interactions and animations for the About page
  */
 
 // Initialize when DOM is fully loaded
