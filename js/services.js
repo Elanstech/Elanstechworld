@@ -55,11 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
  * Cache DOM elements for services page
  */
 function cacheServicesDOM() {
-  // Navigation elements
-  servicesDOM.serviceNavTrack = document.getElementById('serviceNavTrack');
-  servicesDOM.serviceNavItems = document.querySelectorAll('.service-nav-item');
-  servicesDOM.serviceNavPrev = document.querySelector('.service-nav-prev');
-  servicesDOM.serviceNavNext = document.querySelector('.service-nav-next');
+  // New Navigation elements
+  servicesDOM.serviceMenuToggle = document.getElementById('serviceMenuToggle');
+  servicesDOM.serviceNavList = document.getElementById('serviceNavList');
+  servicesDOM.serviceNavLinks = document.querySelectorAll('.service-nav-link');
+  servicesDOM.serviceProgressBar = document.getElementById('serviceProgressBar');
+  servicesDOM.scrollIndicator = document.getElementById('scrollIndicator');
   
   // Showcase tabs
   servicesDOM.showcaseTabs = document.querySelectorAll('.showcase-tab');
@@ -273,20 +274,28 @@ function initParticles() {
 }
 
 /*======================================
-  4. SERVICE NAVIGATION
+  4. SERVICE NAVIGATION - REDESIGNED
 ======================================*/
 
 /**
  * Initialize Service Navigation
  */
 function initServiceNavigation() {
-  if (!servicesDOM.serviceNavTrack || !servicesDOM.serviceNavItems.length) return;
+  if (!servicesDOM.serviceNavLinks.length) return;
+  
+  // Toggle mobile menu
+  if (servicesDOM.serviceMenuToggle && servicesDOM.serviceNavList) {
+    servicesDOM.serviceMenuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      servicesDOM.serviceNavList.classList.toggle('active');
+    });
+  }
   
   // Scroll to active service section on page load
   setTimeout(() => {
-    const activeNavItem = document.querySelector('.service-nav-item.active');
-    if (activeNavItem) {
-      const targetId = activeNavItem.getAttribute('href');
+    const activeNavLink = document.querySelector('.service-nav-link.active');
+    if (activeNavLink) {
+      const targetId = activeNavLink.getAttribute('href');
       const targetElement = document.querySelector(targetId);
       
       if (targetElement) {
@@ -296,15 +305,23 @@ function initServiceNavigation() {
   }, 500);
   
   // Handle navigation item clicks
-  servicesDOM.serviceNavItems.forEach(item => {
-    item.addEventListener('click', function(e) {
+  servicesDOM.serviceNavLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
       e.preventDefault();
       
       // Update active state
-      servicesDOM.serviceNavItems.forEach(navItem => {
-        navItem.classList.remove('active');
+      servicesDOM.serviceNavLinks.forEach(navLink => {
+        navLink.classList.remove('active');
       });
       this.classList.add('active');
+      
+      // Close mobile menu if open
+      if (window.innerWidth < 992 && servicesDOM.serviceNavList) {
+        servicesDOM.serviceNavList.classList.remove('active');
+        if (servicesDOM.serviceMenuToggle) {
+          servicesDOM.serviceMenuToggle.classList.remove('active');
+        }
+      }
       
       // Scroll to target section
       const targetId = this.getAttribute('href');
@@ -316,25 +333,8 @@ function initServiceNavigation() {
     });
   });
   
-  // Navigation arrows for mobile scrolling
-  if (servicesDOM.serviceNavPrev && servicesDOM.serviceNavNext) {
-    servicesDOM.serviceNavPrev.addEventListener('click', () => {
-      servicesDOM.serviceNavTrack.scrollBy({
-        left: -200,
-        behavior: 'smooth'
-      });
-    });
-    
-    servicesDOM.serviceNavNext.addEventListener('click', () => {
-      servicesDOM.serviceNavTrack.scrollBy({
-        left: 200,
-        behavior: 'smooth'
-      });
-    });
-  }
-  
-  // Update active nav item based on scroll position
-  window.addEventListener('scroll', debounce(updateActiveNavItem, 100));
+  // Update active nav item and progress based on scroll position
+  window.addEventListener('scroll', debounce(updateServicesProgress, 50));
   
   /**
    * Scroll to target section with offset
@@ -342,8 +342,8 @@ function initServiceNavigation() {
   function scrollToSection(element) {
     if (!element) return;
     
-    const navHeight = document.querySelector('.service-categories-nav').offsetHeight;
-    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - navHeight;
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - headerHeight;
     
     window.scrollTo({
       top: targetPosition,
@@ -352,27 +352,48 @@ function initServiceNavigation() {
   }
   
   /**
-   * Update active navigation item based on scroll position
+   * Update progress bar and active navigation based on scroll position
    */
-  function updateActiveNavItem() {
+  function updateServicesProgress() {
     // Get all service sections
     const serviceSections = document.querySelectorAll('.service-detail-section');
     if (!serviceSections.length) return;
     
-    // Get current scroll position with offset for nav height
-    const navHeight = document.querySelector('.service-categories-nav').offsetHeight;
-    const scrollPosition = window.pageYOffset + navHeight + 50;
+    // Calculate total scroll height of all service sections
+    const firstSectionTop = serviceSections[0].offsetTop;
+    const lastSection = serviceSections[serviceSections.length - 1];
+    const lastSectionBottom = lastSection.offsetTop + lastSection.offsetHeight;
+    const totalScrollHeight = lastSectionBottom - firstSectionTop;
+    
+    // Get current scroll position
+    const headerHeight = document.querySelector('.header').offsetHeight;
+    const scrollPosition = window.pageYOffset + headerHeight;
+    
+    // Calculate current progress percentage
+    let progressPercentage = 0;
+    
+    if (scrollPosition >= firstSectionTop) {
+      const currentScroll = Math.min(scrollPosition - firstSectionTop, totalScrollHeight);
+      progressPercentage = (currentScroll / totalScrollHeight) * 100;
+    }
+    
+    // Update progress bar
+    if (servicesDOM.serviceProgressBar) {
+      servicesDOM.serviceProgressBar.style.width = `${progressPercentage}%`;
+    }
     
     // Find the current active section
     let currentSection = null;
+    let sectionIndex = 0;
     
     // Loop through sections to find which one is in view
-    serviceSections.forEach(section => {
+    serviceSections.forEach((section, index) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      if (scrollPosition >= sectionTop - 100 && scrollPosition < sectionTop + sectionHeight - 100) {
         currentSection = section;
+        sectionIndex = index;
       }
     });
     
@@ -380,25 +401,24 @@ function initServiceNavigation() {
     if (currentSection) {
       const sectionId = currentSection.getAttribute('id');
       
-      servicesDOM.serviceNavItems.forEach(item => {
-        item.classList.remove('active');
+      servicesDOM.serviceNavLinks.forEach(link => {
+        link.classList.remove('active');
         
-        if (item.getAttribute('href') === `#${sectionId}`) {
-          item.classList.add('active');
+        if (link.getAttribute('href') === `#${sectionId}`) {
+          link.classList.add('active');
           
-          // Scroll the nav item into view if it's not visible
-          const itemRect = item.getBoundingClientRect();
-          const trackRect = servicesDOM.serviceNavTrack.getBoundingClientRect();
-          
-          if (itemRect.left < trackRect.left || itemRect.right > trackRect.right) {
-            item.scrollIntoView({
-              behavior: 'smooth',
-              block: 'nearest',
-              inline: 'center'
-            });
+          // Update service menu toggle text on mobile
+          if (servicesDOM.serviceMenuToggle && window.innerWidth < 992) {
+            servicesDOM.serviceMenuToggle.querySelector('span').textContent = link.querySelector('span').textContent;
           }
         }
       });
+      
+      // Update scroll indicator position
+      if (servicesDOM.scrollIndicator) {
+        const indicatorPosition = (sectionIndex / (serviceSections.length - 1)) * 100;
+        servicesDOM.scrollIndicator.style.top = `${indicatorPosition}%`;
+      }
     }
   }
 }
