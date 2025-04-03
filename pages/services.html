@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services | Elan's Tech World</title>
-    <meta name="description" content="Explore our comprehensive range of digital services designed to transform your business - web design, mobile apps, digital marketing, and more.">
+    <meta name="description" content="Explore our comprehensive range of digital services designed to transform your business - web design, mobile apps, digital marketing, POS systems, and more.">
     
     <!-- Preconnect to External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,18 +18,15 @@
     <link rel="stylesheet" href="../css/services.css">
     
     <!-- Favicon Implementation -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
     <meta name="theme-color" content="#007aff">
-    
-    <!-- Deferred Resources -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
-<body class="preload">
+<body class="services-page">
     <!-- Page Loader -->
     <div class="loader-container">
         <div class="loader-content">
@@ -76,13 +73,13 @@
                         <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
                         <li class="nav-item"><a href="../pages/about.html" class="nav-link">About Us</a></li>
                         <li class="nav-item"><a href="../pages/services.html" class="nav-link active">Our Services</a></li>
-                        <li class="nav-item"><a href="index.html#work" class="nav-link">Our Work</a></li>
-                        <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact Us</a></li>
+                        <li class="nav-item"><a href="../index.html#work" class="nav-link">Our Work</a></li>
+                        <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact Us</a></li>
                     </ul>
                 </nav>
                 
                 <div class="header-actions">
-                    <a href="index.html#contact" class="btn-primary header-cta magnetic-button">
+                    <a href="../index.html#contact" class="btn-primary header-cta magnetic-button">
                         <span>Get Started</span>
                         <div class="btn-bubbles">
                             <div class="bubble"></div>
@@ -105,7 +102,7 @@
         <div class="mobile-menu-backdrop"></div>
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <a href="index.html" class="logo">
+                <a href="../index.html" class="logo">
                     <div class="logo-icon">
                         <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                     </div>
@@ -123,9 +120,9 @@
                 <ul class="mobile-nav-list">
                     <li class="mobile-nav-item"><a href="../index.html" class="mobile-nav-link">Home</a></li>
                     <li class="mobile-nav-item"><a href="../pages/about.html" class="mobile-nav-link">About Us</a></li>
-                    <li class="mobile-nav-item"><a href="../pages/services.html" class="mobile-nav-link">Our Services</a></li>
-                    <li class="mobile-nav-item"><a href="index.html#work" class="mobile-nav-link">Our Work</a></li>
-                    <li class="mobile-nav-item"><a href="index.html#contact" class="mobile-nav-link">Contact Us</a></li>
+                    <li class="mobile-nav-item"><a href="../pages/services.html" class="mobile-nav-link active">Our Services</a></li>
+                    <li class="mobile-nav-item"><a href="../index.html#work" class="mobile-nav-link">Our Work</a></li>
+                    <li class="mobile-nav-item"><a href="../index.html#contact" class="mobile-nav-link">Contact Us</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-footer">
@@ -159,20 +156,21 @@
             <div class="services-hero-background">
                 <div class="services-hero-overlay"></div>
                 <div class="services-hero-shapes">
-                    <div class="services-hero-shape shape-1"></div>
-                    <div class="services-hero-shape shape-2"></div>
-                    <div class="services-hero-shape shape-3"></div>
+                    <div class="services-hero-shape shape-1" data-speed="0.05"></div>
+                    <div class="services-hero-shape shape-2" data-speed="-0.08"></div>
+                    <div class="services-hero-shape shape-3" data-speed="0.1"></div>
                 </div>
             </div>
             
             <div class="container">
-                <div class="services-hero-content" data-aos="fade-up">
+                <div class="services-hero-content" data-animation="fade-up">
                     <div class="services-hero-badge">Our Services</div>
                     <h1 class="services-hero-title">
                         Elevate Your <span class="gradient-text">Digital Presence</span> With Our Solutions
                     </h1>
                     <p class="services-hero-subtitle">
-                        We combine innovation, strategic thinking, and technical expertise to deliver solutions that drive growth and create meaningful digital experiences.
+                        We combine innovation, strategic thinking, and technical expertise to deliver solutions 
+                        that drive growth and create meaningful digital experiences for your business.
                     </p>
                     <div class="services-hero-actions">
                         <a href="#services-grid" class="btn-primary magnetic-button">
@@ -183,7 +181,7 @@
                                 <div class="bubble"></div>
                             </div>
                         </a>
-                        <a href="#contact" class="btn-secondary magnetic-button">
+                        <a href="../index.html#contact" class="btn-secondary magnetic-button">
                             <span>Get in Touch</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
@@ -196,11 +194,14 @@
         <section class="services-intro">
             <div class="container">
                 <div class="services-intro-grid">
-                    <div class="services-intro-content" data-aos="fade-right">
+                    <div class="services-intro-content" data-animation="fade-right">
                         <div class="section-sub-title">Why Choose Us</div>
                         <h2 class="section-title">We Deliver <span class="gradient-text">Excellence</span></h2>
                         <p class="services-intro-text">
-                            At Elan's Tech World, we don't just build websites or implement technology – we create transformative digital solutions tailored to your unique business needs. Our multidisciplinary team brings together expertise across web development, design, marketing, and technology to deliver holistic services that drive real results.
+                            At Elan's Tech World, we don't just build websites or implement technology – we create 
+                            transformative digital solutions tailored to your unique business needs. Our multidisciplinary 
+                            team brings together expertise across web development, design, marketing, and technology 
+                            to deliver holistic services that drive real results.
                         </p>
                         <ul class="services-intro-features">
                             <li><i class="fas fa-check-circle"></i> Custom Solutions Tailored to Your Business</li>
@@ -209,8 +210,8 @@
                             <li><i class="fas fa-check-circle"></i> Dedicated Support & Ongoing Partnership</li>
                         </ul>
                     </div>
-                    <div class="services-intro-image-container" data-aos="fade-left">
-                        <div class="services-intro-image">
+                    <div class="services-intro-image-container" data-animation="fade-left">
+                        <div class="services-intro-image tilt-element">
                             <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1080&auto=format&fit=crop" alt="Team collaboration meeting">
                             <div class="services-intro-image-shape"></div>
                         </div>
@@ -226,14 +227,14 @@
                 <div class="services-grid-shape shape-2"></div>
             </div>
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header" data-animation="fade-up">
                     <div class="section-sub-title">Our Expertise</div>
                     <h2 class="section-title">Comprehensive <span class="gradient-text">Services</span></h2>
                     <p class="section-description">Discover our full range of digital solutions designed to transform your business</p>
                 </div>
                 
                 <!-- Services Filter -->
-                <div class="services-filter" data-aos="fade-up">
+                <div class="services-filter" data-animation="fade-up">
                     <button class="filter-btn active" data-filter="all">All Services</button>
                     <button class="filter-btn" data-filter="web">Web & Mobile</button>
                     <button class="filter-btn" data-filter="marketing">Marketing</button>
@@ -244,7 +245,7 @@
                 <!-- Services Cards Grid -->
                 <div class="services-cards">
                     <!-- Web Design & Development -->
-                    <div class="service-card" data-category="web" data-aos="fade-up">
+                    <div class="service-card" data-category="web" data-animation="fade-up">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -260,8 +261,10 @@
                                     <li><i class="fas fa-check"></i> E-commerce Solutions</li>
                                     <li><i class="fas fa-check"></i> CMS Integration</li>
                                     <li><i class="fas fa-check"></i> SEO Optimization</li>
+                                    <li><i class="fas fa-check"></i> Performance Optimization</li>
+                                    <li><i class="fas fa-check"></i> Custom Functionality</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -270,7 +273,7 @@
                     </div>
 
                     <!-- Mobile App Development -->
-                    <div class="service-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card" data-category="web" data-animation="fade-up" data-animation-delay="100">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -285,9 +288,11 @@
                                     <li><i class="fas fa-check"></i> iOS & Android Apps</li>
                                     <li><i class="fas fa-check"></i> Cross-Platform Solutions</li>
                                     <li><i class="fas fa-check"></i> UI/UX Design</li>
+                                    <li><i class="fas fa-check"></i> App Store Optimization</li>
+                                    <li><i class="fas fa-check"></i> Push Notifications</li>
                                     <li><i class="fas fa-check"></i> Maintenance & Support</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -296,7 +301,7 @@
                     </div>
 
                     <!-- POS System Implementation -->
-                    <div class="service-card" data-category="systems" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card" data-category="systems" data-animation="fade-up" data-animation-delay="200">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -308,12 +313,14 @@
                             <div class="service-card-back">
                                 <h3 class="service-title">POS System Implementation</h3>
                                 <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Square Integration</li>
+                                    <li><i class="fas fa-check"></i> Clover Solutions</li>
                                     <li><i class="fas fa-check"></i> Hardware Selection</li>
-                                    <li><i class="fas fa-check"></i> Software Integration</li>
+                                    <li><i class="fas fa-check"></i> Inventory Management</li>
                                     <li><i class="fas fa-check"></i> Staff Training</li>
                                     <li><i class="fas fa-check"></i> Ongoing Support</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -322,7 +329,7 @@
                     </div>
 
                     <!-- Digital Marketing -->
-                    <div class="service-card" data-category="marketing" data-aos="fade-up">
+                    <div class="service-card" data-category="marketing" data-animation="fade-up">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -336,10 +343,12 @@
                                 <ul class="service-features">
                                     <li><i class="fas fa-check"></i> SEO & SEM Strategies</li>
                                     <li><i class="fas fa-check"></i> Social Media Management</li>
+                                    <li><i class="fas fa-check"></i> Content Marketing</li>
                                     <li><i class="fas fa-check"></i> Email Marketing</li>
                                     <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                                    <li><i class="fas fa-check"></i> Conversion Optimization</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -348,7 +357,7 @@
                     </div>
 
                     <!-- Google Ads Management -->
-                    <div class="service-card" data-category="marketing" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card" data-category="marketing" data-animation="fade-up" data-animation-delay="100">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -363,9 +372,11 @@
                                     <li><i class="fas fa-check"></i> Campaign Strategy & Setup</li>
                                     <li><i class="fas fa-check"></i> Keyword Research</li>
                                     <li><i class="fas fa-check"></i> Ad Copy Creation</li>
+                                    <li><i class="fas fa-check"></i> Landing Page Optimization</li>
                                     <li><i class="fas fa-check"></i> Conversion Tracking</li>
+                                    <li><i class="fas fa-check"></i> Performance Reporting</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -374,7 +385,7 @@
                     </div>
 
                     <!-- Property Management Systems -->
-                    <div class="service-card" data-category="systems" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card" data-category="systems" data-animation="fade-up" data-animation-delay="200">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -389,9 +400,11 @@
                                     <li><i class="fas fa-check"></i> Tenant Portal Setup</li>
                                     <li><i class="fas fa-check"></i> Maintenance Request System</li>
                                     <li><i class="fas fa-check"></i> Payment Processing</li>
-                                    <li><i class="fas fa-check"></i> Property Listing Management</li>
+                                    <li><i class="fas fa-check"></i> Property Listing Integration</li>
+                                    <li><i class="fas fa-check"></i> Accounting & Reporting</li>
+                                    <li><i class="fas fa-check"></i> Custom Workflow Solutions</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -399,8 +412,8 @@
                         </div>
                     </div>
 
-                    <!-- Print Design -->
-                    <div class="service-card" data-category="design" data-aos="fade-up">
+                    <!-- Print & Graphic Design -->
+                    <div class="service-card" data-category="design" data-animation="fade-up">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -416,8 +429,10 @@
                                     <li><i class="fas fa-check"></i> Brochures & Flyers</li>
                                     <li><i class="fas fa-check"></i> Signage Solutions</li>
                                     <li><i class="fas fa-check"></i> Brand Identity Packages</li>
+                                    <li><i class="fas fa-check"></i> Logo Design</li>
+                                    <li><i class="fas fa-check"></i> Marketing Materials</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -426,7 +441,7 @@
                     </div>
 
                     <!-- Technology Consulting -->
-                    <div class="service-card" data-category="systems" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card" data-category="systems" data-animation="fade-up" data-animation-delay="100">
                         <div class="service-card-inner">
                             <div class="service-card-front">
                                 <div class="service-icon">
@@ -442,8 +457,10 @@
                                     <li><i class="fas fa-check"></i> IT Infrastructure</li>
                                     <li><i class="fas fa-check"></i> Security Solutions</li>
                                     <li><i class="fas fa-check"></i> Business Automation</li>
+                                    <li><i class="fas fa-check"></i> Process Optimization</li>
+                                    <li><i class="fas fa-check"></i> Technology Roadmaps</li>
                                 </ul>
-                                <a href="#contact" class="service-link">
+                                <a href="../index.html#contact" class="service-link">
                                     <span>Learn More</span>
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -458,11 +475,13 @@
         <section class="featured-service-section">
             <div class="container">
                 <div class="featured-service-grid">
-                    <div class="featured-service-content" data-aos="fade-right">
+                    <div class="featured-service-content" data-animation="fade-right">
                         <div class="section-sub-title">Featured Service</div>
                         <h2 class="section-title">Comprehensive <span class="gradient-text">Web Solutions</span></h2>
                         <p class="featured-service-description">
-                            Our web development services go beyond just building websites. We create comprehensive digital ecosystems that integrate with your business workflows, enhance customer experience, and drive meaningful results.
+                            Our web development services go beyond just building websites. We create comprehensive 
+                            digital ecosystems that integrate with your business workflows, enhance customer 
+                            experience, and drive meaningful results for your organization.
                         </p>
                         <div class="featured-service-stats">
                             <div class="stat-box">
@@ -479,7 +498,7 @@
                             </div>
                         </div>
                         <div class="featured-service-actions">
-                            <a href="#contact" class="btn-primary magnetic-button">
+                            <a href="../index.html#contact" class="btn-primary magnetic-button">
                                 <span>Discuss Your Project</span>
                                 <div class="btn-bubbles">
                                     <div class="bubble"></div>
@@ -489,8 +508,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="featured-service-image-container" data-aos="fade-left">
-                        <div class="featured-service-showcase">
+                    <div class="featured-service-image-container" data-animation="fade-left">
+                        <div class="featured-service-showcase tilt-element">
                             <div class="device-mockup">
                                 <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1080&auto=format&fit=crop" alt="Website design on laptop and mobile">
                             </div>
@@ -507,46 +526,53 @@
         <!-- Process Overview Section -->
         <section class="process-overview-section">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header" data-animation="fade-up">
                     <div class="section-sub-title">Our Approach</div>
                     <h2 class="section-title">How We <span class="gradient-text">Deliver Excellence</span></h2>
                     <p class="section-description">Our streamlined process ensures we deliver high-quality solutions tailored to your business needs</p>
                 </div>
                 
                 <div class="process-timeline">
-                    <div class="process-step" data-aos="fade-up">
+                    <div class="process-step" data-animation="fade-up">
                         <div class="process-step-number">01</div>
                         <div class="process-step-content">
                             <h3>Discovery</h3>
-                            <p>We begin by understanding your goals, audience, and unique challenges to create a tailored strategy that aligns with your business objectives.</p>
+                            <p>We begin by understanding your goals, audience, and unique challenges to create a tailored strategy that aligns with your business objectives and addresses your specific needs.</p>
                         </div>
                     </div>
-                    <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="process-step" data-animation="fade-up" data-animation-delay="100">
                         <div class="process-step-number">02</div>
                         <div class="process-step-content">
                             <h3>Planning</h3>
-                            <p>We develop a comprehensive roadmap outlining project scope, timeline, and key deliverables to ensure a smooth execution.</p>
+                            <p>We develop a comprehensive roadmap outlining project scope, timeline, and key deliverables to ensure a smooth execution process and clear communication throughout.</p>
                         </div>
                     </div>
-                    <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="process-step" data-animation="fade-up" data-animation-delay="200">
                         <div class="process-step-number">03</div>
                         <div class="process-step-content">
                             <h3>Design</h3>
-                            <p>Our creative team crafts visually stunning interfaces that engage users and reflect your brand identity while enhancing usability.</p>
+                            <p>Our creative team crafts visually stunning interfaces that engage users and reflect your brand identity while enhancing usability and creating memorable experiences.</p>
                         </div>
                     </div>
-                    <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="process-step" data-animation="fade-up" data-animation-delay="300">
                         <div class="process-step-number">04</div>
                         <div class="process-step-content">
                             <h3>Development</h3>
-                            <p>We bring designs to life with clean, efficient code and cutting-edge technology, ensuring scalability and performance.</p>
+                            <p>We bring designs to life with clean, efficient code and cutting-edge technology, ensuring scalability, performance, and security for your digital solution.</p>
                         </div>
                     </div>
-                    <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="process-step" data-animation="fade-up" data-animation-delay="400">
                         <div class="process-step-number">05</div>
                         <div class="process-step-content">
+                            <h3>Testing</h3>
+                            <p>Rigorous quality assurance ensures your digital product performs flawlessly across all devices and platforms, providing a seamless user experience to your customers.</p>
+                        </div>
+                    </div>
+                    <div class="process-step" data-animation="fade-up" data-animation-delay="500">
+                        <div class="process-step-number">06</div>
+                        <div class="process-step-content">
                             <h3>Launch & Support</h3>
-                            <p>We ensure a smooth deployment and provide ongoing maintenance and support to help your business grow and adapt.</p>
+                            <p>We ensure a smooth deployment and provide ongoing maintenance and support to help your business grow and adapt to changing market conditions and customer needs.</p>
                         </div>
                     </div>
                 </div>
@@ -559,16 +585,18 @@
                 <div class="testimonial-spotlight-overlay"></div>
             </div>
             <div class="container">
-                <div class="testimonial-spotlight-content" data-aos="fade-up">
+                <div class="testimonial-spotlight-content" data-animation="fade-up">
                     <div class="testimonial-quote-icon">
                         <i class="fas fa-quote-left"></i>
                     </div>
                     <blockquote class="testimonial-spotlight-quote">
-                        Elan's Tech World transformed our beauty clinic with a stunning website and integrated booking system. The Square POS implementation has streamlined our operations, allowing us to focus on our clients. Our online bookings have increased by 40%!
+                        Elan's Tech World transformed our beauty clinic with a stunning website and integrated booking system. 
+                        The Square POS implementation has streamlined our operations, allowing us to focus on our clients. 
+                        Our online bookings have increased by 40%!
                     </blockquote>
                     <div class="testimonial-author">
                         <div class="testimonial-author-image">
-                            <img src="ill.jpg" alt="Testimonial author">
+                            <img src="../assets/images/testimonial-iconic-aesthetics.jpg" alt="Illanit Shalom - Iconic Aesthetics">
                         </div>
                         <div class="testimonial-author-info">
                             <h4 class="testimonial-author-name">Illanit Shalom</h4>
@@ -584,11 +612,11 @@
             <div class="services-cta-blob"></div>
             <div class="services-cta-blob alt"></div>
             <div class="container">
-                <div class="services-cta-content" data-aos="fade-up">
+                <div class="services-cta-content" data-animation="fade-up">
                     <h2 class="services-cta-title">Ready to transform your business?</h2>
                     <p class="services-cta-description">Let's create something extraordinary together</p>
                     <div class="services-cta-actions">
-                        <a href="#contact" class="btn-primary magnetic-button">
+                        <a href="../index.html#contact" class="btn-primary magnetic-button">
                             <span>Start Your Project</span>
                             <div class="btn-bubbles">
                                 <div class="bubble"></div>
@@ -624,7 +652,7 @@
         <div class="container">
             <div class="footer-top">
                 <div class="footer-logo">
-                    <a href="#" class="logo">
+                    <a href="../index.html" class="logo">
                         <div class="logo-icon">
                             <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
                         </div>
@@ -640,24 +668,25 @@
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Quick Links</h3>
                         <ul class="footer-links">
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#work">Our Work</a></li>
-                            <li><a href="#process">Process</a></li>
-                            <li><a href="#testimonials">Testimonials</a></li>
-                            <li><a href="#instagram">Instagram</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="../index.html">Home</a></li>
+                            <li><a href="../pages/about.html">About Us</a></li>
+                            <li><a href="../pages/services.html">Services</a></li>
+                            <li><a href="../index.html#work">Our Work</a></li>
+                            <li><a href="../index.html#process">Process</a></li>
+                            <li><a href="../index.html#testimonials">Testimonials</a></li>
+                            <li><a href="../index.html#contact">Contact</a></li>
                         </ul>
                     </div>
                     
                     <div class="footer-nav-col">
                         <h3 class="footer-title">Services</h3>
                         <ul class="footer-links">
-                            <li><a href="#services">Web Design</a></li>
-                            <li><a href="#services">Mobile Apps</a></li>
-                            <li><a href="#services">POS Systems</a></li>
-                            <li><a href="#services">Technology Consulting</a></li>
-                            <li><a href="#services">IT Support</a></li>
+                            <li><a href="#services-grid">Web Design</a></li>
+                            <li><a href="#services-grid">Mobile Apps</a></li>
+                            <li><a href="#services-grid">POS Systems</a></li>
+                            <li><a href="#services-grid">Digital Marketing</a></li>
+                            <li><a href="#services-grid">Google Ads</a></li>
+                            <li><a href="#services-grid">Graphic Design</a></li>
                         </ul>
                     </div>
                     
@@ -699,7 +728,6 @@
     <!-- Scripts -->  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
     <script src="../js/script.js" defer></script>
     <script src="../js/services.js" defer></script>
