@@ -1704,3 +1704,57 @@
     transform: translateY(0);
   }
 }
+
+/* Enhanced Card Hover Effects */
+.service-card-3d .card-3d-inner {
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.service-card-3d:hover .card-3d-inner {
+  transform: rotateY(180deg) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced 3D Effect with Perspective */
+.card-3d-front,
+.card-3d-back {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-3d-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotateY(180deg);
+}
+
+/* Glow Effect on Hover */
+.service-card-3d:hover::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.2), rgba(0, 194, 255, 0.2));
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0;
+  animation: cardGlow 1.5s forwards;
+}
+
+@keyframes cardGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
