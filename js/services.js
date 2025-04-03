@@ -314,7 +314,7 @@ function initStatsCounters() {
                             if (circle) {
                                 const radius = circle.getAttribute('r');
                                 const circumference = 2 * Math.PI * radius;
-                                const percentage = circle.getAttribute('data-percentage');
+                                const percentage = circle.getAttribute('data-percentage') || target;
                                 const offset = circumference - (percentage / 100) * circumference;
                                 
                                 // Set circle dasharray and dashoffset
