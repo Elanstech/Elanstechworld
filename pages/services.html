@@ -191,65 +191,81 @@
             </div>
         </section>
 
-        <!-- Service Categories Navigation -->
-        <section class="service-categories-nav">
-            <div class="container">
-                <div class="service-nav-wrapper">
-                    <div class="service-nav-track" id="serviceNavTrack">
-                        <a href="#web-services" class="service-nav-item active" data-service="web-services">
+        <!-- Service Content Container with Sidebar -->
+        <div class="container services-container">
+            <!-- Service Sidebar Navigation -->
+            <aside class="service-sidebar">
+                <button class="service-menu-toggle" id="serviceMenuToggle">
+                    <span>Our Services</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <nav class="service-nav-list" id="serviceNavList">
+                    <div class="service-nav-item">
+                        <a href="#web-services" class="service-nav-link active" data-service="web-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-laptop-code"></i>
                             </div>
                             <span>Web Solutions</span>
                         </a>
-                        <a href="#mobile-services" class="service-nav-item" data-service="mobile-services">
+                    </div>
+                    <div class="service-nav-item">
+                        <a href="#mobile-services" class="service-nav-link" data-service="mobile-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-mobile-alt"></i>
                             </div>
                             <span>Mobile Apps</span>
                         </a>
-                        <a href="#pos-services" class="service-nav-item" data-service="pos-services">
+                    </div>
+                    <div class="service-nav-item">
+                        <a href="#pos-services" class="service-nav-link" data-service="pos-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-store"></i>
                             </div>
                             <span>POS Systems</span>
                         </a>
-                        <a href="#marketing-services" class="service-nav-item" data-service="marketing-services">
+                    </div>
+                    <div class="service-nav-item">
+                        <a href="#marketing-services" class="service-nav-link" data-service="marketing-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-bullhorn"></i>
                             </div>
                             <span>Digital Marketing</span>
                         </a>
-                        <a href="#property-services" class="service-nav-item" data-service="property-services">
+                    </div>
+                    <div class="service-nav-item">
+                        <a href="#property-services" class="service-nav-link" data-service="property-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-building"></i>
                             </div>
                             <span>Property Management</span>
                         </a>
-                        <a href="#design-services" class="service-nav-item" data-service="design-services">
+                    </div>
+                    <div class="service-nav-item">
+                        <a href="#design-services" class="service-nav-link" data-service="design-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-paint-brush"></i>
                             </div>
                             <span>Print & Design</span>
                         </a>
-                        <a href="#tech-services" class="service-nav-item" data-service="tech-services">
+                    </div>
+                    <div class="service-nav-item">
+                        <a href="#tech-services" class="service-nav-link" data-service="tech-services">
                             <div class="service-nav-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <span>Tech Consulting</span>
                         </a>
                     </div>
-                    <button class="service-nav-arrow service-nav-prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="service-nav-arrow service-nav-next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Web Design & Development Services -->
+                    <div class="service-progress">
+                        <div class="service-progress-bar" id="serviceProgressBar"></div>
+                        <div class="scroll-indicator" id="scrollIndicator"></div>
+                    </div>
+                </nav>
+            </aside>
+            
+            <!-- Main Service Content -->
+            <main class="service-main-content">
+                <!-- Web Design & Development Services -->
         <section id="web-services" class="service-detail-section">
             <div class="service-background">
                 <div class="service-shape shape-left"></div>
@@ -977,7 +993,8 @@
                 </div>
             </div>
         </section>
-    </main>
+            </main>
+        </div>
     
     <!-- Footer -->
     <footer class="footer">
