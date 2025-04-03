@@ -220,81 +220,187 @@
             </div>
         </section>
 
-        <!-- Redesigned Services Section -->
-<section id="services-grid" class="services-grid-section">
-    <div class="services-grid-shapes">
-        <div class="services-grid-shape shape-1"></div>
-        <div class="services-grid-shape shape-2"></div>
+       <!-- Modern Services Showcase Section -->
+<section id="services-grid" class="services-showcase">
+    <!-- Background Elements -->
+    <div class="services-bg">
+        <div class="services-blob blob-1"></div>
+        <div class="services-blob blob-2"></div>
+        <div class="services-blob blob-3"></div>
+        <div class="services-particles"></div>
     </div>
+    
     <div class="container">
+        <!-- Section Header -->
         <div class="section-header" data-animation="fade-up">
             <div class="section-sub-title">Our Expertise</div>
             <h2 class="section-title">Comprehensive <span class="gradient-text">Services</span></h2>
             <p class="section-description">Discover our full range of digital solutions designed to transform your business</p>
         </div>
         
-        <!-- Services Navigation Tabs -->
-        <div class="services-tabs" data-animation="fade-up">
-            <button class="tab-button active" data-tab="web">
-                <i class="fas fa-laptop-code"></i>
-                <span>Web & Mobile</span>
-            </button>
-            <button class="tab-button" data-tab="marketing">
-                <i class="fas fa-bullhorn"></i>
-                <span>Marketing</span>
-            </button>
-            <button class="tab-button" data-tab="systems">
-                <i class="fas fa-cogs"></i>
-                <span>Business Systems</span>
-            </button>
-            <button class="tab-button" data-tab="design">
-                <i class="fas fa-paint-brush"></i>
-                <span>Design</span>
-            </button>
+        <!-- Services Navigation -->
+        <div class="services-nav" data-animation="fade-up">
+            <div class="services-nav-track">
+                <button class="service-nav-item active" data-service="web">
+                    <div class="service-nav-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-nav-text">
+                        <h3>Web & Mobile</h3>
+                        <p>Responsive websites & applications</p>
+                    </div>
+                </button>
+                
+                <button class="service-nav-item" data-service="marketing">
+                    <div class="service-nav-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="service-nav-text">
+                        <h3>Marketing</h3>
+                        <p>Digital strategies that drive growth</p>
+                    </div>
+                </button>
+                
+                <button class="service-nav-item" data-service="systems">
+                    <div class="service-nav-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="service-nav-text">
+                        <h3>Business Systems</h3>
+                        <p>Technology solutions for efficiency</p>
+                    </div>
+                </button>
+                
+                <button class="service-nav-item" data-service="design">
+                    <div class="service-nav-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="service-nav-text">
+                        <h3>Design</h3>
+                        <p>Brand identity & visual communication</p>
+                    </div>
+                </button>
+            </div>
         </div>
         
-        <!-- Services Content -->
-        <div class="services-content">
-            <!-- Web & Mobile Tab Content -->
-            <div class="services-tab-content active" id="web-content">
-                <div class="services-wrapper">
-                    <!-- Web Design & Development -->
-                    <div class="service-item" data-animation="fade-up">
-                        <div class="service-icon">
-                            <i class="fas fa-laptop-code"></i>
+        <!-- Services Content Area -->
+        <div class="services-content-area">
+            <!-- Web & Mobile Content -->
+            <div class="service-content active" id="web-content">
+                <div class="service-content-header">
+                    <div class="service-content-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-content-title">
+                        <h2>Web & Mobile Development</h2>
+                        <p>Creating exceptional digital experiences that engage users and drive business growth</p>
+                    </div>
+                </div>
+                
+                <div class="service-cards">
+                    <!-- Web Design Card -->
+                    <div class="service-card" data-animation="fade-up">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <h3 class="service-card-title">Web Design & Development</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Web Design & Development</h3>
-                            <p class="service-description">Custom, responsive websites that captivate your audience and drive conversions.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> Responsive Design</li>
-                                <li><i class="fas fa-check"></i> E-commerce Solutions</li>
-                                <li><i class="fas fa-check"></i> CMS Integration</li>
-                                <li><i class="fas fa-check"></i> SEO Optimization</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Custom, responsive websites that captivate your audience and drive conversions. Our web solutions combine stunning design with powerful functionality.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Responsive Design</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>E-commerce Solutions</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>CMS Integration</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>SEO Optimization</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">HTML5</div>
+                                <div class="tech-tag">CSS3</div>
+                                <div class="tech-tag">JavaScript</div>
+                                <div class="tech-tag">WordPress</div>
+                                <div class="tech-tag">Shopify</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Mobile App Development -->
-                    <div class="service-item" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-icon">
-                            <i class="fas fa-mobile-alt"></i>
+                    <!-- Mobile App Card -->
+                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="service-card-title">Mobile App Development</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Mobile App Development</h3>
-                            <p class="service-description">Native and cross-platform applications that deliver exceptional user experiences.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> iOS & Android Apps</li>
-                                <li><i class="fas fa-check"></i> Cross-Platform Solutions</li>
-                                <li><i class="fas fa-check"></i> UI/UX Design</li>
-                                <li><i class="fas fa-check"></i> App Store Optimization</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Native and cross-platform applications that deliver exceptional user experiences. We build mobile solutions that help businesses reach customers wherever they are.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>iOS & Android Development</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Cross-Platform Solutions</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>UI/UX Design</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>App Store Optimization</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">React Native</div>
+                                <div class="tech-tag">Flutter</div>
+                                <div class="tech-tag">Swift</div>
+                                <div class="tech-tag">Kotlin</div>
+                                <div class="tech-tag">Firebase</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -302,46 +408,122 @@
                 </div>
             </div>
             
-            <!-- Marketing Tab Content -->
-            <div class="services-tab-content" id="marketing-content">
-                <div class="services-wrapper">
-                    <!-- Digital Marketing -->
-                    <div class="service-item" data-animation="fade-up">
-                        <div class="service-icon">
-                            <i class="fas fa-bullhorn"></i>
+            <!-- Marketing Content -->
+            <div class="service-content" id="marketing-content">
+                <div class="service-content-header">
+                    <div class="service-content-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="service-content-title">
+                        <h2>Digital Marketing</h2>
+                        <p>Strategic campaigns and solutions that increase visibility and drive conversions</p>
+                    </div>
+                </div>
+                
+                <div class="service-cards">
+                    <!-- Digital Marketing Card -->
+                    <div class="service-card" data-animation="fade-up">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="service-card-title">Digital Marketing Strategy</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Digital Marketing</h3>
-                            <p class="service-description">Targeted campaigns and strategies that drive traffic, engagement, and conversions.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> SEO & SEM Strategies</li>
-                                <li><i class="fas fa-check"></i> Social Media Management</li>
-                                <li><i class="fas fa-check"></i> Email Marketing</li>
-                                <li><i class="fas fa-check"></i> Analytics & Reporting</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Comprehensive digital marketing solutions that drive traffic, engagement, and conversions. We develop strategies tailored to your business goals and target audience.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>SEO & SEM Strategies</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Social Media Management</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Email Marketing</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Analytics & Reporting</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Google Analytics</div>
+                                <div class="tech-tag">SEMrush</div>
+                                <div class="tech-tag">Mailchimp</div>
+                                <div class="tech-tag">Hootsuite</div>
+                                <div class="tech-tag">Facebook Ads</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Google Ads Management -->
-                    <div class="service-item" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-icon">
-                            <i class="fab fa-google"></i>
+                    <!-- Google Ads Card -->
+                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <h3 class="service-card-title">Google Ads Management</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Google Ads Management</h3>
-                            <p class="service-description">Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> Campaign Strategy & Setup</li>
-                                <li><i class="fas fa-check"></i> Keyword Research</li>
-                                <li><i class="fas fa-check"></i> Ad Copy Creation</li>
-                                <li><i class="fas fa-check"></i> Conversion Tracking</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business. Our experts create and optimize campaigns to reach your target audience.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Campaign Strategy & Setup</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Keyword Research</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Ad Copy Creation</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Conversion Tracking</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Google Ads</div>
+                                <div class="tech-tag">Google Analytics</div>
+                                <div class="tech-tag">Google Tag Manager</div>
+                                <div class="tech-tag">SEMrush</div>
+                                <div class="tech-tag">Ahrefs</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -349,67 +531,176 @@
                 </div>
             </div>
             
-            <!-- Business Systems Tab Content -->
-            <div class="services-tab-content" id="systems-content">
-                <div class="services-wrapper">
-                    <!-- POS System Implementation -->
-                    <div class="service-item" data-animation="fade-up">
-                        <div class="service-icon">
-                            <i class="fas fa-store"></i>
+            <!-- Business Systems Content -->
+            <div class="service-content" id="systems-content">
+                <div class="service-content-header">
+                    <div class="service-content-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="service-content-title">
+                        <h2>Business Systems</h2>
+                        <p>Technology solutions that streamline operations and improve efficiency</p>
+                    </div>
+                </div>
+                
+                <div class="service-cards">
+                    <!-- POS System Card -->
+                    <div class="service-card" data-animation="fade-up">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3 class="service-card-title">POS System Implementation</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">POS System Implementation</h3>
-                            <p class="service-description">Modern point-of-sale solutions that streamline operations and enhance customer experience.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> Square Integration</li>
-                                <li><i class="fas fa-check"></i> Clover Solutions</li>
-                                <li><i class="fas fa-check"></i> Hardware Selection</li>
-                                <li><i class="fas fa-check"></i> Staff Training</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Modern point-of-sale solutions that streamline operations and enhance customer experience. We implement and customize POS systems to fit your specific business needs.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Square Integration</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Clover Solutions</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Hardware Selection</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Staff Training</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Square</div>
+                                <div class="tech-tag">Clover</div>
+                                <div class="tech-tag">Shopify POS</div>
+                                <div class="tech-tag">Toast</div>
+                                <div class="tech-tag">Lightspeed</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Property Management Systems -->
-                    <div class="service-item" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-icon">
-                            <i class="fas fa-building"></i>
+                    <!-- Property Management Card -->
+                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h3 class="service-card-title">Property Management Systems</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Property Management Systems</h3>
-                            <p class="service-description">Comprehensive property management solutions to streamline operations.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> Tenant Portal Setup</li>
-                                <li><i class="fas fa-check"></i> Maintenance Request System</li>
-                                <li><i class="fas fa-check"></i> Payment Processing</li>
-                                <li><i class="fas fa-check"></i> Property Listing Integration</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Comprehensive property management solutions to streamline operations and improve tenant satisfaction. Our systems help you efficiently manage properties, payments, and maintenance.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Tenant Portal Setup</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Maintenance Request System</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Payment Processing</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Property Listing Integration</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Buildium</div>
+                                <div class="tech-tag">AppFolio</div>
+                                <div class="tech-tag">Propertyware</div>
+                                <div class="tech-tag">Yardi</div>
+                                <div class="tech-tag">MRI</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Technology Consulting -->
-                    <div class="service-item" data-animation="fade-up" data-animation-delay="200">
-                        <div class="service-icon">
-                            <i class="fas fa-chart-line"></i>
+                    <!-- Technology Consulting Card -->
+                    <div class="service-card" data-animation="fade-up" data-animation-delay="200">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="service-card-title">Technology Consulting</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Technology Consulting</h3>
-                            <p class="service-description">Strategic guidance to optimize your technology infrastructure and drive innovation.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> Digital Transformation</li>
-                                <li><i class="fas fa-check"></i> IT Infrastructure</li>
-                                <li><i class="fas fa-check"></i> Security Solutions</li>
-                                <li><i class="fas fa-check"></i> Business Automation</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Strategic guidance to optimize your technology infrastructure and drive innovation. Our consultants help you identify the right technologies to achieve your business goals.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Digital Transformation</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>IT Infrastructure</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Security Solutions</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Business Automation</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Cloud Computing</div>
+                                <div class="tech-tag">SaaS Solutions</div>
+                                <div class="tech-tag">CRM Systems</div>
+                                <div class="tech-tag">Data Analytics</div>
+                                <div class="tech-tag">Integration</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
@@ -417,25 +708,122 @@
                 </div>
             </div>
             
-            <!-- Design Tab Content -->
-            <div class="services-tab-content" id="design-content">
-                <div class="services-wrapper">
-                    <!-- Print & Graphic Design -->
-                    <div class="service-item" data-animation="fade-up">
-                        <div class="service-icon">
-                            <i class="fas fa-paint-brush"></i>
+            <!-- Design Content -->
+            <div class="service-content" id="design-content">
+                <div class="service-content-header">
+                    <div class="service-content-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="service-content-title">
+                        <h2>Design Services</h2>
+                        <p>Visual solutions that enhance your brand and communicate your message</p>
+                    </div>
+                </div>
+                
+                <div class="service-cards">
+                    <!-- Graphic Design Card -->
+                    <div class="service-card" data-animation="fade-up">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h3 class="service-card-title">Print & Graphic Design</h3>
                         </div>
-                        <div class="service-details">
-                            <h3 class="service-title">Print & Graphic Design</h3>
-                            <p class="service-description">Professional print materials and brand assets that elevate your business image.</p>
-                            <ul class="service-features">
-                                <li><i class="fas fa-check"></i> Business Card Design</li>
-                                <li><i class="fas fa-check"></i> Brochures & Flyers</li>
-                                <li><i class="fas fa-check"></i> Signage Solutions</li>
-                                <li><i class="fas fa-check"></i> Brand Identity Packages</li>
-                            </ul>
-                            <a href="../index.html#contact" class="service-link">
-                                <span>Learn More</span>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                Professional print materials and brand assets that elevate your business image. Our designers create cohesive visual identities that resonate with your target audience.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Business Card Design</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Brochures & Flyers</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Signage Solutions</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Brand Identity Packages</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Adobe Creative Suite</div>
+                                <div class="tech-tag">Canva</div>
+                                <div class="tech-tag">Figma</div>
+                                <div class="tech-tag">Sketch</div>
+                                <div class="tech-tag">InVision</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- UI/UX Design Card -->
+                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
+                        <div class="service-card-header">
+                            <div class="service-card-icon">
+                                <i class="fas fa-pencil-ruler"></i>
+                            </div>
+                            <h3 class="service-card-title">UI/UX Design</h3>
+                        </div>
+                        
+                        <div class="service-card-body">
+                            <p class="service-card-description">
+                                User-centered design that creates intuitive, engaging digital experiences. We focus on creating interfaces that are both visually appealing and highly functional.
+                            </p>
+                            
+                            <div class="service-card-features">
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>User Research & Analysis</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Wireframing & Prototyping</span>
+                                    </div>
+                                </div>
+                                <div class="feature-column">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Interface Design</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check"></i>
+                                        <span>Usability Testing</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="service-card-technologies">
+                                <div class="tech-tag">Figma</div>
+                                <div class="tech-tag">Sketch</div>
+                                <div class="tech-tag">Adobe XD</div>
+                                <div class="tech-tag">InVision</div>
+                                <div class="tech-tag">Zeplin</div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-card-footer">
+                            <a href="../index.html#contact" class="service-card-btn">
+                                <span>Get Started</span>
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
