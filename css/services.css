@@ -236,142 +236,194 @@
 }
 
 /*======================================
-  3. SERVICE CATEGORIES NAVIGATION
+  3. SERVICE CATEGORIES NAVIGATION - REDESIGNED
 ======================================*/
-.service-categories-nav {
-  padding: var(--space-md) 0;
+.services-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop sidebar navigation */
+@media (min-width: 992px) {
+  .services-container {
+    flex-direction: row;
+  }
+  
+  .service-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    padding: var(--space-lg) 0;
+    z-index: 40;
+  }
+  
+  .service-main-content {
+    flex: 1;
+    padding-left: var(--space-lg);
+  }
+}
+
+.service-sidebar {
   background-color: var(--white);
-  position: sticky;
-  top: 0;
-  z-index: 40;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+/* Mobile menu toggle */
+.service-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--primary-gradient);
+  color: var(--white);
+  font-weight: 700;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }
 
-.service-nav-wrapper {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  background: var(--light);
-  padding: 0.75rem;
+.service-menu-toggle i {
+  transition: transform var(--transition-normal);
 }
 
-.service-nav-track {
+.service-menu-toggle.active i {
+  transform: rotate(180deg);
+}
+
+/* Navigation list */
+.service-nav-list {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-behavior: smooth;
-  padding-bottom: 4px;
+  flex-direction: column;
+  transition: max-height var(--transition-normal);
+  max-height: 0;
+  overflow: hidden;
 }
 
-.service-nav-track::-webkit-scrollbar {
-  display: none;
+.service-nav-list.active {
+  max-height: 1000px;
+}
+
+@media (min-width: 992px) {
+  .service-menu-toggle {
+    display: none;
+  }
+  
+  .service-nav-list {
+    max-height: none;
+    overflow: visible;
+  }
 }
 
 .service-nav-item {
-  flex: 0 0 auto;
+  padding: 0;
+  border-bottom: 1px solid var(--light);
+}
+
+.service-nav-item:last-child {
+  border-bottom: none;
+}
+
+.service-nav-link {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 1rem 1.5rem;
-  background: var(--white);
-  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  color: var(--gray-dark);
+  font-weight: 600;
   transition: all var(--transition-normal);
   position: relative;
-  overflow: hidden;
-  gap: 0.5rem;
-  border: 1px solid transparent;
-  min-width: 120px;
 }
 
-.service-nav-item.active {
-  background: var(--light);
-  border-color: rgba(0, 122, 255, 0.2);
-}
-
-.service-nav-item::before {
+.service-nav-link::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 5px;
   height: 100%;
   background: var(--primary-gradient);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  z-index: 0;
+  transform: scaleY(0);
+  transition: transform var(--transition-normal);
 }
 
-.service-nav-item:hover {
-  transform: translateY(-3px);
-  border-color: rgba(0, 122, 255, 0.3);
-  box-shadow: var(--shadow-sm);
-}
-
-.service-nav-item.active,
-.service-nav-item:hover {
+.service-nav-link:hover {
+  background-color: rgba(var(--primary-rgb, 0, 122, 255), 0.05);
   color: var(--primary);
+}
+
+.service-nav-link.active {
+  background-color: rgba(var(--primary-rgb, 0, 122, 255), 0.1);
+  color: var(--primary);
+}
+
+.service-nav-link.active::before {
+  transform: scaleY(1);
 }
 
 .service-nav-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: var(--radius-md);
-  background: rgba(0, 122, 255, 0.1);
-  color: var(--primary);
-  font-size: 1.5rem;
-  transition: all var(--transition-normal);
-  z-index: 1;
-}
-
-.service-nav-item.active .service-nav-icon,
-.service-nav-item:hover .service-nav-icon {
-  transform: scale(1.1) rotate(-5deg);
-  background: rgba(0, 122, 255, 0.15);
-}
-
-.service-nav-item span {
-  font-weight: 600;
-  font-size: 0.875rem;
-  z-index: 1;
-  transition: all var(--transition-normal);
-}
-
-.service-nav-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-  box-shadow: var(--shadow-sm);
+  margin-right: var(--space-md);
+  border-radius: var(--radius-md);
+  background: rgba(var(--primary-rgb, 0, 122, 255), 0.1);
   color: var(--primary);
+  font-size: 1.25rem;
   transition: all var(--transition-normal);
-  border: none;
 }
 
-.service-nav-arrow:hover {
-  background: var(--primary-gradient);
+.service-nav-link:hover .service-nav-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.service-nav-link.active .service-nav-icon {
+  background: var(--primary);
   color: var(--white);
-  transform: translateY(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 
-.service-nav-prev {
-  left: 0.5rem;
+.service-progress {
+  height: 4px;
+  width: 100%;
+  background-color: var(--light);
+  position: relative;
+  margin-top: var(--space-sm);
 }
 
-.service-nav-next {
-  right: 0.5rem;
+.service-progress-bar {
+  height: 100%;
+  background: var(--primary-gradient);
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+/* Scroll spy indicator */
+.scroll-indicator {
+  position: absolute;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  top: 50%;
+  transform: translateY(-50%);
+  transition: top 0.3s ease;
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .scroll-indicator {
+    display: block;
+  }
 }
 
 /*======================================
