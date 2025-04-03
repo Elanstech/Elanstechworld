@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Services | Elan's Tech World</title>
-    <meta name="description" content="Explore our comprehensive range of digital services designed to transform your business - web design, mobile apps, digital marketing, POS systems, and more.">
+    <meta name="description" content="Transform your business with our comprehensive digital solutions - web design, mobile apps, digital marketing, POS systems, and more.">
     
     <!-- Preconnect to External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,9 @@
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <link rel="manifest" href="../site.webmanifest">
     <meta name="theme-color" content="#007aff">
+    
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 
 <body class="services-page">
@@ -50,7 +53,7 @@
         </div>
     </div>
     
-    <!-- Header & Navigation -->
+    <!-- Header & Navigation (Kept from index) -->
     <header class="header">
         <div class="header-background">
             <div class="header-blob"></div>
@@ -97,7 +100,7 @@
         </div>
     </header>
     
-    <!-- Mobile Navigation -->
+    <!-- Mobile Navigation (Kept from index) -->
     <div class="mobile-menu">
         <div class="mobile-menu-backdrop"></div>
         <div class="mobile-menu-container">
@@ -151,853 +154,1092 @@
     
     <!-- Main Content -->
     <main>
-        <!-- Services Hero Section -->
+        <!-- Interactive Hero Section with Parallax and 3D Elements -->
         <section class="services-hero">
+            <div class="hero-particle-container"></div>
             <div class="services-hero-background">
                 <div class="services-hero-overlay"></div>
+                <!-- 3D Floating Elements -->
                 <div class="services-hero-shapes">
-                    <div class="services-hero-shape shape-1" data-speed="0.05"></div>
-                    <div class="services-hero-shape shape-2" data-speed="-0.08"></div>
-                    <div class="services-hero-shape shape-3" data-speed="0.1"></div>
+                    <div class="services-hero-shape shape-1" data-depth="0.2">
+                        <img src="../assets/images/shape-tech-1.svg" alt="Tech Shape">
+                    </div>
+                    <div class="services-hero-shape shape-2" data-depth="0.4">
+                        <img src="../assets/images/shape-tech-2.svg" alt="Tech Shape">
+                    </div>
+                    <div class="services-hero-shape shape-3" data-depth="0.1">
+                        <img src="../assets/images/shape-tech-3.svg" alt="Tech Shape">
+                    </div>
+                    <div class="services-hero-shape shape-code" data-depth="0.15">
+                        <pre><code>&lt;div class="solution"&gt;
+  Success();
+&lt;/div&gt;</code></pre>
+                    </div>
                 </div>
+                
+                <!-- Animated gradient overlay -->
+                <div class="gradient-overlay"></div>
             </div>
             
             <div class="container">
-                <div class="services-hero-content" data-animation="fade-up">
+                <div class="services-hero-content" data-aos="fade-up">
                     <div class="services-hero-badge">Our Services</div>
                     <h1 class="services-hero-title">
-                        Elevate Your <span class="gradient-text">Digital Presence</span> With Our Solutions
+                        <span class="text-reveal">Transform</span> Your Business With 
+                        <span class="gradient-text typing-container">
+                            <span class="typing-text">Innovative Technology</span>
+                        </span>
                     </h1>
                     <p class="services-hero-subtitle">
-                        We combine innovation, strategic thinking, and technical expertise to deliver solutions 
-                        that drive growth and create meaningful digital experiences for your business.
+                        We combine cutting-edge technology, strategic thinking, and creative excellence 
+                        to deliver solutions that elevate your brand and drive exceptional results.
                     </p>
                     <div class="services-hero-actions">
                         <a href="#services-grid" class="btn-primary magnetic-button">
                             <span>Explore Services</span>
-                            <div class="btn-bubbles">
-                                <div class="bubble"></div>
-                                <div class="bubble"></div>
-                                <div class="bubble"></div>
-                            </div>
+                            <i class="fas fa-arrow-down pulse-icon"></i>
                         </a>
                         <a href="../index.html#contact" class="btn-secondary magnetic-button">
                             <span>Get in Touch</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
+                    
+                    <!-- Scrolling Clients Ticker -->
+                    <div class="hero-clients">
+                        <div class="clients-label">Trusted By</div>
+                        <div class="clients-ticker">
+                            <div class="ticker-wrapper">
+                                <!-- First copy of the marquee items -->
+                                <div class="ticker-item">Iconic Aesthetics</div>
+                                <div class="ticker-item">East Coast Realty</div>
+                                <div class="ticker-item">S-Cream</div>
+                                <div class="ticker-item">Doug Uhlig</div>
+                                <div class="ticker-item">Cohen & Associates</div>
+                                <!-- Duplicate items for seamless loop -->
+                                <div class="ticker-item">Iconic Aesthetics</div>
+                                <div class="ticker-item">East Coast Realty</div>
+                                <div class="ticker-item">S-Cream</div>
+                                <div class="ticker-item">Doug Uhlig</div>
+                                <div class="ticker-item">Cohen & Associates</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="scroll-text">Scroll to Explore</div>
+            </div>
         </section>
-
-        <!-- Services Introduction -->
-        <section class="services-intro">
+        
+        <!-- Value Proposition Cards Section -->
+        <section class="value-cards-section">
             <div class="container">
-                <div class="services-intro-grid">
-                    <div class="services-intro-content" data-animation="fade-right">
-                        <div class="section-sub-title">Why Choose Us</div>
-                        <h2 class="section-title">We Deliver <span class="gradient-text">Excellence</span></h2>
-                        <p class="services-intro-text">
-                            At Elan's Tech World, we don't just build websites or implement technology – we create 
-                            transformative digital solutions tailored to your unique business needs. Our multidisciplinary 
-                            team brings together expertise across web development, design, marketing, and technology 
-                            to deliver holistic services that drive real results.
-                        </p>
-                        <ul class="services-intro-features">
-                            <li><i class="fas fa-check-circle"></i> Custom Solutions Tailored to Your Business</li>
-                            <li><i class="fas fa-check-circle"></i> Strategic Approach to Digital Transformation</li>
-                            <li><i class="fas fa-check-circle"></i> Cutting-Edge Technology & Innovation</li>
-                            <li><i class="fas fa-check-circle"></i> Dedicated Support & Ongoing Partnership</li>
-                        </ul>
-                    </div>
-                    <div class="services-intro-image-container" data-animation="fade-left">
-                        <div class="services-intro-image tilt-element">
-                            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1080&auto=format&fit=crop" alt="Team collaboration meeting">
-                            <div class="services-intro-image-shape"></div>
+                <div class="values-grid">
+                    <div class="value-card" data-aos="fade-up">
+                        <div class="value-card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                            <div class="icon-bg"></div>
                         </div>
+                        <h3>Expert Solutions</h3>
+                        <p>Customized, cutting-edge technology solutions designed specifically for your business needs</p>
+                    </div>
+                    
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-card-icon">
+                            <i class="fas fa-rocket"></i>
+                            <div class="icon-bg"></div>
+                        </div>
+                        <h3>Rapid Delivery</h3>
+                        <p>Efficient project management and execution to bring your vision to life quickly</p>
+                    </div>
+                    
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-card-icon">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="icon-bg"></div>
+                        </div>
+                        <h3>Proven Results</h3>
+                        <p>Measurable outcomes and ROI that demonstrate the value of your investment</p>
+                    </div>
+                    
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-card-icon">
+                            <i class="fas fa-headset"></i>
+                            <div class="icon-bg"></div>
+                        </div>
+                        <h3>Dedicated Support</h3>
+                        <p>Ongoing assistance and expertise to ensure your continued success</p>
+                    </div>
+                </div>
+                
+                <!-- Floating Stats Counter -->
+                <div class="stats-container" data-aos="fade-up">
+                    <div class="stat-item">
+                        <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                        <svg class="stat-circle" width="160" height="160">
+                            <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                            <circle class="stat-circle-progress" cx="80" cy="80" r="70" data-percentage="100"></circle>
+                        </svg>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number"><span class="counter" data-target="95">0</span>%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                        <svg class="stat-circle" width="160" height="160">
+                            <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                            <circle class="stat-circle-progress" cx="80" cy="80" r="70" data-percentage="95"></circle>
+                        </svg>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number"><span class="counter" data-target="40">0</span>%</div>
+                        <div class="stat-label">Avg. ROI Increase</div>
+                        <svg class="stat-circle" width="160" height="160">
+                            <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                            <circle class="stat-circle-progress" cx="80" cy="80" r="70" data-percentage="40"></circle>
+                        </svg>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-number"><span class="counter" data-target="24">0</span>/7</div>
+                        <div class="stat-label">Support Available</div>
+                        <svg class="stat-circle" width="160" height="160">
+                            <circle class="stat-circle-bg" cx="80" cy="80" r="70"></circle>
+                            <circle class="stat-circle-progress" cx="80" cy="80" r="70" data-percentage="100"></circle>
+                        </svg>
                     </div>
                 </div>
             </div>
         </section>
 
-       <!-- Modern Services Showcase Section -->
-<section id="services-grid" class="services-showcase">
-    <!-- Background Elements -->
-    <div class="services-bg">
-        <div class="services-blob blob-1"></div>
-        <div class="services-blob blob-2"></div>
-        <div class="services-blob blob-3"></div>
-        <div class="services-particles"></div>
-    </div>
-    
-    <div class="container">
-        <!-- Section Header -->
-        <div class="section-header" data-animation="fade-up">
-            <div class="section-sub-title">Our Expertise</div>
-            <h2 class="section-title">Comprehensive <span class="gradient-text">Services</span></h2>
-            <p class="section-description">Discover our full range of digital solutions designed to transform your business</p>
-        </div>
-        
-        <!-- Services Navigation -->
-        <div class="services-nav" data-animation="fade-up">
-            <div class="services-nav-track">
-                <button class="service-nav-item active" data-service="web">
-                    <div class="service-nav-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="service-nav-text">
-                        <h3>Web & Mobile</h3>
-                        <p>Responsive websites & applications</p>
-                    </div>
-                </button>
-                
-                <button class="service-nav-item" data-service="marketing">
-                    <div class="service-nav-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <div class="service-nav-text">
-                        <h3>Marketing</h3>
-                        <p>Digital strategies that drive growth</p>
-                    </div>
-                </button>
-                
-                <button class="service-nav-item" data-service="systems">
-                    <div class="service-nav-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="service-nav-text">
-                        <h3>Business Systems</h3>
-                        <p>Technology solutions for efficiency</p>
-                    </div>
-                </button>
-                
-                <button class="service-nav-item" data-service="design">
-                    <div class="service-nav-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div class="service-nav-text">
-                        <h3>Design</h3>
-                        <p>Brand identity & visual communication</p>
-                    </div>
-                </button>
+        <!-- Advanced Service Showcase with 3D Cards -->
+        <section id="services-grid" class="services-showcase">
+            <div class="background-grid"></div>
+            <div class="glow-container">
+                <div class="glow-blob blob-1"></div>
+                <div class="glow-blob blob-2"></div>
             </div>
-        </div>
-        
-        <!-- Services Content Area -->
-        <div class="services-content-area">
-            <!-- Web & Mobile Content -->
-            <div class="service-content active" id="web-content">
-                <div class="service-content-header">
-                    <div class="service-content-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="service-content-title">
-                        <h2>Web & Mobile Development</h2>
-                        <p>Creating exceptional digital experiences that engage users and drive business growth</p>
-                    </div>
+            
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-sub-title">Our Expertise</div>
+                    <h2 class="section-title">Comprehensive <span class="gradient-text">Services</span></h2>
+                    <p class="section-description">Discover our full range of digital solutions designed to transform your business</p>
                 </div>
                 
-                <div class="service-cards">
+                <!-- Interactive Service Categories -->
+                <div class="services-filter" data-aos="fade-up">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="btn-text">All Services</span>
+                        <span class="btn-icon"><i class="fas fa-th"></i></span>
+                    </button>
+                    <button class="filter-btn" data-filter="web">
+                        <span class="btn-text">Web & Mobile</span>
+                        <span class="btn-icon"><i class="fas fa-laptop-code"></i></span>
+                    </button>
+                    <button class="filter-btn" data-filter="marketing">
+                        <span class="btn-text">Marketing</span>
+                        <span class="btn-icon"><i class="fas fa-bullhorn"></i></span>
+                    </button>
+                    <button class="filter-btn" data-filter="systems">
+                        <span class="btn-text">Business Systems</span>
+                        <span class="btn-icon"><i class="fas fa-cogs"></i></span>
+                    </button>
+                    <button class="filter-btn" data-filter="design">
+                        <span class="btn-text">Design</span>
+                        <span class="btn-icon"><i class="fas fa-paint-brush"></i></span>
+                    </button>
+                </div>
+                
+                <!-- 3D Service Cards Grid -->
+                <div class="services-card-grid">
                     <!-- Web Design Card -->
-                    <div class="service-card" data-animation="fade-up">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-desktop"></i>
-                            </div>
-                            <h3 class="service-card-title">Web Design & Development</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Custom, responsive websites that captivate your audience and drive conversions. Our web solutions combine stunning design with powerful functionality.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Responsive Design</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>E-commerce Solutions</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="web" data-aos="fade-up">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-desktop"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>CMS Integration</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>SEO Optimization</span>
-                                    </div>
+                                <h3 class="card-3d-title">Web Design & Development</h3>
+                                <div class="card-3d-description">
+                                    Custom, responsive websites that captivate your audience and drive conversions
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">&lt;div class="success"&gt;</span>
+                                    <span class="code-element">&lt;/div&gt;</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">HTML5</div>
-                                <div class="tech-tag">CSS3</div>
-                                <div class="tech-tag">JavaScript</div>
-                                <div class="tech-tag">WordPress</div>
-                                <div class="tech-tag">Shopify</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Web Design & Development</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> Responsive Design</li>
+                                        <li><i class="fas fa-check"></i> E-commerce Solutions</li>
+                                        <li><i class="fas fa-check"></i> CMS Integration</li>
+                                        <li><i class="fas fa-check"></i> SEO Optimization</li>
+                                        <li><i class="fas fa-check"></i> Performance Tuning</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>HTML5</span>
+                                        <span>CSS3</span>
+                                        <span>JavaScript</span>
+                                        <span>WordPress</span>
+                                        <span>Shopify</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
                             </div>
-                        </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                     
                     <!-- Mobile App Card -->
-                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <h3 class="service-card-title">Mobile App Development</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Native and cross-platform applications that deliver exceptional user experiences. We build mobile solutions that help businesses reach customers wherever they are.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>iOS & Android Development</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Cross-Platform Solutions</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-mobile-alt"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>UI/UX Design</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>App Store Optimization</span>
-                                    </div>
+                                <h3 class="card-3d-title">Mobile App Development</h3>
+                                <div class="card-3d-description">
+                                    Native and cross-platform applications that deliver exceptional user experiences
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">app.success()</span>
+                                    <span class="code-element">render()</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">React Native</div>
-                                <div class="tech-tag">Flutter</div>
-                                <div class="tech-tag">Swift</div>
-                                <div class="tech-tag">Kotlin</div>
-                                <div class="tech-tag">Firebase</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Mobile App Development</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> iOS & Android Development</li>
+                                        <li><i class="fas fa-check"></i> Cross-Platform Solutions</li>
+                                        <li><i class="fas fa-check"></i> UI/UX Design</li>
+                                        <li><i class="fas fa-check"></i> App Store Optimization</li>
+                                        <li><i class="fas fa-check"></i> Maintenance & Support</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>React Native</span>
+                                        <span>Flutter</span>
+                                        <span>Swift</span>
+                                        <span>Kotlin</span>
+                                        <span>Firebase</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
                             </div>
                         </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Marketing Content -->
-            <div class="service-content" id="marketing-content">
-                <div class="service-content-header">
-                    <div class="service-content-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <div class="service-content-title">
-                        <h2>Digital Marketing</h2>
-                        <p>Strategic campaigns and solutions that increase visibility and drive conversions</p>
-                    </div>
-                </div>
-                
-                <div class="service-cards">
+                    
                     <!-- Digital Marketing Card -->
-                    <div class="service-card" data-animation="fade-up">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h3 class="service-card-title">Digital Marketing Strategy</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Comprehensive digital marketing solutions that drive traffic, engagement, and conversions. We develop strategies tailored to your business goals and target audience.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>SEO & SEM Strategies</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Social Media Management</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="marketing" data-aos="fade-up" data-aos-delay="150">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-chart-line"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Email Marketing</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Analytics & Reporting</span>
-                                    </div>
+                                <h3 class="card-3d-title">Digital Marketing Strategy</h3>
+                                <div class="card-3d-description">
+                                    Targeted campaigns that drive traffic, engagement, and conversions
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">growth++</span>
+                                    <span class="code-element">visibility = true</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Google Analytics</div>
-                                <div class="tech-tag">SEMrush</div>
-                                <div class="tech-tag">Mailchimp</div>
-                                <div class="tech-tag">Hootsuite</div>
-                                <div class="tech-tag">Facebook Ads</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Digital Marketing Strategy</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> SEO & SEM Strategies</li>
+                                        <li><i class="fas fa-check"></i> Social Media Management</li>
+                                        <li><i class="fas fa-check"></i> Email Marketing</li>
+                                        <li><i class="fas fa-check"></i> Content Creation</li>
+                                        <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Google Analytics</span>
+                                        <span>SEMrush</span>
+                                        <span>Mailchimp</span>
+                                        <span>Hootsuite</span>
+                                        <span>Meta Ads</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
                             </div>
-                        </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                     
                     <!-- Google Ads Card -->
-                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <h3 class="service-card-title">Google Ads Management</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Strategic PPC campaigns that maximize ROI and drive qualified traffic to your business. Our experts create and optimize campaigns to reach your target audience.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Campaign Strategy & Setup</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Keyword Research</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="marketing" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fab fa-google"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Ad Copy Creation</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Conversion Tracking</span>
-                                    </div>
+                                <h3 class="card-3d-title">Google Ads Management</h3>
+                                <div class="card-3d-description">
+                                    Strategic PPC campaigns that maximize ROI and drive qualified traffic
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">clicks.optimize()</span>
+                                    <span class="code-element">conversion++</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Google Ads</div>
-                                <div class="tech-tag">Google Analytics</div>
-                                <div class="tech-tag">Google Tag Manager</div>
-                                <div class="tech-tag">SEMrush</div>
-                                <div class="tech-tag">Ahrefs</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Google Ads Management</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> Campaign Strategy & Setup</li>
+                                        <li><i class="fas fa-check"></i> Keyword Research</li>
+                                        <li><i class="fas fa-check"></i> Ad Copy Creation</li>
+                                        <li><i class="fas fa-check"></i> Conversion Tracking</li>
+                                        <li><i class="fas fa-check"></i> Performance Optimization</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Google Ads</span>
+                                        <span>Google Analytics</span>
+                                        <span>Google Tag Manager</span>
+                                        <span>Ahrefs</span>
+                                        <span>SEMrush</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
                             </div>
                         </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Business Systems Content -->
-            <div class="service-content" id="systems-content">
-                <div class="service-content-header">
-                    <div class="service-content-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="service-content-title">
-                        <h2>Business Systems</h2>
-                        <p>Technology solutions that streamline operations and improve efficiency</p>
-                    </div>
-                </div>
-                
-                <div class="service-cards">
+                    
                     <!-- POS System Card -->
-                    <div class="service-card" data-animation="fade-up">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <h3 class="service-card-title">POS System Implementation</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Modern point-of-sale solutions that streamline operations and enhance customer experience. We implement and customize POS systems to fit your specific business needs.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Square Integration</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Clover Solutions</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="systems" data-aos="fade-up" data-aos-delay="250">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-store"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Hardware Selection</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Staff Training</span>
-                                    </div>
+                                <h3 class="card-3d-title">POS System Implementation</h3>
+                                <div class="card-3d-description">
+                                    Modern point-of-sale solutions that streamline operations
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">sales.process()</span>
+                                    <span class="code-element">inventory.track()</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Square</div>
-                                <div class="tech-tag">Clover</div>
-                                <div class="tech-tag">Shopify POS</div>
-                                <div class="tech-tag">Toast</div>
-                                <div class="tech-tag">Lightspeed</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>POS System Implementation</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> Square Integration</li>
+                                        <li><i class="fas fa-check"></i> Clover Solutions</li>
+                                        <li><i class="fas fa-check"></i> Hardware Setup</li>
+                                        <li><i class="fas fa-check"></i> Staff Training</li>
+                                        <li><i class="fas fa-check"></i> Ongoing Support</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Square</span>
+                                        <span>Clover</span>
+                                        <span>Shopify POS</span>
+                                        <span>Toast</span>
+                                        <span>Lightspeed</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
                             </div>
-                        </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                     
                     <!-- Property Management Card -->
-                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <h3 class="service-card-title">Property Management Systems</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Comprehensive property management solutions to streamline operations and improve tenant satisfaction. Our systems help you efficiently manage properties, payments, and maintenance.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Tenant Portal Setup</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Maintenance Request System</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="systems" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-building"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Payment Processing</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Property Listing Integration</span>
-                                    </div>
+                                <h3 class="card-3d-title">Property Management Systems</h3>
+                                <div class="card-3d-description">
+                                    Comprehensive solutions to streamline property operations
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">property.manage()</span>
+                                    <span class="code-element">tenant.satisfy()</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Buildium</div>
-                                <div class="tech-tag">AppFolio</div>
-                                <div class="tech-tag">Propertyware</div>
-                                <div class="tech-tag">Yardi</div>
-                                <div class="tech-tag">MRI</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Property Management Systems</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> Tenant Portal Setup</li>
+                                        <li><i class="fas fa-check"></i> Maintenance Requests</li>
+                                        <li><i class="fas fa-check"></i> Payment Processing</li>
+                                        <li><i class="fas fa-check"></i> Property Listing Integration</li>
+                                        <li><i class="fas fa-check"></i> Owner Reporting Tools</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Buildium</span>
+                                        <span>AppFolio</span>
+                                        <span>Propertyware</span>
+                                        <span>Yardi</span>
+                                        <span>MRI</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
                             </div>
-                        </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
                     </div>
                     
                     <!-- Technology Consulting Card -->
-                    <div class="service-card" data-animation="fade-up" data-animation-delay="200">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <h3 class="service-card-title">Technology Consulting</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Strategic guidance to optimize your technology infrastructure and drive innovation. Our consultants help you identify the right technologies to achieve your business goals.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Digital Transformation</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>IT Infrastructure</span>
-                                    </div>
+                    <div class="service-card-3d" data-category="systems" data-aos="fade-up" data-aos-delay="350">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-lightbulb"></i>
                                 </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Security Solutions</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Business Automation</span>
-                                    </div>
+                                <h3 class="card-3d-title">Technology Consulting</h3>
+                                <div class="card-3d-description">
+                                    Strategic guidance to optimize your technology infrastructure
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">business.optimize()</span>
+                                    <span class="code-element">efficiency++</span>
                                 </div>
                             </div>
                             
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Cloud Computing</div>
-                                <div class="tech-tag">SaaS Solutions</div>
-                                <div class="tech-tag">CRM Systems</div>
-                                <div class="tech-tag">Data Analytics</div>
-                                <div class="tech-tag">Integration</div>
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Technology Consulting</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> Digital Transformation</li>
+                                        <li><i class="fas fa-check"></i> IT Infrastructure</li>
+                                        <li><i class="fas fa-check"></i> Security Solutions</li>
+                                        <li><i class="fas fa-check"></i> Business Automation</li>
+                                        <li><i class="fas fa-check"></i> Strategic Planning</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Cloud Computing</span>
+                                        <span>SaaS Solutions</span>
+                                        <span>CRM Systems</span>
+                                        <span>Data Analytics</span>
+                                        <span>Integration</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Print & Graphic Design Card -->
+                    <div class="service-card-3d" data-category="design" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <h3 class="card-3d-title">Print & Graphic Design</h3>
+                                <div class="card-3d-description">
+                                    Professional print materials and brand assets for your business
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">design.create()</span>
+                                    <span class="code-element">brand.enhance()</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>Print & Graphic Design</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> Business Card Design</li>
+                                        <li><i class="fas fa-check"></i> Brochures & Flyers</li>
+                                        <li><i class="fas fa-check"></i> Signage Solutions</li>
+                                        <li><i class="fas fa-check"></i> Brand Identity Packages</li>
+                                        <li><i class="fas fa-check"></i> Logo Design</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Adobe Creative Suite</span>
+                                        <span>Canva</span>
+                                        <span>Figma</span>
+                                        <span>Sketch</span>
+                                        <span>InVision</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UI/UX Design Card -->
+                    <div class="service-card-3d" data-category="design" data-aos="fade-up" data-aos-delay="450">
+                        <div class="card-3d-inner">
+                            <div class="card-3d-front">
+                                <div class="card-3d-icon">
+                                    <i class="fas fa-pencil-ruler"></i>
+                                </div>
+                                <h3 class="card-3d-title">UI/UX Design</h3>
+                                <div class="card-3d-description">
+                                    User-centered design that creates intuitive digital experiences
+                                </div>
+                                <div class="card-3d-more">
+                                    <span>Explore <i class="fas fa-arrow-right"></i></span>
+                                </div>
+                                
+                                <!-- Decorative elements -->
+                                <div class="card-decoration">
+                                    <span class="code-element">user.delight()</span>
+                                    <span class="code-element">experience++</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-3d-back">
+                                <div class="card-3d-content">
+                                    <h3>UI/UX Design</h3>
+                                    <ul class="card-features">
+                                        <li><i class="fas fa-check"></i> User Research</li>
+                                        <li><i class="fas fa-check"></i> Wireframing & Prototyping</li>
+                                        <li><i class="fas fa-check"></i> Interface Design</li>
+                                        <li><i class="fas fa-check"></i> Usability Testing</li>
+                                        <li><i class="fas fa-check"></i> Interaction Design</li>
+                                    </ul>
+                                    
+                                    <div class="card-tech">
+                                        <span>Figma</span>
+                                        <span>Sketch</span>
+                                        <span>Adobe XD</span>
+                                        <span>InVision</span>
+                                        <span>Zeplin</span>
+                                    </div>
+                                    
+                                    <a href="../index.html#contact" class="card-cta">
+                                        Get Started
+                                        <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <div class="card-corner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Interactive Process Flow Section -->
+        <section class="process-flow-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-sub-title">Our Approach</div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Streamlined</span> Process
+                    </h2>
+                    <p class="section-description">
+                        Our proven methodology ensures successful project delivery and exceptional results
+                    </p>
+                </div>
+                
+                <div class="process-timeline-container" data-aos="fade-up">
+                    <!-- Interactive timeline navigation -->
+                    <div class="timeline-nav">
+                        <button class="timeline-nav-item active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Discovery</div>
+                        </button>
+                        
+                        <button class="timeline-nav-item" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Planning</div>
+                        </button>
+                        
+                        <button class="timeline-nav-item" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Design</div>
+                        </button>
+                        
+                        <button class="timeline-nav-item" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Development</div>
+                        </button>
+                        
+                        <button class="timeline-nav-item" data-step="5">
+                            <div class="step-number">5</div>
+                            <div class="step-label">Testing</div>
+                        </button>
+                        
+                        <button class="timeline-nav-item" data-step="6">
+                            <div class="step-number">6</div>
+                            <div class="step-label">Launch</div>
+                        </button>
+                        
+                        <!-- Progress bar -->
+                        <div class="timeline-progress">
+                            <div class="timeline-progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline content panels -->
+                    <div class="timeline-content-container">
+                        <div class="timeline-panel active" data-step="1">
+                            <div class="timeline-panel-inner">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3>Discovery</h3>
+                                    <p>
+                                        We begin by understanding your goals, audience, and unique challenges. This initial 
+                                        phase involves in-depth discussions, research, and analysis to create a foundation 
+                                        for your project's success.
+                                    </p>
+                                    <ul class="timeline-features">
+                                        <li><i class="fas fa-check-circle"></i> Stakeholder Interviews</li>
+                                        <li><i class="fas fa-check-circle"></i> Competitive Analysis</li>
+                                        <li><i class="fas fa-check-circle"></i> Goals & Requirements Definition</li>
+                                        <li><i class="fas fa-check-circle"></i> Technical Assessment</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-illustration">
+                                    <img src="../assets/images/process-discovery.svg" alt="Discovery Phase">
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                        <div class="timeline-panel" data-step="2">
+                            <div class="timeline-panel-inner">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-sitemap"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3>Planning</h3>
+                                    <p>
+                                        We develop a comprehensive roadmap outlining project scope, timeline, and key 
+                                        deliverables. Our planning ensures clear expectations, efficient resource 
+                                        allocation, and smooth project execution.
+                                    </p>
+                                    <ul class="timeline-features">
+                                        <li><i class="fas fa-check-circle"></i> Project Roadmap Creation</li>
+                                        <li><i class="fas fa-check-circle"></i> Resource Allocation</li>
+                                        <li><i class="fas fa-check-circle"></i> Timeline Development</li>
+                                        <li><i class="fas fa-check-circle"></i> Risk Assessment</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-illustration">
+                                    <img src="../assets/images/process-planning.svg" alt="Planning Phase">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-panel" data-step="3">
+                            <div class="timeline-panel-inner">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-pencil-ruler"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3>Design</h3>
+                                    <p>
+                                        Our creative team crafts visually stunning interfaces that engage users and 
+                                        reflect your brand identity. We focus on creating intuitive, appealing designs 
+                                        that enhance the user experience.
+                                    </p>
+                                    <ul class="timeline-features">
+                                        <li><i class="fas fa-check-circle"></i> Wireframing & Prototyping</li>
+                                        <li><i class="fas fa-check-circle"></i> Visual Design</li>
+                                        <li><i class="fas fa-check-circle"></i> User Experience Optimization</li>
+                                        <li><i class="fas fa-check-circle"></i> Design Review & Approval</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-illustration">
+                                    <img src="../assets/images/process-design.svg" alt="Design Phase">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-panel" data-step="4">
+                            <div class="timeline-panel-inner">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3>Development</h3>
+                                    <p>
+                                        We bring designs to life with clean, efficient code and cutting-edge technology. 
+                                        Our development process emphasizes quality, performance, and scalability to ensure 
+                                        long-term success.
+                                    </p>
+                                    <ul class="timeline-features">
+                                        <li><i class="fas fa-check-circle"></i> Front-end Development</li>
+                                        <li><i class="fas fa-check-circle"></i> Back-end Implementation</li>
+                                        <li><i class="fas fa-check-circle"></i> Integration of Features</li>
+                                        <li><i class="fas fa-check-circle"></i> Performance Optimization</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-illustration">
+                                    <img src="../assets/images/process-development.svg" alt="Development Phase">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-panel" data-step="5">
+                            <div class="timeline-panel-inner">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-vial"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3>Testing</h3>
+                                    <p>
+                                        Rigorous quality assurance ensures your product performs flawlessly across all devices 
+                                        and platforms. We conduct thorough testing to identify and resolve any issues before launch.
+                                    </p>
+                                    <ul class="timeline-features">
+                                        <li><i class="fas fa-check-circle"></i> Functionality Testing</li>
+                                        <li><i class="fas fa-check-circle"></i> Compatibility Verification</li>
+                                        <li><i class="fas fa-check-circle"></i> Performance Testing</li>
+                                        <li><i class="fas fa-check-circle"></i> Security Assessment</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-illustration">
+                                    <img src="../assets/images/process-testing.svg" alt="Testing Phase">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-panel" data-step="6">
+                            <div class="timeline-panel-inner">
+                                <div class="timeline-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div class="timeline-content">
+                                    <h3>Launch & Support</h3>
+                                    <p>
+                                        We ensure a smooth deployment and provide ongoing maintenance and support. Our 
+                                        relationship continues after launch to help your business grow and adapt to 
+                                        changing needs.
+                                    </p>
+                                    <ul class="timeline-features">
+                                        <li><i class="fas fa-check-circle"></i> Deployment & Go-Live</li>
+                                        <li><i class="fas fa-check-circle"></i> Training & Onboarding</li>
+                                        <li><i class="fas fa-check-circle"></i> Ongoing Maintenance</li>
+                                        <li><i class="fas fa-check-circle"></i> Continuous Improvement</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-illustration">
+                                    <img src="../assets/images/process-launch.svg" alt="Launch Phase">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Design Content -->
-            <div class="service-content" id="design-content">
-                <div class="service-content-header">
-                    <div class="service-content-icon">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <div class="service-content-title">
-                        <h2>Design Services</h2>
-                        <p>Visual solutions that enhance your brand and communicate your message</p>
-                    </div>
-                </div>
-                
-                <div class="service-cards">
-                    <!-- Graphic Design Card -->
-                    <div class="service-card" data-animation="fade-up">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-palette"></i>
-                            </div>
-                            <h3 class="service-card-title">Print & Graphic Design</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                Professional print materials and brand assets that elevate your business image. Our designers create cohesive visual identities that resonate with your target audience.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Business Card Design</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Brochures & Flyers</span>
-                                    </div>
-                                </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Signage Solutions</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Brand Identity Packages</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Adobe Creative Suite</div>
-                                <div class="tech-tag">Canva</div>
-                                <div class="tech-tag">Figma</div>
-                                <div class="tech-tag">Sketch</div>
-                                <div class="tech-tag">InVision</div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- UI/UX Design Card -->
-                    <div class="service-card" data-animation="fade-up" data-animation-delay="100">
-                        <div class="service-card-header">
-                            <div class="service-card-icon">
-                                <i class="fas fa-pencil-ruler"></i>
-                            </div>
-                            <h3 class="service-card-title">UI/UX Design</h3>
-                        </div>
-                        
-                        <div class="service-card-body">
-                            <p class="service-card-description">
-                                User-centered design that creates intuitive, engaging digital experiences. We focus on creating interfaces that are both visually appealing and highly functional.
-                            </p>
-                            
-                            <div class="service-card-features">
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>User Research & Analysis</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Wireframing & Prototyping</span>
-                                    </div>
-                                </div>
-                                <div class="feature-column">
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Interface Design</span>
-                                    </div>
-                                    <div class="feature-item">
-                                        <i class="fas fa-check"></i>
-                                        <span>Usability Testing</span>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="service-card-technologies">
-                                <div class="tech-tag">Figma</div>
-                                <div class="tech-tag">Sketch</div>
-                                <div class="tech-tag">Adobe XD</div>
-                                <div class="tech-tag">InVision</div>
-                                <div class="tech-tag">Zeplin</div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-card-footer">
-                            <a href="../index.html#contact" class="service-card-btn">
-                                <span>Get Started</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            <div class="pattern-dots"></div>
+        </section>
         
-        <!-- Featured Service Section -->
-        <section class="featured-service-section">
-            <div class="container">
-                <div class="featured-service-grid">
-                    <div class="featured-service-content" data-animation="fade-right">
-                        <div class="section-sub-title">Featured Service</div>
-                        <h2 class="section-title">Comprehensive <span class="gradient-text">Web Solutions</span></h2>
-                        <p class="featured-service-description">
-                            Our web development services go beyond just building websites. We create comprehensive 
-                            digital ecosystems that integrate with your business workflows, enhance customer 
-                            experience, and drive meaningful results for your organization.
-                        </p>
-                        <div class="featured-service-stats">
-                            <div class="stat-box">
-                                <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
-                                <div class="stat-text">Websites Delivered</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-number"><span class="counter" data-target="40">0</span>%</div>
-                                <div class="stat-text">Avg. Conversion Increase</div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-number"><span class="counter" data-target="24">0</span>/7</div>
-                                <div class="stat-text">Support Available</div>
-                            </div>
-                        </div>
-                        <div class="featured-service-actions">
-                            <a href="../index.html#contact" class="btn-primary magnetic-button">
-                                <span>Discuss Your Project</span>
-                                <div class="btn-bubbles">
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                    <div class="bubble"></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="featured-service-image-container" data-animation="fade-left">
-                        <div class="featured-service-showcase tilt-element">
-                            <div class="device-mockup">
-                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1080&auto=format&fit=crop" alt="Website design on laptop and mobile">
-                            </div>
-                            <div class="featured-service-badge">
-                                <i class="fas fa-award"></i>
-                                <span>Award-Winning Designs</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Testimonial Carousel Section -->
+        <section class="testimonials-section">
+            <div class="glow-container">
+                <div class="glow-blob testimonial-blob-1"></div>
+                <div class="glow-blob testimonial-blob-2"></div>
             </div>
-        </section>
-
-        <!-- Process Overview Section -->
-        <section class="process-overview-section">
+            
             <div class="container">
-                <div class="section-header" data-animation="fade-up">
-                    <div class="section-sub-title">Our Approach</div>
-                    <h2 class="section-title">How We <span class="gradient-text">Deliver Excellence</span></h2>
-                    <p class="section-description">Our streamlined process ensures we deliver high-quality solutions tailored to your business needs</p>
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-sub-title">Client Success</div>
+                    <h2 class="section-title">What Our <span class="gradient-text">Clients Say</span></h2>
                 </div>
                 
-                <div class="process-timeline">
-                    <div class="process-step" data-animation="fade-up">
-                        <div class="process-step-number">01</div>
-                        <div class="process-step-content">
-                            <h3>Discovery</h3>
-                            <p>We begin by understanding your goals, audience, and unique challenges to create a tailored strategy that aligns with your business objectives and addresses your specific needs.</p>
+                <div class="testimonial-carousel" data-aos="fade-up">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <!-- Testimonial 1 -->
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-content">
+                                        <div class="quote-icon">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <p class="testimonial-text">
+                                            Elan's Tech World transformed our beauty clinic with a stunning website and integrated booking system. 
+                                            The Square POS implementation has streamlined our operations, allowing us to focus on our clients. 
+                                            Our online bookings have increased by 40%!
+                                        </p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <div class="author-image">
+                                            <img src="../assets/images/client-iconic.jpg" alt="Illanit Shalom">
+                                        </div>
+                                        <div class="author-info">
+                                            <h4>Illanit Shalom</h4>
+                                            <p>Owner, Iconic Aesthetics</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-decoration"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-content">
+                                        <div class="quote-icon">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <p class="testimonial-text">
+                                            Working with Elan's Tech World has completely elevated my real estate business. 
+                                            The MLS-integrated website, office network setup, and professional marketing materials 
+                                            have given us a competitive edge and streamlined our property management.
+                                        </p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <div class="author-image">
+                                            <img src="../assets/images/client-realestate.jpg" alt="Zarina Yusupova">
+                                        </div>
+                                        <div class="author-info">
+                                            <h4>Zarina Yusupova</h4>
+                                            <p>Broker, East Coast Realty</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-decoration"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="swiper-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-content">
+                                        <div class="quote-icon">
+                                            <i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <p class="testimonial-text">
+                                            As a psychology practice, patient confidentiality and HIPAA compliance are our top priorities. 
+                                            Elan created a secure, professional website with integrated appointment scheduling that meets all 
+                                            our requirements. Their expertise revolutionized our practice management.
+                                        </p>
+                                        <div class="testimonial-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <div class="author-image">
+                                            <img src="../assets/images/client-psychology.jpg" alt="Douglas Uhlig">
+                                        </div>
+                                        <div class="author-info">
+                                            <h4>Douglas Uhlig</h4>
+                                            <p>Director, Psychological Services</p>
+                                        </div>
+                                    </div>
+                                    <div class="testimonial-decoration"></div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <!-- Carousel controls -->
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <div class="process-step" data-animation="fade-up" data-animation-delay="100">
-                        <div class="process-step-number">02</div>
-                        <div class="process-step-content">
-                            <h3>Planning</h3>
-                            <p>We develop a comprehensive roadmap outlining project scope, timeline, and key deliverables to ensure a smooth execution process and clear communication throughout.</p>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Client Logos Carousel -->
+        <section class="clients-carousel-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-sub-title">Trusted Partnerships</div>
+                    <h2 class="section-title">Our <span class="gradient-text">Clients</span></h2>
+                </div>
+                
+                <div class="clients-carousel" data-aos="fade-up">
+                    <div class="clients-track">
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-1.png" alt="Client Logo">
                         </div>
-                    </div>
-                    <div class="process-step" data-animation="fade-up" data-animation-delay="200">
-                        <div class="process-step-number">03</div>
-                        <div class="process-step-content">
-                            <h3>Design</h3>
-                            <p>Our creative team crafts visually stunning interfaces that engage users and reflect your brand identity while enhancing usability and creating memorable experiences.</p>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-2.png" alt="Client Logo">
                         </div>
-                    </div>
-                    <div class="process-step" data-animation="fade-up" data-animation-delay="300">
-                        <div class="process-step-number">04</div>
-                        <div class="process-step-content">
-                            <h3>Development</h3>
-                            <p>We bring designs to life with clean, efficient code and cutting-edge technology, ensuring scalability, performance, and security for your digital solution.</p>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-3.png" alt="Client Logo">
                         </div>
-                    </div>
-                    <div class="process-step" data-animation="fade-up" data-animation-delay="400">
-                        <div class="process-step-number">05</div>
-                        <div class="process-step-content">
-                            <h3>Testing</h3>
-                            <p>Rigorous quality assurance ensures your digital product performs flawlessly across all devices and platforms, providing a seamless user experience to your customers.</p>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-4.png" alt="Client Logo">
                         </div>
-                    </div>
-                    <div class="process-step" data-animation="fade-up" data-animation-delay="500">
-                        <div class="process-step-number">06</div>
-                        <div class="process-step-content">
-                            <h3>Launch & Support</h3>
-                            <p>We ensure a smooth deployment and provide ongoing maintenance and support to help your business grow and adapt to changing market conditions and customer needs.</p>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-5.png" alt="Client Logo">
+                        </div>
+                        <!-- Duplicate for infinite scroll -->
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-1.png" alt="Client Logo">
+                        </div>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-2.png" alt="Client Logo">
+                        </div>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-3.png" alt="Client Logo">
+                        </div>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-4.png" alt="Client Logo">
+                        </div>
+                        <div class="client-item">
+                            <img src="../assets/images/client-logo-5.png" alt="Client Logo">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Testimonial Spotlight -->
-        <section class="testimonial-spotlight">
-            <div class="testimonial-spotlight-background">
-                <div class="testimonial-spotlight-overlay"></div>
+        
+        <!-- Interactive CTA Section -->
+        <section class="interactive-cta-section">
+            <div class="cta-shapes">
+                <div class="cta-shape shape-1"></div>
+                <div class="cta-shape shape-2"></div>
+                <div class="cta-shape shape-3"></div>
             </div>
+            
             <div class="container">
-                <div class="testimonial-spotlight-content" data-animation="fade-up">
-                    <div class="testimonial-quote-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <blockquote class="testimonial-spotlight-quote">
-                        Elan's Tech World transformed our beauty clinic with a stunning website and integrated booking system. 
-                        The Square POS implementation has streamlined our operations, allowing us to focus on our clients. 
-                        Our online bookings have increased by 40%!
-                    </blockquote>
-                    <div class="testimonial-author">
-                        <div class="testimonial-author-image">
-                            <img src="ill.jpg" alt="Illanit Shalom - Iconic Aesthetics">
-                        </div>
-                        <div class="testimonial-author-info">
-                            <h4 class="testimonial-author-name">Illanit Shalom</h4>
-                            <p class="testimonial-author-position">Owner, Iconic Aesthetics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="services-cta-section">
-            <div class="services-cta-blob"></div>
-            <div class="services-cta-blob alt"></div>
-            <div class="container">
-                <div class="services-cta-content" data-animation="fade-up">
-                    <h2 class="services-cta-title">Ready to transform your business?</h2>
-                    <p class="services-cta-description">Let's create something extraordinary together</p>
-                    <div class="services-cta-actions">
-                        <a href="../index.html#contact" class="btn-primary magnetic-button">
-                            <span>Start Your Project</span>
-                            <div class="btn-bubbles">
-                                <div class="bubble"></div>
-                                <div class="bubble"></div>
-                                <div class="bubble"></div>
+                <div class="cta-content" data-aos="fade-up">
+                    <h2 class="cta-title">Ready to Transform Your Business?</h2>
+                    <p class="cta-description">
+                        Let's create something extraordinary together. Our team is ready to help you achieve your goals.
+                    </p>
+                    
+                    <div class="cta-actions">
+                        <a href="../index.html#contact" class="btn-primary cta-button">
+                            <span class="btn-text">Start Your Project</span>
+                            <div class="btn-icon-container">
+                                <i class="btn-icon fas fa-rocket"></i>
                             </div>
                         </a>
-                        <a href="tel:+19294176819" class="btn-secondary magnetic-button">
-                            <span>Call Us</span>
-                            <i class="fas fa-phone"></i>
+                        
+                        <a href="tel:+19294176819" class="btn-secondary cta-button">
+                            <span class="btn-text">Call Us</span>
+                            <div class="btn-icon-container">
+                                <i class="btn-icon fas fa-phone"></i>
+                            </div>
                         </a>
                     </div>
                 </div>
             </div>
+            
+            <div class="cta-particles"></div>
         </section>
     </main>
     
-    <!-- Footer -->
+    <!-- Footer (Kept from index) -->
     <footer class="footer">
         <div class="footer-waves">
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -1088,14 +1330,20 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Elfsight Chat Widget -->
     <div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
 
     <!-- Scripts -->  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
     <script src="https://static.elfsight.com/platform/platform.js" async></script>
-    <script src="../js/script.js" defer></script>
-    <script src="../js/services.js" defer></script>
+    
+    <!-- Custom Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/services.js"></script>
 </body>
 </html>
