@@ -401,53 +401,59 @@
   flex-wrap: wrap;
 }
 
+.scroll-indicator-wrapper {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
 .scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--white);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 .scroll-indicator:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .mouse {
-  width: 26px;
-  height: 40px;
-  border: 2px solid var(--white);
-  border-radius: 20px;
-  position: relative;
-  margin-bottom: 8px;
+    width: 26px;
+    height: 40px;
+    border: 2px solid var(--white);
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 8px;
 }
 
 .mouse-wheel {
-  position: absolute;
-  width: 4px;
-  height: 8px;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--white);
-  border-radius: 2px;
-  animation: mouseScroll 1.5s infinite;
+    position: absolute;
+    width: 4px;
+    height: 8px;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    border-radius: 2px;
+    animation: mouseScroll 1.5s infinite;
 }
 
 @keyframes mouseScroll {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(15px);
-  }
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(15px);
+    }
 }
 
 /* ======= OUR STORY SECTION ======= */
@@ -1311,9 +1317,9 @@
 }
 
 @keyframes scrollPulse {
-  0% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(10px); }
-  100% { transform: translateX(-50%) translateY(0); }
+    0% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
 }
 
 /* Particle background customizations */
