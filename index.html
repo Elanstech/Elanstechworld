@@ -124,7 +124,7 @@
     <!-- Hero Section with Video -->
     <section id="home" class="hero-section">
         <div class="hero-video-container">
-            <video class="hero-video" autoplay muted loop playsinline>
+            <video class="hero-video" autoplay muted loop playsinline preload="auto">
                 <source src="https://cdn.pixabay.com/video/2024/08/18/227133_large.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -154,8 +154,7 @@
                     </a>
                 </div>
             </div>
-         </div>
-    </div>
+        </div>
         
         <div class="scroll-indicator">
             <span>Scroll to explore</span>
@@ -163,7 +162,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
+    <!-- Why Choose Us Section - Auto Slider -->
     <section id="why-us" class="why-us-section">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -172,53 +171,59 @@
                 <p class="section-description">We don't just build websites—we create digital experiences that transform businesses</p>
             </div>
             
-            <div class="advantages-grid">
-                <div class="advantage-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="advantage-icon">
-                        <i class="fas fa-rocket"></i>
+            <div class="advantages-slider-wrapper">
+                <div class="advantages-slider">
+                    <div class="advantage-slide">
+                        <div class="advantage-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Lightning Fast Delivery</h3>
+                        <p>We understand time is money. Our streamlined process ensures rapid deployment without compromising quality.</p>
                     </div>
-                    <h3>Lightning Fast Delivery</h3>
-                    <p>We understand time is money. Our streamlined process ensures rapid deployment without compromising quality.</p>
+                    
+                    <div class="advantage-slide">
+                        <div class="advantage-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>100% Satisfaction Guarantee</h3>
+                        <p>We don't stop until you're thrilled. Unlimited revisions and ongoing support included with every project.</p>
+                    </div>
+                    
+                    <div class="advantage-slide">
+                        <div class="advantage-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Results-Driven Approach</h3>
+                        <p>Every decision is backed by data. We focus on metrics that matter: conversions, engagement, and ROI.</p>
+                    </div>
+                    
+                    <div class="advantage-slide">
+                        <div class="advantage-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Priority Support</h3>
+                        <p>Questions? Issues? We're here. Our dedicated support team ensures you're never left in the dark.</p>
+                    </div>
+                    
+                    <div class="advantage-slide">
+                        <div class="advantage-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Cutting-Edge Technology</h3>
+                        <p>We use the latest tech stack to ensure your platform is fast, secure, and future-proof.</p>
+                    </div>
+                    
+                    <div class="advantage-slide">
+                        <div class="advantage-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Personalized Service</h3>
+                        <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business needs.</p>
+                    </div>
                 </div>
                 
-                <div class="advantage-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="advantage-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>100% Satisfaction Guarantee</h3>
-                    <p>We don't stop until you're thrilled. Unlimited revisions and ongoing support included with every project.</p>
-                </div>
-                
-                <div class="advantage-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="advantage-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Results-Driven Approach</h3>
-                    <p>Every decision is backed by data. We focus on metrics that matter: conversions, engagement, and ROI.</p>
-                </div>
-                
-                <div class="advantage-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="advantage-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Priority Support</h3>
-                    <p>Questions? Issues? We're here. Our dedicated support team ensures you're never left in the dark.</p>
-                </div>
-                
-                <div class="advantage-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="advantage-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Cutting-Edge Technology</h3>
-                    <p>We use the latest tech stack to ensure your platform is fast, secure, and future-proof.</p>
-                </div>
-                
-                <div class="advantage-card" data-aos="fade-up" data-aos-delay="600">
-                    <div class="advantage-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Personalized Service</h3>
-                    <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business needs.</p>
+                <div class="slider-progress">
+                    <div class="slider-progress-bar"></div>
                 </div>
             </div>
         </div>
