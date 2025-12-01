@@ -287,8 +287,8 @@ section {
 
 .logo-loader {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto var(--space-lg);
 }
 
@@ -451,8 +451,8 @@ section {
 }
 
 .logo-circle img {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   object-fit: cover;
   position: relative;
   z-index: 2;
