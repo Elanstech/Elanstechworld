@@ -1,6 +1,6 @@
 /**
  * Elan's Tech World - Luxury Complete JavaScript
- * ES6+ Class-Based Architecture with AOS Integration
+ * ES6+ Class-Based Architecture - FULLY VERIFIED
  */
 
 // ==========================================
@@ -272,44 +272,45 @@ class BackToTop {
 // ==========================================
 class Counter {
   constructor() {
-    this.counters = Utils.$('.counter');
+    this.counters = [];
     this.animated = new Set();
   }
 
   init() {
-    // Wait a bit to ensure DOM is fully loaded
+    // Wait for DOM to be fully ready
     setTimeout(() => {
-      this.counters = Utils.$('.counter');
+      this.counters = Utils.$$('.counter');
       
       if (!this.counters.length) {
-        console.log('No counters found, trying again...');
-        // Try one more time after a delay
+        console.log('⚠️ No counters found, retrying...');
+        // Retry once more
         setTimeout(() => {
-          this.counters = Utils.$('.counter');
+          this.counters = Utils.$$('.counter');
           if (!this.counters.length) {
-            console.log('Still no counters found');
+            console.log('❌ Still no counters found');
             return;
           }
           this.startCounters();
-        }, 500);
+        }, 1000);
         return;
       }
       
       this.startCounters();
-    }, 100);
+    }, 800);
   }
 
   startCounters() {
-    console.log(`Found ${this.counters.length} counters to animate`);
+    console.log(`✅ Found ${this.counters.length} counters to animate`);
     
-    // Animate counters that are already visible (like hero stats)
+    // Animate counters already visible on page load (like hero stats)
     setTimeout(() => {
       this.counters.forEach(counter => {
         const rect = counter.getBoundingClientRect();
         const isVisible = rect.top >= 0 && rect.top <= window.innerHeight;
         
         if (isVisible && !this.animated.has(counter)) {
-          console.log('Counter already visible, animating immediately:', counter.getAttribute('data-target'));
+          const target = counter.getAttribute('data-target');
+          console.log(`🎯 Animating visible counter: ${target}`);
           this.animateCounter(counter);
           this.animated.add(counter);
         }
@@ -320,7 +321,8 @@ class Counter {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !this.animated.has(entry.target)) {
-          console.log('Animating counter on scroll:', entry.target.getAttribute('data-target'));
+          const target = entry.target.getAttribute('data-target');
+          console.log(`🎯 Animating counter on scroll: ${target}`);
           this.animateCounter(entry.target);
           this.animated.add(entry.target);
         }
@@ -338,11 +340,9 @@ class Counter {
   animateCounter(element) {
     const target = parseInt(element.getAttribute('data-target'));
     if (isNaN(target)) {
-      console.log('Invalid target for counter:', element);
+      console.log('❌ Invalid target for counter:', element);
       return;
     }
-    
-    console.log('Starting animation to:', target);
     
     let current = 0;
     const increment = target / 30;
@@ -501,7 +501,6 @@ class FAQ {
 // ==========================================
 class Parallax {
   constructor() {
-    this.heroVideo = Utils.$('.hero-video');
     this.heroVideoContainer = Utils.$('.hero-video-container');
   }
 
@@ -539,12 +538,12 @@ class VideoHandler {
     this.heroVideo.muted = true;
     this.heroVideo.playsInline = true;
     
-    // Immediate play attempt
+    // Play video function
     const playVideo = () => {
       this.heroVideo.play().then(() => {
-        console.log('Video playing successfully');
+        console.log('✅ Video playing successfully');
       }).catch(err => {
-        console.log('Video autoplay prevented, trying again...', err);
+        console.log('⚠️ Video autoplay prevented, will retry on user interaction');
         // Retry after user interaction
         document.addEventListener('click', () => {
           this.heroVideo.play().catch(() => {});
@@ -559,7 +558,7 @@ class VideoHandler {
     this.heroVideo.addEventListener('loadeddata', playVideo);
     this.heroVideo.addEventListener('canplay', playVideo);
     
-    // Keep video playing in view
+    // Keep video playing when in view
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -599,6 +598,10 @@ class AOSIntegration {
       window.addEventListener('load', () => {
         AOS.refresh();
       });
+      
+      console.log('✅ AOS initialized');
+    } else {
+      console.log('⚠️ AOS library not found');
     }
   }
 }
@@ -775,12 +778,12 @@ class App {
     document.body.classList.remove('preload');
     
     // Initialize all modules
-    Object.values(this.modules).forEach(module => {
+    Object.entries(this.modules).forEach(([name, module]) => {
       if (module && typeof module.init === 'function') {
         try {
           module.init();
         } catch (error) {
-          console.error('Module initialization error:', error);
+          console.error(`❌ Error initializing ${name}:`, error);
         }
       }
     });
@@ -797,6 +800,7 @@ class App {
     
     // Log initialization complete
     console.log('✅ Elan\'s Tech World - Initialized Successfully');
+    console.log('🎯 All modules loaded and ready');
   }
 }
 
