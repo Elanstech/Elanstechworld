@@ -272,32 +272,62 @@ class BackToTop {
 // ==========================================
 class Counter {
   constructor() {
-    this.counters = Utils.$$('.counter');
+    this.counters = Utils.$('.counter');
     this.animated = new Set();
   }
 
   init() {
-    if (!this.counters.length) return;
+    if (!this.counters.length) {
+      console.log('No counters found');
+      return;
+    }
+    
+    console.log(`Found ${this.counters.length} counters to animate`);
+    
+    // Check if counters are already visible on page load (like hero stats)
+    setTimeout(() => {
+      this.counters.forEach(counter => {
+        const rect = counter.getBoundingClientRect();
+        const isVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+        
+        if (isVisible && !this.animated.has(counter)) {
+          console.log('Counter already visible, animating immediately:', counter);
+          this.animateCounter(counter);
+          this.animated.add(counter);
+        }
+      });
+    }, 500); // Small delay after page load
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !this.animated.has(entry.target)) {
+          console.log('Animating counter:', entry.target);
           this.animateCounter(entry.target);
           this.animated.add(entry.target);
         }
       });
-    }, { threshold: 0.3 });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '0px'
+    });
     
-    this.counters.forEach(counter => observer.observe(counter));
+    this.counters.forEach(counter => {
+      observer.observe(counter);
+    });
   }
 
   animateCounter(element) {
     const target = parseInt(element.getAttribute('data-target'));
-    if (isNaN(target)) return;
+    if (isNaN(target)) {
+      console.log('Invalid target for counter:', element);
+      return;
+    }
+    
+    console.log('Starting animation to:', target);
     
     let current = 0;
-    const increment = target / 40;
-    const stepTime = CONFIG.counterDuration / 40;
+    const increment = target / 30;
+    const stepTime = CONFIG.counterDuration / 30;
     
     const timer = setInterval(() => {
       current += increment;
