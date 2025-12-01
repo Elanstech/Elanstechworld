@@ -4,26 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elan's Tech World | Premium Digital Solutions</title>
-    <meta name="description" content="Elevate your business with cutting-edge technology solutions, web design, and digital marketing from Elan's Tech World.">
+    <meta name="description" content="Transform your business with cutting-edge technology solutions, web design, and digital marketing.">
     
-    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="theme-color" content="#0A0A0A">
 </head>
 
 <body class="preload">
-    <!-- Elegant Loader -->
+    <!-- Loader -->
     <div class="loader-container">
         <div class="loader-content">
             <div class="logo-loader">
@@ -41,12 +35,12 @@
         </div>
     </div>
     
-    <!-- Premium Header -->
+    <!-- Header -->
     <header class="header">
         <div class="header-glass"></div>
         <div class="container">
             <div class="header-inner">
-                <a href="index.html" class="logo">
+                <a href="#home" class="logo">
                     <div class="logo-icon">
                         <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
                     </div>
@@ -60,8 +54,10 @@
                     <ul class="nav-list">
                         <li><a href="#home" class="nav-link active">Home</a></li>
                         <li><a href="#services" class="nav-link">Services</a></li>
+                        <li><a href="#why-us" class="nav-link">Why Us</a></li>
+                        <li><a href="#results" class="nav-link">Results</a></li>
                         <li><a href="#work" class="nav-link">Portfolio</a></li>
-                        <li><a href="#process" class="nav-link">Process</a></li>
+                        <li><a href="#testimonials" class="nav-link">Reviews</a></li>
                         <li><a href="#contact" class="nav-link">Contact</a></li>
                     </ul>
                 </nav>
@@ -86,7 +82,7 @@
         <div class="mobile-menu-backdrop"></div>
         <div class="mobile-menu-container">
             <div class="mobile-menu-header">
-                <a href="index.html" class="logo">
+                <a href="#home" class="logo">
                     <div class="logo-icon">
                         <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
                     </div>
@@ -103,8 +99,10 @@
                 <ul>
                     <li><a href="#home" class="mobile-nav-link">Home</a></li>
                     <li><a href="#services" class="mobile-nav-link">Services</a></li>
+                    <li><a href="#why-us" class="mobile-nav-link">Why Us</a></li>
+                    <li><a href="#results" class="mobile-nav-link">Results</a></li>
                     <li><a href="#work" class="mobile-nav-link">Portfolio</a></li>
-                    <li><a href="#process" class="mobile-nav-link">Process</a></li>
+                    <li><a href="#testimonials" class="mobile-nav-link">Reviews</a></li>
                     <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
                 </ul>
             </nav>
@@ -122,27 +120,29 @@
         </div>
     </div>
     
-    <!-- Hero Section -->
+    <!-- Hero Section with Video -->
     <section id="home" class="hero-section">
-        <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-grid"></div>
+        <div class="hero-video-container">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="https://cdn.pixabay.com/video/2024/08/18/227133_large.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
         </div>
         
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">Premium Digital Solutions</div>
+                <div class="hero-badge" data-aos="fade-up">Premium Digital Solutions</div>
                 
-                <h1 class="hero-title">
+                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
                     Transform Your Business
                     <span class="gradient-text">Through Innovation</span>
                 </h1>
                 
-                <p class="hero-description">
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
                     We craft bespoke digital experiences that elevate brands and drive measurable results through cutting-edge technology and creative excellence.
                 </p>
                 
-                <div class="hero-cta">
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
                     <a href="#contact" class="btn-primary btn-lg">
                         <span>Start Your Project</span>
                         <i class="fas fa-arrow-right"></i>
@@ -153,14 +153,14 @@
                     </a>
                 </div>
                 
-                <div class="hero-stats">
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <div class="stat-number"><span class="counter" data-target="15">0</span>+</div>
+                        <div class="stat-label">Active Clients</div>
+                    </div>
                     <div class="stat-item">
                         <div class="stat-number"><span class="counter" data-target="100">0</span>+</div>
                         <div class="stat-label">Projects Delivered</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number"><span class="counter" data-target="50">0</span>+</div>
-                        <div class="stat-label">Happy Clients</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number"><span class="counter" data-target="5">0</span>+</div>
@@ -176,17 +176,78 @@
         </div>
     </section>
 
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="why-us-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Our Advantages</span>
+                <h2 class="section-title">Why Choose <span class="gradient-text">Elan's Tech World</span></h2>
+                <p class="section-description">We don't just build websites—we create digital experiences that transform businesses</p>
+            </div>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="advantage-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Lightning Fast Delivery</h3>
+                    <p>We understand time is money. Our streamlined process ensures rapid deployment without compromising quality.</p>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>100% Satisfaction Guarantee</h3>
+                    <p>We don't stop until you're thrilled. Unlimited revisions and ongoing support included with every project.</p>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="advantage-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Results-Driven Approach</h3>
+                    <p>Every decision is backed by data. We focus on metrics that matter: conversions, engagement, and ROI.</p>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="advantage-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Priority Support</h3>
+                    <p>Questions? Issues? We're here. Our dedicated support team ensures you're never left in the dark.</p>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="advantage-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Cutting-Edge Technology</h3>
+                    <p>We use the latest tech stack to ensure your platform is fast, secure, and future-proof.</p>
+                </div>
+                
+                <div class="advantage-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="advantage-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Personalized Service</h3>
+                    <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="services-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up">
                 <span class="section-tag">Our Expertise</span>
                 <h2 class="section-title">Premium <span class="gradient-text">Services</span></h2>
                 <p class="section-description">Comprehensive digital solutions tailored to your business needs</p>
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -204,18 +265,18 @@
                     </a>
                 </div>
                 
-                <div class="service-card featured">
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="200">
                     <div class="featured-badge">Popular</div>
                     <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-store"></i>
                     </div>
-                    <h3>Mobile Apps</h3>
-                    <p>Native and cross-platform applications that deliver excellence</p>
+                    <h3>POS Systems</h3>
+                    <p>Modern point-of-sale solutions for retail & service businesses</p>
                     <ul class="service-features">
-                        <li>iOS & Android</li>
-                        <li>Cross-Platform</li>
-                        <li>UI/UX Design</li>
-                        <li>App Maintenance</li>
+                        <li>Square Integration</li>
+                        <li>Inventory Management</li>
+                        <li>Payment Processing</li>
+                        <li>Analytics & Reports</li>
                     </ul>
                     <a href="#contact" class="service-link">
                         <span>Learn More</span>
@@ -223,7 +284,7 @@
                     </a>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon">
                         <i class="fas fa-bullhorn"></i>
                     </div>
@@ -233,7 +294,7 @@
                         <li>SEO & SEM</li>
                         <li>Social Media</li>
                         <li>Email Marketing</li>
-                        <li>Analytics</li>
+                        <li>Google Ads</li>
                     </ul>
                     <a href="#contact" class="service-link">
                         <span>Learn More</span>
@@ -244,58 +305,86 @@
         </div>
     </section>
 
-    <!-- Process Section -->
-    <section id="process" class="process-section">
+    <!-- Results Section -->
+    <section id="results" class="results-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">How We Work</span>
-                <h2 class="section-title">Our <span class="gradient-text">Process</span></h2>
-                <p class="section-description">A streamlined approach to deliver exceptional results</p>
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Proven Results</span>
+                <h2 class="section-title">Real Impact, <span class="gradient-text">Real Numbers</span></h2>
+                <p class="section-description">See how we've transformed businesses across industries</p>
             </div>
             
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <div class="step-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h3>Discovery</h3>
-                        <p>Understanding your goals and challenges</p>
+            <div class="results-grid">
+                <div class="result-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="result-client">
+                        <h4>Iconic Aesthetics</h4>
+                        <span>Beauty & Wellness</span>
                     </div>
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="metric-value">145%</div>
+                            <div class="metric-label">Booking Increase</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">3.2x</div>
+                            <div class="metric-label">Online Revenue</div>
+                        </div>
+                    </div>
+                    <p class="result-description">Integrated booking system and POS solution drove massive growth in online appointments and retail sales.</p>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <div class="step-icon">
-                            <i class="fas fa-pencil-ruler"></i>
-                        </div>
-                        <h3>Design</h3>
-                        <p>Crafting beautiful, functional interfaces</p>
+                <div class="result-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="result-client">
+                        <h4>Barber World NYC</h4>
+                        <span>E-commerce</span>
                     </div>
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="metric-value">280%</div>
+                            <div class="metric-label">Sales Growth</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">65%</div>
+                            <div class="metric-label">Cart Conversion</div>
+                        </div>
+                    </div>
+                    <p class="result-description">E-commerce platform with inventory management transformed their business into a digital powerhouse.</p>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <div class="step-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>Development</h3>
-                        <p>Building with cutting-edge technology</p>
+                <div class="result-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="result-client">
+                        <h4>Doug Uhlig Psychological Services</h4>
+                        <span>Healthcare</span>
                     </div>
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="metric-value">90%</div>
+                            <div class="metric-label">Admin Time Saved</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">100%</div>
+                            <div class="metric-label">HIPAA Compliant</div>
+                        </div>
+                    </div>
+                    <p class="result-description">Secure patient portal and appointment system streamlined operations while maintaining strict compliance.</p>
                 </div>
                 
-                <div class="process-step">
-                    <div class="step-number">04</div>
-                    <div class="step-content">
-                        <div class="step-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <h3>Launch</h3>
-                        <p>Deploying and supporting your success</p>
+                <div class="result-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="result-client">
+                        <h4>S-Cream</h4>
+                        <span>Product Launch</span>
                     </div>
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="metric-value">$50K+</div>
+                            <div class="metric-label">First Month Sales</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">5K+</div>
+                            <div class="metric-label">Site Visitors</div>
+                        </div>
+                    </div>
+                    <p class="result-description">Complete e-commerce launch with marketing strategy generated immediate traction and sales.</p>
                 </div>
             </div>
         </div>
@@ -304,14 +393,378 @@
     <!-- Portfolio Section -->
     <section id="work" class="portfolio-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" data-aos="fade-up">
                 <span class="section-tag">Our Work</span>
                 <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-                <p class="section-description">Explore how we've transformed businesses</p>
+                <p class="section-description">Explore how we've transformed businesses across industries</p>
             </div>
             
             <div class="portfolio-grid" id="portfolio-grid">
-                <!-- Projects will be loaded via JS -->
+                <!-- Loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Client Success</span>
+                <h2 class="section-title">What Our <span class="gradient-text">Clients Say</span></h2>
+                <p class="section-description">Real feedback from real businesses we've helped transform</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Elan transformed our entire digital presence. The integrated booking system alone has saved us countless hours and our online bookings increased by 145%. Absolutely phenomenal work!"</p>
+                    <div class="testimonial-author">
+                        <h4>Illanit Sholomov</h4>
+                        <span>Owner, Iconic Aesthetics</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The e-commerce platform Elan built for us is incredible. Our sales tripled in the first quarter. The inventory management system makes running our business so much easier."</p>
+                    <div class="testimonial-author">
+                        <h4>Management Team</h4>
+                        <span>Barber World NYC</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"As a psychology practice, HIPAA compliance is critical. Elan delivered a secure, professional website with a patient portal that meets all requirements. Our patients love the convenience!"</p>
+                    <div class="testimonial-author">
+                        <h4>Douglas Uhlig</h4>
+                        <span>Doug Uhlig Psychological Services</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Working with Elan was seamless. They understood our vision for the beauty clinic and delivered a stunning website that perfectly represents our brand. Our clients are impressed!"</p>
+                    <div class="testimonial-author">
+                        <h4>Laura Sholomov</h4>
+                        <span>Owner, Laura's Beauty Touch</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Elan built us a comprehensive mental health services platform that's both beautiful and functional. The appointment scheduling system has streamlined our entire practice."</p>
+                    <div class="testimonial-author">
+                        <h4>Kristie Doheny</h4>
+                        <span>Holistic Mental Health Services</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The property management system Elan developed has transformed how we operate. Tenant communications, maintenance requests, everything is now streamlined and efficient."</p>
+                    <div class="testimonial-author">
+                        <h4>David Javidan</h4>
+                        <span>Park City 3&4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" class="tech-stack-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Technology</span>
+                <h2 class="section-title">Powered by <span class="gradient-text">Cutting-Edge Tech</span></h2>
+                <p class="section-description">We use the latest technologies to build fast, secure, and scalable solutions</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fab fa-wordpress"></i>
+                    <span>WordPress</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fab fa-shopify"></i>
+                    <span>Shopify</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-react"></i>
+                    <span>React</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fab fa-node-js"></i>
+                    <span>Node.js</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="350">
+                    <i class="fab fa-aws"></i>
+                    <span>AWS</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fab fa-google"></i>
+                    <span>Google Cloud</span>
+                </div>
+                <div class="tech-item" data-aos="fade-up" data-aos-delay="450">
+                    <i class="fab fa-stripe"></i>
+                    <span>Stripe</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">Industries <span class="gradient-text">We Serve</span></h2>
+                <p class="section-description">Specialized solutions for diverse business sectors</p>
+            </div>
+            
+            <div class="industries-grid">
+                <div class="industry-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="industry-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Beauty & Wellness</h3>
+                    <p>Booking systems, client management, and e-commerce for beauty businesses</p>
+                </div>
+                
+                <div class="industry-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="industry-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Healthcare & Psychology</h3>
+                    <p>HIPAA-compliant platforms with secure patient portals and telehealth</p>
+                </div>
+                
+                <div class="industry-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="industry-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce & Retail</h3>
+                    <p>Complete online stores with inventory management and POS integration</p>
+                </div>
+                
+                <div class="industry-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="industry-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Real Estate & Property</h3>
+                    <p>Property management systems and tenant portals</p>
+                </div>
+                
+                <div class="industry-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="industry-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Professional Services</h3>
+                    <p>Custom solutions for law firms, accountants, and consultants</p>
+                </div>
+                
+                <div class="industry-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="industry-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Service Businesses</h3>
+                    <p>Booking systems and business management tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Questions?</span>
+                <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+                <p class="section-description">Everything you need to know about working with us</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        <h3>How long does a typical project take?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Project timelines vary based on scope. A basic website typically takes 2-3 weeks, while complex e-commerce platforms or custom applications may take 6-8 weeks. We'll provide a detailed timeline during our initial consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        <h3>What's included in your pricing?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All projects include custom design, development, mobile optimization, SEO setup, training, and 3-6 months of support. No hidden fees—everything is transparent from day one.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        <h3>Do you offer ongoing support?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We offer monthly support packages that include updates, security monitoring, backups, and priority technical support. Your success is our success.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        <h3>Can you integrate with my existing systems?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We specialize in integrations—Square, Stripe, Mailchimp, CRMs, scheduling systems, and more. We'll ensure everything works seamlessly together.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="faq-question">
+                        <h3>What if I'm not satisfied with the result?</h3>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer unlimited revisions during the development phase and a 100% satisfaction guarantee. We don't stop working until you're absolutely thrilled with the result.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section id="guarantee" class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-content" data-aos="fade-up">
+                <div class="guarantee-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h2>Our <span class="gradient-text">Promise</span> to You</h2>
+                <div class="guarantee-points">
+                    <div class="guarantee-point">
+                        <i class="fas fa-check-circle"></i>
+                        <span>100% Satisfaction Guarantee</span>
+                    </div>
+                    <div class="guarantee-point">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Unlimited Revisions</span>
+                    </div>
+                    <div class="guarantee-point">
+                        <i class="fas fa-check-circle"></i>
+                        <span>On-Time Delivery</span>
+                    </div>
+                    <div class="guarantee-point">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Transparent Pricing</span>
+                    </div>
+                    <div class="guarantee-point">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ongoing Support</span>
+                    </div>
+                    <div class="guarantee-point">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Data Security</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <span class="section-tag">About Us</span>
+                    <h2 class="section-title">Transforming <span class="gradient-text">Digital Experiences</span></h2>
+                    <p>At Elan's Tech World, we believe technology should empower businesses, not complicate them. Founded with a mission to democratize premium digital solutions, we've spent years perfecting our craft and building lasting relationships with clients across diverse industries.</p>
+                    <p>Our approach is simple: listen deeply, design beautifully, develop flawlessly, and support relentlessly. We don't just build websites—we create digital experiences that drive real business results.</p>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <h3>5+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="about-stat">
+                            <h3>15+</h3>
+                            <p>Active Clients</p>
+                        </div>
+                        <div class="about-stat">
+                            <h3>100%</h3>
+                            <p>Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <div class="about-image-wrapper">
+                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Ready to Transform <span class="gradient-text">Your Business?</span></h2>
+                <p>Let's create something extraordinary together. Get started with a free consultation.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn-primary btn-lg">
+                        <span>Start Your Project</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="tel:+19294176819" class="btn-secondary btn-lg">
+                        <span>Call Us Now</span>
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -319,14 +772,14 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Let's Create Something <span class="gradient-text">Extraordinary</span></h2>
+                <p class="section-description">Ready to elevate your digital presence? Reach out today.</p>
+            </div>
+            
             <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="section-header">
-                        <span class="section-tag">Get In Touch</span>
-                        <h2 class="section-title">Let's Create Something <span class="gradient-text">Extraordinary</span></h2>
-                        <p class="section-description">Ready to elevate your digital presence? Let's talk.</p>
-                    </div>
-                    
+                <div class="contact-info" data-aos="fade-right">
                     <div class="contact-details">
                         <div class="contact-item">
                             <div class="contact-icon">
@@ -366,28 +819,9 @@
                     </div>
                 </div>
                 
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" required>
-                            <label for="name">Your Name</label>
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="email" id="email" required>
-                            <label for="email">Email Address</label>
-                        </div>
-                        
-                        <div class="form-group">
-                            <textarea id="message" rows="5" required></textarea>
-                            <label for="message">Your Message</label>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary btn-block">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
+                <div class="contact-form-wrapper" data-aos="fade-left">
+                    <!-- Elfsight Contact Form -->
+                    <div class="elfsight-app-9355b656-fe52-4481-a846-b339ead8f2a9" data-elfsight-app-lazy></div>
                 </div>
             </div>
         </div>
@@ -425,7 +859,7 @@
                         <h4>Services</h4>
                         <ul>
                             <li><a href="#services">Web Development</a></li>
-                            <li><a href="#services">Mobile Apps</a></li>
+                            <li><a href="#services">POS Systems</a></li>
                             <li><a href="#services">Digital Marketing</a></li>
                             <li><a href="#services">Consulting</a></li>
                         </ul>
@@ -443,12 +877,17 @@
         </div>
     </footer>
 
-    <!-- Back to Top -->
+    <!-- Back to Top (LEFT SIDE) -->
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Elfsight AI Chatbot -->
+    <div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
+
     <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
