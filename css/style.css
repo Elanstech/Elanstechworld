@@ -774,11 +774,6 @@ section {
 /*======================================
   10. WHY US SECTION - AUTO SLIDER
 ======================================*/
-/**
- * Why Choose Us Section - Auto Slider CSS
- * Responsive slider: 3 cards on desktop, 1 card on mobile
- */
-
 /* Section Styling */
 .why-us-section {
   background: #141414;
@@ -787,7 +782,7 @@ section {
 }
 
 /* Container */
-.container {
+.why-us-container {
   width: 90%;
   max-width: 1280px;
   margin: 0 auto;
@@ -795,12 +790,12 @@ section {
 }
 
 /* Section Header */
-.section-header {
+.why-us-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
-.section-tag {
+.why-us-tag {
   display: inline-block;
   padding: 0.5rem 1.5rem;
   background: rgba(255, 140, 66, 0.1);
@@ -814,36 +809,40 @@ section {
   margin-bottom: 1rem;
 }
 
-.section-title {
+.why-us-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 700;
   color: #FFFFFF;
   margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
-.gradient-text {
+.why-us-gradient-text {
   background: linear-gradient(135deg, #007aff, #FF8C42);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  display: inline-block;
 }
 
-.section-description {
+.why-us-description {
   max-width: 600px;
   margin: 0 auto;
   font-size: 1.125rem;
   color: #8A8A8A;
+  line-height: 1.7;
 }
 
 /* Slider Wrapper */
-.advantages-slider-wrapper {
+.why-us-slider-wrapper {
   position: relative;
   overflow: hidden;
   padding: 3rem 0;
 }
 
 /* Slider Track */
-.advantages-slider-track {
+.why-us-slider-track {
   display: flex;
   gap: 3rem;
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
@@ -851,7 +850,7 @@ section {
 }
 
 /* Advantage Cards */
-.advantage-card {
+.why-us-card {
   flex: 0 0 calc((100% - (2 * 3rem)) / 3);
   padding: 3rem;
   background: rgba(255, 255, 255, 0.03);
@@ -863,7 +862,7 @@ section {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.advantage-card::before {
+.why-us-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -876,19 +875,19 @@ section {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.advantage-card:hover {
+.why-us-card:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 140, 66, 0.3);
   transform: translateY(-8px);
   box-shadow: 0 0 40px rgba(255, 140, 66, 0.3);
 }
 
-.advantage-card:hover::before {
+.why-us-card:hover::before {
   transform: scaleX(1);
 }
 
-/* Advantage Icon */
-.advantage-icon {
+/* Card Icon */
+.why-us-icon {
   width: 70px;
   height: 70px;
   display: flex;
@@ -903,20 +902,22 @@ section {
   box-shadow: 0 0 40px rgba(255, 140, 66, 0.3);
 }
 
-.advantage-card:hover .advantage-icon {
+.why-us-card:hover .why-us-icon {
   transform: scale(1.15) rotate(-8deg);
   box-shadow: 0 0 50px rgba(255, 140, 66, 0.6);
 }
 
 /* Card Content */
-.advantage-card h3 {
+.why-us-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
   margin-bottom: 1rem;
   font-size: 1.5rem;
   color: #FFFFFF;
   font-weight: 700;
+  line-height: 1.2;
 }
 
-.advantage-card p {
+.why-us-card p {
   color: #8A8A8A;
   margin: 0;
   line-height: 1.7;
@@ -924,7 +925,7 @@ section {
 }
 
 /* Slider Indicators (Dots) */
-.slider-indicators {
+.why-us-indicators {
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -932,7 +933,7 @@ section {
   margin-bottom: 1.5rem;
 }
 
-.slider-dot {
+.why-us-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -942,20 +943,20 @@ section {
   border: 2px solid transparent;
 }
 
-.slider-dot.active {
+.why-us-dot.active {
   background: linear-gradient(135deg, #007aff, #FF8C42);
   border-color: #FF8C42;
   box-shadow: 0 0 20px rgba(255, 140, 66, 0.6);
   transform: scale(1.2);
 }
 
-.slider-dot:hover {
+.why-us-dot:hover {
   background: rgba(255, 140, 66, 0.5);
   transform: scale(1.1);
 }
 
 /* Progress Bar */
-.slider-progress {
+.why-us-progress {
   width: 100%;
   max-width: 400px;
   height: 4px;
@@ -966,7 +967,7 @@ section {
   position: relative;
 }
 
-.slider-progress-bar {
+.why-us-progress-bar {
   height: 100%;
   background: linear-gradient(135deg, #007aff, #FF8C42);
   border-radius: 9999px;
@@ -977,19 +978,19 @@ section {
 
 /* Mobile Responsive - 1 card at a time */
 @media (max-width: 1024px) {
-  .advantage-card {
+  .why-us-card {
     flex: 0 0 100%;
   }
   
-  .advantages-slider-track {
+  .why-us-slider-track {
     gap: 2rem;
   }
   
-  .advantage-card {
+  .why-us-card {
     padding: 2rem;
   }
   
-  .section-header {
+  .why-us-header {
     margin-bottom: 2rem;
   }
 }
@@ -999,12 +1000,22 @@ section {
     padding: 4rem 0;
   }
   
-  .advantages-slider-wrapper {
+  .why-us-slider-wrapper {
     padding: 2rem 0;
   }
   
-  .slider-indicators {
+  .why-us-indicators {
     margin-top: 2rem;
+  }
+  
+  .why-us-card {
+    padding: 1.5rem;
+  }
+  
+  .why-us-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.75rem;
   }
 }
 
