@@ -272,7 +272,7 @@ class BackToTop {
 // ==========================================
 class Counter {
   constructor() {
-    this.counters = Utils.$('.counter');
+    this.counters = Utils.$$('.counter');
     this.animated = new Set();
   }
 
@@ -392,7 +392,7 @@ class Portfolio {
   }
 
   animateItems() {
-    const items = Utils.$('.portfolio-item');
+    const items = Utils.$$('.portfolio-item');
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
@@ -559,7 +559,7 @@ class AOSIntegration {
 // ==========================================
 class ScrollAnimations {
   constructor() {
-    this.elements = Utils.$('.advantage-card, .service-card, .result-card, .testimonial-card, .industry-card, .tech-item');
+    this.elements = Utils.$$('.advantage-card, .service-card, .result-card, .testimonial-card, .industry-card, .tech-item');
   }
 
   init() {
@@ -627,7 +627,7 @@ class FormEnhancement {
 // ==========================================
 class StatsAnimation {
   constructor() {
-    this.statNumbers = Utils.$('.stat-number, .metric-value');
+    this.statNumbers = Utils.$$('.stat-number, .metric-value');
     this.animated = new Set();
   }
 
@@ -650,7 +650,53 @@ class StatsAnimation {
     const text = element.textContent;
     const hasPercent = text.includes('%');
     const hasX = text.includes('x');
-    const hasDollar = text.includes('
+    const hasDollar = text.includes('$');
+    const hasPlus = text.includes('+');
+    const hasK = text.includes('K');
+    
+    // Extract number - handle both integers and decimals
+    let number = parseFloat(text.replace(/[^0-9.]/g, ''));
+    
+    if (isNaN(number)) return;
+    
+    let current = 0;
+    const increment = number / 40;
+    const stepTime = 30;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= number) {
+        let finalText = number;
+        
+        // Format based on original text
+        if (number % 1 !== 0) {
+          finalText = (Math.round(number * 10) / 10).toString();
+        } else {
+          finalText = Math.round(number).toString();
+        }
+        
+        if (hasDollar) finalText = '$' + finalText;
+        if (hasK) finalText = finalText + 'K';
+        if (hasPercent) finalText = finalText + '%';
+        if (hasX) finalText = finalText + 'x';
+        if (hasPlus) finalText = finalText + '+';
+        
+        element.textContent = finalText;
+        clearInterval(timer);
+      } else {
+        let displayText = Math.floor(current);
+        
+        if (hasDollar) displayText = '$' + displayText;
+        if (hasK) displayText = displayText + 'K';
+        if (hasPercent) displayText = displayText + '%';
+        if (hasX) displayText = displayText + 'x';
+        if (hasPlus) displayText = displayText + '+';
+        
+        element.textContent = displayText;
+      }
+    }, stepTime);
+  }
+}
 
 // ==========================================
 // APPLICATION CLASS
@@ -702,241 +748,6 @@ class App {
     
     // Log initialization complete
     console.log('✅ Elan\'s Tech World - Initialized Successfully');
-  }
-}
-
-// ==========================================
-// INITIALIZE APPLICATION
-// ==========================================
-const initApp = () => {
-  const app = new App();
-  app.init();
-};
-
-// Run on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
-
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { App, Utils, CONFIG };
-});
-    const hasPlus = text.includes('+');
-    const hasK = text.includes('K');
-    
-    // Extract number - handle both integers and decimals
-    let number = parseFloat(text.replace(/[^0-9.]/g, ''));
-    
-    if (isNaN(number)) return;
-    
-    let current = 0;
-    const increment = number / 40;
-    const stepTime = 30;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= number) {
-        let finalText = number;
-        
-        // Format based on original text
-        if (number % 1 !== 0) {
-          finalText = (Math.round(number * 10) / 10).toString();
-        } else {
-          finalText = Math.round(number).toString();
-        }
-        
-        if (hasDollar) finalText = '
-
-// ==========================================
-// APPLICATION CLASS
-// ==========================================
-class App {
-  constructor() {
-    this.modules = {
-      loader: new Loader(),
-      header: new Header(),
-      mobileMenu: new MobileMenu(),
-      navigation: new Navigation(),
-      backToTop: new BackToTop(),
-      counter: new Counter(),
-      portfolio: new Portfolio(),
-      faq: new FAQ(),
-      parallax: new Parallax(),
-      videoHandler: new VideoHandler(),
-      aosIntegration: new AOSIntegration(),
-      scrollAnimations: new ScrollAnimations(),
-      formEnhancement: new FormEnhancement(),
-      statsAnimation: new StatsAnimation()
-    };
-  }
-
-  init() {
-    // Remove preload class after a brief delay
-    setTimeout(() => {
-      document.body.classList.remove('preload');
-    }, 100);
-    
-    // Initialize all modules
-    Object.values(this.modules).forEach(module => {
-      if (module && typeof module.init === 'function') {
-        module.init();
-      }
-    });
-    
-    // Add loaded class to body
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-  }
-}
-
-// ==========================================
-// INITIALIZE APPLICATION
-// ==========================================
-const initApp = () => {
-  const app = new App();
-  app.init();
-};
-
-// Run on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
-
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { App, Utils, CONFIG };
-} + finalText;
-        if (hasK) finalText = finalText + 'K';
-        if (hasPercent) finalText = finalText + '%';
-        if (hasX) finalText = finalText + 'x';
-        if (hasPlus) finalText = finalText + '+';
-        
-        element.textContent = finalText;
-        clearInterval(timer);
-      } else {
-        let displayText = Math.floor(current);
-        
-        if (hasDollar) displayText = '
-
-// ==========================================
-// APPLICATION CLASS
-// ==========================================
-class App {
-  constructor() {
-    this.modules = {
-      loader: new Loader(),
-      header: new Header(),
-      mobileMenu: new MobileMenu(),
-      navigation: new Navigation(),
-      backToTop: new BackToTop(),
-      counter: new Counter(),
-      portfolio: new Portfolio(),
-      faq: new FAQ(),
-      parallax: new Parallax(),
-      videoHandler: new VideoHandler(),
-      aosIntegration: new AOSIntegration(),
-      scrollAnimations: new ScrollAnimations(),
-      formEnhancement: new FormEnhancement(),
-      statsAnimation: new StatsAnimation()
-    };
-  }
-
-  init() {
-    // Remove preload class after a brief delay
-    setTimeout(() => {
-      document.body.classList.remove('preload');
-    }, 100);
-    
-    // Initialize all modules
-    Object.values(this.modules).forEach(module => {
-      if (module && typeof module.init === 'function') {
-        module.init();
-      }
-    });
-    
-    // Add loaded class to body
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-  }
-}
-
-// ==========================================
-// INITIALIZE APPLICATION
-// ==========================================
-const initApp = () => {
-  const app = new App();
-  app.init();
-};
-
-// Run on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initApp);
-} else {
-  initApp();
-}
-
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { App, Utils, CONFIG };
-} + displayText;
-        if (hasK) displayText = displayText + 'K';
-        if (hasPercent) displayText = displayText + '%';
-        if (hasX) displayText = displayText + 'x';
-        if (hasPlus) displayText = displayText + '+';
-        
-        element.textContent = displayText;
-      }
-    }, stepTime);
-  }
-}
-
-// ==========================================
-// APPLICATION CLASS
-// ==========================================
-class App {
-  constructor() {
-    this.modules = {
-      loader: new Loader(),
-      header: new Header(),
-      mobileMenu: new MobileMenu(),
-      navigation: new Navigation(),
-      backToTop: new BackToTop(),
-      counter: new Counter(),
-      portfolio: new Portfolio(),
-      faq: new FAQ(),
-      parallax: new Parallax(),
-      videoHandler: new VideoHandler(),
-      aosIntegration: new AOSIntegration(),
-      scrollAnimations: new ScrollAnimations(),
-      formEnhancement: new FormEnhancement(),
-      statsAnimation: new StatsAnimation()
-    };
-  }
-
-  init() {
-    // Remove preload class after a brief delay
-    setTimeout(() => {
-      document.body.classList.remove('preload');
-    }, 100);
-    
-    // Initialize all modules
-    Object.values(this.modules).forEach(module => {
-      if (module && typeof module.init === 'function') {
-        module.init();
-      }
-    });
-    
-    // Add loaded class to body
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
   }
 }
 
