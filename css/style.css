@@ -367,6 +367,10 @@ section {
 /*======================================
   7. HEADER
 ======================================*/
+/*======================================
+  FUTURISTIC HEADER - UPDATED DESIGN
+======================================*/
+
 /* Header Container */
 .header-futuristic {
   position: fixed;
@@ -425,103 +429,36 @@ section {
   z-index: 1;
 }
 
-/* ===== CIRCULAR LOGO ===== */
+/* ===== SIMPLE LOGO (NO CIRCLE) ===== */
 .logo-futuristic {
   display: flex;
   align-items: center;
   gap: 1rem;
   position: relative;
   z-index: 10;
+  transition: all 0.3s ease;
 }
 
-.logo-circle {
-  position: relative;
+.logo-image {
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 0 0 2px rgba(255, 140, 66, 0.3),
-              0 0 20px rgba(255, 140, 66, 0.2),
-              inset 0 0 20px rgba(0, 122, 255, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logo-circle img {
-  width: 90%;
-  height: 90%;
-  object-fit: cover;
-  position: center;
-  z-index: 2;
-}
-
-/* Rotating Rings */
-.logo-ring,
-.logo-ring-2 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid transparent;
-  border-top-color: rgba(255, 140, 66, 0.6);
-  border-right-color: rgba(0, 122, 255, 0.4);
-  border-radius: 50%;
-  animation: spinRing 3s linear infinite;
-  z-index: 1;
-}
-
-.logo-ring {
-  width: calc(100% + 8px);
-  height: calc(100% + 8px);
-}
-
-.logo-ring-2 {
-  width: calc(100% + 16px);
-  height: calc(100% + 16px);
-  border-top-color: rgba(0, 122, 255, 0.6);
-  border-right-color: rgba(255, 140, 66, 0.4);
-  animation-duration: 4s;
-  animation-direction: reverse;
-}
-
-/* Pulse Effect */
-.logo-pulse {
-  position: absolute;
-  top: 0;
-  left: 0;
+.logo-image img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 140, 66, 0.3) 0%, transparent 70%);
-  animation: pulse 2s ease-in-out infinite;
-  z-index: 0;
+  object-fit: cover;
+  display: block;
 }
 
-@keyframes spinRing {
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes pulse {
-  0%, 100% { 
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% { 
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-/* Logo Hover */
-.logo-futuristic:hover .logo-circle {
-  transform: scale(1.1);
-  box-shadow: 0 0 0 3px rgba(255, 140, 66, 0.5),
-              0 0 30px rgba(255, 140, 66, 0.4),
-              inset 0 0 30px rgba(0, 122, 255, 0.2);
-}
-
-.logo-futuristic:hover .logo-ring,
-.logo-futuristic:hover .logo-ring-2 {
-  animation-duration: 1.5s;
+/* Logo Hover Effect */
+.logo-futuristic:hover .logo-image {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 140, 66, 0.3);
 }
 
 /* Logo Text */
@@ -574,44 +511,16 @@ section {
   overflow: hidden;
 }
 
-.nav-link-futuristic::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 140, 66, 0.1), rgba(0, 122, 255, 0.1));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.nav-link-futuristic::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) scaleX(0);
-  width: 80%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #FF8C42, transparent);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.nav-link-futuristic:hover,
-.nav-link-futuristic.active {
+/* Active/Hover State - ROUNDED BACKGROUND */
+.nav-link-futuristic.active,
+.nav-link-futuristic:hover {
   color: var(--white);
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.15), rgba(0, 122, 255, 0.15));
+  box-shadow: 0 4px 16px rgba(255, 140, 66, 0.2);
 }
 
-.nav-link-futuristic:hover::before,
-.nav-link-futuristic.active::before {
-  opacity: 1;
-}
-
-.nav-link-futuristic:hover::after,
-.nav-link-futuristic.active::after {
-  transform: translateX(-50%) scaleX(1);
+.nav-link-futuristic.active {
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.2), rgba(0, 122, 255, 0.2));
 }
 
 /* ===== HEADER ACTIONS ===== */
@@ -671,7 +580,7 @@ section {
   transform: translateX(4px);
 }
 
-/* ===== ABSTRACT MENU ICON ===== */
+/* ===== MODERN HAMBURGER MENU ICON ===== */
 .menu-toggle-futuristic {
   width: 48px;
   height: 48px;
@@ -679,12 +588,15 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 5px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
 }
 
 .menu-toggle-futuristic::before {
@@ -709,78 +621,42 @@ section {
   opacity: 1;
 }
 
-/* Menu Morph Animation */
-.menu-morph {
+/* Hamburger Lines */
+.hamburger-line {
   width: 24px;
-  height: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, #FF8C42, #007aff);
+  border-radius: 10px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
-.morph-dot {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: linear-gradient(135deg, #FF8C42, #FFB482);
-  border-radius: 50%;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 8px rgba(255, 140, 66, 0.6);
+.hamburger-line:nth-child(2) {
+  width: 18px;
+  margin-left: auto;
 }
 
-.morph-dot-1 { top: 0; left: 0; }
-.morph-dot-2 { top: 0; right: 0; }
-.morph-dot-3 { bottom: 0; left: 0; }
-.morph-dot-4 { bottom: 0; right: 0; }
-
-.morph-connector {
-  position: absolute;
-  background: linear-gradient(135deg, #FF8C42, #007aff);
-  border-radius: 10px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Active State (X) */
+.menu-toggle-futuristic.active .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  width: 24px;
 }
 
-.morph-connector-1 {
-  top: 3px;
-  left: 6px;
-  width: 12px;
-  height: 2px;
+.menu-toggle-futuristic.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
 }
 
-.morph-connector-2 {
-  bottom: 3px;
-  left: 6px;
-  width: 12px;
-  height: 2px;
+.menu-toggle-futuristic.active .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  width: 24px;
 }
 
-/* Active State */
-.menu-toggle-futuristic.active .morph-dot-1 {
-  transform: translate(6px, 6px) scale(1.2);
-}
-
-.menu-toggle-futuristic.active .morph-dot-2 {
-  transform: translate(-6px, 6px) scale(1.2);
-}
-
-.menu-toggle-futuristic.active .morph-dot-3 {
-  transform: translate(6px, -6px) scale(1.2);
-}
-
-.menu-toggle-futuristic.active .morph-dot-4 {
-  transform: translate(-6px, -6px) scale(1.2);
-}
-
-.menu-toggle-futuristic.active .morph-connector-1 {
-  transform: rotate(45deg);
-  width: 16px;
-  left: 4px;
-  top: 11px;
-}
-
-.menu-toggle-futuristic.active .morph-connector-2 {
-  transform: rotate(-45deg);
-  width: 16px;
-  left: 4px;
-  bottom: 11px;
+/* Hide Logo and Menu Icon when menu is active */
+.mobile-menu-futuristic.active ~ .header-futuristic .logo-futuristic,
+.mobile-menu-futuristic.active ~ .header-futuristic .menu-toggle-futuristic {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ===== MOBILE MENU ===== */
@@ -832,95 +708,16 @@ section {
   transform: translateX(0);
 }
 
-/* Mobile Menu Header */
+/* Mobile Menu Header - Hidden */
 .mobile-menu-header-futuristic {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.logo-futuristic-mobile {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.logo-circle-mobile {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow: 0 0 0 2px rgba(255, 140, 66, 0.4),
-              0 0 16px rgba(255, 140, 66, 0.3);
-}
-
-.logo-circle-mobile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.logo-pulse-mobile {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 140, 66, 0.3) 0%, transparent 70%);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Close Button */
-.mobile-menu-close-futuristic {
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.mobile-menu-close-futuristic:hover {
-  background: rgba(255, 140, 66, 0.1);
-  border-color: rgba(255, 140, 66, 0.3);
-  transform: rotate(90deg);
-}
-
-.close-morph {
-  width: 20px;
-  height: 20px;
-  position: relative;
-}
-
-.close-morph span {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, #FF8C42, #007aff);
-  border-radius: 10px;
-}
-
-.close-morph span:first-child {
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.close-morph span:last-child {
-  transform: translateY(-50%) rotate(-45deg);
+  display: none;
 }
 
 /* Mobile Navigation */
+.mobile-nav-futuristic {
+  margin-top: 2rem;
+}
+
 .mobile-nav-futuristic ul {
   list-style: none;
   display: flex;
@@ -1056,7 +853,7 @@ section {
     padding: 1.25rem 0;
   }
   
-  .logo-circle {
+  .logo-image {
     width: 70px;
     height: 70px;
   }
@@ -1075,7 +872,7 @@ section {
     padding: 0.875rem 0;
   }
   
-  .logo-circle {
+  .logo-image {
     width: 52px;
     height: 52px;
   }
