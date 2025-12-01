@@ -218,65 +218,139 @@ class BackToTop {
 // ==========================================
 // ADVANTAGES SLIDER (WHY US)
 // ==========================================
-class AdvantagesSlider {
+class WhyUsSlider {
   constructor() {
-    this.sliderTrack = Utils.$('.advantages-slider-track');
-    this.slideGroups = Utils.$$('.advantages-slide-group');
-    this.progressBar = Utils.$('.slider-progress-bar');
-    this.dots = Utils.$$('.slider-dot');
+    // DOM Elements - All with why-us- prefix
+    this.sliderTrack = document.querySelector('.why-us-slider-track');
+    this.cards = document.querySelectorAll('.why-us-card');
+    this.progressBar = document.querySelector('.why-us-progress-bar');
+    this.dotsContainer = document.querySelector('.why-us-indicators');
+    
+    // State
     this.currentIndex = 0;
-    this.totalSlides = this.slideGroups.length;
     this.isTransitioning = false;
     this.autoplayTimer = null;
     this.progressTimer = null;
-    this.slideInterval = 5000;
+    
+    // Settings
+    this.slideInterval = 5000; // 5 seconds per slide
+    this.cardsPerView = 3; // Desktop default
+    this.totalCards = this.cards.length;
+    this.totalSlides = 0;
+    this.dots = [];
   }
 
   init() {
-    if (!this.sliderTrack || this.slideGroups.length === 0) return;
+    if (!this.sliderTrack || this.cards.length === 0) return;
     
-    this.dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => this.goToSlide(index));
-    });
-    
+    this.updateCardsPerView();
+    this.createDots();
+    this.attachEventListeners();
     this.startAutoplay();
     this.startProgressAnimation();
+  }
+
+  /**
+   * Update cards per view based on screen size
+   */
+  updateCardsPerView() {
+    const width = window.innerWidth;
+    this.cardsPerView = width <= 1024 ? 1 : 3;
+    this.totalSlides = Math.ceil(this.totalCards / this.cardsPerView);
     
-    const wrapper = Utils.$('.advantages-slider-wrapper');
+    // Reset to first slide if current index is out of bounds
+    if (this.currentIndex >= this.totalSlides) {
+      this.currentIndex = this.totalSlides - 1;
+    }
+  }
+
+  /**
+   * Create navigation dots dynamically
+   */
+  createDots() {
+    if (!this.dotsContainer) return;
+    
+    // Clear existing dots
+    this.dotsContainer.innerHTML = '';
+    
+    // Create dots based on total slides
+    for (let i = 0; i < this.totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('why-us-dot');
+      if (i === 0) dot.classList.add('active');
+      
+      dot.addEventListener('click', () => this.goToSlide(i));
+      this.dotsContainer.appendChild(dot);
+    }
+    
+    this.dots = document.querySelectorAll('.why-us-dot');
+  }
+
+  /**
+   * Attach event listeners
+   */
+  attachEventListeners() {
+    const wrapper = document.querySelector('.why-us-slider-wrapper');
+    
+    // Pause on hover
     wrapper.addEventListener('mouseenter', () => this.pause());
     wrapper.addEventListener('mouseleave', () => this.resume());
     
-    this.animateCards();
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        this.updateCardsPerView();
+        this.createDots();
+        this.goToSlide(0); // Reset to first slide
+      }, 250);
+    });
   }
 
+  /**
+   * Go to specific slide
+   */
   goToSlide(index) {
-    if (this.isTransitioning || index === this.currentIndex) return;
+    if (this.isTransitioning || index === this.currentIndex || index < 0 || index >= this.totalSlides) {
+      return;
+    }
     
     this.isTransitioning = true;
     this.currentIndex = index;
     
-    const offset = -this.currentIndex * 100;
-    this.sliderTrack.style.transform = `translateX(${offset}%)`;
+    // Calculate offset
+    const cardWidth = this.cards[0].offsetWidth;
+    const gap = parseFloat(getComputedStyle(this.sliderTrack).gap);
+    const offset = -(this.currentIndex * this.cardsPerView * (cardWidth + gap));
     
+    // Apply transform
+    this.sliderTrack.style.transform = `translateX(${offset}px)`;
+    
+    // Update UI
     this.updateDots();
-    
-    setTimeout(() => {
-      this.animateCards();
-    }, 100);
-    
     this.resetProgress();
     
+    // Allow next transition after animation completes
     setTimeout(() => {
       this.isTransitioning = false;
-    }, 1000);
+    }, 800);
   }
 
+  /**
+   * Slide to next
+   */
   slideToNext() {
     const nextIndex = (this.currentIndex + 1) % this.totalSlides;
     this.goToSlide(nextIndex);
   }
 
+  /**
+   * Update active dot indicator
+   */
   updateDots() {
+    if (!this.dots) return;
+    
     this.dots.forEach((dot, index) => {
       if (index === this.currentIndex) {
         dot.classList.add('active');
@@ -286,23 +360,18 @@ class AdvantagesSlider {
     });
   }
 
-  animateCards() {
-    const currentGroup = this.slideGroups[this.currentIndex];
-    const cards = Utils.$$('.advantage-card', currentGroup);
-    
-    cards.forEach((card, index) => {
-      card.style.animation = 'none';
-      card.offsetHeight;
-      card.style.animation = `fadeInCard 0.6s ease-out ${index * 0.1}s forwards`;
-    });
-  }
-
+  /**
+   * Start autoplay
+   */
   startAutoplay() {
     this.autoplayTimer = setInterval(() => {
       this.slideToNext();
     }, this.slideInterval);
   }
 
+  /**
+   * Start progress bar animation
+   */
   startProgressAnimation() {
     let progress = 0;
     const increment = 100 / (this.slideInterval / 50);
@@ -320,12 +389,18 @@ class AdvantagesSlider {
     }, 50);
   }
 
+  /**
+   * Reset progress bar
+   */
   resetProgress() {
     if (this.progressBar) {
       this.progressBar.style.width = '0%';
     }
   }
 
+  /**
+   * Pause autoplay and progress
+   */
   pause() {
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
@@ -337,6 +412,9 @@ class AdvantagesSlider {
     }
   }
 
+  /**
+   * Resume autoplay and progress
+   */
   resume() {
     if (!this.autoplayTimer) {
       this.resetProgress();
@@ -345,6 +423,12 @@ class AdvantagesSlider {
     }
   }
 }
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  const whyUsSlider = new WhyUsSlider();
+  whyUsSlider.init();
+});
 
 // ==========================================
 // PORTFOLIO
