@@ -233,7 +233,7 @@ class WhyUsSlider {
     this.progressTimer = null;
     
     // Settings
-    this.slideInterval = 5000; // 5 seconds per slide
+    this.slideInterval = 3000; // 3 seconds per slide
     this.cardsPerView = 3; // Desktop default
     this.totalCards = this.cards.length;
     this.totalSlides = 0;
