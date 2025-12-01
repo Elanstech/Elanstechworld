@@ -277,31 +277,50 @@ class Counter {
   }
 
   init() {
-    if (!this.counters.length) {
-      console.log('No counters found');
-      return;
-    }
-    
+    // Wait a bit to ensure DOM is fully loaded
+    setTimeout(() => {
+      this.counters = Utils.$('.counter');
+      
+      if (!this.counters.length) {
+        console.log('No counters found, trying again...');
+        // Try one more time after a delay
+        setTimeout(() => {
+          this.counters = Utils.$('.counter');
+          if (!this.counters.length) {
+            console.log('Still no counters found');
+            return;
+          }
+          this.startCounters();
+        }, 500);
+        return;
+      }
+      
+      this.startCounters();
+    }, 100);
+  }
+
+  startCounters() {
     console.log(`Found ${this.counters.length} counters to animate`);
     
-    // Check if counters are already visible on page load (like hero stats)
+    // Animate counters that are already visible (like hero stats)
     setTimeout(() => {
       this.counters.forEach(counter => {
         const rect = counter.getBoundingClientRect();
         const isVisible = rect.top >= 0 && rect.top <= window.innerHeight;
         
         if (isVisible && !this.animated.has(counter)) {
-          console.log('Counter already visible, animating immediately:', counter);
+          console.log('Counter already visible, animating immediately:', counter.getAttribute('data-target'));
           this.animateCounter(counter);
           this.animated.add(counter);
         }
       });
-    }, 500); // Small delay after page load
+    }, 200);
     
+    // Set up observer for counters that scroll into view
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !this.animated.has(entry.target)) {
-          console.log('Animating counter:', entry.target);
+          console.log('Animating counter on scroll:', entry.target.getAttribute('data-target'));
           this.animateCounter(entry.target);
           this.animated.add(entry.target);
         }
