@@ -774,56 +774,94 @@ section {
 /*======================================
   10. WHY US SECTION - AUTO SLIDER
 ======================================*/
+/**
+ * Why Choose Us Section - Auto Slider CSS
+ * Responsive slider: 3 cards on desktop, 1 card on mobile
+ */
+
+/* Section Styling */
 .why-us-section {
-  background: var(--black-light);
+  background: #141414;
+  position: relative;
+  padding: 6rem 0;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
   position: relative;
 }
 
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: rgba(255, 140, 66, 0.1);
+  border: 1px solid rgba(255, 140, 66, 0.2);
+  border-radius: 9999px;
+  color: #FF8C42;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.section-description {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  color: #8A8A8A;
+}
+
+/* Slider Wrapper */
 .advantages-slider-wrapper {
   position: relative;
   overflow: hidden;
-  padding: var(--space-xl) 0;
+  padding: 3rem 0;
 }
 
+/* Slider Track */
 .advantages-slider-track {
   display: flex;
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 3rem;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 
-.advantages-slide-group {
-  min-width: 100%;
-  flex-shrink: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
-  padding: 0 var(--space-sm);
-}
-
+/* Advantage Cards */
 .advantage-card {
-  padding: var(--space-xl);
+  flex: 0 0 calc((100% - (2 * 3rem)) / 3);
+  padding: 3rem;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
-  transition: all var(--transition-base);
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  animation: fadeInCard 0.6s ease-out forwards;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-@keyframes fadeInCard {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-.advantage-card:nth-child(1) { animation-delay: 0.1s; }
-.advantage-card:nth-child(2) { animation-delay: 0.2s; }
-.advantage-card:nth-child(3) { animation-delay: 0.3s; }
 
 .advantage-card::before {
   content: '';
@@ -832,36 +870,37 @@ section {
   left: 0;
   width: 100%;
   height: 4px;
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #007aff, #FF8C42);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform var(--transition-base);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .advantage-card:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 140, 66, 0.3);
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-8px);
+  box-shadow: 0 0 40px rgba(255, 140, 66, 0.3);
 }
 
 .advantage-card:hover::before {
   transform: scaleX(1);
 }
 
+/* Advantage Icon */
 .advantage-icon {
   width: 70px;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  border-radius: 20px;
   font-size: 2rem;
-  color: var(--white);
-  margin-bottom: var(--space-lg);
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-glow);
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 40px rgba(255, 140, 66, 0.3);
 }
 
 .advantage-card:hover .advantage-icon {
@@ -869,24 +908,28 @@ section {
   box-shadow: 0 0 50px rgba(255, 140, 66, 0.6);
 }
 
+/* Card Content */
 .advantage-card h3 {
-  margin-bottom: var(--space-sm);
+  margin-bottom: 1rem;
   font-size: 1.5rem;
-  color: var(--white);
+  color: #FFFFFF;
+  font-weight: 700;
 }
 
 .advantage-card p {
-  color: var(--gray-lighter);
+  color: #8A8A8A;
   margin: 0;
   line-height: 1.7;
+  font-size: 1rem;
 }
 
+/* Slider Indicators (Dots) */
 .slider-indicators {
   display: flex;
   justify-content: center;
-  gap: var(--space-sm);
-  margin-top: var(--space-xl);
-  margin-bottom: var(--space-md);
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .slider-dot {
@@ -895,13 +938,13 @@ section {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid transparent;
 }
 
 .slider-dot.active {
-  background: var(--gradient-primary);
-  border-color: var(--hermes-orange);
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  border-color: #FF8C42;
   box-shadow: 0 0 20px rgba(255, 140, 66, 0.6);
   transform: scale(1.2);
 }
@@ -911,12 +954,13 @@ section {
   transform: scale(1.1);
 }
 
+/* Progress Bar */
 .slider-progress {
   width: 100%;
   max-width: 400px;
   height: 4px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-full);
+  border-radius: 9999px;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -924,11 +968,44 @@ section {
 
 .slider-progress-bar {
   height: 100%;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  border-radius: 9999px;
   width: 0;
   transition: width 0.1s linear;
   box-shadow: 0 0 20px rgba(255, 140, 66, 0.6);
+}
+
+/* Mobile Responsive - 1 card at a time */
+@media (max-width: 1024px) {
+  .advantage-card {
+    flex: 0 0 100%;
+  }
+  
+  .advantages-slider-track {
+    gap: 2rem;
+  }
+  
+  .advantage-card {
+    padding: 2rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .why-us-section {
+    padding: 4rem 0;
+  }
+  
+  .advantages-slider-wrapper {
+    padding: 2rem 0;
+  }
+  
+  .slider-indicators {
+    margin-top: 2rem;
+  }
 }
 
 /*======================================
