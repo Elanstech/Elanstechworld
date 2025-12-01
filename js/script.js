@@ -69,7 +69,6 @@ class FuturisticHeader {
     this.header = document.querySelector('.header-futuristic');
     this.menuToggle = document.querySelector('.menu-toggle-futuristic');
     this.mobileMenu = document.querySelector('.mobile-menu-futuristic');
-    this.menuClose = document.querySelector('.mobile-menu-close-futuristic');
     this.backdrop = document.querySelector('.mobile-menu-backdrop-futuristic');
     this.navLinks = document.querySelectorAll('.mobile-nav-link-futuristic');
     this.desktopNavLinks = document.querySelectorAll('.nav-link-futuristic');
@@ -96,7 +95,6 @@ class FuturisticHeader {
   setupEventListeners() {
     // Menu toggle
     this.menuToggle?.addEventListener('click', () => this.toggleMenu());
-    this.menuClose?.addEventListener('click', () => this.closeMenu());
     this.backdrop?.addEventListener('click', () => this.closeMenu());
     
     // Mobile nav links
