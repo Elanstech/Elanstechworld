@@ -258,22 +258,33 @@
     </div>
 </section>
     
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Our Expertise</span>
-                <h2 class="section-title">Premium <span class="gradient-text">Services</span></h2>
-                <p class="section-description">Comprehensive digital solutions tailored to your business needs</p>
-            </div>
+<!-- Services Section -->
+<section id="services" class="services-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Our Expertise</span>
+            <h2 class="section-title">Premium <span class="gradient-text">Services</span></h2>
+            <p class="section-description">Comprehensive digital solutions tailored to your business needs</p>
+        </div>
+        
+        <!-- Services Slider Wrapper -->
+        <div class="services-slider-wrapper">
+            <!-- Previous Arrow -->
+            <button class="services-arrow services-arrow-prev" aria-label="Previous services">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
             
-            <div class="services-grid">
+            <!-- Services Track -->
+            <div class="services-slider-track">
+                <!-- Service 1: Web Development -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Web Development</h3>
-                    <p>Custom, responsive websites that captivate and convert</p>
+                    <p>Custom, responsive websites that captivate and convert your audience</p>
                     <ul class="service-features">
                         <li>Responsive Design</li>
                         <li>E-commerce Solutions</li>
@@ -286,10 +297,49 @@
                     </a>
                 </div>
                 
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="200">
+                <!-- Service 2: Digital Marketing -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Strategic campaigns that drive growth and engagement across all channels</p>
+                    <ul class="service-features">
+                        <li>SEO & SEM</li>
+                        <li>Social Media Marketing</li>
+                        <li>Email Campaigns</li>
+                        <li>Google Ads Management</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3: Business Materials -->
+                <div class="service-card featured" data-aos="fade-up" data-aos-delay="300">
                     <div class="featured-badge">Popular</div>
                     <div class="service-icon">
-                        <i class="fas fa-store"></i>
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <h3>Business Materials</h3>
+                    <p>Professional branding materials that make a lasting impression</p>
+                    <ul class="service-features">
+                        <li>Business Cards</li>
+                        <li>Brochures & Flyers</li>
+                        <li>Brand Identity</li>
+                        <li>Marketing Collateral</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4: POS Systems -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-cash-register"></i>
                     </div>
                     <h3>POS Systems</h3>
                     <p>Modern point-of-sale solutions for retail & service businesses</p>
@@ -305,17 +355,37 @@
                     </a>
                 </div>
                 
+                <!-- Service 5: Custom Signage -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-sign"></i>
+                    </div>
+                    <h3>Custom Signage</h3>
+                    <p>Eye-catching signs that elevate your brand visibility and presence</p>
+                    <ul class="service-features">
+                        <li>Round & Dimensional Signs</li>
+                        <li>Interior Signage</li>
+                        <li>Exterior Displays</li>
+                        <li>LED & Illuminated</li>
+                    </ul>
+                    <a href="#contact" class="service-link">
+                        <span>Learn More</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 6: Property Management -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
+                        <i class="fas fa-building"></i>
                     </div>
-                    <h3>Digital Marketing</h3>
-                    <p>Strategic campaigns that drive growth and engagement</p>
+                    <h3>Property Management</h3>
+                    <p>Streamlined software solutions like DoorLoop for efficient property operations</p>
                     <ul class="service-features">
-                        <li>SEO & SEM</li>
-                        <li>Social Media</li>
-                        <li>Email Marketing</li>
-                        <li>Google Ads</li>
+                        <li>Tenant Portals</li>
+                        <li>Maintenance Tracking</li>
+                        <li>Rent Collection</li>
+                        <li>Lease Management</li>
                     </ul>
                     <a href="#contact" class="service-link">
                         <span>Learn More</span>
@@ -323,8 +393,24 @@
                     </a>
                 </div>
             </div>
+            
+            <!-- Next Arrow -->
+            <button class="services-arrow services-arrow-next" aria-label="Next services">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
-    </section>
+        
+        <!-- Slider Indicators -->
+        <div class="services-indicators"></div>
+        
+        <!-- Progress Bar -->
+        <div class="services-progress">
+            <div class="services-progress-bar"></div>
+        </div>
+    </div>
+</section>
 
     <!-- Results Section -->
     <section id="results" class="results-section">
