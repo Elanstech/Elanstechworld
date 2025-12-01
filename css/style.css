@@ -699,14 +699,12 @@ section {
   height: 100%;
   overflow: hidden;
   z-index: 0;
-  will-change: transform;
 }
 
 .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  will-change: transform;
 }
 
 .hero-overlay {
@@ -755,47 +753,6 @@ section {
   margin-bottom: var(--space-2xl);
 }
 
-.hero-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xl);
-  justify-content: center;
-  padding-top: var(--space-2xl);
-}
-
-.stat-item {
-  text-align: center;
-  padding: var(--space-lg);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-lg);
-  min-width: 150px;
-  transition: var(--transition-base);
-}
-
-.stat-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--hermes-orange);
-  transform: translateY(-5px);
-}
-
-.stat-number {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: var(--gradient-primary);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  line-height: 1;
-  margin-bottom: var(--space-xs);
-}
-
-.stat-label {
-  color: var(--gray-lighter);
-  font-size: 0.875rem;
-}
-
 .scroll-indicator {
   position: absolute;
   bottom: var(--space-xl);
@@ -824,29 +781,40 @@ section {
 }
 
 /*======================================
-  10. WHY US SECTION
+  10. WHY US SECTION - AUTO SLIDER
 ======================================*/
 .why-us-section {
   background: var(--black-light);
+  position: relative;
 }
 
-.advantages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-xl);
-}
-
-.advantage-card {
-  padding: var(--space-xl);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-lg);
-  transition: var(--transition-base);
+.advantages-slider-wrapper {
   position: relative;
   overflow: hidden;
+  padding: var(--space-lg) 0;
 }
 
-.advantage-card::before {
+.advantages-slider {
+  display: flex;
+  gap: var(--space-xl);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.advantage-slide {
+  min-width: 350px;
+  flex-shrink: 0;
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-base);
+}
+
+.advantage-slide::before {
   content: '';
   position: absolute;
   top: 0;
@@ -858,13 +826,14 @@ section {
   transition: var(--transition-base);
 }
 
-.advantage-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--hermes-orange);
-  transform: translateY(-8px);
+.advantage-slide:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 140, 66, 0.3);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
 }
 
-.advantage-card:hover::before {
+.advantage-slide:hover::before {
   transform: scaleX(1);
 }
 
@@ -880,20 +849,55 @@ section {
   color: var(--white);
   margin-bottom: var(--space-lg);
   transition: var(--transition-base);
-}
-
-.advantage-card:hover .advantage-icon {
-  transform: scale(1.1) rotate(-5deg);
   box-shadow: var(--shadow-glow);
 }
 
-.advantage-card h3 {
-  margin-bottom: var(--space-sm);
+.advantage-slide:hover .advantage-icon {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 0 50px rgba(255, 140, 66, 0.5);
 }
 
-.advantage-card p {
+.advantage-slide h3 {
+  margin-bottom: var(--space-sm);
+  font-size: 1.5rem;
+}
+
+.advantage-slide p {
   color: var(--gray-lighter);
   margin: 0;
+  line-height: 1.6;
+}
+
+.slider-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-progress-bar {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  width: 0;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 20px rgba(255, 140, 66, 0.6);
+}
+
+/* Responsive slider */
+@media (min-width: 768px) {
+  .advantage-slide {
+    min-width: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .advantage-slide {
+    min-width: 450px;
+  }
 }
 
 /*======================================
@@ -1861,6 +1865,10 @@ section {
   .about-content {
     grid-template-columns: 1fr 1fr;
   }
+  
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 992px) {
@@ -1890,17 +1898,8 @@ section {
     grid-template-columns: 1fr;
   }
   
-  .hero-stats {
-    gap: var(--space-md);
-  }
-  
-  .stat-item {
-    min-width: 120px;
-    padding: var(--space-md);
-  }
-  
-  .stat-number {
-    font-size: 2rem;
+  .advantage-slide {
+    min-width: 300px;
   }
   
   .about-stats {
