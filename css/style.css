@@ -367,10 +367,6 @@ section {
 /*======================================
   7. HEADER
 ======================================*/
-/*======================================
-  FUTURISTIC HEADER - ABSTRACT DESIGN
-======================================*/
-
 /* Header Container */
 .header-futuristic {
   position: fixed;
@@ -451,8 +447,8 @@ section {
 }
 
 .logo-circle img {
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  height: 90%;
   object-fit: cover;
   position: center;
   z-index: 2;
