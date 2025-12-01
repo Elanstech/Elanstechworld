@@ -733,7 +733,7 @@ class App {
       mobileMenu: new MobileMenu(),
       navigation: new Navigation(),
       backToTop: new BackToTop(),
-      advantagesSlider: new AdvantagesSlider(),
+      whyusSlider: new WhyUsSlider(),
       portfolio: new Portfolio(),
       faq: new FAQ(),
       videoHandler: new VideoHandler(),
