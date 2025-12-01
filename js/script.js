@@ -406,6 +406,286 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
+// SERVICES SLIDER
+// ==========================================
+class ServicesSlider {
+  constructor() {
+    this.sliderTrack = document.querySelector('.services-slider-track');
+    this.cards = document.querySelectorAll('.service-card');
+    this.progressBar = document.querySelector('.services-progress-bar');
+    this.dotsContainer = document.querySelector('.services-indicators');
+    this.prevButton = document.querySelector('.services-arrow-prev');
+    this.nextButton = document.querySelector('.services-arrow-next');
+    
+    this.currentIndex = 0;
+    this.isTransitioning = false;
+    this.autoplayTimer = null;
+    this.progressTimer = null;
+    
+    this.slideInterval = 5000; // 5 seconds per slide
+    this.cardsPerView = 3;
+    this.totalCards = this.cards.length;
+    this.totalSlides = 0;
+    this.dots = [];
+  }
+
+  init() {
+    if (!this.sliderTrack || this.cards.length === 0) return;
+    
+    this.updateCardsPerView();
+    this.createDots();
+    this.attachEventListeners();
+    this.updateArrows();
+    this.animateVisibleCards();
+    this.startAutoplay();
+    this.startProgressAnimation();
+  }
+
+  updateCardsPerView() {
+    const width = window.innerWidth;
+    this.cardsPerView = width <= 1024 ? 1 : 3;
+    this.totalSlides = Math.ceil(this.totalCards / this.cardsPerView);
+    
+    if (this.currentIndex >= this.totalSlides) {
+      this.currentIndex = this.totalSlides - 1;
+    }
+  }
+
+  createDots() {
+    if (!this.dotsContainer) return;
+    
+    this.dotsContainer.innerHTML = '';
+    
+    for (let i = 0; i < this.totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('services-dot');
+      if (i === 0) dot.classList.add('active');
+      
+      dot.addEventListener('click', () => this.goToSlide(i));
+      this.dotsContainer.appendChild(dot);
+    }
+    
+    this.dots = document.querySelectorAll('.services-dot');
+  }
+
+  attachEventListeners() {
+    const wrapper = document.querySelector('.services-slider-wrapper');
+    
+    // Arrow buttons
+    this.prevButton?.addEventListener('click', () => this.slideToPrev());
+    this.nextButton?.addEventListener('click', () => this.slideToNext());
+    
+    // Pause on hover
+    wrapper?.addEventListener('mouseenter', () => this.pause());
+    wrapper?.addEventListener('mouseleave', () => this.resume());
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') this.slideToPrev();
+      if (e.key === 'ArrowRight') this.slideToNext();
+    });
+    
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    wrapper?.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    wrapper?.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      this.handleSwipe(touchStartX, touchEndX);
+    });
+    
+    // Window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        this.updateCardsPerView();
+        this.createDots();
+        this.goToSlide(this.currentIndex, false);
+        this.updateArrows();
+      }, 250);
+    });
+  }
+
+  handleSwipe(startX, endX) {
+    const swipeThreshold = 50;
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        this.slideToNext();
+      } else {
+        this.slideToPrev();
+      }
+    }
+  }
+
+  goToSlide(index, animate = true) {
+    if (this.isTransitioning || index === this.currentIndex || index < 0 || index >= this.totalSlides) {
+      return;
+    }
+    
+    this.isTransitioning = true;
+    
+    // Animate out current cards
+    if (animate) {
+      this.animateCardsOut(this.currentIndex);
+    }
+    
+    setTimeout(() => {
+      this.currentIndex = index;
+      
+      // Calculate offset
+      const cardWidth = this.cards[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(this.sliderTrack).gap) || 0;
+      const offset = -(this.currentIndex * this.cardsPerView * (cardWidth + gap));
+      
+      // Apply transform
+      this.sliderTrack.style.transform = `translateX(${offset}px)`;
+      
+      // Update UI
+      this.updateDots();
+      this.updateArrows();
+      this.resetProgress();
+      
+      // Animate in new cards
+      if (animate) {
+        setTimeout(() => {
+          this.animateCardsIn(this.currentIndex);
+        }, 100);
+      } else {
+        this.animateVisibleCards();
+      }
+      
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, animate ? 800 : 0);
+    }, animate ? 300 : 0);
+  }
+
+  animateCardsOut(slideIndex) {
+    const startIdx = slideIndex * this.cardsPerView;
+    const endIdx = Math.min(startIdx + this.cardsPerView, this.totalCards);
+    
+    for (let i = startIdx; i < endIdx; i++) {
+      this.cards[i]?.classList.remove('animate-in');
+      this.cards[i]?.classList.add('animate-out');
+    }
+  }
+
+  animateCardsIn(slideIndex) {
+    const startIdx = slideIndex * this.cardsPerView;
+    const endIdx = Math.min(startIdx + this.cardsPerView, this.totalCards);
+    
+    this.cards.forEach(card => {
+      card.classList.remove('animate-in', 'animate-out');
+    });
+    
+    for (let i = startIdx; i < endIdx; i++) {
+      setTimeout(() => {
+        this.cards[i]?.classList.add('animate-in');
+      }, (i - startIdx) * 100);
+    }
+  }
+
+  animateVisibleCards() {
+    const startIdx = this.currentIndex * this.cardsPerView;
+    const endIdx = Math.min(startIdx + this.cardsPerView, this.totalCards);
+    
+    for (let i = startIdx; i < endIdx; i++) {
+      this.cards[i]?.classList.add('animate-in');
+    }
+  }
+
+  slideToNext() {
+    const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+    this.goToSlide(nextIndex);
+  }
+
+  slideToPrev() {
+    const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+    this.goToSlide(prevIndex);
+  }
+
+  updateDots() {
+    if (!this.dots.length) return;
+    
+    this.dots.forEach((dot, index) => {
+      if (index === this.currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  updateArrows() {
+    if (this.prevButton && this.nextButton) {
+      this.prevButton.disabled = false;
+      this.nextButton.disabled = false;
+    }
+  }
+
+  startAutoplay() {
+    this.autoplayTimer = setInterval(() => {
+      this.slideToNext();
+    }, this.slideInterval);
+  }
+
+  startProgressAnimation() {
+    let progress = 0;
+    const increment = 100 / (this.slideInterval / 50);
+    
+    this.progressTimer = setInterval(() => {
+      progress += increment;
+      
+      if (progress >= 100) {
+        progress = 0;
+      }
+      
+      if (this.progressBar) {
+        this.progressBar.style.width = `${progress}%`;
+      }
+    }, 50);
+  }
+
+  resetProgress() {
+    if (this.progressBar) {
+      this.progressBar.style.width = '0%';
+    }
+  }
+
+  pause() {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
+      this.autoplayTimer = null;
+    }
+    if (this.progressTimer) {
+      clearInterval(this.progressTimer);
+      this.progressTimer = null;
+    }
+  }
+
+  resume() {
+    if (!this.autoplayTimer) {
+      this.resetProgress();
+      this.startAutoplay();
+      this.startProgressAnimation();
+    }
+  }
+}
+
+// Initialize Services Slider
+document.addEventListener('DOMContentLoaded', () => {
+  const servicesSlider = new ServicesSlider();
+  servicesSlider.init();
+});
+
+// ==========================================
 // PORTFOLIO
 // ==========================================
 class Portfolio {
@@ -704,9 +984,10 @@ class App {
   constructor() {
     this.modules = {
       loader: new Loader(),
-      futuristicHeader: new FuturisticHeader(),  // ADD THIS LINE
+      futuristicHeader: new FuturisticHeader(),
       backToTop: new BackToTop(),
       whyusSlider: new WhyUsSlider(),
+      servicesSlider: new ServicesSlider(), // ADD THIS LINE
       portfolio: new Portfolio(),
       faq: new FAQ(),
       videoHandler: new VideoHandler(),
