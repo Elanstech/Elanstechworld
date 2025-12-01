@@ -1,25 +1,16 @@
 /**
  * Elan's Tech World - Complete JavaScript
- * Fixed Hero Video + Auto-Slider for Advantages
+ * Clean, organized structure - No redundancy
  */
 
 // ==========================================
-// CONFIGURATION
+// UTILITY FUNCTIONS
 // ==========================================
-const CONFIG = {
-  scrollThreshold: 50,
-  loaderDuration: 1500,
-  throttleDelay: 50,
-  debounceDelay: 150,
-  sliderInterval: 4000, // Auto-slide every 4 seconds
-  sliderTransition: 800
-};
-
-// ==========================================
-// UTILITY CLASS
-// ==========================================
-class Utils {
-  static throttle(func, delay) {
+const Utils = {
+  $: (selector, parent = document) => parent.querySelector(selector),
+  $$: (selector, parent = document) => [...parent.querySelectorAll(selector)],
+  
+  throttle(func, delay) {
     let timeoutId = null;
     let lastExecTime = 0;
     
@@ -39,27 +30,19 @@ class Utils {
         }, delay - timeSinceLastExec);
       }
     };
-  }
-
-  static debounce(func, delay) {
+  },
+  
+  debounce(func, delay) {
     let timeoutId;
     return (...args) => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => func(...args), delay);
     };
   }
-
-  static $(selector, parent = document) {
-    return parent.querySelector(selector);
-  }
-
-  static $$(selector, parent = document) {
-    return [...parent.querySelectorAll(selector)];
-  }
-}
+};
 
 // ==========================================
-// LOADER CLASS
+// LOADER
 // ==========================================
 class Loader {
   constructor() {
@@ -68,51 +51,41 @@ class Loader {
 
   init() {
     if (!this.loader) return;
-    
-    setTimeout(() => this.hide(), CONFIG.loaderDuration);
+    setTimeout(() => this.hide(), 1500);
   }
 
   hide() {
     this.loader.classList.add('hidden');
     document.body.classList.remove('preload');
-    
-    setTimeout(() => {
-      this.loader.style.display = 'none';
-    }, 300);
+    setTimeout(() => this.loader.style.display = 'none', 300);
   }
 }
 
 // ==========================================
-// HEADER CLASS
+// HEADER
 // ==========================================
 class Header {
   constructor() {
     this.header = Utils.$('.header');
-    this.lastScroll = 0;
   }
 
   init() {
     if (!this.header) return;
-    
     this.handleScroll();
-    window.addEventListener('scroll', Utils.throttle(() => this.handleScroll(), CONFIG.throttleDelay));
+    window.addEventListener('scroll', Utils.throttle(() => this.handleScroll(), 50));
   }
 
   handleScroll() {
-    const currentScroll = window.scrollY;
-    
-    if (currentScroll > CONFIG.scrollThreshold) {
+    if (window.scrollY > 50) {
       this.header.classList.add('scrolled');
     } else {
       this.header.classList.remove('scrolled');
     }
-    
-    this.lastScroll = currentScroll;
   }
 }
 
 // ==========================================
-// MOBILE MENU CLASS
+// MOBILE MENU
 // ==========================================
 class MobileMenu {
   constructor() {
@@ -126,10 +99,6 @@ class MobileMenu {
   init() {
     if (!this.menuToggle || !this.mobileMenu) return;
     
-    this.bindEvents();
-  }
-
-  bindEvents() {
     this.menuToggle.addEventListener('click', () => this.toggle());
     this.menuClose?.addEventListener('click', () => this.close());
     this.backdrop?.addEventListener('click', () => this.close());
@@ -153,7 +122,7 @@ class MobileMenu {
 }
 
 // ==========================================
-// NAVIGATION CLASS
+// NAVIGATION
 // ==========================================
 class Navigation {
   constructor() {
@@ -178,10 +147,8 @@ class Navigation {
           const target = Utils.$(href);
           
           if (target) {
-            const targetPosition = target.offsetTop - 80;
-            
             window.scrollTo({
-              top: targetPosition,
+              top: target.offsetTop - 80,
               behavior: 'smooth'
             });
             
@@ -219,7 +186,7 @@ class Navigation {
 }
 
 // ==========================================
-// BACK TO TOP CLASS
+// BACK TO TOP
 // ==========================================
 class BackToTop {
   constructor() {
@@ -244,80 +211,101 @@ class BackToTop {
 
   scrollToTop(e) {
     e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 // ==========================================
-// AUTO SLIDER CLASS (WHY US SECTION)
+// ADVANTAGES SLIDER (WHY US)
 // ==========================================
 class AdvantagesSlider {
   constructor() {
-    this.slider = Utils.$('.advantages-slider');
-    this.slides = Utils.$$('.advantage-slide');
+    this.sliderTrack = Utils.$('.advantages-slider-track');
+    this.slideGroups = Utils.$$('.advantages-slide-group');
     this.progressBar = Utils.$('.slider-progress-bar');
+    this.dots = Utils.$$('.slider-dot');
     this.currentIndex = 0;
+    this.totalSlides = this.slideGroups.length;
     this.isTransitioning = false;
     this.autoplayTimer = null;
     this.progressTimer = null;
+    this.slideInterval = 5000;
   }
 
   init() {
-    if (!this.slider || this.slides.length === 0) return;
+    if (!this.sliderTrack || this.slideGroups.length === 0) return;
     
-    // Clone slides for infinite effect
-    this.slides.forEach(slide => {
-      const clone = slide.cloneNode(true);
-      this.slider.appendChild(clone);
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToSlide(index));
     });
     
     this.startAutoplay();
     this.startProgressAnimation();
     
-    // Pause on hover
-    this.slider.addEventListener('mouseenter', () => this.pause());
-    this.slider.addEventListener('mouseleave', () => this.resume());
+    const wrapper = Utils.$('.advantages-slider-wrapper');
+    wrapper.addEventListener('mouseenter', () => this.pause());
+    wrapper.addEventListener('mouseleave', () => this.resume());
+    
+    this.animateCards();
+  }
+
+  goToSlide(index) {
+    if (this.isTransitioning || index === this.currentIndex) return;
+    
+    this.isTransitioning = true;
+    this.currentIndex = index;
+    
+    const offset = -this.currentIndex * 100;
+    this.sliderTrack.style.transform = `translateX(${offset}%)`;
+    
+    this.updateDots();
+    
+    setTimeout(() => {
+      this.animateCards();
+    }, 100);
+    
+    this.resetProgress();
+    
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 1000);
   }
 
   slideToNext() {
-    if (this.isTransitioning) return;
-    
-    this.isTransitioning = true;
-    this.currentIndex++;
-    
-    const slideWidth = this.slides[0].offsetWidth + 32; // including gap
-    const offset = -this.currentIndex * slideWidth;
-    
-    this.slider.style.transform = `translateX(${offset}px)`;
-    
-    setTimeout(() => {
-      // Reset to beginning when we reach the end
-      if (this.currentIndex >= this.slides.length) {
-        this.slider.style.transition = 'none';
-        this.currentIndex = 0;
-        this.slider.style.transform = 'translateX(0)';
-        
-        setTimeout(() => {
-          this.slider.style.transition = `transform ${CONFIG.sliderTransition}ms cubic-bezier(0.4, 0, 0.2, 1)`;
-        }, 50);
+    const nextIndex = (this.currentIndex + 1) % this.totalSlides;
+    this.goToSlide(nextIndex);
+  }
+
+  updateDots() {
+    this.dots.forEach((dot, index) => {
+      if (index === this.currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
       }
-      
-      this.isTransitioning = false;
-    }, CONFIG.sliderTransition);
+    });
+  }
+
+  animateCards() {
+    const currentGroup = this.slideGroups[this.currentIndex];
+    const cards = Utils.$$('.advantage-card', currentGroup);
+    
+    cards.forEach((card, index) => {
+      card.style.animation = 'none';
+      card.offsetHeight;
+      card.style.animation = `fadeInCard 0.6s ease-out ${index * 0.1}s forwards`;
+    });
   }
 
   startAutoplay() {
     this.autoplayTimer = setInterval(() => {
       this.slideToNext();
-    }, CONFIG.sliderInterval);
+    }, this.slideInterval);
   }
 
   startProgressAnimation() {
     let progress = 0;
-    const increment = 100 / (CONFIG.sliderInterval / 50);
+    const increment = 100 / (this.slideInterval / 50);
     
     this.progressTimer = setInterval(() => {
       progress += increment;
@@ -332,23 +320,34 @@ class AdvantagesSlider {
     }, 50);
   }
 
+  resetProgress() {
+    if (this.progressBar) {
+      this.progressBar.style.width = '0%';
+    }
+  }
+
   pause() {
     if (this.autoplayTimer) {
       clearInterval(this.autoplayTimer);
+      this.autoplayTimer = null;
     }
     if (this.progressTimer) {
       clearInterval(this.progressTimer);
+      this.progressTimer = null;
     }
   }
 
   resume() {
-    this.startAutoplay();
-    this.startProgressAnimation();
+    if (!this.autoplayTimer) {
+      this.resetProgress();
+      this.startAutoplay();
+      this.startProgressAnimation();
+    }
   }
 }
 
 // ==========================================
-// PORTFOLIO CLASS
+// PORTFOLIO
 // ==========================================
 class Portfolio {
   constructor() {
@@ -455,7 +454,7 @@ class Portfolio {
 }
 
 // ==========================================
-// FAQ CLASS
+// FAQ
 // ==========================================
 class FAQ {
   constructor() {
@@ -469,14 +468,12 @@ class FAQ {
       const question = Utils.$('.faq-question', item);
       
       question.addEventListener('click', () => {
-        // Close other items
         this.faqItems.forEach(otherItem => {
           if (otherItem !== item && otherItem.classList.contains('active')) {
             otherItem.classList.remove('active');
           }
         });
         
-        // Toggle current item
         item.classList.toggle('active');
       });
     });
@@ -484,7 +481,7 @@ class FAQ {
 }
 
 // ==========================================
-// VIDEO HANDLER CLASS - FIXED
+// VIDEO HANDLER
 // ==========================================
 class VideoHandler {
   constructor() {
@@ -494,67 +491,21 @@ class VideoHandler {
   init() {
     if (!this.heroVideo) return;
     
-    // Ensure video attributes
     this.heroVideo.muted = true;
     this.heroVideo.playsInline = true;
     this.heroVideo.autoplay = true;
     this.heroVideo.loop = true;
     
-    // Multiple attempts to play
-    const playVideo = () => {
-      const promise = this.heroVideo.play();
-      
-      if (promise !== undefined) {
-        promise
-          .then(() => {
-            console.log('✅ Video playing successfully');
-          })
-          .catch(err => {
-            console.log('⚠️ Autoplay prevented, retrying...');
-            // Retry on user interaction
-            const playOnInteraction = () => {
-              this.heroVideo.play();
-              document.removeEventListener('click', playOnInteraction);
-              document.removeEventListener('touchstart', playOnInteraction);
-            };
-            
-            document.addEventListener('click', playOnInteraction, { once: true });
-            document.addEventListener('touchstart', playOnInteraction, { once: true });
-          });
-      }
-    };
-    
-    // Try immediately
-    playVideo();
-    
-    // Try when loaded
-    this.heroVideo.addEventListener('loadeddata', playVideo);
-    this.heroVideo.addEventListener('canplay', playVideo);
-    
-    // Ensure video stays playing
-    this.heroVideo.addEventListener('pause', () => {
-      setTimeout(() => {
-        if (this.heroVideo.paused) {
-          this.heroVideo.play();
-        }
-      }, 100);
+    this.heroVideo.play().catch(() => {
+      document.addEventListener('click', () => {
+        this.heroVideo.play();
+      }, { once: true });
     });
-    
-    // IntersectionObserver for play/pause
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.heroVideo.play();
-        }
-      });
-    }, { threshold: 0.25 });
-    
-    observer.observe(this.heroVideo);
   }
 }
 
 // ==========================================
-// AOS INTEGRATION CLASS
+// AOS INTEGRATION
 // ==========================================
 class AOSIntegration {
   init() {
@@ -569,23 +520,19 @@ class AOSIntegration {
         startEvent: 'DOMContentLoaded'
       });
       
-      // Refresh AOS on window resize
       window.addEventListener('resize', Utils.debounce(() => {
         AOS.refresh();
       }, 150));
       
-      // Refresh after images load
       window.addEventListener('load', () => {
         AOS.refresh();
       });
-      
-      console.log('✅ AOS initialized');
     }
   }
 }
 
 // ==========================================
-// SCROLL ANIMATIONS CLASS
+// SCROLL ANIMATIONS
 // ==========================================
 class ScrollAnimations {
   constructor() {
@@ -618,7 +565,7 @@ class ScrollAnimations {
 }
 
 // ==========================================
-// STATS ANIMATION CLASS
+// STATS ANIMATION
 // ==========================================
 class StatsAnimation {
   constructor() {
@@ -692,7 +639,7 @@ class StatsAnimation {
 }
 
 // ==========================================
-// APPLICATION CLASS
+// APPLICATION
 // ==========================================
 class App {
   constructor() {
@@ -713,44 +660,38 @@ class App {
   }
 
   init() {
-    // Remove preload class immediately
     document.body.classList.remove('preload');
     
-    // Initialize all modules
     Object.entries(this.modules).forEach(([name, module]) => {
       if (module && typeof module.init === 'function') {
         try {
           module.init();
         } catch (error) {
-          console.error(`❌ Error initializing ${name}:`, error);
+          console.error(`Error initializing ${name}:`, error);
         }
       }
     });
     
-    // Add loaded class to body when everything is ready
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
       
-      // Refresh AOS if available
       if (typeof AOS !== 'undefined') {
         setTimeout(() => AOS.refresh(), 100);
       }
     });
     
-    console.log('✅ Elan\'s Tech World - Initialized Successfully');
-    console.log('🎯 Hero video fixed, auto-slider active');
+    console.log('✅ Elan\'s Tech World - Initialized');
   }
 }
 
 // ==========================================
-// INITIALIZE APPLICATION
+// INITIALIZE
 // ==========================================
 const initApp = () => {
   const app = new App();
   app.init();
 };
 
-// Run on DOM ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
