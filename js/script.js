@@ -1,6 +1,6 @@
 /**
- * Elan's Tech World - Luxury Portfolio JavaScript
- * ES6+ Class-Based Architecture
+ * Elan's Tech World - Luxury Complete JavaScript
+ * ES6+ Class-Based Architecture with AOS Integration
  */
 
 // ==========================================
@@ -273,6 +273,7 @@ class BackToTop {
 class Counter {
   constructor() {
     this.counters = Utils.$$('.counter');
+    this.animated = new Set();
   }
 
   init() {
@@ -280,9 +281,9 @@ class Counter {
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !this.animated.has(entry.target)) {
           this.animateCounter(entry.target);
-          observer.unobserve(entry.target);
+          this.animated.add(entry.target);
         }
       });
     }, { threshold: 0.5 });
@@ -319,42 +320,42 @@ class Portfolio {
         id: 1,
         title: 'Iconic Aesthetics',
         image: './assets/images/iconicwebsiteimage.jpeg',
-        tags: ['Web Development', 'POS System'],
+        tags: ['Web Development', 'POS System', 'Booking'],
         category: 'web'
       },
       {
         id: 2,
         title: 'East Coast Realty',
         image: './assets/images/eastcoastweb.jpeg',
-        tags: ['Web Development', 'Marketing'],
+        tags: ['Web Development', 'Real Estate', 'Marketing'],
         category: 'web'
       },
       {
         id: 3,
         title: 'Cohen & Associates',
         image: './assets/images/cohen.jpeg',
-        tags: ['Web Development', 'Security'],
+        tags: ['Web Development', 'Legal', 'Security'],
         category: 'web'
       },
       {
         id: 4,
-        title: 'Doug Uhlig',
+        title: 'Doug Uhlig Psychological Services',
         image: './assets/images/doug.jpeg',
-        tags: ['Healthcare', 'HIPAA'],
+        tags: ['Healthcare', 'HIPAA', 'Patient Portal'],
         category: 'web'
       },
       {
         id: 5,
         title: 'S-Cream',
         image: './assets/images/scream.jpeg',
-        tags: ['E-commerce', 'POS'],
+        tags: ['E-commerce', 'Product Launch', 'Marketing'],
         category: 'web'
       },
       {
         id: 6,
-        title: 'Century One',
+        title: 'Century One Properties',
         image: './assets/images/centuryone.jpeg',
-        tags: ['Property Management'],
+        tags: ['Property Management', 'Tenant Portal'],
         category: 'web'
       }
     ];
@@ -378,7 +379,7 @@ class Portfolio {
           </div>
           <h3 class="portfolio-title">${project.title}</h3>
           <a href="#contact" class="portfolio-link">
-            <span>View Project</span>
+            <span>View Details</span>
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
@@ -394,7 +395,10 @@ class Portfolio {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          Utils.animateElement(entry.target, index * CONFIG.animationDelay);
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, index * CONFIG.animationDelay);
           observer.unobserve(entry.target);
         }
       });
@@ -410,96 +414,30 @@ class Portfolio {
 }
 
 // ==========================================
-// CONTACT FORM CLASS
+// FAQ CLASS
 // ==========================================
-class ContactForm {
+class FAQ {
   constructor() {
-    this.form = Utils.$('#contact-form');
+    this.faqItems = Utils.$$('.faq-item');
   }
 
   init() {
-    if (!this.form) return;
+    if (!this.faqItems.length) return;
     
-    this.bindEvents();
-    this.initFloatingLabels();
-  }
-
-  bindEvents() {
-    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-  }
-
-  async handleSubmit(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this.form);
-    const data = Object.fromEntries(formData);
-    
-    const submitBtn = Utils.$('button[type="submit"]', this.form);
-    const originalText = submitBtn.innerHTML;
-    
-    submitBtn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
-    submitBtn.disabled = true;
-    
-    // Simulate form submission
-    setTimeout(() => {
-      this.showSuccess();
-    }, 1500);
-  }
-
-  showSuccess() {
-    this.form.innerHTML = `
-      <div style="text-align: center; padding: 2rem;">
-        <div style="font-size: 3rem; color: var(--hermes-orange); margin-bottom: 1rem;">
-          <i class="fas fa-check-circle"></i>
-        </div>
-        <h3 style="margin-bottom: 0.5rem;">Thank You!</h3>
-        <p style="margin: 0; color: var(--gray-lighter);">
-          Your message has been sent successfully. We'll get back to you soon.
-        </p>
-      </div>
-    `;
-  }
-
-  initFloatingLabels() {
-    const inputs = Utils.$$('input, textarea', this.form);
-    
-    inputs.forEach(input => {
-      input.addEventListener('blur', () => {
-        if (input.value) {
-          input.classList.add('has-value');
-        } else {
-          input.classList.remove('has-value');
-        }
+    this.faqItems.forEach(item => {
+      const question = Utils.$('.faq-question', item);
+      
+      question.addEventListener('click', () => {
+        // Close other items
+        this.faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
       });
-    });
-  }
-}
-
-// ==========================================
-// SCROLL ANIMATIONS CLASS
-// ==========================================
-class ScrollAnimations {
-  constructor() {
-    this.elements = Utils.$$('.service-card, .process-step, .stat-item');
-  }
-
-  init() {
-    if (!this.elements.length) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          Utils.animateElement(entry.target, index * CONFIG.animationDelay);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: CONFIG.intersectionThreshold });
-    
-    this.elements.forEach(element => {
-      element.style.opacity = '0';
-      element.style.transform = 'translateY(30px)';
-      element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(element);
     });
   }
 }
@@ -509,20 +447,209 @@ class ScrollAnimations {
 // ==========================================
 class Parallax {
   constructor() {
-    this.heroGradient = Utils.$('.hero-gradient');
+    this.heroVideo = Utils.$('.hero-video');
   }
 
   init() {
-    if (!this.heroGradient) return;
+    if (!this.heroVideo) return;
     
     window.addEventListener('scroll', Utils.throttle(() => this.handleScroll(), 10));
   }
 
   handleScroll() {
     const scrolled = window.scrollY;
-    const rate = scrolled * 0.5;
+    const rate = scrolled * 0.3;
     
-    this.heroGradient.style.transform = `translateY(${rate}px)`;
+    if (this.heroVideo) {
+      this.heroVideo.style.transform = `translateY(${rate}px)`;
+    }
+  }
+}
+
+// ==========================================
+// VIDEO HANDLER CLASS
+// ==========================================
+class VideoHandler {
+  constructor() {
+    this.heroVideo = Utils.$('.hero-video');
+  }
+
+  init() {
+    if (!this.heroVideo) return;
+    
+    // Ensure video plays on mobile
+    this.heroVideo.setAttribute('playsinline', '');
+    this.heroVideo.setAttribute('muted', '');
+    this.heroVideo.muted = true;
+    
+    // Handle video load
+    this.heroVideo.addEventListener('loadeddata', () => {
+      this.heroVideo.play().catch(err => {
+        console.log('Video autoplay prevented:', err);
+      });
+    });
+    
+    // Pause video when out of view for performance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.heroVideo.play().catch(() => {});
+        } else {
+          this.heroVideo.pause();
+        }
+      });
+    });
+    
+    observer.observe(this.heroVideo);
+  }
+}
+
+// ==========================================
+// AOS INTEGRATION CLASS
+// ==========================================
+class AOSIntegration {
+  init() {
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100,
+        delay: 0
+      });
+      
+      // Refresh AOS on window resize
+      window.addEventListener('resize', Utils.debounce(() => {
+        AOS.refresh();
+      }, 200));
+    }
+  }
+}
+
+// ==========================================
+// SCROLL ANIMATIONS CLASS
+// ==========================================
+class ScrollAnimations {
+  constructor() {
+    this.elements = Utils.$$('.advantage-card, .service-card, .result-card, .testimonial-card, .industry-card, .tech-item');
+  }
+
+  init() {
+    if (!this.elements.length) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: CONFIG.intersectionThreshold });
+    
+    this.elements.forEach((element, index) => {
+      element.style.opacity = '0';
+      element.style.transform = 'translateY(30px)';
+      element.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
+      observer.observe(element);
+    });
+  }
+}
+
+// ==========================================
+// FORM ENHANCEMENT CLASS
+// ==========================================
+class FormEnhancement {
+  constructor() {
+    this.forms = Utils.$$('form');
+  }
+
+  init() {
+    if (!this.forms.length) return;
+    
+    this.forms.forEach(form => {
+      const inputs = Utils.$$('input, textarea', form);
+      
+      inputs.forEach(input => {
+        // Add focus/blur effects
+        input.addEventListener('focus', () => {
+          input.parentElement?.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', () => {
+          if (!input.value) {
+            input.parentElement?.classList.remove('focused');
+          }
+        });
+        
+        // Check if already has value on load
+        if (input.value) {
+          input.parentElement?.classList.add('focused');
+        }
+      });
+    });
+  }
+}
+
+// ==========================================
+// STATS ANIMATION CLASS
+// ==========================================
+class StatsAnimation {
+  constructor() {
+    this.statNumbers = Utils.$$('.stat-number, .metric-value');
+    this.animated = new Set();
+  }
+
+  init() {
+    if (!this.statNumbers.length) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.animated.has(entry.target)) {
+          this.animateStat(entry.target);
+          this.animated.add(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    this.statNumbers.forEach(stat => observer.observe(stat));
+  }
+
+  animateStat(element) {
+    const text = element.textContent;
+    const hasPercent = text.includes('%');
+    const hasX = text.includes('x');
+    const hasDollar = text.includes('$');
+    const hasPlus = text.includes('+');
+    
+    // Extract number
+    const number = parseFloat(text.replace(/[^0-9.]/g, ''));
+    
+    if (isNaN(number)) return;
+    
+    let current = 0;
+    const increment = number / 50;
+    const stepTime = 30;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= number) {
+        let finalText = Math.round(number * 10) / 10;
+        if (hasDollar) finalText = '$' + finalText + 'K';
+        if (hasPercent) finalText = finalText + '%';
+        if (hasX) finalText = finalText + 'x';
+        if (hasPlus) finalText = finalText + '+';
+        element.textContent = finalText;
+        clearInterval(timer);
+      } else {
+        let displayText = Math.floor(current);
+        if (hasDollar) displayText = '$' + displayText + 'K';
+        if (hasPercent) displayText = displayText + '%';
+        if (hasX) displayText = displayText + 'x';
+        if (hasPlus) displayText = displayText + '+';
+        element.textContent = displayText;
+      }
+    }, stepTime);
   }
 }
 
@@ -539,20 +666,33 @@ class App {
       backToTop: new BackToTop(),
       counter: new Counter(),
       portfolio: new Portfolio(),
-      contactForm: new ContactForm(),
+      faq: new FAQ(),
+      parallax: new Parallax(),
+      videoHandler: new VideoHandler(),
+      aosIntegration: new AOSIntegration(),
       scrollAnimations: new ScrollAnimations(),
-      parallax: new Parallax()
+      formEnhancement: new FormEnhancement(),
+      statsAnimation: new StatsAnimation()
     };
   }
 
   init() {
-    // Remove preload class
+    // Remove preload class after a brief delay
     setTimeout(() => {
       document.body.classList.remove('preload');
     }, 100);
     
     // Initialize all modules
-    Object.values(this.modules).forEach(module => module.init());
+    Object.values(this.modules).forEach(module => {
+      if (module && typeof module.init === 'function') {
+        module.init();
+      }
+    });
+    
+    // Add loaded class to body
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
   }
 }
 
@@ -569,4 +709,9 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
   initApp();
+}
+
+// Export for potential module usage
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { App, Utils, CONFIG };
 }
