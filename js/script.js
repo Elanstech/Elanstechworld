@@ -1,6 +1,6 @@
 /**
- * Elan's Tech World - Luxury Complete JavaScript
- * ES6+ Class-Based Architecture - FULLY VERIFIED
+ * Elan's Tech World - Complete JavaScript
+ * Fixed Hero Video + Auto-Slider for Advantages
  */
 
 // ==========================================
@@ -8,13 +8,11 @@
 // ==========================================
 const CONFIG = {
   scrollThreshold: 50,
-  animationDelay: 50,
-  counterDuration: 1500,
   loaderDuration: 1500,
   throttleDelay: 50,
   debounceDelay: 150,
-  intersectionThreshold: 0.05,
-  headerHeight: 80
+  sliderInterval: 4000, // Auto-slide every 4 seconds
+  sliderTransition: 800
 };
 
 // ==========================================
@@ -57,20 +55,6 @@ class Utils {
 
   static $$(selector, parent = document) {
     return [...parent.querySelectorAll(selector)];
-  }
-
-  static createElement(tag, className, content = '') {
-    const element = document.createElement(tag);
-    if (className) element.className = className;
-    if (content) element.innerHTML = content;
-    return element;
-  }
-
-  static animateElement(element, delay = 0) {
-    setTimeout(() => {
-      element.style.opacity = '1';
-      element.style.transform = 'translateY(0)';
-    }, delay);
   }
 }
 
@@ -194,7 +178,7 @@ class Navigation {
           const target = Utils.$(href);
           
           if (target) {
-            const targetPosition = target.offsetTop - CONFIG.headerHeight;
+            const targetPosition = target.offsetTop - 80;
             
             window.scrollTo({
               top: targetPosition,
@@ -268,95 +252,98 @@ class BackToTop {
 }
 
 // ==========================================
-// COUNTER CLASS
+// AUTO SLIDER CLASS (WHY US SECTION)
 // ==========================================
-class Counter {
+class AdvantagesSlider {
   constructor() {
-    this.counters = [];
-    this.animated = new Set();
+    this.slider = Utils.$('.advantages-slider');
+    this.slides = Utils.$$('.advantage-slide');
+    this.progressBar = Utils.$('.slider-progress-bar');
+    this.currentIndex = 0;
+    this.isTransitioning = false;
+    this.autoplayTimer = null;
+    this.progressTimer = null;
   }
 
   init() {
-    // Wait for DOM to be fully ready
-    setTimeout(() => {
-      this.counters = Utils.$$('.counter');
-      
-      if (!this.counters.length) {
-        console.log('⚠️ No counters found, retrying...');
-        // Retry once more
-        setTimeout(() => {
-          this.counters = Utils.$$('.counter');
-          if (!this.counters.length) {
-            console.log('❌ Still no counters found');
-            return;
-          }
-          this.startCounters();
-        }, 1000);
-        return;
-      }
-      
-      this.startCounters();
-    }, 800);
+    if (!this.slider || this.slides.length === 0) return;
+    
+    // Clone slides for infinite effect
+    this.slides.forEach(slide => {
+      const clone = slide.cloneNode(true);
+      this.slider.appendChild(clone);
+    });
+    
+    this.startAutoplay();
+    this.startProgressAnimation();
+    
+    // Pause on hover
+    this.slider.addEventListener('mouseenter', () => this.pause());
+    this.slider.addEventListener('mouseleave', () => this.resume());
   }
 
-  startCounters() {
-    console.log(`✅ Found ${this.counters.length} counters to animate`);
+  slideToNext() {
+    if (this.isTransitioning) return;
     
-    // Animate counters already visible on page load (like hero stats)
+    this.isTransitioning = true;
+    this.currentIndex++;
+    
+    const slideWidth = this.slides[0].offsetWidth + 32; // including gap
+    const offset = -this.currentIndex * slideWidth;
+    
+    this.slider.style.transform = `translateX(${offset}px)`;
+    
     setTimeout(() => {
-      this.counters.forEach(counter => {
-        const rect = counter.getBoundingClientRect();
-        const isVisible = rect.top >= 0 && rect.top <= window.innerHeight;
+      // Reset to beginning when we reach the end
+      if (this.currentIndex >= this.slides.length) {
+        this.slider.style.transition = 'none';
+        this.currentIndex = 0;
+        this.slider.style.transform = 'translateX(0)';
         
-        if (isVisible && !this.animated.has(counter)) {
-          const target = counter.getAttribute('data-target');
-          console.log(`🎯 Animating visible counter: ${target}`);
-          this.animateCounter(counter);
-          this.animated.add(counter);
-        }
-      });
-    }, 200);
-    
-    // Set up observer for counters that scroll into view
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !this.animated.has(entry.target)) {
-          const target = entry.target.getAttribute('data-target');
-          console.log(`🎯 Animating counter on scroll: ${target}`);
-          this.animateCounter(entry.target);
-          this.animated.add(entry.target);
-        }
-      });
-    }, { 
-      threshold: 0.1,
-      rootMargin: '0px'
-    });
-    
-    this.counters.forEach(counter => {
-      observer.observe(counter);
-    });
+        setTimeout(() => {
+          this.slider.style.transition = `transform ${CONFIG.sliderTransition}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+        }, 50);
+      }
+      
+      this.isTransitioning = false;
+    }, CONFIG.sliderTransition);
   }
 
-  animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    if (isNaN(target)) {
-      console.log('❌ Invalid target for counter:', element);
-      return;
-    }
+  startAutoplay() {
+    this.autoplayTimer = setInterval(() => {
+      this.slideToNext();
+    }, CONFIG.sliderInterval);
+  }
+
+  startProgressAnimation() {
+    let progress = 0;
+    const increment = 100 / (CONFIG.sliderInterval / 50);
     
-    let current = 0;
-    const increment = target / 30;
-    const stepTime = CONFIG.counterDuration / 30;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        element.textContent = target;
-        clearInterval(timer);
-      } else {
-        element.textContent = Math.floor(current);
+    this.progressTimer = setInterval(() => {
+      progress += increment;
+      
+      if (progress >= 100) {
+        progress = 0;
       }
-    }, stepTime);
+      
+      if (this.progressBar) {
+        this.progressBar.style.width = `${progress}%`;
+      }
+    }, 50);
+  }
+
+  pause() {
+    if (this.autoplayTimer) {
+      clearInterval(this.autoplayTimer);
+    }
+    if (this.progressTimer) {
+      clearInterval(this.progressTimer);
+    }
+  }
+
+  resume() {
+    this.startAutoplay();
+    this.startProgressAnimation();
   }
 }
 
@@ -497,31 +484,7 @@ class FAQ {
 }
 
 // ==========================================
-// PARALLAX CLASS
-// ==========================================
-class Parallax {
-  constructor() {
-    this.heroVideoContainer = Utils.$('.hero-video-container');
-  }
-
-  init() {
-    if (!this.heroVideoContainer) return;
-    
-    window.addEventListener('scroll', Utils.throttle(() => this.handleScroll(), 16));
-  }
-
-  handleScroll() {
-    const scrolled = window.scrollY;
-    const rate = scrolled * 0.5;
-    
-    if (this.heroVideoContainer) {
-      this.heroVideoContainer.style.transform = `translateY(${rate}px)`;
-    }
-  }
-}
-
-// ==========================================
-// VIDEO HANDLER CLASS
+// VIDEO HANDLER CLASS - FIXED
 // ==========================================
 class VideoHandler {
   constructor() {
@@ -531,43 +494,60 @@ class VideoHandler {
   init() {
     if (!this.heroVideo) return;
     
-    // Force video attributes for autoplay
-    this.heroVideo.setAttribute('playsinline', 'true');
-    this.heroVideo.setAttribute('muted', 'true');
-    this.heroVideo.setAttribute('autoplay', 'true');
+    // Ensure video attributes
     this.heroVideo.muted = true;
     this.heroVideo.playsInline = true;
+    this.heroVideo.autoplay = true;
+    this.heroVideo.loop = true;
     
-    // Play video function
+    // Multiple attempts to play
     const playVideo = () => {
-      this.heroVideo.play().then(() => {
-        console.log('✅ Video playing successfully');
-      }).catch(err => {
-        console.log('⚠️ Video autoplay prevented, will retry on user interaction');
-        // Retry after user interaction
-        document.addEventListener('click', () => {
-          this.heroVideo.play().catch(() => {});
-        }, { once: true });
-      });
+      const promise = this.heroVideo.play();
+      
+      if (promise !== undefined) {
+        promise
+          .then(() => {
+            console.log('✅ Video playing successfully');
+          })
+          .catch(err => {
+            console.log('⚠️ Autoplay prevented, retrying...');
+            // Retry on user interaction
+            const playOnInteraction = () => {
+              this.heroVideo.play();
+              document.removeEventListener('click', playOnInteraction);
+              document.removeEventListener('touchstart', playOnInteraction);
+            };
+            
+            document.addEventListener('click', playOnInteraction, { once: true });
+            document.addEventListener('touchstart', playOnInteraction, { once: true });
+          });
+      }
     };
     
-    // Try to play immediately
+    // Try immediately
     playVideo();
     
-    // Also try when video is loaded
+    // Try when loaded
     this.heroVideo.addEventListener('loadeddata', playVideo);
     this.heroVideo.addEventListener('canplay', playVideo);
     
-    // Keep video playing when in view
+    // Ensure video stays playing
+    this.heroVideo.addEventListener('pause', () => {
+      setTimeout(() => {
+        if (this.heroVideo.paused) {
+          this.heroVideo.play();
+        }
+      }, 100);
+    });
+    
+    // IntersectionObserver for play/pause
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          this.heroVideo.play().catch(() => {});
-        } else {
-          this.heroVideo.pause();
+          this.heroVideo.play();
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.25 });
     
     observer.observe(this.heroVideo);
   }
@@ -600,8 +580,6 @@ class AOSIntegration {
       });
       
       console.log('✅ AOS initialized');
-    } else {
-      console.log('⚠️ AOS library not found');
     }
   }
 }
@@ -611,7 +589,7 @@ class AOSIntegration {
 // ==========================================
 class ScrollAnimations {
   constructor() {
-    this.elements = Utils.$$('.advantage-card, .service-card, .result-card, .testimonial-card, .industry-card, .tech-item');
+    this.elements = Utils.$$('.service-card, .result-card, .testimonial-card, .industry-card, .tech-item');
   }
 
   init() {
@@ -640,46 +618,11 @@ class ScrollAnimations {
 }
 
 // ==========================================
-// FORM ENHANCEMENT CLASS
-// ==========================================
-class FormEnhancement {
-  constructor() {
-    this.forms = Utils.$$('form');
-  }
-
-  init() {
-    if (!this.forms.length) return;
-    
-    this.forms.forEach(form => {
-      const inputs = Utils.$$('input, textarea', form);
-      
-      inputs.forEach(input => {
-        // Add focus/blur effects
-        input.addEventListener('focus', () => {
-          input.parentElement?.classList.add('focused');
-        });
-        
-        input.addEventListener('blur', () => {
-          if (!input.value) {
-            input.parentElement?.classList.remove('focused');
-          }
-        });
-        
-        // Check if already has value on load
-        if (input.value) {
-          input.parentElement?.classList.add('focused');
-        }
-      });
-    });
-  }
-}
-
-// ==========================================
 // STATS ANIMATION CLASS
 // ==========================================
 class StatsAnimation {
   constructor() {
-    this.statNumbers = Utils.$$('.stat-number, .metric-value');
+    this.statNumbers = Utils.$$('.metric-value');
     this.animated = new Set();
   }
 
@@ -706,7 +649,6 @@ class StatsAnimation {
     const hasPlus = text.includes('+');
     const hasK = text.includes('K');
     
-    // Extract number - handle both integers and decimals
     let number = parseFloat(text.replace(/[^0-9.]/g, ''));
     
     if (isNaN(number)) return;
@@ -720,7 +662,6 @@ class StatsAnimation {
       if (current >= number) {
         let finalText = number;
         
-        // Format based on original text
         if (number % 1 !== 0) {
           finalText = (Math.round(number * 10) / 10).toString();
         } else {
@@ -761,14 +702,12 @@ class App {
       mobileMenu: new MobileMenu(),
       navigation: new Navigation(),
       backToTop: new BackToTop(),
-      counter: new Counter(),
+      advantagesSlider: new AdvantagesSlider(),
       portfolio: new Portfolio(),
       faq: new FAQ(),
-      parallax: new Parallax(),
       videoHandler: new VideoHandler(),
       aosIntegration: new AOSIntegration(),
       scrollAnimations: new ScrollAnimations(),
-      formEnhancement: new FormEnhancement(),
       statsAnimation: new StatsAnimation()
     };
   }
@@ -798,9 +737,8 @@ class App {
       }
     });
     
-    // Log initialization complete
     console.log('✅ Elan\'s Tech World - Initialized Successfully');
-    console.log('🎯 All modules loaded and ready');
+    console.log('🎯 Hero video fixed, auto-slider active');
   }
 }
 
@@ -817,9 +755,4 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initApp);
 } else {
   initApp();
-}
-
-// Export for potential module usage
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { App, Utils, CONFIG };
 }
