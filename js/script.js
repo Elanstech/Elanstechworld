@@ -686,80 +686,77 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// TESTIMONIALS SLIDER
+// TESTIMONIALS CAROUSEL
 // ==========================================
-class TestimonialsSlider {
+class TestimonialsCarousel {
   constructor() {
-    this.sliderTrack = document.querySelector('.testimonials-slider-track');
-    this.cards = document.querySelectorAll('.testimonial-card');
-    this.progressBar = document.querySelector('.testimonials-progress-bar');
-    this.dotsContainer = document.querySelector('.testimonials-indicators');
-    this.prevButton = document.querySelector('.testimonials-arrow-prev');
-    this.nextButton = document.querySelector('.testimonials-arrow-next');
+    this.carouselTrack = document.querySelector('.testimonials-carousel-track');
+    this.carouselCards = document.querySelectorAll('.testimonials-carousel-card');
+    this.carouselProgressBar = document.querySelector('.testimonials-carousel-progress-bar');
+    this.carouselDotsContainer = document.querySelector('.testimonials-carousel-indicators');
+    this.carouselPrevButton = document.querySelector('.testimonials-carousel-arrow-prev');
+    this.carouselNextButton = document.querySelector('.testimonials-carousel-arrow-next');
     
-    this.currentIndex = 0;
-    this.isTransitioning = false;
-    this.autoplayTimer = null;
-    this.progressTimer = null;
+    this.carouselCurrentIndex = 0;
+    this.carouselIsTransitioning = false;
+    this.carouselAutoplayTimer = null;
+    this.carouselProgressTimer = null;
     
-    this.slideInterval = 5000; // 5 seconds per slide
-    this.cardsPerView = 3;
-    this.totalCards = this.cards.length;
-    this.totalSlides = 0;
-    this.dots = [];
+    this.carouselSlideInterval = 5000;
+    this.carouselCardsPerView = 3;
+    this.carouselTotalCards = this.carouselCards.length;
+    this.carouselTotalSlides = 0;
+    this.carouselDots = [];
   }
 
   init() {
-    if (!this.sliderTrack || this.cards.length === 0) return;
+    if (!this.carouselTrack || this.carouselCards.length === 0) return;
     
-    this.updateCardsPerView();
-    this.createDots();
-    this.attachEventListeners();
-    this.updateArrows();
-    this.animateVisibleCards();
-    this.startAutoplay();
-    this.startProgressAnimation();
+    this.updateCarouselCardsPerView();
+    this.createCarouselDots();
+    this.attachCarouselEventListeners();
+    this.updateCarouselArrows();
+    this.animateCarouselVisibleCards();
+    this.startCarouselAutoplay();
+    this.startCarouselProgressAnimation();
   }
 
-  updateCardsPerView() {
+  updateCarouselCardsPerView() {
     const width = window.innerWidth;
-    this.cardsPerView = width <= 1024 ? 1 : 3;
-    this.totalSlides = Math.ceil(this.totalCards / this.cardsPerView);
+    this.carouselCardsPerView = width <= 1024 ? 1 : 3;
+    this.carouselTotalSlides = Math.ceil(this.carouselTotalCards / this.carouselCardsPerView);
     
-    if (this.currentIndex >= this.totalSlides) {
-      this.currentIndex = this.totalSlides - 1;
+    if (this.carouselCurrentIndex >= this.carouselTotalSlides) {
+      this.carouselCurrentIndex = this.carouselTotalSlides - 1;
     }
   }
 
-  createDots() {
-    if (!this.dotsContainer) return;
+  createCarouselDots() {
+    if (!this.carouselDotsContainer) return;
     
-    this.dotsContainer.innerHTML = '';
+    this.carouselDotsContainer.innerHTML = '';
     
-    for (let i = 0; i < this.totalSlides; i++) {
+    for (let i = 0; i < this.carouselTotalSlides; i++) {
       const dot = document.createElement('span');
-      dot.classList.add('testimonials-dot');
-      if (i === 0) dot.classList.add('active');
+      dot.classList.add('testimonials-carousel-dot');
+      if (i === 0) dot.classList.add('testi-active');
       
-      dot.addEventListener('click', () => this.goToSlide(i));
-      this.dotsContainer.appendChild(dot);
+      dot.addEventListener('click', () => this.goToCarouselSlide(i));
+      this.carouselDotsContainer.appendChild(dot);
     }
     
-    this.dots = document.querySelectorAll('.testimonials-dot');
+    this.carouselDots = document.querySelectorAll('.testimonials-carousel-dot');
   }
 
-  attachEventListeners() {
-    const wrapper = document.querySelector('.testimonials-slider-wrapper');
+  attachCarouselEventListeners() {
+    const wrapper = document.querySelector('.testimonials-carousel-wrapper');
     
-    // Arrow buttons
-    this.prevButton?.addEventListener('click', () => this.slideToPrev());
-    this.nextButton?.addEventListener('click', () => this.slideToNext());
+    this.carouselPrevButton?.addEventListener('click', () => this.slideCarouselToPrev());
+    this.carouselNextButton?.addEventListener('click', () => this.slideCarouselToNext());
     
-    // Pause on hover
-    wrapper?.addEventListener('mouseenter', () => this.pause());
-    wrapper?.addEventListener('mouseleave', () => this.resume());
+    wrapper?.addEventListener('mouseenter', () => this.pauseCarousel());
+    wrapper?.addEventListener('mouseleave', () => this.resumeCarousel());
     
-    // Touch/swipe support
     let touchStartX = 0;
     let touchEndX = 0;
     
@@ -769,194 +766,188 @@ class TestimonialsSlider {
     
     wrapper?.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
-      this.handleSwipe(touchStartX, touchEndX);
+      this.handleCarouselSwipe(touchStartX, touchEndX);
     });
     
-    // Window resize
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        this.updateCardsPerView();
-        this.createDots();
-        this.goToSlide(this.currentIndex, false);
-        this.updateArrows();
+        this.updateCarouselCardsPerView();
+        this.createCarouselDots();
+        this.goToCarouselSlide(this.carouselCurrentIndex, false);
+        this.updateCarouselArrows();
       }, 250);
     });
   }
 
-  handleSwipe(startX, endX) {
+  handleCarouselSwipe(startX, endX) {
     const swipeThreshold = 50;
     const diff = startX - endX;
     
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
-        this.slideToNext();
+        this.slideCarouselToNext();
       } else {
-        this.slideToPrev();
+        this.slideCarouselToPrev();
       }
     }
   }
 
-  goToSlide(index, animate = true) {
-    if (this.isTransitioning || index === this.currentIndex || index < 0 || index >= this.totalSlides) {
+  goToCarouselSlide(index, animate = true) {
+    if (this.carouselIsTransitioning || index === this.carouselCurrentIndex || index < 0 || index >= this.carouselTotalSlides) {
       return;
     }
     
-    this.isTransitioning = true;
+    this.carouselIsTransitioning = true;
     
-    // Animate out current cards
     if (animate) {
-      this.animateCardsOut(this.currentIndex);
+      this.animateCarouselCardsOut(this.carouselCurrentIndex);
     }
     
     setTimeout(() => {
-      this.currentIndex = index;
+      this.carouselCurrentIndex = index;
       
-      // Calculate offset
-      const cardWidth = this.cards[0].offsetWidth;
-      const gap = parseFloat(getComputedStyle(this.sliderTrack).gap) || 0;
-      const offset = -(this.currentIndex * this.cardsPerView * (cardWidth + gap));
+      const cardWidth = this.carouselCards[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(this.carouselTrack).gap) || 0;
+      const offset = -(this.carouselCurrentIndex * this.carouselCardsPerView * (cardWidth + gap));
       
-      // Apply transform
-      this.sliderTrack.style.transform = `translateX(${offset}px)`;
+      this.carouselTrack.style.transform = `translateX(${offset}px)`;
       
-      // Update UI
-      this.updateDots();
-      this.updateArrows();
-      this.resetProgress();
+      this.updateCarouselDots();
+      this.updateCarouselArrows();
+      this.resetCarouselProgress();
       
-      // Animate in new cards
       if (animate) {
         setTimeout(() => {
-          this.animateCardsIn(this.currentIndex);
+          this.animateCarouselCardsIn(this.carouselCurrentIndex);
         }, 100);
       } else {
-        this.animateVisibleCards();
+        this.animateCarouselVisibleCards();
       }
       
       setTimeout(() => {
-        this.isTransitioning = false;
+        this.carouselIsTransitioning = false;
       }, animate ? 800 : 0);
     }, animate ? 300 : 0);
   }
 
-  animateCardsOut(slideIndex) {
-    const startIdx = slideIndex * this.cardsPerView;
-    const endIdx = Math.min(startIdx + this.cardsPerView, this.totalCards);
+  animateCarouselCardsOut(slideIndex) {
+    const startIdx = slideIndex * this.carouselCardsPerView;
+    const endIdx = Math.min(startIdx + this.carouselCardsPerView, this.carouselTotalCards);
     
     for (let i = startIdx; i < endIdx; i++) {
-      this.cards[i]?.classList.remove('animate-in');
-      this.cards[i]?.classList.add('animate-out');
+      this.carouselCards[i]?.classList.remove('testi-animate-in');
+      this.carouselCards[i]?.classList.add('testi-animate-out');
     }
   }
 
-  animateCardsIn(slideIndex) {
-    const startIdx = slideIndex * this.cardsPerView;
-    const endIdx = Math.min(startIdx + this.cardsPerView, this.totalCards);
+  animateCarouselCardsIn(slideIndex) {
+    const startIdx = slideIndex * this.carouselCardsPerView;
+    const endIdx = Math.min(startIdx + this.carouselCardsPerView, this.carouselTotalCards);
     
-    this.cards.forEach(card => {
-      card.classList.remove('animate-in', 'animate-out');
+    this.carouselCards.forEach(card => {
+      card.classList.remove('testi-animate-in', 'testi-animate-out');
     });
     
     for (let i = startIdx; i < endIdx; i++) {
       setTimeout(() => {
-        this.cards[i]?.classList.add('animate-in');
+        this.carouselCards[i]?.classList.add('testi-animate-in');
       }, (i - startIdx) * 100);
     }
   }
 
-  animateVisibleCards() {
-    const startIdx = this.currentIndex * this.cardsPerView;
-    const endIdx = Math.min(startIdx + this.cardsPerView, this.totalCards);
+  animateCarouselVisibleCards() {
+    const startIdx = this.carouselCurrentIndex * this.carouselCardsPerView;
+    const endIdx = Math.min(startIdx + this.carouselCardsPerView, this.carouselTotalCards);
     
     for (let i = startIdx; i < endIdx; i++) {
-      this.cards[i]?.classList.add('animate-in');
+      this.carouselCards[i]?.classList.add('testi-animate-in');
     }
   }
 
-  slideToNext() {
-    const nextIndex = (this.currentIndex + 1) % this.totalSlides;
-    this.goToSlide(nextIndex);
+  slideCarouselToNext() {
+    const nextIndex = (this.carouselCurrentIndex + 1) % this.carouselTotalSlides;
+    this.goToCarouselSlide(nextIndex);
   }
 
-  slideToPrev() {
-    const prevIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
-    this.goToSlide(prevIndex);
+  slideCarouselToPrev() {
+    const prevIndex = (this.carouselCurrentIndex - 1 + this.carouselTotalSlides) % this.carouselTotalSlides;
+    this.goToCarouselSlide(prevIndex);
   }
 
-  updateDots() {
-    if (!this.dots.length) return;
+  updateCarouselDots() {
+    if (!this.carouselDots.length) return;
     
-    this.dots.forEach((dot, index) => {
-      if (index === this.currentIndex) {
-        dot.classList.add('active');
+    this.carouselDots.forEach((dot, index) => {
+      if (index === this.carouselCurrentIndex) {
+        dot.classList.add('testi-active');
       } else {
-        dot.classList.remove('active');
+        dot.classList.remove('testi-active');
       }
     });
   }
 
-  updateArrows() {
-    if (this.prevButton && this.nextButton) {
-      this.prevButton.disabled = false;
-      this.nextButton.disabled = false;
+  updateCarouselArrows() {
+    if (this.carouselPrevButton && this.carouselNextButton) {
+      this.carouselPrevButton.disabled = false;
+      this.carouselNextButton.disabled = false;
     }
   }
 
-  startAutoplay() {
-    this.autoplayTimer = setInterval(() => {
-      this.slideToNext();
-    }, this.slideInterval);
+  startCarouselAutoplay() {
+    this.carouselAutoplayTimer = setInterval(() => {
+      this.slideCarouselToNext();
+    }, this.carouselSlideInterval);
   }
 
-  startProgressAnimation() {
+  startCarouselProgressAnimation() {
     let progress = 0;
-    const increment = 100 / (this.slideInterval / 50);
+    const increment = 100 / (this.carouselSlideInterval / 50);
     
-    this.progressTimer = setInterval(() => {
+    this.carouselProgressTimer = setInterval(() => {
       progress += increment;
       
       if (progress >= 100) {
         progress = 0;
       }
       
-      if (this.progressBar) {
-        this.progressBar.style.width = `${progress}%`;
+      if (this.carouselProgressBar) {
+        this.carouselProgressBar.style.width = `${progress}%`;
       }
     }, 50);
   }
 
-  resetProgress() {
-    if (this.progressBar) {
-      this.progressBar.style.width = '0%';
+  resetCarouselProgress() {
+    if (this.carouselProgressBar) {
+      this.carouselProgressBar.style.width = '0%';
     }
   }
 
-  pause() {
-    if (this.autoplayTimer) {
-      clearInterval(this.autoplayTimer);
-      this.autoplayTimer = null;
+  pauseCarousel() {
+    if (this.carouselAutoplayTimer) {
+      clearInterval(this.carouselAutoplayTimer);
+      this.carouselAutoplayTimer = null;
     }
-    if (this.progressTimer) {
-      clearInterval(this.progressTimer);
-      this.progressTimer = null;
+    if (this.carouselProgressTimer) {
+      clearInterval(this.carouselProgressTimer);
+      this.carouselProgressTimer = null;
     }
   }
 
-  resume() {
-    if (!this.autoplayTimer) {
-      this.resetProgress();
-      this.startAutoplay();
-      this.startProgressAnimation();
+  resumeCarousel() {
+    if (!this.carouselAutoplayTimer) {
+      this.resetCarouselProgress();
+      this.startCarouselAutoplay();
+      this.startCarouselProgressAnimation();
     }
   }
 }
 
-// Initialize Testimonials Slider
+// Initialize Testimonials Carousel
 document.addEventListener('DOMContentLoaded', () => {
-  const testimonialsSlider = new TestimonialsSlider();
-  testimonialsSlider.init();
+  const testimonialsCarousel = new TestimonialsCarousel();
+  testimonialsCarousel.init();
 });
 
 // ==========================================
@@ -1542,8 +1533,8 @@ class App {
       backToTop: new BackToTop(),
       whyusSlider: new WhyUsSlider(),
       servicesSlider: new ServicesSlider(),
-      resultsSlider: new ResultsSlider(), // ADD THIS LINE
-      testimonialsSlider: new TestimonialsSlider(),
+      resultsSlider: new ResultsSlider(),
+      testimonialsCarousel: new TestimonialsCarousel(), 
       portfolio: new Portfolio(),
       faq: new FAQ(),
       videoHandler: new VideoHandler(),
