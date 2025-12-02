@@ -2223,24 +2223,70 @@ section {
 }
 
 /*======================================
-  14. TESTIMONIALS SECTION
+  14. TESTIMONIALS SECTION - CAROUSEL
 ======================================*/
 .testimonials-section {
   background: var(--black-light);
+  position: relative;
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-xl);
+/* Slider Wrapper */
+.testimonials-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 60px;
+  margin: 0 -20px;
 }
 
+/* Slider Track */
+.testimonials-slider-track {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Testimonial Cards */
 .testimonial-card {
+  flex: 0 0 calc((100% - 4rem) / 3);
   padding: var(--space-xl);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-lg);
-  transition: var(--transition-base);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+}
+
+/* Card Animation States */
+.testimonial-card.animate-in {
+  animation: testimonialSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes testimonialSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.testimonial-card.animate-out {
+  animation: testimonialSlideOut 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes testimonialSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
 }
 
 .testimonial-card:hover {
@@ -2272,6 +2318,221 @@ section {
 .testimonial-author span {
   color: var(--gray-lighter);
   font-size: 0.875rem;
+}
+
+/* Navigation Arrows */
+.testimonials-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.testimonials-arrow-prev {
+  left: 0;
+}
+
+.testimonials-arrow-next {
+  right: 0;
+}
+
+.testimonials-arrow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.3), rgba(0, 122, 255, 0.3));
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.testimonials-arrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--hermes-orange);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 8px 24px rgba(255, 140, 66, 0.3);
+}
+
+.testimonials-arrow:hover::before {
+  opacity: 1;
+}
+
+.testimonials-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.testimonials-arrow svg {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.testimonials-arrow:hover svg {
+  transform: scale(1.1);
+}
+
+.testimonials-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Slider Indicators (Dots) */
+.testimonials-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.testimonials-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.testimonials-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.testimonials-dot.active {
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  border-color: #FF8C42;
+  box-shadow: 0 0 20px rgba(255, 140, 66, 0.6);
+  transform: scale(1.3);
+}
+
+.testimonials-dot.active::after {
+  width: 100%;
+  height: 100%;
+}
+
+.testimonials-dot:hover:not(.active) {
+  background: rgba(255, 140, 66, 0.5);
+  transform: scale(1.15);
+}
+
+/* Progress Bar */
+.testimonials-progress {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.testimonials-progress-bar {
+  height: 100%;
+  background: linear-gradient(135deg, #007aff, #FF8C42);
+  border-radius: 9999px;
+  width: 0;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 20px rgba(255, 140, 66, 0.6);
+  position: relative;
+}
+
+.testimonials-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
+  border-radius: 9999px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+  .testimonial-card {
+    flex: 0 0 100%;
+  }
+  
+  .testimonials-slider-track {
+    gap: 1.5rem;
+  }
+  
+  .testimonials-slider-wrapper {
+    padding: 2rem 50px;
+  }
+  
+  .testimonials-arrow {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-slider-wrapper {
+    padding: 2rem 45px;
+    margin: 0 -10px;
+  }
+  
+  .testimonial-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem;
+  }
+  
+  .testimonials-arrow {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .testimonials-indicators {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials-slider-wrapper {
+    padding: 1.5rem 40px;
+  }
+  
+  .testimonials-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .testimonials-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 /*======================================
@@ -2804,20 +3065,6 @@ section {
     grid-template-columns: 1fr 1fr;
   }
   
-  .footer-content {
-    grid-template-columns: 1.5fr 1fr;
-  }
-  
-  .footer-bottom {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .about-content {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
 @media (min-width: 992px) {
   .hero-cta {
     flex-wrap: nowrap;
@@ -2837,15 +3084,8 @@ section {
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
   
   .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .about-stats {
     grid-template-columns: 1fr;
   }
 }
