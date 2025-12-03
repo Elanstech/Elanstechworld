@@ -14,7 +14,7 @@
         "../assets/images/iconicfaq.jpeg",
         "../assets/images/iconiccontact.jpeg"
       ],
-      "year": "2023",
+      "year": "2022",
       "duration": "8 weeks",
       "featured": true,
       "color": "#FF8C42",
@@ -113,7 +113,7 @@
         "../assets/images/dougservices.jpeg",
         "../assets/images/dougfooter.jpeg"
       ],
-      "year": "2024",
+      "year": "2023",
       "duration": "12 weeks",
       "featured": true,
       "color": "#4da3ff",
@@ -215,7 +215,7 @@
         "./assets/images/holistic-team.jpeg",
         "./assets/images/holistic-resources.jpeg"
       ],
-      "year": "2024",
+      "year": "2025",
       "duration": "8 weeks",
       "featured": false,
       "color": "#4da3ff",
@@ -414,12 +414,12 @@
       "client": "S-Cream",
       "category": "E-commerce",
       "tags": ["E-commerce", "Product Launch", "Marketing", "Branding"],
-      "coverImage": "./assets/images/scream.jpeg",
+      "coverImage": "../assets/images/scream.jpeg",
       "gallery": [
-        "./assets/images/scream.jpeg",
-        "./assets/images/scream-product.jpeg",
-        "./assets/images/scream-cart.jpeg",
-        "./assets/images/scream-mobile.jpeg"
+        "../assets/images/scream.jpeg",
+        "../assets/images/scream-product.jpeg",
+        "../assets/images/scream-cart.jpeg",
+        "../assets/images/scream-mobile.jpeg"
       ],
       "year": "2024",
       "duration": "6 weeks",
@@ -455,7 +455,7 @@
         "image": "./assets/images/clients/scream.jpeg",
         "rating": 5
       },
-      "website": "https://s-cream.com",
+      "website": "https://getscream.com",
       "livePreview": true
     },
     {
@@ -465,12 +465,12 @@
       "client": "Century One",
       "category": "Property Management",
       "tags": ["Property Management", "Tenant Portal", "Real Estate", "Automation"],
-      "coverImage": "./assets/images/centuryone.jpeg",
+      "coverImage": "../assets/images/centuryhero.jpeg",
       "gallery": [
-        "./assets/images/centuryone.jpeg",
-        "./assets/images/centuryone-dashboard.jpeg",
-        "./assets/images/centuryone-listings.jpeg",
-        "./assets/images/centuryone-reports.jpeg"
+        "../assets/images/centuryprop.jpeg",
+        "../assets/images/centuryservices.jpeg",
+        "../assets/images/centuryservpage.jpeg",
+        "../assets/images/centurywhychoose.jpeg"
       ],
       "year": "2024",
       "duration": "10 weeks",
@@ -507,7 +507,7 @@
         "image": "./assets/images/clients/centuryone.jpeg",
         "rating": 5
       },
-      "website": "https://centuryoneproperties.com",
+      "website": "https://centuryonemanagement.com",
       "livePreview": true
     }
   ]
