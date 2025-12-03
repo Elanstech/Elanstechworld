@@ -159,10 +159,10 @@
       "tags": ["Web Development", "Google Ads", "Digital Marketing", "Branding"],
       "coverImage": "./assets/images/laurashero.jpeg",
       "gallery": [
-        "./assets/images/laurasmenu.jpeg",
-        "./assets/images/laurasfacial.jpeg",
-        "./assets/images/laurasgallary.jpeg",
-        "./assets/images/laurasfaq.jpeg"
+        "../assets/images/laurasmenu.jpeg",
+        "../assets/images/laurasfacial.jpeg",
+        "../assets/images/laurasgallary.jpeg",
+        "../assets/images/laurasfaq.jpeg"
       ],
       "year": "2025",
       "duration": "6 weeks",
@@ -310,12 +310,12 @@
       "client": "East Coast Realty Team",
       "category": "Real Estate",
       "tags": ["Web Development", "Real Estate", "IDX Integration", "Lead Generation"],
-      "coverImage": "./assets/images/zarinahero.jpeg",
+      "coverImage": "../assets/images/zarinahero.jpeg",
       "gallery": [
-        "./assets/images/zarinacalc.jpeg",
-        "./assets/images/zarinaabout.jpeg",
-        "./assets/images/zarinaprop.jpeg",
-        "./assets/images/zarinafaq.jpeg"
+        "../assets/images/zarinacalc.jpeg",
+        "../assets/images/zarinaabout.jpeg",
+        "../assets/images/zarinaprop.jpeg",
+        "../assets/images/zarinafaq.jpeg"
       ],
       "year": "2024",
       "duration": "10 weeks",
