@@ -147,9 +147,28 @@ class PortfolioPage {
 
   async loadProjects() {
     try {
-      const response = await fetch('../projects.json');
-      const data = await response.json();
-      this.projects = data.projects;
+      // Load all JSON files in parallel
+      const [websitesData, logosData, materialsData, signsData] = await Promise.all([
+        fetch('../projects.json').then(res => res.json()),
+        fetch('../logos.json').then(res => res.json()),
+        fetch('../materials.json').then(res => res.json()),
+        fetch('../signs.json').then(res => res.json())
+      ]);
+      
+      // Combine all projects into one array
+      this.projects = [
+        ...websitesData.projects,
+        ...logosData.projects,
+        ...materialsData.projects,
+        ...signsData.projects
+      ];
+      
+      console.log(`✅ Loaded ${this.projects.length} total projects`);
+      console.log(`- Websites: ${websitesData.projects.length}`);
+      console.log(`- Logos: ${logosData.projects.length}`);
+      console.log(`- Materials: ${materialsData.projects.length}`);
+      console.log(`- Signs: ${signsData.projects.length}`);
+      
     } catch (error) {
       console.error('Error loading projects:', error);
       this.projects = [];
@@ -164,19 +183,40 @@ class PortfolioPage {
     const signProjects = this.projects.filter(p => p.category === 'signs');
     
     // Render each section
-    this.renderSection(this.websitesGrid, websiteProjects);
-    this.renderSection(this.logosGrid, logoProjects);
-    this.renderSection(this.materialsGrid, materialProjects);
-    this.renderSection(this.signsGrid, signProjects);
+    this.renderSection(this.websitesGrid, websiteProjects, 'websites');
+    this.renderSection(this.logosGrid, logoProjects, 'logos');
+    this.renderSection(this.materialsGrid, materialProjects, 'materials');
+    this.renderSection(this.signsGrid, signProjects, 'signs');
   }
 
-  renderSection(gridElement, projects) {
+  renderSection(gridElement, projects, categoryName) {
     if (!gridElement) return;
     
-    // Skip if already has coming soon message
-    if (gridElement.querySelector('.coming-soon-message')) return;
-    
-    if (projects.length === 0) return;
+    // If no projects, show coming soon message
+    if (projects.length === 0) {
+      const icons = {
+        websites: 'fa-laptop-code',
+        logos: 'fa-paint-brush',
+        materials: 'fa-file-invoice',
+        signs: 'fa-sign'
+      };
+      
+      const titles = {
+        websites: 'Website Portfolio',
+        logos: 'Logo Portfolio',
+        materials: 'Business Materials',
+        signs: 'Signage Portfolio'
+      };
+      
+      gridElement.innerHTML = `
+        <div class="coming-soon-message">
+          <i class="fas ${icons[categoryName]}"></i>
+          <h3>${titles[categoryName]} Coming Soon</h3>
+          <p>We're curating our best ${categoryName} work for you</p>
+        </div>
+      `;
+      return;
+    }
     
     const html = projects.map(project => `
       <div class="portfolio-full-card ${project.comingSoon ? 'coming-soon' : ''}" 
