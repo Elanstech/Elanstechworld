@@ -1,7 +1,111 @@
 /**
- * Portfolio Page JavaScript
- * Handles filtering, sorting, modals, and lightbox
+ * Portfolio Page JavaScript - Updated
+ * Service-based sections with coming soon handling
  */
+
+// ==========================================
+// PARTICLES ANIMATION
+// ==========================================
+class ParticlesAnimation {
+  constructor() {
+    this.canvas = document.getElementById('particles-canvas');
+    this.ctx = this.canvas?.getContext('2d');
+    this.particles = [];
+    this.particleCount = 80;
+    this.mouse = { x: null, y: null, radius: 150 };
+  }
+
+  init() {
+    if (!this.canvas || !this.ctx) return;
+    
+    this.resizeCanvas();
+    this.createParticles();
+    this.animate();
+    
+    window.addEventListener('resize', () => this.resizeCanvas());
+    
+    this.canvas.addEventListener('mousemove', (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      this.mouse.x = e.clientX - rect.left;
+      this.mouse.y = e.clientY - rect.top;
+    });
+    
+    this.canvas.addEventListener('mouseleave', () => {
+      this.mouse.x = null;
+      this.mouse.y = null;
+    });
+  }
+
+  resizeCanvas() {
+    this.canvas.width = this.canvas.offsetWidth;
+    this.canvas.height = this.canvas.offsetHeight;
+  }
+
+  createParticles() {
+    this.particles = [];
+    for (let i = 0; i < this.particleCount; i++) {
+      this.particles.push({
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5,
+        color: Math.random() > 0.5 ? 'rgba(0, 122, 255, 0.5)' : 'rgba(255, 140, 66, 0.5)'
+      });
+    }
+  }
+
+  animate() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    this.particles.forEach((particle, index) => {
+      // Update position
+      particle.x += particle.speedX;
+      particle.y += particle.speedY;
+      
+      // Bounce off edges
+      if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
+      if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+      
+      // Mouse interaction
+      if (this.mouse.x && this.mouse.y) {
+        const dx = this.mouse.x - particle.x;
+        const dy = this.mouse.y - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < this.mouse.radius) {
+          const force = (this.mouse.radius - distance) / this.mouse.radius;
+          particle.x -= dx * force * 0.02;
+          particle.y -= dy * force * 0.02;
+        }
+      }
+      
+      // Draw particle
+      this.ctx.fillStyle = particle.color;
+      this.ctx.beginPath();
+      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      this.ctx.fill();
+      
+      // Connect nearby particles
+      this.particles.slice(index + 1).forEach(otherParticle => {
+        const dx = particle.x - otherParticle.x;
+        const dy = particle.y - otherParticle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < 100) {
+          this.ctx.strokeStyle = `rgba(255, 140, 66, ${0.2 - distance / 500})`;
+          this.ctx.lineWidth = 1;
+          this.ctx.beginPath();
+          this.ctx.moveTo(particle.x, particle.y);
+          this.ctx.lineTo(otherParticle.x, otherParticle.y);
+          this.ctx.stroke();
+        }
+      });
+    });
+    
+    requestAnimationFrame(() => this.animate());
+  }
+}
 
 // ==========================================
 // PORTFOLIO PAGE CLASS
@@ -9,22 +113,21 @@
 class PortfolioPage {
   constructor() {
     this.projects = [];
-    this.filteredProjects = [];
-    this.currentFilter = 'all';
-    this.currentSort = 'featured';
     this.currentProject = null;
     this.currentLightboxIndex = 0;
     this.lightboxImages = [];
     
     // DOM Elements
-    this.grid = document.getElementById('portfolio-full-grid');
-    this.filterButtons = document.querySelectorAll('.portfolio-filter-btn');
-    this.sortSelect = document.getElementById('portfolio-sort-select');
-    this.noResults = document.getElementById('portfolio-no-results');
+    this.websitesGrid = document.getElementById('websites-grid');
+    this.logosGrid = document.getElementById('logos-grid');
+    this.materialsGrid = document.getElementById('materials-grid');
+    this.signsGrid = document.getElementById('signs-grid');
+    
     this.modal = document.getElementById('project-modal');
     this.modalContent = this.modal?.querySelector('.project-modal-content');
     this.modalClose = this.modal?.querySelector('.project-modal-close');
     this.modalOverlay = this.modal?.querySelector('.project-modal-overlay');
+    
     this.lightbox = document.getElementById('lightbox');
     this.lightboxImg = this.lightbox?.querySelector('.lightbox-content img');
     this.lightboxCaption = this.lightbox?.querySelector('.lightbox-caption');
@@ -37,9 +140,8 @@ class PortfolioPage {
 
   async init() {
     await this.loadProjects();
+    this.renderProjectsByService();
     this.setupEventListeners();
-    this.updateFilterCounts();
-    this.filterProjects(this.currentFilter);
     this.checkUrlHash();
   }
 
@@ -48,31 +150,132 @@ class PortfolioPage {
       const response = await fetch('../projects.json');
       const data = await response.json();
       this.projects = data.projects;
-      this.filteredProjects = [...this.projects];
     } catch (error) {
       console.error('Error loading projects:', error);
       this.projects = [];
-      this.filteredProjects = [];
     }
   }
 
-  setupEventListeners() {
-    // Filter buttons
-    this.filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const filter = button.dataset.filter;
-        this.setActiveFilter(button);
-        this.filterProjects(filter);
+  renderProjectsByService() {
+    // Group projects by category
+    const websiteProjects = this.projects.filter(p => p.category === 'websites');
+    const logoProjects = this.projects.filter(p => p.category === 'logos');
+    const materialProjects = this.projects.filter(p => p.category === 'materials');
+    const signProjects = this.projects.filter(p => p.category === 'signs');
+    
+    // Render each section
+    this.renderSection(this.websitesGrid, websiteProjects);
+    this.renderSection(this.logosGrid, logoProjects);
+    this.renderSection(this.materialsGrid, materialProjects);
+    this.renderSection(this.signsGrid, signProjects);
+  }
+
+  renderSection(gridElement, projects) {
+    if (!gridElement) return;
+    
+    // Skip if already has coming soon message
+    if (gridElement.querySelector('.coming-soon-message')) return;
+    
+    if (projects.length === 0) return;
+    
+    const html = projects.map(project => `
+      <div class="portfolio-full-card ${project.comingSoon ? 'coming-soon' : ''}" 
+           data-project-id="${project.id}"
+           data-coming-soon="${project.comingSoon}">
+        ${project.featured ? '<div class="portfolio-featured-badge">Featured</div>' : ''}
+        
+        <div class="portfolio-full-image">
+          <img src="${project.coverImage}" alt="${project.title}" 
+               onerror="this.src='https://via.placeholder.com/800x600/0A0A0A/FF8C42?text=${encodeURIComponent(project.title)}'">
+          <div class="portfolio-full-overlay"></div>
+          <div class="portfolio-full-category">${project.serviceType || project.category}</div>
+        </div>
+        
+        <div class="portfolio-full-content">
+          <h3 class="portfolio-full-title">${project.title}</h3>
+          <p class="portfolio-full-description">${project.shortDescription}</p>
+          
+          <div class="portfolio-full-footer">
+            <span class="portfolio-full-client">${project.client}</span>
+            <span class="portfolio-full-link">
+              <span>${project.comingSoon ? 'Coming Soon' : 'View Details'}</span>
+              <i class="fas fa-arrow-right"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    gridElement.innerHTML = html;
+    
+    // Add click listeners
+    const cards = gridElement.querySelectorAll('.portfolio-full-card');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const projectId = card.dataset.projectId;
+        const isComingSoon = card.dataset.comingSoon === 'true';
+        
+        if (isComingSoon) {
+          this.showComingSoonMessage(projectId);
+          return;
+        }
+        
+        const project = this.projects.find(p => p.id === projectId);
+        if (project) {
+          this.openModal(project);
+        }
       });
     });
+    
+    // Animate cards in
+    this.animateCardsIn(cards);
+  }
 
-    // Sort select
-    this.sortSelect?.addEventListener('change', (e) => {
-      this.currentSort = e.target.value;
-      this.sortProjects();
-      this.renderProjects();
+  animateCardsIn(cards) {
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 100);
     });
+  }
 
+  showComingSoonMessage(projectId) {
+    const project = this.projects.find(p => p.id === projectId);
+    if (!project) return;
+    
+    // Create temporary message
+    const message = document.createElement('div');
+    message.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #007aff, #FF8C42);
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      z-index: 10000;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease;
+    `;
+    
+    message.innerHTML = `
+      <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Coming Soon</h3>
+      <p style="margin: 0; opacity: 0.9;">This project showcase is under construction</p>
+    `;
+    
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+      message.style.animation = 'fadeOut 0.3s ease';
+      setTimeout(() => message.remove(), 300);
+    }, 2000);
+  }
+
+  setupEventListeners() {
     // Modal close
     this.modalClose?.addEventListener('click', () => this.closeModal());
     this.modalOverlay?.addEventListener('click', () => this.closeModal());
@@ -99,142 +302,8 @@ class PortfolioPage {
     window.addEventListener('hashchange', () => this.checkUrlHash());
   }
 
-  setActiveFilter(activeButton) {
-    this.filterButtons.forEach(btn => btn.classList.remove('active'));
-    activeButton.classList.add('active');
-  }
-
-  updateFilterCounts() {
-    this.filterButtons.forEach(button => {
-      const filter = button.dataset.filter;
-      const count = filter === 'all' 
-        ? this.projects.length 
-        : this.projects.filter(p => p.category === filter).length;
-      
-      const countSpan = button.querySelector('.filter-count');
-      if (countSpan) {
-        countSpan.textContent = count;
-      }
-    });
-  }
-
-  filterProjects(category) {
-    this.currentFilter = category;
-    
-    if (category === 'all') {
-      this.filteredProjects = [...this.projects];
-    } else {
-      this.filteredProjects = this.projects.filter(p => p.category === category);
-    }
-
-    this.sortProjects();
-    this.renderProjects();
-  }
-
-  sortProjects() {
-    switch (this.currentSort) {
-      case 'featured':
-        this.filteredProjects.sort((a, b) => {
-          if (a.featured && !b.featured) return -1;
-          if (!a.featured && b.featured) return 1;
-          return 0;
-        });
-        break;
-      
-      case 'newest':
-        this.filteredProjects.sort((a, b) => 
-          parseInt(b.year) - parseInt(a.year)
-        );
-        break;
-      
-      case 'oldest':
-        this.filteredProjects.sort((a, b) => 
-          parseInt(a.year) - parseInt(b.year)
-        );
-        break;
-      
-      case 'alphabetical':
-        this.filteredProjects.sort((a, b) => 
-          a.title.localeCompare(b.title)
-        );
-        break;
-    }
-  }
-
-  renderProjects() {
-    if (!this.grid) return;
-
-    // Hide existing cards with animation
-    const existingCards = this.grid.querySelectorAll('.portfolio-full-card');
-    existingCards.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add('hide');
-      }, index * 30);
-    });
-
-    // Wait for hide animation, then render new cards
-    setTimeout(() => {
-      if (this.filteredProjects.length === 0) {
-        this.grid.innerHTML = '';
-        this.noResults.style.display = 'block';
-        return;
-      }
-
-      this.noResults.style.display = 'none';
-
-      const html = this.filteredProjects.map(project => `
-        <div class="portfolio-full-card" data-project-id="${project.id}">
-          ${project.featured ? '<div class="portfolio-featured-badge">Featured</div>' : ''}
-          
-          <div class="portfolio-full-image">
-            <img src="${project.coverImage}" alt="${project.title}" 
-                 onerror="this.src='https://via.placeholder.com/800x600/0A0A0A/FF8C42?text=${encodeURIComponent(project.title)}'">
-            <div class="portfolio-full-overlay"></div>
-            <div class="portfolio-full-category">${project.category}</div>
-          </div>
-          
-          <div class="portfolio-full-content">
-            <h3 class="portfolio-full-title">${project.title}</h3>
-            <p class="portfolio-full-description">${project.shortDescription}</p>
-            
-            <div class="portfolio-full-tags">
-              ${project.tags.slice(0, 3).map(tag => `<span class="portfolio-full-tag">${tag}</span>`).join('')}
-            </div>
-            
-            <div class="portfolio-full-footer">
-              <span class="portfolio-full-client">${project.client}</span>
-              <span class="portfolio-full-link">
-                <span>View Details</span>
-                <i class="fas fa-arrow-right"></i>
-              </span>
-            </div>
-          </div>
-        </div>
-      `).join('');
-
-      this.grid.innerHTML = html;
-
-      // Animate in new cards
-      const newCards = this.grid.querySelectorAll('.portfolio-full-card');
-      newCards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('show');
-        }, index * 50);
-
-        // Add click listener
-        card.addEventListener('click', () => {
-          const projectId = card.dataset.projectId;
-          const project = this.projects.find(p => p.id === projectId);
-          if (project) {
-            this.openModal(project);
-          }
-        });
-      });
-    }, existingCards.length * 30 + 200);
-  }
-
   openModal(project) {
-    if (!this.modal || !this.modalContent) return;
+    if (!this.modal || !this.modalContent || project.comingSoon) return;
 
     this.currentProject = project;
     document.body.style.overflow = 'hidden';
@@ -245,7 +314,7 @@ class PortfolioPage {
     // Render modal content
     this.modalContent.innerHTML = `
       <div class="project-detail-header">
-        <span class="project-detail-category">${project.category}</span>
+        <span class="project-detail-category">${project.serviceType || project.category}</span>
         <h1 class="project-detail-title">${project.title}</h1>
         
         <div class="project-detail-meta">
@@ -288,10 +357,6 @@ class PortfolioPage {
           ` : ''}
         </div>
       ` : ''}
-
-      <div class="project-detail-tags">
-        ${project.tags.map(tag => `<span class="project-detail-tag">${tag}</span>`).join('')}
-      </div>
 
       <div class="project-detail-section">
         <h3>Project Overview</h3>
@@ -383,7 +448,7 @@ class PortfolioPage {
             <i class="fas fa-external-link-alt"></i>
           </a>
         ` : ''}
-        <a href="index.html#contact" class="btn-secondary">
+        <a href="../index.html#contact" class="btn-secondary">
           <span>Start Your Project</span>
           <i class="fas fa-arrow-right"></i>
         </a>
@@ -505,7 +570,7 @@ class PortfolioPage {
     if (!hash) return;
 
     const project = this.projects.find(p => p.slug === hash);
-    if (project) {
+    if (project && !project.comingSoon) {
       this.openModal(project);
     }
   }
@@ -515,6 +580,11 @@ class PortfolioPage {
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize particles
+  const particles = new ParticlesAnimation();
+  particles.init();
+  
+  // Initialize portfolio
   const portfolioPage = new PortfolioPage();
   portfolioPage.init();
 
