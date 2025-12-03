@@ -7,12 +7,12 @@
       "client": "Ilanit Sholomov",
       "category": "Beauty & Wellness",
       "tags": ["Web Development", "POS System", "Booking System", "SEO"],
-      "coverImage": "./assets/images/iconichero.jpeg",
+      "coverImage": "../assets/images/iconichero.jpeg",
       "gallery": [
-        "./assets/images/iconicabout.jpeg",
-        "./assets/images/iconicservice.jpeg",
-        "./assets/images/iconicfaq.jpeg",
-        "./assets/images/iconiccontact.jpeg"
+        "../assets/images/iconicabout.jpeg",
+        "../assets/images/iconicservice.jpeg",
+        "../assets/images/iconicfaq.jpeg",
+        "../assets/images/iconiccontact.jpeg"
       ],
       "year": "2023",
       "duration": "8 weeks",
