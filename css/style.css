@@ -2122,104 +2122,221 @@ section {
     height: 20px;
   }
 }
-
 /*======================================
-  13. PORTFOLIO SECTION
+  13. PORTFOLIO SECTION - MODERN REDESIGN
 ======================================*/
-.portfolio-section {
+.portfolio-modern-section {
   background: var(--black);
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: var(--space-xl);
-}
-
-.portfolio-item {
   position: relative;
-  height: 400px;
+}
+
+.portfolio-modern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+/* Modern Portfolio Card */
+.portfolio-modern-card {
+  position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  transition: var(--transition-base);
+  height: 520px;
 }
 
-.portfolio-item::before {
-  content: '';
+.portfolio-modern-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--hermes-orange);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 140, 66, 0.3);
+}
+
+/* Card Image Container */
+.portfolio-modern-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.portfolio-modern-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-modern-card:hover .portfolio-modern-image img {
+  transform: scale(1.1);
+}
+
+/* Image Overlay */
+.portfolio-modern-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-  z-index: 1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(10, 10, 10, 0.8));
   transition: var(--transition-base);
 }
 
-.portfolio-item:hover::before {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+.portfolio-modern-card:hover .portfolio-modern-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(10, 10, 10, 0.6));
 }
 
-.portfolio-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition-slow);
-}
-
-.portfolio-item:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.1);
-}
-
-.portfolio-content {
+/* Category Badge */
+.portfolio-modern-category {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: var(--space-xl);
+  top: var(--space-md);
+  right: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
+  background: rgba(255, 140, 66, 0.9);
+  border-radius: var(--radius-full);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
   z-index: 2;
 }
 
-.portfolio-tags {
+/* Card Content */
+.portfolio-modern-content {
+  padding: var(--space-xl);
+  position: relative;
+}
+
+.portfolio-modern-title {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: var(--space-sm);
+  font-weight: 700;
+  line-height: 1.3;
+  transition: var(--transition-base);
+}
+
+.portfolio-modern-card:hover .portfolio-modern-title {
+  color: var(--hermes-orange);
+}
+
+.portfolio-modern-description {
+  color: var(--gray-lighter);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags */
+.portfolio-modern-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
 }
 
-.portfolio-tags span {
+.portfolio-modern-tag {
   padding: var(--space-xs) var(--space-sm);
-  background: rgba(255, 140, 66, 0.2);
-  border: 1px solid var(--hermes-orange);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
-  color: var(--hermes-orange);
+  color: var(--gray-lighter);
   font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.portfolio-title {
-  color: var(--white);
-  margin-bottom: var(--space-sm);
-}
-
-.portfolio-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  color: var(--white);
   font-weight: 600;
   transition: var(--transition-base);
 }
 
-.portfolio-link:hover {
+.portfolio-modern-card:hover .portfolio-modern-tag {
+  background: rgba(255, 140, 66, 0.1);
+  border-color: rgba(255, 140, 66, 0.3);
   color: var(--hermes-orange);
+}
+
+/* Card Footer */
+.portfolio-modern-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.portfolio-modern-client {
+  font-size: 0.875rem;
+  color: var(--gray-lighter);
+}
+
+.portfolio-modern-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--hermes-orange);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: var(--transition-base);
+}
+
+.portfolio-modern-link i {
+  transition: transform 0.3s ease;
+}
+
+.portfolio-modern-card:hover .portfolio-modern-link {
   gap: var(--space-sm);
+}
+
+.portfolio-modern-card:hover .portfolio-modern-link i {
+  transform: translateX(4px);
+}
+
+/* Featured Badge */
+.portfolio-featured-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(255, 140, 66, 0.4);
+  z-index: 2;
+}
+
+/* Portfolio CTA */
+.portfolio-cta {
+  text-align: center;
+  margin-top: var(--space-2xl);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .portfolio-modern-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .portfolio-modern-card {
+    height: 480px;
+  }
+  
+  .portfolio-modern-image {
+    height: 240px;
+  }
+  
+  .portfolio-modern-content {
+    padding: var(--space-lg);
+  }
 }
 
 /*======================================
