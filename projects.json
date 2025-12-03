@@ -4,17 +4,17 @@
       "id": "iconic-aesthetics",
       "title": "Iconic Aesthetics",
       "slug": "iconic-aesthetics",
-      "client": "Illanit Sholomov",
+      "client": "Ilanit Sholomov",
       "category": "Beauty & Wellness",
       "tags": ["Web Development", "POS System", "Booking System", "SEO"],
-      "coverImage": "./assets/images/iconicwebsiteimage.jpeg",
+      "coverImage": "./assets/images/iconichero.jpeg",
       "gallery": [
-        "./assets/images/iconicwebsiteimage.jpeg",
-        "./assets/images/iconic-home.jpeg",
-        "./assets/images/iconic-services.jpeg",
-        "./assets/images/iconic-booking.jpeg"
+        "./assets/images/iconicabout.jpeg",
+        "./assets/images/iconicservice.jpeg",
+        "./assets/images/iconicfaq.jpeg",
+        "./assets/images/iconiccontact.jpeg"
       ],
-      "year": "2024",
+      "year": "2023",
       "duration": "8 weeks",
       "featured": true,
       "color": "#FF8C42",
@@ -41,7 +41,7 @@
       },
       "testimonial": {
         "text": "Elan transformed our entire digital presence. The integrated booking system alone has saved us countless hours and our online bookings increased by 145%. The ROI has been incredible - we've seen a 3x return on our investment within the first 6 months. Absolutely phenomenal work!",
-        "author": "Illanit Sholomov",
+        "author": "Ilanit Sholomov",
         "role": "Owner, Iconic Aesthetics",
         "image": "./assets/images/clients/illanit.jpeg",
         "rating": 5
