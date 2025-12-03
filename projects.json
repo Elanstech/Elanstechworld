@@ -56,12 +56,12 @@
       "client": "Management Team",
       "category": "E-commerce & Retail",
       "tags": ["E-commerce", "Inventory Management", "Digital Marketing", "Shopify"],
-      "coverImage": "./assets/images/barberworld.jpeg",
+      "coverImage": "../assets/images/barberhero.jpeg",
       "gallery": [
-        "./assets/images/barberworld.jpeg",
-        "./assets/images/barber-shop.jpeg",
-        "./assets/images/barber-products.jpeg",
-        "./assets/images/barber-checkout.jpeg"
+        "../assets/images/barbercarusel.jpeg",
+        "../assets/images/barberfooter.jpeg",
+        "../assets/images/barber-products.jpeg",
+        "../assets/images/barberproducts.jpeg"
       ],
       "year": "2024",
       "duration": "10 weeks",
