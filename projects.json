@@ -157,14 +157,14 @@
       "client": "Laura Sholomov",
       "category": "Beauty Clinic",
       "tags": ["Web Development", "Google Ads", "Digital Marketing", "Branding"],
-      "coverImage": "./assets/images/laurasbeauty.jpeg",
+      "coverImage": "./assets/images/laurashero.jpeg",
       "gallery": [
-        "./assets/images/laurasbeauty.jpeg",
-        "./assets/images/laura-services.jpeg",
-        "./assets/images/laura-gallery.jpeg",
-        "./assets/images/laura-booking.jpeg"
+        "./assets/images/laurasmenu.jpeg",
+        "./assets/images/laurasfacial.jpeg",
+        "./assets/images/laurasgallary.jpeg",
+        "./assets/images/laurasfaq.jpeg"
       ],
-      "year": "2024",
+      "year": "2025",
       "duration": "6 weeks",
       "featured": false,
       "color": "#FFB482",
@@ -198,7 +198,7 @@
         "image": "./assets/images/clients/laura.jpeg",
         "rating": 5
       },
-      "website": "https://laurasbeauty.com",
+      "website": "https://www.laurasbeautytouch.com/index.html",
       "livePreview": true
     },
     {
