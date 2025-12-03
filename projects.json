@@ -362,12 +362,12 @@
       "client": "Cohen & Associates",
       "category": "Legal Services",
       "tags": ["Web Development", "Legal", "Security", "Client Portal"],
-      "coverImage": "./assets/images/cohen.jpeg",
+      "coverImage": "../assets/images/cohenhero.jpeg",
       "gallery": [
-        "./assets/images/cohen.jpeg",
-        "./assets/images/cohen-practice.jpeg",
-        "./assets/images/cohen-portal.jpeg",
-        "./assets/images/cohen-resources.jpeg"
+        "./assets/images/cohenabout.jpeg",
+        "./assets/images/cohenreviews.jpeg",
+        "./assets/images/cohenservices.jpeg",
+        "./assets/images/cohenhero.jpeg"
       ],
       "year": "2024",
       "duration": "12 weeks",
@@ -404,7 +404,7 @@
         "image": "./assets/images/clients/cohen.jpeg",
         "rating": 5
       },
-      "website": "https://cohenassociates.com",
+      "website": "https://cohen-associates.com",
       "livePreview": true
     },
     {
