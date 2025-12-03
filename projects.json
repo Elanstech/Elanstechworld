@@ -63,7 +63,7 @@
         "../assets/images/barberhero.jpeg",
         "../assets/images/barberproducts.jpeg"
       ],
-      "year": "2024",
+      "year": "2025",
       "duration": "10 weeks",
       "featured": true,
       "color": "#007aff",
@@ -106,12 +106,12 @@
       "client": "Douglas Uhlig, Ph.D.",
       "category": "Healthcare & Psychology",
       "tags": ["Healthcare", "HIPAA Compliance", "Patient Portal", "Telehealth"],
-      "coverImage": "./assets/images/doug.jpeg",
+      "coverImage": "../assets/images/doughero.jpeg",
       "gallery": [
-        "./assets/images/doug.jpeg",
-        "./assets/images/doug-portal.jpeg",
-        "./assets/images/doug-booking.jpeg",
-        "./assets/images/doug-telehealth.jpeg"
+        "../assets/images/dougabout.jpeg",
+        "../assets/images/dougteam.jpeg",
+        "../assets/images/dougservices.jpeg",
+        "../assets/images/dougfooter.jpeg"
       ],
       "year": "2024",
       "duration": "12 weeks",
@@ -147,7 +147,7 @@
         "image": "./assets/images/clients/doug-uhlig.jpeg",
         "rating": 5
       },
-      "website": "https://douguhlig.com",
+      "website": "https://dougpsychassociates.com",
       "livePreview": true
     },
     {
