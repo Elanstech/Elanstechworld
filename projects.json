@@ -310,12 +310,12 @@
       "client": "East Coast Realty Team",
       "category": "Real Estate",
       "tags": ["Web Development", "Real Estate", "IDX Integration", "Lead Generation"],
-      "coverImage": "./assets/images/eastcoastweb.jpeg",
+      "coverImage": "./assets/images/zarinahero.jpeg",
       "gallery": [
-        "./assets/images/eastcoastweb.jpeg",
-        "./assets/images/eastcoast-listings.jpeg",
-        "./assets/images/eastcoast-search.jpeg",
-        "./assets/images/eastcoast-agents.jpeg"
+        "./assets/images/zarinacalc.jpeg",
+        "./assets/images/zarinaabout.jpeg",
+        "./assets/images/zarinaprop.jpeg",
+        "./assets/images/zarinafaq.jpeg"
       ],
       "year": "2024",
       "duration": "10 weeks",
@@ -352,7 +352,7 @@
         "image": "./assets/images/clients/eastcoast.jpeg",
         "rating": 5
       },
-      "website": "https://eastcoastrealty.com",
+      "website": "https://www.eastcoastrealtybyzarina.com",
       "livePreview": true
     },
     {
