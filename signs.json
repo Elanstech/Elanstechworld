@@ -1,0 +1,267 @@
+{
+  "projects": [
+    {
+      "id": "barber-world-storefront",
+      "title": "Barber World NYC Storefront Sign",
+      "slug": "barber-world-storefront",
+      "client": "Barber World NYC",
+      "category": "signs",
+      "serviceType": "Storefront Signage",
+      "coverImage": "../assets/images/signs/barber-storefront.jpeg",
+      "gallery": [
+        "../assets/images/signs/barber-storefront.jpeg",
+        "../assets/images/signs/barber-storefront-night.jpeg",
+        "../assets/images/signs/barber-storefront-detail.jpeg"
+      ],
+      "year": "2025",
+      "duration": "3 weeks",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Illuminated channel letter sign - Coming Soon",
+      "longDescription": "A bold illuminated channel letter storefront sign with LED lighting, creating maximum visibility day and night.",
+      "services": [
+        "Sign Design",
+        "LED Channel Letters",
+        "Installation",
+        "Electrical Work",
+        "Permit Processing"
+      ],
+      "technologies": ["3D Rendering", "LED Lighting", "Aluminum Fabrication"],
+      "specifications": {
+        "dimensions": "12ft x 3ft",
+        "material": "Aluminum with LED",
+        "mounting": "Wall-mounted",
+        "lighting": "LED illuminated"
+      }
+    },
+    {
+      "id": "iconic-window-graphics",
+      "title": "Iconic Aesthetics Window Graphics",
+      "slug": "iconic-window-graphics",
+      "client": "Iconic Aesthetics",
+      "category": "signs",
+      "serviceType": "Window Graphics",
+      "coverImage": "../assets/images/signs/iconic-windows.jpeg",
+      "gallery": [
+        "../assets/images/signs/iconic-windows.jpeg"
+      ],
+      "year": "2022",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FF8C42",
+      "shortDescription": "Elegant frosted window branding - Coming Soon",
+      "longDescription": "Sophisticated frosted window graphics featuring the logo and service offerings with elegant typography.",
+      "services": [
+        "Window Graphics Design",
+        "Frosted Vinyl Application",
+        "Installation",
+        "Surface Preparation"
+      ],
+      "technologies": ["Vinyl Printing", "Frosted Film"],
+      "specifications": {
+        "dimensions": "Various panels",
+        "material": "Frosted vinyl",
+        "mounting": "Window application",
+        "finish": "Matte frosted"
+      }
+    },
+    {
+      "id": "lauras-outdoor-sign",
+      "title": "Laura's Beauty Touch Outdoor Sign",
+      "slug": "lauras-outdoor-sign",
+      "client": "Laura's Beauty Touch",
+      "category": "signs",
+      "serviceType": "Outdoor Signage",
+      "coverImage": "../assets/images/signs/lauras-outdoor.jpeg",
+      "gallery": [
+        "../assets/images/signs/lauras-outdoor.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FFB482",
+      "shortDescription": "Elegant monument sign - Coming Soon",
+      "longDescription": "A luxurious monument sign with dimensional letters and integrated lighting for upscale brand presence.",
+      "services": [
+        "Monument Sign Design",
+        "Dimensional Letters",
+        "Foundation Work",
+        "Lighting Installation",
+        "Landscaping Integration"
+      ],
+      "technologies": ["Dimensional Letters", "LED Lighting", "Stone Base"],
+      "specifications": {
+        "dimensions": "6ft x 4ft",
+        "material": "Stone base with metal letters",
+        "mounting": "Ground monument",
+        "lighting": "Uplight illumination"
+      }
+    },
+    {
+      "id": "eastcoast-for-sale-signs",
+      "title": "East Coast Realty For Sale Signs",
+      "slug": "eastcoast-for-sale-signs",
+      "client": "East Coast Realty",
+      "category": "signs",
+      "serviceType": "Real Estate Signs",
+      "coverImage": "../assets/images/signs/realty-for-sale.jpeg",
+      "gallery": [
+        "../assets/images/signs/realty-for-sale.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Professional property signage - Coming Soon",
+      "longDescription": "Durable outdoor real estate signs with professional design, rider options, and weather-resistant materials.",
+      "services": [
+        "For Sale Sign Design",
+        "Rider Sign Design",
+        "Printing on Coroplast",
+        "H-Frame Stakes",
+        "Bulk Production"
+      ],
+      "technologies": ["Digital Printing", "Coroplast Material", "UV Resistant Ink"],
+      "specifications": {
+        "dimensions": "24\" x 18\"",
+        "material": "Coroplast",
+        "mounting": "H-frame stake",
+        "finish": "UV resistant"
+      }
+    },
+    {
+      "id": "cohen-office-suite",
+      "title": "Cohen & Associates Office Suite Signs",
+      "slug": "cohen-office-suite",
+      "client": "Cohen & Associates",
+      "category": "signs",
+      "serviceType": "Interior Signage",
+      "coverImage": "../assets/images/signs/cohen-suite.jpeg",
+      "gallery": [
+        "../assets/images/signs/cohen-suite.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#4da3ff",
+      "shortDescription": "Professional office identification - Coming Soon",
+      "longDescription": "Elegant interior suite signage with brushed metal finish and dimensional lettering for professional appearance.",
+      "services": [
+        "Suite Sign Design",
+        "Dimensional Letters",
+        "ADA Compliant Signage",
+        "Installation",
+        "Directory Updates"
+      ],
+      "technologies": ["Brushed Aluminum", "Acrylic", "3M Adhesive"],
+      "specifications": {
+        "dimensions": "36\" x 8\"",
+        "material": "Brushed aluminum",
+        "mounting": "Wall-mounted",
+        "finish": "Brushed metal"
+      }
+    },
+    {
+      "id": "century-one-lobby-sign",
+      "title": "Century One Properties Lobby Sign",
+      "slug": "century-one-lobby-sign",
+      "client": "Century One Properties",
+      "category": "signs",
+      "serviceType": "Lobby Signage",
+      "coverImage": "../assets/images/signs/century-lobby.jpeg",
+      "gallery": [
+        "../assets/images/signs/century-lobby.jpeg"
+      ],
+      "year": "2024",
+      "duration": "3 weeks",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Impressive lobby branding - Coming Soon",
+      "longDescription": "A striking lobby sign with LED backlighting and premium materials creating an impressive first impression.",
+      "services": [
+        "Lobby Sign Design",
+        "LED Backlighting",
+        "Premium Materials",
+        "Installation",
+        "Electrical Integration"
+      ],
+      "technologies": ["LED Backlighting", "Acrylic", "Brushed Metal"],
+      "specifications": {
+        "dimensions": "8ft x 2ft",
+        "material": "Acrylic with metal",
+        "mounting": "Wall-mounted",
+        "lighting": "LED backlit"
+      }
+    },
+    {
+      "id": "generic-vehicle-wraps",
+      "title": "Commercial Vehicle Wraps",
+      "slug": "generic-vehicle-wraps",
+      "client": "Various Clients",
+      "category": "signs",
+      "serviceType": "Vehicle Graphics",
+      "coverImage": "../assets/images/signs/vehicle-wraps.jpeg",
+      "gallery": [
+        "../assets/images/signs/vehicle-wraps.jpeg"
+      ],
+      "year": "2024",
+      "duration": "Ongoing",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FF8C42",
+      "shortDescription": "Mobile advertising solutions - Coming Soon",
+      "longDescription": "Full and partial vehicle wraps turning company vehicles into mobile billboards.",
+      "services": [
+        "Vehicle Wrap Design",
+        "3M Vinyl Application",
+        "Full Color Printing",
+        "Professional Installation",
+        "Vehicle Templates"
+      ],
+      "technologies": ["3M Vinyl", "Large Format Printing", "Heat Application"],
+      "specifications": {
+        "material": "3M vinyl wrap",
+        "durability": "5-7 years",
+        "finish": "Gloss or matte"
+      }
+    },
+    {
+      "id": "generic-banners",
+      "title": "Indoor/Outdoor Banners",
+      "slug": "generic-banners",
+      "client": "Various Clients",
+      "category": "signs",
+      "serviceType": "Banners",
+      "coverImage": "../assets/images/signs/banners-collection.jpeg",
+      "gallery": [
+        "../assets/images/signs/banners-collection.jpeg"
+      ],
+      "year": "2024",
+      "duration": "Ongoing",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Versatile banner solutions - Coming Soon",
+      "longDescription": "Custom banners for events, promotions, and permanent installations in various sizes and materials.",
+      "services": [
+        "Banner Design",
+        "Large Format Printing",
+        "Grommets & Hemming",
+        "Retractable Stands",
+        "Installation Hardware"
+      ],
+      "technologies": ["Vinyl Banner Material", "UV Printing", "Wind Slits"],
+      "specifications": {
+        "sizes": "Custom dimensions",
+        "material": "13oz vinyl",
+        "finish": "Hemmed with grommets"
+      }
+    }
+  ]
+}
