@@ -1541,6 +1541,73 @@ class StatsAnimation {
 }
 
 // ==========================================
+// FOOTER NEWSLETTER
+// ==========================================
+class FooterNewsletter {
+  constructor() {
+    this.form = document.querySelector('.footer-newsletter-form');
+    this.input = this.form?.querySelector('input[type="email"]');
+  }
+
+  init() {
+    if (!this.form) return;
+    
+    this.form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.handleSubmit();
+    });
+  }
+
+  handleSubmit() {
+    const email = this.input.value.trim();
+    
+    if (!email) {
+      this.showMessage('Please enter your email address', 'error');
+      return;
+    }
+
+    if (!this.isValidEmail(email)) {
+      this.showMessage('Please enter a valid email address', 'error');
+      return;
+    }
+
+    // Here you would typically send to your email service
+    // For now, just show success message
+    this.showMessage('Thank you for subscribing!', 'success');
+    this.input.value = '';
+  }
+
+  isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  showMessage(message, type) {
+    // Create temporary message element
+    const messageEl = document.createElement('div');
+    messageEl.textContent = message;
+    messageEl.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 1rem 1.5rem;
+      background: ${type === 'success' ? 'linear-gradient(135deg, #007aff, #FF8C42)' : '#e74c3c'};
+      color: white;
+      border-radius: 12px;
+      font-weight: 600;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(messageEl);
+    
+    setTimeout(() => {
+      messageEl.style.animation = 'slideOut 0.3s ease';
+      setTimeout(() => messageEl.remove(), 300);
+    }, 3000);
+  }
+}
+
+// ==========================================
 // APPLICATION
 // ==========================================
 class App {
@@ -1552,13 +1619,14 @@ class App {
       whyusSlider: new WhyUsSlider(),
       servicesSlider: new ServicesSlider(),
       resultsSlider: new ResultsSlider(),
-      testimonialsCarousel: new TestimonialsCarousel(), 
+      testimonialsCarousel: new TestimonialsCarousel(),
       portfolio: new Portfolio(),
       faq: new FAQ(),
       videoHandler: new VideoHandler(),
       aosIntegration: new AOSIntegration(),
       scrollAnimations: new ScrollAnimations(),
-      statsAnimation: new StatsAnimation()
+      statsAnimation: new StatsAnimation(),
+      footerNewsletter: new FooterNewsletter() // ADD THIS LINE
     };
   }
   
