@@ -3,707 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore Elan's Tech World's innovative technology projects and solutions">
-    <title>Projects - Elan's Tech World</title>
+    <title>Portfolio | Elan's Tech World - Our Work & Case Studies</title>
+    <meta name="description" content="Explore our portfolio of successful digital projects across web development, e-commerce, healthcare, and more.">
     
-    <!-- Fonts and Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portfolio.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/projects-new.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="theme-color" content="#0A0A0A">
 </head>
-<body>
-    <header>
-        <div class="header-container">
-            <a href="../index.html" class="logo" aria-label="Home">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo" width="50" height="50" loading="eager">
-                <span class="logo-text">Elan's Tech World</span>
-            </a>
-            
-            <nav aria-label="Main navigation">
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="projects.html" class="active">Projects</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
 
-            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-                <span class="sr-only">Menu</span>
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
+<body class="preload">
+    <!-- Loader -->
+    <div class="loader-container">
+        <div class="loader-content">
+            <div class="logo-loader">
+                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loader-text">
+                <h3>Elan's Tech World</h3>
+                <p>Loading Portfolio</p>
+            </div>
+            <div class="loader-progress">
+                <div class="loader-progress-bar"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="header-futuristic">
+        <div class="header-glow"></div>
+        <div class="header-glass-effect"></div>
+        
+        <div class="container">
+            <div class="header-inner-futuristic">
+                <a href="index.html" class="logo-futuristic">
+                    <div class="logo-image">
+                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                    </div>
+                    <div class="logo-text-futuristic">
+                        <span class="logo-main-futuristic">Elan's</span>
+                        <span class="logo-sub-futuristic">Tech World</span>
+                    </div>
+                </a>
+                
+                <nav class="nav-futuristic">
+                    <ul class="nav-list-futuristic">
+                        <li><a href="index.html#home" class="nav-link-futuristic">Home</a></li>
+                        <li><a href="index.html#services" class="nav-link-futuristic">Services</a></li>
+                        <li><a href="index.html#why-us" class="nav-link-futuristic">Why Us</a></li>
+                        <li><a href="index.html#results" class="nav-link-futuristic">Results</a></li>
+                        <li><a href="portfolio.html" class="nav-link-futuristic active">Portfolio</a></li>
+                        <li><a href="index.html#testimonials" class="nav-link-futuristic">Reviews</a></li>
+                        <li><a href="index.html#contact" class="nav-link-futuristic">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header-actions-futuristic">
+                    <a href="index.html#contact" class="btn-futuristic">
+                        <span class="btn-text">Start Project</span>
+                        <span class="btn-icon">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </a>
+                    
+                    <button class="menu-toggle-futuristic" aria-label="Toggle menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <div class="mobile-nav" aria-label="Mobile navigation">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-futuristic">
+        <div class="mobile-menu-backdrop-futuristic"></div>
+        <div class="mobile-menu-container-futuristic">
+            <div class="mobile-menu-header-futuristic"></div>
+            
+            <nav class="mobile-nav-futuristic">
+                <ul>
+                    <li><a href="index.html#home" class="mobile-nav-link-futuristic">Home</a></li>
+                    <li><a href="index.html#services" class="mobile-nav-link-futuristic">Services</a></li>
+                    <li><a href="index.html#why-us" class="mobile-nav-link-futuristic">Why Us</a></li>
+                    <li><a href="index.html#results" class="mobile-nav-link-futuristic">Results</a></li>
+                    <li><a href="portfolio.html" class="mobile-nav-link-futuristic">Portfolio</a></li>
+                    <li><a href="index.html#testimonials" class="mobile-nav-link-futuristic">Reviews</a></li>
+                    <li><a href="index.html#contact" class="mobile-nav-link-futuristic">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="mobile-menu-footer-futuristic">
+                <div class="mobile-contact-futuristic">
+                    <a href="tel:+19294176819">
+                        <div class="contact-icon-futuristic">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span>(929) 417-6819</span>
+                    </a>
+                    <a href="mailto:elan@elanstechworld.com">
+                        <div class="contact-icon-futuristic">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span>elan@elanstechworld.com</span>
+                    </a>
+                </div>
+                
+                <div class="mobile-social-futuristic">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="projects-hero">
-            <div class="hero-particles"></div>
-            <div class="hero-content">
-                <h1 class="hero-title">Our <span>Portfolio</span></h1>
-                <p class="hero-description">Transforming businesses with innovative technology solutions</p>
+    
+    <!-- Portfolio Hero -->
+    <section class="portfolio-hero">
+        <div class="container">
+            <div class="portfolio-hero-content" data-aos="fade-up">
+                <span class="portfolio-hero-tag">Our Work</span>
+                <h1 class="portfolio-hero-title">Transforming Ideas Into <span class="gradient-text">Digital Reality</span></h1>
+                <p class="portfolio-hero-description">Explore our portfolio of successful projects across web development, e-commerce, healthcare, real estate, and more. Each project tells a story of innovation, creativity, and measurable results.</p>
                 
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" data-value="100">0</div>
-                        <div class="stat-label">Satisfied Clients</div>
+                <div class="portfolio-hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">50+</div>
+                        <div class="hero-stat-label">Projects Completed</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-value="500">0</div>
-                        <div class="stat-label">Projects Completed</div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">100%</div>
+                        <div class="hero-stat-label">Client Satisfaction</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-value="5">0</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
-                </div>
-                
-                <div class="hero-cta">
-                    <a href="contact.html" class="cta-button">Start Your Project</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section class="projects-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Our Work</h2>
-                    <p class="section-subtitle">Discover how we've helped businesses transform through technology</p>
-                </div>
-                
-                <div class="filter-tabs">
-                    <button class="filter-tab active" data-filter="all">All Projects</button>
-                    <button class="filter-tab" data-filter="web">Web Development</button>
-                    <button class="filter-tab" data-filter="tech">Tech Solutions</button>
-                    <button class="filter-tab" data-filter="apple">Apple Services</button>
-                    <button class="filter-tab" data-filter="pos">POS Systems</button>
-                    <button class="filter-tab" data-filter="marketing">Business Materials</button>
-                </div>
-                
-                <div class="projects-grid">
-                    <!-- Iconic Aesthetics -->
-                    <div class="project-card" data-category="web pos" data-project-id="iconic-aesthetics">
-                        <div class="project-image">
-                            <img src="../assets/images/iconicwebsiteimage.jpeg" alt="Iconic Aesthetics Website">
-                            <div class="project-overlay">
-                                <div class="project-tags">
-                                    <span>Web Development</span>
-                                    <span>POS System</span>
-                                    <span>Booking Solution</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Iconic Aesthetics</h3>
-                            <p class="project-description">Complete business technology solution including custom website with integrated booking system, Point of Sale implementation, business material design, and digital marketing.</p>
-                            <div class="project-features">
-                                <span><i class="fas fa-check-circle"></i> Custom Web Design</span>
-                                <span><i class="fas fa-check-circle"></i> Appointment Booking System</span>
-                                <span><i class="fas fa-check-circle"></i> Square POS Integration</span>
-                                <span><i class="fas fa-check-circle"></i> Business Card & Brochure Design</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://theiconicaesthetic.com" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                                <button class="project-details">View Details</button>
-                            </div>
-                        </div>
-                        <!-- Hidden project details for modal -->
-                        <div class="project-modal-data" hidden>
-                            <h2>Iconic Aesthetics</h2>
-                            <p class="modal-subtitle">Complete business technology solution for a beauty clinic.</p>
-                            <div class="modal-gallery">
-                                <img src="../assets/images/iconicwebsiteimage.jpeg" alt="Iconic Aesthetics">
-                            </div>
-                            <div class="modal-description">
-                                <p>Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience. We delivered a custom-designed website with an integrated booking system, implemented a Square Point of Sale system, created branded business materials, and set up their office technology infrastructure.</p>
-                                
-                                <h3>Project Details</h3>
-                                <ul>
-                                    <li>Custom website design with mobile-first approach</li>
-                                    <li>Online booking and appointment management system</li>
-                                    <li>Square POS system implementation with inventory management</li>
-                                    <li>Customer database and loyalty program setup</li>
-                                    <li>Business card and marketing material design</li>
-                                    <li>Social media integration and branding</li>
-                                    <li>Staff training and ongoing technical support</li>
-                                </ul>
-                                
-                                <h3>Technologies Used</h3>
-                                <div class="tech-tags">
-                                    <span>HTML5/CSS3</span>
-                                    <span>JavaScript</span>
-                                    <span>Square APIs</span>
-                                    <span>Payment Processing</span>
-                                    <span>Responsive Design</span>
-                                </div>
-                                
-                                <h3>Results</h3>
-                                <p>Since implementing our technology solutions, Iconic Aesthetics has seen a 40% increase in online bookings and significantly improved their customer management process. The integrated POS system has streamlined their payment processing and inventory management.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://theiconicaesthetic.com" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- East Coast Realty -->
-                    <div class="project-card" data-category="web tech marketing" data-project-id="east-coast-realty">
-                        <div class="project-image">
-                            <img src="../assets/images/eastcoastweb.jpeg" alt="East Coast Realty Website">
-                            <div class="project-overlay">
-                                <div class="project-tags">
-                                    <span>Web Development</span>
-                                    <span>Office Setup</span>
-                                    <span>Business Materials</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">East Coast Realty by Zarina</h3>
-                            <p class="project-description">Comprehensive technology solution for a real estate firm, including modern website, complete office setup with network configuration, and business material design.</p>
-                            <div class="project-features">
-                                <span><i class="fas fa-check-circle"></i> Real Estate Website with MLS Integration</span>
-                                <span><i class="fas fa-check-circle"></i> Computer Network Installation</span>
-                                <span><i class="fas fa-check-circle"></i> Office Technology Setup</span>
-                                <span><i class="fas fa-check-circle"></i> Marketing Materials Design</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://www.eastcoastrealtybyzarina.com" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                                <button class="project-details">View Details</button>
-                            </div>
-                        </div>
-                        <!-- Hidden project details for modal -->
-                        <div class="project-modal-data" hidden>
-                            <h2>East Coast Realty by Zarina</h2>
-                            <p class="modal-subtitle">Technology solution for a real estate firm.</p>
-                            <div class="modal-gallery">
-                                <img src="../assets/images/zarinaswebsite.jpeg" alt="East Coast Realty Website">
-                                <img src="../assets/images/zarinasoffice2.jpeg" alt="East Coast Realty Office">
-                            </div>
-                            <div class="modal-description">
-                                <p>East Coast Realty needed a modern digital presence and comprehensive office technology setup. We delivered a complete solution that included a professional website with property listings, office network infrastructure, and custom marketing materials.</p>
-                                
-                                <h3>Project Details</h3>
-                                <ul>
-                                    <li>Real estate website with property search functionality</li>
-                                    <li>MLS integration for automatic property listings</li>
-                                    <li>Agent profile management system</li>
-                                    <li>Complete office computer network installation</li>
-                                    <li>Security system implementation</li>
-                                    <li>Custom business cards and marketing materials</li>
-                                    <li>Staff training on all systems</li>
-                                </ul>
-                                
-                                <h3>Technologies Used</h3>
-                                <div class="tech-tags">
-                                    <span>WordPress</span>
-                                    <span>MLS Integration</span>
-                                    <span>Network Infrastructure</span>
-                                    <span>Security Systems</span>
-                                    <span>Responsive Design</span>
-                                </div>
-                                
-                                <h3>Results</h3>
-                                <p>The technology solutions have helped East Coast Realty establish a strong online presence and streamline their operations. Their new systems have improved property management efficiency and enhanced the client experience.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://www.eastcoastrealtybyzarina.com" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Cohen & Associates -->
-                    <div class="project-card" data-category="web tech" data-project-id="cohen-associates">
-                        <div class="project-image">
-                            <img src="../assets/images/cohen.jpeg" alt="Cohen & Associates Website">
-                            <div class="project-overlay">
-                                <div class="project-tags">
-                                    <span>Web Development</span>
-                                    <span>Secure Portal</span>
-                                    <span>Office Technology</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Cohen & Associates</h3>
-                            <p class="project-description">Technology solution for a tax accounting firm featuring secure document handling, client portal integration, complete office setup, and network security implementation.</p>
-                            <div class="project-features">
-                                <span><i class="fas fa-check-circle"></i> Professional Website with Client Portal</span>
-                                <span><i class="fas fa-check-circle"></i> Secure Document Handling System</span>
-                                <span><i class="fas fa-check-circle"></i> Office Network & Security Setup</span>
-                                <span><i class="fas fa-check-circle"></i> Business Software Implementation</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://cohen-associates.com" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                                <button class="project-details">View Details</button>
-                            </div>
-                        </div>
-                        <!-- Hidden project details for modal -->
-                        <div class="project-modal-data" hidden>
-                            <h2>Cohen & Associates</h2>
-                            <p class="modal-subtitle">Secure technology solution for tax and accounting services.</p>
-                            <div class="modal-gallery">
-                                <img src="../assets/images/cohenlogo.jpg" alt="Cohen & Associates Logo">
-                            </div>
-                            <div class="modal-description">
-                                <p>Cohen & Associates required a secure and professional technology infrastructure for their accounting firm. We implemented a comprehensive solution that includes a secure website with client portal, document management system, and office network with enhanced security measures.</p>
-                                
-                                <h3>Project Details</h3>
-                                <ul>
-                                    <li>Professional website with secure client portal</li>
-                                    <li>Encrypted document sharing system</li>
-                                    <li>Appointment scheduling functionality</li>
-                                    <li>Secure office network implementation</li>
-                                    <li>Data backup and disaster recovery systems</li>
-                                    <li>Tax resource library and client education section</li>
-                                    <li>Business software integration</li>
-                                </ul>
-                                
-                                <h3>Technologies Used</h3>
-                                <div class="tech-tags">
-                                    <span>Secure Web Development</span>
-                                    <span>Encryption Protocols</span>
-                                    <span>Network Security</span>
-                                    <span>Cloud Backup Solutions</span>
-                                    <span>SSL/TLS Implementation</span>
-                                </div>
-                                
-                                <h3>Results</h3>
-                                <p>The implemented solutions have significantly enhanced client data security while improving operational efficiency. Clients now benefit from secure document sharing and a streamlined experience when working with the firm.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://cohen-associates.com" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Doug Uhlig Psychological Services -->
-                    <div class="project-card" data-category="web apple" data-project-id="doug-uhlig">
-                        <div class="project-image">
-                            <img src="../assets/images/doug.jpeg" alt="Doug Uhlig Psychological Services">
-                            <div class="project-overlay">
-                                <div class="project-tags">
-                                    <span>Web Development</span>
-                                    <span>Apple Product Setup</span>
-                                    <span>HIPAA Compliance</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Doug Uhlig Psychological Services</h3>
-                            <p class="project-description">Healthcare technology solution with appointment scheduling, HIPAA-compliant systems, Apple device management, and electronic record integration.</p>
-                            <div class="project-features">
-                                <span><i class="fas fa-check-circle"></i> Healthcare Web Platform</span>
-                                <span><i class="fas fa-check-circle"></i> HIPAA-Compliant Systems Setup</span>
-                                <span><i class="fas fa-check-circle"></i> Apple Device Management</span>
-                                <span><i class="fas fa-check-circle"></i> Electronic Health Records Integration</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://dougpsychassociates.com" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                                <button class="project-details">View Details</button>
-                            </div>
-                        </div>
-                        <!-- Hidden project details for modal -->
-                        <div class="project-modal-data" hidden>
-                            <h2>Doug Uhlig Psychological Services</h2>
-                            <p class="modal-subtitle">HIPAA-compliant technology solution for a psychology practice.</p>
-                            <div class="modal-gallery">
-                                <img src="../assets/images/psychology.jpg" alt="Psychology Services">
-                            </div>
-                            <div class="modal-description">
-                                <p>Doug Uhlig Psychological Services needed a HIPAA-compliant technology solution for their practice. We delivered a secure website with appointment scheduling, integrated Apple devices for practice management, and implemented secure systems for patient records.</p>
-                                
-                                <h3>Project Details</h3>
-                                <ul>
-                                    <li>HIPAA-compliant website with secure appointment scheduling</li>
-                                    <li>Patient portal for secure communication</li>
-                                    <li>Apple device setup and management</li>
-                                    <li>Electronic health record system integration</li>
-                                    <li>Secure backup and disaster recovery solutions</li>
-                                    <li>Staff training on security protocols</li>
-                                    <li>Ongoing technical support and maintenance</li>
-                                </ul>
-                                
-                                <h3>Technologies Used</h3>
-                                <div class="tech-tags">
-                                    <span>HIPAA Compliance</span>
-                                    <span>Apple Integration</span>
-                                    <span>Secure Communications</span>
-                                    <span>EHR Systems</span>
-                                    <span>Data Encryption</span>
-                                </div>
-                                
-                                <h3>Results</h3>
-                                <p>The practice now benefits from streamlined operations while maintaining the highest levels of patient data security and confidentiality, allowing them to focus more on patient care and less on administrative tasks.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://dougpsychassociates.com" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- S-Cream -->
-                    <div class="project-card" data-category="web pos marketing" data-project-id="s-cream">
-                        <div class="project-image">
-                            <img src="../assets/images/scream.jpeg" alt="S-Cream Website">
-                            <div class="project-overlay">
-                                <div class="project-tags">
-                                    <span>Web Development</span>
-                                    <span>POS System</span>
-                                    <span>Business Materials</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">S-Cream</h3>
-                            <p class="project-description">Complete technology solution for an ice cream shop featuring online ordering, menu management, POS system implementation, and branded materials design.</p>
-                            <div class="project-features">
-                                <span><i class="fas fa-check-circle"></i> E-Commerce Website</span>
-                                <span><i class="fas fa-check-circle"></i> Digital Menu & Online Ordering</span>
-                                <span><i class="fas fa-check-circle"></i> POS System with Inventory</span>
-                                <span><i class="fas fa-check-circle"></i> Brand Identity Package</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://getscream.com" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                                <button class="project-details">View Details</button>
-                            </div>
-                        </div>
-                        <!-- Hidden project details for modal -->
-                        <div class="project-modal-data" hidden>
-                            <h2>S-Cream</h2>
-                            <p class="modal-subtitle">Comprehensive technology solution for an ice cream shop.</p>
-                            <div class="modal-gallery">
-                                <img src="../assets/images/scream.jpg" alt="S-Cream">
-                            </div>
-                            <div class="modal-description">
-                                <p>S-Cream required a complete technology ecosystem for their new ice cream shop. We implemented a solution that included an e-commerce website with online ordering, digital menu system, POS integration, and branded materials design.</p>
-                                
-                                <h3>Project Details</h3>
-                                <ul>
-                                    <li>E-commerce website with online ordering functionality</li>
-                                    <li>Digital menu system with real-time updates</li>
-                                    <li>Point of Sale system with inventory management</li>
-                                    <li>Customer loyalty program implementation</li>
-                                    <li>Brand identity package including logo and marketing materials</li>
-                                    <li>Social media integration and management tools</li>
-                                    <li>Staff training and technical support</li>
-                                </ul>
-                                
-                                <h3>Technologies Used</h3>
-                                <div class="tech-tags">
-                                    <span>E-Commerce</span>
-                                    <span>Payment Processing</span>
-                                    <span>POS Integration</span>
-                                    <span>Inventory Management</span>
-                                    <span>Brand Design</span>
-                                </div>
-                                
-                                <h3>Results</h3>
-                                <p>The technology solutions have helped S-Cream establish a strong market presence with 30% of their sales now coming through online orders. Their integrated systems have improved efficiency and customer satisfaction.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://getscream.com" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Century One Management -->
-                    <div class="project-card" data-category="web tech" data-project-id="century-one">
-                        <div class="project-image">
-                            <img src="../assets/images/centuryone.jpeg" alt="Century One Management Services">
-                            <div class="project-overlay">
-                                <div class="project-tags">
-                                    <span>Web Portal</span>
-                                    <span>Property Management System</span>
-                                    <span>Network Setup</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Century One Management Services</h3>
-                            <p class="project-description">Integrated property management technology solution with tenant portal, maintenance request system, office network implementation, and security solutions.</p>
-                            <div class="project-features">
-                                <span><i class="fas fa-check-circle"></i> Property Management Portal</span>
-                                <span><i class="fas fa-check-circle"></i> Tenant & Maintenance System</span>
-                                <span><i class="fas fa-check-circle"></i> Office Network Infrastructure</span>
-                                <span><i class="fas fa-check-circle"></i> Security Camera Installation</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://centuryonemanagement.com" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                                <button class="project-details">View Details</button>
-                            </div>
-                        </div>
-                        <!-- Hidden project details for modal -->
-                        <div class="project-modal-data" hidden>
-                            <h2>Century One Management Services</h2>
-                            <p class="modal-subtitle">Property management technology solution.</p>
-                            <div class="modal-gallery">
-                                <img src="../assets/images/centuryone.jpg" alt="Century One Management">
-                            </div>
-                            <div class="modal-description">
-                                <p>Century One Management Services needed a comprehensive property management technology solution. We delivered a complete system including a tenant portal, maintenance request tracking, office network implementation, and security infrastructure.</p>
-                                
-                                <h3>Project Details</h3>
-                                <ul>
-                                    <li>Property management portal with tenant accounts</li>
-                                    <li>Online rent payment processing</li>
-                                    <li>Maintenance request system with tracking</li>
-                                    <li>Property listing and availability management</li>
-                                    <li>Office network infrastructure implementation</li>
-                                    <li>Security camera system installation</li>
-                                    <li>Data management and reporting tools</li>
-                                </ul>
-                                
-                                <h3>Technologies Used</h3>
-                                <div class="tech-tags">
-                                    <span>Web Portal Development</span>
-                                    <span>Payment Processing</span>
-                                    <span>Network Infrastructure</span>
-                                    <span>Security Systems</span>
-                                    <span>Data Management</span>
-                                </div>
-                                
-                                <h3>Results</h3>
-                                <p>The implemented solution has significantly improved tenant satisfaction with easier communication and payment processing. Management efficiency has increased with automated maintenance tracking and reporting.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <a href="https://centuryonemanagement.com" target="_blank" class="modal-link">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Load More Button -->
-                <div class="load-more-container">
-                    <button class="load-more-btn">Load More Projects</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Showcase Section -->
-        <section class="services-showcase">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Our Technology Solutions</h2>
-                    <p class="section-subtitle">Comprehensive services for every business need</p>
-                </div>
-                
-                <div class="services-carousel">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h3>Web Development</h3>
-                        <p>Custom designed websites and web applications tailored to your business needs with responsive design and SEO optimization.</p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h3>Office Technology</h3>
-                        <p>Complete office setup including network infrastructure, security systems, cloud solutions, and business software implementation.</p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <h3>Apple Services</h3>
-                        <p>Apple device management, deployment, and support for businesses including secure configuration and integration.</p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <h3>POS Systems</h3>
-                        <p>Point of sale implementation with inventory management, customer profiles, and sales analytics for retail and service businesses.</p>
-                    </div>
-                    
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3>Business Materials</h3>
-                        <p>Professional design of business cards, brochures, signage, and marketing materials that reflect your brand identity.</p>
-                    </div>
-                </div>
-                
-                <div class="carousel-controls">
-                    <button class="carousel-control prev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                    <div class="carousel-dots"></div>
-                    <button class="carousel-control next" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process Section -->
-        <section class="process-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Our Process</h2>
-                    <p class="section-subtitle">How we bring your technology vision to life</p>
-                </div>
-                
-                <div class="process-timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>1. Consultation</h3>
-                            <p>We begin by understanding your business needs, goals, and technology requirements through in-depth consultation.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-pencil-ruler"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>2. Planning</h3>
-                            <p>Our team develops a comprehensive technology strategy and implementation plan tailored to your specific requirements.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>3. Development</h3>
-                            <p>We execute the plan with precision, creating custom solutions, implementing systems, and configuring technology.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>4. Testing</h3>
-                            <p>Rigorous testing ensures all systems function properly, securely, and meet your business requirements before deployment.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>5. Deployment</h3>
-                            <p>We carefully launch your technology solutions with minimal disruption to your business operations.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>6. Support</h3>
-                            <p>Ongoing technical support and maintenance ensure your systems continue to perform optimally and evolve with your needs.</p>
-                        </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">10+</div>
+                        <div class="hero-stat-label">Industries Served</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Call to Action -->
-        <section class="cta-section">
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Ready to Transform Your Business?</h2>
-                    <p>Let's discuss how our technology solutions can help you achieve your business goals.</p>
-                    <a href="contact.html" class="cta-button">Contact Us Today</a>
-                </div>
+    <!-- Portfolio Filter & Grid -->
+    <section class="portfolio-main">
+        <div class="container">
+            <!-- Filter Bar -->
+            <div class="portfolio-filters" data-aos="fade-up">
+                <button class="portfolio-filter-btn active" data-filter="all">
+                    <span>All Projects</span>
+                    <span class="filter-count"></span>
+                </button>
+                <button class="portfolio-filter-btn" data-filter="Beauty & Wellness">
+                    <span>Beauty & Wellness</span>
+                    <span class="filter-count"></span>
+                </button>
+                <button class="portfolio-filter-btn" data-filter="E-commerce & Retail">
+                    <span>E-commerce</span>
+                    <span class="filter-count"></span>
+                </button>
+                <button class="portfolio-filter-btn" data-filter="Healthcare & Psychology">
+                    <span>Healthcare</span>
+                    <span class="filter-count"></span>
+                </button>
+                <button class="portfolio-filter-btn" data-filter="Real Estate">
+                    <span>Real Estate</span>
+                    <span class="filter-count"></span>
+                </button>
+                <button class="portfolio-filter-btn" data-filter="Property Management">
+                    <span>Property Mgmt</span>
+                    <span class="filter-count"></span>
+                </button>
+                <button class="portfolio-filter-btn" data-filter="Legal Services">
+                    <span>Legal</span>
+                    <span class="filter-count"></span>
+                </button>
             </div>
-        </section>
-    </main>
 
-    <!-- Project Details Modal -->
-    <div class="project-modal">
-        <div class="modal-content">
-            <button class="modal-close" aria-label="Close modal">&times;</button>
-            <div class="modal-body">
-                <!-- Content will be injected dynamically via JavaScript -->
+            <!-- Sort Options -->
+            <div class="portfolio-sort" data-aos="fade-up">
+                <label>Sort by:</label>
+                <select id="portfolio-sort-select">
+                    <option value="featured">Featured First</option>
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="alphabetical">A-Z</option>
+                </select>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="portfolio-full-grid" id="portfolio-full-grid">
+                <!-- Loaded via JavaScript -->
+            </div>
+
+            <!-- No Results Message -->
+            <div class="portfolio-no-results" id="portfolio-no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No projects found</h3>
+                <p>Try selecting a different category or view all projects.</p>
+                <button class="btn-secondary" onclick="document.querySelector('[data-filter=all]').click()">
+                    <span>View All Projects</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div class="project-modal" id="project-modal">
+        <div class="project-modal-overlay"></div>
+        <div class="project-modal-container">
+            <button class="project-modal-close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="project-modal-content">
+                <!-- Content loaded dynamically -->
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Elan's Tech World</h3>
-                <p>Your Partner in Technology Solutions</p>
-                <p>&copy; 2024 All rights reserved.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
+    <!-- Image Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-overlay"></div>
+        <button class="lightbox-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="lightbox-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="">
+            <div class="lightbox-caption"></div>
+        </div>
+        <div class="lightbox-counter"></div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="portfolio-cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Ready to Start <span class="gradient-text">Your Project?</span></h2>
+                <p>Let's create something extraordinary together. Get started with a free consultation.</p>
+                <div class="cta-buttons">
+                    <a href="index.html#contact" class="btn-primary btn-lg">
+                        <span>Start Your Project</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
+                    <a href="tel:+19294176819" class="btn-secondary btn-lg">
+                        <span>Call Us Now</span>
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-main">Elan's</span>
+                            <span class="logo-sub">Tech World</span>
+                        </div>
+                    </div>
+                    <p>Transforming businesses through innovative technology solutions</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#services">Services</a></li>
+                            <li><a href="portfolio.html">Portfolio</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="index.html#services">Web Development</a></li>
+                            <li><a href="index.html#services">POS Systems</a></li>
+                            <li><a href="index.html#services">Digital Marketing</a></li>
+                            <li><a href="index.html#services">Consulting</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elan's Tech World. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Template for adding new projects easily -->
-    <template id="project-template">
-        <div class="project-card" data-category="">
-            <div class="project-image">
-                <img src="" alt="">
-                <div class="project-overlay">
-                    <div class="project-tags">
-                        <!-- Tags will be added dynamically -->
-                    </div>
-                </div>
-            </div>
-            <div class="project-content">
-                <h3 class="project-title"></h3>
-                <p class="project-description"></p>
-                <div class="project-features">
-                    <!-- Features will be added dynamically -->
-                </div>
-                <div class="project-links">
-                    <a href="" target="_blank" class="project-visit">Visit Website <i class="fas fa-external-link-alt"></i></a>
-                    <button class="project-details">View Details</button>
-                </div>
-            </div>
-            <div class="project-modal-data" hidden>
-                <!-- Modal content will be added here -->
-            </div>
-        </div>
-    </template>
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- Scripts -->
-    <script src="../js/projects-new.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/portfolio-page.js"></script>
 </body>
 </html>
