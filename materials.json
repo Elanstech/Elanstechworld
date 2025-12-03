@@ -1,0 +1,217 @@
+{
+  "projects": [
+    {
+      "id": "iconic-business-cards",
+      "title": "Iconic Aesthetics Business Cards",
+      "slug": "iconic-business-cards",
+      "client": "Iconic Aesthetics",
+      "category": "materials",
+      "serviceType": "Business Cards",
+      "coverImage": "../assets/images/materials/iconic-cards.jpeg",
+      "gallery": [
+        "../assets/images/materials/iconic-cards.jpeg",
+        "../assets/images/materials/iconic-cards-front.jpeg",
+        "../assets/images/materials/iconic-cards-back.jpeg"
+      ],
+      "year": "2022",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FF8C42",
+      "shortDescription": "Elegant business cards with spot UV - Coming Soon",
+      "longDescription": "Premium business cards featuring elegant typography, spot UV coating, and metallic foil accents for a luxury feel.",
+      "services": [
+        "Business Card Design",
+        "Print Production",
+        "Premium Paper Selection",
+        "Spot UV Finishing",
+        "Foil Stamping"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
+    },
+    {
+      "id": "barber-world-flyers",
+      "title": "Barber World Promotional Flyers",
+      "slug": "barber-world-flyers",
+      "client": "Barber World NYC",
+      "category": "materials",
+      "serviceType": "Marketing Flyers",
+      "coverImage": "../assets/images/materials/barber-flyers.jpeg",
+      "gallery": [
+        "../assets/images/materials/barber-flyers.jpeg"
+      ],
+      "year": "2025",
+      "duration": "1 week",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Eye-catching promotional materials - Coming Soon",
+      "longDescription": "Bold promotional flyers designed to attract customers with special offers and service highlights.",
+      "services": [
+        "Flyer Design",
+        "Marketing Copy",
+        "Print Production",
+        "Distribution Strategy"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"]
+    },
+    {
+      "id": "lauras-brochure",
+      "title": "Laura's Beauty Touch Brochure",
+      "slug": "lauras-brochure",
+      "client": "Laura's Beauty Touch",
+      "category": "materials",
+      "serviceType": "Brochures",
+      "coverImage": "../assets/images/materials/lauras-brochure.jpeg",
+      "gallery": [
+        "../assets/images/materials/lauras-brochure.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FFB482",
+      "shortDescription": "Luxury services brochure - Coming Soon",
+      "longDescription": "An elegant tri-fold brochure showcasing services, pricing, and testimonials with professional photography.",
+      "services": [
+        "Brochure Design",
+        "Content Writing",
+        "Photography Direction",
+        "Print Production",
+        "Premium Paper Selection"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"]
+    },
+    {
+      "id": "east-coast-property-packets",
+      "title": "East Coast Realty Property Packets",
+      "slug": "east-coast-property-packets",
+      "client": "East Coast Realty",
+      "category": "materials",
+      "serviceType": "Marketing Packets",
+      "coverImage": "../assets/images/materials/realty-packets.jpeg",
+      "gallery": [
+        "../assets/images/materials/realty-packets.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Professional property marketing - Coming Soon",
+      "longDescription": "Comprehensive property marketing packets including brochures, fact sheets, and presentation folders.",
+      "services": [
+        "Marketing Packet Design",
+        "Property Brochures",
+        "Fact Sheets",
+        "Folder Design",
+        "Print Production"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Illustrator"]
+    },
+    {
+      "id": "cohen-letterhead",
+      "title": "Cohen & Associates Stationery",
+      "slug": "cohen-letterhead",
+      "client": "Cohen & Associates",
+      "category": "materials",
+      "serviceType": "Stationery Set",
+      "coverImage": "../assets/images/materials/cohen-stationery.jpeg",
+      "gallery": [
+        "../assets/images/materials/cohen-stationery.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#4da3ff",
+      "shortDescription": "Professional law firm stationery - Coming Soon",
+      "longDescription": "Complete stationery set including letterhead, envelopes, business cards, and memo pads with consistent branding.",
+      "services": [
+        "Letterhead Design",
+        "Envelope Design",
+        "Business Card Design",
+        "Memo Pad Design",
+        "Print Production"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Illustrator"]
+    },
+    {
+      "id": "scream-packaging",
+      "title": "S-Cream Product Packaging",
+      "slug": "scream-packaging",
+      "client": "S-Cream",
+      "category": "materials",
+      "serviceType": "Product Packaging",
+      "coverImage": "../assets/images/materials/scream-packaging.jpeg",
+      "gallery": [
+        "../assets/images/materials/scream-packaging.jpeg"
+      ],
+      "year": "2024",
+      "duration": "3 weeks",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#FFB482",
+      "shortDescription": "Modern product packaging design - Coming Soon",
+      "longDescription": "Eye-catching product packaging with modern design, clear product information, and shelf appeal.",
+      "services": [
+        "Package Design",
+        "Label Design",
+        "Product Photography",
+        "Dieline Creation",
+        "Print Production"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop", "Adobe InDesign"]
+    },
+    {
+      "id": "generic-business-cards",
+      "title": "Premium Business Card Collection",
+      "slug": "generic-business-cards",
+      "client": "Various Clients",
+      "category": "materials",
+      "serviceType": "Business Cards",
+      "coverImage": "../assets/images/materials/business-cards-collection.jpeg",
+      "gallery": [
+        "../assets/images/materials/business-cards-collection.jpeg"
+      ],
+      "year": "2024",
+      "duration": "Ongoing",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Various business card designs - Coming Soon",
+      "longDescription": "A collection of premium business card designs for various industries and clients.",
+      "services": [
+        "Business Card Design",
+        "Premium Finishes",
+        "Print Production"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
+    },
+    {
+      "id": "generic-flyers",
+      "title": "Marketing Flyer Portfolio",
+      "slug": "generic-flyers",
+      "client": "Various Clients",
+      "category": "materials",
+      "serviceType": "Marketing Flyers",
+      "coverImage": "../assets/images/materials/flyers-collection.jpeg",
+      "gallery": [
+        "../assets/images/materials/flyers-collection.jpeg"
+      ],
+      "year": "2024",
+      "duration": "Ongoing",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FF8C42",
+      "shortDescription": "Professional flyer designs - Coming Soon",
+      "longDescription": "A portfolio of effective marketing flyers designed for various businesses and promotional campaigns.",
+      "services": [
+        "Flyer Design",
+        "Marketing Copy",
+        "Print Production"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"]
+    }
+  ]
+}
