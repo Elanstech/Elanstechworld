@@ -1,0 +1,168 @@
+{
+  "projects": [
+    {
+      "id": "iconic-aesthetics-logo",
+      "title": "Iconic Aesthetics Logo",
+      "slug": "iconic-aesthetics-logo",
+      "client": "Iconic Aesthetics",
+      "category": "logos",
+      "serviceType": "Brand Identity",
+      "coverImage": "../assets/images/logos/iconic-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/iconic-logo.jpeg",
+        "../assets/images/logos/iconic-logo-variations.jpeg",
+        "../assets/images/logos/iconic-logo-mockup.jpeg"
+      ],
+      "year": "2022",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FF8C42",
+      "shortDescription": "Modern beauty brand identity - Coming Soon",
+      "longDescription": "A sophisticated logo design for a premium aesthetics clinic, featuring elegant typography and a minimalist aesthetic icon.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Color Palette",
+        "Typography Selection",
+        "Brand Guidelines"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
+    },
+    {
+      "id": "barber-world-logo",
+      "title": "Barber World NYC Logo",
+      "slug": "barber-world-logo",
+      "client": "Barber World NYC",
+      "category": "logos",
+      "serviceType": "Brand Identity",
+      "coverImage": "../assets/images/logos/barber-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/barber-logo.jpeg"
+      ],
+      "year": "2025",
+      "duration": "3 weeks",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Bold barbershop branding - Coming Soon",
+      "longDescription": "A bold, masculine logo design for a modern barbershop featuring classic barber elements with contemporary styling.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Signage Design",
+        "Social Media Graphics"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
+    },
+    {
+      "id": "lauras-beauty-logo",
+      "title": "Laura's Beauty Touch Logo",
+      "slug": "lauras-beauty-logo",
+      "client": "Laura's Beauty Touch",
+      "category": "logos",
+      "serviceType": "Luxury Branding",
+      "coverImage": "../assets/images/logos/lauras-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/lauras-logo.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FFB482",
+      "shortDescription": "Elegant beauty clinic identity - Coming Soon",
+      "longDescription": "An elegant and refined logo for a luxury beauty clinic, emphasizing sophistication and premium service.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Luxury Packaging",
+        "Marketing Materials",
+        "Brand Guidelines"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
+    },
+    {
+      "id": "east-coast-realty-logo",
+      "title": "East Coast Realty Logo",
+      "slug": "east-coast-realty-logo",
+      "client": "East Coast Realty",
+      "category": "logos",
+      "serviceType": "Real Estate Branding",
+      "coverImage": "../assets/images/logos/eastcoast-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/eastcoast-logo.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Professional real estate identity - Coming Soon",
+      "longDescription": "A professional and trustworthy logo design for a real estate agency, conveying reliability and expertise.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "For Sale Signs",
+        "Marketing Materials"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
+    },
+    {
+      "id": "cohen-associates-logo",
+      "title": "Cohen & Associates Logo",
+      "slug": "cohen-associates-logo",
+      "client": "Cohen & Associates",
+      "category": "logos",
+      "serviceType": "Legal Branding",
+      "coverImage": "../assets/images/logos/cohen-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/cohen-logo.jpeg"
+      ],
+      "year": "2024",
+      "duration": "3 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#4da3ff",
+      "shortDescription": "Professional law firm identity - Coming Soon",
+      "longDescription": "A sophisticated logo for a prestigious law firm, emphasizing professionalism, trust, and legal expertise.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Letterhead Design",
+        "Business Card Design",
+        "Brand Guidelines"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
+    },
+    {
+      "id": "scream-logo",
+      "title": "S-Cream Logo",
+      "slug": "scream-logo",
+      "client": "S-Cream",
+      "category": "logos",
+      "serviceType": "Product Branding",
+      "coverImage": "../assets/images/logos/scream-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/scream-logo.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#FFB482",
+      "shortDescription": "Modern product branding - Coming Soon",
+      "longDescription": "A fresh and modern logo for an innovative product, designed to stand out on shelves and digital platforms.",
+      "services": [
+        "Logo Design",
+        "Product Packaging",
+        "Brand Identity",
+        "Label Design",
+        "Social Media Graphics"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
+    }
+  ]
+}
