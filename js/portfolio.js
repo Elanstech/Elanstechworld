@@ -45,7 +45,7 @@ class PortfolioPage {
 
   async loadProjects() {
     try {
-      const response = await fetch('./data/projects.json');
+      const response = await fetch('../projects.json');
       const data = await response.json();
       this.projects = data.projects;
       this.filteredProjects = [...this.projects];
