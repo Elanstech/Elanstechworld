@@ -1231,78 +1231,79 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// PORTFOLIO
+// PORTFOLIO - WITH PROJECT ROTATION
 // ==========================================
 class Portfolio {
   constructor() {
-    this.grid = Utils.$('#portfolio-grid');
-    this.projects = [
-      {
-        id: 1,
-        title: 'Iconic Aesthetics',
-        image: './assets/images/iconicwebsiteimage.jpeg',
-        tags: ['Web Development', 'POS System', 'Booking'],
-        category: 'web'
-      },
-      {
-        id: 2,
-        title: 'East Coast Realty',
-        image: './assets/images/eastcoastweb.jpeg',
-        tags: ['Web Development', 'Real Estate', 'Marketing'],
-        category: 'web'
-      },
-      {
-        id: 3,
-        title: 'Cohen & Associates',
-        image: './assets/images/cohen.jpeg',
-        tags: ['Web Development', 'Legal', 'Security'],
-        category: 'web'
-      },
-      {
-        id: 4,
-        title: 'Doug Uhlig Psychological Services',
-        image: './assets/images/doug.jpeg',
-        tags: ['Healthcare', 'HIPAA', 'Patient Portal'],
-        category: 'web'
-      },
-      {
-        id: 5,
-        title: 'S-Cream',
-        image: './assets/images/scream.jpeg',
-        tags: ['E-commerce', 'Product Launch', 'Marketing'],
-        category: 'web'
-      },
-      {
-        id: 6,
-        title: 'Century One Properties',
-        image: './assets/images/centuryone.jpeg',
-        tags: ['Property Management', 'Tenant Portal'],
-        category: 'web'
-      }
-    ];
+    this.grid = Utils.$('#portfolio-modern-grid');
+    this.projects = [];
+    this.limit = 6;
   }
 
-  init() {
+  async init() {
     if (!this.grid) return;
     
+    await this.loadProjects();
+    this.shuffleProjects(); // Rotate projects on each page load
     this.render();
     this.animateItems();
+    this.attachEventListeners();
+  }
+
+  async loadProjects() {
+    try {
+      const response = await fetch('../projects.json');
+      const data = await response.json();
+      this.projects = data.projects;
+    } catch (error) {
+      console.error('Error loading projects:', error);
+      this.projects = [];
+    }
+  }
+
+  shuffleProjects() {
+    // Fisher-Yates shuffle algorithm
+    for (let i = this.projects.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.projects[i], this.projects[j]] = [this.projects[j], this.projects[i]];
+    }
+    
+    // Limit to specified number
+    this.projects = this.projects.slice(0, this.limit);
   }
 
   render() {
+    if (this.projects.length === 0) {
+      this.grid.innerHTML = '<p style="text-align: center; color: var(--gray-lighter); padding: 3rem 0;">Projects loading...</p>';
+      return;
+    }
+
     const html = this.projects.map(project => `
-      <div class="portfolio-item" data-category="${project.category}">
-        <img src="${project.image}" alt="${project.title}" 
-             onerror="this.src='https://via.placeholder.com/400x500/0A0A0A/FF8C42?text=${encodeURIComponent(project.title)}'">
-        <div class="portfolio-content">
-          <div class="portfolio-tags">
-            ${project.tags.map(tag => `<span>${tag}</span>`).join('')}
+      <div class="portfolio-modern-card" data-project-id="${project.id}">
+        ${project.featured ? '<div class="portfolio-featured-badge">Featured</div>' : ''}
+        
+        <div class="portfolio-modern-image">
+          <img src="${project.coverImage}" alt="${project.title}" 
+               onerror="this.src='https://via.placeholder.com/800x600/0A0A0A/FF8C42?text=${encodeURIComponent(project.title)}'">
+          <div class="portfolio-modern-overlay"></div>
+          <div class="portfolio-modern-category">${project.category}</div>
+        </div>
+        
+        <div class="portfolio-modern-content">
+          <h3 class="portfolio-modern-title">${project.title}</h3>
+          <p class="portfolio-modern-description">${project.shortDescription}</p>
+          
+          <div class="portfolio-modern-tags">
+            ${project.tags.slice(0, 3).map(tag => `<span class="portfolio-modern-tag">${tag}</span>`).join('')}
           </div>
-          <h3 class="portfolio-title">${project.title}</h3>
-          <a href="#contact" class="portfolio-link">
-            <span>View Details</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
+          
+          <div class="portfolio-modern-footer">
+            <span class="portfolio-modern-client">${project.client}</span>
+            <a href="portfolio.html#${project.slug}" class="portfolio-modern-link">
+              <span>View Details</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </div>
     `).join('');
@@ -1310,8 +1311,25 @@ class Portfolio {
     this.grid.innerHTML = html;
   }
 
+  attachEventListeners() {
+    const cards = Utils.$$('.portfolio-modern-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Don't trigger if clicking on the link directly
+        if (e.target.closest('.portfolio-modern-link')) return;
+        
+        const projectId = card.dataset.projectId;
+        const project = this.projects.find(p => p.id === projectId);
+        if (project) {
+          window.location.href = `portfolio.html#${project.slug}`;
+        }
+      });
+    });
+  }
+
   animateItems() {
-    const items = Utils.$$('.portfolio-item');
+    const items = Utils.$$('.portfolio-modern-card');
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
@@ -1319,19 +1337,19 @@ class Portfolio {
           setTimeout(() => {
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'translateY(0)';
-          }, index * 50);
+          }, index * 100);
           observer.unobserve(entry.target);
         }
       });
     }, { 
-      threshold: 0.05,
+      threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     });
     
     items.forEach(item => {
       item.style.opacity = '0';
-      item.style.transform = 'translateY(30px)';
-      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      item.style.transform = 'translateY(40px)';
+      item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
       observer.observe(item);
     });
   }
