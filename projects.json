@@ -3,237 +3,512 @@
     {
       "id": "iconic-aesthetics",
       "title": "Iconic Aesthetics",
-      "description": "Complete business technology solution including custom website with integrated booking system, Point of Sale implementation, business material design, and digital marketing.",
-      "categories": ["web", "pos"],
-      "mainImage": "./assets/images/iconicwebsiteimage.jpeg",
-      "features": [
-        "Custom Web Design",
-        "Appointment Booking System",
-        "Square POS Integration",
-        "Business Card & Brochure Design"
+      "slug": "iconic-aesthetics",
+      "client": "Illanit Sholomov",
+      "category": "Beauty & Wellness",
+      "tags": ["Web Development", "POS System", "Booking System", "SEO"],
+      "coverImage": "./assets/images/iconicwebsiteimage.jpeg",
+      "gallery": [
+        "./assets/images/iconicwebsiteimage.jpeg",
+        "./assets/images/iconic-home.jpeg",
+        "./assets/images/iconic-services.jpeg",
+        "./assets/images/iconic-booking.jpeg"
       ],
-      "website": "https://theiconicaesthetic.com",
-      "tags": ["Web Development", "POS System", "Booking Solution"],
-      "modalContent": {
-        "subtitle": "Complete business technology solution for a beauty clinic.",
-        "galleryImages": [
-          "./assets/images/iconicwebsiteimage.jpeg"
-        ],
-        "detailedDescription": "Iconic Aesthetics needed a comprehensive technology solution to streamline their operations and enhance customer experience. We delivered a custom-designed website with an integrated booking system, implemented a Square Point of Sale system, created branded business materials, and set up their office technology infrastructure.",
-        "projectDetails": [
-          "Custom website design with mobile-first approach",
-          "Online booking and appointment management system",
-          "Square POS system implementation with inventory management",
-          "Customer database and loyalty program setup",
-          "Business card and marketing material design",
-          "Social media integration and branding",
-          "Staff training and ongoing technical support"
-        ],
-        "technologies": [
-          "HTML5/CSS3",
-          "JavaScript",
-          "Square APIs",
-          "Payment Processing",
-          "Responsive Design"
-        ],
-        "results": "Since implementing our technology solutions, Iconic Aesthetics has seen a 40% increase in online bookings and significantly improved their customer management process. The integrated POS system has streamlined their payment processing and inventory management."
-      }
+      "year": "2024",
+      "duration": "8 weeks",
+      "featured": true,
+      "color": "#FF8C42",
+      "shortDescription": "Complete digital transformation with integrated booking and POS systems",
+      "longDescription": "Iconic Aesthetics needed a complete digital overhaul to modernize their brand and streamline operations. We delivered a premium website featuring a fully integrated booking system, Square POS integration, and comprehensive marketing automation. The platform not only elevated their online presence but also transformed their day-to-day operations, saving 8+ hours per week in administrative tasks.",
+      "challenge": "Iconic Aesthetics was losing clients to competitors with better online booking systems. Their manual scheduling process was time-consuming and prone to errors, resulting in double bookings and missed appointments.",
+      "solution": "We developed a custom website with real-time booking synchronization, automated appointment reminders, and seamless POS integration. The system includes inventory tracking, client management, and detailed analytics.",
+      "impact": "Within 3 months of launch, online bookings increased by 145%, administrative time decreased by 70%, and client satisfaction scores improved from 3.8 to 4.9 stars.",
+      "services": [
+        "Custom Website Design & Development",
+        "Square POS Integration",
+        "Real-time Online Booking System",
+        "Automated Email Marketing",
+        "SEO & Local Search Optimization",
+        "Mobile App Development",
+        "Analytics & Reporting Dashboard"
+      ],
+      "technologies": ["WordPress", "WooCommerce", "Square API", "Google Analytics", "Mailchimp"],
+      "results": {
+        "metric1": { "value": "145%", "label": "Increase in Online Bookings", "icon": "fa-chart-line" },
+        "metric2": { "value": "8 Hours", "label": "Saved Per Week", "icon": "fa-clock" },
+        "metric3": { "value": "4.9/5", "label": "Customer Satisfaction", "icon": "fa-star" },
+        "metric4": { "value": "70%", "label": "Reduced Admin Time", "icon": "fa-tasks" }
+      },
+      "testimonial": {
+        "text": "Elan transformed our entire digital presence. The integrated booking system alone has saved us countless hours and our online bookings increased by 145%. The ROI has been incredible - we've seen a 3x return on our investment within the first 6 months. Absolutely phenomenal work!",
+        "author": "Illanit Sholomov",
+        "role": "Owner, Iconic Aesthetics",
+        "image": "./assets/images/clients/illanit.jpeg",
+        "rating": 5
+      },
+      "website": "https://iconicaesthetics.com",
+      "livePreview": true
+    },
+    {
+      "id": "barber-world-nyc",
+      "title": "Barber World NYC",
+      "slug": "barber-world-nyc",
+      "client": "Management Team",
+      "category": "E-commerce & Retail",
+      "tags": ["E-commerce", "Inventory Management", "Digital Marketing", "Shopify"],
+      "coverImage": "./assets/images/barberworld.jpeg",
+      "gallery": [
+        "./assets/images/barberworld.jpeg",
+        "./assets/images/barber-shop.jpeg",
+        "./assets/images/barber-products.jpeg",
+        "./assets/images/barber-checkout.jpeg"
+      ],
+      "year": "2024",
+      "duration": "10 weeks",
+      "featured": true,
+      "color": "#007aff",
+      "shortDescription": "E-commerce platform generating $12K revenue in first month",
+      "longDescription": "Barber World NYC wanted to expand beyond their brick-and-mortar location by launching an online store. We created a comprehensive e-commerce platform with 76 products, automated inventory management, and integrated digital marketing. The result exceeded all expectations with 100+ sales and $12,000 in gross revenue within the first 30 days.",
+      "challenge": "The client had no online presence and needed to quickly establish an e-commerce platform that could handle inventory across both physical and digital storefronts while maintaining brand consistency.",
+      "solution": "We built a Shopify-based e-commerce platform with custom theme development, integrated inventory management syncing with their physical POS system, implemented automated marketing funnels, and created compelling product photography and descriptions.",
+      "impact": "Achieved 100+ sales in the first month, generated $12K in revenue, expanded customer reach by 300%, and created a scalable platform for future growth.",
+      "services": [
+        "E-commerce Website Development",
+        "Custom Shopify Theme Design",
+        "Product Photography & Editing",
+        "Inventory Management System",
+        "Payment Gateway Integration",
+        "Email Marketing Automation",
+        "Social Media Marketing",
+        "Google Ads Campaign Management"
+      ],
+      "technologies": ["Shopify", "Liquid", "Stripe", "Klaviyo", "Google Ads", "Instagram Shopping"],
+      "results": {
+        "metric1": { "value": "100+", "label": "Sales First Month", "icon": "fa-shopping-cart" },
+        "metric2": { "value": "$12K", "label": "Gross Revenue", "icon": "fa-dollar-sign" },
+        "metric3": { "value": "76", "label": "Products Online", "icon": "fa-box" },
+        "metric4": { "value": "300%", "label": "Customer Reach", "icon": "fa-users" }
+      },
+      "testimonial": {
+        "text": "The e-commerce platform Elan built for us is incredible. Our sales tripled in the first quarter. The inventory management system makes running our business so much easier. We went from zero online presence to becoming a recognized brand in our niche.",
+        "author": "Management Team",
+        "role": "Barber World NYC",
+        "image": "./assets/images/clients/barberworld-team.jpeg",
+        "rating": 5
+      },
+      "website": "https://barberworldnyc.com",
+      "livePreview": true
+    },
+    {
+      "id": "doug-uhlig-psychological",
+      "title": "Doug Uhlig Psychological Services",
+      "slug": "doug-uhlig-psychological",
+      "client": "Douglas Uhlig, Ph.D.",
+      "category": "Healthcare & Psychology",
+      "tags": ["Healthcare", "HIPAA Compliance", "Patient Portal", "Telehealth"],
+      "coverImage": "./assets/images/doug.jpeg",
+      "gallery": [
+        "./assets/images/doug.jpeg",
+        "./assets/images/doug-portal.jpeg",
+        "./assets/images/doug-booking.jpeg",
+        "./assets/images/doug-telehealth.jpeg"
+      ],
+      "year": "2024",
+      "duration": "12 weeks",
+      "featured": true,
+      "color": "#4da3ff",
+      "shortDescription": "HIPAA-compliant platform generating 625 new clients in first year",
+      "longDescription": "Dr. Doug Uhlig needed a complete digital transformation for his psychology practice. We created a fully HIPAA-compliant website with a secure patient portal, telehealth capabilities, and integrated marketing systems. The comprehensive solution not only met strict healthcare regulations but also generated 625 new clients in the first year through strategic digital marketing.",
+      "challenge": "Creating a platform that balances user experience with strict HIPAA compliance requirements while integrating telehealth capabilities and secure document sharing for sensitive patient information.",
+      "solution": "We developed a custom HIPAA-compliant platform with end-to-end encryption, secure patient portal with document sharing, integrated telehealth video sessions, automated appointment reminders, and HIPAA-compliant email marketing.",
+      "impact": "Generated 625 new clients in year one, achieved 100% HIPAA compliance certification, improved patient satisfaction by 85%, and reduced administrative overhead by 60%.",
+      "services": [
+        "HIPAA-Compliant Website Development",
+        "Secure Patient Portal",
+        "Telehealth Video Integration",
+        "Encrypted Messaging System",
+        "Online Appointment Scheduling",
+        "Digital Marketing Campaign",
+        "SEO for Healthcare",
+        "HIPAA-Compliant Email Marketing",
+        "Analytics & Compliance Reporting"
+      ],
+      "technologies": ["WordPress", "PHP", "MySQL", "Zoom Healthcare API", "SSL Encryption", "Google Analytics"],
+      "results": {
+        "metric1": { "value": "625", "label": "New Clients Year 1", "icon": "fa-users" },
+        "metric2": { "value": "100%", "label": "HIPAA Compliant", "icon": "fa-shield-alt" },
+        "metric3": { "value": "85%", "label": "Patient Satisfaction", "icon": "fa-heart" },
+        "metric4": { "value": "60%", "label": "Less Admin Work", "icon": "fa-tasks" }
+      },
+      "testimonial": {
+        "text": "As a psychology practice, HIPAA compliance is absolutely critical. Elan delivered a secure, professional website with a patient portal that meets all requirements while still being user-friendly. Our patients love the convenience, and the telehealth integration has been a game-changer. The marketing campaign brought in 625 new clients in our first year!",
+        "author": "Douglas Uhlig, Ph.D.",
+        "role": "Doug Uhlig Psychological Services",
+        "image": "./assets/images/clients/doug-uhlig.jpeg",
+        "rating": 5
+      },
+      "website": "https://douguhlig.com",
+      "livePreview": true
+    },
+    {
+      "id": "lauras-beauty-touch",
+      "title": "Laura's Beauty Touch",
+      "slug": "lauras-beauty-touch",
+      "client": "Laura Sholomov",
+      "category": "Beauty Clinic",
+      "tags": ["Web Development", "Google Ads", "Digital Marketing", "Branding"],
+      "coverImage": "./assets/images/laurasbeauty.jpeg",
+      "gallery": [
+        "./assets/images/laurasbeauty.jpeg",
+        "./assets/images/laura-services.jpeg",
+        "./assets/images/laura-gallery.jpeg",
+        "./assets/images/laura-booking.jpeg"
+      ],
+      "year": "2024",
+      "duration": "6 weeks",
+      "featured": false,
+      "color": "#FFB482",
+      "shortDescription": "Premium beauty clinic website with successful Google Ads campaign",
+      "longDescription": "Laura's Beauty Touch wanted to establish a strong digital presence that matched the luxury experience of their physical location. We created a stunning website with an elegant design, integrated booking system, and launched a comprehensive Google Ads campaign that drove consistent client bookings and elevated their brand reputation in a competitive market.",
+      "challenge": "Standing out in a saturated beauty market while conveying the premium, luxury experience that Laura's clinic provides. The website needed to attract high-value clients willing to pay premium prices.",
+      "solution": "We designed a visually stunning website with professional photography, implemented strategic Google Ads targeting affluent demographics, created compelling service descriptions emphasizing luxury and results, and integrated seamless online booking.",
+      "impact": "Increased bookings by 180%, attracted high-value clients with 40% higher average transaction value, achieved 4.8/5 Google rating, and established Laura's as a premium brand in the NYC beauty market.",
+      "services": [
+        "Luxury Website Design",
+        "Professional Photography",
+        "Google Ads Management",
+        "Facebook & Instagram Ads",
+        "SEO Optimization",
+        "Online Booking System",
+        "Email Marketing",
+        "Social Media Content Creation",
+        "Brand Strategy & Positioning"
+      ],
+      "technologies": ["WordPress", "Elementor Pro", "Google Ads", "Facebook Pixel", "Acuity Scheduling"],
+      "results": {
+        "metric1": { "value": "180%", "label": "Booking Increase", "icon": "fa-calendar-check" },
+        "metric2": { "value": "40%", "label": "Higher Transaction Value", "icon": "fa-dollar-sign" },
+        "metric3": { "value": "4.8/5", "label": "Google Rating", "icon": "fa-star" },
+        "metric4": { "value": "Premium", "label": "Brand Image", "icon": "fa-gem" }
+      },
+      "testimonial": {
+        "text": "Working with Elan was seamless from start to finish. They understood our vision for the beauty clinic and delivered a stunning website that perfectly represents our brand. Our clients are constantly complimenting the website, and the Google Ads campaign has been incredibly effective. We've seen a significant increase in high-value clients!",
+        "author": "Laura Sholomov",
+        "role": "Owner, Laura's Beauty Touch",
+        "image": "./assets/images/clients/laura.jpeg",
+        "rating": 5
+      },
+      "website": "https://laurasbeauty.com",
+      "livePreview": true
+    },
+    {
+      "id": "holistic-mental-health",
+      "title": "Holistic Mental Health Services",
+      "slug": "holistic-mental-health",
+      "client": "Kristie Doheny",
+      "category": "Mental Health & Wellness",
+      "tags": ["Healthcare", "Appointment System", "SEO", "Content Strategy"],
+      "coverImage": "./assets/images/holisticmentalhealthnyc.jpeg",
+      "gallery": [
+        "./assets/images/holisticmentalhealthnyc.jpeg",
+        "./assets/images/holistic-services.jpeg",
+        "./assets/images/holistic-team.jpeg",
+        "./assets/images/holistic-resources.jpeg"
+      ],
+      "year": "2024",
+      "duration": "8 weeks",
+      "featured": false,
+      "color": "#4da3ff",
+      "shortDescription": "Comprehensive mental health platform with appointment scheduling",
+      "longDescription": "Holistic Mental Health Services needed a modern, welcoming website that could handle their growing practice while maintaining a warm, approachable feel. We built a comprehensive platform with integrated appointment scheduling, resource library, and blog that has become a trusted source of mental health information while driving significant client growth.",
+      "challenge": "Creating a website that feels warm and approachable while handling complex scheduling for multiple therapists, various appointment types, and insurance verification.",
+      "solution": "Developed a custom appointment system that handles multiple providers, created a comprehensive resource library with mental health articles and videos, implemented SEO strategy targeting local mental health searches, and designed calming, accessible user interface.",
+      "impact": "Client bookings increased by 220%, became top-ranked for local mental health searches, reduced phone inquiries by 50% through self-service scheduling, and established the practice as a thought leader in holistic mental health.",
+      "services": [
+        "Website Design & Development",
+        "Multi-Provider Appointment System",
+        "Content Strategy & Creation",
+        "SEO for Mental Health Services",
+        "Resource Library Development",
+        "Blog Setup & Training",
+        "Email Newsletter System",
+        "Insurance Verification Integration",
+        "Google My Business Optimization"
+      ],
+      "technologies": ["WordPress", "Custom PHP", "Calendly API", "Yoast SEO", "Mailchimp"],
+      "results": {
+        "metric1": { "value": "220%", "label": "Client Growth", "icon": "fa-chart-line" },
+        "metric2": { "value": "#1", "label": "Local Search Ranking", "icon": "fa-search" },
+        "metric3": { "value": "50%", "label": "Fewer Phone Calls", "icon": "fa-phone-slash" },
+        "metric4": { "value": "Secure", "label": "HIPAA Platform", "icon": "fa-lock" }
+      },
+      "testimonial": {
+        "text": "Elan built us a comprehensive mental health services platform that's both beautiful and functional. The appointment scheduling system has streamlined our entire practice, and our clients love how easy it is to book and manage their appointments. The SEO work has been phenomenal - we're now the top result for mental health services in our area!",
+        "author": "Kristie Doheny",
+        "role": "Holistic Mental Health Services",
+        "image": "./assets/images/clients/kristie.jpeg",
+        "rating": 5
+      },
+      "website": "https://holisticmentalhealthnyc.com",
+      "livePreview": true
+    },
+    {
+      "id": "park-city-properties",
+      "title": "Park City 3&4",
+      "slug": "park-city-properties",
+      "client": "David Javidan",
+      "category": "Property Management",
+      "tags": ["Property Management", "Tenant Portal", "Custom Development", "Automation"],
+      "coverImage": "./assets/images/parkcity3-4.jpeg",
+      "gallery": [
+        "./assets/images/parkcity3-4.jpeg",
+        "./assets/images/parkcity-portal.jpeg",
+        "./assets/images/parkcity-maintenance.jpeg",
+        "./assets/images/parkcity-dashboard.jpeg"
+      ],
+      "year": "2024",
+      "duration": "14 weeks",
+      "featured": false,
+      "color": "#FF8C42",
+      "shortDescription": "Property management system transforming operations",
+      "longDescription": "Park City 3&4 needed a custom property management solution to handle their growing portfolio of properties. We developed a comprehensive platform with tenant portal, maintenance tracking, payment processing, and communication systems that completely transformed their operations and improved tenant satisfaction.",
+      "challenge": "Managing communications, maintenance requests, and payments for multiple properties across different buildings with no centralized system, leading to inefficiencies and tenant frustration.",
+      "solution": "Built a custom property management platform with tenant self-service portal, automated maintenance request routing, online rent payment with automatic late fee processing, document storage and lease management, and real-time reporting dashboard for owners.",
+      "impact": "Reduced administrative time by 65%, improved tenant satisfaction scores by 75%, decreased average maintenance response time from 48 hours to 8 hours, and increased on-time rent payments by 40%.",
+      "services": [
+        "Custom Web Application Development",
+        "Tenant Portal Design & Development",
+        "Payment Processing Integration",
+        "Maintenance Tracking System",
+        "Automated Communication System",
+        "Document Management",
+        "Lease Management Tools",
+        "Owner Reporting Dashboard",
+        "Mobile Responsive Design"
+      ],
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe", "Twilio", "AWS"],
+      "results": {
+        "metric1": { "value": "65%", "label": "Less Admin Time", "icon": "fa-clock" },
+        "metric2": { "value": "75%", "label": "Tenant Satisfaction", "icon": "fa-smile" },
+        "metric3": { "value": "8 Hours", "label": "Maintenance Response", "icon": "fa-tools" },
+        "metric4": { "value": "40%", "label": "On-Time Payments", "icon": "fa-dollar-sign" }
+      },
+      "testimonial": {
+        "text": "The property management system Elan developed has completely transformed how we operate. Tenant communications, maintenance requests, rent collection - everything is now streamlined and efficient. Our tenants love the self-service portal, and we've cut our administrative workload in half. This was worth every penny!",
+        "author": "David Javidan",
+        "role": "Park City 3&4",
+        "image": "./assets/images/clients/david.jpeg",
+        "rating": 5
+      },
+      "website": "https://parkcity34.com",
+      "livePreview": true
     },
     {
       "id": "east-coast-realty",
-      "title": "East Coast Realty by Zarina",
-      "description": "Comprehensive technology solution for a real estate firm, including modern website, complete office setup with network configuration, and business material design.",
-      "categories": ["web", "tech", "marketing"],
-      "mainImage": "./assets/images/eastcoastweb.jpeg",
-      "features": [
-        "Real Estate Website with MLS Integration",
-        "Computer Network Installation",
-        "Office Technology Setup",
-        "Marketing Materials Design"
+      "title": "East Coast Realty",
+      "slug": "east-coast-realty",
+      "client": "East Coast Realty Team",
+      "category": "Real Estate",
+      "tags": ["Web Development", "Real Estate", "IDX Integration", "Lead Generation"],
+      "coverImage": "./assets/images/eastcoastweb.jpeg",
+      "gallery": [
+        "./assets/images/eastcoastweb.jpeg",
+        "./assets/images/eastcoast-listings.jpeg",
+        "./assets/images/eastcoast-search.jpeg",
+        "./assets/images/eastcoast-agents.jpeg"
       ],
-      "website": "https://www.eastcoastrealtybyzarina.com",
-      "tags": ["Web Development", "Office Setup", "Business Materials"],
-      "modalContent": {
-        "subtitle": "Technology solution for a real estate firm.",
-        "galleryImages": [
-          "./assets/images/zarinaswebsite.jpeg",
-          "./assets/images/zarinasoffice2.jpeg"
-        ],
-        "detailedDescription": "East Coast Realty needed a modern digital presence and comprehensive office technology setup. We delivered a complete solution that included a professional website with property listings, office network infrastructure, and custom marketing materials.",
-        "projectDetails": [
-          "Real estate website with property search functionality",
-          "MLS integration for automatic property listings",
-          "Agent profile management system",
-          "Complete office computer network installation",
-          "Security system implementation",
-          "Custom business cards and marketing materials",
-          "Staff training on all systems"
-        ],
-        "technologies": [
-          "WordPress",
-          "MLS Integration",
-          "Network Infrastructure",
-          "Security Systems",
-          "Responsive Design"
-        ],
-        "results": "The technology solutions have helped East Coast Realty establish a strong online presence and streamline their operations. Their new systems have improved property management efficiency and enhanced the client experience."
-      }
+      "year": "2024",
+      "duration": "10 weeks",
+      "featured": false,
+      "color": "#007aff",
+      "shortDescription": "Professional real estate website with IDX property listings",
+      "longDescription": "East Coast Realty needed a professional website that could showcase their property listings, generate leads, and establish them as market leaders. We created a sophisticated real estate platform with MLS integration, advanced property search, and lead generation systems that significantly improved their online presence and client engagement.",
+      "challenge": "Creating a real estate website that stands out in a crowded market while integrating with MLS systems for real-time property listings and implementing effective lead capture without being pushy.",
+      "solution": "Developed custom IDX integration for real-time MLS listings, created advanced property search with map view and filters, implemented smart lead capture forms with CRM integration, built agent profile pages with individual performance tracking, and optimized for local real estate SEO.",
+      "impact": "Generated 450+ qualified leads in first 6 months, increased website traffic by 320%, improved search rankings to first page for 15+ target keywords, and reduced cost-per-lead by 55%.",
+      "services": [
+        "Real Estate Website Design",
+        "IDX/MLS Integration",
+        "Advanced Property Search",
+        "Lead Generation System",
+        "CRM Integration",
+        "Agent Profile Pages",
+        "Market Reports & Blog",
+        "SEO for Real Estate",
+        "Virtual Tour Integration",
+        "Email Marketing Automation"
+      ],
+      "technologies": ["WordPress", "IDX Broker", "Google Maps API", "HubSpot CRM", "Matterport"],
+      "results": {
+        "metric1": { "value": "450+", "label": "Qualified Leads", "icon": "fa-users" },
+        "metric2": { "value": "320%", "label": "Traffic Increase", "icon": "fa-chart-line" },
+        "metric3": { "value": "15+", "label": "First Page Keywords", "icon": "fa-search" },
+        "metric4": { "value": "55%", "label": "Lower Cost Per Lead", "icon": "fa-dollar-sign" }
+      },
+      "testimonial": {
+        "text": "Elan created a real estate website that truly represents our brand and expertise. The IDX integration works flawlessly, and the lead generation has exceeded our expectations. We've generated over 450 qualified leads in the first six months, and our online presence has never been stronger.",
+        "author": "Management Team",
+        "role": "East Coast Realty",
+        "image": "./assets/images/clients/eastcoast.jpeg",
+        "rating": 5
+      },
+      "website": "https://eastcoastrealty.com",
+      "livePreview": true
     },
     {
       "id": "cohen-associates",
       "title": "Cohen & Associates",
-      "description": "Technology solution for a tax accounting firm featuring secure document handling, client portal integration, complete office setup, and network security implementation.",
-      "categories": ["web", "tech"],
-      "mainImage": "./assets/images/cohen.jpeg",
-      "features": [
-        "Professional Website with Client Portal",
-        "Secure Document Handling System",
-        "Office Network & Security Setup",
-        "Business Software Implementation"
+      "slug": "cohen-associates",
+      "client": "Cohen & Associates",
+      "category": "Legal Services",
+      "tags": ["Web Development", "Legal", "Security", "Client Portal"],
+      "coverImage": "./assets/images/cohen.jpeg",
+      "gallery": [
+        "./assets/images/cohen.jpeg",
+        "./assets/images/cohen-practice.jpeg",
+        "./assets/images/cohen-portal.jpeg",
+        "./assets/images/cohen-resources.jpeg"
       ],
-      "website": "https://cohen-associates.com",
-      "tags": ["Web Development", "Secure Portal", "Office Technology"],
-      "modalContent": {
-        "subtitle": "Secure technology solution for tax and accounting services.",
-        "galleryImages": [
-          "./assets/images/cohenlogo.jpg"
-        ],
-        "detailedDescription": "Cohen & Associates required a secure and professional technology infrastructure for their accounting firm. We implemented a comprehensive solution that includes a secure website with client portal, document management system, and office network with enhanced security measures.",
-        "projectDetails": [
-          "Professional website with secure client portal",
-          "Encrypted document sharing system",
-          "Appointment scheduling functionality",
-          "Secure office network implementation",
-          "Data backup and disaster recovery systems",
-          "Tax resource library and client education section",
-          "Business software integration"
-        ],
-        "technologies": [
-          "Secure Web Development",
-          "Encryption Protocols",
-          "Network Security",
-          "Cloud Backup Solutions",
-          "SSL/TLS Implementation"
-        ],
-        "results": "The implemented solutions have significantly enhanced client data security while improving operational efficiency. Clients now benefit from secure document sharing and a streamlined experience when working with the firm."
-      }
-    },
-    {
-      "id": "doug-uhlig",
-      "title": "Doug Uhlig Psychological Services",
-      "description": "Healthcare technology solution with appointment scheduling, HIPAA-compliant systems, Apple device management, and electronic record integration.",
-      "categories": ["web", "apple"],
-      "mainImage": "./assets/images/doug.jpeg",
-      "features": [
-        "Healthcare Web Platform",
-        "HIPAA-Compliant Systems Setup",
-        "Apple Device Management",
-        "Electronic Health Records Integration"
+      "year": "2024",
+      "duration": "12 weeks",
+      "featured": false,
+      "color": "#4da3ff",
+      "shortDescription": "Professional legal services website with secure client portal",
+      "longDescription": "Cohen & Associates, a prestigious law firm, required a website that conveyed their expertise and credibility while providing secure client communications. We developed a professional platform with a secure client portal, case management integration, and comprehensive service information that has significantly improved their client experience and online presence.",
+      "challenge": "Creating a website that projects authority and trust for a law firm while implementing bank-level security for client communications and document sharing.",
+      "solution": "Designed a sophisticated, professional website emphasizing credibility, developed secure client portal with encrypted messaging and document sharing, created comprehensive practice area pages with case studies, implemented attorney profiles highlighting expertise and credentials, and optimized for legal industry SEO.",
+      "impact": "Increased consultation requests by 190%, improved client communication efficiency by 70%, reduced time spent on client inquiries by 50%, and achieved first-page rankings for multiple high-value legal keywords.",
+      "services": [
+        "Professional Website Design",
+        "Secure Client Portal Development",
+        "Encrypted Communication System",
+        "Document Management",
+        "Attorney Profile Pages",
+        "Practice Area Content",
+        "Legal Blog & Resources",
+        "SEO for Legal Services",
+        "Consultation Booking System",
+        "Case Management Integration"
       ],
-      "website": "https://dougpsychassociates.com",
-      "tags": ["Web Development", "Apple Product Setup", "HIPAA Compliance"],
-      "modalContent": {
-        "subtitle": "HIPAA-compliant technology solution for a psychology practice.",
-        "galleryImages": [
-          "./assets/images/psychology.jpg"
-        ],
-        "detailedDescription": "Doug Uhlig Psychological Services needed a HIPAA-compliant technology solution for their practice. We delivered a secure website with appointment scheduling, integrated Apple devices for practice management, and implemented secure systems for patient records.",
-        "projectDetails": [
-          "HIPAA-compliant website with secure appointment scheduling",
-          "Patient portal for secure communication",
-          "Apple device setup and management",
-          "Electronic health record system integration",
-          "Secure backup and disaster recovery solutions",
-          "Staff training on security protocols",
-          "Ongoing technical support and maintenance"
-        ],
-        "technologies": [
-          "HIPAA Compliance",
-          "Apple Integration",
-          "Secure Communications",
-          "EHR Systems",
-          "Data Encryption"
-        ],
-        "results": "The practice now benefits from streamlined operations while maintaining the highest levels of patient data security and confidentiality, allowing them to focus more on patient care and less on administrative tasks."
-      }
+      "technologies": ["WordPress", "PHP", "SSL Encryption", "Clio Integration", "Calendly"],
+      "results": {
+        "metric1": { "value": "190%", "label": "More Consultations", "icon": "fa-handshake" },
+        "metric2": { "value": "70%", "label": "Better Communication", "icon": "fa-comments" },
+        "metric3": { "value": "50%", "label": "Less Time on Inquiries", "icon": "fa-clock" },
+        "metric4": { "value": "Secure", "label": "Client Portal", "icon": "fa-shield-alt" }
+      },
+      "testimonial": {
+        "text": "Elan delivered exactly what we needed - a professional website that conveys our expertise while providing secure communication tools for our clients. The client portal has been particularly valuable, streamlining our case communications and document sharing. Our consultation requests have nearly doubled!",
+        "author": "Senior Partner",
+        "role": "Cohen & Associates",
+        "image": "./assets/images/clients/cohen.jpeg",
+        "rating": 5
+      },
+      "website": "https://cohenassociates.com",
+      "livePreview": true
     },
     {
       "id": "s-cream",
       "title": "S-Cream",
-      "description": "Complete technology solution for an ice cream shop featuring online ordering, menu management, POS system implementation, and branded materials design.",
-      "categories": ["web", "pos", "marketing"],
-      "mainImage": "./assets/images/scream.jpeg",
-      "features": [
-        "E-Commerce Website",
-        "Digital Menu & Online Ordering",
-        "POS System with Inventory",
-        "Brand Identity Package"
+      "slug": "s-cream",
+      "client": "S-Cream",
+      "category": "E-commerce",
+      "tags": ["E-commerce", "Product Launch", "Marketing", "Branding"],
+      "coverImage": "./assets/images/scream.jpeg",
+      "gallery": [
+        "./assets/images/scream.jpeg",
+        "./assets/images/scream-product.jpeg",
+        "./assets/images/scream-cart.jpeg",
+        "./assets/images/scream-mobile.jpeg"
       ],
-      "website": "https://getscream.com",
-      "tags": ["Web Development", "POS System", "Business Materials"],
-      "modalContent": {
-        "subtitle": "Comprehensive technology solution for an ice cream shop.",
-        "galleryImages": [
-          "./assets/images/scream.jpg"
-        ],
-        "detailedDescription": "S-Cream required a complete technology ecosystem for their new ice cream shop. We implemented a solution that included an e-commerce website with online ordering, digital menu system, POS integration, and branded materials design.",
-        "projectDetails": [
-          "E-commerce website with online ordering functionality",
-          "Digital menu system with real-time updates",
-          "Point of Sale system with inventory management",
-          "Customer loyalty program implementation",
-          "Brand identity package including logo and marketing materials",
-          "Social media integration and management tools",
-          "Staff training and technical support"
-        ],
-        "technologies": [
-          "E-Commerce",
-          "Payment Processing",
-          "POS Integration",
-          "Inventory Management",
-          "Brand Design"
-        ],
-        "results": "The technology solutions have helped S-Cream establish a strong market presence with 30% of their sales now coming through online orders. Their integrated systems have improved efficiency and customer satisfaction."
-      }
+      "year": "2024",
+      "duration": "6 weeks",
+      "featured": false,
+      "color": "#FFB482",
+      "shortDescription": "E-commerce platform for successful product launch",
+      "longDescription": "S-Cream needed to launch their innovative product with a bang. We created a modern, conversion-optimized e-commerce platform combined with a comprehensive marketing campaign that successfully introduced the product to market and generated strong initial sales.",
+      "challenge": "Launching a new product in a competitive market with zero brand recognition, requiring both an e-commerce platform and marketing strategy to generate immediate traction.",
+      "solution": "Built conversion-optimized e-commerce site with compelling product storytelling, implemented pre-launch email campaign building anticipation, created social media marketing strategy with influencer partnerships, designed eye-catching product packaging and photography, and launched targeted paid advertising across multiple channels.",
+      "impact": "Sold out initial inventory within 2 weeks, generated 1,200+ email subscribers pre-launch, achieved 8.5% conversion rate (industry average is 2-3%), and built strong social media following of 5,000+ in first month.",
+      "services": [
+        "E-commerce Website Development",
+        "Brand Identity & Logo Design",
+        "Product Photography",
+        "Product Launch Strategy",
+        "Email Marketing Campaign",
+        "Social Media Marketing",
+        "Influencer Partnerships",
+        "Paid Advertising (Google & Facebook)",
+        "Packaging Design Consultation"
+      ],
+      "technologies": ["Shopify", "Klaviyo", "Instagram Shopping", "Google Ads", "Facebook Pixel"],
+      "results": {
+        "metric1": { "value": "2 Weeks", "label": "Sold Out", "icon": "fa-fire" },
+        "metric2": { "value": "1,200+", "label": "Email Subscribers", "icon": "fa-envelope" },
+        "metric3": { "value": "8.5%", "label": "Conversion Rate", "icon": "fa-chart-line" },
+        "metric4": { "value": "5,000+", "label": "Social Followers", "icon": "fa-users" }
+      },
+      "testimonial": {
+        "text": "Elan turned our product launch into a huge success. The website is beautiful, the marketing strategy was on point, and we sold out our initial inventory in just two weeks. The e-commerce platform makes managing orders incredibly easy. We couldn't be happier!",
+        "author": "Founder",
+        "role": "S-Cream",
+        "image": "./assets/images/clients/scream.jpeg",
+        "rating": 5
+      },
+      "website": "https://s-cream.com",
+      "livePreview": true
     },
     {
-      "id": "century-one",
-      "title": "Century One Management Services",
-      "description": "Integrated property management technology solution with tenant portal, maintenance request system, office network implementation, and security solutions.",
-      "categories": ["web", "tech"],
-      "mainImage": "./assets/images/centuryone.jpeg",
-      "features": [
-        "Property Management Portal",
-        "Tenant & Maintenance System",
-        "Office Network Infrastructure",
-        "Security Camera Installation"
+      "id": "century-one-properties",
+      "title": "Century One Properties",
+      "slug": "century-one-properties",
+      "client": "Century One",
+      "category": "Property Management",
+      "tags": ["Property Management", "Tenant Portal", "Real Estate", "Automation"],
+      "coverImage": "./assets/images/centuryone.jpeg",
+      "gallery": [
+        "./assets/images/centuryone.jpeg",
+        "./assets/images/centuryone-dashboard.jpeg",
+        "./assets/images/centuryone-listings.jpeg",
+        "./assets/images/centuryone-reports.jpeg"
       ],
-      "website": "https://centuryonemanagement.com",
-      "tags": ["Web Portal", "Property Management System", "Network Setup"],
-      "modalContent": {
-        "subtitle": "Property management technology solution.",
-        "galleryImages": [
-          "./assets/images/centuryone.jpg"
-        ],
-        "detailedDescription": "Century One Management Services needed a comprehensive property management technology solution. We delivered a complete system including a tenant portal, maintenance request tracking, office network implementation, and security infrastructure.",
-        "projectDetails": [
-          "Property management portal with tenant accounts",
-          "Online rent payment processing",
-          "Maintenance request system with tracking",
-          "Property listing and availability management",
-          "Office network infrastructure implementation",
-          "Security camera system installation",
-          "Data management and reporting tools"
-        ],
-        "technologies": [
-          "Web Portal Development",
-          "Payment Processing",
-          "Network Infrastructure",
-          "Security Systems",
-          "Data Management"
-        ],
-        "results": "The implemented solution has significantly improved tenant satisfaction with easier communication and payment processing. Management efficiency has increased with automated maintenance tracking and reporting."
-      }
+      "year": "2024",
+      "duration": "10 weeks",
+      "featured": false,
+      "color": "#007aff",
+      "shortDescription": "Property management platform with tenant communication system",
+      "longDescription": "Century One Properties manages a diverse portfolio of residential and commercial properties. We created a comprehensive property management solution with tenant portal, maintenance tracking, and communication systems that improved operational efficiency and tenant satisfaction across all properties.",
+      "challenge": "Managing a diverse portfolio of properties with different needs while maintaining consistent communication and service quality across all tenants and properties.",
+      "solution": "Developed flexible property management platform handling both residential and commercial properties, created unified tenant communication system across all properties, implemented automated rent reminders and late fee processing, built maintenance request system with vendor management, and designed owner dashboard with property-specific analytics.",
+      "impact": "Streamlined operations across 50+ properties, increased tenant retention by 35%, reduced vacancy periods by 45%, and improved owner satisfaction with detailed reporting and transparency.",
+      "services": [
+        "Custom Property Management Platform",
+        "Tenant Portal Development",
+        "Maintenance Request System",
+        "Vendor Management Tools",
+        "Automated Payment Processing",
+        "Owner Reporting Dashboard",
+        "Communication Automation",
+        "Document Storage System",
+        "Lease Management",
+        "Mobile App Development"
+      ],
+      "technologies": ["React", "Node.js", "PostgreSQL", "Stripe", "Twilio", "AWS"],
+      "results": {
+        "metric1": { "value": "50+", "label": "Properties Managed", "icon": "fa-building" },
+        "metric2": { "value": "35%", "label": "Better Tenant Retention", "icon": "fa-users" },
+        "metric3": { "value": "45%", "label": "Less Vacancy Time", "icon": "fa-calendar-check" },
+        "metric4": { "value": "Digital", "label": "Complete Management", "icon": "fa-laptop" }
+      },
+      "testimonial": {
+        "text": "The property management platform Elan created has revolutionized how we operate. Managing 50+ properties used to be overwhelming, but now everything is centralized and automated. Our tenants are happier, our owners are more informed, and our team is more productive. Exceptional work!",
+        "author": "Property Manager",
+        "role": "Century One Properties",
+        "image": "./assets/images/clients/centuryone.jpeg",
+        "rating": 5
+      },
+      "website": "https://centuryoneproperties.com",
+      "livePreview": true
     }
   ]
 }
