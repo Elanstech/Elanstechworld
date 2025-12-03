@@ -157,7 +157,7 @@
       "client": "Laura Sholomov",
       "category": "Beauty Clinic",
       "tags": ["Web Development", "Google Ads", "Digital Marketing", "Branding"],
-      "coverImage": "./assets/images/laurashero.jpeg",
+      "coverImage": "../assets/images/laurashero.jpeg",
       "gallery": [
         "../assets/images/laurasmenu.jpeg",
         "../assets/images/laurasfacial.jpeg",
