@@ -1,89 +1,6 @@
 {
   "projects": [
     {
-      "id": "iconic-aesthetics-logo",
-      "title": "Iconic Aesthetics Logo",
-      "slug": "iconic-aesthetics-logo",
-      "client": "Iconic Aesthetics",
-      "category": "logos",
-      "serviceType": "Brand Identity",
-      "coverImage": "../assets/images/logos/iconic-logo.jpeg",
-      "gallery": [
-        "../assets/images/logos/iconic-logo.jpeg",
-        "../assets/images/logos/iconic-logo-variations.jpeg",
-        "../assets/images/logos/iconic-logo-mockup.jpeg"
-      ],
-      "year": "2022",
-      "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FF8C42",
-      "shortDescription": "Modern beauty brand identity - Coming Soon",
-      "longDescription": "A sophisticated logo design for a premium aesthetics clinic, featuring elegant typography and a minimalist aesthetic icon.",
-      "services": [
-        "Logo Design",
-        "Brand Identity",
-        "Color Palette",
-        "Typography Selection",
-        "Brand Guidelines"
-      ],
-      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
-    },
-    {
-      "id": "barber-world-logo",
-      "title": "Barber World NYC Logo",
-      "slug": "barber-world-logo",
-      "client": "Barber World NYC",
-      "category": "logos",
-      "serviceType": "Brand Identity",
-      "coverImage": "../assets/images/logos/barber-logo.jpeg",
-      "gallery": [
-        "../assets/images/logos/barber-logo.jpeg"
-      ],
-      "year": "2025",
-      "duration": "3 weeks",
-      "featured": true,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Bold barbershop branding - Coming Soon",
-      "longDescription": "A bold, masculine logo design for a modern barbershop featuring classic barber elements with contemporary styling.",
-      "services": [
-        "Logo Design",
-        "Brand Identity",
-        "Business Card Design",
-        "Signage Design",
-        "Social Media Graphics"
-      ],
-      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
-    },
-    {
-      "id": "lauras-beauty-logo",
-      "title": "Laura's Beauty Touch Logo",
-      "slug": "lauras-beauty-logo",
-      "client": "Laura's Beauty Touch",
-      "category": "logos",
-      "serviceType": "Luxury Branding",
-      "coverImage": "../assets/images/logos/lauras-logo.jpeg",
-      "gallery": [
-        "../assets/images/logos/lauras-logo.jpeg"
-      ],
-      "year": "2025",
-      "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FFB482",
-      "shortDescription": "Elegant beauty clinic identity - Coming Soon",
-      "longDescription": "An elegant and refined logo for a luxury beauty clinic, emphasizing sophistication and premium service.",
-      "services": [
-        "Logo Design",
-        "Brand Identity",
-        "Luxury Packaging",
-        "Marketing Materials",
-        "Brand Guidelines"
-      ],
-      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
-    },
-    {
       "id": "east-coast-realty-logo",
       "title": "East Coast Realty Logo",
       "slug": "east-coast-realty-logo",
@@ -100,7 +17,7 @@
       "comingSoon": true,
       "color": "#007aff",
       "shortDescription": "Professional real estate identity - Coming Soon",
-      "longDescription": "A professional and trustworthy logo design for a real estate agency, conveying reliability and expertise.",
+      "longDescription": "A professional and trustworthy logo design for a real estate agency, conveying reliability and expertise in the property market.",
       "services": [
         "Logo Design",
         "Brand Identity",
@@ -111,31 +28,157 @@
       "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
     },
     {
-      "id": "cohen-associates-logo",
-      "title": "Cohen & Associates Logo",
-      "slug": "cohen-associates-logo",
-      "client": "Cohen & Associates",
+      "id": "century-one-logo",
+      "title": "Century One Properties Logo",
+      "slug": "century-one-logo",
+      "client": "Century One Properties",
       "category": "logos",
-      "serviceType": "Legal Branding",
-      "coverImage": "../assets/images/logos/cohen-logo.jpeg",
+      "serviceType": "Property Management Branding",
+      "coverImage": "../assets/images/logos/centuryone-logo.jpeg",
       "gallery": [
-        "../assets/images/logos/cohen-logo.jpeg"
+        "../assets/images/logos/centuryone-logo.jpeg"
       ],
       "year": "2024",
-      "duration": "3 weeks",
+      "duration": "2 weeks",
       "featured": false,
       "comingSoon": true,
-      "color": "#4da3ff",
-      "shortDescription": "Professional law firm identity - Coming Soon",
-      "longDescription": "A sophisticated logo for a prestigious law firm, emphasizing professionalism, trust, and legal expertise.",
+      "color": "#007aff",
+      "shortDescription": "Modern property management identity - Coming Soon",
+      "longDescription": "A sophisticated logo for a property management company, emphasizing professionalism and trust in real estate management.",
       "services": [
         "Logo Design",
         "Brand Identity",
-        "Letterhead Design",
         "Business Card Design",
-        "Brand Guidelines"
+        "Letterhead Design",
+        "Marketing Materials"
       ],
-      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
+    },
+    {
+      "id": "barber-world-logo",
+      "title": "Barber World NYC Logo",
+      "slug": "barber-world-logo",
+      "client": "Barber World NYC",
+      "category": "logos",
+      "serviceType": "Retail Branding",
+      "coverImage": "../assets/images/logos/barberworld-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/barberworld-logo.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#007aff",
+      "shortDescription": "Bold barbershop br{
+  "projects": [
+    {
+      "id": "east-coast-realty-logo",
+      "title": "East Coast Realty Logo",
+      "slug": "east-coast-realty-logo",
+      "client": "East Coast Realty",
+      "category": "logos",
+      "serviceType": "Real Estate Branding",
+      "coverImage": "../assets/images/logos/eastcoast-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/eastcoast-logo.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#007aff",
+      "shortDescription": "Professional real estate brand identity with modern design",
+      "longDescription": "A professional and trustworthy logo design for East Coast Realty, conveying reliability and expertise in the property market. The design features clean lines and sophisticated typography that appeals to both buyers and sellers.",
+      "challenge": "Creating a logo that stands out in the competitive real estate market while maintaining professionalism and trust.",
+      "solution": "Developed a modern yet timeless logo combining real estate symbolism with elegant typography, suitable for all marketing materials from business cards to yard signs.",
+      "impact": "The new brand identity helped establish East Coast Realty as a premium agency, improving brand recognition and client trust.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "For Sale Sign Design",
+        "Marketing Materials"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "The logo perfectly captures our brand - professional, trustworthy, and modern. It looks great on everything from our website to our yard signs!",
+        "author": "Management Team",
+        "role": "East Coast Realty",
+        "rating": 5
+      }
+    },
+    {
+      "id": "century-one-logo",
+      "title": "Century One Properties Logo",
+      "slug": "century-one-logo",
+      "client": "Century One Properties",
+      "category": "logos",
+      "serviceType": "Property Management Branding",
+      "coverImage": "../assets/images/logos/centuryone-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/centuryone-logo.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#007aff",
+      "shortDescription": "Modern property management brand identity",
+      "longDescription": "A sophisticated logo for Century One Properties, emphasizing professionalism and trust in real estate management. The design conveys stability and reliability for property owners and tenants alike.",
+      "challenge": "Creating a brand that appeals to both property owners seeking management services and tenants looking for quality rental properties.",
+      "solution": "Designed a clean, professional logo that balances modern aesthetics with classic reliability, incorporating elements that suggest both property and management.",
+      "impact": "The new brand identity positioned Century One as a premium property management company, attracting higher-value properties and quality tenants.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Letterhead Design",
+        "Marketing Materials"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "Our new logo has elevated our entire brand. Property owners immediately recognize the professionalism and quality we bring to property management.",
+        "author": "Property Manager",
+        "role": "Century One Properties",
+        "rating": 5
+      }
+    },
+    {
+      "id": "barber-world-logo",
+      "title": "Barber World NYC Logo",
+      "slug": "barber-world-logo",
+      "client": "Barber World NYC",
+      "category": "logos",
+      "serviceType": "Retail Branding",
+      "coverImage": "../assets/images/logos/barberworld-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/barberworld-logo.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#007aff",
+      "shortDescription": "Bold barbershop brand with modern edge",
+      "longDescription": "A bold, masculine logo design for Barber World NYC featuring classic barber elements with contemporary styling. The design captures the essence of traditional barbering while appealing to modern clientele.",
+      "challenge": "Creating a logo that honors traditional barbershop heritage while appealing to a younger, style-conscious demographic in NYC.",
+      "solution": "Blended classic barber imagery with bold, modern typography and a color scheme that works across all applications from storefront signage to product packaging.",
+      "impact": "The distinctive brand identity helped Barber World NYC establish itself as the go-to barbershop for style-conscious men, contributing to rapid business growth.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Signage Design",
+        "Product Packaging"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "The logo is exactly what we wanted - bold, memorable, and it looks incredible on everything from our storefront to our product line!",
+        "author": "Management Team",
+        "role": "Barber World NYC",
+        "rating": 5
+      }
     },
     {
       "id": "scream-logo",
@@ -151,18 +194,171 @@
       "year": "2024",
       "duration": "2 weeks",
       "featured": false,
-      "comingSoon": true,
+      "comingSoon": false,
       "color": "#FFB482",
-      "shortDescription": "Modern product branding - Coming Soon",
-      "longDescription": "A fresh and modern logo for an innovative product, designed to stand out on shelves and digital platforms.",
+      "shortDescription": "Fresh, modern product brand identity",
+      "longDescription": "A fresh and modern logo for S-Cream, an innovative product designed to stand out on shelves and digital platforms. The playful yet professional design captures attention while maintaining credibility.",
+      "challenge": "Creating a logo that's memorable and shelf-ready while being versatile enough for digital marketing and social media.",
+      "solution": "Developed a unique, eye-catching logo with vibrant colors and modern typography that translates perfectly from packaging to Instagram posts.",
+      "impact": "The distinctive branding helped S-Cream achieve rapid market recognition, selling out initial inventory within two weeks of launch.",
       "services": [
         "Logo Design",
-        "Product Packaging",
+        "Product Packaging Design",
         "Brand Identity",
         "Label Design",
         "Social Media Graphics"
       ],
-      "technologies": ["Adobe Illustrator", "Adobe Photoshop"]
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "Our logo is instantly recognizable and people love it! It's been key to our social media success and product launch.",
+        "author": "Founder",
+        "role": "S-Cream",
+        "rating": 5
+      }
+    },
+    {
+      "id": "eviaesthetics-logo",
+      "title": "Evia Aesthetics Logo",
+      "slug": "eviaesthetics-logo",
+      "client": "Evia Aesthetics",
+      "category": "logos",
+      "serviceType": "Beauty & Wellness Branding",
+      "coverImage": "../assets/images/logos/eviaesthetics-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/eviaesthetics-logo.jpeg"
+      ],
+      "year": "2023",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Elegant beauty clinic brand identity",
+      "longDescription": "A sophisticated and elegant logo for Evia Aesthetics, a premium beauty and aesthetics clinic. The design emphasizes luxury, refinement, and expert care in aesthetic treatments.",
+      "challenge": "Creating a logo that conveys both medical professionalism and beauty industry elegance for a high-end aesthetics clinic.",
+      "solution": "Designed a refined logo combining medical precision with beauty aesthetics, using elegant typography and a sophisticated color palette.",
+      "impact": "The luxurious brand identity attracted high-value clientele and positioned Evia Aesthetics as a premium provider in the competitive aesthetics market.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Marketing Materials",
+        "Brand Guidelines"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "The logo perfectly represents our clinic - elegant, professional, and luxurious. Our clients are always impressed by our branding.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "lauras-beauty-logo",
+      "title": "Laura's Beauty Touch Logo",
+      "slug": "lauras-beauty-logo",
+      "client": "Laura's Beauty Touch",
+      "category": "logos",
+      "serviceType": "Beauty Salon Branding",
+      "coverImage": "../assets/images/logos/lauras-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/lauras-logo.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FFB482",
+      "shortDescription": "Elegant beauty salon brand identity",
+      "longDescription": "An elegant and refined logo for Laura's Beauty Touch, a luxury beauty salon. The design emphasizes sophistication, personal care, and premium beauty services.",
+      "challenge": "Creating a logo that stands out in the crowded beauty market while conveying the personal, high-touch service Laura provides.",
+      "solution": "Developed a graceful logo featuring elegant script typography and refined design elements that reflect the personalized, luxurious experience clients receive.",
+      "impact": "The sophisticated brand identity helped Laura's Beauty Touch attract discerning clientele and justify premium pricing in a competitive market.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Marketing Materials",
+        "Signage Design"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe InDesign"],
+      "testimonial": {
+        "text": "My logo is absolutely beautiful and perfectly captures the luxury experience I provide. Clients constantly compliment it!",
+        "author": "Laura Sholomov",
+        "role": "Owner, Laura's Beauty Touch",
+        "rating": 5
+      }
+    },
+    {
+      "id": "holistic-psychological-logo",
+      "title": "Holistic Mental Health Services Logo",
+      "slug": "holistic-psychological-logo",
+      "client": "Holistic Mental Health Services",
+      "category": "logos",
+      "serviceType": "Healthcare Branding",
+      "coverImage": "../assets/images/logos/holistic-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/holistic-logo.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Calming mental health services brand",
+      "longDescription": "A warm and approachable logo for Holistic Mental Health Services, emphasizing compassionate care and comprehensive mental wellness. The design creates a sense of calm and trust.",
+      "challenge": "Creating a logo that feels welcoming and reduces stigma around mental health services while maintaining professional credibility.",
+      "solution": "Designed a gentle, approachable logo using calming colors and flowing forms that suggest both balance and growth, appealing to those seeking mental health support.",
+      "impact": "The welcoming brand identity helped reduce barriers to seeking help, contributing to significant client growth and positive community perception.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Website Graphics",
+        "Marketing Materials"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "The logo creates exactly the right feeling - welcoming, professional, and calming. It perfectly represents our holistic approach to mental health.",
+        "author": "Kristie Doheny",
+        "role": "Holistic Mental Health Services",
+        "rating": 5
+      }
+    },
+    {
+      "id": "child-family-psychological-logo",
+      "title": "Child & Family Psychological Services Logo",
+      "slug": "child-family-psychological-logo",
+      "client": "Child & Family Psychological Services",
+      "category": "logos",
+      "serviceType": "Healthcare Branding",
+      "coverImage": "../assets/images/logos/childfamily-logo.jpeg",
+      "gallery": [
+        "../assets/images/logos/childfamily-logo.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Family-focused psychological services brand",
+      "longDescription": "A compassionate and trustworthy logo for Child & Family Psychological Services, specializing in therapy for children and families. The design conveys warmth, safety, and professional expertise.",
+      "challenge": "Creating a logo that appeals to both parents seeking help for their children and to the children themselves, while maintaining professional credibility.",
+      "solution": "Designed a friendly yet professional logo incorporating elements that suggest family, growth, and care, using colors that are calming yet optimistic.",
+      "impact": "The approachable brand identity helped families feel comfortable reaching out for services, leading to increased client intake and positive referrals.",
+      "services": [
+        "Logo Design",
+        "Brand Identity",
+        "Business Card Design",
+        "Office Signage",
+        "Marketing Materials"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "testimonial": {
+        "text": "The logo makes families feel comfortable and safe. It's professional but not intimidating, which is exactly what we needed for our practice.",
+        "author": "Practice Director",
+        "role": "Child & Family Psychological Services",
+        "rating": 5
+      }
     }
   ]
 }
