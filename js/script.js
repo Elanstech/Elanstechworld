@@ -1299,7 +1299,7 @@ class Portfolio {
           
           <div class="portfolio-modern-footer">
             <span class="portfolio-modern-client">${project.client}</span>
-            <a href="projects.html#${project.slug}" class="portfolio-modern-link">
+            <a href="pages/projects.html#${project.slug}" class="portfolio-modern-link">
               <span>View Details</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -1322,7 +1322,7 @@ class Portfolio {
         const projectId = card.dataset.projectId;
         const project = this.projects.find(p => p.id === projectId);
         if (project) {
-          window.location.href = `projects.html#${project.slug}`;
+          window.location.href = `pages/projects.html#${project.slug}`;
         }
       });
     });
