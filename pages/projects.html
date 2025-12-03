@@ -14,30 +14,30 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/portfolio.css">
     
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <meta name="theme-color" content="#0A0A0A">
 </head>
 
 <body class="preload">
     
 <!-- Loader -->
-    <div class="loader-container">
-        <div class="loader-content">
-            <div class="logo-loader">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                <div class="loader-ring"></div>
-                <div class="loader-ring"></div>
-            </div>
-            <div class="loader-text">
-                <h3>Elan's Tech World</h3>
-                <p>Crafting Digital Excellence</p>
-            </div>
-            <div class="loader-progress">
-                <div class="loader-progress-bar"></div>
-            </div>
+<div class="loader-container">
+    <div class="loader-content">
+        <div class="logo-loader">
+            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+        </div>
+        <div class="loader-text">
+            <h3>Elan's Tech World</h3>
+            <p>Crafting Digital Excellence</p>
+        </div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
         </div>
     </div>
-    
+</div>
+
 <!-- Futuristic Header -->
 <header class="header-futuristic">
     <div class="header-glow"></div>
@@ -45,8 +45,7 @@
     
     <div class="container">
         <div class="header-inner-futuristic">
-            <!-- Simple Logo (No Circle) -->
-            <a href="#home" class="logo-futuristic">
+            <a href="../index.html" class="logo-futuristic">
                 <div class="logo-image">
                     <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
                 </div>
@@ -56,20 +55,18 @@
                 </div>
             </a>
             
-            <!-- Desktop Navigation -->
             <nav class="nav-futuristic">
                 <ul class="nav-list-futuristic">
                     <li><a href="../index.html" class="nav-link-futuristic">Home</a></li>
                     <li><a href="services.html" class="nav-link-futuristic">Services</a></li>
                     <li><a href="why.html" class="nav-link-futuristic">Why Us</a></li>
-                    <li><a href="projects.html" class="nav-link-futuristic active">Portfolio</a></li>
+                    <li><a href="projects.html" class="nav-link-futuristic active">Visit Our Work</a></li>
                     <li><a href="contact.html" class="nav-link-futuristic">Contact</a></li>
                 </ul>
             </nav>
             
-            <!-- Header Actions -->
             <div class="header-actions-futuristic">
-                <a href="#contact" class="btn-futuristic">
+                <a href="../index.html#contact" class="btn-futuristic">
                     <span class="btn-text">Start Project</span>
                     <span class="btn-icon">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -78,7 +75,6 @@
                     </span>
                 </a>
                 
-                <!-- New Hamburger Menu Icon -->
                 <button class="menu-toggle-futuristic" aria-label="Toggle menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -89,16 +85,12 @@
     </div>
 </header>
 
-<!-- Futuristic Mobile Menu -->
+<!-- Mobile Menu -->
 <div class="mobile-menu-futuristic">
     <div class="mobile-menu-backdrop-futuristic"></div>
     <div class="mobile-menu-container-futuristic">
-        <!-- Menu Header (Hidden by default, no logo/close button shown) -->
-        <div class="mobile-menu-header-futuristic">
-            <!-- Empty header - logo and close hidden -->
-        </div>
+        <div class="mobile-menu-header-futuristic"></div>
         
-        <!-- Menu Navigation -->
         <nav class="mobile-nav-futuristic">
             <ul>
                 <li><a href="../index.html" class="mobile-nav-link-futuristic">Home</a></li>
@@ -109,7 +101,6 @@
             </ul>
         </nav>
         
-        <!-- Menu Footer -->
         <div class="mobile-menu-footer-futuristic">
             <div class="mobile-contact-futuristic">
                 <a href="tel:+19294176819">
@@ -135,168 +126,154 @@
                 <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </div>
 </div>
     
-    <!-- Portfolio Hero -->
-    <section class="portfolio-hero">
-        <div class="container">
-            <div class="portfolio-hero-content" data-aos="fade-up">
-                <span class="portfolio-hero-tag">Our Work</span>
-                <h1 class="portfolio-hero-title">Transforming Ideas Into <span class="gradient-text">Digital Reality</span></h1>
-                <p class="portfolio-hero-description">Explore our portfolio of successful projects across web development, e-commerce, healthcare, real estate, and more. Each project tells a story of innovation, creativity, and measurable results.</p>
-                
-                <div class="portfolio-hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">50+</div>
-                        <div class="hero-stat-label">Projects Completed</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">100%</div>
-                        <div class="hero-stat-label">Client Satisfaction</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">10+</div>
-                        <div class="hero-stat-label">Industries Served</div>
-                    </div>
-                </div>
-            </div>
+<!-- Portfolio Hero with Particles -->
+<section class="portfolio-hero-particles">
+    <canvas id="particles-canvas"></canvas>
+    <div class="container">
+        <div class="portfolio-hero-content" data-aos="fade-up">
+            <span class="portfolio-hero-tag">Our Work</span>
+            <h1 class="portfolio-hero-title">
+                Transforming Ideas Into <span class="gradient-text">Digital Reality</span>
+            </h1>
+            <p class="portfolio-hero-description">
+                Explore our portfolio of successful projects that drive real results
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Portfolio Filter & Grid -->
-    <section class="portfolio-main">
-        <div class="container">
-            <!-- Filter Bar -->
-            <div class="portfolio-filters" data-aos="fade-up">
-                <button class="portfolio-filter-btn active" data-filter="all">
-                    <span>All Projects</span>
-                    <span class="filter-count"></span>
-                </button>
-                <button class="portfolio-filter-btn" data-filter="Beauty & Wellness">
-                    <span>Beauty & Wellness</span>
-                    <span class="filter-count"></span>
-                </button>
-                <button class="portfolio-filter-btn" data-filter="E-commerce & Retail">
-                    <span>E-commerce</span>
-                    <span class="filter-count"></span>
-                </button>
-                <button class="portfolio-filter-btn" data-filter="Healthcare & Psychology">
-                    <span>Healthcare</span>
-                    <span class="filter-count"></span>
-                </button>
-                <button class="portfolio-filter-btn" data-filter="Real Estate">
-                    <span>Real Estate</span>
-                    <span class="filter-count"></span>
-                </button>
-                <button class="portfolio-filter-btn" data-filter="Property Management">
-                    <span>Property Mgmt</span>
-                    <span class="filter-count"></span>
-                </button>
-                <button class="portfolio-filter-btn" data-filter="Legal Services">
-                    <span>Legal</span>
-                    <span class="filter-count"></span>
-                </button>
+<!-- Portfolio Sections by Service Type -->
+<section class="portfolio-main">
+    <div class="container">
+        
+        <!-- Websites Section -->
+        <div class="portfolio-service-section" id="websites-section">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Websites</span>
+                <h2 class="section-title">Web <span class="gradient-text">Development</span></h2>
+                <p class="section-description">Custom websites that drive results</p>
             </div>
-
-            <!-- Sort Options -->
-            <div class="portfolio-sort" data-aos="fade-up">
-                <label>Sort by:</label>
-                <select id="portfolio-sort-select">
-                    <option value="featured">Featured First</option>
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                    <option value="alphabetical">A-Z</option>
-                </select>
-            </div>
-
-            <!-- Projects Grid -->
-            <div class="portfolio-full-grid" id="portfolio-full-grid">
+            
+            <div class="portfolio-service-grid" id="websites-grid">
                 <!-- Loaded via JavaScript -->
             </div>
-
-            <!-- No Results Message -->
-            <div class="portfolio-no-results" id="portfolio-no-results" style="display: none;">
-                <i class="fas fa-search"></i>
-                <h3>No projects found</h3>
-                <p>Try selecting a different category or view all projects.</p>
-                <button class="btn-secondary" onclick="document.querySelector('[data-filter=all]').click()">
-                    <span>View All Projects</span>
-                </button>
-            </div>
         </div>
-    </section>
 
-    <!-- Project Detail Modal -->
-    <div class="project-modal" id="project-modal">
-        <div class="project-modal-overlay"></div>
-        <div class="project-modal-container">
-            <button class="project-modal-close">
-                <i class="fas fa-times"></i>
-            </button>
+        <!-- Logos Section -->
+        <div class="portfolio-service-section" id="logos-section" style="display: none;">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Logos</span>
+                <h2 class="section-title">Brand <span class="gradient-text">Identity</span></h2>
+                <p class="section-description">Memorable logos that define brands</p>
+            </div>
             
-            <div class="project-modal-content">
-                <!-- Content loaded dynamically -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Image Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-overlay"></div>
-        <button class="lightbox-close">
-            <i class="fas fa-times"></i>
-        </button>
-        <button class="lightbox-prev">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="lightbox-next">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="lightbox-content">
-            <img src="" alt="">
-            <div class="lightbox-caption"></div>
-        </div>
-        <div class="lightbox-counter"></div>
-    </div>
-
-    <!-- CTA Section -->
-    <section class="portfolio-cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="zoom-in">
-                <h2>Ready to Start <span class="gradient-text">Your Project?</span></h2>
-                <p>Let's create something extraordinary together. Get started with a free consultation.</p>
-                <div class="cta-buttons">
-                    <a href="index.html#contact" class="btn-primary btn-lg">
-                        <span>Start Your Project</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="tel:+19294176819" class="btn-secondary btn-lg">
-                        <span>Call Us Now</span>
-                        <i class="fas fa-phone"></i>
-                    </a>
+            <div class="portfolio-service-grid" id="logos-grid">
+                <div class="coming-soon-message">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Logo Portfolio Coming Soon</h3>
+                    <p>We're curating our best logo designs for you</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Business Materials Section -->
+        <div class="portfolio-service-section" id="materials-section" style="display: none;">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Business Materials</span>
+                <h2 class="section-title">Print <span class="gradient-text">Design</span></h2>
+                <p class="section-description">Professional materials that make an impact</p>
+            </div>
+            
+            <div class="portfolio-service-grid" id="materials-grid">
+                <div class="coming-soon-message">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>Business Materials Coming Soon</h3>
+                    <p>Showcasing our print design work</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signs Section -->
+        <div class="portfolio-service-section" id="signs-section" style="display: none;">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Signage</span>
+                <h2 class="section-title">Custom <span class="gradient-text">Signs</span></h2>
+                <p class="section-description">Eye-catching signage solutions</p>
+            </div>
+            
+            <div class="portfolio-service-grid" id="signs-grid">
+                <div class="coming-soon-message">
+                    <i class="fas fa-sign"></i>
+                    <h3>Signage Portfolio Coming Soon</h3>
+                    <p>Showcasing our custom sign work</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Project Detail Modal -->
+<div class="project-modal" id="project-modal">
+    <div class="project-modal-overlay"></div>
+    <div class="project-modal-container">
+        <button class="project-modal-close">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="project-modal-content">
+            <!-- Content loaded dynamically -->
+        </div>
+    </div>
+</div>
+
+<!-- Image Lightbox -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-overlay"></div>
+    <button class="lightbox-close"><i class="fas fa-times"></i></button>
+    <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+    <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    <div class="lightbox-content">
+        <img src="" alt="">
+        <div class="lightbox-caption"></div>
+    </div>
+    <div class="lightbox-counter"></div>
+</div>
+
+<!-- CTA Section -->
+<section class="portfolio-cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>Ready to Start <span class="gradient-text">Your Project?</span></h2>
+            <p>Let's create something extraordinary together</p>
+            <div class="cta-buttons">
+                <a href="../index.html#contact" class="btn-primary btn-lg">
+                    <span>Start Your Project</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="tel:+19294176819" class="btn-secondary btn-lg">
+                    <span>Call Us Now</span>
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Modern Premium Footer -->
 <footer class="footer-modern">
-    <!-- Footer Main Content -->
     <div class="footer-modern-main">
         <div class="container">
             <div class="footer-modern-grid">
-                <!-- Brand Column -->
                 <div class="footer-modern-brand">
-                    <a href="#home" class="footer-logo">
+                    <a href="../index.html" class="footer-logo">
                         <div class="footer-logo-image">
                             <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
                         </div>
@@ -306,101 +283,67 @@
                         </div>
                     </a>
                     <p class="footer-brand-description">
-                        Transforming businesses through innovative technology solutions. We create digital experiences that drive measurable results.
+                        Transforming businesses through innovative technology solutions.
                     </p>
                     
-                    <!-- Social Links -->
                     <div class="footer-social">
-                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
+                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
 
-                <!-- Quick Links -->
                 <div class="footer-modern-column">
                     <h4 class="footer-column-title">Quick Links</h4>
                     <ul class="footer-links-list">
-                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="#why-us"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
-                        <li><a href="#results"><i class="fas fa-chevron-right"></i> Results</a></li>
-                        <li><a href="portfolio.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
-                        <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="../index.html#why-us"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
                     </ul>
                 </div>
 
-                <!-- Services -->
                 <div class="footer-modern-column">
                     <h4 class="footer-column-title">Our Services</h4>
                     <ul class="footer-links-list">
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Web Development</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> E-commerce Solutions</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> POS Systems</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Custom Signage</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Property Management</a></li>
+                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> E-commerce Solutions</a></li>
+                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Custom Signage</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact Info -->
                 <div class="footer-modern-column">
                     <h4 class="footer-column-title">Get In Touch</h4>
                     <ul class="footer-contact-list">
                         <li>
-                            <div class="footer-contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
+                            <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                             <div class="footer-contact-content">
                                 <span class="footer-contact-label">Location</span>
                                 <span class="footer-contact-value">New York, NY</span>
                             </div>
                         </li>
                         <li>
-                            <div class="footer-contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
+                            <div class="footer-contact-icon"><i class="fas fa-phone"></i></div>
                             <div class="footer-contact-content">
                                 <span class="footer-contact-label">Phone</span>
                                 <a href="tel:+19294176819" class="footer-contact-value">(929) 417-6819</a>
                             </div>
                         </li>
                         <li>
-                            <div class="footer-contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
+                            <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
                             <div class="footer-contact-content">
                                 <span class="footer-contact-label">Email</span>
                                 <a href="mailto:elan@elanstechworld.com" class="footer-contact-value">elan@elanstechworld.com</a>
                             </div>
                         </li>
                     </ul>
-
-                    <!-- Newsletter Signup (Optional) -->
-                    <div class="footer-newsletter">
-                        <h5>Stay Updated</h5>
-                        <form class="footer-newsletter-form">
-                            <input type="email" placeholder="Your email address" required>
-                            <button type="submit" class="footer-newsletter-btn">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer Bottom Bar -->
     <div class="footer-modern-bottom">
         <div class="container">
             <div class="footer-bottom-content">
@@ -412,8 +355,6 @@
                     <a href="#">Privacy Policy</a>
                     <span class="footer-divider">|</span>
                     <a href="#">Terms of Service</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Cookie Policy</a>
                 </div>
 
                 <div class="footer-crafted">
@@ -423,18 +364,13 @@
         </div>
     </div>
 
-    <!-- Footer Background Elements -->
     <div class="footer-bg-gradient"></div>
 </footer>
 
-    <!-- Back to Top -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../js/script.js"></script>
-    <script src="../js/portfolio.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="../js/script.js"></script>
+<script src="../js/portfolio.js"></script>
 </body>
 </html>
