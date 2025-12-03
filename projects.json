@@ -414,12 +414,12 @@
       "client": "S-Cream",
       "category": "E-commerce",
       "tags": ["E-commerce", "Product Launch", "Marketing", "Branding"],
-      "coverImage": "../assets/images/scream.jpeg",
+      "coverImage": "../assets/images/screamhero.jpeg",
       "gallery": [
-        "../assets/images/scream.jpeg",
-        "../assets/images/scream-product.jpeg",
-        "../assets/images/scream-cart.jpeg",
-        "../assets/images/scream-mobile.jpeg"
+        "../assets/images/screaming.jpeg",
+        "../assets/images/screamproof.jpeg",
+        "../assets/images/screamgraph.jpeg",
+        "../assets/images/screambenifits.jpeg"
       ],
       "year": "2024",
       "duration": "6 weeks",
