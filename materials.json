@@ -50,9 +50,9 @@
       "client": "Cohen & Associates",
       "category": "materials",
       "serviceType": "Promotional Items",
-      "coverImage": "../assets/images/materials/cohen-pens.jpeg",
+      "coverImage": "../assets/materials/cohenpen.jpeg",
       "gallery": [
-        "../assets/images/materials/cohen-pens.jpeg"
+        "../assets/materials/cohenpen.jpeg"
       ],
       "year": "2024",
       "duration": "1 week",
@@ -93,9 +93,10 @@
       "client": "Cohen & Associates",
       "category": "materials",
       "serviceType": "Business Cards",
-      "coverImage": "../assets/images/materials/cohen-cards.jpeg",
+      "coverImage": "../assets/materials/cohencard.jpeg",
       "gallery": [
-        "../assets/images/materials/cohen-cards.jpeg"
+        "../assets/materials/cohencard.jpeg",
+        "../assets/materials/cohencardback.jpeg"
       ],
       "year": "2024",
       "duration": "1 week",
@@ -136,9 +137,10 @@
       "client": "Cohen & Associates",
       "category": "materials",
       "serviceType": "Promotional Items",
-      "coverImage": "../assets/images/materials/cohen-mugs.jpeg",
+      "coverImage": "../assets/materials/cohenfront.jpeg",
       "gallery": [
-        "../assets/images/materials/cohen-mugs.jpeg"
+        "../assets/materials/cohenfront.jpeg",
+        "../assets/materials/cohenback.jpeg"
       ],
       "year": "2024",
       "duration": "2 weeks",
@@ -179,9 +181,9 @@
       "client": "Cohen & Associates",
       "category": "materials",
       "serviceType": "Promotional Items",
-      "coverImage": "../assets/images/materials/cohen-mousepads.jpeg",
+      "coverImage": "../assets/materials/cohenmousepad.jpeg",
       "gallery": [
-        "../assets/images/materials/cohen-mousepads.jpeg"
+        "../assets/materials/cohenmousepad.jpeg"
       ],
       "year": "2024",
       "duration": "1 week",
@@ -222,9 +224,9 @@
       "client": "Cohen & Associates",
       "category": "materials",
       "serviceType": "Display Materials",
-      "coverImage": "../assets/images/materials/cohen-banner.jpeg",
+      "coverImage": "../assets/materials/cohen-banner.jpeg",
       "gallery": [
-        "../assets/images/materials/cohen-banner.jpeg"
+        "../assets/materials/cohen-banner.jpeg"
       ],
       "year": "2024",
       "duration": "2 weeks",
@@ -270,9 +272,9 @@
       "client": "Evia Aesthetics",
       "category": "materials",
       "serviceType": "Menu Design",
-      "coverImage": "../assets/images/materials/evia-pricelist.jpeg",
+      "coverImage": "../assets/materials/evia-pricelist.jpeg",
       "gallery": [
-        "../assets/images/materials/evia-pricelist.jpeg"
+        "../assets/materials/evia-pricelist.jpeg"
       ],
       "year": "2023",
       "duration": "1 week",
@@ -318,9 +320,9 @@
       "client": "Laura's Beauty Touch",
       "category": "materials",
       "serviceType": "Business Cards",
-      "coverImage": "../assets/images/materials/lauras-cards.jpeg",
+      "coverImage": "../assets/materials/lauras-cards.jpeg",
       "gallery": [
-        "../assets/images/materials/lauras-cards.jpeg"
+        "../assets/materials/lauras-cards.jpeg"
       ],
       "year": "2025",
       "duration": "1 week",
@@ -361,9 +363,9 @@
       "client": "Doug Uhlig Psychological Services",
       "category": "materials",
       "serviceType": "Business Cards",
-      "coverImage": "../assets/images/materials/doug-cards.jpeg",
+      "coverImage": "../assets/materials/doug-cards.jpeg",
       "gallery": [
-        "../assets/images/materials/doug-cards.jpeg"
+        "../assets/materials/doug-cards.jpeg"
       ],
       "year": "2023",
       "duration": "1 week",
@@ -402,9 +404,9 @@
       "client": "Doug Uhlig Psychological Services",
       "category": "materials",
       "serviceType": "Brochures",
-      "coverImage": "../assets/images/materials/doug-brochure.jpeg",
+      "coverImage": "../assets/materials/doug-brochure.jpeg",
       "gallery": [
-        "../assets/images/materials/doug-brochure.jpeg"
+        "../assets/materials/doug-brochure.jpeg"
       ],
       "year": "2023",
       "duration": "2 weeks",
