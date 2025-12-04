@@ -102,7 +102,7 @@
       "client": "Evia Aesthetics",
       "category": "signs",
       "serviceType": "Interactive Signage",
-      "coverImage": "assets/signs/eviastand1.jpeg",
+      "coverImage": "../assets/signs/eviastand1.jpeg",
       "gallery": [
         "../assets/signs/eviastand.jpeg"
       ],
