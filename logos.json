@@ -11,7 +11,7 @@
       "gallery": [
         "../assets/logos/eastlogo.jpeg"
       ],
-      "year": "2024",
+      "year": "2020",
       "duration": "2 weeks",
       "featured": false,
       "comingSoon": false,
@@ -115,11 +115,11 @@
       "client": "S-Cream",
       "category": "logos",
       "serviceType": "Product Branding",
-      "coverImage": "../assets/images/logos/scream-logo.jpeg",
+      "coverImage": "../assets/logos/screamlogo.jpg",
       "gallery": [
-        "../assets/images/logos/scream-logo.jpeg"
+        "../assets/logos/screamlogo.jpg"
       ],
-      "year": "2024",
+      "year": "2022",
       "duration": "2 weeks",
       "featured": false,
       "comingSoon": false,
@@ -155,7 +155,7 @@
       "gallery": [
         "../assets/logos/evia2.jpg"
       ],
-      "year": "2023",
+      "year": "2025",
       "duration": "2 weeks",
       "featured": false,
       "comingSoon": false,
@@ -263,7 +263,7 @@
       "gallery": [
         "../assets/logos/childlogo.jpg"
       ],
-      "year": "2024",
+      "year": "2025",
       "duration": "2 weeks",
       "featured": false,
       "comingSoon": false,
