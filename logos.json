@@ -79,9 +79,9 @@
       "client": "Barber World NYC",
       "category": "logos",
       "serviceType": "Retail Branding",
-      "coverImage": "https://www.barberworldnyc.com/logofooter.png",
+      "coverImage": "../assets/logos/barberlogo.jpg",
       "gallery": [
-        "https://www.barberworldnyc.com/logofooter.png"
+        "../assets/logos/barberlogo.jpg"
       ],
       "year": "2025",
       "duration": "2 weeks",
