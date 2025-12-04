@@ -7,9 +7,9 @@
       "client": "East Coast Realty",
       "category": "logos",
       "serviceType": "Real Estate Branding",
-      "coverImage": "../assets/images/logos/eastcoast-logo.jpeg",
+      "coverImage": "https://www.eastcoastrealtybyzarina.com/logo.png",
       "gallery": [
-        "../assets/images/logos/eastcoast-logo.jpeg"
+        "https://www.eastcoastrealtybyzarina.com/logo.png"
       ],
       "year": "2024",
       "duration": "2 weeks",
@@ -43,9 +43,9 @@
       "client": "Century One Properties",
       "category": "logos",
       "serviceType": "Property Management Branding",
-      "coverImage": "../assets/images/logos/centuryone-logo.jpeg",
+      "coverImage": "https://centuryonemanagement.com/logo1.png",
       "gallery": [
-        "../assets/images/logos/centuryone-logo.jpeg"
+        "https://centuryonemanagement.com/logo1.png"
       ],
       "year": "2024",
       "duration": "2 weeks",
@@ -79,9 +79,9 @@
       "client": "Barber World NYC",
       "category": "logos",
       "serviceType": "Retail Branding",
-      "coverImage": "../assets/images/logos/barberworld-logo.jpeg",
+      "coverImage": "https://www.barberworldnyc.com/logofooter.png",
       "gallery": [
-        "../assets/images/logos/barberworld-logo.jpeg"
+        "https://www.barberworldnyc.com/logofooter.png"
       ],
       "year": "2025",
       "duration": "2 weeks",
