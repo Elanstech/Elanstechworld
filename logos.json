@@ -146,14 +146,14 @@
     },
     {
       "id": "eviaesthetics-logo",
-      "title": "Evia Aesthetics Logo",
+      "title": "Eviaesthetics Logo",
       "slug": "eviaesthetics-logo",
-      "client": "Evia Aesthetics",
+      "client": "Eviaesthetics",
       "category": "logos",
       "serviceType": "Beauty & Wellness Branding",
-      "coverImage": "../assets/images/logos/eviaesthetics-logo.jpeg",
+      "coverImage": "../assets/images/logos/evia.jpg",
       "gallery": [
-        "../assets/images/logos/eviaesthetics-logo.jpeg"
+        "../assets/images/logos/evia2.jpg"
       ],
       "year": "2023",
       "duration": "2 weeks",
