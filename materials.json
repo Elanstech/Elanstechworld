@@ -218,26 +218,27 @@
       }
     },
     {
-      "id": "cohen-retractable-banner",
-      "title": "Cohen & Associates Retractable Banner",
-      "slug": "cohen-retractable-banner",
-      "client": "Cohen & Associates",
+      "id": "evia-retractable-banner",
+      "title": "Evia Aesthetics Retractable Banner",
+      "slug": "evia-retractable-banner",
+      "client": "Evia Aesthetics",
       "category": "materials",
       "serviceType": "Display Materials",
-      "coverImage": "../assets/materials/cohen-banner.jpeg",
+      "coverImage": "../assets/materials/eviabanner.jpeg",
       "gallery": [
-        "../assets/materials/cohen-banner.jpeg"
+        "../assets/materials/eviabanner.jpeg",
+        "../assets/materials/eviabannerside.jpeg"
       ],
-      "year": "2024",
+      "year": "2023",
       "duration": "2 weeks",
       "featured": true,
       "comingSoon": false,
-      "color": "#4da3ff",
-      "shortDescription": "Professional retractable banner for events and presentations",
-      "longDescription": "A professional retractable banner stand for Cohen & Associates featuring firm information, practice areas, and contact details. Perfect for legal conferences, networking events, and office presentations. The portable design makes setup quick and easy.",
-      "challenge": "Creating a banner that effectively communicates the firm's expertise and services in a format suitable for various professional events.",
-      "solution": "Designed a clean, hierarchical layout highlighting key practice areas with professional imagery. The retractable stand ensures easy transport and setup at any event.",
-      "impact": "The banner has become an essential tool at legal conferences and networking events, helping the firm make professional impressions and generate leads.",
+      "color": "#FF8C42",
+      "shortDescription": "Elegant retractable banner for beauty expos and events",
+      "longDescription": "A luxurious retractable banner stand for Evia Aesthetics featuring stunning imagery of treatments, service highlights, and brand messaging. Perfect for beauty expos, bridal shows, and in-clinic promotions. The portable design makes setup quick and easy.",
+      "challenge": "Creating a banner that showcases the luxury aesthetic treatments while being eye-catching enough to stand out at crowded beauty and wellness events.",
+      "solution": "Designed an elegant layout with professional treatment photography, service highlights, and sophisticated branding. The retractable stand ensures easy transport and professional presentation.",
+      "impact": "The banner has become an essential marketing tool at beauty expos and events, helping attract new clients and establish Evia as a premium aesthetics provider.",
       "services": [
         "Banner Design",
         "Content Strategy",
@@ -254,38 +255,39 @@
         "features": "Includes carrying case"
       },
       "results": {
-        "metric1": { "value": "Professional", "label": "Event Presence", "icon": "fa-handshake" },
+        "metric1": { "value": "Luxury", "label": "Brand Presence", "icon": "fa-gem" },
         "metric2": { "value": "Portable", "label": "Easy Setup", "icon": "fa-suitcase" },
-        "metric3": { "value": "Multiple", "label": "Use Cases", "icon": "fa-check-circle" }
+        "metric3": { "value": "Eye-Catching", "label": "Stands Out", "icon": "fa-star" }
       },
       "testimonial": {
-        "text": "The banner looks incredibly professional at conferences and events. It's easy to transport and set up, and helps us stand out in a crowded room.",
-        "author": "Senior Partner",
-        "role": "Cohen & Associates",
+        "text": "The banner is absolutely gorgeous and draws people to our booth at events. It perfectly represents our luxury brand and has been key to our expo success.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
         "rating": 5
       }
     },
     {
-      "id": "evia-price-list",
-      "title": "Evia Aesthetics Service Price List",
-      "slug": "evia-price-list",
-      "client": "Evia Aesthetics",
+      "id": "lauras-price-list",
+      "title": "Laura's Beauty Touch Service Price List",
+      "slug": "lauras-price-list",
+      "client": "Laura's Beauty Touch",
       "category": "materials",
       "serviceType": "Menu Design",
-      "coverImage": "../assets/materials/evia-pricelist.jpeg",
+      "coverImage": "../assets/materials/pricelist.jpeg",
       "gallery": [
-        "../assets/materials/evia-pricelist.jpeg"
+        "../assets/materials/pricelist.jpeg",
+        "../assets/materials/pricelistside.jpeg"
       ],
-      "year": "2023",
+      "year": "2025",
       "duration": "1 week",
       "featured": false,
       "comingSoon": false,
-      "color": "#FF8C42",
-      "shortDescription": "Elegant treatment menu with pricing and descriptions",
-      "longDescription": "A beautifully designed service menu for Evia Aesthetics featuring detailed treatment descriptions, pricing, and professional imagery. The elegant design matches the clinic's luxury positioning and helps clients make informed decisions about treatments.",
+      "color": "#FFB482",
+      "shortDescription": "Elegant service menu with pricing and treatment details",
+      "longDescription": "A beautifully designed service menu for Laura's Beauty Touch featuring detailed treatment descriptions, pricing, and professional imagery. The elegant design matches the salon's luxury positioning and helps clients make informed decisions about beauty services.",
       "challenge": "Creating a price list that doesn't feel like a basic menu but rather reinforces the luxury experience and justifies premium pricing.",
-      "solution": "Designed an elegant multi-page booklet with professional photography, detailed descriptions, and organized treatment categories. Premium paper and finishing elevate the presentation.",
-      "impact": "The professional price list helped increase average transaction value by 32% as clients better understood treatment options and add-ons.",
+      "solution": "Designed an elegant multi-page booklet with professional photography, detailed descriptions, and organized service categories. Premium paper and finishing elevate the presentation.",
+      "impact": "The professional price list helped increase average transaction value by 35% as clients better understood service options and add-ons.",
       "services": [
         "Menu Design",
         "Content Writing",
@@ -302,55 +304,12 @@
         "finish": "Matte lamination"
       },
       "results": {
-        "metric1": { "value": "32%", "label": "Higher Avg Transaction", "icon": "fa-dollar-sign" },
-        "metric2": { "value": "Professional", "label": "Brand Image", "icon": "fa-gem" },
+        "metric1": { "value": "35%", "label": "Higher Avg Transaction", "icon": "fa-dollar-sign" },
+        "metric2": { "value": "Luxury", "label": "Brand Image", "icon": "fa-gem" },
         "metric3": { "value": "Informed", "label": "Client Decisions", "icon": "fa-check-circle" }
       },
       "testimonial": {
-        "text": "The service menu is gorgeous and really helps clients understand our treatments. It's become an important part of our consultation process.",
-        "author": "Clinic Director",
-        "role": "Evia Aesthetics",
-        "rating": 5
-      }
-    },
-    {
-      "id": "lauras-business-cards",
-      "title": "Laura's Beauty Touch Business Cards",
-      "slug": "lauras-business-cards",
-      "client": "Laura's Beauty Touch",
-      "category": "materials",
-      "serviceType": "Business Cards",
-      "coverImage": "../assets/materials/lauras-cards.jpeg",
-      "gallery": [
-        "../assets/materials/lauras-cards.jpeg"
-      ],
-      "year": "2025",
-      "duration": "1 week",
-      "featured": false,
-      "comingSoon": false,
-      "color": "#FFB482",
-      "shortDescription": "Elegant business cards with rose gold foil accents",
-      "longDescription": "Luxurious business cards for Laura's Beauty Touch featuring elegant script typography, rose gold foil stamping, and soft-touch coating. The cards reflect the premium, personalized service clients receive at the salon.",
-      "challenge": "Creating business cards that convey luxury and elegance while being memorable enough to stand out in clients' wallets.",
-      "solution": "Used premium soft-touch paper with rose gold foil accents and elegant typography. The tactile experience reinforces the luxury positioning.",
-      "impact": "The beautiful cards generated compliments from clients and became powerful referral tools, with many clients requesting extras to share.",
-      "services": [
-        "Business Card Design",
-        "Premium Paper Selection",
-        "Rose Gold Foil Stamping",
-        "Soft-Touch Coating",
-        "Print Production"
-      ],
-      "technologies": ["Adobe Illustrator", "Foil Stamping"],
-      "specifications": {
-        "size": "3.5\" x 2\"",
-        "paper": "16pt premium silk",
-        "finish": "Soft-touch with rose gold foil",
-        "colors": "Full color with spot foil",
-        "features": "Rounded corners"
-      },
-      "testimonial": {
-        "text": "My business cards are absolutely stunning! Clients always comment on how beautiful they are. They perfectly represent my brand.",
+        "text": "The service menu is absolutely beautiful and really helps clients understand all our offerings. It's become an important part of every consultation.",
         "author": "Laura Sholomov",
         "role": "Owner, Laura's Beauty Touch",
         "rating": 5
@@ -363,9 +322,9 @@
       "client": "Doug Uhlig Psychological Services",
       "category": "materials",
       "serviceType": "Business Cards",
-      "coverImage": "../assets/materials/doug-cards.jpeg",
+      "coverImage": "../assets/materials/dougbusinesscard.jpeg",
       "gallery": [
-        "../assets/materials/doug-cards.jpeg"
+        "../assets/materials/dougbusinesscard.jpeg"
       ],
       "year": "2023",
       "duration": "1 week",
@@ -392,53 +351,6 @@
       },
       "testimonial": {
         "text": "The business cards are professional and make a great impression at networking events. They perfectly represent our practice's approach.",
-        "author": "Douglas Uhlig, Ph.D.",
-        "role": "Doug Uhlig Psychological Services",
-        "rating": 5
-      }
-    },
-    {
-      "id": "doug-brochures",
-      "title": "Doug Uhlig Psychological Services Brochures",
-      "slug": "doug-brochures",
-      "client": "Doug Uhlig Psychological Services",
-      "category": "materials",
-      "serviceType": "Brochures",
-      "coverImage": "../assets/materials/doug-brochure.jpeg",
-      "gallery": [
-        "../assets/materials/doug-brochure.jpeg"
-      ],
-      "year": "2023",
-      "duration": "2 weeks",
-      "featured": true,
-      "comingSoon": false,
-      "color": "#4da3ff",
-      "shortDescription": "Informative tri-fold brochures for mental health services",
-      "longDescription": "Professional tri-fold brochures for Doug Uhlig Psychological Services detailing therapy approaches, specialties, insurance information, and contact details. The design balances professionalism with approachability to reduce barriers to seeking mental health care.",
-      "challenge": "Creating brochures that provide comprehensive information about services while being welcoming and reducing stigma around mental health treatment.",
-      "solution": "Designed clean, organized layout with calming colors, clear service descriptions, and FAQ section. Used friendly yet professional tone throughout.",
-      "impact": "The brochures became an essential intake tool, with many new clients citing the clear information as a factor in their decision to begin treatment.",
-      "services": [
-        "Brochure Design",
-        "Content Writing",
-        "Print Production",
-        "Information Architecture"
-      ],
-      "technologies": ["Adobe InDesign", "Adobe Photoshop"],
-      "specifications": {
-        "format": "Tri-fold",
-        "size": "8.5\" x 11\" (folded to 3.67\")",
-        "paper": "100lb gloss text",
-        "finish": "Aqueous coating",
-        "colors": "Full color CMYK"
-      },
-      "results": {
-        "metric1": { "value": "Informative", "label": "Clear Services", "icon": "fa-info-circle" },
-        "metric2": { "value": "Welcoming", "label": "Reduces Barriers", "icon": "fa-door-open" },
-        "metric3": { "value": "Professional", "label": "Builds Trust", "icon": "fa-handshake" }
-      },
-      "testimonial": {
-        "text": "The brochures are incredibly helpful for new clients. They answer common questions and help people feel comfortable reaching out for services.",
         "author": "Douglas Uhlig, Ph.D.",
         "role": "Doug Uhlig Psychological Services",
         "rating": 5
