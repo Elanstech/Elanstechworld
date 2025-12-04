@@ -7,9 +7,9 @@
       "client": "Laura's Beauty Touch",
       "category": "materials",
       "serviceType": "Brochures",
-      "coverImage": "../assets/images/materials/lauras-brochure.jpeg",
+      "coverImage": "../assets/materials/laurasbrouchre.jpeg",
       "gallery": [
-        "../assets/images/materials/lauras-brochure.jpeg"
+        "../assets/materials/laurainside.jpeg"
       ],
       "year": "2025",
       "duration": "2 weeks",
