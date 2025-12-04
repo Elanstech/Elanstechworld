@@ -7,9 +7,9 @@
       "client": "East Coast Realty",
       "category": "logos",
       "serviceType": "Real Estate Branding",
-      "coverImage": "https://www.eastcoastrealtybyzarina.com/logo.png",
+      "coverImage": "../assets/logos/eastlogo.jpeg",
       "gallery": [
-        "https://www.eastcoastrealtybyzarina.com/logo.png"
+        "../assets/logos/eastlogo.jpeg"
       ],
       "year": "2024",
       "duration": "2 weeks",
