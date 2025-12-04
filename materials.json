@@ -1,63 +1,8 @@
 {
   "projects": [
     {
-      "id": "iconic-business-cards",
-      "title": "Iconic Aesthetics Business Cards",
-      "slug": "iconic-business-cards",
-      "client": "Iconic Aesthetics",
-      "category": "materials",
-      "serviceType": "Business Cards",
-      "coverImage": "../assets/images/materials/iconic-cards.jpeg",
-      "gallery": [
-        "../assets/images/materials/iconic-cards.jpeg",
-        "../assets/images/materials/iconic-cards-front.jpeg",
-        "../assets/images/materials/iconic-cards-back.jpeg"
-      ],
-      "year": "2022",
-      "duration": "1 week",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FF8C42",
-      "shortDescription": "Elegant business cards with spot UV - Coming Soon",
-      "longDescription": "Premium business cards featuring elegant typography, spot UV coating, and metallic foil accents for a luxury feel.",
-      "services": [
-        "Business Card Design",
-        "Print Production",
-        "Premium Paper Selection",
-        "Spot UV Finishing",
-        "Foil Stamping"
-      ],
-      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
-    },
-    {
-      "id": "barber-world-flyers",
-      "title": "Barber World Promotional Flyers",
-      "slug": "barber-world-flyers",
-      "client": "Barber World NYC",
-      "category": "materials",
-      "serviceType": "Marketing Flyers",
-      "coverImage": "../assets/images/materials/barber-flyers.jpeg",
-      "gallery": [
-        "../assets/images/materials/barber-flyers.jpeg"
-      ],
-      "year": "2025",
-      "duration": "1 week",
-      "featured": true,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Eye-catching promotional materials - Coming Soon",
-      "longDescription": "Bold promotional flyers designed to attract customers with special offers and service highlights.",
-      "services": [
-        "Flyer Design",
-        "Marketing Copy",
-        "Print Production",
-        "Distribution Strategy"
-      ],
-      "technologies": ["Adobe InDesign", "Adobe Photoshop"]
-    },
-    {
       "id": "lauras-brochure",
-      "title": "Laura's Beauty Touch Brochure",
+      "title": "Laura's Beauty Touch Service Brochure",
       "slug": "lauras-brochure",
       "client": "Laura's Beauty Touch",
       "category": "materials",
@@ -68,11 +13,14 @@
       ],
       "year": "2025",
       "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
+      "featured": true,
+      "comingSoon": false,
       "color": "#FFB482",
-      "shortDescription": "Luxury services brochure - Coming Soon",
-      "longDescription": "An elegant tri-fold brochure showcasing services, pricing, and testimonials with professional photography.",
+      "shortDescription": "Elegant tri-fold brochure showcasing luxury beauty services",
+      "longDescription": "An elegant tri-fold brochure for Laura's Beauty Touch featuring professional photography, detailed service descriptions, pricing, and client testimonials. The design emphasizes the luxury experience with sophisticated typography and premium paper stock.",
+      "challenge": "Creating a brochure that conveys the premium, personalized service Laura provides while being informative and easy to navigate for potential clients.",
+      "solution": "Designed a tri-fold layout with stunning photography, organized service categories, clear pricing, and testimonials. Used premium paper with matte finish for an elegant tactile experience.",
+      "impact": "The brochure became a powerful sales tool, with 78% of clients who received it booking services. Helped communicate the full range of offerings and justify premium pricing.",
       "services": [
         "Brochure Design",
         "Content Writing",
@@ -80,138 +28,419 @@
         "Print Production",
         "Premium Paper Selection"
       ],
-      "technologies": ["Adobe InDesign", "Adobe Photoshop"]
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"],
+      "specifications": {
+        "format": "Tri-fold",
+        "size": "8.5\" x 11\" (folded to 3.67\")",
+        "paper": "100lb gloss cover stock",
+        "finish": "Matte lamination",
+        "colors": "Full color CMYK"
+      },
+      "testimonial": {
+        "text": "The brochure is absolutely beautiful and really showcases what makes my salon special. Clients love taking them home, and they've been great for referrals!",
+        "author": "Laura Sholomov",
+        "role": "Owner, Laura's Beauty Touch",
+        "rating": 5
+      }
     },
     {
-      "id": "east-coast-property-packets",
-      "title": "East Coast Realty Property Packets",
-      "slug": "east-coast-property-packets",
-      "client": "East Coast Realty",
-      "category": "materials",
-      "serviceType": "Marketing Packets",
-      "coverImage": "../assets/images/materials/realty-packets.jpeg",
-      "gallery": [
-        "../assets/images/materials/realty-packets.jpeg"
-      ],
-      "year": "2024",
-      "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Professional property marketing - Coming Soon",
-      "longDescription": "Comprehensive property marketing packets including brochures, fact sheets, and presentation folders.",
-      "services": [
-        "Marketing Packet Design",
-        "Property Brochures",
-        "Fact Sheets",
-        "Folder Design",
-        "Print Production"
-      ],
-      "technologies": ["Adobe InDesign", "Adobe Illustrator"]
-    },
-    {
-      "id": "cohen-letterhead",
-      "title": "Cohen & Associates Stationery",
-      "slug": "cohen-letterhead",
+      "id": "cohen-pens",
+      "title": "Cohen & Associates Branded Pens",
+      "slug": "cohen-pens",
       "client": "Cohen & Associates",
       "category": "materials",
-      "serviceType": "Stationery Set",
-      "coverImage": "../assets/images/materials/cohen-stationery.jpeg",
+      "serviceType": "Promotional Items",
+      "coverImage": "../assets/images/materials/cohen-pens.jpeg",
       "gallery": [
-        "../assets/images/materials/cohen-stationery.jpeg"
+        "../assets/images/materials/cohen-pens.jpeg"
+      ],
+      "year": "2024",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Professional metal pens with firm branding",
+      "longDescription": "Premium metal twist-action pens featuring Cohen & Associates branding. These elegant writing instruments serve as both functional items for client meetings and lasting reminders of the firm's professionalism.",
+      "challenge": "Finding promotional items that match the firm's professional image while being practical enough for regular use by clients.",
+      "solution": "Selected high-quality metal pens with laser engraving for a sophisticated, permanent brand impression. The weight and feel convey quality and professionalism.",
+      "impact": "The pens became conversation starters in client meetings and served as valued gifts that kept the firm top-of-mind with clients and referral sources.",
+      "services": [
+        "Pen Selection",
+        "Brand Application Design",
+        "Laser Engraving",
+        "Bulk Ordering",
+        "Quality Control"
+      ],
+      "technologies": ["Laser Engraving", "Metal Finishing"],
+      "specifications": {
+        "material": "Brushed metal",
+        "mechanism": "Twist-action ballpoint",
+        "ink": "Black medium point",
+        "branding": "Laser engraved logo",
+        "packaging": "Individual gift boxes"
+      },
+      "testimonial": {
+        "text": "The pens are excellent quality. Clients actually use them and keep them, which means our name stays in front of them. Great investment.",
+        "author": "Senior Partner",
+        "role": "Cohen & Associates",
+        "rating": 5
+      }
+    },
+    {
+      "id": "cohen-business-cards",
+      "title": "Cohen & Associates Business Cards",
+      "slug": "cohen-business-cards",
+      "client": "Cohen & Associates",
+      "category": "materials",
+      "serviceType": "Business Cards",
+      "coverImage": "../assets/images/materials/cohen-cards.jpeg",
+      "gallery": [
+        "../assets/images/materials/cohen-cards.jpeg"
+      ],
+      "year": "2024",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Sophisticated legal firm business cards with premium finish",
+      "longDescription": "Professional business cards for Cohen & Associates featuring clean typography, sophisticated layout, and premium paper stock with edge painting. The design conveys authority and trustworthiness essential for a law firm.",
+      "challenge": "Creating business cards that stand out in a conservative industry while maintaining the gravitas expected of a legal practice.",
+      "solution": "Used thick premium cardstock with edge painting and subtle texture. Clean, classic design with excellent hierarchy and readability.",
+      "impact": "The premium cards made strong first impressions at networking events and client meetings, reinforcing the firm's reputation for excellence.",
+      "services": [
+        "Business Card Design",
+        "Premium Paper Selection",
+        "Edge Painting",
+        "Print Production",
+        "Quality Control"
+      ],
+      "technologies": ["Adobe Illustrator", "Offset Printing"],
+      "specifications": {
+        "size": "3.5\" x 2\"",
+        "paper": "32pt Ultra-thick cardstock",
+        "finish": "Matte with edge painting",
+        "colors": "Full color both sides",
+        "features": "Navy edge painting"
+      },
+      "testimonial": {
+        "text": "These business cards are impressive. The quality speaks to our firm's attention to detail. We get compliments on them regularly.",
+        "author": "Senior Partner",
+        "role": "Cohen & Associates",
+        "rating": 5
+      }
+    },
+    {
+      "id": "cohen-mugs",
+      "title": "Cohen & Associates Branded Mugs",
+      "slug": "cohen-mugs",
+      "client": "Cohen & Associates",
+      "category": "materials",
+      "serviceType": "Promotional Items",
+      "coverImage": "../assets/images/materials/cohen-mugs.jpeg",
+      "gallery": [
+        "../assets/images/materials/cohen-mugs.jpeg"
       ],
       "year": "2024",
       "duration": "2 weeks",
       "featured": false,
-      "comingSoon": true,
+      "comingSoon": false,
       "color": "#4da3ff",
-      "shortDescription": "Professional law firm stationery - Coming Soon",
-      "longDescription": "Complete stationery set including letterhead, envelopes, business cards, and memo pads with consistent branding.",
+      "shortDescription": "Premium ceramic mugs for client gifts and office use",
+      "longDescription": "High-quality ceramic mugs featuring Cohen & Associates branding, designed for use as client appreciation gifts and for office use. The elegant design makes them suitable for professional environments.",
+      "challenge": "Creating branded mugs that clients would actually use rather than discard, maintaining the firm's professional image.",
+      "solution": "Selected premium ceramic mugs with elegant two-tone design and subtle logo placement. The sophisticated aesthetic ensures they're appropriate for executive offices.",
+      "impact": "The mugs became popular client gifts and are regularly used in offices, providing ongoing brand visibility in professional settings.",
       "services": [
-        "Letterhead Design",
-        "Envelope Design",
-        "Business Card Design",
-        "Memo Pad Design",
-        "Print Production"
+        "Mug Design",
+        "Brand Application",
+        "Ceramic Printing",
+        "Quality Control",
+        "Bulk Ordering"
       ],
-      "technologies": ["Adobe InDesign", "Adobe Illustrator"]
+      "technologies": ["Ceramic Printing", "Dishwasher-Safe Coating"],
+      "specifications": {
+        "capacity": "14 oz",
+        "material": "Ceramic",
+        "colors": "Navy and white",
+        "branding": "Logo both sides",
+        "features": "Microwave & dishwasher safe"
+      },
+      "testimonial": {
+        "text": "We use these mugs as client gifts and they're always well-received. They're high quality and our logo looks professional on them.",
+        "author": "Senior Partner",
+        "role": "Cohen & Associates",
+        "rating": 5
+      }
     },
     {
-      "id": "scream-packaging",
-      "title": "S-Cream Product Packaging",
-      "slug": "scream-packaging",
-      "client": "S-Cream",
+      "id": "cohen-mouse-pads",
+      "title": "Cohen & Associates Branded Mouse Pads",
+      "slug": "cohen-mouse-pads",
+      "client": "Cohen & Associates",
       "category": "materials",
-      "serviceType": "Product Packaging",
-      "coverImage": "../assets/images/materials/scream-packaging.jpeg",
+      "serviceType": "Promotional Items",
+      "coverImage": "../assets/images/materials/cohen-mousepads.jpeg",
       "gallery": [
-        "../assets/images/materials/scream-packaging.jpeg"
+        "../assets/images/materials/cohen-mousepads.jpeg"
       ],
       "year": "2024",
-      "duration": "3 weeks",
-      "featured": true,
-      "comingSoon": true,
-      "color": "#FFB482",
-      "shortDescription": "Modern product packaging design - Coming Soon",
-      "longDescription": "Eye-catching product packaging with modern design, clear product information, and shelf appeal.",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Professional mouse pads with firm branding",
+      "longDescription": "Premium mouse pads featuring Cohen & Associates branding with anti-slip backing and smooth surface. Designed as practical gifts for clients and for office use, keeping the firm's name visible during daily work.",
+      "challenge": "Creating promotional items that would be useful enough to keep on desks in professional environments.",
+      "solution": "Designed elegant mouse pads with subtle branding and professional color scheme. High-quality materials ensure longevity and regular use.",
+      "impact": "The mouse pads achieved their goal of maintaining brand presence on clients' desks, with regular feedback about their quality and usefulness.",
       "services": [
-        "Package Design",
-        "Label Design",
-        "Product Photography",
-        "Dieline Creation",
-        "Print Production"
+        "Mouse Pad Design",
+        "Brand Application",
+        "Material Selection",
+        "Print Production",
+        "Bulk Ordering"
       ],
-      "technologies": ["Adobe Illustrator", "Adobe Photoshop", "Adobe InDesign"]
+      "technologies": ["Sublimation Printing", "Anti-Slip Backing"],
+      "specifications": {
+        "size": "9\" x 7.5\"",
+        "material": "Fabric top with rubber base",
+        "thickness": "3mm",
+        "surface": "Smooth fabric",
+        "features": "Anti-slip backing"
+      },
+      "testimonial": {
+        "text": "The mouse pads are practical and professional. Clients appreciate them, and we use them throughout our office. Great promotional item.",
+        "author": "Office Manager",
+        "role": "Cohen & Associates",
+        "rating": 5
+      }
     },
     {
-      "id": "generic-business-cards",
-      "title": "Premium Business Card Collection",
-      "slug": "generic-business-cards",
-      "client": "Various Clients",
+      "id": "cohen-retractable-banner",
+      "title": "Cohen & Associates Retractable Banner",
+      "slug": "cohen-retractable-banner",
+      "client": "Cohen & Associates",
+      "category": "materials",
+      "serviceType": "Display Materials",
+      "coverImage": "../assets/images/materials/cohen-banner.jpeg",
+      "gallery": [
+        "../assets/images/materials/cohen-banner.jpeg"
+      ],
+      "year": "2024",
+      "duration": "2 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Professional retractable banner for events and presentations",
+      "longDescription": "A professional retractable banner stand for Cohen & Associates featuring firm information, practice areas, and contact details. Perfect for legal conferences, networking events, and office presentations. The portable design makes setup quick and easy.",
+      "challenge": "Creating a banner that effectively communicates the firm's expertise and services in a format suitable for various professional events.",
+      "solution": "Designed a clean, hierarchical layout highlighting key practice areas with professional imagery. The retractable stand ensures easy transport and setup at any event.",
+      "impact": "The banner has become an essential tool at legal conferences and networking events, helping the firm make professional impressions and generate leads.",
+      "services": [
+        "Banner Design",
+        "Content Strategy",
+        "Large Format Printing",
+        "Retractable Stand",
+        "Carrying Case"
+      ],
+      "technologies": ["Large Format Printing", "Retractable Hardware"],
+      "specifications": {
+        "size": "33\" x 79\"",
+        "material": "Premium vinyl",
+        "stand": "Retractable aluminum base",
+        "finish": "Matte anti-glare",
+        "features": "Includes carrying case"
+      },
+      "results": {
+        "metric1": { "value": "Professional", "label": "Event Presence", "icon": "fa-handshake" },
+        "metric2": { "value": "Portable", "label": "Easy Setup", "icon": "fa-suitcase" },
+        "metric3": { "value": "Multiple", "label": "Use Cases", "icon": "fa-check-circle" }
+      },
+      "testimonial": {
+        "text": "The banner looks incredibly professional at conferences and events. It's easy to transport and set up, and helps us stand out in a crowded room.",
+        "author": "Senior Partner",
+        "role": "Cohen & Associates",
+        "rating": 5
+      }
+    },
+    {
+      "id": "evia-price-list",
+      "title": "Evia Aesthetics Service Price List",
+      "slug": "evia-price-list",
+      "client": "Evia Aesthetics",
+      "category": "materials",
+      "serviceType": "Menu Design",
+      "coverImage": "../assets/images/materials/evia-pricelist.jpeg",
+      "gallery": [
+        "../assets/images/materials/evia-pricelist.jpeg"
+      ],
+      "year": "2023",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Elegant treatment menu with pricing and descriptions",
+      "longDescription": "A beautifully designed service menu for Evia Aesthetics featuring detailed treatment descriptions, pricing, and professional imagery. The elegant design matches the clinic's luxury positioning and helps clients make informed decisions about treatments.",
+      "challenge": "Creating a price list that doesn't feel like a basic menu but rather reinforces the luxury experience and justifies premium pricing.",
+      "solution": "Designed an elegant multi-page booklet with professional photography, detailed descriptions, and organized treatment categories. Premium paper and finishing elevate the presentation.",
+      "impact": "The professional price list helped increase average transaction value by 32% as clients better understood treatment options and add-ons.",
+      "services": [
+        "Menu Design",
+        "Content Writing",
+        "Photography Integration",
+        "Print Production",
+        "Premium Materials"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"],
+      "specifications": {
+        "format": "8-page booklet",
+        "size": "5.5\" x 8.5\"",
+        "paper": "100lb silk text",
+        "binding": "Saddle-stitch",
+        "finish": "Matte lamination"
+      },
+      "results": {
+        "metric1": { "value": "32%", "label": "Higher Avg Transaction", "icon": "fa-dollar-sign" },
+        "metric2": { "value": "Professional", "label": "Brand Image", "icon": "fa-gem" },
+        "metric3": { "value": "Informed", "label": "Client Decisions", "icon": "fa-check-circle" }
+      },
+      "testimonial": {
+        "text": "The service menu is gorgeous and really helps clients understand our treatments. It's become an important part of our consultation process.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "lauras-business-cards",
+      "title": "Laura's Beauty Touch Business Cards",
+      "slug": "lauras-business-cards",
+      "client": "Laura's Beauty Touch",
       "category": "materials",
       "serviceType": "Business Cards",
-      "coverImage": "../assets/images/materials/business-cards-collection.jpeg",
+      "coverImage": "../assets/images/materials/lauras-cards.jpeg",
       "gallery": [
-        "../assets/images/materials/business-cards-collection.jpeg"
+        "../assets/images/materials/lauras-cards.jpeg"
       ],
-      "year": "2024",
-      "duration": "Ongoing",
+      "year": "2025",
+      "duration": "1 week",
       "featured": false,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Various business card designs - Coming Soon",
-      "longDescription": "A collection of premium business card designs for various industries and clients.",
+      "comingSoon": false,
+      "color": "#FFB482",
+      "shortDescription": "Elegant business cards with rose gold foil accents",
+      "longDescription": "Luxurious business cards for Laura's Beauty Touch featuring elegant script typography, rose gold foil stamping, and soft-touch coating. The cards reflect the premium, personalized service clients receive at the salon.",
+      "challenge": "Creating business cards that convey luxury and elegance while being memorable enough to stand out in clients' wallets.",
+      "solution": "Used premium soft-touch paper with rose gold foil accents and elegant typography. The tactile experience reinforces the luxury positioning.",
+      "impact": "The beautiful cards generated compliments from clients and became powerful referral tools, with many clients requesting extras to share.",
       "services": [
         "Business Card Design",
-        "Premium Finishes",
+        "Premium Paper Selection",
+        "Rose Gold Foil Stamping",
+        "Soft-Touch Coating",
         "Print Production"
       ],
-      "technologies": ["Adobe Illustrator", "Adobe InDesign"]
+      "technologies": ["Adobe Illustrator", "Foil Stamping"],
+      "specifications": {
+        "size": "3.5\" x 2\"",
+        "paper": "16pt premium silk",
+        "finish": "Soft-touch with rose gold foil",
+        "colors": "Full color with spot foil",
+        "features": "Rounded corners"
+      },
+      "testimonial": {
+        "text": "My business cards are absolutely stunning! Clients always comment on how beautiful they are. They perfectly represent my brand.",
+        "author": "Laura Sholomov",
+        "role": "Owner, Laura's Beauty Touch",
+        "rating": 5
+      }
     },
     {
-      "id": "generic-flyers",
-      "title": "Marketing Flyer Portfolio",
-      "slug": "generic-flyers",
-      "client": "Various Clients",
+      "id": "doug-business-cards",
+      "title": "Doug Uhlig Psychological Services Business Cards",
+      "slug": "doug-business-cards",
+      "client": "Doug Uhlig Psychological Services",
       "category": "materials",
-      "serviceType": "Marketing Flyers",
-      "coverImage": "../assets/images/materials/flyers-collection.jpeg",
+      "serviceType": "Business Cards",
+      "coverImage": "../assets/images/materials/doug-cards.jpeg",
       "gallery": [
-        "../assets/images/materials/flyers-collection.jpeg"
+        "../assets/images/materials/doug-cards.jpeg"
       ],
-      "year": "2024",
-      "duration": "Ongoing",
+      "year": "2023",
+      "duration": "1 week",
       "featured": false,
-      "comingSoon": true,
-      "color": "#FF8C42",
-      "shortDescription": "Professional flyer designs - Coming Soon",
-      "longDescription": "A portfolio of effective marketing flyers designed for various businesses and promotional campaigns.",
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Professional psychology practice business cards",
+      "longDescription": "Clean, professional business cards for Doug Uhlig Psychological Services featuring calming colors and clear hierarchy. The design conveys professionalism and trustworthiness essential for a mental health practice.",
+      "challenge": "Creating business cards that feel professional and trustworthy while being approachable for potential clients seeking mental health services.",
+      "solution": "Used calming blue color palette with clean typography and excellent readability. Premium paper stock conveys quality care.",
+      "impact": "The professional cards helped establish credibility at referral meetings and made it easy for clients to keep contact information accessible.",
       "services": [
-        "Flyer Design",
-        "Marketing Copy",
-        "Print Production"
+        "Business Card Design",
+        "Premium Paper Selection",
+        "Print Production",
+        "Quality Control"
       ],
-      "technologies": ["Adobe InDesign", "Adobe Photoshop"]
+      "technologies": ["Adobe Illustrator", "Offset Printing"],
+      "specifications": {
+        "size": "3.5\" x 2\"",
+        "paper": "16pt silk laminated",
+        "finish": "Matte lamination",
+        "colors": "Full color both sides"
+      },
+      "testimonial": {
+        "text": "The business cards are professional and make a great impression at networking events. They perfectly represent our practice's approach.",
+        "author": "Douglas Uhlig, Ph.D.",
+        "role": "Doug Uhlig Psychological Services",
+        "rating": 5
+      }
+    },
+    {
+      "id": "doug-brochures",
+      "title": "Doug Uhlig Psychological Services Brochures",
+      "slug": "doug-brochures",
+      "client": "Doug Uhlig Psychological Services",
+      "category": "materials",
+      "serviceType": "Brochures",
+      "coverImage": "../assets/images/materials/doug-brochure.jpeg",
+      "gallery": [
+        "../assets/images/materials/doug-brochure.jpeg"
+      ],
+      "year": "2023",
+      "duration": "2 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Informative tri-fold brochures for mental health services",
+      "longDescription": "Professional tri-fold brochures for Doug Uhlig Psychological Services detailing therapy approaches, specialties, insurance information, and contact details. The design balances professionalism with approachability to reduce barriers to seeking mental health care.",
+      "challenge": "Creating brochures that provide comprehensive information about services while being welcoming and reducing stigma around mental health treatment.",
+      "solution": "Designed clean, organized layout with calming colors, clear service descriptions, and FAQ section. Used friendly yet professional tone throughout.",
+      "impact": "The brochures became an essential intake tool, with many new clients citing the clear information as a factor in their decision to begin treatment.",
+      "services": [
+        "Brochure Design",
+        "Content Writing",
+        "Print Production",
+        "Information Architecture"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"],
+      "specifications": {
+        "format": "Tri-fold",
+        "size": "8.5\" x 11\" (folded to 3.67\")",
+        "paper": "100lb gloss text",
+        "finish": "Aqueous coating",
+        "colors": "Full color CMYK"
+      },
+      "results": {
+        "metric1": { "value": "Informative", "label": "Clear Services", "icon": "fa-info-circle" },
+        "metric2": { "value": "Welcoming", "label": "Reduces Barriers", "icon": "fa-door-open" },
+        "metric3": { "value": "Professional", "label": "Builds Trust", "icon": "fa-handshake" }
+      },
+      "testimonial": {
+        "text": "The brochures are incredibly helpful for new clients. They answer common questions and help people feel comfortable reaching out for services.",
+        "author": "Douglas Uhlig, Ph.D.",
+        "role": "Doug Uhlig Psychological Services",
+        "rating": 5
+      }
     }
   ]
 }
