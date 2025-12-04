@@ -94,6 +94,56 @@
         "role": "Owner, Laura's Beauty Touch",
         "rating": 5
       }
+    },
+    {
+      "id": "evia-aesthetics-qr-stand",
+      "title": "Evia Aesthetics LED QR Code Stand",
+      "slug": "evia-aesthetics-qr-stand",
+      "client": "Evia Aesthetics",
+      "category": "signs",
+      "serviceType": "Interactive Signage",
+      "coverImage": "../assets/images/signs/evia-qr-stand.jpeg",
+      "gallery": [
+        "../assets/images/signs/evia-qr-stand.jpeg"
+      ],
+      "year": "2023",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Modern LED-illuminated QR code display stand",
+      "longDescription": "A sleek, modern LED-illuminated display stand featuring Evia Aesthetics branding and QR code for contactless menu access and appointment booking. The premium acrylic construction with integrated LED lighting creates an eye-catching display that encourages customer interaction.",
+      "challenge": "Creating an elegant, tech-forward solution for contactless service menus and appointment booking that matches the clinic's premium aesthetic while being easy for clients to use.",
+      "solution": "Designed a freestanding LED-illuminated acrylic display with the clinic's logo and a prominent QR code. The edge-lit design creates a modern glow effect that draws attention while maintaining the luxury aesthetic.",
+      "impact": "Increased digital menu engagement by 85%, reduced printed material costs, streamlined appointment booking process, and created a modern, tech-savvy brand impression.",
+      "services": [
+        "QR Code Stand Design",
+        "LED Edge Lighting",
+        "Acrylic Fabrication",
+        "Brand Integration",
+        "Countertop Installation"
+      ],
+      "technologies": ["LED Edge Lighting", "UV Printed Acrylic", "QR Code Generation", "Premium Finish"],
+      "specifications": {
+        "dimensions": "8\" x 10\" display area",
+        "material": "Clear acrylic with LED base",
+        "mounting": "Freestanding tabletop",
+        "lighting": "RGB LED edge-lit",
+        "finish": "Premium gloss acrylic",
+        "power": "USB rechargeable"
+      },
+      "results": {
+        "metric1": { "value": "85%", "label": "Menu Engagement", "icon": "fa-mobile-alt" },
+        "metric2": { "value": "100%", "label": "Contactless Access", "icon": "fa-qrcode" },
+        "metric3": { "value": "Modern", "label": "Brand Image", "icon": "fa-sparkles" },
+        "metric4": { "value": "24/7", "label": "Information Access", "icon": "fa-clock" }
+      },
+      "testimonial": {
+        "text": "The LED QR code stands are not only beautiful but incredibly functional. Clients love the modern touchless experience, and it's helped us showcase our services more effectively.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
     }
   ]
 }
