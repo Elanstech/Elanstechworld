@@ -3,95 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Elan's Tech World</title>
-    <!-- Global CSS and Contact Page Specific CSS -->
+    <title>Contact Us | Elan's Tech World - Let's Build Something Great</title>
+    <meta name="description" content="Get in touch with Elan's Tech World. We're here to help transform your business with premium digital solutions.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/contact.css">
-    <!-- Elfsight App Script -->
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="theme-color" content="#0A0A0A">
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World Logo">
-                <span class="logo-text">Elan's Tech World</span>
+
+<body class="preload">
+    
+<!-- Loader -->
+<div class="loader-container">
+    <div class="loader-content">
+        <div class="logo-loader">
+            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+        </div>
+        <div class="loader-text">
+            <h3>Elan's Tech World</h3>
+            <p>Crafting Digital Excellence</p>
+        </div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Futuristic Header -->
+<header class="header-futuristic">
+    <div class="header-glow"></div>
+    <div class="header-glass-effect"></div>
+    
+    <div class="container">
+        <div class="header-inner-futuristic">
+            <a href="../index.html" class="logo-futuristic">
+                <div class="logo-image">
+                    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                </div>
+                <div class="logo-text-futuristic">
+                    <span class="logo-main-futuristic">Elan's</span>
+                    <span class="logo-sub-futuristic">Tech World</span>
+                </div>
             </a>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../pages/about.html">About Us</a></li>
-                    <li><a href="../pages/services.html">Services</a></li>
-                    <li><a href="../pages/projects.html">Projects</a></li>
-                    <li><a href="../pages/contact.html">Contact</a></li>
+            
+            <nav class="nav-futuristic">
+                <ul class="nav-list-futuristic">
+                    <li><a href="../index.html" class="nav-link-futuristic">Home</a></li>
+                    <li><a href="services.html" class="nav-link-futuristic">Services</a></li>
+                    <li><a href="why.html" class="nav-link-futuristic">Why Us</a></li>
+                    <li><a href="projects.html" class="nav-link-futuristic">Visit Our Work</a></li>
+                    <li><a href="contact.html" class="nav-link-futuristic active">Contact</a></li>
                 </ul>
             </nav>
-            <button class="hamburger">
-                <div></div>
-                <div></div>
-                <div></div>
-            </button>
+            
+            <div class="header-actions-futuristic">
+                <a href="tel:+19294176819" class="btn-futuristic">
+                    <span class="btn-text">Call Now</span>
+                    <span class="btn-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+                
+                <button class="menu-toggle-futuristic" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../pages/about.html">About Us</a></li>
-            <li><a href="../pages/services.html">Services</a></li>
-            <li><a href="../pages/projects.html">Projects</a></li>
-            <li><a href="../pages/contact.html">Contact</a></li>
-        </ul>
     </div>
+</header>
 
-    <!-- Main Contact Section -->
-    <main>
-        <section class="contact-section">
-            <h1>Contact Us</h1>
-            <p>Have questions or need help? Please fill out the form below, and our team will get back to you as soon as possible.</p>
+<!-- Mobile Menu -->
+<div class="mobile-menu-futuristic">
+    <div class="mobile-menu-backdrop-futuristic"></div>
+    <div class="mobile-menu-container-futuristic">
+        <div class="mobile-menu-header-futuristic"></div>
+        
+        <nav class="mobile-nav-futuristic">
+            <ul>
+                <li><a href="../index.html" class="mobile-nav-link-futuristic">Home</a></li>
+                <li><a href="services.html" class="mobile-nav-link-futuristic">Services</a></li>
+                <li><a href="why.html" class="mobile-nav-link-futuristic">Why Us</a></li>
+                <li><a href="projects.html" class="mobile-nav-link-futuristic">Visit Our Work</a></li>
+                <li><a href="contact.html" class="mobile-nav-link-futuristic">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="mobile-menu-footer-futuristic">
+            <div class="mobile-contact-futuristic">
+                <a href="tel:+19294176819">
+                    <div class="contact-icon-futuristic">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>(929) 417-6819</span>
+                </a>
+                <a href="mailto:elan@elanstechworld.com">
+                    <div class="contact-icon-futuristic">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>elan@elanstechworld.com</span>
+                </a>
+            </div>
+            
+            <div class="mobile-social-futuristic">
+                <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Elfsight Contact Form Widget -->
-            <div class="elfsight-app-container">
-                <div class="elfsight-app-d1107319-bf4c-44ec-8eff-5f52a2fe689d" data-elfsight-app-lazy></div>
-            </div>
-        </section>
-    </main>
+<!-- Contact Hero -->
+<section class="contact-hero">
+    <canvas id="contact-particles-canvas"></canvas>
+    <div class="container">
+        <div class="contact-hero-content" data-aos="fade-up">
+            <span class="contact-hero-tag">Get In Touch</span>
+            <h1 class="contact-hero-title">
+                Let's Create Something <span class="gradient-text">Extraordinary</span>
+            </h1>
+            <p class="contact-hero-description">
+                Ready to transform your business? We're just a message away
+            </p>
+        </div>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Elan's Tech World</h3>
-                <p>Your Partner in Technology Solutions</p>
-                <p>&copy; 2024 All rights reserved.</p>
+<!-- Contact Main Section -->
+<section class="contact-main-section">
+    <div class="container">
+        <div class="contact-main-grid">
+            
+            <!-- Contact Info -->
+            <div class="contact-info-column" data-aos="fade-right">
+                <div class="contact-info-header">
+                    <h2>Let's Talk</h2>
+                    <p>We're here to answer your questions and discuss your project</p>
+                </div>
+                
+                <div class="contact-info-cards">
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Phone</h4>
+                            <a href="tel:+19294176819">(929) 417-6819</a>
+                            <span class="contact-info-note">Mon-Fri 9AM-6PM EST</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Email</h4>
+                            <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+                            <span class="contact-info-note">24-hour response time</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Location</h4>
+                            <span>New York, NY</span>
+                            <span class="contact-info-note">Serving clients nationwide</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="contact-social">
+                    <h4>Follow Us</h4>
+                    <div class="contact-social-links">
+                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Business Hours -->
+                <div class="contact-hours">
+                    <h4>Business Hours</h4>
+                    <div class="contact-hours-list">
+                        <div class="contact-hours-item">
+                            <span>Monday - Friday</span>
+                            <span>9:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="contact-hours-item">
+                            <span>Saturday</span>
+                            <span>10:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="contact-hours-item">
+                            <span>Sunday</span>
+                            <span>Closed</span>
+                        </div>
+                    </div>
+                    <p class="contact-hours-note">
+                        <i class="fas fa-info-circle"></i>
+                        Emergency support available 24/7 for existing clients
+                    </p>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            
+            <!-- Contact Form -->
+            <div class="contact-form-column" data-aos="fade-left">
+                <div class="contact-form-wrapper">
+                    <div class="contact-form-header">
+                        <h3>Send Us a Message</h3>
+                        <p>Fill out the form below and we'll get back to you within 24 hours</p>
+                    </div>
+                    
+                    <!-- Elfsight Contact Form -->
+                    <div class="elfsight-app-9355b656-fe52-4481-a846-b339ead8f2a9" data-elfsight-app-lazy></div>
+                </div>
             </div>
-            <div class="footer-social">
-                <h4>Connect With Us</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+            
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="contact-faq-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title">Common <span class="gradient-text">Questions</span></h2>
+            <p class="section-description">Quick answers to questions you may have</p>
+        </div>
+        
+        <div class="contact-faq-grid">
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-question">
+                    <h4>How quickly can you start my project?</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We can typically begin within 1-2 weeks of project approval. For urgent projects, we offer expedited onboarding to start within 3-5 business days.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="faq-question">
+                    <h4>What is your pricing structure?</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer customized pricing based on project scope and requirements. After our initial consultation, we'll provide a detailed quote with transparent pricing and no hidden fees.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="faq-question">
+                    <h4>Do you offer ongoing support?</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! All projects include 3-6 months of free support. We also offer monthly maintenance packages for continued updates, security monitoring, and technical assistance.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-question">
+                    <h4>What industries do you work with?</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We work with clients across all industries including healthcare, e-commerce, real estate, professional services, beauty & wellness, hospitality, and more.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="faq-question">
+                    <h4>Can you work with existing systems?</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We specialize in integrations and can work with your existing CRM, payment processors, booking systems, and other tools to create a seamless ecosystem.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="faq-question">
+                    <h4>What makes you different from other agencies?</h4>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We focus on results, not just deliverables. Every project includes performance guarantees, unlimited revisions, and dedicated support. Plus, we treat your business like our own.</p>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>Privacy Policy | Terms of Service</p>
-        </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- Scripts -->
-    <script src="../js/script.js"></script>
-    <script src="../js/style.js"></script>
+<!-- Trust Badges -->
+<section class="contact-trust-section">
+    <div class="container">
+        <div class="contact-trust-content" data-aos="fade-up">
+            <h3>Why Work With Us?</h3>
+            <div class="contact-trust-badges">
+                <div class="contact-trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Satisfaction Guarantee</span>
+                </div>
+                <div class="contact-trust-badge">
+                    <i class="fas fa-clock"></i>
+                    <span>Fast Turnaround</span>
+                </div>
+                <div class="contact-trust-badge">
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 Support</span>
+                </div>
+                <div class="contact-trust-badge">
+                    <i class="fas fa-star"></i>
+                    <span>5-Star Rated</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-modern">
+    <div class="footer-modern-main">
+        <div class="container">
+            <div class="footer-modern-grid">
+                <div class="footer-modern-brand">
+                    <a href="../index.html" class="footer-logo">
+                        <div class="footer-logo-image">
+                            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                        </div>
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-main">Elan's</span>
+                            <span class="footer-logo-sub">Tech World</span>
+                        </div>
+                    </a>
+                    <p class="footer-brand-description">
+                        Transforming businesses through innovative technology solutions.
+                    </p>
+                    
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-modern-column">
+                    <h4 class="footer-column-title">Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="why.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
+                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-modern-column">
+                    <h4 class="footer-column-title">Our Services</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Web Development</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> E-commerce Solutions</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Custom Signage</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-modern-column">
+                    <h4 class="footer-column-title">Get In Touch</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="footer-contact-content">
+                                <span class="footer-contact-label">Location</span>
+                                <span class="footer-contact-value">New York, NY</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="footer-contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="footer-contact-content">
+                                <span class="footer-contact-label">Phone</span>
+                                <a href="tel:+19294176819" class="footer-contact-value">(929) 417-6819</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="footer-contact-content">
+                                <span class="footer-contact-label">Email</span>
+                                <a href="mailto:elan@elanstechworld.com" class="footer-contact-value">elan@elanstechworld.com</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-modern-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 <span class="gradient-text">Elan's Tech World</span>. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#">Terms of Service</a>
+                </div>
+
+                <div class="footer-crafted">
+                    <p>Crafted with <i class="fas fa-heart"></i> in NYC</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bg-gradient"></div>
+</footer>
+
+<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
+<script src="../js/script.js"></script>
+<script src="../js/contact.js"></script>
 </body>
 </html>
