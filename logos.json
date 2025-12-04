@@ -187,9 +187,9 @@
       "client": "Laura's Beauty Touch",
       "category": "logos",
       "serviceType": "Beauty Salon Branding",
-      "coverImage": "../assets/images/logos/lauras-logo.jpeg",
+      "coverImage": "../assets/logos/lauraslogo.jpg",
       "gallery": [
-        "../assets/images/logos/lauras-logo.jpeg"
+        "../assets/logos/lauraslogo.jpg"
       ],
       "year": "2025",
       "duration": "2 weeks",
