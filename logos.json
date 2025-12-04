@@ -151,9 +151,9 @@
       "client": "Eviaesthetics",
       "category": "logos",
       "serviceType": "Beauty & Wellness Branding",
-      "coverImage": "../assets/images/logos/evia.jpg",
+      "coverImage": "../assets/logos/evia.jpg",
       "gallery": [
-        "../assets/images/logos/evia2.jpg"
+        "../assets/logos/evia2.jpg"
       ],
       "year": "2023",
       "duration": "2 weeks",
