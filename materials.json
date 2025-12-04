@@ -224,10 +224,10 @@
       "client": "Evia Aesthetics",
       "category": "materials",
       "serviceType": "Display Materials",
-      "coverImage": "../assets/materials/eviabanner.jpeg",
+      "coverImage": "../assets/signs/eviabanner.jpeg",
       "gallery": [
-        "../assets/materials/eviabanner.jpeg",
-        "../assets/materials/eviabannerside.jpeg"
+        "../assets/signs/eviabanner.jpeg",
+        "../assets/signs/eviabannerside.jpeg"
       ],
       "year": "2023",
       "duration": "2 weeks",
@@ -273,10 +273,10 @@
       "client": "Laura's Beauty Touch",
       "category": "materials",
       "serviceType": "Menu Design",
-      "coverImage": "../assets/materials/pricelist.jpeg",
+      "coverImage": "../assets/signs/pricelist.jpeg",
       "gallery": [
-        "../assets/materials/pricelist.jpeg",
-        "../assets/materials/pricelistside.jpeg"
+        "../assets/signs/pricelist.jpeg",
+        "../assets/signs/pricelistside.jpeg"
       ],
       "year": "2025",
       "duration": "1 week",
@@ -322,9 +322,9 @@
       "client": "Doug Uhlig Psychological Services",
       "category": "materials",
       "serviceType": "Business Cards",
-      "coverImage": "../assets/materials/dougbusinesscard.jpeg",
+      "coverImage": "../assets/signs/dougbusinesscard.jpeg",
       "gallery": [
-        "../assets/materials/dougbusinesscard.jpeg"
+        "../assets/signs/dougbusinesscard.jpeg"
       ],
       "year": "2023",
       "duration": "1 week",
