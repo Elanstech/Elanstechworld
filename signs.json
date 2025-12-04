@@ -1,266 +1,98 @@
 {
   "projects": [
     {
-      "id": "barber-world-storefront",
-      "title": "Barber World NYC Storefront Sign",
-      "slug": "barber-world-storefront",
-      "client": "Barber World NYC",
-      "category": "signs",
-      "serviceType": "Storefront Signage",
-      "coverImage": "../assets/images/signs/barber-storefront.jpeg",
-      "gallery": [
-        "../assets/images/signs/barber-storefront.jpeg",
-        "../assets/images/signs/barber-storefront-night.jpeg",
-        "../assets/images/signs/barber-storefront-detail.jpeg"
-      ],
-      "year": "2025",
-      "duration": "3 weeks",
-      "featured": true,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Illuminated channel letter sign - Coming Soon",
-      "longDescription": "A bold illuminated channel letter storefront sign with LED lighting, creating maximum visibility day and night.",
-      "services": [
-        "Sign Design",
-        "LED Channel Letters",
-        "Installation",
-        "Electrical Work",
-        "Permit Processing"
-      ],
-      "technologies": ["3D Rendering", "LED Lighting", "Aluminum Fabrication"],
-      "specifications": {
-        "dimensions": "12ft x 3ft",
-        "material": "Aluminum with LED",
-        "mounting": "Wall-mounted",
-        "lighting": "LED illuminated"
-      }
-    },
-    {
-      "id": "iconic-window-graphics",
-      "title": "Iconic Aesthetics Window Graphics",
-      "slug": "iconic-window-graphics",
-      "client": "Iconic Aesthetics",
-      "category": "signs",
-      "serviceType": "Window Graphics",
-      "coverImage": "../assets/images/signs/iconic-windows.jpeg",
-      "gallery": [
-        "../assets/images/signs/iconic-windows.jpeg"
-      ],
-      "year": "2022",
-      "duration": "1 week",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FF8C42",
-      "shortDescription": "Elegant frosted window branding - Coming Soon",
-      "longDescription": "Sophisticated frosted window graphics featuring the logo and service offerings with elegant typography.",
-      "services": [
-        "Window Graphics Design",
-        "Frosted Vinyl Application",
-        "Installation",
-        "Surface Preparation"
-      ],
-      "technologies": ["Vinyl Printing", "Frosted Film"],
-      "specifications": {
-        "dimensions": "Various panels",
-        "material": "Frosted vinyl",
-        "mounting": "Window application",
-        "finish": "Matte frosted"
-      }
-    },
-    {
-      "id": "lauras-outdoor-sign",
-      "title": "Laura's Beauty Touch Outdoor Sign",
-      "slug": "lauras-outdoor-sign",
-      "client": "Laura's Beauty Touch",
-      "category": "signs",
-      "serviceType": "Outdoor Signage",
-      "coverImage": "../assets/images/signs/lauras-outdoor.jpeg",
-      "gallery": [
-        "../assets/images/signs/lauras-outdoor.jpeg"
-      ],
-      "year": "2025",
-      "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FFB482",
-      "shortDescription": "Elegant monument sign - Coming Soon",
-      "longDescription": "A luxurious monument sign with dimensional letters and integrated lighting for upscale brand presence.",
-      "services": [
-        "Monument Sign Design",
-        "Dimensional Letters",
-        "Foundation Work",
-        "Lighting Installation",
-        "Landscaping Integration"
-      ],
-      "technologies": ["Dimensional Letters", "LED Lighting", "Stone Base"],
-      "specifications": {
-        "dimensions": "6ft x 4ft",
-        "material": "Stone base with metal letters",
-        "mounting": "Ground monument",
-        "lighting": "Uplight illumination"
-      }
-    },
-    {
-      "id": "eastcoast-for-sale-signs",
-      "title": "East Coast Realty For Sale Signs",
-      "slug": "eastcoast-for-sale-signs",
-      "client": "East Coast Realty",
-      "category": "signs",
-      "serviceType": "Real Estate Signs",
-      "coverImage": "../assets/images/signs/realty-for-sale.jpeg",
-      "gallery": [
-        "../assets/images/signs/realty-for-sale.jpeg"
-      ],
-      "year": "2024",
-      "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Professional property signage - Coming Soon",
-      "longDescription": "Durable outdoor real estate signs with professional design, rider options, and weather-resistant materials.",
-      "services": [
-        "For Sale Sign Design",
-        "Rider Sign Design",
-        "Printing on Coroplast",
-        "H-Frame Stakes",
-        "Bulk Production"
-      ],
-      "technologies": ["Digital Printing", "Coroplast Material", "UV Resistant Ink"],
-      "specifications": {
-        "dimensions": "24\" x 18\"",
-        "material": "Coroplast",
-        "mounting": "H-frame stake",
-        "finish": "UV resistant"
-      }
-    },
-    {
-      "id": "cohen-office-suite",
-      "title": "Cohen & Associates Office Suite Signs",
-      "slug": "cohen-office-suite",
-      "client": "Cohen & Associates",
+      "id": "holistic-mental-health-sign",
+      "title": "Holistic Mental Health Services Office Sign",
+      "slug": "holistic-mental-health-sign",
+      "client": "Holistic Mental Health Services",
       "category": "signs",
       "serviceType": "Interior Signage",
-      "coverImage": "../assets/images/signs/cohen-suite.jpeg",
+      "coverImage": "../assets/images/signs/holistic-sign.jpeg",
       "gallery": [
-        "../assets/images/signs/cohen-suite.jpeg"
+        "../assets/images/signs/holistic-sign.jpeg"
       ],
-      "year": "2024",
+      "year": "2025",
       "duration": "2 weeks",
-      "featured": false,
-      "comingSoon": true,
+      "featured": true,
+      "comingSoon": false,
       "color": "#4da3ff",
-      "shortDescription": "Professional office identification - Coming Soon",
-      "longDescription": "Elegant interior suite signage with brushed metal finish and dimensional lettering for professional appearance.",
+      "shortDescription": "Welcoming office suite signage with calming design",
+      "longDescription": "Professional office suite signage for Holistic Mental Health Services featuring calming colors and welcoming design. The sign creates an approachable first impression while maintaining professional credibility, perfectly aligning with their mental wellness brand identity.",
+      "challenge": "Creating signage that feels welcoming and reduces stigma around mental health services while meeting professional office building standards and ADA compliance requirements.",
+      "solution": "Designed elegant dimensional lettering with calming color accents and soft, rounded letterforms. The sign uses high-quality brushed aluminum with a subtle blue accent color that matches their brand identity.",
+      "impact": "The welcoming signage helped clients feel comfortable visiting the office, contributing to positive first impressions and reduced anxiety for new patients seeking mental health support.",
       "services": [
         "Suite Sign Design",
         "Dimensional Letters",
         "ADA Compliant Signage",
-        "Installation",
-        "Directory Updates"
+        "Color-Matched Finish",
+        "Professional Installation"
       ],
-      "technologies": ["Brushed Aluminum", "Acrylic", "3M Adhesive"],
+      "technologies": ["Brushed Aluminum", "Acrylic Letters", "3M Adhesive", "Color Matching"],
       "specifications": {
-        "dimensions": "36\" x 8\"",
-        "material": "Brushed aluminum",
-        "mounting": "Wall-mounted",
-        "finish": "Brushed metal"
+        "dimensions": "48\" x 10\"",
+        "material": "Brushed aluminum with acrylic accents",
+        "mounting": "Wall-mounted with standoffs",
+        "finish": "Brushed metal with blue accents",
+        "compliance": "ADA compliant"
+      },
+      "testimonial": {
+        "text": "The office signage perfectly represents our practice - welcoming, professional, and calming. Clients often comment on how the sign makes them feel at ease before they even enter.",
+        "author": "Kristie Doheny",
+        "role": "Holistic Mental Health Services",
+        "rating": 5
       }
     },
     {
-      "id": "century-one-lobby-sign",
-      "title": "Century One Properties Lobby Sign",
-      "slug": "century-one-lobby-sign",
-      "client": "Century One Properties",
+      "id": "lauras-beauty-touch-sign",
+      "title": "Laura's Beauty Touch Salon Sign",
+      "slug": "lauras-beauty-touch-sign",
+      "client": "Laura's Beauty Touch",
       "category": "signs",
-      "serviceType": "Lobby Signage",
-      "coverImage": "../assets/images/signs/century-lobby.jpeg",
+      "serviceType": "Storefront Signage",
+      "coverImage": "../assets/images/signs/lauras-sign.jpeg",
       "gallery": [
-        "../assets/images/signs/century-lobby.jpeg"
+        "../assets/images/signs/lauras-sign.jpeg"
       ],
-      "year": "2024",
+      "year": "2025",
       "duration": "3 weeks",
       "featured": true,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Impressive lobby branding - Coming Soon",
-      "longDescription": "A striking lobby sign with LED backlighting and premium materials creating an impressive first impression.",
+      "comingSoon": false,
+      "color": "#FFB482",
+      "shortDescription": "Elegant illuminated salon signage with luxury appeal",
+      "longDescription": "A sophisticated illuminated storefront sign for Laura's Beauty Touch featuring elegant script typography and premium LED lighting. The sign creates a luxurious presence that attracts discerning clientele while maintaining visibility day and night.",
+      "challenge": "Creating signage that conveys the luxury, elegance, and personal touch of Laura's high-end beauty services while ensuring maximum visibility in a competitive retail environment.",
+      "solution": "Designed custom LED channel letters with elegant script typography and warm lighting. The sign features gold-toned metal finish with halo illumination creating a premium glow effect that's visible 24/7.",
+      "impact": "The elegant signage significantly increased walk-in traffic, helped justify premium pricing, and established Laura's Beauty Touch as the premier beauty destination in the area.",
       "services": [
-        "Lobby Sign Design",
-        "LED Backlighting",
-        "Premium Materials",
-        "Installation",
-        "Electrical Integration"
-      ],
-      "technologies": ["LED Backlighting", "Acrylic", "Brushed Metal"],
-      "specifications": {
-        "dimensions": "8ft x 2ft",
-        "material": "Acrylic with metal",
-        "mounting": "Wall-mounted",
-        "lighting": "LED backlit"
-      }
-    },
-    {
-      "id": "generic-vehicle-wraps",
-      "title": "Commercial Vehicle Wraps",
-      "slug": "generic-vehicle-wraps",
-      "client": "Various Clients",
-      "category": "signs",
-      "serviceType": "Vehicle Graphics",
-      "coverImage": "../assets/images/signs/vehicle-wraps.jpeg",
-      "gallery": [
-        "../assets/images/signs/vehicle-wraps.jpeg"
-      ],
-      "year": "2024",
-      "duration": "Ongoing",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FF8C42",
-      "shortDescription": "Mobile advertising solutions - Coming Soon",
-      "longDescription": "Full and partial vehicle wraps turning company vehicles into mobile billboards.",
-      "services": [
-        "Vehicle Wrap Design",
-        "3M Vinyl Application",
-        "Full Color Printing",
+        "Storefront Sign Design",
+        "LED Channel Letters",
+        "Custom Script Typography",
+        "Halo Illumination",
         "Professional Installation",
-        "Vehicle Templates"
+        "Electrical Work",
+        "Permit Processing"
       ],
-      "technologies": ["3M Vinyl", "Large Format Printing", "Heat Application"],
+      "technologies": ["LED Channel Letters", "Aluminum Fabrication", "Halo Lighting", "Premium Finishes"],
       "specifications": {
-        "material": "3M vinyl wrap",
-        "durability": "5-7 years",
-        "finish": "Gloss or matte"
-      }
-    },
-    {
-      "id": "generic-banners",
-      "title": "Indoor/Outdoor Banners",
-      "slug": "generic-banners",
-      "client": "Various Clients",
-      "category": "signs",
-      "serviceType": "Banners",
-      "coverImage": "../assets/images/signs/banners-collection.jpeg",
-      "gallery": [
-        "../assets/images/signs/banners-collection.jpeg"
-      ],
-      "year": "2024",
-      "duration": "Ongoing",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#007aff",
-      "shortDescription": "Versatile banner solutions - Coming Soon",
-      "longDescription": "Custom banners for events, promotions, and permanent installations in various sizes and materials.",
-      "services": [
-        "Banner Design",
-        "Large Format Printing",
-        "Grommets & Hemming",
-        "Retractable Stands",
-        "Installation Hardware"
-      ],
-      "technologies": ["Vinyl Banner Material", "UV Printing", "Wind Slits"],
-      "specifications": {
-        "sizes": "Custom dimensions",
-        "material": "13oz vinyl",
-        "finish": "Hemmed with grommets"
+        "dimensions": "10ft x 2.5ft",
+        "material": "Aluminum with LED lighting",
+        "mounting": "Wall-mounted with raceway",
+        "lighting": "Warm white LED with halo effect",
+        "finish": "Gold-tone metallic",
+        "visibility": "24/7 illuminated"
+      },
+      "results": {
+        "metric1": { "value": "65%", "label": "Increase in Walk-ins", "icon": "fa-door-open" },
+        "metric2": { "value": "24/7", "label": "Brand Visibility", "icon": "fa-lightbulb" },
+        "metric3": { "value": "Premium", "label": "Brand Positioning", "icon": "fa-gem" },
+        "metric4": { "value": "100%", "label": "Client Satisfaction", "icon": "fa-smile" }
+      },
+      "testimonial": {
+        "text": "The sign is absolutely stunning! It perfectly captures the luxury experience we provide. We've seen a significant increase in walk-in clients who say they were drawn in by our beautiful signage.",
+        "author": "Laura Sholomov",
+        "role": "Owner, Laura's Beauty Touch",
+        "rating": 5
       }
     }
   ]
