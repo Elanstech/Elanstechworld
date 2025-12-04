@@ -223,9 +223,9 @@
       "client": "Holistic Mental Health Services",
       "category": "logos",
       "serviceType": "Healthcare Branding",
-      "coverImage": "../assets/images/logos/holistic-logo.jpeg",
+      "coverImage": "../assets/logos/mentalhealthlogo.jpg",
       "gallery": [
-        "../assets/images/logos/holistic-logo.jpeg"
+        "../assets/logos/mentalhealthlogo.jpg"
       ],
       "year": "2025",
       "duration": "2 weeks",
@@ -259,9 +259,9 @@
       "client": "Child & Family Psychological Services",
       "category": "logos",
       "serviceType": "Healthcare Branding",
-      "coverImage": "../assets/images/logos/childfamily-logo.jpeg",
+      "coverImage": "../assets/logos/childlogo.jpg",
       "gallery": [
-        "../assets/images/logos/childfamily-logo.jpeg"
+        "../assets/logos/childlogo.jpg"
       ],
       "year": "2024",
       "duration": "2 weeks",
