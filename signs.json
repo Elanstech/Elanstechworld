@@ -2,14 +2,14 @@
   "projects": [
     {
       "id": "holistic-mental-health-sign",
-      "title": "Holistic Mental Health Services Office Sign",
+      "title": "Holistic Psychological Services Office Sign",
       "slug": "holistic-mental-health-sign",
-      "client": "Holistic Mental Health Services",
+      "client": "Holistic Psychological Services",
       "category": "signs",
       "serviceType": "Interior Signage",
-      "coverImage": "../assets/images/signs/holistic-sign.jpeg",
+      "coverImage": "../assets/signs/holisticsign.jpeg",
       "gallery": [
-        "../assets/images/signs/holistic-sign.jpeg"
+        "../assets/signs/holisticsign1.jpeg"
       ],
       "year": "2025",
       "duration": "2 weeks",
@@ -17,7 +17,7 @@
       "comingSoon": false,
       "color": "#4da3ff",
       "shortDescription": "Welcoming office suite signage with calming design",
-      "longDescription": "Professional office suite signage for Holistic Mental Health Services featuring calming colors and welcoming design. The sign creates an approachable first impression while maintaining professional credibility, perfectly aligning with their mental wellness brand identity.",
+      "longDescription": "Professional office suite signage for Holistic Psychological Services featuring calming colors and welcoming design. The sign creates an approachable first impression while maintaining professional credibility, perfectly aligning with their mental wellness brand identity.",
       "challenge": "Creating signage that feels welcoming and reduces stigma around mental health services while meeting professional office building standards and ADA compliance requirements.",
       "solution": "Designed elegant dimensional lettering with calming color accents and soft, rounded letterforms. The sign uses high-quality brushed aluminum with a subtle blue accent color that matches their brand identity.",
       "impact": "The welcoming signage helped clients feel comfortable visiting the office, contributing to positive first impressions and reduced anxiety for new patients seeking mental health support.",
@@ -28,18 +28,18 @@
         "Color-Matched Finish",
         "Professional Installation"
       ],
-      "technologies": ["Brushed Aluminum", "Acrylic Letters", "3M Adhesive", "Color Matching"],
+      "technologies": ["Neon Sign", "Acrylic Letters", "3M Adhesive", "Color Matching"],
       "specifications": {
         "dimensions": "48\" x 10\"",
-        "material": "Brushed aluminum with acrylic accents",
+        "material": "Led with acrylic accents",
         "mounting": "Wall-mounted with standoffs",
-        "finish": "Brushed metal with blue accents",
+        "finish": "Brushed metal with green accents",
         "compliance": "ADA compliant"
       },
       "testimonial": {
         "text": "The office signage perfectly represents our practice - welcoming, professional, and calming. Clients often comment on how the sign makes them feel at ease before they even enter.",
-        "author": "Kristie Doheny",
-        "role": "Holistic Mental Health Services",
+        "author": "Kristie Doheny & Doug Uhlig",
+        "role": "Holistic Psychological Services",
         "rating": 5
       }
     },
@@ -50,9 +50,9 @@
       "client": "Laura's Beauty Touch",
       "category": "signs",
       "serviceType": "Storefront Signage",
-      "coverImage": "../assets/images/signs/lauras-sign.jpeg",
+      "coverImage": "../assets/signs/laurasign.jpeg",
       "gallery": [
-        "../assets/images/signs/lauras-sign.jpeg"
+        "../assets/signs/laurasign.jpeg"
       ],
       "year": "2025",
       "duration": "3 weeks",
@@ -102,9 +102,9 @@
       "client": "Evia Aesthetics",
       "category": "signs",
       "serviceType": "Interactive Signage",
-      "coverImage": "../assets/images/signs/evia-qr-stand.jpeg",
+      "coverImage": "../assets/signs/eviastand1.jpeg",
       "gallery": [
-        "../assets/images/signs/evia-qr-stand.jpeg"
+        "../assets/signs/eviastand.jpeg"
       ],
       "year": "2023",
       "duration": "2 weeks",
