@@ -119,12 +119,20 @@
      HERO
 ═══════════════════════════════════════ -->
 <section class="hero" id="hero">
-    <!-- Video Background -->
-    <div class="hero-media">
+    <!-- Parallax Media Background -->
+    <div class="hero-media" id="heroMedia">
+        <!-- Desktop: Parallax Video -->
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="assets/videos/herovideo.mp4" type="video/mp4">
         </video>
+        <!-- Mobile: Parallax Image (shown when video is hidden) -->
+        <div class="hero-image">
+            <img src="assets/images/hero-parallax.jpg" alt="Premium Digital Solutions"
+                 onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80'">
+        </div>
         <div class="hero-media-overlay"></div>
+        <!-- Subtle grain texture for luxury feel -->
+        <div class="hero-grain"></div>
     </div>
 
     <div class="container">
