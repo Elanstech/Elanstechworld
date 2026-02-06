@@ -1,186 +1,278 @@
 /**
- * Services Page JavaScript
- * Particles animation and interactions
+ * ═══════════════════════════════════════════════════════════════
+ *  SERVICES PAGE — Premium Interactions
+ *  Apple-style scroll reveals · Chrome mouse-tracking · Counters
+ * ═══════════════════════════════════════════════════════════════
  */
 
-// ==========================================
-// PARTICLES ANIMATION
-// ==========================================
-class ServicesParticlesAnimation {
+// ─── SCROLL REVEAL — APPLE MACBOOK PRO STYLE ─────────────────
+// Elements rise smoothly into view as you scroll, with staggered
+// feature pills and icon pop animations triggered via CSS classes.
+class ServiceScrollReveal {
   constructor() {
-    this.canvas = document.getElementById('services-particles-canvas');
-    this.ctx = this.canvas?.getContext('2d');
-    this.particles = [];
-    this.particleCount = 80;
-    this.mouse = { x: null, y: null, radius: 150 };
+    this.cards = document.querySelectorAll('[data-scroll-reveal]');
   }
 
   init() {
-    if (!this.canvas || !this.ctx) return;
-    
-    this.resizeCanvas();
-    this.createParticles();
-    this.animate();
-    
-    window.addEventListener('resize', () => this.resizeCanvas());
-    
-    this.canvas.addEventListener('mousemove', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      this.mouse.x = e.clientX - rect.left;
-      this.mouse.y = e.clientY - rect.top;
-    });
-    
-    this.canvas.addEventListener('mouseleave', () => {
-      this.mouse.x = null;
-      this.mouse.y = null;
-    });
-  }
+    if (!this.cards.length) return;
 
-  resizeCanvas() {
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
-  }
-
-  createParticles() {
-    this.particles = [];
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: Math.random() * 1 - 0.5,
-        speedY: Math.random() * 1 - 0.5,
-        color: Math.random() > 0.5 ? 'rgba(0, 122, 255, 0.5)' : 'rgba(255, 140, 66, 0.5)'
-      });
-    }
-  }
-
-  animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    this.particles.forEach((particle, index) => {
-      // Update position
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      
-      // Bounce off edges
-      if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
-      if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
-      
-      // Mouse interaction
-      if (this.mouse.x && this.mouse.y) {
-        const dx = this.mouse.x - particle.x;
-        const dy = this.mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < this.mouse.radius) {
-          const force = (this.mouse.radius - distance) / this.mouse.radius;
-          particle.x -= dx * force * 0.02;
-          particle.y -= dy * force * 0.02;
-        }
-      }
-      
-      // Draw particle
-      this.ctx.fillStyle = particle.color;
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      this.ctx.fill();
-      
-      // Connect nearby particles
-      this.particles.slice(index + 1).forEach(otherParticle => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 100) {
-          this.ctx.strokeStyle = `rgba(255, 140, 66, ${0.2 - distance / 500})`;
-          this.ctx.lineWidth = 1;
-          this.ctx.beginPath();
-          this.ctx.moveTo(particle.x, particle.y);
-          this.ctx.lineTo(otherParticle.x, otherParticle.y);
-          this.ctx.stroke();
-        }
-      });
-    });
-    
-    requestAnimationFrame(() => this.animate());
-  }
-}
-
-// ==========================================
-// SERVICES PAGE INTERACTIONS
-// ==========================================
-class ServicesPageInteractions {
-  constructor() {
-    this.serviceCards = document.querySelectorAll('.service-detailed-card');
-  }
-
-  init() {
-    this.setupCardAnimations();
-    this.setupSmoothScroll();
-  }
-
-  setupCardAnimations() {
-    if (!this.serviceCards.length) return;
-    
+    // Use IntersectionObserver with a generous threshold
+    // so reveal starts as soon as the card enters the lower viewport
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, index * 100);
+          entry.target.classList.add('revealed');
           observer.unobserve(entry.target);
         }
       });
-    }, { 
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -60px 0px'
     });
-    
-    this.serviceCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(40px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(card);
-    });
-  }
 
-  setupSmoothScroll() {
-    const links = document.querySelectorAll('a[href^="#"]');
-    
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (href === '#') return;
-        
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({
-            top: target.offsetTop - 100,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
+    this.cards.forEach(card => observer.observe(card));
   }
 }
 
-// ==========================================
-// INITIALIZE
-// ==========================================
+// ─── CHROME TEXT MOUSE-TRACKING ───────────────────────────────
+// The mirror "Services" title shifts its gradient angle based on
+// cursor position — like light reflecting off polished metal.
+class ChromeMouseTrack {
+  constructor() {
+    this.el = document.getElementById('chromeTitle');
+    this.hero = document.querySelector('.srv-hero');
+    this.rafId = null;
+    this.mouseX = 0.5;
+    this.mouseY = 0.5;
+    this.currentX = 0.5;
+    this.currentY = 0.5;
+  }
+
+  init() {
+    if (!this.el || !this.hero) return;
+
+    // Track mouse inside the hero section
+    this.hero.addEventListener('mousemove', (e) => {
+      const rect = this.hero.getBoundingClientRect();
+      this.mouseX = (e.clientX - rect.left) / rect.width;
+      this.mouseY = (e.clientY - rect.top) / rect.height;
+    });
+
+    // Also respond to device orientation on mobile
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', (e) => {
+        if (e.gamma !== null && e.beta !== null) {
+          // gamma: -90 to 90 (left/right tilt)
+          // beta: -180 to 180 (front/back tilt)
+          this.mouseX = (e.gamma + 90) / 180;
+          this.mouseY = Math.min(Math.max((e.beta + 30) / 120, 0), 1);
+        }
+      });
+    }
+
+    this.animate();
+  }
+
+  animate() {
+    // Lerp for smooth tracking
+    this.currentX += (this.mouseX - this.currentX) * 0.06;
+    this.currentY += (this.mouseY - this.currentY) * 0.06;
+
+    // Map position to gradient angle (90–270 deg range)
+    const angle = 90 + this.currentX * 180;
+
+    // Map position to background-position for the shimmer
+    const bgX = this.currentX * 100;
+    const bgY = this.currentY * 100;
+
+    this.el.style.background = `linear-gradient(
+      ${angle}deg,
+      #c0c0c0 0%,
+      #fafafa 15%,
+      #909090 28%,
+      #f8f8f8 42%,
+      #a8a8a8 50%,
+      #f0f0f0 58%,
+      #b8b8b8 72%,
+      #fafafa 85%,
+      #a0a0a0 100%
+    )`;
+    this.el.style.backgroundSize = '200% 200%';
+    this.el.style.backgroundPosition = `${bgX}% ${bgY}%`;
+    this.el.style.webkitBackgroundClip = 'text';
+    this.el.style.backgroundClip = 'text';
+    this.el.style.webkitTextFillColor = 'transparent';
+    this.el.style.color = 'transparent';
+
+    this.rafId = requestAnimationFrame(() => this.animate());
+  }
+
+  destroy() {
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+  }
+}
+
+// ─── COUNTER ANIMATION ────────────────────────────────────────
+// Counts up numbers when they scroll into view (hero stats)
+class ServiceCounters {
+  constructor() {
+    this.els = document.querySelectorAll('[data-count]');
+  }
+
+  init() {
+    if (!this.els.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.count(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    this.els.forEach(el => observer.observe(el));
+  }
+
+  count(el) {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2200;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      // easeOutExpo for dramatic fast-then-slow
+      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  }
+}
+
+// ─── PARALLAX ELEMENTS ────────────────────────────────────────
+// Subtle parallax on service card icons as you scroll
+class ServiceParallax {
+  constructor() {
+    this.icons = document.querySelectorAll('.srv-card-icon-wrap');
+    this.ticking = false;
+  }
+
+  init() {
+    if (!this.icons.length) return;
+    window.addEventListener('scroll', () => {
+      if (!this.ticking) {
+        requestAnimationFrame(() => this.update());
+        this.ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  update() {
+    const scrollY = window.scrollY;
+
+    this.icons.forEach(icon => {
+      const rect = icon.getBoundingClientRect();
+      const centerY = rect.top + rect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      const distance = (centerY - viewportCenter) / window.innerHeight;
+
+      // Subtle float effect (-10px to +10px)
+      const offset = distance * -15;
+      icon.style.transform = `translateY(${offset}px)`;
+    });
+
+    this.ticking = false;
+  }
+}
+
+// ─── HORIZONTAL SCROLL HINT ──────────────────────────────────
+// Auto-scroll the process track slightly to hint at more content
+class ProcessScrollHint {
+  constructor() {
+    this.track = document.querySelector('.srv-process-track');
+  }
+
+  init() {
+    if (!this.track) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.hint();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(this.track);
+  }
+
+  hint() {
+    // Scroll right slightly then back to hint there's more
+    setTimeout(() => {
+      this.track.scrollTo({ left: 80, behavior: 'smooth' });
+      setTimeout(() => {
+        this.track.scrollTo({ left: 0, behavior: 'smooth' });
+      }, 600);
+    }, 400);
+  }
+}
+
+// ─── FEATURE HOVER RIPPLE ────────────────────────────────────
+// Adds a subtle ripple to feature items on hover
+class FeatureHoverEffect {
+  init() {
+    document.querySelectorAll('.srv-feature').forEach(feature => {
+      feature.addEventListener('mouseenter', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const ripple = document.createElement('span');
+        ripple.style.cssText = `
+          position: absolute;
+          width: 0; height: 0;
+          left: ${x}px; top: ${y}px;
+          background: rgba(232, 101, 26, 0.06);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          animation: featureRipple 0.6s ease-out forwards;
+        `;
+
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(ripple);
+
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Add ripple keyframe if not already added
+    if (!document.getElementById('feature-ripple-style')) {
+      const style = document.createElement('style');
+      style.id = 'feature-ripple-style';
+      style.textContent = `
+        @keyframes featureRipple {
+          to { width: 300px; height: 300px; opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+}
+
+// ─── INIT ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize particles
-  const particles = new ServicesParticlesAnimation();
-  particles.init();
-  
-  // Initialize interactions
-  const interactions = new ServicesPageInteractions();
-  interactions.init();
+  new ServiceScrollReveal().init();
+  new ChromeMouseTrack().init();
+  new ServiceCounters().init();
+  new ServiceParallax().init();
+  new ProcessScrollHint().init();
+  new FeatureHoverEffect().init();
 
-  // Scroll to top on page load
-  window.scrollTo(0, 0);
-
-  console.log('✅ Services Page - Initialized');
+  console.log('✦ Services — Premium Edition loaded');
 });
