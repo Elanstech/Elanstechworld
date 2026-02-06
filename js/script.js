@@ -149,19 +149,51 @@ class ScrollAnimations {
   }
 }
 
-// ─── HERO VIDEO ──────────────────────────────────────────────
+// ─── HERO VIDEO + PARALLAX ───────────────────────────────────
 class HeroVideo {
   constructor() {
     this.video = $('.hero-video');
+    this.media = $('#heroMedia');
+    this.hero = $('#hero');
+    this.ticking = false;
+    this.currentY = 0;
+    this.targetY = 0;
+    this.speed = 0.35;          // Parallax intensity (0 = none, 1 = full scroll)
+    this.smoothing = 0.08;      // Lerp factor — lower = silkier
   }
 
   init() {
-    if (!this.video) return;
-    this.video.muted = true;
-    this.video.playsInline = true;
-    this.video.play().catch(() => {
-      document.addEventListener('click', () => this.video.play(), { once: true });
-    });
+    // Video autoplay
+    if (this.video) {
+      this.video.muted = true;
+      this.video.playsInline = true;
+      this.video.play().catch(() => {
+        document.addEventListener('click', () => this.video.play(), { once: true });
+      });
+    }
+
+    // Parallax — only if hero media exists
+    if (!this.media || !this.hero) return;
+
+    // Use rAF loop for butter-smooth parallax
+    window.addEventListener('scroll', () => { this.targetY = window.scrollY; }, { passive: true });
+    this.animate();
+  }
+
+  animate() {
+    // Lerp toward target for silky interpolation
+    this.currentY += (this.targetY - this.currentY) * this.smoothing;
+
+    const heroRect = this.hero.getBoundingClientRect();
+    const heroBottom = heroRect.bottom;
+
+    // Only apply parallax while hero is visible
+    if (heroBottom > 0) {
+      const offset = this.currentY * this.speed;
+      this.media.style.transform = `translate3d(0, ${offset}px, 0)`;
+    }
+
+    requestAnimationFrame(() => this.animate());
   }
 }
 
