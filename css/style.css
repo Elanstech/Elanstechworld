@@ -703,11 +703,12 @@ p {
 }
 
 /* ─────────────────────────────────────────
-   9. HERO
+   9. HERO — PARALLAX SYSTEM
    ───────────────────────────────────────── */
 .hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   padding: var(--sp-160) 0 var(--sp-120);
@@ -716,25 +717,72 @@ p {
 
 .hero-media {
   position: absolute;
-  inset: 0;
+  inset: -20% 0;            /* Extra height for parallax travel room */
   z-index: 0;
+  will-change: transform;
+  transition: transform 0.05s linear; /* Micro-smooth for JS parallax */
 }
 
+/* ── Desktop Video ── */
 .hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+/* ── Mobile Parallax Image ── */
+.hero-image {
+  display: none;            /* Hidden on desktop */
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 120%;             /* Extra height for parallax travel */
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* ── Overlay — Cinematic Gradient ── */
 .hero-media-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(15, 29, 53, 0.65) 0%,
-    rgba(15, 29, 53, 0.75) 50%,
-    rgba(15, 29, 53, 0.85) 100%
-  );
+  z-index: 1;
+  background:
+    linear-gradient(180deg,
+      rgba(15, 29, 53, 0.55) 0%,
+      rgba(15, 29, 53, 0.45) 30%,
+      rgba(15, 29, 53, 0.65) 70%,
+      rgba(15, 29, 53, 0.88) 100%
+    );
+  /* Subtle vignette */
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Film Grain — luxury editorial texture ── */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px;
+  mix-blend-mode: overlay;
+}
+
+/* ── Mobile: swap video for image ── */
+@media (max-width: 768px) {
+  .hero-video { display: none; }
+  .hero-image { display: block; }
+
+  .hero-media {
+    inset: -30% 0;          /* More travel room on mobile for parallax */
+  }
 }
 
 .hero-content {
