@@ -3,954 +3,650 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elan's Tech World | Premium Digital Solutions</title>
-    <meta name="description" content="Transform your business with cutting-edge technology solutions, web design, and digital marketing.">
-    
+    <title>Elan's Tech World | Premium Digital Atelier</title>
+    <meta name="description" content="Bespoke digital solutions crafted with precision. Web design, e-commerce, branding & marketing for discerning businesses.">
+
+    <!-- Fonts — Cormorant Garamond (Display) + DM Sans (Body) + Bodoni Moda (Accent) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16749251365"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-16749251365');
-</script>
-    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#F8F5F0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16749251365"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16749251365');
+    </script>
 </head>
 
-<body class="preload">
-    <!-- Loader -->
-    <div class="loader-container">
-        <div class="loader-content">
-            <div class="logo-loader">
-                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                <div class="loader-ring"></div>
-                <div class="loader-ring"></div>
-            </div>
-            <div class="loader-text">
-                <h3>Elan's Tech World</h3>
-                <p>Crafting Digital Excellence</p>
-            </div>
-            <div class="loader-progress">
-                <div class="loader-progress-bar"></div>
-            </div>
+<body>
+
+<!-- ═══════════════════════════════════════
+     LOADER
+═══════════════════════════════════════ -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
         </div>
+        <div class="loader-line">
+            <div class="loader-line-fill"></div>
+        </div>
+        <p class="loader-tagline">Digital Atelier</p>
     </div>
-    
-<!-- Futuristic Header -->
-<header class="header-futuristic">
-    <div class="header-glow"></div>
-    <div class="header-glass-effect"></div>
-    
-    <div class="container">
-        <div class="header-inner-futuristic">
-            <!-- Simple Logo (No Circle) -->
-            <a href="index.html" class="logo-futuristic">
-                <div class="logo-image">
-                    <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                </div>
-                <div class="logo-text-futuristic">
-                    <span class="logo-main-futuristic">Elan's</span>
-                    <span class="logo-sub-futuristic">Tech World</span>
-                </div>
-            </a>
-            
-            <!-- Desktop Navigation -->
-            <nav class="nav-futuristic">
-                <ul class="nav-list-futuristic">
-                    <li><a href="index.html" class="nav-link-futuristic active">Home</a></li>
-                    <li><a href="pages/services.html" class="nav-link-futuristic">Services</a></li>
-                    <li><a href="pages/whyus.html" class="nav-link-futuristic">Why Us</a></li>
-                    <li><a href="pages/projects.html" class="nav-link-futuristic">Visit Our Work</a></li>
-                    <li><a href="pages/contact.html" class="nav-link-futuristic">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <!-- Header Actions -->
-            <div class="header-actions-futuristic">
-                <a href="#contact" class="btn-futuristic">
-                    <span class="btn-text">Start Project</span>
-                    <span class="btn-icon">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </a>
-                
-                <!-- New Hamburger Menu Icon -->
-                <button class="menu-toggle-futuristic" aria-label="Toggle menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HEADER / NAVIGATION
+═══════════════════════════════════════ -->
+<header class="header" id="header">
+    <div class="header-container">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <div class="logo-mark">
+                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
             </div>
+            <div class="logo-type">
+                <span class="logo-name">Elan's</span>
+                <span class="logo-descriptor">Tech World</span>
+            </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="nav" id="nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="pages/services.html" class="nav-link">Services</a></li>
+                <li><a href="pages/whyus.html" class="nav-link">Why Us</a></li>
+                <li><a href="pages/projects.html" class="nav-link">Portfolio</a></li>
+                <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+            <a href="pages/contact.html" class="btn btn-primary btn-header">
+                <span>Start a Project</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </header>
 
-<!-- Futuristic Mobile Menu -->
-<div class="mobile-menu-futuristic">
-    <div class="mobile-menu-backdrop-futuristic"></div>
-    <div class="mobile-menu-container-futuristic">
-        <!-- Menu Header (Hidden by default, no logo/close button shown) -->
-        <div class="mobile-menu-header-futuristic">
-            <!-- Empty header - logo and close hidden -->
-        </div>
-        
-        <!-- Menu Navigation -->
-        <nav class="mobile-nav-futuristic">
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-panel">
+        <nav class="mobile-nav">
             <ul>
-                <li><a href="index.html" class="mobile-nav-link-futuristic">Home</a></li>
-                <li><a href="pages/services.html" class="mobile-nav-link-futuristic">Services</a></li>
-                <li><a href="pages/whyus.html" class="mobile-nav-link-futuristic">Why Us</a></li>
-                <li><a href="pages/projects.html" class="mobile-nav-link-futuristic">Visit Our Work</a></li>
-                <li><a href="pages/contact.html" class="mobile-nav-link-futuristic">Contact</a></li>
+                <li><a href="index.html" class="mobile-nav-link active" data-index="01">Home</a></li>
+                <li><a href="pages/services.html" class="mobile-nav-link" data-index="02">Services</a></li>
+                <li><a href="pages/whyus.html" class="mobile-nav-link" data-index="03">Why Us</a></li>
+                <li><a href="pages/projects.html" class="mobile-nav-link" data-index="04">Portfolio</a></li>
+                <li><a href="pages/contact.html" class="mobile-nav-link" data-index="05">Contact</a></li>
             </ul>
         </nav>
-        
-        <!-- Menu Footer -->
-        <div class="mobile-menu-footer-futuristic">
-            <div class="mobile-contact-futuristic">
-                <a href="tel:+19294176819">
-                    <div class="contact-icon-futuristic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span>(929) 417-6819</span>
-                </a>
-                <a href="mailto:elan@elanstechworld.com">
-                    <div class="contact-icon-futuristic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span>elan@elanstechworld.com</span>
-                </a>
-            </div>
-            
-            <div class="mobile-social-futuristic">
-                <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+        <div class="mobile-menu-footer">
+            <a href="tel:+19294176819">(929) 417-6819</a>
+            <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+            <div class="mobile-social">
+                <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
 </div>
-    
-    <!-- Hero Section with Video -->
-    <section id="home" class="hero-section">
-        <div class="hero-video-container">
-            <video class="hero-video" autoplay muted loop playsinline preload="auto">
-                <source src="https://cdn.pixabay.com/video/2024/08/18/227133_large.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-        </div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge" data-aos="fade-up">Premium Digital Solutions</div>
-                
-                <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
-                    Transform Your Business
-                    <span class="gradient-text">Through Innovation</span>
-                </h1>
-                
-                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
-                    We craft bespoke digital experiences that elevate brands and drive measurable results through cutting-edge technology and creative excellence.
-                </p>
-                
-                <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
-                    <a href="#contact" class="btn-primary btn-lg">
-                        <span>Start Your Project</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#work" class="btn-secondary btn-lg">
-                        <span>View Our Work</span>
-                        <i class="fas fa-arrow-down"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
 
-<!-- Why Choose Us Section - Auto Slider -->
-<section id="why-us" class="why-us-section">
-    <div class="why-us-container">
-        <div class="why-us-header" data-aos="fade-up">
-            <span class="why-us-tag">Our Advantages</span>
-            <h2 class="why-us-title">Why Choose <span class="why-us-gradient-text">Elan's Tech World</span></h2>
-            <p class="why-us-description">We don't just build websites—we create digital experiences that transform businesses</p>
-        </div>
-        
-        <div class="why-us-slider-wrapper">
-            <div class="why-us-slider-track">
-                <div class="why-us-card">
-                    <div class="why-us-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Lightning Fast Delivery</h3>
-                    <p>We understand time is money. Our streamlined process ensures rapid deployment without compromising quality.</p>
-                </div>
-                
-                <div class="why-us-card">
-                    <div class="why-us-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>100% Satisfaction Guarantee</h3>
-                    <p>We don't stop until you're thrilled. Unlimited revisions and ongoing support included with every project.</p>
-                </div>
-                
-                <div class="why-us-card">
-                    <div class="why-us-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Results-Driven Approach</h3>
-                    <p>Every decision is backed by data. We focus on metrics that matter: conversions, engagement, and ROI.</p>
-                </div>
-                
-                <div class="why-us-card">
-                    <div class="why-us-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>24/7 Priority Support</h3>
-                    <p>Questions? Issues? We're here. Our dedicated support team ensures you're never left in the dark.</p>
-                </div>
-                
-                <div class="why-us-card">
-                    <div class="why-us-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Cutting-Edge Technology</h3>
-                    <p>We use the latest tech stack to ensure your platform is fast, secure, and future-proof.</p>
-                </div>
-                
-                <div class="why-us-card">
-                    <div class="why-us-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Personalized Service</h3>
-                    <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business needs.</p>
-                </div>
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section class="hero" id="hero">
+    <!-- Video Background -->
+    <div class="hero-media">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/videos/herovideo.mp4" type="video/mp4">
+        </video>
+        <div class="hero-media-overlay"></div>
+    </div>
+
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-eyebrow" data-animate="fade-up" data-delay="200">
+                <span class="eyebrow-line"></span>
+                <span>Digital Atelier — New York</span>
             </div>
-            
-            <div class="why-us-indicators"></div>
-            
-            <div class="why-us-progress">
-                <div class="why-us-progress-bar"></div>
+
+            <h1 class="hero-title" data-animate="fade-up" data-delay="400">
+                Crafting Digital<br>
+                <em>Experiences</em> That<br>
+                <span class="hero-title-accent">Elevate</span> Brands
+            </h1>
+
+            <p class="hero-description" data-animate="fade-up" data-delay="600">
+                Bespoke web design, e-commerce, and digital strategy for businesses
+                that demand nothing less than exceptional.
+            </p>
+
+            <div class="hero-cta" data-animate="fade-up" data-delay="800">
+                <a href="pages/contact.html" class="btn btn-primary btn-lg">
+                    <span>Begin Your Project</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="pages/projects.html" class="btn btn-ghost btn-lg">
+                    <span>View Portfolio</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-cue" data-animate="fade-up" data-delay="1200">
+        <span class="scroll-cue-text">Scroll</span>
+        <span class="scroll-cue-line"></span>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     MARQUEE STRIP
+═══════════════════════════════════════ -->
+<div class="marquee-strip">
+    <div class="marquee-track">
+        <span>Web Development</span><span class="marquee-dot">◆</span>
+        <span>E-Commerce</span><span class="marquee-dot">◆</span>
+        <span>Brand Identity</span><span class="marquee-dot">◆</span>
+        <span>Digital Marketing</span><span class="marquee-dot">◆</span>
+        <span>SEO & SEM</span><span class="marquee-dot">◆</span>
+        <span>Custom Signage</span><span class="marquee-dot">◆</span>
+        <span>POS Systems</span><span class="marquee-dot">◆</span>
+        <span>Property Platforms</span><span class="marquee-dot">◆</span>
+        <!-- Duplicate for seamless loop -->
+        <span>Web Development</span><span class="marquee-dot">◆</span>
+        <span>E-Commerce</span><span class="marquee-dot">◆</span>
+        <span>Brand Identity</span><span class="marquee-dot">◆</span>
+        <span>Digital Marketing</span><span class="marquee-dot">◆</span>
+        <span>SEO & SEM</span><span class="marquee-dot">◆</span>
+        <span>Custom Signage</span><span class="marquee-dot">◆</span>
+        <span>POS Systems</span><span class="marquee-dot">◆</span>
+        <span>Property Platforms</span><span class="marquee-dot">◆</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     WHY US — EDITORIAL SECTION
+═══════════════════════════════════════ -->
+<section class="section section-cream" id="why-us">
+    <div class="container">
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">The Difference</span>
+            <h2 class="section-title">Why Discerning<br>Businesses <em>Choose Us</em></h2>
+        </div>
+
+        <div class="advantages-grid">
+            <div class="advantage-card" data-animate="fade-up" data-delay="100">
+                <span class="advantage-number">01</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-compass-drafting"></i>
+                </div>
+                <h3>Bespoke Craft</h3>
+                <p>Every project is conceived from scratch — no templates, no shortcuts. Tailored digital experiences that reflect your brand's unique DNA.</p>
+            </div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="200">
+                <span class="advantage-number">02</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Results-Driven</h3>
+                <p>Beautiful design meets strategic thinking. We measure success in conversions, engagement, and tangible ROI for your business.</p>
+            </div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="300">
+                <span class="advantage-number">03</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>White-Glove Service</h3>
+                <p>Dedicated support from concept to launch and beyond. Your vision deserves attentive, responsive partnership at every stage.</p>
+            </div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="400">
+                <span class="advantage-number">04</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>Modern Technology</h3>
+                <p>We leverage the latest frameworks and platforms to build fast, secure, and scalable solutions built for the future.</p>
+            </div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="500">
+                <span class="advantage-number">05</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Personal Touch</h3>
+                <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business goals and your audience.</p>
+            </div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="600">
+                <span class="advantage-number">06</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Launch & Beyond</h3>
+                <p>Our commitment doesn't end at launch. Ongoing optimization, analytics, and growth strategies keep you ahead.</p>
             </div>
         </div>
     </div>
 </section>
-    
-<!-- Services Section -->
-<section id="services" class="services-section">
+
+<!-- ═══════════════════════════════════════
+     SERVICES — EDITORIAL CARDS
+═══════════════════════════════════════ -->
+<section class="section section-white" id="services">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
+        <div class="section-header" data-animate="fade-up">
             <span class="section-tag">Our Expertise</span>
-            <h2 class="section-title">Premium <span class="gradient-text">Services</span></h2>
-            <p class="section-description">Comprehensive digital solutions tailored to your business needs</p>
+            <h2 class="section-title">Premium <em>Services</em></h2>
+            <p class="section-subtitle">Comprehensive digital solutions, each delivered with the care and precision of a master atelier.</p>
         </div>
-        
-        <!-- Services Slider Wrapper -->
-        <div class="services-slider-wrapper">
-            <!-- Previous Arrow -->
-            <button class="services-arrow services-arrow-prev" aria-label="Previous services">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            
-            <!-- Services Track -->
-            <div class="services-slider-track">
-                <!-- Service 1: Web Development -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card" data-animate="fade-up" data-delay="100">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="service-number">01</span>
                     </div>
                     <h3>Web Development</h3>
-                    <p>Custom, responsive websites that captivate and convert your audience</p>
-                    <ul class="service-features">
+                    <p>Custom, responsive websites that captivate visitors and convert them into loyal customers.</p>
+                    <ul class="service-list">
                         <li>Responsive Design</li>
-                        <li>E-commerce Solutions</li>
                         <li>CMS Integration</li>
                         <li>SEO Optimization</li>
+                        <li>E-commerce Ready</li>
                     </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 2: Digital Marketing -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h3>Digital Marketing</h3>
-                    <p>Strategic campaigns that drive growth and engagement across all channels</p>
-                    <ul class="service-features">
-                        <li>SEO & SEM</li>
-                        <li>Social Media Marketing</li>
-                        <li>Email Campaigns</li>
-                        <li>Google Ads Management</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 3: Business Materials -->
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="300">
-                    <div class="featured-badge">Popular</div>
-                    <div class="service-icon">
-                        <i class="fas fa-print"></i>
-                    </div>
-                    <h3>Business Materials</h3>
-                    <p>Professional branding materials that make a lasting impression</p>
-                    <ul class="service-features">
-                        <li>Business Cards</li>
-                        <li>Brochures & Flyers</li>
-                        <li>Brand Identity</li>
-                        <li>Marketing Collateral</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 4: POS Systems -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-cash-register"></i>
-                    </div>
-                    <h3>POS Systems</h3>
-                    <p>Modern point-of-sale solutions for retail & service businesses</p>
-                    <ul class="service-features">
-                        <li>Square Integration</li>
-                        <li>Inventory Management</li>
-                        <li>Payment Processing</li>
-                        <li>Analytics & Reports</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 5: Custom Signage -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-sign"></i>
-                    </div>
-                    <h3>Custom Signage</h3>
-                    <p>Eye-catching signs that elevate your brand visibility and presence</p>
-                    <ul class="service-features">
-                        <li>Round & Dimensional Signs</li>
-                        <li>Interior Signage</li>
-                        <li>Exterior Displays</li>
-                        <li>LED & Illuminated</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-                
-                <!-- Service 6: Property Management -->
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <h3>Property Management</h3>
-                    <p>Streamlined software solutions like DoorLoop for efficient property operations</p>
-                    <ul class="service-features">
-                        <li>Tenant Portals</li>
-                        <li>Maintenance Tracking</li>
-                        <li>Rent Collection</li>
-                        <li>Lease Management</li>
-                    </ul>
-                    <a href="#contact" class="service-link">
-                        <span>Learn More</span>
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
                 </div>
             </div>
-            
-            <!-- Next Arrow -->
-            <button class="services-arrow services-arrow-next" aria-label="Next services">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
-        
-        <!-- Slider Indicators -->
-        <div class="services-indicators"></div>
-        
-        <!-- Progress Bar -->
-        <div class="services-progress">
-            <div class="services-progress-bar"></div>
+
+            <!-- Service 2 -->
+            <div class="service-card" data-animate="fade-up" data-delay="200">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <span class="service-number">02</span>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Strategic campaigns that amplify your reach and drive meaningful engagement across all channels.</p>
+                    <ul class="service-list">
+                        <li>SEO & SEM</li>
+                        <li>Social Media</li>
+                        <li>Email Campaigns</li>
+                        <li>Google Ads</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card featured" data-animate="fade-up" data-delay="300">
+                <div class="service-featured-badge">Most Popular</div>
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <span class="service-number">03</span>
+                    </div>
+                    <h3>Business Materials</h3>
+                    <p>Professional branding collateral that communicates quality and makes a lasting impression.</p>
+                    <ul class="service-list">
+                        <li>Business Cards</li>
+                        <li>Flyers & Brochures</li>
+                        <li>Menus & Catalogs</li>
+                        <li>Brand Guidelines</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card" data-animate="fade-up" data-delay="400">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <span class="service-number">04</span>
+                    </div>
+                    <h3>E-Commerce</h3>
+                    <p>High-converting online stores built on platforms like Shopify, with seamless checkout experiences.</p>
+                    <ul class="service-list">
+                        <li>Shopify & WooCommerce</li>
+                        <li>Payment Integration</li>
+                        <li>Inventory Management</li>
+                        <li>Conversion Optimization</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card" data-animate="fade-up" data-delay="500">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-sign-hanging"></i>
+                        </div>
+                        <span class="service-number">05</span>
+                    </div>
+                    <h3>Custom Signage</h3>
+                    <p>Eye-catching storefront and interior signage that extends your brand into the physical world.</p>
+                    <ul class="service-list">
+                        <li>Storefront Signs</li>
+                        <li>Vehicle Wraps</li>
+                        <li>Banner Design</li>
+                        <li>Window Graphics</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card" data-animate="fade-up" data-delay="600">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <span class="service-number">06</span>
+                    </div>
+                    <h3>Property Platforms</h3>
+                    <p>Custom property management systems with tenant portals, maintenance tracking, and owner dashboards.</p>
+                    <ul class="service-list">
+                        <li>Tenant Portals</li>
+                        <li>Maintenance Tracking</li>
+                        <li>Payment Systems</li>
+                        <li>Owner Dashboards</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Testimonials Section - Carousel -->
-<section id="testimonials" class="testimonials-carousel-section">
+<!-- ═══════════════════════════════════════
+     TECH STACK — MINIMAL DISPLAY
+═══════════════════════════════════════ -->
+<section class="section section-cream" id="tech-stack">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Client Success</span>
-            <h2 class="section-title">What Our <span class="gradient-text">Clients Say</span></h2>
-            <p class="section-description">Real feedback from real businesses we've helped transform</p>
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Technology</span>
+            <h2 class="section-title">Powered by <em>Excellence</em></h2>
+            <p class="section-subtitle">We work with the most trusted platforms and technologies in the industry.</p>
         </div>
-        
-        <!-- Testimonials Carousel Wrapper -->
-        <div class="testimonials-carousel-wrapper">
-            <!-- Previous Arrow -->
-            <button class="testimonials-carousel-arrow testimonials-carousel-arrow-prev" aria-label="Previous testimonial">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-            
-            <!-- Testimonials Carousel Track -->
-            <div class="testimonials-carousel-track">
-                <div class="testimonials-carousel-card">
-                    <div class="testimonials-carousel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonials-carousel-text">"Elan transformed our entire digital presence. The integrated booking system alone has saved us countless hours and our online bookings increased by 145%. Absolutely phenomenal work!"</p>
-                    <div class="testimonials-carousel-author">
-                        <h4>Illanit Sholomov</h4>
-                        <span>Owner, Iconic Aesthetics</span>
-                    </div>
-                </div>
-                
-                <div class="testimonials-carousel-card">
-                    <div class="testimonials-carousel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonials-carousel-text">"The e-commerce platform Elan built for us is incredible. Our sales tripled in the first quarter. The inventory management system makes running our business so much easier."</p>
-                    <div class="testimonials-carousel-author">
-                        <h4>Management Team</h4>
-                        <span>Barber World NYC</span>
-                    </div>
-                </div>
-                
-                <div class="testimonials-carousel-card">
-                    <div class="testimonials-carousel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonials-carousel-text">"As a psychology practice, HIPAA compliance is critical. Elan delivered a secure, professional website with a patient portal that meets all requirements. Our patients love the convenience!"</p>
-                    <div class="testimonials-carousel-author">
-                        <h4>Douglas Uhlig</h4>
-                        <span>Doug Uhlig Psychological Services</span>
-                    </div>
-                </div>
-                
-                <div class="testimonials-carousel-card">
-                    <div class="testimonials-carousel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonials-carousel-text">"Working with Elan was seamless. They understood our vision for the beauty clinic and delivered a stunning website that perfectly represents our brand. Our clients are impressed!"</p>
-                    <div class="testimonials-carousel-author">
-                        <h4>Laura Sholomov</h4>
-                        <span>Owner, Laura's Beauty Touch</span>
-                    </div>
-                </div>
-                
-                <div class="testimonials-carousel-card">
-                    <div class="testimonials-carousel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonials-carousel-text">"Elan built us a comprehensive mental health services platform that's both beautiful and functional. The appointment scheduling system has streamlined our entire practice."</p>
-                    <div class="testimonials-carousel-author">
-                        <h4>Kristie Doheny</h4>
-                        <span>Holistic Mental Health Services</span>
-                    </div>
-                </div>
-                
-                <div class="testimonials-carousel-card">
-                    <div class="testimonials-carousel-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="testimonials-carousel-text">"The property management system Elan developed has transformed how we operate. Tenant communications, maintenance requests, everything is now streamlined and efficient."</p>
-                    <div class="testimonials-carousel-author">
-                        <h4>David Javidan</h4>
-                        <span>Park City 3&4</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Next Arrow -->
-            <button class="testimonials-carousel-arrow testimonials-carousel-arrow-next" aria-label="Next testimonial">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
-        
-        <!-- Carousel Indicators -->
-        <div class="testimonials-carousel-indicators"></div>
-        
-        <!-- Progress Bar -->
-        <div class="testimonials-carousel-progress">
-            <div class="testimonials-carousel-progress-bar"></div>
+
+        <div class="tech-grid" data-animate="fade-up" data-delay="200">
+            <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+            <div class="tech-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
+            <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
+            <div class="tech-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+            <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+            <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+            <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-figma"></i><span>Figma</span></div>
+            <div class="tech-item"><i class="fab fa-google"></i><span>Google Ads</span></div>
         </div>
     </div>
 </section>
-    
-<!-- Portfolio Section - Redesigned -->
-<section id="work" class="portfolio-modern-section">
+
+<!-- ═══════════════════════════════════════
+     PORTFOLIO PREVIEW
+═══════════════════════════════════════ -->
+<section class="section section-white" id="portfolio">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Our Work</span>
-            <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
-            <p class="section-description">Explore how we've transformed businesses across industries</p>
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Selected Work</span>
+            <h2 class="section-title">Our <em>Portfolio</em></h2>
+            <p class="section-subtitle">A curated selection of projects that showcase our craft and attention to detail.</p>
         </div>
-        
-        <div class="portfolio-modern-grid" id="portfolio-modern-grid">
-            <!-- Loaded via JavaScript from projects.json -->
+
+        <div class="portfolio-grid" id="portfolio-grid">
+            <!-- Loaded dynamically via JS -->
         </div>
-        
-        <div class="portfolio-cta" data-aos="fade-up">
-            <a href="pages/projects.html" class="btn-primary btn-lg">
+
+        <div class="section-cta" data-animate="fade-up">
+            <a href="pages/projects.html" class="btn btn-outline btn-lg">
                 <span>View All Projects</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
         </div>
     </div>
 </section>
-    
-    <!-- Tech Stack Section -->
-    <section id="tech-stack" class="tech-stack-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Technology</span>
-                <h2 class="section-title">Powered by <span class="gradient-text">Cutting-Edge Tech</span></h2>
-                <p class="section-description">We use the latest technologies to build fast, secure, and scalable solutions</p>
-            </div>
-            
-            <div class="tech-grid">
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fab fa-wordpress"></i>
-                    <span>WordPress</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="150">
-                    <i class="fab fa-shopify"></i>
-                    <span>Shopify</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fab fa-react"></i>
-                    <span>React</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="250">
-                    <i class="fab fa-node-js"></i>
-                    <span>Node.js</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="350">
-                    <i class="fab fa-aws"></i>
-                    <span>AWS</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fab fa-google"></i>
-                    <span>Google Cloud</span>
-                </div>
-                <div class="tech-item" data-aos="fade-up" data-aos-delay="450">
-                    <i class="fab fa-stripe"></i>
-                    <span>Stripe</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-<!-- Industries Section - Compact Version -->
-<section id="industries" class="industries-compact-section">
+<!-- ═══════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════ -->
+<section class="section section-navy" id="testimonials">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Expertise</span>
-            <h2 class="section-title">Industries <span class="gradient-text">We Serve</span></h2>
-            <p class="section-description">Specialized solutions for diverse business sectors</p>
+        <div class="section-header section-header-light" data-animate="fade-up">
+            <span class="section-tag section-tag-light">Testimonials</span>
+            <h2 class="section-title">What Our<br>Clients <em>Say</em></h2>
         </div>
-        
-        <div class="industries-compact-grid">
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-spa"></i>
-                <span>Beauty & Wellness</span>
+
+        <div class="testimonials-slider" id="testimonialsSlider">
+            <div class="testimonials-track" id="testimonialsTrack">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"They understood our vision and delivered a stunning website that perfectly represents our brand. The Google Ads campaign has been incredibly effective!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>Laura Sholomov</h4>
+                            <span>Owner, Laura's Beauty Touch</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"Elan turned our product launch into a huge success. We sold out our initial inventory in just two weeks. The e-commerce platform makes managing orders incredibly easy!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>S-Cream Founder</h4>
+                            <span>E-Commerce Launch</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"The platform has revolutionized how we operate. Managing 50+ properties used to be overwhelming, but now everything is centralized. Exceptional work!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>Property Manager</h4>
+                            <span>Century One Properties</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="150">
-                <i class="fas fa-brain"></i>
-                <span>Healthcare</span>
-            </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-shopping-cart"></i>
-                <span>E-Commerce</span>
-            </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="250">
-                <i class="fas fa-building"></i>
-                <span>Real Estate</span>
-            </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-calculator"></i>
-                <span>Law</span>
-            </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="350">
-                <i class="fas fa-cut"></i>
-                <span>Accounting</span>
-            </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="400">
-                <i class="fas fa-utensils"></i>
-                <span>Restaurants</span>
-            </div>
-            <div class="industry-compact-item" data-aos="fade-up" data-aos-delay="450">
-                <i class="fas fa-briefcase"></i>
-                <span>Consulting</span>
+
+            <!-- Controls -->
+            <div class="testimonials-controls">
+                <button class="testimonials-arrow testimonials-prev" aria-label="Previous">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16L7 10L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="testimonials-dots" id="testimonialsDots"></div>
+                <button class="testimonials-arrow testimonials-next" aria-label="Next">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
             </div>
         </div>
     </div>
 </section>
-    
-    <!-- FAQ Section -->
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Questions?</span>
-                <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
-                <p class="section-description">Everything you need to know about working with us</p>
-            </div>
-            
-            <div class="faq-container">
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-question">
-                        <h3>How long does a typical project take?</h3>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Project timelines vary based on scope. A basic website typically takes 2-3 weeks, while complex e-commerce platforms or custom applications may take 6-8 weeks. We'll provide a detailed timeline during our initial consultation.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="faq-question">
-                        <h3>What's included in your pricing?</h3>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>All projects include custom design, development, mobile optimization, SEO setup, training, and 3-6 months of support. No hidden fees—everything is transparent from day one.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                    <div class="faq-question">
-                        <h3>Do you offer ongoing support?</h3>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! We offer monthly support packages that include updates, security monitoring, backups, and priority technical support. Your success is our success.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="faq-question">
-                        <h3>Can you integrate with my existing systems?</h3>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! We specialize in integrations—Square, Stripe, Mailchimp, CRMs, scheduling systems, and more. We'll ensure everything works seamlessly together.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
-                    <div class="faq-question">
-                        <h3>What if I'm not satisfied with the result?</h3>
-                        <i class="fas fa-plus"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We offer unlimited revisions during the development phase and a 100% satisfaction guarantee. We don't stop working until you're absolutely thrilled with the result.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-<!-- CTA Section -->
-    <section id="cta" class="cta-section">
-        <div class="container">
-            <div class="cta-content" data-aos="zoom-in">
-                <h2>Ready to Transform <span class="gradient-text">Your Business?</span></h2>
-                <p>Let's create something extraordinary together. Get started with a free consultation.</p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn-primary btn-lg">
+<!-- ═══════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════ -->
+<section class="section section-cta-block" id="contact">
+    <div class="container">
+        <div class="cta-card" data-animate="fade-up">
+            <div class="cta-card-content">
+                <span class="section-tag">Ready?</span>
+                <h2 class="cta-title">Let's Build Something<br><em>Extraordinary</em> Together</h2>
+                <p class="cta-description">Whether you need a stunning website, a powerful e-commerce platform, or a complete digital strategy — we're ready when you are.</p>
+                <div class="cta-actions">
+                    <a href="pages/contact.html" class="btn btn-primary btn-lg">
                         <span>Start Your Project</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="tel:+19294176819" class="btn-secondary btn-lg">
-                        <span>Call Us Now</span>
+                    <a href="tel:+19294176819" class="btn btn-ghost btn-lg">
                         <i class="fas fa-phone"></i>
+                        <span>(929) 417-6819</span>
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Get In Touch</span>
-                <h2 class="section-title">Let's Create Something <span class="gradient-text">Extraordinary</span></h2>
-                <p class="section-description">Ready to elevate your digital presence? Reach out today.</p>
-            </div>
-            
-            <div class="contact-grid">
-                <div class="contact-info" data-aos="fade-right">
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <a href="tel:+19294176819">(929) 417-6819</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Location</h4>
-                                <p>New York, NY</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form-wrapper" data-aos="fade-left">
-                    <!-- Elfsight Contact Form -->
-                    <div class="elfsight-app-9355b656-fe52-4481-a846-b339ead8f2a9" data-elfsight-app-lazy></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<!-- Modern Premium Footer -->
-<footer class="footer-modern">
-    <!-- Footer Main Content -->
-    <div class="footer-modern-main">
-        <div class="container">
-            <div class="footer-modern-grid">
-                <!-- Brand Column -->
-                <div class="footer-modern-brand">
-                    <a href="#home" class="footer-logo">
-                        <div class="footer-logo-image">
-                            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                        </div>
-                        <div class="footer-logo-text">
-                            <span class="footer-logo-main">Elan's</span>
-                            <span class="footer-logo-sub">Tech World</span>
-                        </div>
-                    </a>
-                    <p class="footer-brand-description">
-                        Transforming businesses through innovative technology solutions. We create digital experiences that drive measurable results.
-                    </p>
-                    
-                    <!-- Social Links -->
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Quick Links</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="pages/whyus.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
-                        <li><a href="pages/portfolio.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
-                        <li><a href="pages/contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <!-- Services -->
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Our Services</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> Web Development</a></li>
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> E-commerce Solutions</a></li>
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> POS Systems</a></li>
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> Custom Signage</a></li>
-                        <li><a href="pages/services.html"><i class="fas fa-chevron-right"></i> Property Management</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Get In Touch</h4>
-                    <ul class="footer-contact-list">
-                        <li>
-                            <div class="footer-contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Location</span>
-                                <span class="footer-contact-value">New York, NY</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="footer-contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Phone</span>
-                                <a href="tel:+19294176819" class="footer-contact-value">(929) 417-6819</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="footer-contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Email</span>
-                                <a href="mailto:elan@elanstechworld.com" class="footer-contact-value">elan@elanstechworld.com</a>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <!-- Newsletter Signup (Optional) -->
-                    <div class="footer-newsletter">
-                        <h5>Stay Updated</h5>
-                        <form class="footer-newsletter-form">
-                            <input type="email" placeholder="Your email address" required>
-                            <button type="submit" class="footer-newsletter-btn">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            <div class="cta-card-accent"></div>
         </div>
     </div>
+</section>
 
-    <!-- Footer Bottom Bar -->
-    <div class="footer-modern-bottom">
-        <div class="container">
-            <div class="footer-bottom-content">
-                <div class="footer-copyright">
-                    <p>&copy; 2025 <span class="gradient-text">Elan's Tech World</span>. All Rights Reserved.</p>
-                </div>
-                
-                <div class="footer-legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Terms of Service</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Cookie Policy</a>
-                </div>
-
-                <div class="footer-crafted">
-                    <p>Crafted with <i class="fas fa-heart"></i> in NYC</p>
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-mark">
+                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                    </div>
+                    <div class="logo-type">
+                        <span class="logo-name">Elan's</span>
+                        <span class="logo-descriptor">Tech World</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Premium digital solutions crafted with precision and care. Based in New York City.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
+
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pages/services.html">Services</a></li>
+                    <li><a href="pages/whyus.html">Why Choose Us</a></li>
+                    <li><a href="pages/projects.html">Portfolio</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="pages/services.html">Web Development</a></li>
+                    <li><a href="pages/services.html">E-commerce</a></li>
+                    <li><a href="pages/services.html">Digital Marketing</a></li>
+                    <li><a href="pages/services.html">Custom Signage</a></li>
+                    <li><a href="pages/services.html">POS Systems</a></li>
+                    <li><a href="pages/services.html">Property Management</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York, NY</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+19294176819">(929) 417-6819</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Elan's Tech World. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p class="footer-crafted">Crafted with <i class="fas fa-heart"></i> in NYC</p>
         </div>
     </div>
-
-    <!-- Footer Background Elements -->
-    <div class="footer-bg-gradient"></div>
 </footer>
 
-    <!-- Back to Top (LEFT SIDE) -->
-    <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+<!-- Back to Top -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15V3M9 3L3 9M9 3L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</a>
 
-    <!-- Elfsight AI Chatbot -->
-    <div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
+<!-- Elfsight AI Chatbot -->
+<div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/script.js"></script>
-    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<!-- Scripts -->
+<script src="js/script.js"></script>
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
