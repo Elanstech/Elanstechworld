@@ -225,12 +225,15 @@
       "category": "websites",
       "serviceType": "Psychology Practice",
       "tags": ["Healthcare", "Family Services", "Scheduling", "SEO"],
-      "coverImage": "../assets/images/childfamilyhero.jpeg",
+      "coverImage": "../assets/images/cfpshero.jpeg",
       "gallery": [
-        "../assets/images/childfamilyhero.jpeg",
-        "../assets/images/childfamilyabout.jpeg",
-        "../assets/images/childfamilyservices.jpeg",
-        "../assets/images/childfamilycontact.jpeg"
+        "../assets/images/cfpshero.jpeg",
+        "../assets/images/cfpsabout.jpeg",
+        "../assets/images/cfpsservices.jpeg",
+        "../assets/images/cfpsmodal.jpeg",
+        "../assets/images/cfpsteams.jpeg",
+        "../assets/images/cfpsteammodal.jpeg",
+        "../assets/images/cfpsfooter.jpeg"
       ],
       "year": "2025",
       "duration": "8 weeks",
