@@ -203,19 +203,24 @@
       "category": "websites",
       "serviceType": "Property Management",
       "tags": ["Property Management", "Portal", "Automation"],
-      "coverImage": "./assets/images/parkcity3-4.jpeg",
+      "coverImage": "../assets/images/parkhero.jpeg",
       "gallery": [
-        "./assets/images/parkcity3-4.jpeg"
+        "../assets/images/parkhero.jpeg",
+        "../assets/images/parkguides.jpeg",
+        "../assets/images/parkamentiesfront.jpeg",
+        "../assets/images/parkamenties.jpeg",
+        "../assets/images/parkcom.jpeg",
+        "../assets/images/parkfooter.jpeg"
       ],
-      "year": "2024",
+      "year": "2026",
       "duration": "14 weeks",
       "featured": true,
-      "comingSoon": true,
+      "comingSoon": false,
       "color": "#FF8C42",
       "shortDescription": "Property management system - Coming Soon",
       "longDescription": "Custom property management platform with tenant portal and maintenance tracking.",
       "website": "https://parkcity34.com",
-      "livePreview": false
+      "livePreview": true
     },
     {
       "id": "child-family-psych",
@@ -235,7 +240,7 @@
         "../assets/images/cfpsteammodal.jpeg",
         "../assets/images/cfpsfooter.jpeg"
       ],
-      "year": "2025",
+      "year": "2026",
       "duration": "8 weeks",
       "featured": true,
       "comingSoon": false,
@@ -283,7 +288,7 @@
         "../assets/images/holisticservices.jpeg",
         "../assets/images/holisitclocations.jpeg"    
       ],
-      "year": "2025",
+      "year": "2026",
       "duration": "8 weeks",
       "featured": true,
       "comingSoon": false,
@@ -456,7 +461,7 @@
         "../assets/images/zarinaabout.jpeg",
         "../assets/images/zarinaprop.jpeg"
       ],
-      "year": "2024",
+      "year": "2022",
       "duration": "10 weeks",
       "featured": false,
       "comingSoon": false,
@@ -505,7 +510,7 @@
         "../assets/images/screamproof.jpeg",
         "../assets/images/screamgraph.jpeg"
       ],
-      "year": "2024",
+      "year": "2022",
       "duration": "6 weeks",
       "featured": false,
       "comingSoon": false,
@@ -554,7 +559,7 @@
         "../assets/images/centuryservices.jpeg",
         "../assets/images/centuryservpage.jpeg"
       ],
-      "year": "2024",
+      "year": "2023",
       "duration": "10 weeks",
       "featured": false,
       "comingSoon": false,
@@ -600,8 +605,8 @@
       "gallery": [
         "../assets/images/panachehero.jpeg"
       ],
-      "year": "2025",
-      "duration": "8 weeks",
+      "year": "2026",
+      "duration": "10 weeks",
       "featured": false,
       "comingSoon": true,
       "color": "#E8651A",
