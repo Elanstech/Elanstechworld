@@ -1,10 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Elan's Tech World — Our Finest Work</title>
-    <meta name="description" content="A curated portfolio of bespoke digital projects — websites, brand identity, print design & custom signage crafted for discerning businesses.">
+
+    <!-- ═══ PRIMARY SEO ═══ -->
+    <title>Portfolio — Web Design, Branding & Signage Projects NYC | Elan's Tech World</title>
+    <meta name="description" content="Browse our portfolio of custom websites, brand identities, print designs, and storefront signage for NYC businesses. See real results from real clients. Elan's Tech World.">
+    <meta name="keywords" content="web design portfolio NYC, website examples New York, custom signage portfolio, brand identity examples, Shopify store examples, small business website portfolio, logo design portfolio NYC, print design examples, storefront signage NYC">
+    <meta name="author" content="Elan's Tech World">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://www.elanstechworld.com/pages/projects.html">
+
+    <!-- ═══ GEO TARGETING ═══ -->
+    <meta name="geo.region" content="US-NY">
+    <meta name="geo.placename" content="New York">
+    <meta name="geo.position" content="40.7128;-74.0060">
+    <meta name="ICBM" content="40.7128, -74.0060">
+
+    <!-- ═══ OPEN GRAPH ═══ -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Elan's Tech World">
+    <meta property="og:title" content="Portfolio — Our Finest Web Design, Branding & Signage Work | Elan's Tech World">
+    <meta property="og:description" content="A curated collection of bespoke websites, brand identities, print designs, and custom signage crafted for discerning NYC businesses.">
+    <meta property="og:url" content="https://www.elanstechworld.com/pages/projects.html">
+    <meta property="og:image" content="https://www.elanstechworld.com/assets/images/og-portfolio.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Elan's Tech World — Portfolio of Premium Digital Projects">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ═══ TWITTER CARD ═══ -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio — Web Design & Branding Projects NYC | Elan's Tech World">
+    <meta name="twitter:description" content="Custom websites, logos, print materials & signage. See our work for NYC businesses.">
+    <meta name="twitter:image" content="https://www.elanstechworld.com/assets/images/og-portfolio.jpg">
+
+    <!-- ═══ SCHEMA — BREADCRUMBS ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.elanstechworld.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.elanstechworld.com/pages/projects.html" }
+      ]
+    }
+    </script>
+
+    <!-- ═══ SCHEMA — CREATIVE WORK COLLECTION ═══ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Portfolio — Elan's Tech World",
+      "description": "A curated portfolio of bespoke digital projects including websites, brand identities, print designs, and custom signage crafted for NYC businesses.",
+      "url": "https://www.elanstechworld.com/pages/projects.html",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Elan's Tech World",
+        "url": "https://www.elanstechworld.com"
+      },
+      "about": [
+        { "@type": "Thing", "name": "Web Design" },
+        { "@type": "Thing", "name": "Brand Identity" },
+        { "@type": "Thing", "name": "Print Design" },
+        { "@type": "Thing", "name": "Custom Signage" }
+      ],
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "Elan's Tech World",
+        "telephone": "+1-929-417-6819",
+        "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" }
+      }
+    }
+    </script>
 
     <!-- Fonts: Inherit site fonts + Portfolio-specific additions -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,25 +82,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@200;300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Main Stylesheet (header, footer, shared :root, buttons, loader, etc.) -->
     <link rel="stylesheet" href="../css/style.css">
     <!-- Portfolio-Specific Stylesheet -->
     <link rel="stylesheet" href="../css/portfolio.css">
-
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <meta name="theme-color" content="#FAF6F1">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16749251365"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-16749251365');
-    </script>
-</head>
 
 <body>
 
