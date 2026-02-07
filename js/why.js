@@ -1,220 +1,138 @@
 /**
- * Why Us Page JavaScript
- * Particles animation and stat counters
+ * ═══════════════════════════════════════════════════════════════
+ * WHY US PAGE — Page-Specific Enhancements
+ *
+ * NOTE: The following are already handled by script.js (App class):
+ *   • Loader           → Loader class
+ *   • Header scroll    → Header class
+ *   • Mobile menu      → Header class
+ *   • Back to top      → BackToTop class
+ *   • [data-animate]   → ScrollAnimations class  (adds .in-view)
+ *   • [data-count]     → StatsCounter class       (counter animation)
+ *   • Newsletter       → Newsletter class
+ *
+ * This file ONLY adds behaviour unique to the Why Us page:
+ *   1. Process timeline animated connector line
+ *   2. Advantage card subtle tilt (desktop)
+ *   3. Testimonial card staggered entrance
+ * ═══════════════════════════════════════════════════════════════
  */
 
-// ==========================================
-// PARTICLES ANIMATION
-// ==========================================
-class WhyParticlesAnimation {
-  constructor() {
-    this.canvas = document.getElementById('why-particles-canvas');
-    this.ctx = this.canvas?.getContext('2d');
-    this.particles = [];
-    this.particleCount = 80;
-    this.mouse = { x: null, y: null, radius: 150 };
-  }
+(function () {
+    'use strict';
 
-  init() {
-    if (!this.canvas || !this.ctx) return;
-    
-    this.resizeCanvas();
-    this.createParticles();
-    this.animate();
-    
-    window.addEventListener('resize', () => this.resizeCanvas());
-    
-    this.canvas.addEventListener('mousemove', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      this.mouse.x = e.clientX - rect.left;
-      this.mouse.y = e.clientY - rect.top;
-    });
-    
-    this.canvas.addEventListener('mouseleave', () => {
-      this.mouse.x = null;
-      this.mouse.y = null;
-    });
-  }
+    // ── Helpers (tiny — avoid pulling in script.js's $ / $$ globally) ──
+    const qs  = (s, p = document) => p.querySelector(s);
+    const qsa = (s, p = document) => [...p.querySelectorAll(s)];
 
-  resizeCanvas() {
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
-  }
 
-  createParticles() {
-    this.particles = [];
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: Math.random() * 1 - 0.5,
-        speedY: Math.random() * 1 - 0.5,
-        color: Math.random() > 0.5 ? 'rgba(0, 122, 255, 0.5)' : 'rgba(255, 140, 66, 0.5)'
-      });
+    // ═══════════════════════════════════════════════════════════
+    // 1. PROCESS TIMELINE — animated connector line
+    //    ScrollAnimations adds .in-view via [data-animate],
+    //    but the CSS line animation also needs .animated class.
+    // ═══════════════════════════════════════════════════════════
+    function initProcessTimeline() {
+        const timeline = qs('.process-timeline');
+        if (!timeline) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Small delay so the .in-view card reveals start first
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, 300);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        observer.observe(timeline);
     }
-  }
 
-  animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    this.particles.forEach((particle, index) => {
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      
-      if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
-      if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
-      
-      if (this.mouse.x && this.mouse.y) {
-        const dx = this.mouse.x - particle.x;
-        const dy = this.mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < this.mouse.radius) {
-          const force = (this.mouse.radius - distance) / this.mouse.radius;
-          particle.x -= dx * force * 0.02;
-          particle.y -= dy * force * 0.02;
-        }
-      }
-      
-      this.ctx.fillStyle = particle.color;
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      this.ctx.fill();
-      
-      this.particles.slice(index + 1).forEach(otherParticle => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 100) {
-          this.ctx.strokeStyle = `rgba(255, 140, 66, ${0.2 - distance / 500})`;
-          this.ctx.lineWidth = 1;
-          this.ctx.beginPath();
-          this.ctx.moveTo(particle.x, particle.y);
-          this.ctx.lineTo(otherParticle.x, otherParticle.y);
-          this.ctx.stroke();
-        }
-      });
-    });
-    
-    requestAnimationFrame(() => this.animate());
-  }
-}
 
-// ==========================================
-// STAT COUNTERS
-// ==========================================
-class WhyStatCounters {
-  constructor() {
-    this.statValues = document.querySelectorAll('.why-stat-value');
-    this.animated = new Set();
-  }
+    // ═══════════════════════════════════════════════════════════
+    // 2. ADVANTAGE CARDS — subtle parallax tilt (desktop only)
+    // ═══════════════════════════════════════════════════════════
+    function initCardTilt() {
+        if (window.innerWidth < 1024) return;        // skip on touch devices
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  init() {
-    if (!this.statValues.length) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !this.animated.has(entry.target)) {
-          this.animateStat(entry.target);
-          this.animated.add(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    
-    this.statValues.forEach(stat => observer.observe(stat));
-  }
+        const cards = qsa('.advantage-luxe-card');
+        if (!cards.length) return;
 
-  animateStat(element) {
-    const text = element.textContent;
-    const hasPlus = text.includes('+');
-    const hasDot = text.includes('.');
-    
-    let number = parseFloat(text.replace(/[^0-9.]/g, ''));
-    
-    if (isNaN(number)) return;
-    
-    let current = 0;
-    const increment = number / 50;
-    const stepTime = 30;
-    
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= number) {
-        let finalText = hasDot ? number.toFixed(1) : Math.round(number).toString();
-        if (hasPlus) finalText += '+';
-        element.textContent = finalText;
-        clearInterval(timer);
-      } else {
-        let displayText = hasDot ? current.toFixed(1) : Math.round(current).toString();
-        if (hasPlus) displayText += '+';
-        element.textContent = displayText;
-      }
-    }, stepTime);
-  }
-}
+        const MAX_TILT = 2.5; // degrees — intentionally subtle
 
-// ==========================================
-// PAGE INTERACTIONS
-// ==========================================
-class WhyPageInteractions {
-  constructor() {
-    this.advantageCards = document.querySelectorAll('.why-advantage-card');
-    this.testimonialCards = document.querySelectorAll('.why-testimonial-card');
-  }
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width  - 0.5;  // -0.5 → 0.5
+                const y = (e.clientY - rect.top)  / rect.height - 0.5;
 
-  init() {
-    this.setupCardAnimations();
-  }
+                card.style.transform =
+                    `translateY(-8px) perspective(800px) rotateX(${y * -MAX_TILT}deg) rotateY(${x * MAX_TILT}deg)`;
+            });
 
-  setupCardAnimations() {
-    const allCards = [...this.advantageCards, ...this.testimonialCards];
-    
-    if (!allCards.length) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, index * 100);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { 
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    allCards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(40px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(card);
-    });
-  }
-}
+            card.addEventListener('mouseleave', () => {
+                // Reset to the hover-only translateY (CSS handles the rest)
+                card.style.transform = '';
+            });
+        });
+    }
 
-// ==========================================
-// INITIALIZE
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialize particles
-  const particles = new WhyParticlesAnimation();
-  particles.init();
-  
-  // Initialize stat counters
-  const statCounters = new WhyStatCounters();
-  statCounters.init();
-  
-  // Initialize interactions
-  const interactions = new WhyPageInteractions();
-  interactions.init();
 
-  // Scroll to top on page load
-  window.scrollTo(0, 0);
+    // ═══════════════════════════════════════════════════════════
+    // 3. TESTIMONIAL CARDS — staggered reveal on scroll
+    //    (The grid wrapper gets [data-animate] → .in-view from
+    //     ScrollAnimations, but individual cards need stagger.)
+    // ═══════════════════════════════════════════════════════════
+    function initTestimonialReveal() {
+        const grid = qs('.testimonials-luxe-grid');
+        if (!grid) return;
 
-  console.log('✅ Why Us Page - Initialized');
-});
+        const cards = qsa('.testimonial-luxe-card', grid);
+        if (!cards.length) return;
+
+        // Set initial hidden state
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(32px)';
+            card.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    cards.forEach((card, i) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, i * 150);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+        observer.observe(grid);
+    }
+
+
+    // ═══════════════════════════════════════════════════════════
+    // INIT — wait for DOM, then fire page-specific modules
+    // ═══════════════════════════════════════════════════════════
+    function init() {
+        initProcessTimeline();
+        initCardTilt();
+        initTestimonialReveal();
+
+        console.log('✦ Why Us — page enhancements loaded');
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
