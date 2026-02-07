@@ -3,510 +3,569 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why Choose Us | Elan's Tech World - Your Success Partner</title>
-    <meta name="description" content="Discover why businesses trust Elan's Tech World for their digital transformation. Premium service, proven results, and dedicated support.">
-    
+    <title>Why Choose Us | Elan's Tech World — Premium Digital Atelier</title>
+    <meta name="description" content="Discover why discerning businesses entrust their digital presence to Elan's Tech World. Bespoke craft, white-glove service, and measurable results.">
+
+    <!-- Fonts — Cormorant Garamond (Display) + DM Sans (Body) + Bodoni Moda (Accent) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Shared base styles -->
     <link rel="stylesheet" href="../css/style.css">
+    <!-- Why Us page styles -->
     <link rel="stylesheet" href="../css/why.css">
-    
+
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#F8F5F0">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16749251365"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16749251365');
+    </script>
 </head>
 
-<body class="preload">
-    
-<!-- Loader -->
-<div class="loader-container">
-    <div class="loader-content">
-        <div class="logo-loader">
+<body>
+
+<!-- ═══════════════════════════════════════
+     LOADER
+═══════════════════════════════════════ -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">
             <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-            <div class="loader-ring"></div>
-            <div class="loader-ring"></div>
         </div>
-        <div class="loader-text">
-            <h3>Elan's Tech World</h3>
-            <p>Crafting Digital Excellence</p>
-        </div>
-        <div class="loader-progress">
-            <div class="loader-progress-bar"></div>
-        </div>
+        <div class="loader-line"><div class="loader-line-fill"></div></div>
+        <p class="loader-tagline">Digital Atelier</p>
     </div>
 </div>
 
-<!-- Futuristic Header -->
-<header class="header-futuristic">
-    <div class="header-glow"></div>
-    <div class="header-glass-effect"></div>
-    
-    <div class="container">
-        <div class="header-inner-futuristic">
-            <a href="../index.html" class="logo-futuristic">
-                <div class="logo-image">
-                    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                </div>
-                <div class="logo-text-futuristic">
-                    <span class="logo-main-futuristic">Elan's</span>
-                    <span class="logo-sub-futuristic">Tech World</span>
-                </div>
-            </a>
-            
-            <nav class="nav-futuristic">
-                <ul class="nav-list-futuristic">
-                    <li><a href="../index.html" class="nav-link-futuristic">Home</a></li>
-                    <li><a href="services.html" class="nav-link-futuristic">Services</a></li>
-                    <li><a href="whyus.html" class="nav-link-futuristic active">Why Us</a></li>
-                    <li><a href="projects.html" class="nav-link-futuristic">Visit Our Work</a></li>
-                    <li><a href="contact.html" class="nav-link-futuristic">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <div class="header-actions-futuristic">
-                <a href="contact.html" class="btn-futuristic">
-                    <span class="btn-text">Start Project</span>
-                    <span class="btn-icon">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </a>
-                
-                <button class="menu-toggle-futuristic" aria-label="Toggle menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
+<!-- ═══════════════════════════════════════
+     HEADER / NAVIGATION
+═══════════════════════════════════════ -->
+<header class="header" id="header">
+    <div class="header-container">
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+            <div class="logo-mark">
+                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
             </div>
+            <div class="logo-type">
+                <span class="logo-name">Elan's</span>
+                <span class="logo-descriptor">Tech World</span>
+            </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="nav" id="nav">
+            <ul class="nav-list">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="whyus.html" class="nav-link active">Why Us</a></li>
+                <li><a href="projects.html" class="nav-link">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+            <a href="contact.html" class="btn btn-primary btn-header">
+                <span>Start a Project</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu-futuristic">
-    <div class="mobile-menu-backdrop-futuristic"></div>
-    <div class="mobile-menu-container-futuristic">
-        <div class="mobile-menu-header-futuristic"></div>
-        
-        <nav class="mobile-nav-futuristic">
-            <ul>
-                <li><a href="../index.html" class="mobile-nav-link-futuristic">Home</a></li>
-                <li><a href="services.html" class="mobile-nav-link-futuristic">Services</a></li>
-                <li><a href="whyus.html" class="mobile-nav-link-futuristic">Why Us</a></li>
-                <li><a href="projects.html" class="mobile-nav-link-futuristic">Visit Our Work</a></li>
-                <li><a href="contact.html" class="mobile-nav-link-futuristic">Contact</a></li>
-            </ul>
-        </nav>
-        
-        <div class="mobile-menu-footer-futuristic">
-            <div class="mobile-contact-futuristic">
-                <a href="tel:+19294176819">
-                    <div class="contact-icon-futuristic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span>(929) 417-6819</span>
-                </a>
-                <a href="mailto:elan@elanstechworld.com">
-                    <div class="contact-icon-futuristic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span>elan@elanstechworld.com</span>
-                </a>
-            </div>
-            
-            <div class="mobile-social-futuristic">
-                <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+<!-- ═══════════════════════════════════════
+     MOBILE NAVIGATION
+═══════════════════════════════════════ -->
+<div class="mobile-nav" id="mobileNav">
+    <div class="mobile-nav-inner">
+        <ul class="mobile-nav-list">
+            <li><a href="../index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+            <li><a href="whyus.html" class="mobile-nav-link active">Why Us</a></li>
+            <li><a href="projects.html" class="mobile-nav-link">Portfolio</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+            <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+            <a href="tel:+19294176819">(929) 417-6819</a>
         </div>
     </div>
 </div>
 
-<!-- Why Us Hero -->
+<!-- ═══════════════════════════════════════
+     WHY US HERO — EDITORIAL STYLE
+═══════════════════════════════════════ -->
 <section class="why-hero">
-    <canvas id="why-particles-canvas"></canvas>
+    <div class="why-hero-bg"></div>
     <div class="container">
-        <div class="why-hero-content" data-aos="fade-up">
-            <span class="why-hero-tag">Why Choose Us</span>
+        <div class="why-hero-inner" data-animate="fade-up">
+            <span class="why-hero-eyebrow">The Elan's Difference</span>
             <h1 class="why-hero-title">
-                Your Success is <span class="gradient-text">Our Mission</span>
+                Where Craft Meets<br><em>Conviction</em>
             </h1>
+            <div class="why-hero-divider"></div>
             <p class="why-hero-description">
-                We don't just build digital solutions—we create partnerships that drive real, measurable growth
+                We don't build websites — we architect digital experiences with the same meticulous care 
+                a maison brings to its finest creations. Every pixel placed with purpose, every line of code written with intention.
             </p>
         </div>
     </div>
 </section>
 
-<!-- Stats Section -->
-<section class="why-stats-section">
+<!-- ═══════════════════════════════════════
+     PHILOSOPHY STRIP
+═══════════════════════════════════════ -->
+<section class="why-philosophy">
     <div class="container">
-        <div class="why-stats-grid">
-            <div class="why-stat-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="why-stat-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="why-stat-value">50+</div>
-                <div class="why-stat-label">Happy Clients</div>
+        <div class="philosophy-grid" data-animate="fade-up">
+            <div class="philosophy-item">
+                <span class="philosophy-number">01</span>
+                <h3>Bespoke</h3>
+                <p>No templates. No shortcuts. Every project is conceived from a blank canvas.</p>
             </div>
-            
-            <div class="why-stat-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="why-stat-icon">
-                    <i class="fas fa-project-diagram"></i>
-                </div>
-                <div class="why-stat-value">100+</div>
-                <div class="why-stat-label">Projects Completed</div>
+            <div class="philosophy-item">
+                <span class="philosophy-number">02</span>
+                <h3>Intentional</h3>
+                <p>Strategy-first thinking that transforms beautiful design into measurable growth.</p>
             </div>
-            
-            <div class="why-stat-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="why-stat-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="why-stat-value">5.0</div>
-                <div class="why-stat-label">Average Rating</div>
-            </div>
-            
-            <div class="why-stat-card" data-aos="fade-up" data-aos-delay="400">
-                <div class="why-stat-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <div class="why-stat-value">24/7</div>
-                <div class="why-stat-label">Support Available</div>
+            <div class="philosophy-item">
+                <span class="philosophy-number">03</span>
+                <h3>Enduring</h3>
+                <p>We build for longevity — platforms that scale, evolve, and compound value.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Advantages Section -->
-<section class="why-advantages-section">
+<!-- ═══════════════════════════════════════
+     STATISTICS — EDITORIAL NUMBER DISPLAY
+═══════════════════════════════════════ -->
+<section class="why-stats section section-cream">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Our Advantages</span>
-            <h2 class="section-title">What Makes Us <span class="gradient-text">Different</span></h2>
-            <p class="section-description">Discover the unique benefits of partnering with Elan's Tech World</p>
+        <div class="why-stats-header" data-animate="fade-up">
+            <span class="section-tag">By the Numbers</span>
+            <h2 class="section-title">Results That <em>Speak</em></h2>
         </div>
-        
-        <div class="why-advantages-grid">
-            <div class="why-advantage-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="why-advantage-icon">
+        <div class="stats-editorial-grid" data-animate="fade-up" data-delay="200">
+            <div class="stat-editorial">
+                <div class="stat-editorial-number" data-count="50" data-suffix="+">0</div>
+                <div class="stat-editorial-divider"></div>
+                <div class="stat-editorial-label">Clients Served</div>
+                <p class="stat-editorial-detail">Across industries from luxury retail to healthcare</p>
+            </div>
+            <div class="stat-editorial">
+                <div class="stat-editorial-number" data-count="100" data-suffix="+">0</div>
+                <div class="stat-editorial-divider"></div>
+                <div class="stat-editorial-label">Projects Delivered</div>
+                <p class="stat-editorial-detail">Each one crafted with white-glove attention</p>
+            </div>
+            <div class="stat-editorial">
+                <div class="stat-editorial-number" data-count="5" data-suffix=".0" data-decimal="true">0</div>
+                <div class="stat-editorial-divider"></div>
+                <div class="stat-editorial-label">Client Rating</div>
+                <p class="stat-editorial-detail">Five-star reviews across every platform</p>
+            </div>
+            <div class="stat-editorial">
+                <div class="stat-editorial-number">24/7</div>
+                <div class="stat-editorial-divider"></div>
+                <div class="stat-editorial-label">Dedicated Support</div>
+                <p class="stat-editorial-detail">Your success never sleeps, and neither do we</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     ADVANTAGES — LUXE CARD LAYOUT
+═══════════════════════════════════════ -->
+<section class="why-advantages section section-white">
+    <div class="container">
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Our Advantages</span>
+            <h2 class="section-title">What Sets Us <em>Apart</em></h2>
+            <p class="section-subtitle">Six pillars of excellence that define every engagement with Elan's Tech World.</p>
+        </div>
+
+        <div class="advantages-luxe-grid">
+            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="100">
+                <div class="advantage-luxe-accent"></div>
+                <span class="advantage-luxe-number">01</span>
+                <div class="advantage-luxe-icon">
                     <i class="fas fa-rocket"></i>
                 </div>
-                <h3>Lightning Fast Delivery</h3>
-                <p>We understand time is money. Our streamlined process ensures rapid deployment without compromising quality. Get your project live in weeks, not months.</p>
-                <ul class="why-advantage-features">
-                    <li><i class="fas fa-check"></i> Agile development process</li>
-                    <li><i class="fas fa-check"></i> Quick turnaround times</li>
-                    <li><i class="fas fa-check"></i> Regular progress updates</li>
+                <h3>Swift Delivery</h3>
+                <p>Our streamlined atelier process delivers polished results in weeks, not months — without compromising an ounce of quality.</p>
+                <ul class="advantage-luxe-list">
+                    <li>Agile development process</li>
+                    <li>Weekly progress reviews</li>
+                    <li>On-time delivery guarantee</li>
                 </ul>
             </div>
-            
-            <div class="why-advantage-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="why-advantage-icon">
+
+            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="200">
+                <div class="advantage-luxe-accent"></div>
+                <span class="advantage-luxe-number">02</span>
+                <div class="advantage-luxe-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h3>100% Satisfaction Guarantee</h3>
-                <p>We don't stop until you're thrilled. Unlimited revisions and ongoing support included with every project. Your success is our priority.</p>
-                <ul class="why-advantage-features">
-                    <li><i class="fas fa-check"></i> Unlimited revisions</li>
-                    <li><i class="fas fa-check"></i> Money-back guarantee</li>
-                    <li><i class="fas fa-check"></i> Post-launch support</li>
+                <h3>Ironclad Guarantee</h3>
+                <p>We don't stop until you're thrilled. Unlimited revisions, ongoing support, and a satisfaction promise that's more than words.</p>
+                <ul class="advantage-luxe-list">
+                    <li>Unlimited revisions</li>
+                    <li>Money-back guarantee</li>
+                    <li>Post-launch support</li>
                 </ul>
             </div>
-            
-            <div class="why-advantage-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="why-advantage-icon">
+
+            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="300">
+                <div class="advantage-luxe-accent"></div>
+                <span class="advantage-luxe-number">03</span>
+                <div class="advantage-luxe-icon">
                     <i class="fas fa-chart-line"></i>
                 </div>
-                <h3>Results-Driven Approach</h3>
-                <p>Every decision is backed by data. We focus on metrics that matter: conversions, engagement, and ROI. See real, measurable results.</p>
-                <ul class="why-advantage-features">
-                    <li><i class="fas fa-check"></i> Data-driven strategies</li>
-                    <li><i class="fas fa-check"></i> Performance tracking</li>
-                    <li><i class="fas fa-check"></i> ROI optimization</li>
+                <h3>Results-Driven</h3>
+                <p>Every design decision is backed by data. We focus on what moves the needle — conversions, engagement, and ROI.</p>
+                <ul class="advantage-luxe-list">
+                    <li>Data-driven strategies</li>
+                    <li>Performance tracking</li>
+                    <li>ROI optimization</li>
                 </ul>
             </div>
-            
-            <div class="why-advantage-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="why-advantage-icon">
+
+            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="100">
+                <div class="advantage-luxe-accent"></div>
+                <span class="advantage-luxe-number">04</span>
+                <div class="advantage-luxe-icon">
                     <i class="fas fa-headset"></i>
                 </div>
-                <h3>24/7 Priority Support</h3>
-                <p>Questions? Issues? We're here. Our dedicated support team ensures you're never left in the dark. Real people, real solutions.</p>
-                <ul class="why-advantage-features">
-                    <li><i class="fas fa-check"></i> Round-the-clock availability</li>
-                    <li><i class="fas fa-check"></i> Quick response times</li>
-                    <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                <h3>White-Glove Support</h3>
+                <p>Questions at midnight? We're here. Our dedicated team ensures you're never left waiting. Real people, real solutions, real fast.</p>
+                <ul class="advantage-luxe-list">
+                    <li>Round-the-clock availability</li>
+                    <li>Rapid response times</li>
+                    <li>Dedicated account manager</li>
                 </ul>
             </div>
-            
-            <div class="why-advantage-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="why-advantage-icon">
+
+            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="200">
+                <div class="advantage-luxe-accent"></div>
+                <span class="advantage-luxe-number">05</span>
+                <div class="advantage-luxe-icon">
                     <i class="fas fa-code"></i>
                 </div>
-                <h3>Cutting-Edge Technology</h3>
-                <p>We use the latest tech stack to ensure your platform is fast, secure, and future-proof. Stay ahead of the competition.</p>
-                <ul class="why-advantage-features">
-                    <li><i class="fas fa-check"></i> Modern frameworks</li>
-                    <li><i class="fas fa-check"></i> Cloud infrastructure</li>
-                    <li><i class="fas fa-check"></i> Security best practices</li>
+                <h3>Cutting-Edge Stack</h3>
+                <p>We build on the latest frameworks and cloud infrastructure to ensure your platform is fast, secure, and future-proof.</p>
+                <ul class="advantage-luxe-list">
+                    <li>Modern frameworks</li>
+                    <li>Cloud infrastructure</li>
+                    <li>Security best practices</li>
                 </ul>
             </div>
-            
-            <div class="why-advantage-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="why-advantage-icon">
-                    <i class="fas fa-users"></i>
+
+            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="300">
+                <div class="advantage-luxe-accent"></div>
+                <span class="advantage-luxe-number">06</span>
+                <div class="advantage-luxe-icon">
+                    <i class="fas fa-fingerprint"></i>
                 </div>
                 <h3>Personalized Service</h3>
-                <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business needs and goals. You're not just a number.</p>
-                <ul class="why-advantage-features">
-                    <li><i class="fas fa-check"></i> Custom strategies</li>
-                    <li><i class="fas fa-check"></i> One-on-one consultations</li>
-                    <li><i class="fas fa-check"></i> Flexible packages</li>
+                <p>No cookie-cutter solutions. Every strategy is custom-tailored to your unique business DNA, goals, and audience.</p>
+                <ul class="advantage-luxe-list">
+                    <li>Custom strategies</li>
+                    <li>One-on-one consultations</li>
+                    <li>Flexible packages</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Guarantee Section -->
-<section class="why-guarantee-section">
+<!-- ═══════════════════════════════════════
+     PROMISE SECTION — FULL-WIDTH EDITORIAL
+═══════════════════════════════════════ -->
+<section class="why-promise section-navy">
     <div class="container">
-        <div class="why-guarantee-content" data-aos="zoom-in">
-            <div class="why-guarantee-icon">
-                <i class="fas fa-certificate"></i>
+        <div class="promise-inner" data-animate="fade-up">
+            <div class="promise-badge">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="1"/>
+                    <path d="M14 24L21 31L34 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
-            <h2>Our Ironclad <span class="gradient-text">Guarantee</span></h2>
-            <p class="why-guarantee-description">
-                We stand behind our work with an unconditional satisfaction guarantee. If you're not thrilled with the results, we'll make it right—no questions asked.
+            <span class="section-tag section-tag-light">Our Promise</span>
+            <h2 class="promise-title">An Unconditional<br>Satisfaction <em>Guarantee</em></h2>
+            <p class="promise-description">
+                We stand behind every project with the confidence of a house that signs its work.
+                If you're not thrilled with the results, we make it right — no questions asked.
             </p>
-            
-            <div class="why-guarantee-features">
-                <div class="why-guarantee-feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Unlimited revisions until you're 100% satisfied</span>
+            <div class="promise-features">
+                <div class="promise-feature">
+                    <i class="fas fa-check"></i>
+                    <span>Unlimited revisions until 100% satisfied</span>
                 </div>
-                <div class="why-guarantee-feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>3-6 months of free support and maintenance</span>
+                <div class="promise-feature">
+                    <i class="fas fa-check"></i>
+                    <span>3–6 months of complimentary support</span>
                 </div>
-                <div class="why-guarantee-feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Money-back guarantee if we don't meet deadlines</span>
+                <div class="promise-feature">
+                    <i class="fas fa-check"></i>
+                    <span>Money-back guarantee on missed deadlines</span>
                 </div>
-                <div class="why-guarantee-feature">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Performance guarantees on all optimization work</span>
+                <div class="promise-feature">
+                    <i class="fas fa-check"></i>
+                    <span>Performance guarantees on all optimization</span>
                 </div>
             </div>
-            
-            <a href="contact.html" class="btn-primary btn-lg">
+            <a href="contact.html" class="btn btn-primary btn-lg promise-cta">
                 <span>Start Your Risk-Free Project</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </a>
         </div>
     </div>
 </section>
 
-<!-- Testimonials Highlight -->
-<section class="why-testimonials-section">
+<!-- ═══════════════════════════════════════
+     TESTIMONIALS — REFINED LAYOUT
+═══════════════════════════════════════ -->
+<section class="why-testimonials section section-cream">
     <div class="container">
-        <div class="section-header" data-aos="fade-up">
-            <span class="section-tag">Client Love</span>
-            <h2 class="section-title">Don't Just Take <span class="gradient-text">Our Word</span></h2>
-            <p class="section-description">See what our clients have to say about working with us</p>
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Client Voices</span>
+            <h2 class="section-title">Don't Take Our<br>Word For <em>It</em></h2>
         </div>
-        
-        <div class="why-testimonials-grid">
-            <div class="why-testimonial-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="why-testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="why-testimonial-text">"Elan transformed our entire digital presence. Online bookings increased by 145%. Absolutely phenomenal work!"</p>
-                <div class="why-testimonial-author">
-                    <h4>Illanit Sholomov</h4>
-                    <span>Owner, Iconic Aesthetics</span>
-                </div>
-            </div>
-            
-            <div class="why-testimonial-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="why-testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="why-testimonial-text">"The e-commerce platform Elan built for us is incredible. Our sales tripled in the first quarter!"</p>
-                <div class="why-testimonial-author">
-                    <h4>Management Team</h4>
-                    <span>Barber World NYC</span>
-                </div>
-            </div>
-            
-            <div class="why-testimonial-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="why-testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p class="why-testimonial-text">"HIPAA-compliant, professional, and our patients love the convenience. Elan delivered beyond expectations."</p>
-                <div class="why-testimonial-author">
-                    <h4>Douglas Uhlig</h4>
-                    <span>Doug Uhlig Psychological Services</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="why-testimonials-cta" data-aos="fade-up">
-            <a href="../index.html#testimonials" class="btn-secondary">
-                <span>Read More Reviews</span>
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-</section>
 
-<!-- CTA Section -->
-<section class="why-cta-section">
-    <div class="container">
-        <div class="cta-content" data-aos="zoom-in">
-            <h2>Experience the <span class="gradient-text">Difference</span></h2>
-            <p>Join 50+ satisfied clients who've transformed their businesses with our help</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="btn-primary btn-lg">
-                    <span>Start Your Project</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="tel:+19294176819" class="btn-secondary btn-lg">
-                    <span>Call Us Now</span>
-                    <i class="fas fa-phone"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer-modern">
-    <div class="footer-modern-main">
-        <div class="container">
-            <div class="footer-modern-grid">
-                <div class="footer-modern-brand">
-                    <a href="../index.html" class="footer-logo">
-                        <div class="footer-logo-image">
-                            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                        </div>
-                        <div class="footer-logo-text">
-                            <span class="footer-logo-main">Elan's</span>
-                            <span class="footer-logo-sub">Tech World</span>
-                        </div>
-                    </a>
-                    <p class="footer-brand-description">
-                        Transforming businesses through innovative technology solutions.
-                    </p>
-                    
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <div class="testimonials-luxe-grid" data-animate="fade-up" data-delay="200">
+            <div class="testimonial-luxe-card">
+                <div class="testimonial-luxe-quote">"</div>
+                <div class="testimonial-luxe-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <blockquote>Elan transformed our entire digital presence. Online bookings increased by 145%. Absolutely phenomenal work!</blockquote>
+                <div class="testimonial-luxe-author">
+                    <div class="testimonial-luxe-author-info">
+                        <h4>Laura Sholomov</h4>
+                        <span>Owner, Laura's Beauty Touch</span>
                     </div>
                 </div>
+            </div>
 
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Quick Links</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="why.html"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
-                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
-                    </ul>
+            <div class="testimonial-luxe-card">
+                <div class="testimonial-luxe-quote">"</div>
+                <div class="testimonial-luxe-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Our Services</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Web Development</a></li>
-                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> E-commerce Solutions</a></li>
-                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
-                        <li><a href="services.html"><i class="fas fa-chevron-right"></i> Custom Signage</a></li>
-                    </ul>
+                <blockquote>They created a website that truly represents our brand. The Google Ads campaign generated over 450 qualified leads in 6 months!</blockquote>
+                <div class="testimonial-luxe-author">
+                    <div class="testimonial-luxe-author-info">
+                        <h4>Management Team</h4>
+                        <span>East Coast Realty</span>
+                    </div>
                 </div>
+            </div>
 
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Get In Touch</h4>
-                    <ul class="footer-contact-list">
-                        <li>
-                            <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Location</span>
-                                <span class="footer-contact-value">New York, NY</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="footer-contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Phone</span>
-                                <a href="tel:+19294176819" class="footer-contact-value">(929) 417-6819</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Email</span>
-                                <a href="mailto:elan@elanstechworld.com" class="footer-contact-value">elan@elanstechworld.com</a>
-                            </div>
-                        </li>
-                    </ul>
+            <div class="testimonial-luxe-card">
+                <div class="testimonial-luxe-quote">"</div>
+                <div class="testimonial-luxe-stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <blockquote>Elan delivered beyond expectations. Our new platform is fast, secure, and beautifully designed. We couldn't be happier with the results.</blockquote>
+                <div class="testimonial-luxe-author">
+                    <div class="testimonial-luxe-author-info">
+                        <h4>Douglas Uhlig</h4>
+                        <span>Doug Uhlig Psychological Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonials-luxe-cta" data-animate="fade-up">
+            <a href="../index.html#testimonials" class="btn btn-outline">
+                <span>Read More Reviews</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROCESS — HORIZONTAL TIMELINE
+═══════════════════════════════════════ -->
+<section class="why-process section section-white">
+    <div class="container">
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Our Process</span>
+            <h2 class="section-title">From Vision to <em>Reality</em></h2>
+            <p class="section-subtitle">A refined four-step journey designed to bring your vision to life with precision and care.</p>
+        </div>
+
+        <div class="process-timeline" data-animate="fade-up" data-delay="200">
+            <div class="process-line"></div>
+            <div class="process-step">
+                <div class="process-step-marker">
+                    <span>01</span>
+                </div>
+                <div class="process-step-content">
+                    <h3>Discovery</h3>
+                    <p>We listen, research, and immerse ourselves in your brand to understand every nuance of your vision and audience.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-marker">
+                    <span>02</span>
+                </div>
+                <div class="process-step-content">
+                    <h3>Strategy</h3>
+                    <p>A bespoke blueprint is crafted — from architecture to aesthetics — ensuring every element serves your goals.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-marker">
+                    <span>03</span>
+                </div>
+                <div class="process-step-content">
+                    <h3>Creation</h3>
+                    <p>Our artisans bring the design to life with meticulous attention, refining every detail until it's nothing short of exceptional.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="process-step-marker">
+                    <span>04</span>
+                </div>
+                <div class="process-step-content">
+                    <h3>Launch & Grow</h3>
+                    <p>Your project goes live with ongoing optimization, support, and strategic guidance to ensure lasting success.</p>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-    <div class="footer-modern-bottom">
-        <div class="container">
-            <div class="footer-bottom-content">
-                <div class="footer-copyright">
-                    <p>&copy; 2025 <span class="gradient-text">Elan's Tech World</span>. All Rights Reserved.</p>
+<!-- ═══════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════ -->
+<section class="section section-cta-block">
+    <div class="container">
+        <div class="cta-card" data-animate="fade-up">
+            <div class="cta-card-content">
+                <span class="section-tag">Ready?</span>
+                <h2 class="cta-title">Experience the <em>Difference</em></h2>
+                <p class="cta-description">Join 50+ discerning businesses who've elevated their digital presence with our help. Let's create something extraordinary together.</p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <span>Start Your Project</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="tel:+19294176819" class="btn btn-ghost btn-lg">
+                        <i class="fas fa-phone"></i>
+                        <span>(929) 417-6819</span>
+                    </a>
                 </div>
-                
-                <div class="footer-legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Terms of Service</a>
-                </div>
+            </div>
+            <div class="cta-card-accent"></div>
+        </div>
+    </div>
+</section>
 
-                <div class="footer-crafted">
-                    <p>Crafted with <i class="fas fa-heart"></i> in NYC</p>
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                    </div>
+                    <div class="logo-type">
+                        <span class="logo-name">Elan's</span>
+                        <span class="logo-descriptor">Tech World</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Premium digital solutions crafted with precision and care. Based in New York City.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="whyus.html">Why Choose Us</a></li>
+                    <li><a href="projects.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Web Development</a></li>
+                    <li><a href="services.html">E-commerce</a></li>
+                    <li><a href="services.html">Digital Marketing</a></li>
+                    <li><a href="services.html">Custom Signage</a></li>
+                    <li><a href="services.html">POS Systems</a></li>
+                    <li><a href="services.html">Property Management</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="footer-contact">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York, NY</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+19294176819">(929) 417-6819</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Elan's Tech World. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
             </div>
         </div>
     </div>
-
-    <div class="footer-bg-gradient"></div>
 </footer>
 
-<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Scripts -->
 <script src="../js/script.js"></script>
 <script src="../js/why.js"></script>
+
 </body>
 </html>
