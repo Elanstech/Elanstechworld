@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ═══ DEFAULT SEO — Overwritten dynamically by blog.js ═══ -->
+    <title>Blog | Elan's Tech World</title>
+    <meta name="description" content="Expert insights on web design, digital marketing, and building a brand that stands out.">
+    <meta name="author" content="Elan's Tech World">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Elan's Tech World">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- ═══ SCHEMA — Injected dynamically per post ═══ -->
+    <script type="application/ld+json" id="postSchema">{}</script>
+
+    <!-- ═══ FONTS ═══ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/blog.css">
+
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <meta name="theme-color" content="#F8F5F0">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16749251365"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16749251365');
+    </script>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo"><img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World"></div>
+        <div class="loader-line"><div class="loader-line-fill"></div></div>
+        <p class="loader-tagline">Digital Atelier</p>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header scrolled" id="header">
+    <div class="header-container">
+        <a href="../index.html" class="logo">
+            <div class="logo-mark"><img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World"></div>
+            <div class="logo-type"><span class="logo-name">Elan's</span><span class="logo-descriptor">Tech World</span></div>
+        </a>
+        <nav class="nav" id="nav">
+            <ul class="nav-list">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="whyus.html" class="nav-link">Why Us</a></li>
+                <li><a href="projects.html" class="nav-link">Portfolio</a></li>
+                <li><a href="blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="contact.html" class="btn btn-primary btn-header">
+                <span>Start a Project</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-panel">
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="../index.html" class="mobile-nav-link" data-index="01">Home</a></li>
+                <li><a href="services.html" class="mobile-nav-link" data-index="02">Services</a></li>
+                <li><a href="whyus.html" class="mobile-nav-link" data-index="03">Why Us</a></li>
+                <li><a href="projects.html" class="mobile-nav-link" data-index="04">Portfolio</a></li>
+                <li><a href="blog.html" class="mobile-nav-link active" data-index="05">Blog</a></li>
+                <li><a href="contact.html" class="mobile-nav-link" data-index="06">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-menu-footer">
+            <a href="tel:+19294176819">(929) 417-6819</a>
+            <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     POST HERO — Populated by JS
+═══════════════════════════════════════ -->
+<section class="post-hero" id="postHero">
+    <div class="post-hero-bg"></div>
+    <div class="post-hero-grain"></div>
+    <div class="container">
+        <div class="post-hero-content" data-animate="fade-up">
+            <a href="blog.html" class="post-back-link">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13 7H1M1 7L7 1M1 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Back to Journal</span>
+            </a>
+            <div class="post-hero-meta" id="postMeta">
+                <!-- category · read time · date -->
+            </div>
+            <h1 class="post-hero-title" id="postTitle">Loading&hellip;</h1>
+            <p class="post-hero-excerpt" id="postExcerpt"></p>
+            <div class="post-author-strip" id="postAuthor">
+                <!-- author info -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     POST BODY
+═══════════════════════════════════════ -->
+<article class="post-article section section-cream">
+    <div class="container">
+        <div class="post-body" id="postBody">
+            <!-- Populated by blog.js -->
+        </div>
+    </div>
+</article>
+
+<!-- ═══════════════════════════════════════
+     POST CTA
+═══════════════════════════════════════ -->
+<section class="post-cta-section">
+    <div class="container">
+        <div class="post-cta-card" data-animate="fade-up">
+            <div class="post-cta-icon"><i class="fas fa-comment-dots"></i></div>
+            <h3>Need Help With <em>This?</em></h3>
+            <p>If this article resonated, imagine what we can do for your business. Let's talk about bringing these strategies to life.</p>
+            <div class="post-cta-actions">
+                <a href="contact.html" class="btn btn-primary">
+                    <span>Start Your Project</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="tel:+19294176819" class="btn btn-outline">
+                    <i class="fas fa-phone"></i>
+                    <span>(929) 417-6819</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     RELATED POSTS
+═══════════════════════════════════════ -->
+<section class="section section-white">
+    <div class="container">
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Keep Reading</span>
+            <h2 class="section-title">More <em>Insights</em></h2>
+        </div>
+        <div class="blog-grid" id="relatedPosts" data-animate="fade-up">
+            <!-- Populated by blog.js -->
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark"><img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World"></div>
+                    <div class="logo-type"><span class="logo-name">Elan's</span><span class="logo-descriptor">Tech World</span></div>
+                </a>
+                <p class="footer-tagline">Premium digital solutions crafted with precision and care. Based in New York City.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-col"><h4>Navigation</h4><ul>
+                <li><a href="../index.html">Home</a></li><li><a href="services.html">Services</a></li>
+                <li><a href="whyus.html">Why Choose Us</a></li><li><a href="projects.html">Portfolio</a></li>
+                <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+            </ul></div>
+            <div class="footer-col"><h4>Services</h4><ul>
+                <li><a href="services.html">Web Development</a></li><li><a href="services.html">E-commerce</a></li>
+                <li><a href="services.html">Digital Marketing</a></li><li><a href="services.html">Custom Signage</a></li>
+                <li><a href="services.html">POS Systems</a></li><li><a href="services.html">Property Platforms</a></li>
+            </ul></div>
+            <div class="footer-col"><h4>Contact</h4><ul class="footer-contact">
+                <li><i class="fas fa-map-marker-alt"></i><span>New York, NY</span></li>
+                <li><i class="fas fa-phone"></i><a href="tel:+19294176819">(929) 417-6819</a></li>
+                <li><i class="fas fa-envelope"></i><a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a></li>
+            </ul></div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Elan's Tech World. All Rights Reserved.</p>
+            <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+            <p class="footer-crafted">Crafted with <i class="fas fa-heart"></i> in NYC</p>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15V3M9 3L3 9M9 3L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</a>
+
+<script src="../js/script.js"></script>
+<script src="../js/blog.js"></script>
+</body>
+</html>
