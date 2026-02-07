@@ -1,6 +1,222 @@
 {
   "projects": [
     {
+      "id": "evia-aesthetics",
+      "title": "Evia Aesthetics",
+      "slug": "evia-aesthetics",
+      "client": "Dr. Evia Nano, MD",
+      "category": "websites",
+      "serviceType": "Medical Aesthetics",
+      "tags": ["Web Development", "Healthcare", "Booking System", "SEO"],
+      "coverImage": "../assets/images/eviahero.jpeg",
+      "gallery": [
+        "../assets/images/eviahero.jpeg",
+        "../assets/images/eviaabout.jpeg",
+        "../assets/images/eviaservices.jpeg",
+        "../assets/images/eviacontact.jpeg"
+      ],
+      "year": "2025",
+      "duration": "8 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#E8651A",
+      "shortDescription": "Premium medical aesthetics platform for a leading NYC physician",
+      "longDescription": "Dr. Evia Nano, MD needed a sophisticated digital presence that reflects the precision and luxury of her medical aesthetics practice. We crafted a premium website with integrated booking, patient education resources, and a design language that conveys clinical excellence with warmth.",
+      "challenge": "Creating a website that balances clinical credibility with the luxury aesthetics experience clients expect, while meeting healthcare compliance standards.",
+      "solution": "We designed an elegant, conversion-optimized platform with intuitive service navigation, before-and-after galleries, and seamless appointment booking integration.",
+      "impact": "Elevated the practice's digital presence to match its premium positioning, driving significant new patient acquisition and establishing authority in the competitive NYC medical aesthetics market.",
+      "services": [
+        "Premium Website Design & Development",
+        "Online Booking Integration",
+        "Service Page Architecture",
+        "SEO & Local Search Optimization",
+        "Professional Photography Direction"
+      ],
+      "technologies": ["WordPress", "Custom Theme", "Google Analytics", "Booking API"],
+      "results": {
+        "metric1": { "value": "Premium", "label": "Brand Positioning", "icon": "fa-gem" },
+        "metric2": { "value": "NYC", "label": "Market Authority", "icon": "fa-map-marker-alt" },
+        "metric3": { "value": "Seamless", "label": "Patient Booking", "icon": "fa-calendar-check" },
+        "metric4": { "value": "Elevated", "label": "Digital Presence", "icon": "fa-star" }
+      },
+      "testimonial": {
+        "text": "Elan understood exactly what my practice needed — a website that feels as premium as the experience I provide my patients. The result exceeded my expectations.",
+        "author": "Dr. Evia Nano, MD",
+        "role": "Founder, Evia Aesthetics",
+        "rating": 5
+      },
+      "website": "https://www.eviaesthetics.com",
+      "livePreview": true
+    },
+    {
+      "id": "holistic-psych-services",
+      "title": "Holistic Psychological Services",
+      "slug": "holistic-psych-services",
+      "client": "Doug Uhlig",
+      "category": "websites",
+      "serviceType": "Psychology Practice",
+      "tags": ["Healthcare", "Scheduling", "SEO", "HIPAA"],
+      "coverImage": "../assets/images/holistichero.jpeg",
+      "gallery": [
+        "../assets/images/holistichero.jpeg",
+        "../assets/images/holisticabout.jpeg",
+        "../assets/images/holisticservices.jpeg",
+        "../assets/images/holisitclocations.jpeg"
+      ],
+      "year": "2025",
+      "duration": "8 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Comprehensive psychological services platform with integrated scheduling",
+      "longDescription": "Holistic Psychological Services required a professional, calming digital presence that reflects their compassionate approach to mental wellness. We built a comprehensive platform with integrated appointment scheduling, a resource library, and multi-location support.",
+      "challenge": "Creating a platform that feels welcoming and reduces barriers to seeking psychological help while maintaining professional credibility and HIPAA considerations.",
+      "solution": "Designed a warm, approachable website with calming aesthetics, easy-to-navigate service pages, integrated scheduling, and multi-location directory for their growing practice.",
+      "impact": "The platform successfully launched across multiple locations, streamlined patient intake, and significantly increased new client inquiries through improved search visibility.",
+      "services": [
+        "Professional Website Design & Development",
+        "Appointment Scheduling Integration",
+        "Multi-Location Directory",
+        "Resource Library",
+        "SEO & Local Search Optimization"
+      ],
+      "technologies": ["WordPress", "Custom Theme", "Google Analytics", "Scheduling API", "SSL Encryption"],
+      "results": {
+        "metric1": { "value": "Multi", "label": "Location Support", "icon": "fa-map-marker-alt" },
+        "metric2": { "value": "Seamless", "label": "Patient Scheduling", "icon": "fa-calendar-check" },
+        "metric3": { "value": "Calming", "label": "User Experience", "icon": "fa-heart" },
+        "metric4": { "value": "Growth", "label": "Client Inquiries", "icon": "fa-chart-line" }
+      },
+      "testimonial": {
+        "text": "The website perfectly captures the welcoming, professional atmosphere of our practice. Patients tell us all the time how easy it is to navigate and book appointments.",
+        "author": "Doug Uhlig",
+        "role": "Owner, Holistic Psychological Services",
+        "rating": 5
+      },
+      "website": "https://www.holisticpsychservicesny.com",
+      "livePreview": true
+    },
+    {
+      "id": "lauras-beauty-touch",
+      "title": "Laura's Beauty Touch",
+      "slug": "lauras-beauty-touch",
+      "client": "Laura Sholomov",
+      "category": "websites",
+      "serviceType": "Luxury Website",
+      "tags": ["Web Development", "Google Ads", "Branding"],
+      "coverImage": "../assets/images/laurashero.jpeg",
+      "gallery": [
+        "../assets/images/laurashero.jpeg",
+        "../assets/images/laurasmenu.jpeg",
+        "../assets/images/laurasfacial.jpeg",
+        "../assets/images/laurasgallary.jpeg"
+      ],
+      "year": "2025",
+      "duration": "6 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#FFB482",
+      "shortDescription": "Premium beauty clinic website with successful Google Ads campaign",
+      "longDescription": "Laura's Beauty Touch wanted to establish a strong digital presence that matched the luxury experience of their physical location. We created a stunning website with an elegant design and integrated booking system.",
+      "challenge": "Standing out in a saturated beauty market while conveying the premium, luxury experience that Laura's clinic provides.",
+      "solution": "We designed a visually stunning website with professional photography and implemented strategic Google Ads targeting affluent demographics.",
+      "impact": "Increased bookings by 180%, attracted high-value clients with 40% higher average transaction value, achieved 4.8/5 Google rating.",
+      "services": [
+        "Luxury Website Design",
+        "Professional Photography",
+        "Google Ads Management",
+        "SEO Optimization",
+        "Online Booking System"
+      ],
+      "technologies": ["WordPress", "Elementor Pro", "Google Ads", "Facebook Pixel"],
+      "results": {
+        "metric1": { "value": "180%", "label": "Booking Increase", "icon": "fa-calendar-check" },
+        "metric2": { "value": "40%", "label": "Higher Transaction Value", "icon": "fa-dollar-sign" },
+        "metric3": { "value": "4.8/5", "label": "Google Rating", "icon": "fa-star" },
+        "metric4": { "value": "Premium", "label": "Brand Image", "icon": "fa-gem" }
+      },
+      "testimonial": {
+        "text": "Working with Elan was seamless. They understood our vision and delivered a stunning website that perfectly represents our brand. The Google Ads campaign has been incredibly effective!",
+        "author": "Laura Sholomov",
+        "role": "Owner, Laura's Beauty Touch",
+        "image": "./assets/images/clients/laura.jpeg",
+        "rating": 5
+      },
+      "website": "https://www.laurasbeautytouch.com/index.html",
+      "livePreview": true
+    },
+    {
+      "id": "cohen-associates",
+      "title": "Cohen & Associates",
+      "slug": "cohen-associates",
+      "client": "Cohen & Associates",
+      "category": "websites",
+      "serviceType": "Legal Services",
+      "tags": ["Legal", "Security", "Portal"],
+      "coverImage": "../assets/images/cohenhero.jpeg",
+      "gallery": [
+        "../assets/images/cohenhero.jpeg",
+        "../assets/images/cohenabout.jpeg",
+        "../assets/images/cohenreviews.jpeg",
+        "../assets/images/cohenservices.jpeg"
+      ],
+      "year": "2024",
+      "duration": "12 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#4da3ff",
+      "shortDescription": "Professional legal services website with secure client portal",
+      "longDescription": "Cohen & Associates required a website that conveyed expertise while providing secure client communications. We developed a professional platform with a secure client portal.",
+      "challenge": "Creating a website that projects authority and trust while implementing bank-level security for client communications.",
+      "solution": "Designed a sophisticated website with secure client portal featuring encrypted messaging and document sharing.",
+      "impact": "Increased consultation requests by 190%, improved client communication efficiency by 70%, reduced inquiry time by 50%.",
+      "services": [
+        "Professional Website Design",
+        "Secure Client Portal",
+        "Encrypted Communication",
+        "Document Management",
+        "SEO for Legal Services"
+      ],
+      "technologies": ["WordPress", "PHP", "SSL Encryption", "Clio Integration"],
+      "results": {
+        "metric1": { "value": "190%", "label": "More Consultations", "icon": "fa-handshake" },
+        "metric2": { "value": "70%", "label": "Better Communication", "icon": "fa-comments" },
+        "metric3": { "value": "50%", "label": "Less Time on Inquiries", "icon": "fa-clock" },
+        "metric4": { "value": "Secure", "label": "Client Portal", "icon": "fa-shield-alt" }
+      },
+      "testimonial": {
+        "text": "Elan delivered exactly what we needed - a professional website that conveys our expertise while providing secure communication tools. Our consultation requests have nearly doubled!",
+        "author": "Senior Partner",
+        "role": "Cohen & Associates",
+        "image": "./assets/images/clients/cohen.jpeg",
+        "rating": 5
+      },
+      "website": "https://cohen-associates.com",
+      "livePreview": true
+    },
+    {
+      "id": "park-city-properties",
+      "title": "Park City 3&4",
+      "slug": "park-city-properties",
+      "client": "David Javidan",
+      "category": "websites",
+      "serviceType": "Property Management",
+      "tags": ["Property Management", "Portal", "Automation"],
+      "coverImage": "./assets/images/parkcity3-4.jpeg",
+      "gallery": [
+        "./assets/images/parkcity3-4.jpeg"
+      ],
+      "year": "2024",
+      "duration": "14 weeks",
+      "featured": true,
+      "comingSoon": true,
+      "color": "#FF8C42",
+      "shortDescription": "Property management system - Coming Soon",
+      "longDescription": "Custom property management platform with tenant portal and maintenance tracking.",
+      "website": "https://parkcity34.com",
+      "livePreview": false
+    },
+    {
       "id": "iconic-aesthetics",
       "title": "Iconic Aesthetics",
       "slug": "iconic-aesthetics",
@@ -18,7 +234,7 @@
       ],
       "year": "2022",
       "duration": "8 weeks",
-      "featured": true,
+      "featured": false,
       "comingSoon": false,
       "color": "#FF8C42",
       "shortDescription": "Complete digital transformation with integrated booking and POS systems",
@@ -67,7 +283,7 @@
       ],
       "year": "2025",
       "duration": "10 weeks",
-      "featured": true,
+      "featured": false,
       "comingSoon": false,
       "color": "#007aff",
       "shortDescription": "E-commerce platform generating $12K revenue in first month",
@@ -116,7 +332,7 @@
       ],
       "year": "2023",
       "duration": "12 weeks",
-      "featured": true,
+      "featured": false,
       "comingSoon": false,
       "color": "#4da3ff",
       "shortDescription": "HIPAA-compliant platform generating 625 new clients in first year",
@@ -149,106 +365,10 @@
       "livePreview": true
     },
     {
-      "id": "lauras-beauty-touch",
-      "title": "Laura's Beauty Touch",
-      "slug": "lauras-beauty-touch",
-      "client": "Laura Sholomov",
-      "category": "websites",
-      "serviceType": "Luxury Website",
-      "tags": ["Web Development", "Google Ads", "Branding"],
-      "coverImage": "../assets/images/laurashero.jpeg",
-      "gallery": [
-        "../assets/images/laurashero.jpeg",
-        "../assets/images/laurasmenu.jpeg",
-        "../assets/images/laurasfacial.jpeg",
-        "../assets/images/laurasgallary.jpeg"
-      ],
-      "year": "2025",
-      "duration": "6 weeks",
-      "featured": false,
-      "comingSoon": false,
-      "color": "#FFB482",
-      "shortDescription": "Premium beauty clinic website with successful Google Ads campaign",
-      "longDescription": "Laura's Beauty Touch wanted to establish a strong digital presence that matched the luxury experience of their physical location. We created a stunning website with an elegant design and integrated booking system.",
-      "challenge": "Standing out in a saturated beauty market while conveying the premium, luxury experience that Laura's clinic provides.",
-      "solution": "We designed a visually stunning website with professional photography and implemented strategic Google Ads targeting affluent demographics.",
-      "impact": "Increased bookings by 180%, attracted high-value clients with 40% higher average transaction value, achieved 4.8/5 Google rating.",
-      "services": [
-        "Luxury Website Design",
-        "Professional Photography",
-        "Google Ads Management",
-        "SEO Optimization",
-        "Online Booking System"
-      ],
-      "technologies": ["WordPress", "Elementor Pro", "Google Ads", "Facebook Pixel"],
-      "results": {
-        "metric1": { "value": "180%", "label": "Booking Increase", "icon": "fa-calendar-check" },
-        "metric2": { "value": "40%", "label": "Higher Transaction Value", "icon": "fa-dollar-sign" },
-        "metric3": { "value": "4.8/5", "label": "Google Rating", "icon": "fa-star" },
-        "metric4": { "value": "Premium", "label": "Brand Image", "icon": "fa-gem" }
-      },
-      "testimonial": {
-        "text": "Working with Elan was seamless. They understood our vision and delivered a stunning website that perfectly represents our brand. The Google Ads campaign has been incredibly effective!",
-        "author": "Laura Sholomov",
-        "role": "Owner, Laura's Beauty Touch",
-        "image": "./assets/images/clients/laura.jpeg",
-        "rating": 5
-      },
-      "website": "https://www.laurasbeautytouch.com/index.html",
-      "livePreview": true
-    },
-    {
-      "id": "holistic-mental-health",
-      "title": "Holistic Mental Health Services",
-      "slug": "holistic-mental-health",
-      "client": "Kristie Doheny",
-      "category": "websites",
-      "serviceType": "Mental Health Platform",
-      "tags": ["Healthcare", "Scheduling", "SEO"],
-      "coverImage": "../assets/images/holistichero.jpeg",
-      "gallery": [
-        "../assets/images/holistichero.jpeg",
-        "../assets/images/holisticabout.jpeg",
-        "../assets/images/holisticservices.jpeg",
-        "../assets/images/holisitclocations.jpeg"    
-      ],
-      "year": "2025",
-      "duration": "8 weeks",
-      "featured": true,
-      "comingSoon": false,
-      "color": "#4da3ff",
-      "shortDescription": "Comprehensive mental health platform",
-      "longDescription": "Holistic Mental Health Services platform with integrated appointment scheduling and resource library.",
-      "website": "https://www.holisticmentalhealthny.com",
-      "livePreview": true
-    },
-    {
-      "id": "park-city-properties",
-      "title": "Park City 3&4",
-      "slug": "park-city-properties",
-      "client": "David Javidan",
-      "category": "websites",
-      "serviceType": "Property Management",
-      "tags": ["Property Management", "Portal", "Automation"],
-      "coverImage": "./assets/images/parkcity3-4.jpeg",
-      "gallery": [
-        "./assets/images/parkcity3-4.jpeg"
-      ],
-      "year": "2024",
-      "duration": "14 weeks",
-      "featured": false,
-      "comingSoon": true,
-      "color": "#FF8C42",
-      "shortDescription": "Property management system - Coming Soon",
-      "longDescription": "Custom property management platform with tenant portal and maintenance tracking.",
-      "website": "https://parkcity34.com",
-      "livePreview": true
-    },
-    {
       "id": "east-coast-realty",
-      "title": "East Coast Realty",
+      "title": "East Coast Realty by Zarina",
       "slug": "east-coast-realty",
-      "client": "East Coast Realty Team",
+      "client": "Zarina Yusupova",
       "category": "websites",
       "serviceType": "Real Estate Website",
       "tags": ["Real Estate", "IDX", "Lead Generation"],
@@ -265,7 +385,7 @@
       "comingSoon": false,
       "color": "#007aff",
       "shortDescription": "Professional real estate website with IDX property listings",
-      "longDescription": "East Coast Realty needed a professional website that could showcase property listings and generate leads. We created a sophisticated real estate platform with MLS integration.",
+      "longDescription": "Zarina Yusupova needed a professional website for East Coast Realty that could showcase property listings and generate leads. We created a sophisticated real estate platform with MLS integration.",
       "challenge": "Creating a real estate website that stands out while integrating with MLS systems for real-time property listings.",
       "solution": "Developed custom IDX integration for real-time MLS listings with advanced property search and smart lead capture forms.",
       "impact": "Generated 450+ qualified leads in first 6 months, increased website traffic by 320%, improved search rankings significantly.",
@@ -284,62 +404,13 @@
         "metric4": { "value": "55%", "label": "Lower Cost Per Lead", "icon": "fa-dollar-sign" }
       },
       "testimonial": {
-        "text": "Elan created a real estate website that truly represents our brand. The IDX integration works flawlessly, and we've generated over 450 qualified leads in the first six months!",
-        "author": "Management Team",
-        "role": "East Coast Realty",
+        "text": "Elan created a real estate website that truly represents my brand. The IDX integration works flawlessly, and we've generated over 450 qualified leads in the first six months!",
+        "author": "Zarina Yusupova",
+        "role": "Owner, East Coast Realty",
         "image": "./assets/images/clients/eastcoast.jpeg",
         "rating": 5
       },
       "website": "https://www.eastcoastrealtybyzarina.com",
-      "livePreview": true
-    },
-    {
-      "id": "cohen-associates",
-      "title": "Cohen & Associates",
-      "slug": "cohen-associates",
-      "client": "Cohen & Associates",
-      "category": "websites",
-      "serviceType": "Legal Services",
-      "tags": ["Legal", "Security", "Portal"],
-      "coverImage": "../assets/images/cohenhero.jpeg",
-      "gallery": [
-        "../assets/images/cohenhero.jpeg",
-        "../assets/images/cohenabout.jpeg",
-        "../assets/images/cohenreviews.jpeg",
-        "../assets/images/cohenservices.jpeg"
-      ],
-      "year": "2024",
-      "duration": "12 weeks",
-      "featured": false,
-      "comingSoon": false,
-      "color": "#4da3ff",
-      "shortDescription": "Professional legal services website with secure client portal",
-      "longDescription": "Cohen & Associates required a website that conveyed expertise while providing secure client communications. We developed a professional platform with a secure client portal.",
-      "challenge": "Creating a website that projects authority and trust while implementing bank-level security for client communications.",
-      "solution": "Designed a sophisticated website with secure client portal featuring encrypted messaging and document sharing.",
-      "impact": "Increased consultation requests by 190%, improved client communication efficiency by 70%, reduced inquiry time by 50%.",
-      "services": [
-        "Professional Website Design",
-        "Secure Client Portal",
-        "Encrypted Communication",
-        "Document Management",
-        "SEO for Legal Services"
-      ],
-      "technologies": ["WordPress", "PHP", "SSL Encryption", "Clio Integration"],
-      "results": {
-        "metric1": { "value": "190%", "label": "More Consultations", "icon": "fa-handshake" },
-        "metric2": { "value": "70%", "label": "Better Communication", "icon": "fa-comments" },
-        "metric3": { "value": "50%", "label": "Less Time on Inquiries", "icon": "fa-clock" },
-        "metric4": { "value": "Secure", "label": "Client Portal", "icon": "fa-shield-alt" }
-      },
-      "testimonial": {
-        "text": "Elan delivered exactly what we needed - a professional website that conveys our expertise while providing secure communication tools. Our consultation requests have nearly doubled!",
-        "author": "Senior Partner",
-        "role": "Cohen & Associates",
-        "image": "./assets/images/clients/cohen.jpeg",
-        "rating": 5
-      },
-      "website": "https://cohen-associates.com",
       "livePreview": true
     },
     {
@@ -439,6 +510,28 @@
       },
       "website": "https://centuryonemanagement.com",
       "livePreview": true
+    },
+    {
+      "id": "nyc-panache-salon",
+      "title": "NYC Panache Salon",
+      "slug": "nyc-panache-salon",
+      "client": "NYC Panache Salon",
+      "category": "websites",
+      "serviceType": "Beauty & Wellness",
+      "tags": ["Web Development", "Booking System", "Branding"],
+      "coverImage": "../assets/images/panachehero.jpeg",
+      "gallery": [
+        "../assets/images/panachehero.jpeg"
+      ],
+      "year": "2025",
+      "duration": "8 weeks",
+      "featured": false,
+      "comingSoon": true,
+      "color": "#E8651A",
+      "shortDescription": "Premium salon website - Coming Soon",
+      "longDescription": "A bespoke digital experience for NYC Panache Salon, featuring integrated booking, service showcases, and a design that captures the salon's sophisticated Manhattan aesthetic.",
+      "website": "",
+      "livePreview": false
     }
   ]
 }
