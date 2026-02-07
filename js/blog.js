@@ -162,7 +162,7 @@ const BLOG_POSTS = [
     date: '2025-01-20',
     readTime: '6 min read',
     featured: false,
-    image: 'https://images.unsplash.com/photo-1528698827591-e19cef791f48?w=800&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk05xiZj1_eYaUxglnkrW9CFLXoy28irb_Hg&s',
     seoTitle: 'Why Professional Storefront Signage Matters for NYC Businesses | Elan\'s Tech World',
     seoDesc: 'Custom storefront signage drives 45% more foot traffic. Learn why professional signs are the most cost-effective marketing investment for NYC businesses.',
     body: `
