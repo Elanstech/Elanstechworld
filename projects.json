@@ -207,11 +207,10 @@
       "tags": ["Healthcare", "Scheduling", "SEO"],
       "coverImage": "../assets/images/holistichero.jpeg",
       "gallery": [
+        "../assets/images/holistichero.jpeg",
         "../assets/images/holisticabout.jpeg",
         "../assets/images/holisticservices.jpeg",
-        "../assets/images/holisitclocations.jpeg",
-        "../assets/images/iconiccontact.jpeg"
-    
+        "../assets/images/holisitclocations.jpeg"    
       ],
       "year": "2025",
       "duration": "8 weeks",
