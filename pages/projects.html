@@ -6,15 +6,15 @@
     <title>Portfolio | Elan's Tech World — Our Finest Work</title>
     <meta name="description" content="A curated portfolio of bespoke digital projects — websites, brand identity, print design & custom signage crafted for discerning businesses.">
 
-    <!-- Fonts: Main site fonts + Portfolio additions (DM Serif Display, Outfit, Italiana) -->
+    <!-- Fonts: Inherit site fonts + Portfolio-specific additions -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Inter:wght@200;300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Main Stylesheet (header, footer, shared :root, buttons, etc.) -->
+    <!-- Main Stylesheet (header, footer, shared :root, buttons, loader, etc.) -->
     <link rel="stylesheet" href="../css/style.css">
     <!-- Portfolio-Specific Stylesheet -->
     <link rel="stylesheet" href="../css/portfolio.css">
@@ -35,7 +35,7 @@
 <body>
 
 <!-- ═══════════════════════════════════════
-     LOADER (same as index.html)
+     LOADER (inherits from style.css)
 ═══════════════════════════════════════ -->
 <div class="loader" id="loader">
     <div class="loader-inner">
@@ -50,7 +50,7 @@
 </div>
 
 <!-- ═══════════════════════════════════════
-     HEADER / NAVIGATION (same as index.html)
+     HEADER / NAVIGATION (inherits from style.css)
 ═══════════════════════════════════════ -->
 <header class="header" id="header">
     <div class="header-container">
@@ -89,7 +89,7 @@
     </div>
 </header>
 
-<!-- Mobile Menu (same as index.html) -->
+<!-- Mobile Menu (inherits from style.css + script.js) -->
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-overlay"></div>
     <div class="mobile-menu-panel">
@@ -105,56 +105,69 @@
         <div class="mobile-menu-footer">
             <a href="tel:+19294176819">(929) 417-6819</a>
             <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
-            <div class="mobile-social">
-                <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
         </div>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════
-     PORTFOLIO HERO — EDITORIAL MASTHEAD
+     HERO — CINEMATIC EDITORIAL
 ═══════════════════════════════════════ -->
-<section class="pf-hero" id="pfHero">
-    <!-- Ambient background -->
-    <div class="pf-hero-bg">
-        <div class="pf-hero-orb pf-hero-orb--1"></div>
-        <div class="pf-hero-orb pf-hero-orb--2"></div>
-        <div class="pf-hero-orb pf-hero-orb--3"></div>
-        <div class="pf-hero-grain"></div>
+<section class="pf-hero" id="portfolio-hero">
+    <!-- Ambient orbs -->
+    <div class="pf-hero-orbs" aria-hidden="true">
+        <div class="pf-orb pf-orb--1"></div>
+        <div class="pf-orb pf-orb--2"></div>
+        <div class="pf-orb pf-orb--3"></div>
+    </div>
+
+    <!-- Film grain overlay -->
+    <div class="pf-hero-grain" aria-hidden="true"></div>
+
+    <!-- Decorative editorial lines -->
+    <div class="pf-hero-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
     </div>
 
     <div class="container">
-        <div class="pf-hero-inner">
-            <div class="pf-hero-eyebrow" data-pf-reveal>
-                <span class="pf-hero-eyebrow-line"></span>
-                <span>Selected Work — New York</span>
+        <div class="pf-hero-content">
+            <!-- Overline -->
+            <div class="pf-hero-overline" data-pf-reveal>
+                <span class="pf-hero-overline-line"></span>
+                <span class="pf-hero-overline-text">Selected Works &mdash; Portfolio</span>
+                <span class="pf-hero-overline-line"></span>
             </div>
 
+            <!-- Title with staggered word reveal -->
             <h1 class="pf-hero-title" data-pf-reveal>
-                <span class="pf-hero-title-line">Our Finest</span>
-                <span class="pf-hero-title-line"><em>Digital</em> Craft</span>
+                <span class="pf-hero-title-line"><span class="pf-hero-title-word">Our</span></span>
+                <span class="pf-hero-title-line"><span class="pf-hero-title-word pf-hero-title-italic">Finest</span></span>
+                <span class="pf-hero-title-line"><span class="pf-hero-title-word">Work</span></span>
             </h1>
 
+            <!-- Description -->
             <p class="pf-hero-desc" data-pf-reveal>
-                Every project is a collaboration — a blend of strategic thinking and meticulous execution. Here, we showcase the work that defines our atelier.
+                Every project is a story of transformation. Here, we showcase
+                the work that defines our atelier — crafted with precision,
+                delivered with passion.
             </p>
 
             <!-- Category Quick Nav -->
             <div class="pf-hero-cats" data-pf-reveal>
                 <a href="#websites-section" class="pf-cat-pill pf-cat-pill--active" data-category="websites">
-                    <i class="fas fa-laptop-code"></i><span>Websites</span>
+                    <span class="pf-cat-pill-icon"><i class="fas fa-laptop-code"></i></span>
+                    <span class="pf-cat-pill-label">Websites</span>
                 </a>
                 <a href="#logos-section" class="pf-cat-pill" data-category="logos">
-                    <i class="fas fa-paint-brush"></i><span>Brand Identity</span>
+                    <span class="pf-cat-pill-icon"><i class="fas fa-paint-brush"></i></span>
+                    <span class="pf-cat-pill-label">Brand Identity</span>
                 </a>
                 <a href="#materials-section" class="pf-cat-pill" data-category="materials">
-                    <i class="fas fa-print"></i><span>Print Design</span>
+                    <span class="pf-cat-pill-icon"><i class="fas fa-print"></i></span>
+                    <span class="pf-cat-pill-label">Print Design</span>
                 </a>
                 <a href="#signs-section" class="pf-cat-pill" data-category="signs">
-                    <i class="fas fa-sign-hanging"></i><span>Signage</span>
+                    <span class="pf-cat-pill-icon"><i class="fas fa-sign-hanging"></i></span>
+                    <span class="pf-cat-pill-label">Signage</span>
                 </a>
             </div>
         </div>
@@ -264,7 +277,7 @@
             <i class="fas fa-times"></i>
         </button>
         <div class="pf-modal-body">
-            <!-- Dynamically populated -->
+            <!-- Dynamically populated by portfolio.js -->
         </div>
     </div>
 </div>
@@ -287,36 +300,41 @@
 <!-- ═══════════════════════════════════════
      CTA SECTION
 ═══════════════════════════════════════ -->
-<section class="section section-cta-block" id="pfCta">
+<section class="pf-cta-section">
     <div class="container">
-        <div class="cta-card" data-pf-reveal>
-            <div class="cta-card-content">
-                <span class="section-tag">Ready?</span>
-                <h2 class="cta-title">Let's Build Something<br><em>Extraordinary</em> Together</h2>
-                <p class="cta-description">Whether you need a stunning website, a powerful e-commerce platform, or a complete digital strategy — we're ready when you are.</p>
-                <div class="cta-actions">
+        <div class="pf-cta-inner">
+            <div class="pf-cta-content">
+                <span class="pf-cta-eyebrow">Ready to Begin?</span>
+                <h2 class="pf-cta-title">Let's Create Something <em>Extraordinary</em></h2>
+                <p class="pf-cta-desc">Every great brand starts with a conversation. Tell us your vision and we'll bring it to life with the precision and care it deserves.</p>
+                <div class="pf-cta-actions">
                     <a href="contact.html" class="btn btn-primary btn-lg">
                         <span>Start Your Project</span>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
-                    <a href="tel:+19294176819" class="btn btn-ghost btn-lg">
+                    <a href="tel:+19294176819" class="pf-cta-phone">
                         <i class="fas fa-phone"></i>
                         <span>(929) 417-6819</span>
                     </a>
                 </div>
             </div>
-            <div class="cta-card-accent"></div>
+            <div class="pf-cta-visual" aria-hidden="true">
+                <div class="pf-cta-ring pf-cta-ring--1"></div>
+                <div class="pf-cta-ring pf-cta-ring--2"></div>
+                <div class="pf-cta-ring pf-cta-ring--3"></div>
+                <span class="pf-cta-icon"><i class="fas fa-arrow-right"></i></span>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     FOOTER (same as index.html)
+     FOOTER (inherits from style.css)
 ═══════════════════════════════════════ -->
 <footer class="footer">
     <div class="container">
         <div class="footer-top">
-            <div class="footer-brand">
+            <div class="footer-col footer-brand">
                 <a href="../index.html" class="logo">
                     <div class="logo-mark">
                         <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
@@ -326,7 +344,7 @@
                         <span class="logo-descriptor">Tech World</span>
                     </div>
                 </a>
-                <p class="footer-tagline">Premium digital solutions crafted with precision and care. Based in New York City.</p>
+                <p class="footer-tagline">Premium digital solutions crafted with precision.<br>Based in New York City.</p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -361,9 +379,18 @@
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul class="footer-contact">
-                    <li><i class="fas fa-map-marker-alt"></i><span>New York, NY</span></li>
-                    <li><i class="fas fa-phone"></i><a href="tel:+19294176819">(929) 417-6819</a></li>
-                    <li><i class="fas fa-envelope"></i><a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a></li>
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>New York, NY</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+19294176819">(929) 417-6819</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -379,14 +406,14 @@
     </div>
 </footer>
 
-<!-- Back to Top -->
+<!-- Back to Top (inherits from style.css + script.js) -->
 <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <path d="M9 15V3M9 3L3 9M9 3L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 </a>
 
-<!-- Scripts: Main site JS (handles header, mobile menu, footer, loader) -->
+<!-- Scripts: Main site JS (handles header, mobile menu, footer, loader, back-to-top) -->
 <script src="../js/script.js"></script>
 <!-- Portfolio-specific JS -->
 <script src="../js/portfolio.js"></script>
