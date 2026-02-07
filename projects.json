@@ -205,12 +205,12 @@
       "category": "websites",
       "serviceType": "Mental Health Platform",
       "tags": ["Healthcare", "Scheduling", "SEO"],
-      "coverImage": "./assets/images/holistichero.jpeg",
+      "coverImage": "../assets/images/holistichero.jpeg",
       "gallery": [
-        "./assets/images/holisticabout.jpeg",
-        "./assets/images/holisticservices.jpeg",
-        "./assets/images/holisitclocations.jpeg",
-        "./assets/images/iconiccontact.jpeg"
+        "../assets/images/holisticabout.jpeg",
+        "../assets/images/holisticservices.jpeg",
+        "../assets/images/holisitclocations.jpeg",
+        "../assets/images/iconiccontact.jpeg"
     
       ],
       "year": "2025",
