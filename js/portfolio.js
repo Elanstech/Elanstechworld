@@ -1,13 +1,30 @@
 /**
- * Portfolio Page — Premium Editorial JavaScript
- * ES6 Class Architecture
- * Handles: reveal animations, project loading, card rendering,
- *          modal panel, lightbox, category navigation
+ * ═══════════════════════════════════════════════════════════════
+ *  PORTFOLIO PAGE — Premium Editorial JavaScript
+ *  ES6 Class Architecture
+ *
+ *  RELIES ON script.js for:
+ *    - Header scroll behaviour & mobile menu
+ *    - Loader hide logic
+ *    - Back-to-top button
+ *    - Scroll-triggered [data-animate] observer
+ *    - $ / $$ helper selectors
+ *
+ *  This file handles portfolio-specific features:
+ *    - [data-pf-reveal] intersection observer
+ *    - Category pill navigation
+ *    - Project JSON loading & card rendering
+ *    - Modal panel (slide-in)
+ *    - Image lightbox
+ *    - Parallax orbs on hero
+ *    - Staggered card entrance animations
+ * ═══════════════════════════════════════════════════════════════
  */
 
-// ==========================================
-// REVEAL OBSERVER
-// ==========================================
+
+/* ══════════════════════════════════════════
+   REVEAL OBSERVER  (data-pf-reveal elements)
+══════════════════════════════════════════ */
 class RevealObserver {
   constructor() {
     this.observer = null;
@@ -26,16 +43,17 @@ class RevealObserver {
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }
     );
 
     els.forEach((el) => this.observer.observe(el));
   }
 }
 
-// ==========================================
-// CATEGORY NAVIGATION
-// ==========================================
+
+/* ══════════════════════════════════════════
+   CATEGORY NAVIGATION  (hero pills → section scroll)
+══════════════════════════════════════════ */
 class CategoryNav {
   constructor() {
     this.pills = document.querySelectorAll('.pf-cat-pill');
@@ -45,50 +63,85 @@ class CategoryNav {
   init() {
     if (!this.pills.length) return;
 
-    // Smooth scroll on click
     this.pills.forEach((pill) => {
       pill.addEventListener('click', (e) => {
         e.preventDefault();
         const target = document.querySelector(pill.getAttribute('href'));
         if (target) {
-          const offset = 100;
-          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          const top =
+            target.getBoundingClientRect().top + window.scrollY - 100;
           window.scrollTo({ top, behavior: 'smooth' });
         }
-
-        // Update active state
         this.pills.forEach((p) => p.classList.remove('pf-cat-pill--active'));
         pill.classList.add('pf-cat-pill--active');
       });
     });
 
-    // Update active pill on scroll
-    window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+    window.addEventListener('scroll', () => this.onScroll(), {
+      passive: true,
+    });
   }
 
   onScroll() {
     const scrollY = window.scrollY + 200;
-
     this.sections.forEach((section) => {
       const top = section.offsetTop;
       const bottom = top + section.offsetHeight;
       const id = section.id;
-
       if (scrollY >= top && scrollY < bottom) {
-        this.pills.forEach((p) => {
+        this.pills.forEach((p) =>
           p.classList.toggle(
             'pf-cat-pill--active',
             p.getAttribute('href') === `#${id}`
-          );
-        });
+          )
+        );
       }
     });
   }
 }
 
-// ==========================================
-// PORTFOLIO PAGE — MAIN CLASS
-// ==========================================
+
+/* ══════════════════════════════════════════
+   HERO PARALLAX  (subtle orb movement on scroll)
+══════════════════════════════════════════ */
+class HeroParallax {
+  constructor() {
+    this.hero = document.querySelector('.pf-hero');
+    this.orbs = document.querySelectorAll('.pf-orb');
+    this.ticking = false;
+  }
+
+  init() {
+    if (!this.hero || !this.orbs.length) return;
+    window.addEventListener('scroll', () => {
+      if (!this.ticking) {
+        requestAnimationFrame(() => this.update());
+        this.ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  update() {
+    const scrollY = window.scrollY;
+    const heroH = this.hero.offsetHeight;
+    if (scrollY > heroH) {
+      this.ticking = false;
+      return;
+    }
+    const ratio = scrollY / heroH;
+    this.orbs.forEach((orb, i) => {
+      const speed = 0.15 + i * 0.08;
+      const y = ratio * speed * 80;
+      orb.style.transform = `translate3d(0, ${y}px, 0)`;
+    });
+    this.ticking = false;
+  }
+}
+
+
+/* ══════════════════════════════════════════
+   PORTFOLIO PAGE — MAIN CLASS
+══════════════════════════════════════════ */
 class PortfolioPage {
   constructor() {
     this.projects = [];
@@ -126,7 +179,7 @@ class PortfolioPage {
     this.checkUrlHash();
   }
 
-  // ————— Data Loading —————
+  /* ——— Data Loading ——— */
   async loadProjects() {
     try {
       const [websites, logos, materials, signs] = await Promise.all([
@@ -150,13 +203,18 @@ class PortfolioPage {
     }
   }
 
-  // ————— Rendering —————
+  /* ——— Rendering ——— */
   renderAll() {
-    const byCategory = (cat) => this.projects.filter((p) => p.category === cat);
+    const byCategory = (cat) =>
+      this.projects.filter((p) => p.category === cat);
 
     this.renderSection(this.websitesGrid, byCategory('websites'), 'websites');
     this.renderSection(this.logosGrid, byCategory('logos'), 'logos');
-    this.renderSection(this.materialsGrid, byCategory('materials'), 'materials');
+    this.renderSection(
+      this.materialsGrid,
+      byCategory('materials'),
+      'materials'
+    );
     this.renderSection(this.signsGrid, byCategory('signs'), 'signs');
   }
 
@@ -164,8 +222,18 @@ class PortfolioPage {
     if (!grid) return;
 
     if (!projects.length) {
-      const icons = { websites: 'fa-laptop-code', logos: 'fa-paint-brush', materials: 'fa-file-invoice', signs: 'fa-sign' };
-      const titles = { websites: 'Website Portfolio', logos: 'Logo Portfolio', materials: 'Business Materials', signs: 'Signage Portfolio' };
+      const icons = {
+        websites: 'fa-laptop-code',
+        logos: 'fa-paint-brush',
+        materials: 'fa-file-invoice',
+        signs: 'fa-sign',
+      };
+      const titles = {
+        websites: 'Website Portfolio',
+        logos: 'Logo Portfolio',
+        materials: 'Business Materials',
+        signs: 'Signage Portfolio',
+      };
       grid.innerHTML = `
         <div class="pf-coming-soon">
           <i class="fas ${icons[categoryName]}"></i>
@@ -180,12 +248,12 @@ class PortfolioPage {
         (p) => `
       <div class="pf-card ${p.comingSoon ? 'pf-card--soon' : ''}"
            data-project-id="${p.id}" data-coming-soon="${!!p.comingSoon}"
-           style="opacity:0;transform:translateY(30px)">
+           style="opacity:0;transform:translateY(36px)">
         ${p.featured ? '<div class="pf-card-featured">Featured</div>' : ''}
         <div class="pf-card-img">
           <img src="${p.coverImage}" alt="${p.title}"
                loading="lazy"
-               onerror="this.src='https://via.placeholder.com/800x600/FAF6F1/E8621A?text=${encodeURIComponent(p.title)}'">
+               onerror="this.src='https://via.placeholder.com/800x600/FAF6F1/E8651A?text=${encodeURIComponent(p.title)}'">
           <div class="pf-card-badge">${p.serviceType || p.category}</div>
         </div>
         <div class="pf-card-body">
@@ -214,7 +282,7 @@ class PortfolioPage {
       });
     });
 
-    // Stagger entrance
+    // Stagger entrance animation
     this.animateCards(grid.querySelectorAll('.pf-card'));
   }
 
@@ -224,16 +292,20 @@ class PortfolioPage {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const idx = Array.from(cards).indexOf(entry.target);
-            setTimeout(() => {
-              entry.target.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-            }, idx * 120);
+            setTimeout(
+              () => {
+                entry.target.style.transition =
+                  'opacity 0.7s cubic-bezier(0.22,0.61,0.36,1), transform 0.7s cubic-bezier(0.22,0.61,0.36,1)';
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              },
+              idx * 100
+            );
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
     cards.forEach((c) => observer.observe(c));
   }
@@ -247,22 +319,23 @@ class PortfolioPage {
       position: 'fixed',
       top: '50%',
       left: '50%',
-      transform: 'translate(-50%, -50%) scale(0.9)',
-      background: 'linear-gradient(135deg, #1B2A4A, #2C3E6B)',
-      padding: '2.5rem 3.5rem',
+      transform: 'translate(-50%, -50%) scale(0.92)',
+      background: 'linear-gradient(145deg, #0F1D35, #1B2A4A)',
+      padding: '3rem 4rem',
       borderRadius: '20px',
-      color: '#fff',
+      color: '#FAF6F1',
       textAlign: 'center',
       zIndex: '10001',
-      boxShadow: '0 24px 64px rgba(27,42,74,0.4)',
+      boxShadow: '0 32px 72px rgba(15,26,47,0.5)',
       opacity: '0',
-      transition: 'all 0.4s cubic-bezier(0.34,1.56,0.64,1)',
-      fontFamily: "'Outfit', sans-serif",
+      transition: 'all 0.45s cubic-bezier(0.34,1.56,0.64,1)',
+      fontFamily: "'Inter', sans-serif",
+      border: '1px solid rgba(248,245,240,0.06)',
     });
     toast.innerHTML = `
-      <i class="fas fa-clock" style="font-size:2.5rem;margin-bottom:1rem;color:#C5A467;display:block"></i>
-      <h3 style="font-size:1.5rem;margin-bottom:0.5rem;font-family:'DM Serif Display',serif">Coming Soon</h3>
-      <p style="margin:0;opacity:0.8;font-weight:300">This project showcase is under construction.</p>`;
+      <i class="fas fa-clock" style="font-size:2.5rem;margin-bottom:1.25rem;color:#C5A467;display:block"></i>
+      <h3 style="font-size:1.5rem;margin-bottom:0.5rem;font-family:'Playfair Display',serif;font-weight:600;letter-spacing:-0.02em">Coming Soon</h3>
+      <p style="margin:0;opacity:0.55;font-weight:300;font-size:0.9375rem">This project showcase is under construction.</p>`;
 
     document.body.appendChild(toast);
     requestAnimationFrame(() => {
@@ -272,22 +345,25 @@ class PortfolioPage {
 
     setTimeout(() => {
       toast.style.opacity = '0';
-      toast.style.transform = 'translate(-50%, -50%) scale(0.9)';
-      setTimeout(() => toast.remove(), 400);
-    }, 2200);
+      toast.style.transform = 'translate(-50%, -50%) scale(0.92)';
+      setTimeout(() => toast.remove(), 450);
+    }, 2400);
   }
 
-  // ————— Events —————
+  /* ——— Events ——— */
   setupEvents() {
     this.modalClose?.addEventListener('click', () => this.closeModal());
     this.modalOverlay?.addEventListener('click', () => this.closeModal());
     this.lightboxClose?.addEventListener('click', () => this.closeLightbox());
-    this.lightboxOverlay?.addEventListener('click', () => this.closeLightbox());
+    this.lightboxOverlay?.addEventListener('click', () =>
+      this.closeLightbox()
+    );
     this.lightboxPrev?.addEventListener('click', () => this.navLightbox(-1));
     this.lightboxNext?.addEventListener('click', () => this.navLightbox(1));
 
     document.addEventListener('keydown', (e) => {
-      if (this.modal?.classList.contains('active') && e.key === 'Escape') this.closeModal();
+      if (this.modal?.classList.contains('active') && e.key === 'Escape')
+        this.closeModal();
       if (this.lightbox?.classList.contains('active')) {
         if (e.key === 'Escape') this.closeLightbox();
         if (e.key === 'ArrowLeft') this.navLightbox(-1);
@@ -298,7 +374,7 @@ class PortfolioPage {
     window.addEventListener('hashchange', () => this.checkUrlHash());
   }
 
-  // ————— Modal —————
+  /* ——— Modal ——— */
   openModal(project) {
     if (!this.modal || !this.modalBody || project.comingSoon) return;
     this.currentProject = project;
@@ -317,19 +393,31 @@ class PortfolioPage {
         </div>
       </div>
 
-      ${project.gallery?.length ? `
+      ${
+        project.gallery?.length
+          ? `
         <div class="pf-detail-gallery">
           <div class="pf-gallery-main" data-image-index="0">
             <img src="${project.gallery[0]}" alt="${project.title}">
           </div>
-          ${project.gallery.length > 1 ? `
+          ${
+            project.gallery.length > 1
+              ? `
             <div class="pf-gallery-thumbs">
-              ${project.gallery.map((img, i) => `
+              ${project.gallery
+                .map(
+                  (img, i) => `
                 <div class="pf-gallery-thumb ${i === 0 ? 'active' : ''}" data-image-index="${i}">
                   <img src="${img}" alt="${project.title} ${i + 1}">
-                </div>`).join('')}
-            </div>` : ''}
-        </div>` : ''}
+                </div>`
+                )
+                .join('')}
+            </div>`
+              : ''
+          }
+        </div>`
+          : ''
+      }
 
       <div class="pf-detail-section">
         <h3>Project Overview</h3>
@@ -339,61 +427,78 @@ class PortfolioPage {
       ${project.challenge ? `<div class="pf-detail-section"><h3>The Challenge</h3><p>${project.challenge}</p></div>` : ''}
       ${project.solution ? `<div class="pf-detail-section"><h3>Our Solution</h3><p>${project.solution}</p></div>` : ''}
 
-      ${project.services?.length ? `
+      ${
+        project.services?.length
+          ? `
         <div class="pf-detail-section">
           <h3>Services Provided</h3>
           <div class="pf-services-list">
-            ${project.services.map((s) => `<div class="pf-service-item"><i class="fas fa-check-circle"></i><span>${s}</span></div>`).join('')}
+            ${project.services.map((s) => `<div class="pf-service-item"><i class="fas fa-check"></i><span>${s}</span></div>`).join('')}
           </div>
-        </div>` : ''}
+        </div>`
+          : ''
+      }
 
-      ${project.technologies?.length ? `
+      ${
+        project.technologies?.length
+          ? `
         <div class="pf-detail-section">
-          <h3>Technologies Used</h3>
+          <h3>Technologies</h3>
           <div class="pf-techs">
             ${project.technologies.map((t) => `<span class="pf-tech-tag">${t}</span>`).join('')}
           </div>
-        </div>` : ''}
+        </div>`
+          : ''
+      }
 
-      ${project.results ? `
+      ${
+        project.results
+          ? `
         <div class="pf-detail-section">
-          <h3>Results &amp; Impact</h3>
-          ${project.impact ? `<p>${project.impact}</p>` : ''}
+          <h3>Results</h3>
           <div class="pf-results-grid">
-            ${Object.values(project.results).map((r) => `
+            ${Object.values(project.results)
+              .map(
+                (r) => `
               <div class="pf-result-card">
                 <div class="pf-result-icon"><i class="fas ${r.icon}"></i></div>
                 <div class="pf-result-value">${r.value}</div>
                 <div class="pf-result-label">${r.label}</div>
-              </div>`).join('')}
+              </div>`
+              )
+              .join('')}
           </div>
-        </div>` : ''}
+        </div>`
+          : ''
+      }
 
-      ${project.testimonial ? `
-        <div class="pf-testimonial">
-          <div class="pf-testimonial-stars">
-            ${Array(project.testimonial.rating || 5).fill('<i class="fas fa-star"></i>').join('')}
+      ${project.impact ? `<div class="pf-detail-section"><h3>Impact</h3><p>${project.impact}</p></div>` : ''}
+
+      ${
+        project.testimonial
+          ? `
+        <div class="pf-detail-section">
+          <h3>Client Feedback</h3>
+          <div class="pf-testimonial">
+            <div class="pf-testimonial-stars">${'<i class="fas fa-star"></i>'.repeat(project.testimonial.rating || 5)}</div>
+            <blockquote>"${project.testimonial.text}"</blockquote>
+            <div class="pf-testimonial-author">${project.testimonial.author}</div>
+            <div class="pf-testimonial-role">${project.testimonial.role}</div>
           </div>
-          <p class="pf-testimonial-text">"${project.testimonial.text}"</p>
-          <div class="pf-testimonial-author">
-            ${project.testimonial.image ? `
-              <div class="pf-testimonial-avatar">
-                <img src="${project.testimonial.image}" alt="${project.testimonial.author}"
-                     onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(project.testimonial.author)}&background=E8621A&color=fff&size=128'">
-              </div>` : ''}
-            <div class="pf-testimonial-info">
-              <h4>${project.testimonial.author}</h4>
-              <span>${project.testimonial.role}</span>
-            </div>
-          </div>
-        </div>` : ''}
+        </div>`
+          : ''
+      }
 
       <div class="pf-detail-actions">
-        ${project.livePreview ? `
+        ${
+          project.website
+            ? `
           <a href="${project.website}" target="_blank" class="pf-btn-primary">
             <span>View Live Website</span><i class="fas fa-external-link-alt"></i>
-          </a>` : ''}
-        <a href="../index.html#contact" class="pf-btn-secondary">
+          </a>`
+            : ''
+        }
+        <a href="contact.html" class="pf-btn-secondary">
           <span>Start Your Project</span><i class="fas fa-arrow-right"></i>
         </a>
       </div>`;
@@ -419,8 +524,12 @@ class PortfolioPage {
         thumbs.forEach((t) => t.classList.remove('active'));
         thumb.classList.add('active');
         const img = mainImg.querySelector('img');
-        img.src = this.currentProject.gallery[idx];
-        mainImg.dataset.imageIndex = idx;
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = this.currentProject.gallery[idx];
+          mainImg.dataset.imageIndex = idx;
+          img.style.opacity = '1';
+        }, 200);
       });
     });
   }
@@ -429,11 +538,15 @@ class PortfolioPage {
     if (!this.modal) return;
     this.modal.classList.remove('active');
     document.body.style.overflow = '';
-    history.pushState('', document.title, window.location.pathname + window.location.search);
+    history.pushState(
+      '',
+      document.title,
+      window.location.pathname + window.location.search
+    );
     this.currentProject = null;
   }
 
-  // ————— Lightbox —————
+  /* ——— Lightbox ——— */
   openLightbox(images, startIndex = 0) {
     if (!this.lightbox) return;
     this.lightboxImages = images;
@@ -463,20 +576,36 @@ class PortfolioPage {
   navLightbox(dir) {
     if (!this.lightboxImages.length) return;
     this.currentLightboxIndex += dir;
-    if (this.currentLightboxIndex < 0) this.currentLightboxIndex = this.lightboxImages.length - 1;
-    if (this.currentLightboxIndex >= this.lightboxImages.length) this.currentLightboxIndex = 0;
-    this.updateLightbox();
+    if (this.currentLightboxIndex < 0)
+      this.currentLightboxIndex = this.lightboxImages.length - 1;
+    if (this.currentLightboxIndex >= this.lightboxImages.length)
+      this.currentLightboxIndex = 0;
+
+    // Smooth crossfade
+    if (this.lightboxImg) {
+      this.lightboxImg.style.opacity = '0';
+      this.lightboxImg.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        this.updateLightbox();
+        this.lightboxImg.style.opacity = '1';
+        this.lightboxImg.style.transform = 'scale(1)';
+      }, 180);
+    } else {
+      this.updateLightbox();
+    }
   }
 
   closeLightbox() {
     if (!this.lightbox) return;
     this.lightbox.classList.remove('active');
-    document.body.style.overflow = this.modal?.classList.contains('active') ? 'hidden' : '';
+    document.body.style.overflow = this.modal?.classList.contains('active')
+      ? 'hidden'
+      : '';
     this.lightboxImages = [];
     this.currentLightboxIndex = 0;
   }
 
-  // ————— Deep Linking —————
+  /* ——— Deep Linking ——— */
   checkUrlHash() {
     const hash = window.location.hash.substring(1);
     if (!hash) return;
@@ -485,23 +614,40 @@ class PortfolioPage {
   }
 }
 
-// ==========================================
-// INITIALIZE
-// ==========================================
+
+/* ══════════════════════════════════════════
+   INITIALIZE
+══════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
-  // Reveal animations
+  // Reveal animations (portfolio-specific [data-pf-reveal])
   const reveals = new RevealObserver();
   reveals.init();
 
-  // Category nav
+  // Category navigation
   const catNav = new CategoryNav();
   catNav.init();
 
-  // Portfolio
+  // Hero parallax orbs
+  const parallax = new HeroParallax();
+  parallax.init();
+
+  // Portfolio (project loading, cards, modal, lightbox)
   const portfolio = new PortfolioPage();
   portfolio.init();
 
-  // Scroll to top on fresh load
+  // Smooth lightbox image transitions
+  const lightboxImg = document.querySelector('.pf-lightbox-stage img');
+  if (lightboxImg) {
+    lightboxImg.style.transition =
+      'opacity 0.25s ease, transform 0.25s ease';
+  }
+
+  // Gallery main image fade transition
+  const style = document.createElement('style');
+  style.textContent = `.pf-gallery-main img { transition: opacity 0.25s ease; }`;
+  document.head.appendChild(style);
+
+  // Scroll to top on fresh load (no hash)
   if (!window.location.hash) window.scrollTo(0, 0);
 
   console.log('✅ Portfolio Page — Premium Edition Initialized');
