@@ -56,12 +56,13 @@
       "category": "websites",
       "serviceType": "Psychology Practice",
       "tags": ["Healthcare", "Scheduling", "SEO", "HIPAA"],
-      "coverImage": "../assets/images/holistichero.jpeg",
+      "coverImage": "../assets/images/cityhero.jpeg",
       "gallery": [
-        "../assets/images/holistichero.jpeg",
-        "../assets/images/holisticabout.jpeg",
-        "../assets/images/holisticservices.jpeg",
-        "../assets/images/holisitclocations.jpeg"
+        
+        "../assets/images/cityhero.jpeg",
+        "../assets/images/cityabout.jpeg",
+        "../assets/images/cityservices.jpeg",
+        "../assets/images/citysocial.jpeg"
       ],
       "year": "2025",
       "duration": "8 weeks",
