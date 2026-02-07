@@ -37,6 +37,42 @@
       }
     },
     {
+  "id": "nyc-panache-logo",
+  "title": "NYC Panache Salon Logo",
+  "slug": "nyc-panache-logo",
+  "client": "NYC Panache Salon",
+  "category": "logos",
+  "serviceType": "Luxury Salon Branding",
+  "coverImage": "../assets/logos/panachelogo.jpg",
+  "gallery": [
+    "../assets/logos/panachelogo.jpg"
+  ],
+  "year": "2025",
+  "duration": "2 weeks",
+  "featured": true,
+  "comingSoon": false,
+  "color": "#C5A258",
+  "shortDescription": "Luxury hair salon brand identity with mirror gold elegance",
+  "longDescription": "A refined and luxurious logo for NYC Panache Salon, a full-service beauty salon in Forest Hills, Queens. The design embodies sophistication and premium quality, drawing inspiration from world-class luxury brands to create a timeless identity befitting a high-end salon experience.",
+  "challenge": "Creating a logo that communicates true luxury and exclusivity while remaining approachable, and ensuring it translates seamlessly across digital platforms, signage, and premium print materials.",
+  "solution": "Developed an elegant logo featuring refined typography and a warm gold color palette that evokes mirror gold luxury. The design balances classic sophistication with modern minimalism, making it versatile across all brand touchpoints from the website to salon interiors.",
+  "impact": "The distinguished brand identity elevated NYC Panache Salon's market positioning as a premier luxury salon destination, attracting discerning clientele seeking a premium beauty experience in Queens.",
+  "services": [
+    "Logo Design",
+    "Brand Identity",
+    "Business Card Design",
+    "Signage Design",
+    "Brand Guidelines"
+  ],
+  "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+  "testimonial": {
+    "text": "The logo radiates luxury and elegance — it perfectly captures the premium experience we offer. Clients notice the quality of our brand before they even sit in the chair.",
+    "author": "Management Team",
+    "role": "NYC Panache Salon",
+    "rating": 5
+  }
+}
+    {
       "id": "century-one-logo",
       "title": "Century One Properties Logo",
       "slug": "century-one-logo",
