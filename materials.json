@@ -355,6 +355,306 @@
         "role": "Doug Uhlig Psychological Services",
         "rating": 5
       }
+    },
+    {
+      "id": "evia-event-flyer",
+      "title": "Evia Aesthetics Event Flyer",
+      "slug": "evia-event-flyer",
+      "client": "Evia Aesthetics",
+      "category": "materials",
+      "serviceType": "Event Marketing",
+      "coverImage": "../assets/materials/eviaevent.jpg",
+      "gallery": [
+        "../assets/materials/eviaevent.jpg"
+      ],
+      "year": "2025",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Eye-catching event flyer for aesthetics promotions and open houses",
+      "longDescription": "A striking event flyer for Evia Aesthetics designed to promote special events, treatment launches, and open house invitations. The design balances luxurious branding with clear event details and compelling calls to action.",
+      "challenge": "Creating a flyer that communicates event details effectively while maintaining the clinic's premium brand image and generating excitement.",
+      "solution": "Designed a visually stunning flyer with professional imagery, elegant typography, and a clear information hierarchy that guides readers from headline to RSVP.",
+      "impact": "The flyer drove strong event attendance, with recipients responding positively to the premium design and clear messaging.",
+      "services": [
+        "Flyer Design",
+        "Content Writing",
+        "Photography Integration",
+        "Print Production"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "specifications": {
+        "size": "8.5\" x 11\"",
+        "paper": "100lb gloss cover stock",
+        "finish": "UV coating",
+        "colors": "Full color single-sided"
+      },
+      "testimonial": {
+        "text": "The event flyer was gorgeous and really drove attendance. People kept commenting on how professional and inviting it looked.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "century-one-letterhead",
+      "title": "Century One Management Letterhead",
+      "slug": "century-one-letterhead",
+      "client": "Century One Properties",
+      "category": "materials",
+      "serviceType": "Stationery Design",
+      "coverImage": "../assets/materials/centuryletter.jpg",
+      "gallery": [
+        "../assets/materials/centuryletter.jpg"
+      ],
+      "year": "2024",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#007aff",
+      "shortDescription": "Professional property management letterhead with polished branding",
+      "longDescription": "A clean and professional letterhead for Century One Management, designed for official correspondence, lease agreements, and property communications. The design reinforces brand authority and trust with property owners and tenants.",
+      "challenge": "Creating a letterhead that conveys professionalism and authority for a property management company handling high-value real estate communications.",
+      "solution": "Designed a polished letterhead with clean layout, consistent brand elements, and a professional hierarchy that enhances the credibility of all written communications.",
+      "impact": "The professional stationery elevated Century One's correspondence, reinforcing trust with property owners and presenting a polished image to tenants.",
+      "services": [
+        "Letterhead Design",
+        "Brand Application",
+        "Print Production",
+        "Premium Paper Selection"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe InDesign"],
+      "specifications": {
+        "size": "8.5\" x 11\"",
+        "paper": "24lb premium bond",
+        "finish": "Linen texture",
+        "colors": "Full color header, black body"
+      },
+      "testimonial": {
+        "text": "The letterhead looks fantastic and gives all our correspondence a professional edge. Property owners notice the quality immediately.",
+        "author": "Property Manager",
+        "role": "Century One Properties",
+        "rating": 5
+      }
+    },
+    {
+      "id": "evia-branded-notebook",
+      "title": "Evia Aesthetics Branded Notebook Gift",
+      "slug": "evia-branded-notebook",
+      "client": "Evia Aesthetics",
+      "category": "materials",
+      "serviceType": "Promotional Items",
+      "coverImage": "../assets/materials/evianotebook.jpeg",
+      "gallery": [
+        "../assets/materials/evianotebook.jpeg",
+        "../assets/materials/evianoteinside.jpeg",
+        "../assets/materials/evianotebookback.jprg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Premium branded notebook for client gifts and VIP packages",
+      "longDescription": "A luxurious branded notebook for Evia Aesthetics, designed as a premium client gift and VIP package inclusion. The elegant cover design features the clinic's branding with a sophisticated finish that reflects the premium nature of the aesthetics services.",
+      "challenge": "Creating a promotional gift that feels genuinely luxurious and useful, not like a throwaway branded item, matching the clinic's upscale positioning.",
+      "solution": "Selected a high-quality hardcover notebook with elegant branding, premium paper, and a refined finish that clients would proudly use daily.",
+      "impact": "The notebooks became a coveted client gift, enhancing the VIP experience and keeping the Evia brand visible in clients' daily routines.",
+      "services": [
+        "Notebook Design",
+        "Brand Application",
+        "Material Selection",
+        "Quality Control",
+        "Bulk Ordering"
+      ],
+      "technologies": ["Foil Stamping", "Premium Binding"],
+      "specifications": {
+        "size": "5\" x 8.25\"",
+        "pages": "192 lined pages",
+        "material": "Hardcover with soft-touch finish",
+        "paper": "80gsm premium ivory",
+        "features": "Ribbon bookmark, elastic closure"
+      },
+      "testimonial": {
+        "text": "Clients absolutely love the notebooks. They feel premium and luxurious — the perfect gift that keeps our brand in their hands every day.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "evia-gold-foil-business-cards",
+      "title": "Evia Aesthetics Gold Foil Business Cards",
+      "slug": "evia-gold-foil-business-cards",
+      "client": "Evia Aesthetics",
+      "category": "materials",
+      "serviceType": "Business Cards",
+      "coverImage": "../assets/materials/eviabusiness.jpeg",
+      "gallery": [
+        "../assets/materials/eviabusiness.jpeg",
+        "../assets/materials/eviabusinessback.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": true,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Luxury gold foil business cards with premium finish",
+      "longDescription": "Exquisite gold foil business cards for Evia Aesthetics featuring hot-stamped gold foil accents on ultra-thick cardstock. The luxurious finish and tactile quality create an unforgettable first impression that mirrors the premium aesthetics services offered.",
+      "challenge": "Designing business cards that embody true luxury and leave a lasting impression, standing out in a market flooded with standard printed cards.",
+      "solution": "Utilized hot-stamped gold foil for logo and key design elements on premium thick cardstock with a soft-touch matte finish, creating a striking contrast between the matte surface and reflective gold.",
+      "impact": "The cards became a talking point at networking events and consultations, with recipients frequently commenting on the quality and keeping the cards prominently displayed.",
+      "services": [
+        "Business Card Design",
+        "Gold Foil Stamping",
+        "Premium Paper Selection",
+        "Print Production",
+        "Quality Control"
+      ],
+      "technologies": ["Hot Foil Stamping", "Offset Printing"],
+      "specifications": {
+        "size": "3.5\" x 2\"",
+        "paper": "32pt Ultra-thick cardstock",
+        "finish": "Soft-touch matte with gold foil",
+        "foil": "Hot-stamped metallic gold",
+        "colors": "Full color both sides with foil accents"
+      },
+      "testimonial": {
+        "text": "These business cards are absolutely stunning. The gold foil catches the light beautifully and everyone who receives one is impressed. They truly reflect the luxury of our brand.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "evia-gift-vouchers",
+      "title": "Evia Aesthetics Gift Vouchers",
+      "slug": "evia-gift-vouchers",
+      "client": "Evia Aesthetics",
+      "category": "materials",
+      "serviceType": "Gift Certificates",
+      "coverImage": "../assets/materials/eviavoucher.jpeg",
+      "gallery": [
+        "../assets/materials/eviavoucher.jpeg",
+        "../assets/materials/eviavoucherback.ipeg"
+      ],
+      "year": "2025",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Luxury gift vouchers with premium presentation packaging",
+      "longDescription": "Beautifully designed gift vouchers for Evia Aesthetics, presented in elegant envelopes for a premium gifting experience. The vouchers are designed to feel like a luxury gift from the moment they're received, driving new client acquisition through referrals and special occasions.",
+      "challenge": "Creating gift vouchers that feel like a true luxury gift rather than a generic certificate, encouraging both purchase and redemption.",
+      "solution": "Designed elegant vouchers with refined typography, subtle foil details, and matching envelopes. The premium presentation transforms a simple gift card into a luxurious gifting experience.",
+      "impact": "Gift voucher sales increased significantly with the premium redesign, and redemption rates improved as recipients felt excited to use their vouchers.",
+      "services": [
+        "Voucher Design",
+        "Envelope Design",
+        "Print Production",
+        "Foil Detailing",
+        "Premium Packaging"
+      ],
+      "technologies": ["Adobe Illustrator", "Foil Printing"],
+      "specifications": {
+        "size": "9\" x 4\" voucher",
+        "paper": "120lb premium cardstock",
+        "finish": "Matte with spot UV accents",
+        "envelope": "Matching branded envelope",
+        "features": "Sequential numbering, write-in fields"
+      },
+      "testimonial": {
+        "text": "The gift vouchers are gorgeous — clients buy them as gifts for birthdays, holidays, and special occasions. The premium packaging makes them feel truly special.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "evia-iv-menu-brochure",
+      "title": "Evia Aesthetics IV Menu Brochure",
+      "slug": "evia-iv-menu-brochure",
+      "client": "Evia Aesthetics",
+      "category": "materials",
+      "serviceType": "Brochures",
+      "coverImage": "../assets/materials/eviabrouchersout.jpeg",
+      "gallery": [
+        "../assets/materials/eviabrouchersout.jpeg",
+        "../assets/materials/eviabroucherin.jpeg"
+      ],
+      "year": "2025",
+      "duration": "2 weeks",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#FF8C42",
+      "shortDescription": "Informative IV therapy menu with treatment details and pricing",
+      "longDescription": "A comprehensive IV therapy menu brochure for Evia Aesthetics showcasing their range of intravenous vitamin and wellness treatments. The design educates clients on available IV drip options, benefits, ingredients, and pricing in an elegant, easy-to-navigate format.",
+      "challenge": "Presenting medical-grade IV therapy treatments in a way that's informative and educational while maintaining the clinic's luxury brand aesthetic and not overwhelming clients.",
+      "solution": "Created a beautifully organized brochure with clear treatment categories, benefit highlights, ingredient lists, and pricing. Professional imagery and elegant design make the medical information feel approachable and premium.",
+      "impact": "The IV menu brochure increased client awareness of available treatments and boosted IV therapy bookings as clients could easily understand options and benefits.",
+      "services": [
+        "Brochure Design",
+        "Content Writing",
+        "Photography Integration",
+        "Print Production",
+        "Premium Paper Selection"
+      ],
+      "technologies": ["Adobe InDesign", "Adobe Photoshop"],
+      "specifications": {
+        "format": "Tri-fold",
+        "size": "8.5\" x 11\" (folded to 3.67\")",
+        "paper": "100lb gloss cover stock",
+        "finish": "Matte lamination",
+        "colors": "Full color CMYK"
+      },
+      "testimonial": {
+        "text": "The IV menu brochure is perfect for educating our clients. It presents our treatments beautifully and has been instrumental in growing our IV therapy services.",
+        "author": "Clinic Director",
+        "role": "Evia Aesthetics",
+        "rating": 5
+      }
+    },
+    {
+      "id": "five-star-poster",
+      "title": "Five Star Laser Promotional Poster",
+      "slug": "five-star-poster",
+      "client": "Five Star Laser",
+      "category": "materials",
+      "serviceType": "Display Materials",
+      "coverImage": "../assets/materials/fivestarposter.jpeg",
+      "gallery": [
+        "../assets/materials/fivestarposter.jpeg"
+      ],
+      "year": "2025",
+      "duration": "1 week",
+      "featured": false,
+      "comingSoon": false,
+      "color": "#007aff",
+      "shortDescription": "Eye-catching promotional poster for laser treatment specials",
+      "longDescription": "A bold promotional poster for Five Star Laser designed to advertise treatment specials and attract new clients. The design features compelling imagery and clear messaging to drive foot traffic and appointment bookings.",
+      "challenge": "Creating a promotional poster that grabs attention and clearly communicates treatment specials while maintaining a professional medical aesthetic.",
+      "solution": "Designed a high-impact poster with bold typography, professional photography, and a clear call to action that drives immediate response from potential clients.",
+      "impact": "The promotional poster contributed to increased walk-in inquiries and appointment bookings during the promotional period.",
+      "services": [
+        "Poster Design",
+        "Content Writing",
+        "Photography Integration",
+        "Large Format Printing"
+      ],
+      "technologies": ["Adobe Illustrator", "Adobe Photoshop"],
+      "specifications": {
+        "size": "24\" x 36\"",
+        "material": "Premium poster stock",
+        "finish": "Gloss lamination",
+        "colors": "Full color"
+      },
+      "testimonial": {
+        "text": "The poster looks fantastic and has definitely helped bring in new clients. The design is professional and the specials are easy to read at a glance.",
+        "author": "Business Owner",
+        "role": "Five Star Laser",
+        "rating": 5
+      }
     }
   ]
 }
