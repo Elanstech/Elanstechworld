@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why Choose Us | Elan's Tech World — Premium Digital Atelier</title>
-    <meta name="description" content="Discover why discerning businesses entrust their digital presence to Elan's Tech World. Bespoke craft, white-glove service, and measurable results.">
+    <title>Elan's Tech World | Premium Digital Atelier</title>
+    <meta name="description" content="Bespoke digital solutions crafted with precision. Web design, e-commerce, branding & marketing for discerning businesses.">
 
     <!-- Fonts — Cormorant Garamond (Display) + DM Sans (Body) + Bodoni Moda (Accent) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,12 +14,10 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Shared base styles (root vars, header, footer, buttons, animations) -->
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- Why Us page-specific styles -->
-    <link rel="stylesheet" href="../css/why.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
 
-    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="theme-color" content="#F8F5F0">
 
     <!-- Google tag (gtag.js) -->
@@ -35,29 +33,29 @@
 <body>
 
 <!-- ═══════════════════════════════════════
-     LOADER  (script.js → Loader class → #loader)
+     LOADER
 ═══════════════════════════════════════ -->
 <div class="loader" id="loader">
     <div class="loader-inner">
         <div class="loader-logo">
-            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+            <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
         </div>
-        <div class="loader-line"><div class="loader-line-fill"></div></div>
+        <div class="loader-line">
+            <div class="loader-line-fill"></div>
+        </div>
         <p class="loader-tagline">Digital Atelier</p>
     </div>
 </div>
 
 <!-- ═══════════════════════════════════════
-     HEADER  (script.js → Header class → #header, #menuToggle)
-     NOTE: "scrolled" pre-applied because this page has a light
-     cream hero — prevents white-on-cream flash before first scroll.
+     HEADER / NAVIGATION
 ═══════════════════════════════════════ -->
-<header class="header scrolled" id="header">
+<header class="header" id="header">
     <div class="header-container">
         <!-- Logo -->
-        <a href="../index.html" class="logo">
+        <a href="index.html" class="logo">
             <div class="logo-mark">
-                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
             </div>
             <div class="logo-type">
                 <span class="logo-name">Elan's</span>
@@ -65,47 +63,44 @@
             </div>
         </a>
 
-        <!-- Desktop Nav  (script.js targets .nav-link) -->
+        <!-- Desktop Nav -->
         <nav class="nav" id="nav">
             <ul class="nav-list">
-                <li><a href="../index.html" class="nav-link">Home</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="whyus.html" class="nav-link active">Why Us</a></li>
-                <li><a href="projects.html" class="nav-link">Portfolio</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="pages/services.html" class="nav-link">Services</a></li>
+                <li><a href="pages/whyus.html" class="nav-link">Why Us</a></li>
+                <li><a href="pages/projects.html" class="nav-link">Portfolio</a></li>
+                <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
             </ul>
         </nav>
 
         <!-- Header Actions -->
         <div class="header-actions">
-            <a href="contact.html" class="btn btn-primary btn-header">
+            <a href="pages/contact.html" class="btn btn-primary btn-header">
                 <span>Start a Project</span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </a>
-            <!-- 2 spans — CSS animates first-child / last-child into X -->
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                <span></span><span></span>
+                <span></span>
+                <span></span>
             </button>
         </div>
     </div>
 </header>
 
-<!-- ═══════════════════════════════════════
-     MOBILE MENU  (script.js → Header class → #mobileMenu,
-     .mobile-menu-overlay, .mobile-nav-link)
-═══════════════════════════════════════ -->
+<!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-overlay"></div>
     <div class="mobile-menu-panel">
         <nav class="mobile-nav">
             <ul>
-                <li><a href="../index.html" class="mobile-nav-link" data-index="01">Home</a></li>
-                <li><a href="services.html" class="mobile-nav-link" data-index="02">Services</a></li>
-                <li><a href="whyus.html" class="mobile-nav-link active" data-index="03">Why Us</a></li>
-                <li><a href="projects.html" class="mobile-nav-link" data-index="04">Portfolio</a></li>
-                <li><a href="contact.html" class="mobile-nav-link" data-index="05">Contact</a></li>
+                <li><a href="index.html" class="mobile-nav-link active" data-index="01">Home</a></li>
+                <li><a href="pages/services.html" class="mobile-nav-link" data-index="02">Services</a></li>
+                <li><a href="pages/whyus.html" class="mobile-nav-link" data-index="03">Why Us</a></li>
+                <li><a href="pages/projects.html" class="mobile-nav-link" data-index="04">Portfolio</a></li>
+                <li><a href="pages/contact.html" class="mobile-nav-link" data-index="05">Contact</a></li>
             </ul>
         </nav>
         <div class="mobile-menu-footer">
@@ -121,351 +116,441 @@
 </div>
 
 <!-- ═══════════════════════════════════════
-     WHY US HERO — EDITORIAL STYLE
-     data-animate="fade-up" → script.js ScrollAnimations adds .in-view
+     HERO
 ═══════════════════════════════════════ -->
-<section class="why-hero">
-    <div class="why-hero-bg"></div>
+<section class="hero" id="hero">
+    <!-- Parallax Media Background -->
+    <div class="hero-media" id="heroMedia">
+        <!-- Desktop: Parallax Video -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="hero.mp4" type="video/mp4">
+        </video>
+        <!-- Mobile: Parallax Image (shown when video is hidden) -->
+        <div class="hero-image">
+            <img src="assets/images/hero-parallax.jpg" alt="Premium Digital Solutions"
+                 onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80'">
+        </div>
+        <div class="hero-media-overlay"></div>
+        <!-- Subtle grain texture for luxury feel -->
+        <div class="hero-grain"></div>
+    </div>
+
     <div class="container">
-        <div class="why-hero-inner" data-animate="fade-up">
-            <span class="why-hero-eyebrow">The Elan's Difference</span>
-            <h1 class="why-hero-title">
-                Where Craft Meets<br><em>Conviction</em>
+        <div class="hero-content">
+            <div class="hero-eyebrow" data-animate="fade-up" data-delay="200">
+                <span class="eyebrow-line"></span>
+                <span>Digital Atelier — New York</span>
+            </div>
+
+            <h1 class="hero-title" data-animate="fade-up" data-delay="400">
+                Crafting Digital<br>
+                <em>Experiences</em> That<br>
+                <span class="hero-title-accent">Elevate</span> Brands
             </h1>
-            <div class="why-hero-divider"></div>
-            <p class="why-hero-description">
-                We don't build websites — we architect digital experiences with the same meticulous care 
-                a maison brings to its finest creations. Every pixel placed with purpose, every line of code written with intention.
+
+            <p class="hero-description" data-animate="fade-up" data-delay="600">
+                Bespoke web design, e-commerce, and digital strategy for businesses
+                that demand nothing less than exceptional.
             </p>
+
+            <div class="hero-cta" data-animate="fade-up" data-delay="800">
+                <a href="pages/contact.html" class="btn btn-primary btn-lg">
+                    <span>Begin Your Project</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="pages/projects.html" class="btn btn-ghost btn-lg">
+                    <span>View Portfolio</span>
+                </a>
+            </div>
         </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-cue" data-animate="fade-up" data-delay="1200">
+        <span class="scroll-cue-text">Scroll</span>
+        <span class="scroll-cue-line"></span>
     </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     PHILOSOPHY STRIP
+     MARQUEE STRIP
 ═══════════════════════════════════════ -->
-<section class="why-philosophy">
-    <div class="container">
-        <div class="philosophy-grid" data-animate="fade-up">
-            <div class="philosophy-item">
-                <span class="philosophy-number">01</span>
-                <h3>Bespoke</h3>
-                <p>No templates. No shortcuts. Every project is conceived from a blank canvas.</p>
-            </div>
-            <div class="philosophy-item">
-                <span class="philosophy-number">02</span>
-                <h3>Intentional</h3>
-                <p>Strategy-first thinking that transforms beautiful design into measurable growth.</p>
-            </div>
-            <div class="philosophy-item">
-                <span class="philosophy-number">03</span>
-                <h3>Enduring</h3>
-                <p>We build for longevity — platforms that scale, evolve, and compound value.</p>
-            </div>
-        </div>
+<div class="marquee-strip">
+    <div class="marquee-track">
+        <span>Web Development</span><span class="marquee-dot">◆</span>
+        <span>E-Commerce</span><span class="marquee-dot">◆</span>
+        <span>Brand Identity</span><span class="marquee-dot">◆</span>
+        <span>Digital Marketing</span><span class="marquee-dot">◆</span>
+        <span>SEO & SEM</span><span class="marquee-dot">◆</span>
+        <span>Custom Signage</span><span class="marquee-dot">◆</span>
+        <span>POS Systems</span><span class="marquee-dot">◆</span>
+        <span>Property Platforms</span><span class="marquee-dot">◆</span>
+        <!-- Duplicate for seamless loop -->
+        <span>Web Development</span><span class="marquee-dot">◆</span>
+        <span>E-Commerce</span><span class="marquee-dot">◆</span>
+        <span>Brand Identity</span><span class="marquee-dot">◆</span>
+        <span>Digital Marketing</span><span class="marquee-dot">◆</span>
+        <span>SEO & SEM</span><span class="marquee-dot">◆</span>
+        <span>Custom Signage</span><span class="marquee-dot">◆</span>
+        <span>POS Systems</span><span class="marquee-dot">◆</span>
+        <span>Property Platforms</span><span class="marquee-dot">◆</span>
     </div>
-</section>
+</div>
 
 <!-- ═══════════════════════════════════════
-     STATISTICS — EDITORIAL NUMBER DISPLAY
-     data-count + data-suffix → script.js StatsCounter class
+     WHY US — EDITORIAL SECTION
 ═══════════════════════════════════════ -->
-<section class="why-stats section section-cream">
-    <div class="container">
-        <div class="why-stats-header" data-animate="fade-up">
-            <span class="section-tag">By the Numbers</span>
-            <h2 class="section-title">Results That <em>Speak</em></h2>
-        </div>
-        <div class="stats-editorial-grid" data-animate="fade-up" data-delay="200">
-            <div class="stat-editorial">
-                <div class="stat-editorial-number" data-count="50" data-suffix="+">0</div>
-                <div class="stat-editorial-divider"></div>
-                <div class="stat-editorial-label">Clients Served</div>
-                <p class="stat-editorial-detail">Across industries from luxury retail to healthcare</p>
-            </div>
-            <div class="stat-editorial">
-                <div class="stat-editorial-number" data-count="100" data-suffix="+">0</div>
-                <div class="stat-editorial-divider"></div>
-                <div class="stat-editorial-label">Projects Delivered</div>
-                <p class="stat-editorial-detail">Each one crafted with white-glove attention</p>
-            </div>
-            <div class="stat-editorial">
-                <div class="stat-editorial-number" data-count="5" data-suffix=".0">0</div>
-                <div class="stat-editorial-divider"></div>
-                <div class="stat-editorial-label">Client Rating</div>
-                <p class="stat-editorial-detail">Five-star reviews across every platform</p>
-            </div>
-            <div class="stat-editorial">
-                <div class="stat-editorial-number">24/7</div>
-                <div class="stat-editorial-divider"></div>
-                <div class="stat-editorial-label">Dedicated Support</div>
-                <p class="stat-editorial-detail">Your success never sleeps, and neither do we</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     ADVANTAGES — LUXE CARD LAYOUT
-═══════════════════════════════════════ -->
-<section class="why-advantages section section-white">
+<section class="section section-cream" id="why-us">
     <div class="container">
         <div class="section-header" data-animate="fade-up">
-            <span class="section-tag">Our Advantages</span>
-            <h2 class="section-title">What Sets Us <em>Apart</em></h2>
-            <p class="section-subtitle">Six pillars of excellence that define every engagement with Elan's Tech World.</p>
+            <span class="section-tag">The Difference</span>
+            <h2 class="section-title">Why Discerning<br>Businesses <em>Choose Us</em></h2>
         </div>
 
-        <div class="advantages-luxe-grid">
-            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="100">
-                <div class="advantage-luxe-accent"></div>
-                <span class="advantage-luxe-number">01</span>
-                <div class="advantage-luxe-icon"><i class="fas fa-rocket"></i></div>
-                <h3>Swift Delivery</h3>
-                <p>Our streamlined atelier process delivers polished results in weeks, not months — without compromising an ounce of quality.</p>
-                <ul class="advantage-luxe-list">
-                    <li>Agile development process</li>
-                    <li>Weekly progress reviews</li>
-                    <li>On-time delivery guarantee</li>
-                </ul>
+        <div class="advantages-grid">
+            <div class="advantage-card" data-animate="fade-up" data-delay="100">
+                <span class="advantage-number">01</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-compass-drafting"></i>
+                </div>
+                <h3>Bespoke Craft</h3>
+                <p>Every project is conceived from scratch — no templates, no shortcuts. Tailored digital experiences that reflect your brand's unique DNA.</p>
             </div>
-
-            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="200">
-                <div class="advantage-luxe-accent"></div>
-                <span class="advantage-luxe-number">02</span>
-                <div class="advantage-luxe-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>Ironclad Guarantee</h3>
-                <p>We don't stop until you're thrilled. Unlimited revisions, ongoing support, and a satisfaction promise that's more than words.</p>
-                <ul class="advantage-luxe-list">
-                    <li>Unlimited revisions</li>
-                    <li>Money-back guarantee</li>
-                    <li>Post-launch support</li>
-                </ul>
-            </div>
-
-            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="300">
-                <div class="advantage-luxe-accent"></div>
-                <span class="advantage-luxe-number">03</span>
-                <div class="advantage-luxe-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="200">
+                <span class="advantage-number">02</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
                 <h3>Results-Driven</h3>
-                <p>Every design decision is backed by data. We focus on what moves the needle — conversions, engagement, and ROI.</p>
-                <ul class="advantage-luxe-list">
-                    <li>Data-driven strategies</li>
-                    <li>Performance tracking</li>
-                    <li>ROI optimization</li>
-                </ul>
+                <p>Beautiful design meets strategic thinking. We measure success in conversions, engagement, and tangible ROI for your business.</p>
             </div>
-
-            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="100">
-                <div class="advantage-luxe-accent"></div>
-                <span class="advantage-luxe-number">04</span>
-                <div class="advantage-luxe-icon"><i class="fas fa-headset"></i></div>
-                <h3>White-Glove Support</h3>
-                <p>Questions at midnight? We're here. Our dedicated team ensures you're never left waiting. Real people, real solutions, real fast.</p>
-                <ul class="advantage-luxe-list">
-                    <li>Round-the-clock availability</li>
-                    <li>Rapid response times</li>
-                    <li>Dedicated account manager</li>
-                </ul>
+            <div class="advantage-card" data-animate="fade-up" data-delay="300">
+                <span class="advantage-number">03</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>White-Glove Service</h3>
+                <p>Dedicated support from concept to launch and beyond. Your vision deserves attentive, responsive partnership at every stage.</p>
             </div>
-
-            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="200">
-                <div class="advantage-luxe-accent"></div>
-                <span class="advantage-luxe-number">05</span>
-                <div class="advantage-luxe-icon"><i class="fas fa-code"></i></div>
-                <h3>Cutting-Edge Stack</h3>
-                <p>We build on the latest frameworks and cloud infrastructure to ensure your platform is fast, secure, and future-proof.</p>
-                <ul class="advantage-luxe-list">
-                    <li>Modern frameworks</li>
-                    <li>Cloud infrastructure</li>
-                    <li>Security best practices</li>
-                </ul>
+            <div class="advantage-card" data-animate="fade-up" data-delay="400">
+                <span class="advantage-number">04</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-microchip"></i>
+                </div>
+                <h3>Modern Technology</h3>
+                <p>We leverage the latest frameworks and platforms to build fast, secure, and scalable solutions built for the future.</p>
             </div>
-
-            <div class="advantage-luxe-card" data-animate="fade-up" data-delay="300">
-                <div class="advantage-luxe-accent"></div>
-                <span class="advantage-luxe-number">06</span>
-                <div class="advantage-luxe-icon"><i class="fas fa-fingerprint"></i></div>
-                <h3>Personalized Service</h3>
-                <p>No cookie-cutter solutions. Every strategy is custom-tailored to your unique business DNA, goals, and audience.</p>
-                <ul class="advantage-luxe-list">
-                    <li>Custom strategies</li>
-                    <li>One-on-one consultations</li>
-                    <li>Flexible packages</li>
-                </ul>
+            <div class="advantage-card" data-animate="fade-up" data-delay="500">
+                <span class="advantage-number">05</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Personal Touch</h3>
+                <p>No cookie-cutter solutions. Every project is custom-tailored to your unique business goals and your audience.</p>
+            </div>
+            <div class="advantage-card" data-animate="fade-up" data-delay="600">
+                <span class="advantage-number">06</span>
+                <div class="advantage-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Launch & Beyond</h3>
+                <p>Our commitment doesn't end at launch. Ongoing optimization, analytics, and growth strategies keep you ahead.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     PROMISE SECTION — FULL-WIDTH NAVY
+     SERVICES — EDITORIAL CARDS
 ═══════════════════════════════════════ -->
-<section class="why-promise section-navy">
+<section class="section section-white" id="services">
     <div class="container">
-        <div class="promise-inner" data-animate="fade-up">
-            <div class="promise-badge">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                    <circle cx="24" cy="24" r="23" stroke="currentColor" stroke-width="1"/>
-                    <path d="M14 24L21 31L34 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Our Expertise</span>
+            <h2 class="section-title">Premium <em>Services</em></h2>
+            <p class="section-subtitle">Comprehensive digital solutions, each delivered with the care and precision of a master atelier.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card" data-animate="fade-up" data-delay="100">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="service-number">01</span>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom, responsive websites that captivate visitors and convert them into loyal customers.</p>
+                    <ul class="service-list">
+                        <li>Responsive Design</li>
+                        <li>CMS Integration</li>
+                        <li>SEO Optimization</li>
+                        <li>E-commerce Ready</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
             </div>
-            <span class="section-tag section-tag-light">Our Promise</span>
-            <h2 class="promise-title">An Unconditional<br>Satisfaction <em>Guarantee</em></h2>
-            <p class="promise-description">
-                We stand behind every project with the confidence of a house that signs its work.
-                If you're not thrilled with the results, we make it right — no questions asked.
-            </p>
-            <div class="promise-features">
-                <div class="promise-feature">
-                    <i class="fas fa-check"></i>
-                    <span>Unlimited revisions until 100% satisfied</span>
-                </div>
-                <div class="promise-feature">
-                    <i class="fas fa-check"></i>
-                    <span>3–6 months of complimentary support</span>
-                </div>
-                <div class="promise-feature">
-                    <i class="fas fa-check"></i>
-                    <span>Money-back guarantee on missed deadlines</span>
-                </div>
-                <div class="promise-feature">
-                    <i class="fas fa-check"></i>
-                    <span>Performance guarantees on all optimization</span>
+
+            <!-- Service 2 -->
+            <div class="service-card" data-animate="fade-up" data-delay="200">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <span class="service-number">02</span>
+                    </div>
+                    <h3>Digital Marketing</h3>
+                    <p>Strategic campaigns that amplify your reach and drive meaningful engagement across all channels.</p>
+                    <ul class="service-list">
+                        <li>SEO & SEM</li>
+                        <li>Social Media</li>
+                        <li>Email Campaigns</li>
+                        <li>Google Ads</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
                 </div>
             </div>
-            <a href="contact.html" class="btn btn-primary btn-lg promise-cta">
-                <span>Start Your Risk-Free Project</span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+
+            <!-- Service 3 -->
+            <div class="service-card featured" data-animate="fade-up" data-delay="300">
+                <div class="service-featured-badge">Most Popular</div>
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <span class="service-number">03</span>
+                    </div>
+                    <h3>Business Materials</h3>
+                    <p>Professional branding collateral that communicates quality and makes a lasting impression.</p>
+                    <ul class="service-list">
+                        <li>Business Cards</li>
+                        <li>Flyers & Brochures</li>
+                        <li>Menus & Catalogs</li>
+                        <li>Brand Guidelines</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card" data-animate="fade-up" data-delay="400">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <span class="service-number">04</span>
+                    </div>
+                    <h3>E-Commerce</h3>
+                    <p>High-converting online stores built on platforms like Shopify, with seamless checkout experiences.</p>
+                    <ul class="service-list">
+                        <li>Shopify & WooCommerce</li>
+                        <li>Payment Integration</li>
+                        <li>Inventory Management</li>
+                        <li>Conversion Optimization</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card" data-animate="fade-up" data-delay="500">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-sign-hanging"></i>
+                        </div>
+                        <span class="service-number">05</span>
+                    </div>
+                    <h3>Custom Signage</h3>
+                    <p>Eye-catching storefront and interior signage that extends your brand into the physical world.</p>
+                    <ul class="service-list">
+                        <li>Storefront Signs</li>
+                        <li>Vehicle Wraps</li>
+                        <li>Banner Design</li>
+                        <li>Window Graphics</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card" data-animate="fade-up" data-delay="600">
+                <div class="service-card-inner">
+                    <div class="service-card-top">
+                        <div class="service-icon-wrap">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <span class="service-number">06</span>
+                    </div>
+                    <h3>Property Platforms</h3>
+                    <p>Custom property management systems with tenant portals, maintenance tracking, and owner dashboards.</p>
+                    <ul class="service-list">
+                        <li>Tenant Portals</li>
+                        <li>Maintenance Tracking</li>
+                        <li>Payment Systems</li>
+                        <li>Owner Dashboards</li>
+                    </ul>
+                    <a href="pages/services.html" class="service-link">
+                        <span>Explore</span>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H1M13 1V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TECH STACK — MINIMAL DISPLAY
+═══════════════════════════════════════ -->
+<section class="section section-cream" id="tech-stack">
+    <div class="container">
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Technology</span>
+            <h2 class="section-title">Powered by <em>Excellence</em></h2>
+            <p class="section-subtitle">We work with the most trusted platforms and technologies in the industry.</p>
+        </div>
+
+        <div class="tech-grid" data-animate="fade-up" data-delay="200">
+            <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+            <div class="tech-item"><i class="fab fa-shopify"></i><span>Shopify</span></div>
+            <div class="tech-item"><i class="fab fa-react"></i><span>React</span></div>
+            <div class="tech-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+            <div class="tech-item"><i class="fab fa-python"></i><span>Python</span></div>
+            <div class="tech-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+            <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-figma"></i><span>Figma</span></div>
+            <div class="tech-item"><i class="fab fa-google"></i><span>Google Ads</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PORTFOLIO PREVIEW
+═══════════════════════════════════════ -->
+<section class="section section-white" id="portfolio">
+    <div class="container">
+        <div class="section-header" data-animate="fade-up">
+            <span class="section-tag">Selected Work</span>
+            <h2 class="section-title">Our <em>Portfolio</em></h2>
+            <p class="section-subtitle">A curated selection of projects that showcase our craft and attention to detail.</p>
+        </div>
+
+        <div class="portfolio-grid" id="portfolio-grid">
+            <!-- Loaded dynamically via JS -->
+        </div>
+
+        <div class="section-cta" data-animate="fade-up">
+            <a href="pages/projects.html" class="btn btn-outline btn-lg">
+                <span>View All Projects</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
         </div>
     </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     TESTIMONIALS — REFINED LAYOUT
+     TESTIMONIALS
 ═══════════════════════════════════════ -->
-<section class="why-testimonials section section-cream">
+<section class="section section-navy" id="testimonials">
     <div class="container">
-        <div class="section-header" data-animate="fade-up">
-            <span class="section-tag">Client Voices</span>
-            <h2 class="section-title">Don't Take Our<br>Word For <em>It</em></h2>
+        <div class="section-header section-header-light" data-animate="fade-up">
+            <span class="section-tag section-tag-light">Testimonials</span>
+            <h2 class="section-title">What Our<br>Clients <em>Say</em></h2>
         </div>
 
-        <div class="testimonials-luxe-grid" data-animate="fade-up" data-delay="200">
-            <div class="testimonial-luxe-card">
-                <div class="testimonial-luxe-quote">"</div>
-                <div class="testimonial-luxe-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        <div class="testimonials-slider" id="testimonialsSlider">
+            <div class="testimonials-track" id="testimonialsTrack">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"They understood our vision and delivered a stunning website that perfectly represents our brand. The Google Ads campaign has been incredibly effective!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>Laura Sholomov</h4>
+                            <span>Owner, Laura's Beauty Touch</span>
+                        </div>
+                    </div>
                 </div>
-                <blockquote>Elan transformed our entire digital presence. Online bookings increased by 145%. Absolutely phenomenal work!</blockquote>
-                <div class="testimonial-luxe-author">
-                    <div class="testimonial-luxe-author-info">
-                        <h4>Laura Sholomov</h4>
-                        <span>Owner, Laura's Beauty Touch</span>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"Elan turned our product launch into a huge success. We sold out our initial inventory in just two weeks. The e-commerce platform makes managing orders incredibly easy!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>S-Cream Founder</h4>
+                            <span>E-Commerce Launch</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>"The platform has revolutionized how we operate. Managing 50+ properties used to be overwhelming, but now everything is centralized. Exceptional work!"</blockquote>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-info">
+                            <h4>Property Manager</h4>
+                            <span>Century One Properties</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="testimonial-luxe-card">
-                <div class="testimonial-luxe-quote">"</div>
-                <div class="testimonial-luxe-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <blockquote>They created a website that truly represents our brand. The Google Ads campaign generated over 450 qualified leads in 6 months!</blockquote>
-                <div class="testimonial-luxe-author">
-                    <div class="testimonial-luxe-author-info">
-                        <h4>Management Team</h4>
-                        <span>East Coast Realty</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-luxe-card">
-                <div class="testimonial-luxe-quote">"</div>
-                <div class="testimonial-luxe-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <blockquote>Elan delivered beyond expectations. Our new platform is fast, secure, and beautifully designed. We couldn't be happier with the results.</blockquote>
-                <div class="testimonial-luxe-author">
-                    <div class="testimonial-luxe-author-info">
-                        <h4>Douglas Uhlig</h4>
-                        <span>Doug Uhlig Psychological Services</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="testimonials-luxe-cta" data-animate="fade-up">
-            <a href="../index.html#testimonials" class="btn btn-outline">
-                <span>Read More Reviews</span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════
-     PROCESS — HORIZONTAL TIMELINE
-═══════════════════════════════════════ -->
-<section class="why-process section section-white">
-    <div class="container">
-        <div class="section-header" data-animate="fade-up">
-            <span class="section-tag">Our Process</span>
-            <h2 class="section-title">From Vision to <em>Reality</em></h2>
-            <p class="section-subtitle">A refined four-step journey designed to bring your vision to life with precision and care.</p>
-        </div>
-
-        <div class="process-timeline" data-animate="fade-up" data-delay="200">
-            <div class="process-line"></div>
-            <div class="process-step">
-                <div class="process-step-marker"><span>01</span></div>
-                <div class="process-step-content">
-                    <h3>Discovery</h3>
-                    <p>We listen, research, and immerse ourselves in your brand to understand every nuance of your vision and audience.</p>
-                </div>
-            </div>
-            <div class="process-step">
-                <div class="process-step-marker"><span>02</span></div>
-                <div class="process-step-content">
-                    <h3>Strategy</h3>
-                    <p>A bespoke blueprint is crafted — from architecture to aesthetics — ensuring every element serves your goals.</p>
-                </div>
-            </div>
-            <div class="process-step">
-                <div class="process-step-marker"><span>03</span></div>
-                <div class="process-step-content">
-                    <h3>Creation</h3>
-                    <p>Our artisans bring the design to life with meticulous attention, refining every detail until it's nothing short of exceptional.</p>
-                </div>
-            </div>
-            <div class="process-step">
-                <div class="process-step-marker"><span>04</span></div>
-                <div class="process-step-content">
-                    <h3>Launch & Grow</h3>
-                    <p>Your project goes live with ongoing optimization, support, and strategic guidance to ensure lasting success.</p>
-                </div>
+            <!-- Controls -->
+            <div class="testimonials-controls">
+                <button class="testimonials-arrow testimonials-prev" aria-label="Previous">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 16L7 10L13 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="testimonials-dots" id="testimonialsDots"></div>
+                <button class="testimonials-arrow testimonials-next" aria-label="Next">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     CTA SECTION  (reuses style.css .cta-card)
+     CTA SECTION
 ═══════════════════════════════════════ -->
-<section class="section section-cta-block">
+<section class="section section-cta-block" id="contact">
     <div class="container">
         <div class="cta-card" data-animate="fade-up">
             <div class="cta-card-content">
                 <span class="section-tag">Ready?</span>
-                <h2 class="cta-title">Experience the <em>Difference</em></h2>
-                <p class="cta-description">Join 50+ discerning businesses who've elevated their digital presence with our help. Let's create something extraordinary together.</p>
+                <h2 class="cta-title">Let's Build Something<br><em>Extraordinary</em> Together</h2>
+                <p class="cta-description">Whether you need a stunning website, a powerful e-commerce platform, or a complete digital strategy — we're ready when you are.</p>
                 <div class="cta-actions">
-                    <a href="contact.html" class="btn btn-primary btn-lg">
+                    <a href="pages/contact.html" class="btn btn-primary btn-lg">
                         <span>Start Your Project</span>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </a>
@@ -481,15 +566,15 @@
 </section>
 
 <!-- ═══════════════════════════════════════
-     FOOTER  (reuses style.css .footer)
+     FOOTER
 ═══════════════════════════════════════ -->
 <footer class="footer">
     <div class="container">
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="../index.html" class="logo">
+                <a href="index.html" class="logo">
                     <div class="logo-mark">
-                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
+                        <img src="./assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
                     </div>
                     <div class="logo-type">
                         <span class="logo-name">Elan's</span>
@@ -508,23 +593,23 @@
             <div class="footer-col">
                 <h4>Navigation</h4>
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="whyus.html">Why Choose Us</a></li>
-                    <li><a href="projects.html">Portfolio</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pages/services.html">Services</a></li>
+                    <li><a href="pages/whyus.html">Why Choose Us</a></li>
+                    <li><a href="pages/projects.html">Portfolio</a></li>
+                    <li><a href="pages/contact.html">Contact</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Services</h4>
                 <ul>
-                    <li><a href="services.html">Web Development</a></li>
-                    <li><a href="services.html">E-commerce</a></li>
-                    <li><a href="services.html">Digital Marketing</a></li>
-                    <li><a href="services.html">Custom Signage</a></li>
-                    <li><a href="services.html">POS Systems</a></li>
-                    <li><a href="services.html">Property Management</a></li>
+                    <li><a href="pages/services.html">Web Development</a></li>
+                    <li><a href="pages/services.html">E-commerce</a></li>
+                    <li><a href="pages/services.html">Digital Marketing</a></li>
+                    <li><a href="pages/services.html">Custom Signage</a></li>
+                    <li><a href="pages/services.html">POS Systems</a></li>
+                    <li><a href="pages/services.html">Property Management</a></li>
                 </ul>
             </div>
 
@@ -548,25 +633,28 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025 Elan's Tech World. All rights reserved.</p>
+            <p>&copy; 2025 Elan's Tech World. All Rights Reserved.</p>
             <div class="footer-legal">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
             </div>
+            <p class="footer-crafted">Crafted with <i class="fas fa-heart"></i> in NYC</p>
         </div>
     </div>
 </footer>
 
-<!-- Back to Top  (script.js → BackToTop class → #backToTop) -->
-<a href="#" id="backToTop" class="back-to-top" aria-label="Back to top">
+<!-- Back to Top -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
         <path d="M9 15V3M9 3L3 9M9 3L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 </a>
 
-<!-- Scripts — script.js FIRST (shared App), then page-specific -->
-<script src="../js/script.js"></script>
-<script src="../js/why.js"></script>
+<!-- Elfsight AI Chatbot -->
+<div class="elfsight-app-8dcc41d9-977b-4389-a7a2-ab6ee90af80c" data-elfsight-app-lazy></div>
 
+<!-- Scripts -->
+<script src="js/script.js"></script>
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
 </body>
 </html>
