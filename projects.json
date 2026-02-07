@@ -211,13 +211,13 @@
       ],
       "year": "2025",
       "duration": "8 weeks",
-      "featured": false,
-      "comingSoon": true,
+      "featured": true,
+      "comingSoon": false,
       "color": "#4da3ff",
-      "shortDescription": "Comprehensive mental health platform - Coming Soon",
+      "shortDescription": "Comprehensive mental health platform",
       "longDescription": "Holistic Mental Health Services platform with integrated appointment scheduling and resource library.",
-      "website": "https://holisticmentalhealthnyc.com",
-      "livePreview": false
+      "website": "https://www.holisticmentalhealthny.com",
+      "livePreview": true
     },
     {
       "id": "park-city-properties",
@@ -239,7 +239,7 @@
       "shortDescription": "Property management system - Coming Soon",
       "longDescription": "Custom property management platform with tenant portal and maintenance tracking.",
       "website": "https://parkcity34.com",
-      "livePreview": false
+      "livePreview": true
     },
     {
       "id": "east-coast-realty",
