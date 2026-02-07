@@ -1,114 +1,93 @@
 /**
- * Portfolio Page JavaScript - Updated
- * Service-based sections with coming soon handling
+ * Portfolio Page — Premium Editorial JavaScript
+ * ES6 Class Architecture
+ * Handles: reveal animations, project loading, card rendering,
+ *          modal panel, lightbox, category navigation
  */
 
 // ==========================================
-// PARTICLES ANIMATION
+// REVEAL OBSERVER
 // ==========================================
-class ParticlesAnimation {
+class RevealObserver {
   constructor() {
-    this.canvas = document.getElementById('particles-canvas');
-    this.ctx = this.canvas?.getContext('2d');
-    this.particles = [];
-    this.particleCount = 80;
-    this.mouse = { x: null, y: null, radius: 150 };
+    this.observer = null;
   }
 
   init() {
-    if (!this.canvas || !this.ctx) return;
-    
-    this.resizeCanvas();
-    this.createParticles();
-    this.animate();
-    
-    window.addEventListener('resize', () => this.resizeCanvas());
-    
-    this.canvas.addEventListener('mousemove', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      this.mouse.x = e.clientX - rect.left;
-      this.mouse.y = e.clientY - rect.top;
-    });
-    
-    this.canvas.addEventListener('mouseleave', () => {
-      this.mouse.x = null;
-      this.mouse.y = null;
-    });
-  }
+    const els = document.querySelectorAll('[data-pf-reveal]');
+    if (!els.length) return;
 
-  resizeCanvas() {
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
-  }
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            this.observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
 
-  createParticles() {
-    this.particles = [];
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        size: Math.random() * 3 + 1,
-        speedX: Math.random() * 1 - 0.5,
-        speedY: Math.random() * 1 - 0.5,
-        color: Math.random() > 0.5 ? 'rgba(0, 122, 255, 0.5)' : 'rgba(255, 140, 66, 0.5)'
-      });
-    }
-  }
-
-  animate() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    this.particles.forEach((particle, index) => {
-      // Update position
-      particle.x += particle.speedX;
-      particle.y += particle.speedY;
-      
-      // Bounce off edges
-      if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
-      if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
-      
-      // Mouse interaction
-      if (this.mouse.x && this.mouse.y) {
-        const dx = this.mouse.x - particle.x;
-        const dy = this.mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < this.mouse.radius) {
-          const force = (this.mouse.radius - distance) / this.mouse.radius;
-          particle.x -= dx * force * 0.02;
-          particle.y -= dy * force * 0.02;
-        }
-      }
-      
-      // Draw particle
-      this.ctx.fillStyle = particle.color;
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      this.ctx.fill();
-      
-      // Connect nearby particles
-      this.particles.slice(index + 1).forEach(otherParticle => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < 100) {
-          this.ctx.strokeStyle = `rgba(255, 140, 66, ${0.2 - distance / 500})`;
-          this.ctx.lineWidth = 1;
-          this.ctx.beginPath();
-          this.ctx.moveTo(particle.x, particle.y);
-          this.ctx.lineTo(otherParticle.x, otherParticle.y);
-          this.ctx.stroke();
-        }
-      });
-    });
-    
-    requestAnimationFrame(() => this.animate());
+    els.forEach((el) => this.observer.observe(el));
   }
 }
 
 // ==========================================
-// PORTFOLIO PAGE CLASS
+// CATEGORY NAVIGATION
+// ==========================================
+class CategoryNav {
+  constructor() {
+    this.pills = document.querySelectorAll('.pf-cat-pill');
+    this.sections = document.querySelectorAll('.pf-section');
+  }
+
+  init() {
+    if (!this.pills.length) return;
+
+    // Smooth scroll on click
+    this.pills.forEach((pill) => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(pill.getAttribute('href'));
+        if (target) {
+          const offset = 100;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+
+        // Update active state
+        this.pills.forEach((p) => p.classList.remove('pf-cat-pill--active'));
+        pill.classList.add('pf-cat-pill--active');
+      });
+    });
+
+    // Update active pill on scroll
+    window.addEventListener('scroll', () => this.onScroll(), { passive: true });
+  }
+
+  onScroll() {
+    const scrollY = window.scrollY + 200;
+
+    this.sections.forEach((section) => {
+      const top = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+      const id = section.id;
+
+      if (scrollY >= top && scrollY < bottom) {
+        this.pills.forEach((p) => {
+          p.classList.toggle(
+            'pf-cat-pill--active',
+            p.getAttribute('href') === `#${id}`
+          );
+        });
+      }
+    });
+  }
+}
+
+// ==========================================
+// PORTFOLIO PAGE — MAIN CLASS
 // ==========================================
 class PortfolioPage {
   constructor() {
@@ -116,503 +95,393 @@ class PortfolioPage {
     this.currentProject = null;
     this.currentLightboxIndex = 0;
     this.lightboxImages = [];
-    
-    // DOM Elements
+
+    // Grids
     this.websitesGrid = document.getElementById('websites-grid');
     this.logosGrid = document.getElementById('logos-grid');
     this.materialsGrid = document.getElementById('materials-grid');
     this.signsGrid = document.getElementById('signs-grid');
-    
+
+    // Modal
     this.modal = document.getElementById('project-modal');
-    this.modalContent = this.modal?.querySelector('.project-modal-content');
-    this.modalClose = this.modal?.querySelector('.project-modal-close');
-    this.modalOverlay = this.modal?.querySelector('.project-modal-overlay');
-    
+    this.modalBody = this.modal?.querySelector('.pf-modal-body');
+    this.modalClose = this.modal?.querySelector('.pf-modal-close');
+    this.modalOverlay = this.modal?.querySelector('.pf-modal-overlay');
+
+    // Lightbox
     this.lightbox = document.getElementById('lightbox');
-    this.lightboxImg = this.lightbox?.querySelector('.lightbox-content img');
-    this.lightboxCaption = this.lightbox?.querySelector('.lightbox-caption');
-    this.lightboxCounter = this.lightbox?.querySelector('.lightbox-counter');
-    this.lightboxClose = this.lightbox?.querySelector('.lightbox-close');
-    this.lightboxPrev = this.lightbox?.querySelector('.lightbox-prev');
-    this.lightboxNext = this.lightbox?.querySelector('.lightbox-next');
-    this.lightboxOverlay = this.lightbox?.querySelector('.lightbox-overlay');
+    this.lightboxImg = this.lightbox?.querySelector('.pf-lightbox-stage img');
+    this.lightboxCaption = this.lightbox?.querySelector('.pf-lightbox-caption');
+    this.lightboxCounter = this.lightbox?.querySelector('.pf-lightbox-counter');
+    this.lightboxClose = this.lightbox?.querySelector('.pf-lightbox-close');
+    this.lightboxPrev = this.lightbox?.querySelector('.pf-lightbox-prev');
+    this.lightboxNext = this.lightbox?.querySelector('.pf-lightbox-next');
+    this.lightboxOverlay = this.lightbox?.querySelector('.pf-lightbox-overlay');
   }
 
   async init() {
     await this.loadProjects();
-    this.renderProjectsByService();
-    this.setupEventListeners();
+    this.renderAll();
+    this.setupEvents();
     this.checkUrlHash();
   }
 
+  // ————— Data Loading —————
   async loadProjects() {
     try {
-      // Load all JSON files in parallel
-      const [websitesData, logosData, materialsData, signsData] = await Promise.all([
-        fetch('../projects.json').then(res => res.json()),
-        fetch('../logos.json').then(res => res.json()),
-        fetch('../materials.json').then(res => res.json()),
-        fetch('../signs.json').then(res => res.json())
+      const [websites, logos, materials, signs] = await Promise.all([
+        fetch('../projects.json').then((r) => r.json()),
+        fetch('../logos.json').then((r) => r.json()),
+        fetch('../materials.json').then((r) => r.json()),
+        fetch('../signs.json').then((r) => r.json()),
       ]);
-      
-      // Combine all projects into one array
+
       this.projects = [
-        ...websitesData.projects,
-        ...logosData.projects,
-        ...materialsData.projects,
-        ...signsData.projects
+        ...websites.projects,
+        ...logos.projects,
+        ...materials.projects,
+        ...signs.projects,
       ];
-      
-      console.log(`✅ Loaded ${this.projects.length} total projects`);
-      console.log(`- Websites: ${websitesData.projects.length}`);
-      console.log(`- Logos: ${logosData.projects.length}`);
-      console.log(`- Materials: ${materialsData.projects.length}`);
-      console.log(`- Signs: ${signsData.projects.length}`);
-      
-    } catch (error) {
-      console.error('Error loading projects:', error);
+
+      console.log(`✅ Loaded ${this.projects.length} projects`);
+    } catch (err) {
+      console.error('Error loading projects:', err);
       this.projects = [];
     }
   }
 
-  renderProjectsByService() {
-    // Group projects by category
-    const websiteProjects = this.projects.filter(p => p.category === 'websites');
-    const logoProjects = this.projects.filter(p => p.category === 'logos');
-    const materialProjects = this.projects.filter(p => p.category === 'materials');
-    const signProjects = this.projects.filter(p => p.category === 'signs');
-    
-    // Render each section
-    this.renderSection(this.websitesGrid, websiteProjects, 'websites');
-    this.renderSection(this.logosGrid, logoProjects, 'logos');
-    this.renderSection(this.materialsGrid, materialProjects, 'materials');
-    this.renderSection(this.signsGrid, signProjects, 'signs');
+  // ————— Rendering —————
+  renderAll() {
+    const byCategory = (cat) => this.projects.filter((p) => p.category === cat);
+
+    this.renderSection(this.websitesGrid, byCategory('websites'), 'websites');
+    this.renderSection(this.logosGrid, byCategory('logos'), 'logos');
+    this.renderSection(this.materialsGrid, byCategory('materials'), 'materials');
+    this.renderSection(this.signsGrid, byCategory('signs'), 'signs');
   }
 
-  renderSection(gridElement, projects, categoryName) {
-    if (!gridElement) return;
-    
-    // If no projects, show coming soon message
-    if (projects.length === 0) {
-      const icons = {
-        websites: 'fa-laptop-code',
-        logos: 'fa-paint-brush',
-        materials: 'fa-file-invoice',
-        signs: 'fa-sign'
-      };
-      
-      const titles = {
-        websites: 'Website Portfolio',
-        logos: 'Logo Portfolio',
-        materials: 'Business Materials',
-        signs: 'Signage Portfolio'
-      };
-      
-      gridElement.innerHTML = `
-        <div class="coming-soon-message">
+  renderSection(grid, projects, categoryName) {
+    if (!grid) return;
+
+    if (!projects.length) {
+      const icons = { websites: 'fa-laptop-code', logos: 'fa-paint-brush', materials: 'fa-file-invoice', signs: 'fa-sign' };
+      const titles = { websites: 'Website Portfolio', logos: 'Logo Portfolio', materials: 'Business Materials', signs: 'Signage Portfolio' };
+      grid.innerHTML = `
+        <div class="pf-coming-soon">
           <i class="fas ${icons[categoryName]}"></i>
           <h3>${titles[categoryName]} Coming Soon</h3>
-          <p>We're curating our best ${categoryName} work for you</p>
-        </div>
-      `;
+          <p>We're curating our best ${categoryName} work for you.</p>
+        </div>`;
       return;
     }
-    
-    const html = projects.map(project => `
-      <div class="portfolio-full-card ${project.comingSoon ? 'coming-soon' : ''}" 
-           data-project-id="${project.id}"
-           data-coming-soon="${project.comingSoon}">
-        ${project.featured ? '<div class="portfolio-featured-badge">Featured</div>' : ''}
-        
-        <div class="portfolio-full-image">
-          <img src="${project.coverImage}" alt="${project.title}" 
-               onerror="this.src='https://via.placeholder.com/800x600/0A0A0A/FF8C42?text=${encodeURIComponent(project.title)}'">
-          <div class="portfolio-full-overlay"></div>
-          <div class="portfolio-full-category">${project.serviceType || project.category}</div>
+
+    grid.innerHTML = projects
+      .map(
+        (p) => `
+      <div class="pf-card ${p.comingSoon ? 'pf-card--soon' : ''}"
+           data-project-id="${p.id}" data-coming-soon="${!!p.comingSoon}"
+           style="opacity:0;transform:translateY(30px)">
+        ${p.featured ? '<div class="pf-card-featured">Featured</div>' : ''}
+        <div class="pf-card-img">
+          <img src="${p.coverImage}" alt="${p.title}"
+               loading="lazy"
+               onerror="this.src='https://via.placeholder.com/800x600/FAF6F1/E8621A?text=${encodeURIComponent(p.title)}'">
+          <div class="pf-card-badge">${p.serviceType || p.category}</div>
         </div>
-        
-        <div class="portfolio-full-content">
-          <h3 class="portfolio-full-title">${project.title}</h3>
-          <p class="portfolio-full-description">${project.shortDescription}</p>
-          
-          <div class="portfolio-full-footer">
-            <span class="portfolio-full-client">${project.client}</span>
-            <span class="portfolio-full-link">
-              <span>${project.comingSoon ? 'Coming Soon' : 'View Details'}</span>
+        <div class="pf-card-body">
+          <h3 class="pf-card-title">${p.title}</h3>
+          <p class="pf-card-desc">${p.shortDescription}</p>
+          <div class="pf-card-foot">
+            <span class="pf-card-client">${p.client}</span>
+            <span class="pf-card-link">
+              <span>${p.comingSoon ? 'Coming Soon' : 'View Details'}</span>
               <i class="fas fa-arrow-right"></i>
             </span>
           </div>
         </div>
-      </div>
-    `).join('');
-    
-    gridElement.innerHTML = html;
-    
-    // Add click listeners
-    const cards = gridElement.querySelectorAll('.portfolio-full-card');
-    cards.forEach(card => {
+      </div>`
+      )
+      .join('');
+
+    // Click listeners
+    grid.querySelectorAll('.pf-card').forEach((card) => {
       card.addEventListener('click', () => {
-        const projectId = card.dataset.projectId;
-        const isComingSoon = card.dataset.comingSoon === 'true';
-        
-        if (isComingSoon) {
-          this.showComingSoonMessage(projectId);
-          return;
-        }
-        
-        const project = this.projects.find(p => p.id === projectId);
-        if (project) {
-          this.openModal(project);
-        }
+        const id = card.dataset.projectId;
+        const soon = card.dataset.comingSoon === 'true';
+        if (soon) return this.showComingSoon(id);
+        const project = this.projects.find((p) => p.id === id);
+        if (project) this.openModal(project);
       });
     });
-    
-    // Animate cards in
-    this.animateCardsIn(cards);
+
+    // Stagger entrance
+    this.animateCards(grid.querySelectorAll('.pf-card'));
   }
 
-  animateCardsIn(cards) {
-    cards.forEach((card, index) => {
-      setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, index * 100);
-    });
+  animateCards(cards) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Array.from(cards).indexOf(entry.target);
+            setTimeout(() => {
+              entry.target.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }, idx * 120);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    cards.forEach((c) => observer.observe(c));
   }
 
-  showComingSoonMessage(projectId) {
-    const project = this.projects.find(p => p.id === projectId);
+  showComingSoon(id) {
+    const project = this.projects.find((p) => p.id === id);
     if (!project) return;
-    
-    // Create temporary message
-    const message = document.createElement('div');
-    message.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #007aff, #FF8C42);
-      padding: 2rem 3rem;
-      border-radius: 20px;
-      color: white;
-      text-align: center;
-      z-index: 10000;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      animation: fadeIn 0.3s ease;
-    `;
-    
-    message.innerHTML = `
-      <i class="fas fa-clock" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-      <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">Coming Soon</h3>
-      <p style="margin: 0; opacity: 0.9;">This project showcase is under construction</p>
-    `;
-    
-    document.body.appendChild(message);
-    
+
+    const toast = document.createElement('div');
+    Object.assign(toast.style, {
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%) scale(0.9)',
+      background: 'linear-gradient(135deg, #1B2A4A, #2C3E6B)',
+      padding: '2.5rem 3.5rem',
+      borderRadius: '20px',
+      color: '#fff',
+      textAlign: 'center',
+      zIndex: '10001',
+      boxShadow: '0 24px 64px rgba(27,42,74,0.4)',
+      opacity: '0',
+      transition: 'all 0.4s cubic-bezier(0.34,1.56,0.64,1)',
+      fontFamily: "'Outfit', sans-serif",
+    });
+    toast.innerHTML = `
+      <i class="fas fa-clock" style="font-size:2.5rem;margin-bottom:1rem;color:#C5A467;display:block"></i>
+      <h3 style="font-size:1.5rem;margin-bottom:0.5rem;font-family:'DM Serif Display',serif">Coming Soon</h3>
+      <p style="margin:0;opacity:0.8;font-weight:300">This project showcase is under construction.</p>`;
+
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+
     setTimeout(() => {
-      message.style.animation = 'fadeOut 0.3s ease';
-      setTimeout(() => message.remove(), 300);
-    }, 2000);
+      toast.style.opacity = '0';
+      toast.style.transform = 'translate(-50%, -50%) scale(0.9)';
+      setTimeout(() => toast.remove(), 400);
+    }, 2200);
   }
 
-  setupEventListeners() {
-    // Modal close
+  // ————— Events —————
+  setupEvents() {
     this.modalClose?.addEventListener('click', () => this.closeModal());
     this.modalOverlay?.addEventListener('click', () => this.closeModal());
-
-    // Lightbox controls
     this.lightboxClose?.addEventListener('click', () => this.closeLightbox());
     this.lightboxOverlay?.addEventListener('click', () => this.closeLightbox());
-    this.lightboxPrev?.addEventListener('click', () => this.navigateLightbox(-1));
-    this.lightboxNext?.addEventListener('click', () => this.navigateLightbox(1));
+    this.lightboxPrev?.addEventListener('click', () => this.navLightbox(-1));
+    this.lightboxNext?.addEventListener('click', () => this.navLightbox(1));
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-      if (this.modal?.classList.contains('active')) {
-        if (e.key === 'Escape') this.closeModal();
-      }
+      if (this.modal?.classList.contains('active') && e.key === 'Escape') this.closeModal();
       if (this.lightbox?.classList.contains('active')) {
         if (e.key === 'Escape') this.closeLightbox();
-        if (e.key === 'ArrowLeft') this.navigateLightbox(-1);
-        if (e.key === 'ArrowRight') this.navigateLightbox(1);
+        if (e.key === 'ArrowLeft') this.navLightbox(-1);
+        if (e.key === 'ArrowRight') this.navLightbox(1);
       }
     });
 
-    // Hash change for deep linking
     window.addEventListener('hashchange', () => this.checkUrlHash());
   }
 
+  // ————— Modal —————
   openModal(project) {
-    if (!this.modal || !this.modalContent || project.comingSoon) return;
-
+    if (!this.modal || !this.modalBody || project.comingSoon) return;
     this.currentProject = project;
     document.body.style.overflow = 'hidden';
-
-    // Update URL hash
     window.location.hash = project.slug;
 
-    // Render modal content
-    this.modalContent.innerHTML = `
-      <div class="project-detail-header">
-        <span class="project-detail-category">${project.serviceType || project.category}</span>
-        <h1 class="project-detail-title">${project.title}</h1>
-        
-        <div class="project-detail-meta">
-          <div class="project-detail-meta-item">
-            <i class="fas fa-user"></i>
-            <span>${project.client}</span>
-          </div>
-          <div class="project-detail-meta-item">
-            <i class="fas fa-calendar"></i>
-            <span>${project.year}</span>
-          </div>
-          ${project.duration ? `
-            <div class="project-detail-meta-item">
-              <i class="fas fa-clock"></i>
-              <span>${project.duration}</span>
-            </div>
-          ` : ''}
-          ${project.livePreview ? `
-            <div class="project-detail-meta-item">
-              <i class="fas fa-globe"></i>
-              <a href="${project.website}" target="_blank" style="color: var(--hermes-orange);">View Live Site</a>
-            </div>
-          ` : ''}
+    this.modalBody.innerHTML = `
+      <div class="pf-detail-header">
+        <span class="pf-detail-cat">${project.serviceType || project.category}</span>
+        <h1 class="pf-detail-title">${project.title}</h1>
+        <div class="pf-detail-meta">
+          <div class="pf-detail-meta-item"><i class="fas fa-user"></i><span>${project.client}</span></div>
+          <div class="pf-detail-meta-item"><i class="fas fa-calendar"></i><span>${project.year}</span></div>
+          ${project.duration ? `<div class="pf-detail-meta-item"><i class="fas fa-clock"></i><span>${project.duration}</span></div>` : ''}
+          ${project.livePreview ? `<div class="pf-detail-meta-item"><i class="fas fa-globe"></i><a href="${project.website}" target="_blank">View Live Site</a></div>` : ''}
         </div>
       </div>
 
-      ${project.gallery && project.gallery.length > 0 ? `
-        <div class="project-detail-gallery">
-          <div class="project-gallery-main" data-image-index="0">
+      ${project.gallery?.length ? `
+        <div class="pf-detail-gallery">
+          <div class="pf-gallery-main" data-image-index="0">
             <img src="${project.gallery[0]}" alt="${project.title}">
           </div>
           ${project.gallery.length > 1 ? `
-            <div class="project-gallery-thumbnails">
-              ${project.gallery.map((img, index) => `
-                <div class="project-gallery-thumb ${index === 0 ? 'active' : ''}" data-image-index="${index}">
-                  <img src="${img}" alt="${project.title} ${index + 1}">
-                </div>
-              `).join('')}
-            </div>
-          ` : ''}
-        </div>
-      ` : ''}
+            <div class="pf-gallery-thumbs">
+              ${project.gallery.map((img, i) => `
+                <div class="pf-gallery-thumb ${i === 0 ? 'active' : ''}" data-image-index="${i}">
+                  <img src="${img}" alt="${project.title} ${i + 1}">
+                </div>`).join('')}
+            </div>` : ''}
+        </div>` : ''}
 
-      <div class="project-detail-section">
+      <div class="pf-detail-section">
         <h3>Project Overview</h3>
         <p>${project.longDescription}</p>
       </div>
 
-      ${project.challenge ? `
-        <div class="project-detail-section">
-          <h3>The Challenge</h3>
-          <p>${project.challenge}</p>
-        </div>
-      ` : ''}
+      ${project.challenge ? `<div class="pf-detail-section"><h3>The Challenge</h3><p>${project.challenge}</p></div>` : ''}
+      ${project.solution ? `<div class="pf-detail-section"><h3>Our Solution</h3><p>${project.solution}</p></div>` : ''}
 
-      ${project.solution ? `
-        <div class="project-detail-section">
-          <h3>Our Solution</h3>
-          <p>${project.solution}</p>
-        </div>
-      ` : ''}
-
-      ${project.services && project.services.length > 0 ? `
-        <div class="project-detail-section">
+      ${project.services?.length ? `
+        <div class="pf-detail-section">
           <h3>Services Provided</h3>
-          <div class="project-services-list">
-            ${project.services.map(service => `
-              <div class="project-service-item">
-                <i class="fas fa-check-circle"></i>
-                <span>${service}</span>
-              </div>
-            `).join('')}
+          <div class="pf-services-list">
+            ${project.services.map((s) => `<div class="pf-service-item"><i class="fas fa-check-circle"></i><span>${s}</span></div>`).join('')}
           </div>
-        </div>
-      ` : ''}
+        </div>` : ''}
 
-      ${project.technologies && project.technologies.length > 0 ? `
-        <div class="project-detail-section">
+      ${project.technologies?.length ? `
+        <div class="pf-detail-section">
           <h3>Technologies Used</h3>
-          <div class="project-technologies">
-            ${project.technologies.map(tech => `
-              <span class="project-tech-item">${tech}</span>
-            `).join('')}
+          <div class="pf-techs">
+            ${project.technologies.map((t) => `<span class="pf-tech-tag">${t}</span>`).join('')}
           </div>
-        </div>
-      ` : ''}
+        </div>` : ''}
 
       ${project.results ? `
-        <div class="project-detail-section">
-          <h3>Results & Impact</h3>
+        <div class="pf-detail-section">
+          <h3>Results &amp; Impact</h3>
           ${project.impact ? `<p>${project.impact}</p>` : ''}
-          <div class="project-results-grid">
-            ${Object.values(project.results).map(result => `
-              <div class="project-result-card">
-                <div class="project-result-icon">
-                  <i class="fas ${result.icon}"></i>
-                </div>
-                <div class="project-result-value">${result.value}</div>
-                <div class="project-result-label">${result.label}</div>
-              </div>
-            `).join('')}
+          <div class="pf-results-grid">
+            ${Object.values(project.results).map((r) => `
+              <div class="pf-result-card">
+                <div class="pf-result-icon"><i class="fas ${r.icon}"></i></div>
+                <div class="pf-result-value">${r.value}</div>
+                <div class="pf-result-label">${r.label}</div>
+              </div>`).join('')}
           </div>
-        </div>
-      ` : ''}
+        </div>` : ''}
 
       ${project.testimonial ? `
-        <div class="project-testimonial">
-          <div class="project-testimonial-rating">
+        <div class="pf-testimonial">
+          <div class="pf-testimonial-stars">
             ${Array(project.testimonial.rating || 5).fill('<i class="fas fa-star"></i>').join('')}
           </div>
-          <p class="project-testimonial-text">"${project.testimonial.text}"</p>
-          <div class="project-testimonial-author">
+          <p class="pf-testimonial-text">"${project.testimonial.text}"</p>
+          <div class="pf-testimonial-author">
             ${project.testimonial.image ? `
-              <div class="project-testimonial-avatar">
+              <div class="pf-testimonial-avatar">
                 <img src="${project.testimonial.image}" alt="${project.testimonial.author}"
-                     onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(project.testimonial.author)}&background=FF8C42&color=fff&size=128'">
-              </div>
-            ` : ''}
-            <div class="project-testimonial-info">
+                     onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(project.testimonial.author)}&background=E8621A&color=fff&size=128'">
+              </div>` : ''}
+            <div class="pf-testimonial-info">
               <h4>${project.testimonial.author}</h4>
               <span>${project.testimonial.role}</span>
             </div>
           </div>
-        </div>
-      ` : ''}
+        </div>` : ''}
 
-      <div class="project-detail-actions">
+      <div class="pf-detail-actions">
         ${project.livePreview ? `
-          <a href="${project.website}" target="_blank" class="btn-primary">
-            <span>View Live Website</span>
-            <i class="fas fa-external-link-alt"></i>
-          </a>
-        ` : ''}
-        <a href="../index.html#contact" class="btn-secondary">
-          <span>Start Your Project</span>
-          <i class="fas fa-arrow-right"></i>
+          <a href="${project.website}" target="_blank" class="pf-btn-primary">
+            <span>View Live Website</span><i class="fas fa-external-link-alt"></i>
+          </a>` : ''}
+        <a href="../index.html#contact" class="pf-btn-secondary">
+          <span>Start Your Project</span><i class="fas fa-arrow-right"></i>
         </a>
-      </div>
-    `;
+      </div>`;
 
-    // Setup gallery functionality
-    this.setupGalleryListeners();
-
-    // Show modal with animation
-    setTimeout(() => {
-      this.modal.classList.add('active');
-    }, 10);
+    this.setupGallery();
+    setTimeout(() => this.modal.classList.add('active'), 10);
   }
 
-  setupGalleryListeners() {
-    if (!this.currentProject || !this.currentProject.gallery) return;
+  setupGallery() {
+    if (!this.currentProject?.gallery) return;
 
-    const mainImage = this.modalContent.querySelector('.project-gallery-main');
-    const thumbnails = this.modalContent.querySelectorAll('.project-gallery-thumb');
+    const mainImg = this.modalBody.querySelector('.pf-gallery-main');
+    const thumbs = this.modalBody.querySelectorAll('.pf-gallery-thumb');
 
-    // Main image click - open lightbox
-    mainImage?.addEventListener('click', () => {
-      const imageIndex = parseInt(mainImage.dataset.imageIndex);
-      this.openLightbox(this.currentProject.gallery, imageIndex);
+    mainImg?.addEventListener('click', () => {
+      const idx = parseInt(mainImg.dataset.imageIndex);
+      this.openLightbox(this.currentProject.gallery, idx);
     });
 
-    // Thumbnail clicks
-    thumbnails.forEach(thumb => {
+    thumbs.forEach((thumb) => {
       thumb.addEventListener('click', () => {
-        const imageIndex = parseInt(thumb.dataset.imageIndex);
-        
-        // Update active thumbnail
-        thumbnails.forEach(t => t.classList.remove('active'));
+        const idx = parseInt(thumb.dataset.imageIndex);
+        thumbs.forEach((t) => t.classList.remove('active'));
         thumb.classList.add('active');
-        
-        // Update main image
-        const mainImg = mainImage.querySelector('img');
-        mainImg.src = this.currentProject.gallery[imageIndex];
-        mainImage.dataset.imageIndex = imageIndex;
+        const img = mainImg.querySelector('img');
+        img.src = this.currentProject.gallery[idx];
+        mainImg.dataset.imageIndex = idx;
       });
     });
   }
 
   closeModal() {
     if (!this.modal) return;
-
     this.modal.classList.remove('active');
     document.body.style.overflow = '';
-    
-    // Clear URL hash
     history.pushState('', document.title, window.location.pathname + window.location.search);
-    
     this.currentProject = null;
   }
 
+  // ————— Lightbox —————
   openLightbox(images, startIndex = 0) {
     if (!this.lightbox) return;
-
     this.lightboxImages = images;
     this.currentLightboxIndex = startIndex;
-    
-    this.updateLightboxImage();
-    
+    this.updateLightbox();
     document.body.style.overflow = 'hidden';
     this.lightbox.classList.add('active');
   }
 
-  updateLightboxImage() {
+  updateLightbox() {
     if (!this.lightboxImg || !this.lightboxImages.length) return;
+    this.lightboxImg.src = this.lightboxImages[this.currentLightboxIndex];
 
-    const currentImage = this.lightboxImages[this.currentLightboxIndex];
-    this.lightboxImg.src = currentImage;
-    
     if (this.lightboxCaption) {
-      this.lightboxCaption.textContent = this.currentProject 
-        ? `${this.currentProject.title} - Image ${this.currentLightboxIndex + 1}`
+      this.lightboxCaption.textContent = this.currentProject
+        ? `${this.currentProject.title} — Image ${this.currentLightboxIndex + 1}`
         : `Image ${this.currentLightboxIndex + 1}`;
     }
-    
     if (this.lightboxCounter) {
       this.lightboxCounter.textContent = `${this.currentLightboxIndex + 1} / ${this.lightboxImages.length}`;
     }
-
-    // Show/hide navigation arrows
-    if (this.lightboxPrev && this.lightboxNext) {
-      this.lightboxPrev.style.display = this.lightboxImages.length > 1 ? 'flex' : 'none';
-      this.lightboxNext.style.display = this.lightboxImages.length > 1 ? 'flex' : 'none';
-    }
+    const show = this.lightboxImages.length > 1 ? 'flex' : 'none';
+    if (this.lightboxPrev) this.lightboxPrev.style.display = show;
+    if (this.lightboxNext) this.lightboxNext.style.display = show;
   }
 
-  navigateLightbox(direction) {
+  navLightbox(dir) {
     if (!this.lightboxImages.length) return;
-
-    this.currentLightboxIndex += direction;
-
-    // Loop around
-    if (this.currentLightboxIndex < 0) {
-      this.currentLightboxIndex = this.lightboxImages.length - 1;
-    } else if (this.currentLightboxIndex >= this.lightboxImages.length) {
-      this.currentLightboxIndex = 0;
-    }
-
-    this.updateLightboxImage();
+    this.currentLightboxIndex += dir;
+    if (this.currentLightboxIndex < 0) this.currentLightboxIndex = this.lightboxImages.length - 1;
+    if (this.currentLightboxIndex >= this.lightboxImages.length) this.currentLightboxIndex = 0;
+    this.updateLightbox();
   }
 
   closeLightbox() {
     if (!this.lightbox) return;
-
     this.lightbox.classList.remove('active');
     document.body.style.overflow = this.modal?.classList.contains('active') ? 'hidden' : '';
-    
     this.lightboxImages = [];
     this.currentLightboxIndex = 0;
   }
 
+  // ————— Deep Linking —————
   checkUrlHash() {
     const hash = window.location.hash.substring(1);
     if (!hash) return;
-
-    const project = this.projects.find(p => p.slug === hash);
-    if (project && !project.comingSoon) {
-      this.openModal(project);
-    }
+    const project = this.projects.find((p) => p.slug === hash);
+    if (project && !project.comingSoon) this.openModal(project);
   }
 }
 
@@ -620,16 +489,20 @@ class PortfolioPage {
 // INITIALIZE
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize particles
-  const particles = new ParticlesAnimation();
-  particles.init();
-  
-  // Initialize portfolio
-  const portfolioPage = new PortfolioPage();
-  portfolioPage.init();
+  // Reveal animations
+  const reveals = new RevealObserver();
+  reveals.init();
 
-  // Scroll to top on page load
-  window.scrollTo(0, 0);
+  // Category nav
+  const catNav = new CategoryNav();
+  catNav.init();
 
-  console.log('✅ Portfolio Page - Initialized');
+  // Portfolio
+  const portfolio = new PortfolioPage();
+  portfolio.init();
+
+  // Scroll to top on fresh load
+  if (!window.location.hash) window.scrollTo(0, 0);
+
+  console.log('✅ Portfolio Page — Premium Edition Initialized');
 });
