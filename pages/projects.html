@@ -3,362 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Elan's Tech World - Our Work & Case Studies</title>
-    <meta name="description" content="Explore our portfolio of successful digital projects across web development, e-commerce, healthcare, and more.">
-    
+    <title>Portfolio | Elan's Tech World — Our Finest Work</title>
+    <meta name="description" content="A curated portfolio of bespoke digital projects — websites, brand identity, print design & custom signage crafted for discerning businesses.">
+
+    <!-- Fonts: Main site fonts + Portfolio additions (DM Serif Display, Outfit, Italiana) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet (header, footer, shared :root, buttons, etc.) -->
     <link rel="stylesheet" href="../css/style.css">
+    <!-- Portfolio-Specific Stylesheet -->
     <link rel="stylesheet" href="../css/portfolio.css">
-    
+
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FAF6F1">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16749251365"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-16749251365');
+    </script>
 </head>
 
-<body class="preload">
-    
-<!-- Loader -->
-<div class="loader-container">
-    <div class="loader-content">
-        <div class="logo-loader">
+<body>
+
+<!-- ═══════════════════════════════════════
+     LOADER (same as index.html)
+═══════════════════════════════════════ -->
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-logo">
             <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-            <div class="loader-ring"></div>
-            <div class="loader-ring"></div>
         </div>
-        <div class="loader-text">
-            <h3>Elan's Tech World</h3>
-            <p>Crafting Digital Excellence</p>
+        <div class="loader-line">
+            <div class="loader-line-fill"></div>
         </div>
-        <div class="loader-progress">
-            <div class="loader-progress-bar"></div>
-        </div>
+        <p class="loader-tagline">Digital Atelier</p>
     </div>
 </div>
 
-<!-- Futuristic Header -->
-<header class="header-futuristic">
-    <div class="header-glow"></div>
-    <div class="header-glass-effect"></div>
-    
-    <div class="container">
-        <div class="header-inner-futuristic">
-            <a href="../index.html" class="logo-futuristic">
-                <div class="logo-image">
-                    <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                </div>
-                <div class="logo-text-futuristic">
-                    <span class="logo-main-futuristic">Elan's</span>
-                    <span class="logo-sub-futuristic">Tech World</span>
-                </div>
-            </a>
-            
-            <nav class="nav-futuristic">
-                <ul class="nav-list-futuristic">
-                    <li><a href="../index.html" class="nav-link-futuristic">Home</a></li>
-                    <li><a href="services.html" class="nav-link-futuristic">Services</a></li>
-                    <li><a href="whyus.html" class="nav-link-futuristic">Why Us</a></li>
-                    <li><a href="projects.html" class="nav-link-futuristic active">Visit Our Work</a></li>
-                    <li><a href="contact.html" class="nav-link-futuristic">Contact</a></li>
-                </ul>
-            </nav>
-            
-            <div class="header-actions-futuristic">
-                <a href="../index.html#contact" class="btn-futuristic">
-                    <span class="btn-text">Start Project</span>
-                    <span class="btn-icon">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </span>
-                </a>
-                
-                <button class="menu-toggle-futuristic" aria-label="Toggle menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
+<!-- ═══════════════════════════════════════
+     HEADER / NAVIGATION (same as index.html)
+═══════════════════════════════════════ -->
+<header class="header" id="header">
+    <div class="header-container">
+        <a href="../index.html" class="logo">
+            <div class="logo-mark">
+                <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
             </div>
+            <div class="logo-type">
+                <span class="logo-name">Elan's</span>
+                <span class="logo-descriptor">Tech World</span>
+            </div>
+        </a>
+
+        <nav class="nav" id="nav">
+            <ul class="nav-list">
+                <li><a href="../index.html" class="nav-link">Home</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="whyus.html" class="nav-link">Why Us</a></li>
+                <li><a href="projects.html" class="nav-link active">Portfolio</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <a href="contact.html" class="btn btn-primary btn-header">
+                <span>Start a Project</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </div>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu-futuristic">
-    <div class="mobile-menu-backdrop-futuristic"></div>
-    <div class="mobile-menu-container-futuristic">
-        <div class="mobile-menu-header-futuristic"></div>
-        
-        <nav class="mobile-nav-futuristic">
+<!-- Mobile Menu (same as index.html) -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu-panel">
+        <nav class="mobile-nav">
             <ul>
-                <li><a href="../index.html" class="mobile-nav-link-futuristic">Home</a></li>
-                <li><a href="services.html" class="mobile-nav-link-futuristic">Services</a></li>
-                <li><a href="whyus.html" class="mobile-nav-link-futuristic">Why Us</a></li>
-                <li><a href="projects.html" class="mobile-nav-link-futuristic">Visit Our Work</a></li>
-                <li><a href="contact.html" class="mobile-nav-link-futuristic">Contact</a></li>
+                <li><a href="../index.html" class="mobile-nav-link" data-index="01">Home</a></li>
+                <li><a href="services.html" class="mobile-nav-link" data-index="02">Services</a></li>
+                <li><a href="whyus.html" class="mobile-nav-link" data-index="03">Why Us</a></li>
+                <li><a href="projects.html" class="mobile-nav-link active" data-index="04">Portfolio</a></li>
+                <li><a href="contact.html" class="mobile-nav-link" data-index="05">Contact</a></li>
             </ul>
         </nav>
-        
-        <div class="mobile-menu-footer-futuristic">
-            <div class="mobile-contact-futuristic">
-                <a href="tel:+19294176819">
-                    <div class="contact-icon-futuristic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span>(929) 417-6819</span>
-                </a>
-                <a href="mailto:elan@elanstechworld.com">
-                    <div class="contact-icon-futuristic">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <span>elan@elanstechworld.com</span>
-                </a>
-            </div>
-            
-            <div class="mobile-social-futuristic">
-                <a href="https://www.instagram.com/elan_tech_world/" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <div class="mobile-menu-footer">
+            <a href="tel:+19294176819">(929) 417-6819</a>
+            <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
+            <div class="mobile-social">
+                <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
 </div>
-    
-<!-- Portfolio Hero with Particles -->
-<section class="portfolio-hero-particles">
-    <canvas id="particles-canvas"></canvas>
+
+<!-- ═══════════════════════════════════════
+     PORTFOLIO HERO — EDITORIAL MASTHEAD
+═══════════════════════════════════════ -->
+<section class="pf-hero" id="pfHero">
+    <!-- Ambient background -->
+    <div class="pf-hero-bg">
+        <div class="pf-hero-orb pf-hero-orb--1"></div>
+        <div class="pf-hero-orb pf-hero-orb--2"></div>
+        <div class="pf-hero-orb pf-hero-orb--3"></div>
+        <div class="pf-hero-grain"></div>
+    </div>
+
     <div class="container">
-        <div class="portfolio-hero-content" data-aos="fade-up">
-            <span class="portfolio-hero-tag">Our Work</span>
-            <h1 class="portfolio-hero-title">
-                Transforming Ideas Into <span class="gradient-text">Digital Reality</span>
+        <div class="pf-hero-inner">
+            <div class="pf-hero-eyebrow" data-pf-reveal>
+                <span class="pf-hero-eyebrow-line"></span>
+                <span>Selected Work — New York</span>
+            </div>
+
+            <h1 class="pf-hero-title" data-pf-reveal>
+                <span class="pf-hero-title-line">Our Finest</span>
+                <span class="pf-hero-title-line"><em>Digital</em> Craft</span>
             </h1>
-            <p class="portfolio-hero-description">
-                Explore our portfolio of successful projects that drive real results
+
+            <p class="pf-hero-desc" data-pf-reveal>
+                Every project is a collaboration — a blend of strategic thinking and meticulous execution. Here, we showcase the work that defines our atelier.
             </p>
+
+            <!-- Category Quick Nav -->
+            <div class="pf-hero-cats" data-pf-reveal>
+                <a href="#websites-section" class="pf-cat-pill pf-cat-pill--active" data-category="websites">
+                    <i class="fas fa-laptop-code"></i><span>Websites</span>
+                </a>
+                <a href="#logos-section" class="pf-cat-pill" data-category="logos">
+                    <i class="fas fa-paint-brush"></i><span>Brand Identity</span>
+                </a>
+                <a href="#materials-section" class="pf-cat-pill" data-category="materials">
+                    <i class="fas fa-print"></i><span>Print Design</span>
+                </a>
+                <a href="#signs-section" class="pf-cat-pill" data-category="signs">
+                    <i class="fas fa-sign-hanging"></i><span>Signage</span>
+                </a>
+            </div>
         </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="pf-scroll-cue">
+        <span>Explore</span>
+        <div class="pf-scroll-cue-line"></div>
     </div>
 </section>
 
-<!-- Portfolio Sections by Service Type -->
-<section class="portfolio-main">
-    <div class="container">
-        
-        <!-- Websites Section -->
-        <div class="portfolio-service-section" id="websites-section">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Websites</span>
-                <h2 class="section-title">Web <span class="gradient-text">Development</span></h2>
-                <p class="section-description">Custom websites that drive results</p>
-            </div>
-            
-            <div class="portfolio-service-grid" id="websites-grid">
-                <!-- Loaded via JavaScript -->
-            </div>
-        </div>
-
-        <!-- Logos Section -->
-        <div class="portfolio-service-section" id="logos-section">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Logos</span>
-                <h2 class="section-title">Brand <span class="gradient-text">Identity</span></h2>
-                <p class="section-description">Memorable logos that define brands</p>
-            </div>
-            
-            <div class="portfolio-service-grid" id="logos-grid">
-                <!-- Loaded via JavaScript -->
-            </div>
-        </div>
-
-        <!-- Business Materials Section -->
-        <div class="portfolio-service-section" id="materials-section">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Business Materials</span>
-                <h2 class="section-title">Print <span class="gradient-text">Design</span></h2>
-                <p class="section-description">Professional materials that make an impact</p>
-            </div>
-            
-            <div class="portfolio-service-grid" id="materials-grid">
-                <!-- Loaded via JavaScript -->
-            </div>
-        </div>
-
-        <!-- Signs Section -->
-        <div class="portfolio-service-section" id="signs-section">
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Signage</span>
-                <h2 class="section-title">Custom <span class="gradient-text">Signs</span></h2>
-                <p class="section-description">Eye-catching signage solutions</p>
-            </div>
-            
-            <div class="portfolio-service-grid" id="signs-grid">
-                <!-- Loaded via JavaScript -->
-            </div>
-        </div>
-
+<!-- ═══════════════════════════════════════
+     MARQUEE DIVIDER
+═══════════════════════════════════════ -->
+<div class="pf-marquee">
+    <div class="pf-marquee-track">
+        <span>Websites</span><span class="pf-marquee-dot">◆</span>
+        <span>Brand Identity</span><span class="pf-marquee-dot">◆</span>
+        <span>Print Design</span><span class="pf-marquee-dot">◆</span>
+        <span>Custom Signage</span><span class="pf-marquee-dot">◆</span>
+        <span>E-Commerce</span><span class="pf-marquee-dot">◆</span>
+        <span>Digital Marketing</span><span class="pf-marquee-dot">◆</span>
+        <span>Websites</span><span class="pf-marquee-dot">◆</span>
+        <span>Brand Identity</span><span class="pf-marquee-dot">◆</span>
+        <span>Print Design</span><span class="pf-marquee-dot">◆</span>
+        <span>Custom Signage</span><span class="pf-marquee-dot">◆</span>
+        <span>E-Commerce</span><span class="pf-marquee-dot">◆</span>
+        <span>Digital Marketing</span><span class="pf-marquee-dot">◆</span>
     </div>
-</section>
+</div>
 
-<!-- Project Detail Modal -->
-<div class="project-modal" id="project-modal">
-    <div class="project-modal-overlay"></div>
-    <div class="project-modal-container">
-        <button class="project-modal-close">
+<!-- ═══════════════════════════════════════
+     PORTFOLIO SECTIONS BY SERVICE
+═══════════════════════════════════════ -->
+<main class="pf-main">
+
+    <!-- ——— Websites Section ——— -->
+    <section class="pf-section pf-section--cream" id="websites-section">
+        <div class="container">
+            <div class="pf-section-header" data-pf-reveal>
+                <span class="pf-section-number">01</span>
+                <div class="pf-section-label">
+                    <span class="pf-section-tag">Websites</span>
+                    <h2 class="pf-section-title">Web <em>Development</em></h2>
+                </div>
+                <p class="pf-section-desc">Custom-built websites that captivate, convert, and elevate brands to new heights.</p>
+            </div>
+            <div class="pf-grid" id="websites-grid"></div>
+        </div>
+    </section>
+
+    <!-- ——— Logos Section ——— -->
+    <section class="pf-section pf-section--white" id="logos-section">
+        <div class="container">
+            <div class="pf-section-header" data-pf-reveal>
+                <span class="pf-section-number">02</span>
+                <div class="pf-section-label">
+                    <span class="pf-section-tag">Logos</span>
+                    <h2 class="pf-section-title">Brand <em>Identity</em></h2>
+                </div>
+                <p class="pf-section-desc">Memorable marks that define brands and leave lasting impressions.</p>
+            </div>
+            <div class="pf-grid" id="logos-grid"></div>
+        </div>
+    </section>
+
+    <!-- ——— Business Materials Section ——— -->
+    <section class="pf-section pf-section--cream" id="materials-section">
+        <div class="container">
+            <div class="pf-section-header" data-pf-reveal>
+                <span class="pf-section-number">03</span>
+                <div class="pf-section-label">
+                    <span class="pf-section-tag">Business Materials</span>
+                    <h2 class="pf-section-title">Print <em>Design</em></h2>
+                </div>
+                <p class="pf-section-desc">Professional collateral that communicates quality at every touchpoint.</p>
+            </div>
+            <div class="pf-grid" id="materials-grid"></div>
+        </div>
+    </section>
+
+    <!-- ——— Signs Section ——— -->
+    <section class="pf-section pf-section--white" id="signs-section">
+        <div class="container">
+            <div class="pf-section-header" data-pf-reveal>
+                <span class="pf-section-number">04</span>
+                <div class="pf-section-label">
+                    <span class="pf-section-tag">Signage</span>
+                    <h2 class="pf-section-title">Custom <em>Signs</em></h2>
+                </div>
+                <p class="pf-section-desc">Eye-catching signage that extends your brand into the physical world.</p>
+            </div>
+            <div class="pf-grid" id="signs-grid"></div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     PROJECT MODAL (slide-in panel)
+═══════════════════════════════════════ -->
+<div class="pf-modal" id="project-modal">
+    <div class="pf-modal-overlay"></div>
+    <div class="pf-modal-panel">
+        <button class="pf-modal-close" aria-label="Close">
             <i class="fas fa-times"></i>
         </button>
-        
-        <div class="project-modal-content">
-            <!-- Content loaded dynamically -->
+        <div class="pf-modal-body">
+            <!-- Dynamically populated -->
         </div>
     </div>
 </div>
 
-<!-- Image Lightbox -->
-<div class="lightbox" id="lightbox">
-    <div class="lightbox-overlay"></div>
-    <button class="lightbox-close"><i class="fas fa-times"></i></button>
-    <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
-    <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
-    <div class="lightbox-content">
+<!-- ═══════════════════════════════════════
+     IMAGE LIGHTBOX
+═══════════════════════════════════════ -->
+<div class="pf-lightbox" id="lightbox">
+    <div class="pf-lightbox-overlay"></div>
+    <button class="pf-lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+    <button class="pf-lightbox-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+    <button class="pf-lightbox-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    <div class="pf-lightbox-stage">
         <img src="" alt="">
-        <div class="lightbox-caption"></div>
+        <div class="pf-lightbox-caption"></div>
     </div>
-    <div class="lightbox-counter"></div>
+    <div class="pf-lightbox-counter"></div>
 </div>
 
-<!-- CTA Section -->
-<section class="portfolio-cta-section">
+<!-- ═══════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════ -->
+<section class="section section-cta-block" id="pfCta">
     <div class="container">
-        <div class="cta-content" data-aos="zoom-in">
-            <h2>Ready to Start <span class="gradient-text">Your Project?</span></h2>
-            <p>Let's create something extraordinary together</p>
-            <div class="cta-buttons">
-                <a href="../index.html#contact" class="btn-primary btn-lg">
-                    <span>Start Your Project</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="tel:+19294176819" class="btn-secondary btn-lg">
-                    <span>Call Us Now</span>
-                    <i class="fas fa-phone"></i>
-                </a>
+        <div class="cta-card" data-pf-reveal>
+            <div class="cta-card-content">
+                <span class="section-tag">Ready?</span>
+                <h2 class="cta-title">Let's Build Something<br><em>Extraordinary</em> Together</h2>
+                <p class="cta-description">Whether you need a stunning website, a powerful e-commerce platform, or a complete digital strategy — we're ready when you are.</p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary btn-lg">
+                        <span>Start Your Project</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="tel:+19294176819" class="btn btn-ghost btn-lg">
+                        <i class="fas fa-phone"></i>
+                        <span>(929) 417-6819</span>
+                    </a>
+                </div>
             </div>
+            <div class="cta-card-accent"></div>
         </div>
     </div>
 </section>
 
-<!-- Modern Premium Footer -->
-<footer class="footer-modern">
-    <div class="footer-modern-main">
-        <div class="container">
-            <div class="footer-modern-grid">
-                <div class="footer-modern-brand">
-                    <a href="../index.html" class="footer-logo">
-                        <div class="footer-logo-image">
-                            <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
-                        </div>
-                        <div class="footer-logo-text">
-                            <span class="footer-logo-main">Elan's</span>
-                            <span class="footer-logo-sub">Tech World</span>
-                        </div>
-                    </a>
-                    <p class="footer-brand-description">
-                        Transforming businesses through innovative technology solutions.
-                    </p>
-                    
-                    <div class="footer-social">
-                        <a href="https://www.instagram.com/elan_tech_world/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+<!-- ═══════════════════════════════════════
+     FOOTER (same as index.html)
+═══════════════════════════════════════ -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="../index.html" class="logo">
+                    <div class="logo-mark">
+                        <img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World">
                     </div>
-                </div>
-
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Quick Links</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="../index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Services</a></li>
-                        <li><a href="../index.html#why-us"><i class="fas fa-chevron-right"></i> Why Choose Us</a></li>
-                        <li><a href="projects.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Our Services</h4>
-                    <ul class="footer-links-list">
-                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Web Development</a></li>
-                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> E-commerce Solutions</a></li>
-                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
-                        <li><a href="../index.html#services"><i class="fas fa-chevron-right"></i> Custom Signage</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-modern-column">
-                    <h4 class="footer-column-title">Get In Touch</h4>
-                    <ul class="footer-contact-list">
-                        <li>
-                            <div class="footer-contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Location</span>
-                                <span class="footer-contact-value">New York, NY</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="footer-contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Phone</span>
-                                <a href="tel:+19294176819" class="footer-contact-value">(929) 417-6819</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="footer-contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="footer-contact-content">
-                                <span class="footer-contact-label">Email</span>
-                                <a href="mailto:elan@elanstechworld.com" class="footer-contact-value">elan@elanstechworld.com</a>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="logo-type">
+                        <span class="logo-name">Elan's</span>
+                        <span class="logo-descriptor">Tech World</span>
+                    </div>
+                </a>
+                <p class="footer-tagline">Premium digital solutions crafted with precision and care. Based in New York City.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/elan_tech_world/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="footer-modern-bottom">
-        <div class="container">
-            <div class="footer-bottom-content">
-                <div class="footer-copyright">
-                    <p>&copy; 2025 <span class="gradient-text">Elan's Tech World</span>. All Rights Reserved.</p>
-                </div>
-                
-                <div class="footer-legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <span class="footer-divider">|</span>
-                    <a href="#">Terms of Service</a>
-                </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="whyus.html">Why Choose Us</a></li>
+                    <li><a href="projects.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
 
-                <div class="footer-crafted">
-                    <p>Crafted with <i class="fas fa-heart"></i> in NYC</p>
-                </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Web Development</a></li>
+                    <li><a href="services.html">E-commerce</a></li>
+                    <li><a href="services.html">Digital Marketing</a></li>
+                    <li><a href="services.html">Custom Signage</a></li>
+                    <li><a href="services.html">POS Systems</a></li>
+                    <li><a href="services.html">Property Management</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-map-marker-alt"></i><span>New York, NY</span></li>
+                    <li><i class="fas fa-phone"></i><a href="tel:+19294176819">(929) 417-6819</a></li>
+                    <li><i class="fas fa-envelope"></i><a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a></li>
+                </ul>
             </div>
         </div>
-    </div>
 
-    <div class="footer-bg-gradient"></div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Elan's Tech World. All Rights Reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p class="footer-crafted">Crafted with <i class="fas fa-heart"></i> in NYC</p>
+        </div>
+    </div>
 </footer>
 
-<a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+<!-- Back to Top -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M9 15V3M9 3L3 9M9 3L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</a>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Scripts: Main site JS (handles header, mobile menu, footer, loader) -->
 <script src="../js/script.js"></script>
+<!-- Portfolio-specific JS -->
 <script src="../js/portfolio.js"></script>
 </body>
 </html>
