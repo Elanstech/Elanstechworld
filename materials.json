@@ -449,7 +449,7 @@
       "gallery": [
         "../assets/materials/evianotebook.jpeg",
         "../assets/materials/evianoteinside.jpeg",
-        "../assets/materials/evianotebookback.jprg"
+        "../assets/materials/evianotebookback.jpeg"
       ],
       "year": "2025",
       "duration": "2 weeks",
@@ -537,7 +537,7 @@
       "coverImage": "../assets/materials/eviavoucher.jpeg",
       "gallery": [
         "../assets/materials/eviavoucher.jpeg",
-        "../assets/materials/eviavoucherback.ipeg"
+        "../assets/materials/eviavoucherback.jpeg"
       ],
       "year": "2025",
       "duration": "1 week",
