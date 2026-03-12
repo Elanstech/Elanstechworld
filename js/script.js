@@ -39,6 +39,116 @@ class Loader {
   }
 }
 
+// ─── HEADER ───────────────────────────────────────────────────
+class Header {
+  constructor() {
+    this.header = $('#header');
+    this.menuToggle = $('#menuToggle');
+    this.mobileMenu = $('#mobileMenu');
+    this.navLinks = $$('.nav-link');
+    this.mobileLinks = $$('.mobile-nav-link');
+  }
+
+  init() {
+    if (!this.header) return;
+
+    this.onScroll();
+    window.addEventListener('scroll', throttle(() => this.onScroll(), 60));
+
+    // Mobile menu
+    this.menuToggle?.addEventListener('click', () => this.toggleMobile());
+    $('.mobile-menu-overlay')?.addEventListener('click', () => this.closeMobile());
+    this.mobileLinks.forEach(l => l.addEventListener('click', () => this.closeMobile()));
+
+    // Smooth scroll for hash links
+    [...this.navLinks, ...this.mobileLinks].forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (href?.startsWith('#')) {
+          e.preventDefault();
+          const target = $(href);
+          if (target) {
+            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Scroll spy
+    this.setupScrollSpy();
+  }
+
+  onScroll() {
+    this.header.classList.toggle('scrolled', window.scrollY > 60);
+  }
+
+  toggleMobile() {
+    const isActive = this.mobileMenu.classList.toggle('active');
+    this.menuToggle.classList.toggle('active');
+    document.body.style.overflow = isActive ? 'hidden' : '';
+  }
+
+  closeMobile() {
+    this.mobileMenu.classList.remove('active');
+    this.menuToggle.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  setupScrollSpy() {
+    const sections = $$('section[id]');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          [...this.navLinks, ...this.mobileLinks].forEach(l => {
+            l.classList.toggle('active', l.getAttribute('href')?.includes(`#${id}`) || false);
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
+    sections.forEach(s => obs.observe(s));
+  }
+}
+
+// ─── BACK TO TOP ──────────────────────────────────────────────
+class BackToTop {
+  constructor() {
+    this.btn = $('#backToTop');
+  }
+
+  init() {
+    if (!this.btn) return;
+    window.addEventListener('scroll', throttle(() => {
+      this.btn.classList.toggle('visible', window.scrollY > 500);
+    }, 200));
+
+    this.btn.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+}
+
+// ─── SCROLL ANIMATIONS ───────────────────────────────────────
+class ScrollAnimations {
+  init() {
+    const elements = $$('[data-animate]');
+    if (!elements.length) return;
+
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseInt(entry.target.dataset.delay || 0);
+          setTimeout(() => entry.target.classList.add('in-view'), delay);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    elements.forEach(el => obs.observe(el));
+  }
+}
+
 // ─── HERO VIDEO + PARALLAX ───────────────────────────────────
 class HeroVideo {
   constructor() {
@@ -112,93 +222,6 @@ class HeroVideo {
       this.targetY = window.scrollY;
     }, { passive: true });
 
-    this.animate();
-  }
-
-  animate() {
-    // Lerp toward target for silky interpolation
-    this.currentY += (this.targetY - this.currentY) * this.smoothing;
-
-    const heroRect = this.hero.getBoundingClientRect();
-    const heroBottom = heroRect.bottom;
-
-    // Only apply parallax while hero is visible
-    if (heroBottom > 0) {
-      const offset = this.currentY * this.speed;
-      this.media.style.transform = `translate3d(0, ${offset}px, 0)`;
-    }
-
-    requestAnimationFrame(() => this.animate());
-  }
-}
-
-// ─── BACK TO TOP ──────────────────────────────────────────────
-class BackToTop {
-  constructor() {
-    this.btn = $('#backToTop');
-  }
-
-  init() {
-    if (!this.btn) return;
-    window.addEventListener('scroll', throttle(() => {
-      this.btn.classList.toggle('visible', window.scrollY > 500);
-    }, 200));
-
-    this.btn.addEventListener('click', e => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-}
-
-// ─── SCROLL ANIMATIONS ───────────────────────────────────────
-class ScrollAnimations {
-  init() {
-    const elements = $$('[data-animate]');
-    if (!elements.length) return;
-
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const delay = parseInt(entry.target.dataset.delay || 0);
-          setTimeout(() => entry.target.classList.add('in-view'), delay);
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
-    elements.forEach(el => obs.observe(el));
-  }
-}
-
-// ─── HERO VIDEO + PARALLAX ───────────────────────────────────
-class HeroVideo {
-  constructor() {
-    this.video = $('.hero-video');
-    this.media = $('#heroMedia');
-    this.hero = $('#hero');
-    this.ticking = false;
-    this.currentY = 0;
-    this.targetY = 0;
-    this.speed = 0.35;          // Parallax intensity (0 = none, 1 = full scroll)
-    this.smoothing = 0.08;      // Lerp factor — lower = silkier
-  }
-
-  init() {
-    // Video autoplay
-    if (this.video) {
-      this.video.muted = true;
-      this.video.playsInline = true;
-      this.video.play().catch(() => {
-        document.addEventListener('click', () => this.video.play(), { once: true });
-      });
-    }
-
-    // Parallax — only if hero media exists
-    if (!this.media || !this.hero) return;
-
-    // Use rAF loop for butter-smooth parallax
-    window.addEventListener('scroll', () => { this.targetY = window.scrollY; }, { passive: true });
     this.animate();
   }
 
