@@ -39,74 +39,96 @@ class Loader {
   }
 }
 
-// ─── HEADER ───────────────────────────────────────────────────
-class Header {
+// ─── HERO VIDEO + PARALLAX ───────────────────────────────────
+class HeroVideo {
   constructor() {
-    this.header = $('#header');
-    this.menuToggle = $('#menuToggle');
-    this.mobileMenu = $('#mobileMenu');
-    this.navLinks = $$('.nav-link');
-    this.mobileLinks = $$('.mobile-nav-link');
+    this.video = $('.hero-video');
+    this.media = $('#heroMedia');
+    this.hero = $('#hero');
+    this.ticking = false;
+    this.currentY = 0;
+    this.targetY = 0;
+    this.speed = 0.35;          // Parallax intensity (0 = none, 1 = full scroll)
+    this.smoothing = 0.08;      // Lerp factor — lower = silkier
   }
 
   init() {
-    if (!this.header) return;
+    // ── Video autoplay — force on ALL devices including mobile ──
+    if (this.video) {
+      this.video.muted = true;
+      this.video.playsInline = true;
+      this.video.setAttribute('playsinline', '');
+      this.video.setAttribute('webkit-playsinline', '');
+      this.video.setAttribute('muted', '');
+      this.video.load();
 
-    this.onScroll();
-    window.addEventListener('scroll', throttle(() => this.onScroll(), 60));
+      // Attempt immediate play
+      const playPromise = this.video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // iOS / Android safety net — retry on first user interaction
+          const events = ['touchstart', 'click', 'scroll'];
+          const playOnce = () => {
+            this.video.play().catch(() => {});
+            events.forEach(evt =>
+              document.removeEventListener(evt, playOnce)
+            );
+          };
+          events.forEach(evt =>
+            document.addEventListener(evt, playOnce, { once: true, passive: true })
+          );
+        });
+      }
 
-    // Mobile menu
-    this.menuToggle?.addEventListener('click', () => this.toggleMobile());
-    $('.mobile-menu-overlay')?.addEventListener('click', () => this.closeMobile());
-    this.mobileLinks.forEach(l => l.addEventListener('click', () => this.closeMobile()));
+      // Resume video if user tabs away and comes back
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && this.video.paused) {
+          this.video.play().catch(() => {});
+        }
+      });
 
-    // Smooth scroll for hash links
-    [...this.navLinks, ...this.mobileLinks].forEach(link => {
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (href?.startsWith('#')) {
-          e.preventDefault();
-          const target = $(href);
-          if (target) {
-            window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      // Resume video after phone lock/unlock or app switch
+      window.addEventListener('focus', () => {
+        if (this.video.paused) {
+          this.video.play().catch(() => {});
+        }
+      });
+
+      // Some mobile browsers pause on resize/orientation change
+      window.addEventListener('orientationchange', () => {
+        setTimeout(() => {
+          if (this.video.paused) {
+            this.video.play().catch(() => {});
           }
-        }
+        }, 300);
       });
-    });
+    }
 
-    // Scroll spy
-    this.setupScrollSpy();
+    // ── Parallax — only if hero media exists ──
+    if (!this.media || !this.hero) return;
+
+    // Use rAF loop for butter-smooth parallax
+    window.addEventListener('scroll', () => {
+      this.targetY = window.scrollY;
+    }, { passive: true });
+
+    this.animate();
   }
 
-  onScroll() {
-    this.header.classList.toggle('scrolled', window.scrollY > 60);
-  }
+  animate() {
+    // Lerp toward target for silky interpolation
+    this.currentY += (this.targetY - this.currentY) * this.smoothing;
 
-  toggleMobile() {
-    const isActive = this.mobileMenu.classList.toggle('active');
-    this.menuToggle.classList.toggle('active');
-    document.body.style.overflow = isActive ? 'hidden' : '';
-  }
+    const heroRect = this.hero.getBoundingClientRect();
+    const heroBottom = heroRect.bottom;
 
-  closeMobile() {
-    this.mobileMenu.classList.remove('active');
-    this.menuToggle.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+    // Only apply parallax while hero is visible
+    if (heroBottom > 0) {
+      const offset = this.currentY * this.speed;
+      this.media.style.transform = `translate3d(0, ${offset}px, 0)`;
+    }
 
-  setupScrollSpy() {
-    const sections = $$('section[id]');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          [...this.navLinks, ...this.mobileLinks].forEach(l => {
-            l.classList.toggle('active', l.getAttribute('href')?.includes(`#${id}`) || false);
-          });
-        }
-      });
-    }, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
-    sections.forEach(s => obs.observe(s));
+    requestAnimationFrame(() => this.animate());
   }
 }
 
