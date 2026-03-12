@@ -840,6 +840,12 @@ p {
   gap: var(--sp-16);
 }
 
+@media (max-width: 768px) {
+  .hero-media {
+    inset: -30% 0;         
+  }
+}
+
 /* Scroll Cue */
 .scroll-cue {
   position: absolute;
