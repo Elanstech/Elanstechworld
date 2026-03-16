@@ -617,6 +617,29 @@ class TestimonialsCarousel {
   }
 }
 
+// ─── CONTACT SECTION ───────────────────
+class ElfsightLoader {
+  constructor() {
+    this.scriptUrl = 'https://static.elfsight.com/platform/platform.js';
+    this.loaded = false;
+  }
+
+  init() {
+    // Check if already loaded by another embed snippet
+    if (document.querySelector(`script[src="${this.scriptUrl}"]`)) {
+      this.loaded = true;
+      return;
+    }
+
+    // Load once — all widgets with data-elfsight-app-lazy will auto-initialize
+    const script = document.createElement('script');
+    script.src = this.scriptUrl;
+    script.async = true;
+    script.onload = () => { this.loaded = true; };
+    document.body.appendChild(script);
+  }
+}
+
 // ─── APPLICATION ──────────────────────────────────────────────
 class App {
   constructor() {
@@ -636,6 +659,8 @@ class App {
       resultsSlider: new ResultsSlider(),
       whyUsSlider: new WhyUsSlider(),
       testimonialsCarousel: new TestimonialsCarousel(),
+      testimonialsCarousel: new ElfsightLoader()
+
     };
   }
 
