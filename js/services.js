@@ -1,278 +1,353 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- *  SERVICES PAGE — Premium Interactions
- *  Apple-style scroll reveals · Chrome mouse-tracking · Counters
+ *  SERVICES HUB PAGE — Full Redesign Interactions
+ *  3D card tilt · Chrome mouse-track · Particle field ·
+ *  Gradient mesh · Timeline progress · Counter animation ·
+ *  Orbit icons · Cursor glow · Card glow follow ·
+ *  Magnetic buttons · Smooth scroll · Perf monitor
  * ═══════════════════════════════════════════════════════════════
  */
 
-// ─── SCROLL REVEAL — APPLE MACBOOK PRO STYLE ─────────────────
-// Elements rise smoothly into view as you scroll, with staggered
-// feature pills and icon pop animations triggered via CSS classes.
-class ServiceScrollReveal {
-  constructor() {
-    this.cards = document.querySelectorAll('[data-scroll-reveal]');
-  }
+const sQ = (s, p = document) => p.querySelector(s);
+const sQA = (s, p = document) => [...p.querySelectorAll(s)];
+const sLerp = (a, b, t) => a + (b - a) * t;
+const sClamp = (v, mn, mx) => Math.min(Math.max(v, mn), mx);
+const sMap = (v, a, b, c, d) => c + ((v - a) / (b - a)) * (d - c);
+const sThrottle = (fn, ms) => { let l = 0; return (...a) => { const n = Date.now(); if (n - l >= ms) { l = n; fn(...a); } }; };
 
+// ─── SCROLL REVEAL ────────────────────────────────────────────
+class SrvScrollReveal {
+  constructor() { this.els = sQA('[data-srv-reveal]'); this.seen = new Set(); }
   init() {
-    if (!this.cards.length) return;
-
-    // Use IntersectionObserver with a generous threshold
-    // so reveal starts as soon as the card enters the lower viewport
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
+    if (!this.els.length) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !this.seen.has(e.target)) {
+          this.seen.add(e.target);
+          const d = parseInt(e.target.dataset.srvDelay || 0);
+          setTimeout(() => e.target.classList.add('srv-visible'), d);
+          obs.unobserve(e.target);
         }
       });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -60px 0px'
-    });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    this.els.forEach(el => obs.observe(el));
+  }
+}
 
-    this.cards.forEach(card => observer.observe(card));
+// ─── PARTICLE FIELD ───────────────────────────────────────────
+class SrvParticleField {
+  constructor() { this.container = sQ('#srvParticles'); this.count = 35; }
+  init() {
+    if (!this.container) return;
+    if (window.innerWidth < 768) this.count = 14;
+    else if (window.innerWidth < 1024) this.count = 22;
+    for (let i = 0; i < this.count; i++) this.spawn();
+  }
+  spawn() {
+    const el = document.createElement('div');
+    el.className = 'srv-particle';
+    const x = Math.random() * 100, y = 40 + Math.random() * 60;
+    const sz = 1.5 + Math.random() * 3.5, dur = 9 + Math.random() * 18;
+    const delay = Math.random() * dur;
+    const dx = -60 + Math.random() * 120, dy = -(80 + Math.random() * 280);
+    const peak = 0.08 + Math.random() * 0.3;
+    const colors = ['rgba(232,101,26,.5)','rgba(244,147,90,.4)','rgba(255,215,0,.25)','rgba(30,58,110,.35)','rgba(248,245,240,.15)'];
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    el.style.cssText = `left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;background:${c};--dur:${dur}s;--delay:-${delay}s;--dx:${dx}px;--dy:${dy}px;--peak:${peak};`;
+    this.container.appendChild(el);
   }
 }
 
 // ─── CHROME TEXT MOUSE-TRACKING ───────────────────────────────
-// The mirror "Services" title shifts its gradient angle based on
-// cursor position — like light reflecting off polished metal.
-class ChromeMouseTrack {
-  constructor() {
-    this.el = document.getElementById('chromeTitle');
-    this.hero = document.querySelector('.srv-hero');
-    this.rafId = null;
-    this.mouseX = 0.5;
-    this.mouseY = 0.5;
-    this.currentX = 0.5;
-    this.currentY = 0.5;
-  }
-
+class SrvChromeTrack {
+  constructor() { this.el = sQ('#chromeTitle'); this.hero = sQ('.srv-hero'); this.mx = .5; this.my = .5; this.cx = .5; this.cy = .5; }
   init() {
     if (!this.el || !this.hero) return;
-
-    // Track mouse inside the hero section
-    this.hero.addEventListener('mousemove', (e) => {
-      const rect = this.hero.getBoundingClientRect();
-      this.mouseX = (e.clientX - rect.left) / rect.width;
-      this.mouseY = (e.clientY - rect.top) / rect.height;
+    this.hero.addEventListener('mousemove', e => {
+      const r = this.hero.getBoundingClientRect();
+      this.mx = (e.clientX - r.left) / r.width;
+      this.my = (e.clientY - r.top) / r.height;
     });
-
-    // Also respond to device orientation on mobile
     if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', (e) => {
-        if (e.gamma !== null && e.beta !== null) {
-          // gamma: -90 to 90 (left/right tilt)
-          // beta: -180 to 180 (front/back tilt)
-          this.mouseX = (e.gamma + 90) / 180;
-          this.mouseY = Math.min(Math.max((e.beta + 30) / 120, 0), 1);
-        }
+      window.addEventListener('deviceorientation', e => {
+        if (e.gamma !== null) { this.mx = (e.gamma + 90) / 180; this.my = sClamp((e.beta + 30) / 120, 0, 1); }
       });
     }
-
     this.animate();
   }
-
   animate() {
-    // Lerp for smooth tracking
-    this.currentX += (this.mouseX - this.currentX) * 0.06;
-    this.currentY += (this.mouseY - this.currentY) * 0.06;
-
-    // Map position to gradient angle (90–270 deg range)
-    const angle = 90 + this.currentX * 180;
-
-    // Map position to background-position for the shimmer
-    const bgX = this.currentX * 100;
-    const bgY = this.currentY * 100;
-
-    this.el.style.background = `linear-gradient(
-      ${angle}deg,
-      #c0c0c0 0%,
-      #fafafa 15%,
-      #909090 28%,
-      #f8f8f8 42%,
-      #a8a8a8 50%,
-      #f0f0f0 58%,
-      #b8b8b8 72%,
-      #fafafa 85%,
-      #a0a0a0 100%
-    )`;
+    this.cx += (this.mx - this.cx) * 0.06;
+    this.cy += (this.my - this.cy) * 0.06;
+    const angle = 90 + this.cx * 180;
+    const bgX = this.cx * 100, bgY = this.cy * 100;
+    this.el.style.background = `linear-gradient(${angle}deg,#c0c0c0 0%,#fafafa 15%,#909090 28%,#f8f8f8 42%,#a8a8a8 50%,#f0f0f0 58%,#b8b8b8 72%,#fafafa 85%,#a0a0a0 100%)`;
     this.el.style.backgroundSize = '200% 200%';
     this.el.style.backgroundPosition = `${bgX}% ${bgY}%`;
     this.el.style.webkitBackgroundClip = 'text';
     this.el.style.backgroundClip = 'text';
     this.el.style.webkitTextFillColor = 'transparent';
     this.el.style.color = 'transparent';
-
-    this.rafId = requestAnimationFrame(() => this.animate());
+    requestAnimationFrame(() => this.animate());
   }
+}
 
-  destroy() {
-    if (this.rafId) cancelAnimationFrame(this.rafId);
+// ─── GRADIENT MESH MOUSE RESPONSE ─────────────────────────────
+class SrvMeshResponse {
+  constructor() { this.mesh = sQ('#srvMesh'); this.hero = sQ('#srv-hero'); this.mx = .5; this.my = .5; this.cx = .5; this.cy = .5; }
+  init() {
+    if (!this.mesh || !this.hero || window.innerWidth < 768) return;
+    this.hero.addEventListener('mousemove', e => {
+      const r = this.hero.getBoundingClientRect();
+      this.mx = (e.clientX - r.left) / r.width;
+      this.my = (e.clientY - r.top) / r.height;
+    });
+    this.animate();
+  }
+  animate() {
+    this.cx = sLerp(this.cx, this.mx, 0.02);
+    this.cy = sLerp(this.cy, this.my, 0.02);
+    const x = 20 + this.cx * 30, y = 30 + this.cy * 30;
+    this.mesh.style.background = `conic-gradient(from ${this.cx * 360}deg at ${x}% ${y}%,rgba(232,101,26,.12),rgba(30,58,110,.18),rgba(244,147,90,.08),rgba(27,42,74,.12),rgba(232,101,26,.12))`;
+    requestAnimationFrame(() => this.animate());
   }
 }
 
 // ─── COUNTER ANIMATION ────────────────────────────────────────
-// Counts up numbers when they scroll into view (hero stats)
-class ServiceCounters {
-  constructor() {
-    this.els = document.querySelectorAll('[data-count]');
-  }
-
+class SrvCounters {
+  constructor() { this.els = sQA('[data-count]'); this.done = new Set(); }
   init() {
     if (!this.els.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.count(entry.target);
-          observer.unobserve(entry.target);
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !this.done.has(e.target)) {
+          this.done.add(e.target);
+          this.count(e.target);
+          obs.unobserve(e.target);
         }
       });
     }, { threshold: 0.5 });
-
-    this.els.forEach(el => observer.observe(el));
+    this.els.forEach(el => obs.observe(el));
   }
-
   count(el) {
-    const target = parseInt(el.dataset.count);
-    const suffix = el.dataset.suffix || '';
-    const duration = 2200;
-    const start = performance.now();
-
-    const step = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      // easeOutExpo for dramatic fast-then-slow
-      const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+    const target = parseInt(el.dataset.count), suffix = el.dataset.suffix || '';
+    const dur = 2200, start = performance.now();
+    const step = now => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
       el.textContent = Math.round(target * eased) + suffix;
-      if (progress < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(step);
     };
-
     requestAnimationFrame(step);
   }
 }
 
-// ─── PARALLAX ELEMENTS ────────────────────────────────────────
-// Subtle parallax on service card icons as you scroll
-class ServiceParallax {
-  constructor() {
-    this.icons = document.querySelectorAll('.srv-card-icon-wrap');
-    this.ticking = false;
-  }
-
+// ─── 3D CARD TILT ─────────────────────────────────────────────
+// Service showcase cards tilt toward the cursor on hover with
+// a perspective effect and the glow layer follows the mouse.
+class SrvCardTilt {
+  constructor() { this.cards = sQA('[data-tilt]'); }
   init() {
-    if (!this.icons.length) return;
-    window.addEventListener('scroll', () => {
-      if (!this.ticking) {
-        requestAnimationFrame(() => this.update());
-        this.ticking = true;
-      }
-    }, { passive: true });
-  }
+    if (!this.cards.length || window.innerWidth < 768) return;
+    this.cards.forEach(card => {
+      const glow = sQ('.srv-card-glow', card);
 
-  update() {
-    const scrollY = window.scrollY;
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        const rotX = y * -8, rotY = x * 8;
+        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+        card.style.transition = 'transform .08s linear, border-color .5s ease, box-shadow .5s ease';
 
-    this.icons.forEach(icon => {
-      const rect = icon.getBoundingClientRect();
-      const centerY = rect.top + rect.height / 2;
-      const viewportCenter = window.innerHeight / 2;
-      const distance = (centerY - viewportCenter) / window.innerHeight;
-
-      // Subtle float effect (-10px to +10px)
-      const offset = distance * -15;
-      icon.style.transform = `translateY(${offset}px)`;
-    });
-
-    this.ticking = false;
-  }
-}
-
-// ─── HORIZONTAL SCROLL HINT ──────────────────────────────────
-// Auto-scroll the process track slightly to hint at more content
-class ProcessScrollHint {
-  constructor() {
-    this.track = document.querySelector('.srv-process-track');
-  }
-
-  init() {
-    if (!this.track) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.hint();
-          observer.unobserve(entry.target);
+        // Move glow to cursor
+        if (glow) {
+          const px = ((e.clientX - r.left) / r.width) * 100;
+          const py = ((e.clientY - r.top) / r.height) * 100;
+          glow.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(232,101,26,.08) 0%, transparent 55%)`;
         }
       });
-    }, { threshold: 0.3 });
 
-    observer.observe(this.track);
-  }
-
-  hint() {
-    // Scroll right slightly then back to hint there's more
-    setTimeout(() => {
-      this.track.scrollTo({ left: 80, behavior: 'smooth' });
-      setTimeout(() => {
-        this.track.scrollTo({ left: 0, behavior: 'smooth' });
-      }, 600);
-    }, 400);
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+        card.style.transition = 'transform .5s cubic-bezier(.25,.46,.45,.94), border-color .5s ease, box-shadow .5s ease';
+        if (glow) glow.style.background = '';
+      });
+    });
   }
 }
 
-// ─── FEATURE HOVER RIPPLE ────────────────────────────────────
-// Adds a subtle ripple to feature items on hover
-class FeatureHoverEffect {
+// ─── TIMELINE PROGRESS ────────────────────────────────────────
+class SrvTimelineProgress {
+  constructor() { this.timeline = sQ('#srvTimeline'); this.bar = sQ('#timelineProgress'); this.steps = sQA('.srv-timeline-step'); }
   init() {
-    document.querySelectorAll('.srv-feature').forEach(feature => {
-      feature.addEventListener('mouseenter', function(e) {
-        const rect = this.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    if (!this.timeline || !this.bar) return;
 
+    const stepObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('srv-step-active'); });
+    }, { threshold: 0.5, rootMargin: '0px 0px -20% 0px' });
+    this.steps.forEach(s => stepObs.observe(s));
+
+    window.addEventListener('scroll', sThrottle(() => this.update(), 30), { passive: true });
+  }
+  update() {
+    const r = this.timeline.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const start = r.top - vh * 0.7;
+    const end = r.top + r.height - vh * 0.3;
+    const range = end - start;
+    let p = 0;
+    if (start < 0) p = Math.min(Math.abs(start) / range, 1);
+    this.bar.style.height = `${p * 100}%`;
+  }
+}
+
+// ─── CURSOR GLOW ──────────────────────────────────────────────
+class SrvCursorGlow {
+  constructor() { this.hero = sQ('#srv-hero'); this.glow = null; this.mx = 0; this.my = 0; this.cx = 0; this.cy = 0; this.active = false; }
+  init() {
+    if (!this.hero || window.innerWidth < 768) return;
+    this.glow = document.createElement('div');
+    this.glow.style.cssText = `position:absolute;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(232,101,26,.07) 0%,transparent 65%);pointer-events:none;z-index:2;transform:translate(-50%,-50%);transition:opacity .3s ease;opacity:0;will-change:transform;`;
+    this.hero.appendChild(this.glow);
+    this.hero.addEventListener('mouseenter', () => { this.active = true; this.glow.style.opacity = '1'; });
+    this.hero.addEventListener('mouseleave', () => { this.active = false; this.glow.style.opacity = '0'; });
+    this.hero.addEventListener('mousemove', e => {
+      const r = this.hero.getBoundingClientRect();
+      this.mx = e.clientX - r.left; this.my = e.clientY - r.top;
+    });
+    this.animate();
+  }
+  animate() {
+    if (this.active && this.glow) {
+      this.cx = sLerp(this.cx, this.mx, 0.07);
+      this.cy = sLerp(this.cy, this.my, 0.07);
+      this.glow.style.transform = `translate(${this.cx - 225}px, ${this.cy - 225}px)`;
+    }
+    requestAnimationFrame(() => this.animate());
+  }
+}
+
+// ─── MAGNETIC BUTTONS ─────────────────────────────────────────
+class SrvMagneticButtons {
+  constructor() { this.btns = sQA('.srv-hero-ctas .btn'); this.str = 0.28; }
+  init() {
+    if (!this.btns.length || window.innerWidth < 768) return;
+    this.btns.forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const dx = (e.clientX - r.left - r.width / 2) * this.str;
+        const dy = (e.clientY - r.top - r.height / 2) * this.str;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0,0)';
+        btn.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1)';
+        setTimeout(() => { btn.style.transition = ''; }, 400);
+      });
+    });
+  }
+}
+
+// ─── SMOOTH SCROLL ────────────────────────────────────────────
+class SrvSmoothScroll {
+  init() {
+    sQA('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (href === '#') return;
+        const t = sQ(href);
+        if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }
+      });
+    });
+  }
+}
+
+// ─── ORBIT PARALLAX ───────────────────────────────────────────
+// The orbit icons slow down / speed up slightly based on scroll
+// for a parallax depth effect.
+class SrvOrbitParallax {
+  constructor() { this.orbit = sQ('#srvOrbit'); this.icons = sQA('.srv-orbit-icon'); }
+  init() {
+    if (!this.orbit || !this.icons.length || window.innerWidth < 768) return;
+    window.addEventListener('scroll', sThrottle(() => {
+      const scrollY = window.scrollY;
+      const speed = 0.015;
+      this.icons.forEach((icon, i) => {
+        const offset = scrollY * speed * (i % 2 === 0 ? 1 : -1);
+        icon.style.marginTop = `${offset}px`;
+      });
+    }, 30), { passive: true });
+  }
+}
+
+// ─── CARD RIPPLE EFFECT ───────────────────────────────────────
+// Click ripple on service cards for satisfying feedback.
+class SrvCardRipple {
+  init() {
+    sQA('.srv-showcase-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const r = this.getBoundingClientRect();
+        const x = e.clientX - r.left, y = e.clientY - r.top;
         const ripple = document.createElement('span');
-        ripple.style.cssText = `
-          position: absolute;
-          width: 0; height: 0;
-          left: ${x}px; top: ${y}px;
-          background: rgba(232, 101, 26, 0.06);
-          border-radius: 50%;
-          transform: translate(-50%, -50%);
-          pointer-events: none;
-          animation: featureRipple 0.6s ease-out forwards;
-        `;
-
+        ripple.style.cssText = `position:absolute;width:0;height:0;left:${x}px;top:${y}px;background:rgba(232,101,26,.1);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:10;animation:srvRipple .6s ease-out forwards;`;
         this.style.position = 'relative';
         this.style.overflow = 'hidden';
         this.appendChild(ripple);
-
         setTimeout(() => ripple.remove(), 600);
       });
     });
-
-    // Add ripple keyframe if not already added
-    if (!document.getElementById('feature-ripple-style')) {
-      const style = document.createElement('style');
-      style.id = 'feature-ripple-style';
-      style.textContent = `
-        @keyframes featureRipple {
-          to { width: 300px; height: 300px; opacity: 0; }
-        }
-      `;
-      document.head.appendChild(style);
+    if (!document.getElementById('srv-ripple-style')) {
+      const s = document.createElement('style');
+      s.id = 'srv-ripple-style';
+      s.textContent = `@keyframes srvRipple{to{width:400px;height:400px;opacity:0;}}`;
+      document.head.appendChild(s);
     }
   }
 }
 
-// ─── INIT ─────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  new ServiceScrollReveal().init();
-  new ChromeMouseTrack().init();
-  new ServiceCounters().init();
-  new ServiceParallax().init();
-  new ProcessScrollHint().init();
-  new FeatureHoverEffect().init();
+// ─── PERFORMANCE MONITOR ──────────────────────────────────────
+class SrvPerfMonitor {
+  constructor() { this.frames = []; this.low = false; }
+  init() { this.measure(); setInterval(() => this.check(), 2500); }
+  measure() { this.frames.push(performance.now()); if (this.frames.length > 60) this.frames.shift(); requestAnimationFrame(() => this.measure()); }
+  check() {
+    if (this.frames.length < 10) return;
+    const r = this.frames.slice(-30);
+    const fps = (r.length - 1) / ((r[r.length - 1] - r[0]) / 1000);
+    if (fps < 28 && !this.low) { this.low = true; document.body.classList.add('srv-low-perf'); console.log('⚡ Services: reduced animations'); }
+  }
+}
 
-  console.log('✦ Services — Premium Edition loaded');
-});
+// ─── APPLICATION ──────────────────────────────────────────────
+class SrvApp {
+  constructor() {
+    this.modules = {
+      reveal:       new SrvScrollReveal(),
+      particles:    new SrvParticleField(),
+      chrome:       new SrvChromeTrack(),
+      mesh:         new SrvMeshResponse(),
+      counters:     new SrvCounters(),
+      cardTilt:     new SrvCardTilt(),
+      timeline:     new SrvTimelineProgress(),
+      cursorGlow:   new SrvCursorGlow(),
+      magnetic:     new SrvMagneticButtons(),
+      smoothScroll: new SrvSmoothScroll(),
+      orbitPx:      new SrvOrbitParallax(),
+      cardRipple:   new SrvCardRipple(),
+      perfMonitor:  new SrvPerfMonitor(),
+    };
+  }
+  init() {
+    Object.entries(this.modules).forEach(([name, mod]) => {
+      try { if (typeof mod.init === 'function') mod.init(); }
+      catch (err) { console.error(`[SRV:${name}]`, err); }
+    });
+    console.log('✦ Services Hub — Premium Edition loaded');
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => new SrvApp().init());
+} else {
+  new SrvApp().init();
+}
