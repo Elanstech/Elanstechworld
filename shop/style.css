@@ -310,18 +310,26 @@ ul,ol{list-style:none}
   position:relative;display:flex;align-items:center;justify-content:center;
   perspective:1200px;
 }
-.sh-hero-float{
-  position:relative;width:100%;max-width:440px;
+/* Video wrap */
+.sh-hero-video-wrap{
+  position:relative;width:100%;max-width:480px;
+  border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:0 40px 80px rgba(0,0,0,.2),0 0 0 1px rgba(255,255,255,.06);
   transform-style:preserve-3d;
   animation:heroFloat 7s ease-in-out infinite;
 }
 @keyframes heroFloat{
-  0%,100%{transform:translateY(0) rotateY(-3deg) rotateX(1deg)}
-  50%{transform:translateY(-18px) rotateY(3deg) rotateX(-1deg)}
+  0%,100%{transform:translateY(0) rotateY(-2deg) rotateX(1deg)}
+  50%{transform:translateY(-14px) rotateY(2deg) rotateX(-1deg)}
 }
-.sh-hero-float img{
-  width:100%;height:auto;border-radius:var(--r-xl);
-  filter:drop-shadow(0 40px 80px rgba(0,0,0,.15));
+.sh-hero-video{
+  width:100%;height:auto;display:block;
+  aspect-ratio:16/9;object-fit:cover;
+}
+.sh-hero-video-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.25) 100%);
+  pointer-events:none;border-radius:var(--r-xl);
 }
 
 /* Floating badges */
