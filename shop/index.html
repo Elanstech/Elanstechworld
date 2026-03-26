@@ -86,12 +86,21 @@
         <div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>
     </div>
     <div class="sh-cart-foot" id="shCartFoot" style="display:none">
+        <div style="display:flex;justify-content:space-between;font-size:.8125rem;color:var(--graphite);margin-bottom:6px">
+            <span>Subtotal</span><span id="shCartSub">$0</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.8125rem;color:var(--graphite);margin-bottom:6px">
+            <span>Shipping</span><span id="shCartShip">$9.99</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--steel);margin-bottom:12px">
+            <span>Tax</span><span>Calculated at checkout</span>
+        </div>
         <div class="sh-cart-total">
-            <span class="sh-cart-total-l">Subtotal</span>
+            <span class="sh-cart-total-l">Total</span>
             <span class="sh-cart-total-v" id="shCartTotal">$0</span>
         </div>
         <button class="sh-checkout-btn" id="shCheckout"><i class="fas fa-lock"></i> Checkout with Square</button>
-        <div class="sh-cart-secure"><i class="fas fa-shield-check"></i> Secured by Square</div>
+        <div class="sh-cart-secure"><i class="fas fa-shield-check"></i> Secured by Square · Tax added at checkout</div>
     </div>
 </div>
 
