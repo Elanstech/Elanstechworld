@@ -18,18 +18,24 @@ var cartItems=[];
 try{var sc=sessionStorage.getItem("sh_cart");if(sc)cartItems=JSON.parse(sc)}catch(e){}
 var SHIPPING={standard:{label:"Standard Shipping (3-5 days)",price:9.99},nyc:{label:"NYC Same-Day Delivery",price:79}};
 
-/* ═══ LOAD ALL JSON FILES ═══ */
+/* ═══ LOAD ALL JSON FILES (skips missing) ═══ */
 function loadProducts(cb){
-  var files=["json/iphones.json","data/macbooks.json","data/ipads.json","data/watches.json","data/airpods.json"];
-  Promise.all(files.map(function(f){return fetch(f).then(function(r){return r.json()})}))
-  .then(function(results){
+  var files=["json/iphones.json","json/macbooks.json","json/ipads.json","json/watches.json","json/airpods.json"];
+  Promise.all(files.map(function(f){
+    return fetch(f).then(function(r){
+      if(!r.ok) return [];
+      return r.json();
+    }).catch(function(){return []});
+  })).then(function(results){
     P=[];
-    results.forEach(function(arr){P=P.concat(arr)});
-    cb();
-  }).catch(function(err){
-    console.error("Failed to load products:",err);
-    var g=Q("#shGrid");
-    if(g)g.innerHTML='<div class="sh-empty"><i class="fas fa-exclamation-triangle"></i><p>Failed to load products. Please refresh.</p></div>';
+    results.forEach(function(arr){
+      if(Array.isArray(arr)) P=P.concat(arr);
+    });
+    if(P.length) cb();
+    else{
+      var g=Q("#shGrid");
+      if(g)g.innerHTML='<div class="sh-empty"><i class="fas fa-exclamation-triangle"></i><p>No products available. Please refresh.</p></div>';
+    }
   });
 }
 
