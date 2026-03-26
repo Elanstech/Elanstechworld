@@ -133,6 +133,39 @@ function initParticles(){
 }
 
 /* ═══════════════════════════════════════
+   HERO VIDEO AUTOPLAY
+═══════════════════════════════════════ */
+function initHeroVideo(){
+  var vid = Q('.sh-hero-video');
+  if(!vid) return;
+  vid.muted = true;
+  vid.playsInline = true;
+  vid.setAttribute('playsinline','');
+  vid.setAttribute('webkit-playsinline','');
+  vid.setAttribute('muted','');
+  vid.load();
+
+  var playAttempt = vid.play();
+  if(playAttempt !== undefined){
+    playAttempt.catch(function(){
+      var events = ['touchstart','click','scroll'];
+      function playOnce(){
+        vid.play().catch(function(){});
+        events.forEach(function(evt){ document.removeEventListener(evt,playOnce); });
+      }
+      events.forEach(function(evt){ document.addEventListener(evt,playOnce,{once:true,passive:true}); });
+    });
+  }
+
+  document.addEventListener('visibilitychange',function(){
+    if(!document.hidden && vid.paused) vid.play().catch(function(){});
+  });
+  window.addEventListener('focus',function(){
+    if(vid.paused) vid.play().catch(function(){});
+  });
+}
+
+/* ═══════════════════════════════════════
    HERO BADGES
 ═══════════════════════════════════════ */
 function initBadges(){
@@ -370,6 +403,7 @@ function hideProduct(){
   initFilters();
   applyFilter();
   initBadges();
+  initHeroVideo();
   initParticles();
   initHeroParallax();
   initMagnetic();
@@ -631,6 +665,7 @@ function boot(){
   initHeader();
   initMobile();
   initGlow();
+  initHeroVideo();
   initParticles();
   initBadges();
   initHeroParallax();
