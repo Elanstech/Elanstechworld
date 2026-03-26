@@ -3,7 +3,7 @@
     "id": "iphone-16-pro",
     "name": "iPhone 16 Pro",
     "cat": "iphone",
-    "cond": "excellent",
+    "cond": "Like New",
     "specs": ["A18 Pro", "48MP Camera", "Titanium"],
     "colorOptions": [
       { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://i.ebayimg.com/images/g/nlMAAeSw8JhpJOAQ/s-l1600.jpg" },
