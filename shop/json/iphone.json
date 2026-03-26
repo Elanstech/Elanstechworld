@@ -5,19 +5,24 @@
     "cat": "iphone",
     "cond": "excellent",
     "specs": ["A18 Pro", "48MP Camera", "Titanium"],
-    "images": [
-      "https://i.ebayimg.com/images/g/0tUAAOSwZVRnhTs~/s-l1600.jpg",
-      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+Black.jpg",
-      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+Desert.jpg",
-      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+Natural.jpg",
-      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+White.jpg"
+    "colorOptions": [
+      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Desert Titanium",  "swatch": "#C0A27A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" }
     ],
-    "thumb": "https://i.ebayimg.com/images/g/0tUAAOSwZVRnhTs~/s-l1600.jpg",
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "128GB", "color": "Natural Titanium", "price": 749.99, "retail": 999, "bm": 839, "inStock": true },
-      { "storage": "256GB", "color": "Natural Titanium", "price": 849.99, "retail": 1099, "bm": 939, "inStock": true },
+      { "storage": "128GB", "color": "Natural Titanium", "price": 749.99, "retail": 999,  "bm": 839,  "inStock": true },
+      { "storage": "256GB", "color": "Natural Titanium", "price": 849.99, "retail": 1099, "bm": 939,  "inStock": true },
       { "storage": "512GB", "color": "Natural Titanium", "price": 949.99, "retail": 1299, "bm": 1129, "inStock": true },
-      { "storage": "1TB", "color": "Natural Titanium", "price": 1199, "retail": 1499, "bm": 1319, "inStock": false }
+      { "storage": "1TB",   "color": "Natural Titanium", "price": 1199,   "retail": 1499, "bm": 1319, "inStock": false }
     ]
   },
   {
@@ -33,9 +38,9 @@
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "128GB", "color": "Ultramarine", "price": 599, "retail": 829, "bm": 669, "inStock": true },
-      { "storage": "256GB", "color": "Ultramarine", "price": 699, "retail": 929, "bm": 769, "inStock": true },
-      { "storage": "512GB", "color": "Ultramarine", "price": 849, "retail": 1129, "bm": 939, "inStock": false }
+      { "storage": "128GB", "color": "Ultramarine", "price": 599,  "retail": 829,  "bm": 669, "inStock": true },
+      { "storage": "256GB", "color": "Ultramarine", "price": 699,  "retail": 929,  "bm": 769, "inStock": true },
+      { "storage": "512GB", "color": "Ultramarine", "price": 849,  "retail": 1129, "bm": 939, "inStock": false }
     ]
   },
   {
@@ -51,9 +56,9 @@
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "256GB", "color": "Blue Titanium", "price": 779, "retail": 1199, "bm": 869, "inStock": true },
-      { "storage": "512GB", "color": "Blue Titanium", "price": 929, "retail": 1399, "bm": 1029, "inStock": true },
-      { "storage": "1TB", "color": "Blue Titanium", "price": 1079, "retail": 1599, "bm": 1199, "inStock": false }
+      { "storage": "256GB", "color": "Blue Titanium", "price": 779,  "retail": 1199, "bm": 869,  "inStock": true },
+      { "storage": "512GB", "color": "Blue Titanium", "price": 929,  "retail": 1399, "bm": 1029, "inStock": true },
+      { "storage": "1TB",   "color": "Blue Titanium", "price": 1079, "retail": 1599, "bm": 1199, "inStock": false }
     ]
   },
   {
@@ -68,7 +73,7 @@
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "128GB", "color": "Natural Titanium", "price": 619, "retail": 999, "bm": 699, "inStock": true },
+      { "storage": "128GB", "color": "Natural Titanium", "price": 619, "retail": 999,  "bm": 699, "inStock": true },
       { "storage": "256GB", "color": "Natural Titanium", "price": 719, "retail": 1099, "bm": 799, "inStock": true },
       { "storage": "512GB", "color": "Natural Titanium", "price": 869, "retail": 1299, "bm": 969, "inStock": false }
     ]
@@ -101,7 +106,7 @@
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "128GB", "color": "Deep Purple", "price": 489, "retail": 999, "bm": 559, "inStock": true },
+      { "storage": "128GB", "color": "Deep Purple", "price": 489, "retail": 999,  "bm": 559, "inStock": true },
       { "storage": "256GB", "color": "Deep Purple", "price": 549, "retail": 1099, "bm": 629, "inStock": true },
       { "storage": "512GB", "color": "Deep Purple", "price": 679, "retail": 1299, "bm": 759, "inStock": false }
     ]
@@ -133,7 +138,7 @@
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "128GB", "color": "Sierra Blue", "price": 349, "retail": 999, "bm": 409, "inStock": true },
+      { "storage": "128GB", "color": "Sierra Blue", "price": 349, "retail": 999,  "bm": 409, "inStock": true },
       { "storage": "256GB", "color": "Sierra Blue", "price": 399, "retail": 1099, "bm": 469, "inStock": true }
     ]
   },
@@ -178,7 +183,7 @@
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
-      { "storage": "64GB", "color": "Blue", "price": 199, "retail": 699, "bm": 239, "inStock": true },
+      { "storage": "64GB",  "color": "Blue", "price": 199, "retail": 699, "bm": 239, "inStock": true },
       { "storage": "128GB", "color": "Blue", "price": 229, "retail": 749, "bm": 269, "inStock": true }
     ]
   }
