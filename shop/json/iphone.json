@@ -132,25 +132,25 @@
     "id": "iphone-14-pro-max",
     "name": "iPhone 14 Pro Max",
     "cat": "iphone",
-    "cond": "good",
+    "cond": "Like New",
     "specs": ["A16", "48MP Camera", "Dynamic Island"],
     "colorOptions": [
-      { "name": "Deep Purple", "swatch": "#4E3D69", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Space Black", "swatch": "#2A2A2A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-spaceblack?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Gold",        "swatch": "#C8A96E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-gold?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Silver",      "swatch": "#E3E3E3", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-silver?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+      { "name": "Deep Purple", "swatch": "#4E3D69", "img": "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/ba6f189b-3d0f-40e2-b7e5-2f7217dc240e.jpg" },
+      { "name": "Space Black", "swatch": "#2A2A2A", "img": "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/9d01fcf6-327b-4bb6-8e73-8ca76166f417.jpg" },
+      { "name": "Gold",        "swatch": "#C8A96E", "img": "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/c9a0585f-4bf0-4352-835e-31f7f2624dd0.jpg" },
+      { "name": "Silver",      "swatch": "#E3E3E3", "img": "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/4b69bb71-2e3b-486e-af6f-214e6d58e69c.jpg" }
     ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-spaceblack?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-gold?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-silver?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/ba6f189b-3d0f-40e2-b7e5-2f7217dc240e.jpg",
+      "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/c9a0585f-4bf0-4352-835e-31f7f2624dd0.jpg",
+      "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/4b69bb71-2e3b-486e-af6f-214e6d58e69c.jpg",
+      "https://s3-eu-west-1.amazonaws.com/images.linnlive.com/752b0d710e380e0d9bab459ce2dc8f0e/9d01fcf6-327b-4bb6-8e73-8ca76166f417.jpg"
     ],
-    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "thumb": "https://i.ebayimg.com/images/g/S6gAAOSw6ltlJILl/s-l1600.jpg",
     "variants": [
-      { "storage": "128GB", "color": "Deep Purple", "price": 489, "retail": 999,  "bm": 559, "inStock": true },
-      { "storage": "256GB", "color": "Deep Purple", "price": 549, "retail": 1099, "bm": 629, "inStock": true },
-      { "storage": "512GB", "color": "Deep Purple", "price": 679, "retail": 1299, "bm": 759, "inStock": false }
+      { "storage": "128GB", "color": "Deep Purple", "price": 559.99, "retail": 999,  "bm": 559, "inStock": true },
+      { "storage": "256GB", "color": "Deep Purple", "price": 599.99, "retail": 1099, "bm": 629, "inStock": true },
+      { "storage": "512GB", "color": "Deep Purple", "price": 649.99, "retail": 1299, "bm": 759, "inStock": false }
     ]
   },
   {
