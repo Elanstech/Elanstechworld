@@ -1,9 +1,7 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- *  ETW SHOP V3 — Fully Standalone · Square Checkout Integrated
- *  3D tilt · Cursor glow · Particles · Magnetic buttons ·
- *  View transitions · Cart → Square Checkout · iPhones 12–16
- *  File: shop/script.js — ZERO dependencies
+ *  ETW SHOP V3 — Fully Standalone · Square + Shipping
+ *  File: shop/script.js — ZERO dependencies — COMPLETE FILE
  * ═══════════════════════════════════════════════════════════════
  */
 
@@ -11,14 +9,12 @@ const Q = (s, p = document) => p.querySelector(s);
 const QA = (s, p = document) => [...p.querySelectorAll(s)];
 const throttle = (fn, ms) => { let l = 0; return (...a) => { const n = Date.now(); if (n - l >= ms) { l = n; fn(...a); } }; };
 
-/* ── Square Checkout Endpoint ── */
 const CHECKOUT_API = 'https://www.elanstechworld.com/api/create-checkout';
 
 /* ═══════════════════════════════════════
    PRODUCT DATA
 ═══════════════════════════════════════ */
 const P = [
-  // ── iPhones ──
   { id:'ip16pro256', name:'iPhone 16 Pro', cat:'iphone', stor:'256GB', color:'Natural Titanium', cond:'excellent', price:849, retail:1099, bm:939, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A18 Pro','256GB','48MP Camera'], feat:true },
   { id:'ip16-128', name:'iPhone 16', cat:'iphone', stor:'128GB', color:'Ultramarine', cond:'excellent', price:599, retail:829, bm:669, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A18','128GB','48MP Camera'] },
   { id:'ip15promax', name:'iPhone 15 Pro Max', cat:'iphone', stor:'256GB', color:'Blue Titanium', cond:'excellent', price:779, retail:1199, bm:869, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A17 Pro','256GB','5x Zoom'] },
@@ -30,24 +26,16 @@ const P = [
   { id:'ip13-128', name:'iPhone 13', cat:'iphone', stor:'128GB', color:'Midnight', cond:'fair', price:269, retail:699, bm:319, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A15','128GB','12MP'] },
   { id:'ip12pro', name:'iPhone 12 Pro', cat:'iphone', stor:'128GB', color:'Pacific Blue', cond:'fair', price:259, retail:899, bm:309, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','128GB','12MP LiDAR'] },
   { id:'ip12-64', name:'iPhone 12', cat:'iphone', stor:'64GB', color:'Blue', cond:'fair', price:199, retail:699, bm:239, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','64GB','12MP'] },
-
-  // ── MacBooks ──
   { id:'mbairm3', name:'MacBook Air M3', cat:'macbook', stor:'256GB', color:'Midnight', cond:'excellent', price:849, retail:1099, bm:949, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M3 Chip','8GB RAM','256GB SSD'] },
   { id:'mbpro14m3', name:'MacBook Pro 14" M3', cat:'macbook', stor:'512GB', color:'Space Black', cond:'excellent', price:1249, retail:1599, bm:1399, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M3 Pro','18GB RAM','512GB SSD'] },
   { id:'mbairm2', name:'MacBook Air M2', cat:'macbook', stor:'256GB', color:'Starlight', cond:'good', price:699, retail:999, bm:789, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-starlight-select-20220606?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M2 Chip','8GB RAM','256GB SSD'] },
   { id:'mbairm1', name:'MacBook Air M1', cat:'macbook', stor:'256GB', color:'Space Gray', cond:'fair', price:479, retail:799, bm:549, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M1 Chip','8GB RAM','256GB SSD'] },
-
-  // ── iPads ──
   { id:'ipadairm2', name:'iPad Air M2', cat:'ipad', stor:'128GB', color:'Starlight', cond:'excellent', price:449, retail:599, bm:509, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-wifi-starlight-202405?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['M2 Chip','128GB','11" Liquid Retina'] },
   { id:'ipad10', name:'iPad 10th Gen', cat:'ipad', stor:'64GB', color:'Blue', cond:'good', price:269, retail:449, bm:309, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-10th-gen-finish-select-202212-blue-wifi?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','64GB','10.9" Display'] },
   { id:'ipad9', name:'iPad 9th Gen', cat:'ipad', stor:'64GB', color:'Space Gray', cond:'fair', price:179, retail:329, bm:209, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-2021-702702702?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A13','64GB','10.2" Retina'] },
-
-  // ── Watch ──
   { id:'wu2', name:'Apple Watch Ultra 2', cat:'watch', stor:'64GB', color:'Titanium', cond:'excellent', price:549, retail:799, bm:619, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQDY3ref_VW_34FR+watch-49-titanium-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S9 Chip','GPS + Cellular','49mm'] },
   { id:'ws10', name:'Apple Watch Series 10', cat:'watch', stor:'64GB', color:'Jet Black', cond:'excellent', price:329, retail:429, bm:369, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-702702702?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S10 Chip','GPS','46mm'] },
   { id:'wse2', name:'Apple Watch SE 2', cat:'watch', stor:'32GB', color:'Midnight', cond:'good', price:149, retail:249, bm:179, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNTE3ref_VW_34FR+watch-40-alum-midnight-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S8 Chip','GPS','40mm'] },
-
-  // ── AirPods ──
   { id:'app2', name:'AirPods Pro 2 (USB-C)', cat:'airpods', stor:'', color:'White', cond:'excellent', price:159, retail:249, bm:179, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-pro-2-hero-select-202409?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['H2 Chip','ANC','USB-C'] },
   { id:'apm', name:'AirPods Max (USB-C)', cat:'airpods', stor:'', color:'Midnight', cond:'good', price:379, retail:549, bm:429, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-202409-midnight?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['H2 Chip','ANC','USB-C'] },
   { id:'ap4', name:'AirPods 4', cat:'airpods', stor:'', color:'White', cond:'excellent', price:99, retail:129, bm:115, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-4-hero-select-202409?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['H2 Chip','Open Ear','USB-C'] },
@@ -130,7 +118,6 @@ function initGlow(){
 ═══════════════════════════════════════ */
 function initParticles(){
   const c=Q('#shParticles'); if(!c) return;
-  // Don't duplicate particles
   if(c.children.length>0) return;
   const n = window.innerWidth<768?12:30;
   const colors=['rgba(0,113,227,.4)','rgba(90,200,250,.3)','rgba(191,90,242,.3)','rgba(52,199,89,.25)','rgba(191,162,106,.2)'];
@@ -315,7 +302,7 @@ function showProduct(id){
 
   if(!gridSnapshot) gridSnapshot = view.innerHTML;
   isDetailView = true;
-  history.pushState({product:id},'',`#product/${id}`);
+  history.pushState({product:id},'','#product/'+id);
 
   const pct=Math.round(((p.retail-p.price)/p.retail)*100);
   const bmDiff = p.bm-p.price;
@@ -341,7 +328,7 @@ function showProduct(id){
           <div class="sp-cmp">
             <i class="fas fa-scale-balanced"></i>
             <span>Back Market: <strong>$${p.bm}</strong></span>
-            <span>→ You save <span class="sp-cmp-diff">$${bmDiff} more</span> with us</span>
+            <span>&rarr; You save <span class="sp-cmp-diff">$${bmDiff} more</span> with us</span>
           </div>
           <div class="sp-div"></div>
           <div class="sp-specs">
@@ -349,7 +336,7 @@ function showProduct(id){
             <div class="sp-spec"><div class="sp-spec-l">Condition</div><div class="sp-spec-v">${cl}</div></div>
           </div>
           <div class="sp-ctas">
-            <button class="sp-cta-main" id="spAdd"><i class="fas fa-bag-shopping"></i> Add to Bag — $${p.price}</button>
+            <button class="sp-cta-main" id="spAdd"><i class="fas fa-bag-shopping"></i> Add to Bag &mdash; $${p.price}</button>
             <a href="tel:+19294176819" class="sp-cta-call"><i class="fas fa-phone"></i> Questions? (929) 417-6819</a>
           </div>
           <div class="sp-div"></div>
@@ -366,7 +353,7 @@ function showProduct(id){
   </div>`;
 
   window.scrollTo({top:0,behavior:'smooth'});
-  document.title = `${p.name} ${p.stor||''} — ETW Shop`;
+  document.title = p.name+' '+(p.stor||'')+' — ETW Shop';
   Q('#spBack')?.addEventListener('click',()=>hideProduct());
   Q('#spAdd')?.addEventListener('click',()=>cartAdd(p.id));
 }
@@ -378,8 +365,6 @@ function hideProduct(){
   isDetailView = false;
   history.pushState(null,'',window.location.pathname);
   document.title = 'Shop Refurbished Apple | ETW Shop';
-
-  // Re-init everything cleanly
   revealSeen.clear();
   reveal(QA('[data-sh]'));
   initFilters();
@@ -397,9 +382,8 @@ window.addEventListener('popstate',e=>{
 
 function checkHash(){
   const h = window.location.hash;
-  if(h.startsWith('#product/')){
+  if(h.startsWith('#product/'))
     setTimeout(()=>showProduct(h.replace('#product/','')),300);
-  }
 }
 
 /* ═══════════════════════════════════════
@@ -410,7 +394,7 @@ function initCompare(){
   const ids=['ip16pro256','ip15promax','ip14promax','mbairm3','ipadairm2','app2'];
   tbody.innerHTML = ids.map(id=>{
     const p=P.find(x=>x.id===id); if(!p) return '';
-    return `<tr><td><strong>${p.name}</strong> ${p.stor}</td><td>$${p.bm}</td><td>$${p.price} <span class="sh-cmp-save">−$${p.bm-p.price}</span></td></tr>`;
+    return '<tr><td><strong>'+p.name+'</strong> '+p.stor+'</td><td>$'+p.bm+'</td><td>$'+p.price+' <span class="sh-cmp-save">&minus;$'+(p.bm-p.price)+'</span></td></tr>';
   }).join('');
 }
 
@@ -418,12 +402,12 @@ function initCompare(){
    CART + SHIPPING + SQUARE CHECKOUT
 ═══════════════════════════════════════ */
 let cartItems = [];
-let selectedShipping = 'standard'; // 'standard' ($9.99) or 'nyc' ($79)
+let selectedShipping = 'standard';
 try{ const s=sessionStorage.getItem('sh_cart'); if(s) cartItems=JSON.parse(s); }catch(e){}
 
 const SHIPPING = {
-  standard: { label: 'Standard Shipping (3–5 days)', price: 9.99 },
-  nyc:      { label: 'NYC Same-Day Delivery', price: 79.00 },
+  standard: { label:'Standard Shipping (3-5 days)', price:9.99 },
+  nyc:      { label:'NYC Same-Day Delivery', price:79.00 },
 };
 
 function cartSave(){ try{sessionStorage.setItem('sh_cart',JSON.stringify(cartItems))}catch(e){} }
@@ -440,13 +424,13 @@ function cartRemove(id){
 }
 
 function cartSubtotal(){ return cartItems.reduce((s,i)=>{ const p=P.find(x=>x.id===i.id); return s+(p?p.price*i.qty:0); },0); }
-function cartGrandTotal(){ return cartSubtotal() + (cartItems.length ? SHIPPING[selectedShipping].price : 0); }
+function cartGrandTotal(){ return cartSubtotal()+(cartItems.length?SHIPPING[selectedShipping].price:0); }
 function cartCount(){ return cartItems.reduce((s,i)=>s+i.qty,0); }
 
 function cartUI(){
-  const count=cartCount(), subtotal=cartSubtotal(), grand=cartGrandTotal();
-  const ship = SHIPPING[selectedShipping];
-  const countEl=Q('#shCount'), bodyEl=Q('#shCartBody'), footEl=Q('#shCartFoot'), totalEl=Q('#shCartTotal');
+  var count=cartCount(), sub=cartSubtotal(), grand=cartGrandTotal(), ship=SHIPPING[selectedShipping];
+  var countEl=Q('#shCount'), bodyEl=Q('#shCartBody'), footEl=Q('#shCartFoot'), totalEl=Q('#shCartTotal');
+  var subEl=Q('#shCartSub'), shipEl=Q('#shCartShip');
 
   if(countEl){ countEl.textContent=count; countEl.classList.toggle('show',count>0); }
 
@@ -455,216 +439,67 @@ function cartUI(){
       bodyEl.innerHTML='<div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>';
       if(footEl) footEl.style.display='none';
     } else {
-      bodyEl.innerHTML= cartItems.map(item=>{
-        const p=P.find(x=>x.id===item.id); if(!p) return '';
-        return `<div class="sh-cart-item">
-          <div class="sh-cart-item-img"><img src="${p.img}" alt="${p.name}"></div>
-          <div class="sh-cart-item-info">
-            <div class="sh-cart-item-name">${p.name}</div>
-            <div class="sh-cart-item-var">${p.stor?p.stor+' · ':''}${p.color} · Qty: ${item.qty}</div>
-            <div class="sh-cart-item-price">${(p.price*item.qty).toLocaleString()}</div>
-          </div>
-          <button class="sh-cart-item-rm" data-rm="${p.id}"><i class="fas fa-trash-can"></i></button>
-        </div>`;
-      }).join('') +
+      var html = '';
 
-      /* ── Shipping Selector ── */
-      `<div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--cloud)">
-        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--steel);margin-bottom:10px">Shipping Method</div>
-        <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:${selectedShipping==='standard'?'var(--blue-s)':'var(--matte)'};border:1.5px solid ${selectedShipping==='standard'?'var(--blue)':'var(--cloud)'};border-radius:var(--r-md);margin-bottom:8px;cursor:pointer;transition:all .2s ease;font-size:.8125rem">
-          <input type="radio" name="shipping" value="standard" ${selectedShipping==='standard'?'checked':''} style="accent-color:var(--blue)">
-          <div style="flex:1">
-            <div style="font-weight:600;color:var(--carbon)">Standard Shipping</div>
-            <div style="font-size:.6875rem;color:var(--steel)">3–5 business days</div>
-          </div>
-          <span style="font-weight:700;color:var(--carbon)">$9.99</span>
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:${selectedShipping==='nyc'?'var(--blue-s)':'var(--matte)'};border:1.5px solid ${selectedShipping==='nyc'?'var(--blue)':'var(--cloud)'};border-radius:var(--r-md);cursor:pointer;transition:all .2s ease;font-size:.8125rem">
-          <input type="radio" name="shipping" value="nyc" ${selectedShipping==='nyc'?'checked':''} style="accent-color:var(--blue)">
-          <div style="flex:1">
-            <div style="font-weight:600;color:var(--carbon)"><i class="fas fa-bolt" style="color:var(--blue);font-size:.625rem;margin-right:4px"></i>NYC Same-Day Delivery</div>
-            <div style="font-size:.6875rem;color:var(--steel)">Order by 2pm, delivered today</div>
-          </div>
-          <span style="font-weight:700;color:var(--carbon)">$79.00</span>
-        </label>
-      </div>`;
+      // Cart items
+      cartItems.forEach(function(item){
+        var p=P.find(function(x){return x.id===item.id}); if(!p) return;
+        html += '<div class="sh-cart-item">'
+          +'<div class="sh-cart-item-img"><img src="'+p.img+'" alt="'+p.name+'"></div>'
+          +'<div class="sh-cart-item-info">'
+          +'<div class="sh-cart-item-name">'+p.name+'</div>'
+          +'<div class="sh-cart-item-var">'+(p.stor?p.stor+' &middot; ':'')+p.color+' &middot; Qty: '+item.qty+'</div>'
+          +'<div class="sh-cart-item-price">$'+(p.price*item.qty).toLocaleString()+'</div>'
+          +'</div>'
+          +'<button class="sh-cart-item-rm" data-rm="'+p.id+'"><i class="fas fa-trash-can"></i></button>'
+          +'</div>';
+      });
 
+      // Shipping selector
+      html += '<div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--cloud)">'
+        +'<div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--steel);margin-bottom:10px">Shipping Method</div>'
+
+        +'<label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:'+(selectedShipping==='standard'?'var(--blue-s)':'var(--matte)')+';border:1.5px solid '+(selectedShipping==='standard'?'var(--blue)':'var(--cloud)')+';border-radius:var(--r-md);margin-bottom:8px;cursor:pointer;font-size:.8125rem">'
+        +'<input type="radio" name="shipping" value="standard" '+(selectedShipping==='standard'?'checked':'')+' style="accent-color:var(--blue)">'
+        +'<div style="flex:1">'
+        +'<div style="font-weight:600;color:var(--carbon)">Standard Shipping</div>'
+        +'<div style="font-size:.6875rem;color:var(--steel)">3-5 business days</div>'
+        +'</div>'
+        +'<span style="font-weight:700;color:var(--carbon)">$9.99</span>'
+        +'</label>'
+
+        +'<label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:'+(selectedShipping==='nyc'?'var(--blue-s)':'var(--matte)')+';border:1.5px solid '+(selectedShipping==='nyc'?'var(--blue)':'var(--cloud)')+';border-radius:var(--r-md);cursor:pointer;font-size:.8125rem">'
+        +'<input type="radio" name="shipping" value="nyc" '+(selectedShipping==='nyc'?'checked':'')+' style="accent-color:var(--blue)">'
+        +'<div style="flex:1">'
+        +'<div style="font-weight:600;color:var(--carbon)"><i class="fas fa-bolt" style="color:var(--blue);font-size:.625rem;margin-right:4px"></i>NYC Same-Day Delivery</div>'
+        +'<div style="font-size:.6875rem;color:var(--steel)">Order by 2pm, delivered today</div>'
+        +'</div>'
+        +'<span style="font-weight:700;color:var(--carbon)">$79.00</span>'
+        +'</label>'
+        +'</div>';
+
+      bodyEl.innerHTML = html;
       if(footEl) footEl.style.display='block';
 
       // Bind remove buttons
-      QA('[data-rm]',bodyEl).forEach(btn=>btn.addEventListener('click',()=>cartRemove(btn.dataset.rm)));
+      QA('[data-rm]',bodyEl).forEach(function(btn){
+        btn.addEventListener('click',function(){ cartRemove(btn.dataset.rm); });
+      });
 
       // Bind shipping radios
-      QA('input[name="shipping"]',bodyEl).forEach(radio=>{
-        radio.addEventListener('change',()=>{
+      QA('input[name="shipping"]',bodyEl).forEach(function(radio){
+        radio.addEventListener('change',function(){
           selectedShipping = radio.value;
-          cartUI(); // Re-render with new shipping
+          cartUI();
         });
       });
     }
   }
 
   // Update footer totals
-  if(totalEl && cartItems.length){
-    const subEl = Q('#shCartSub');
-    const shipEl = Q('#shCartShip');
-    if(subEl) subEl.textContent = '
-
-/* ═══════════════════════════════════════
-   SMOOTH SCROLL
-═══════════════════════════════════════ */
-function initSmooth(){
-  document.addEventListener('click',e=>{
-    const link = e.target.closest('a[href^="#"]');
-    if(!link) return;
-    const href=link.getAttribute('href');
-    if(href==='#'||href.startsWith('#product/')) return;
-    const t=Q(href);
-    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
-  });
-}
-
-/* ═══════════════════════════════════════
-   BACK TO TOP
-═══════════════════════════════════════ */
-function initTop(){
-  const btn=Q('#shTop'); if(!btn) return;
-  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
-  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-}
-
-/* ═══════════════════════════════════════
-   BOOT
-═══════════════════════════════════════ */
-function boot(){
-  checkOrderSuccess();   // ← Check if returning from Square payment
-  initReveal();
-  initProgress();
-  initHeader();
-  initMobile();
-  initGlow();
-  initParticles();
-  initBadges();
-  initHeroParallax();
-  initMagnetic();
-  renderGrid(P);
-  initFilters();
-  initCart();
-  initCompare();
-  initSmooth();
-  initTop();
-  checkHash();
-  console.log('✦ ETW Shop V3 — Square Checkout Ready');
-}
-
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
-else boot();
-+subtotal.toLocaleString();
-    if(shipEl) shipEl.textContent = '
-
-/* ═══════════════════════════════════════
-   SMOOTH SCROLL
-═══════════════════════════════════════ */
-function initSmooth(){
-  document.addEventListener('click',e=>{
-    const link = e.target.closest('a[href^="#"]');
-    if(!link) return;
-    const href=link.getAttribute('href');
-    if(href==='#'||href.startsWith('#product/')) return;
-    const t=Q(href);
-    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
-  });
-}
-
-/* ═══════════════════════════════════════
-   BACK TO TOP
-═══════════════════════════════════════ */
-function initTop(){
-  const btn=Q('#shTop'); if(!btn) return;
-  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
-  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-}
-
-/* ═══════════════════════════════════════
-   BOOT
-═══════════════════════════════════════ */
-function boot(){
-  checkOrderSuccess();   // ← Check if returning from Square payment
-  initReveal();
-  initProgress();
-  initHeader();
-  initMobile();
-  initGlow();
-  initParticles();
-  initBadges();
-  initHeroParallax();
-  initMagnetic();
-  renderGrid(P);
-  initFilters();
-  initCart();
-  initCompare();
-  initSmooth();
-  initTop();
-  checkHash();
-  console.log('✦ ETW Shop V3 — Square Checkout Ready');
-}
-
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
-else boot();
-+ship.price.toFixed(2);
-    totalEl.textContent = '
-
-/* ═══════════════════════════════════════
-   SMOOTH SCROLL
-═══════════════════════════════════════ */
-function initSmooth(){
-  document.addEventListener('click',e=>{
-    const link = e.target.closest('a[href^="#"]');
-    if(!link) return;
-    const href=link.getAttribute('href');
-    if(href==='#'||href.startsWith('#product/')) return;
-    const t=Q(href);
-    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
-  });
-}
-
-/* ═══════════════════════════════════════
-   BACK TO TOP
-═══════════════════════════════════════ */
-function initTop(){
-  const btn=Q('#shTop'); if(!btn) return;
-  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
-  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-}
-
-/* ═══════════════════════════════════════
-   BOOT
-═══════════════════════════════════════ */
-function boot(){
-  checkOrderSuccess();   // ← Check if returning from Square payment
-  initReveal();
-  initProgress();
-  initHeader();
-  initMobile();
-  initGlow();
-  initParticles();
-  initBadges();
-  initHeroParallax();
-  initMagnetic();
-  renderGrid(P);
-  initFilters();
-  initCart();
-  initCompare();
-  initSmooth();
-  initTop();
-  checkHash();
-  console.log('✦ ETW Shop V3 — Square Checkout Ready');
-}
-
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
-else boot();
-+grand.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-  }
+  if(subEl) subEl.textContent = '$'+sub.toLocaleString();
+  if(shipEl) shipEl.textContent = '$'+ship.price.toFixed(2);
+  if(totalEl) totalEl.textContent = '$'+grand.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 
 function cartOpen(){
@@ -672,6 +507,7 @@ function cartOpen(){
   Q('#shCartOv')?.classList.add('open');
   document.body.style.overflow='hidden';
 }
+
 function cartClose(){
   Q('#shCartDrawer')?.classList.remove('open');
   Q('#shCartOv')?.classList.remove('open');
@@ -679,56 +515,57 @@ function cartClose(){
 }
 
 function cartToast(id){
-  const p=P.find(x=>x.id===id), t=Q('#shToast'), m=Q('#shToastMsg');
+  var p=P.find(function(x){return x.id===id}), t=Q('#shToast'), m=Q('#shToastMsg');
   if(!p||!t||!m) return;
-  m.textContent=`${p.name} added to bag!`;
+  m.textContent=p.name+' added to bag!';
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
+  setTimeout(function(){ t.classList.remove('show'); },2500);
 }
 
-/* ── Square Checkout Handler ── */
+/* ── Square Checkout ── */
 async function handleCheckout(){
-  const btn = Q('#shCheckout');
+  var btn = Q('#shCheckout');
   if(!cartItems.length || !btn) return;
 
-  const orig = btn.innerHTML;
-  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating checkout…';
+  var orig = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating checkout...';
   btn.disabled = true;
   btn.style.opacity = '.7';
   btn.style.pointerEvents = 'none';
 
   try {
-    const items = cartItems.map(item=>{
-      const p = P.find(x=>x.id===item.id);
-      if(!p) return null;
-      return {
-        name: `${p.name}${p.stor?' '+p.stor:''} (${p.cond})`,
+    var items = [];
+    cartItems.forEach(function(item){
+      var p = P.find(function(x){return x.id===item.id});
+      if(!p) return;
+      items.push({
+        name: p.name+(p.stor?' '+p.stor:'')+' ('+p.cond+')',
         qty: item.qty,
         price: p.price,
-        variant: `${p.color} · Refurbished · ${p.cond}`,
-      };
-    }).filter(Boolean);
+        variant: p.color+' / Refurbished / '+p.cond,
+      });
+    });
 
     if(!items.length) throw new Error('No valid items in cart');
 
-    const res = await fetch(CHECKOUT_API, {
+    var res = await fetch(CHECKOUT_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        items,
+        items: items,
         shipping: selectedShipping,
         redirectUrl: window.location.origin + '/shop/?order=success',
       }),
     });
 
-    const data = await res.json();
+    var data = await res.json();
     if(!res.ok) throw new Error(data.detail || data.error || 'Checkout failed');
 
     window.location.href = data.url;
 
   } catch(err){
     console.error('Checkout error:', err);
-    alert(`Checkout error: ${err.message}\n\nPlease call (929) 417-6819 to complete your order.`);
+    alert('Checkout error: '+err.message+'\n\nPlease call (929) 417-6819 to complete your order.');
     btn.innerHTML = orig;
     btn.disabled = false;
     btn.style.opacity = '1';
@@ -736,18 +573,18 @@ async function handleCheckout(){
   }
 }
 
-/* ── Detect return from successful payment ── */
+/* ── Order success detection ── */
 function checkOrderSuccess(){
-  const params = new URLSearchParams(window.location.search);
+  var params = new URLSearchParams(window.location.search);
   if(params.get('order') === 'success'){
     cartItems = [];
     cartSave();
     cartUI();
-    const t=Q('#shToast'), m=Q('#shToastMsg');
+    var t=Q('#shToast'), m=Q('#shToastMsg');
     if(t&&m){
-      m.textContent = "Order placed! We'll be in touch shortly.";
+      m.textContent = "Order placed! We will be in touch shortly.";
       t.classList.add('show');
-      setTimeout(()=>t.classList.remove('show'),6000);
+      setTimeout(function(){ t.classList.remove('show'); },6000);
     }
     history.replaceState(null,'',window.location.pathname);
   }
@@ -765,12 +602,12 @@ function initCart(){
    SMOOTH SCROLL
 ═══════════════════════════════════════ */
 function initSmooth(){
-  document.addEventListener('click',e=>{
-    const link = e.target.closest('a[href^="#"]');
+  document.addEventListener('click',function(e){
+    var link = e.target.closest('a[href^="#"]');
     if(!link) return;
-    const href=link.getAttribute('href');
-    if(href==='#'||href.startsWith('#product/')) return;
-    const t=Q(href);
+    var href=link.getAttribute('href');
+    if(href==='#'||href.indexOf('#product/')===0) return;
+    var t=Q(href);
     if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
   });
 }
@@ -779,16 +616,16 @@ function initSmooth(){
    BACK TO TOP
 ═══════════════════════════════════════ */
 function initTop(){
-  const btn=Q('#shTop'); if(!btn) return;
-  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
-  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  var btn=Q('#shTop'); if(!btn) return;
+  window.addEventListener('scroll',throttle(function(){ btn.classList.toggle('vis',window.scrollY>600); },200));
+  btn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
 }
 
 /* ═══════════════════════════════════════
    BOOT
 ═══════════════════════════════════════ */
 function boot(){
-  checkOrderSuccess();   // ← Check if returning from Square payment
+  checkOrderSuccess();
   initReveal();
   initProgress();
   initHeader();
@@ -805,7 +642,7 @@ function boot(){
   initSmooth();
   initTop();
   checkHash();
-  console.log('✦ ETW Shop V3 — Square Checkout Ready');
+  console.log('ETW Shop V3 — Square Checkout Ready');
 }
 
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
