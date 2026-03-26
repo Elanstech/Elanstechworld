@@ -415,10 +415,16 @@ function initCompare(){
 }
 
 /* ═══════════════════════════════════════
-   CART + SQUARE CHECKOUT
+   CART + SHIPPING + SQUARE CHECKOUT
 ═══════════════════════════════════════ */
 let cartItems = [];
+let selectedShipping = 'standard'; // 'standard' ($9.99) or 'nyc' ($79)
 try{ const s=sessionStorage.getItem('sh_cart'); if(s) cartItems=JSON.parse(s); }catch(e){}
+
+const SHIPPING = {
+  standard: { label: 'Standard Shipping (3–5 days)', price: 9.99 },
+  nyc:      { label: 'NYC Same-Day Delivery', price: 79.00 },
+};
 
 function cartSave(){ try{sessionStorage.setItem('sh_cart',JSON.stringify(cartItems))}catch(e){} }
 
@@ -433,11 +439,13 @@ function cartRemove(id){
   cartSave(); cartUI();
 }
 
-function cartTotal(){ return cartItems.reduce((s,i)=>{ const p=P.find(x=>x.id===i.id); return s+(p?p.price*i.qty:0); },0); }
+function cartSubtotal(){ return cartItems.reduce((s,i)=>{ const p=P.find(x=>x.id===i.id); return s+(p?p.price*i.qty:0); },0); }
+function cartGrandTotal(){ return cartSubtotal() + (cartItems.length ? SHIPPING[selectedShipping].price : 0); }
 function cartCount(){ return cartItems.reduce((s,i)=>s+i.qty,0); }
 
 function cartUI(){
-  const count=cartCount(), total=cartTotal();
+  const count=cartCount(), subtotal=cartSubtotal(), grand=cartGrandTotal();
+  const ship = SHIPPING[selectedShipping];
   const countEl=Q('#shCount'), bodyEl=Q('#shCartBody'), footEl=Q('#shCartFoot'), totalEl=Q('#shCartTotal');
 
   if(countEl){ countEl.textContent=count; countEl.classList.toggle('show',count>0); }
@@ -447,23 +455,216 @@ function cartUI(){
       bodyEl.innerHTML='<div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>';
       if(footEl) footEl.style.display='none';
     } else {
-      bodyEl.innerHTML=cartItems.map(item=>{
+      bodyEl.innerHTML= cartItems.map(item=>{
         const p=P.find(x=>x.id===item.id); if(!p) return '';
         return `<div class="sh-cart-item">
           <div class="sh-cart-item-img"><img src="${p.img}" alt="${p.name}"></div>
           <div class="sh-cart-item-info">
             <div class="sh-cart-item-name">${p.name}</div>
             <div class="sh-cart-item-var">${p.stor?p.stor+' · ':''}${p.color} · Qty: ${item.qty}</div>
-            <div class="sh-cart-item-price">$${(p.price*item.qty).toLocaleString()}</div>
+            <div class="sh-cart-item-price">${(p.price*item.qty).toLocaleString()}</div>
           </div>
           <button class="sh-cart-item-rm" data-rm="${p.id}"><i class="fas fa-trash-can"></i></button>
         </div>`;
-      }).join('');
+      }).join('') +
+
+      /* ── Shipping Selector ── */
+      `<div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--cloud)">
+        <div style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--steel);margin-bottom:10px">Shipping Method</div>
+        <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:${selectedShipping==='standard'?'var(--blue-s)':'var(--matte)'};border:1.5px solid ${selectedShipping==='standard'?'var(--blue)':'var(--cloud)'};border-radius:var(--r-md);margin-bottom:8px;cursor:pointer;transition:all .2s ease;font-size:.8125rem">
+          <input type="radio" name="shipping" value="standard" ${selectedShipping==='standard'?'checked':''} style="accent-color:var(--blue)">
+          <div style="flex:1">
+            <div style="font-weight:600;color:var(--carbon)">Standard Shipping</div>
+            <div style="font-size:.6875rem;color:var(--steel)">3–5 business days</div>
+          </div>
+          <span style="font-weight:700;color:var(--carbon)">$9.99</span>
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:${selectedShipping==='nyc'?'var(--blue-s)':'var(--matte)'};border:1.5px solid ${selectedShipping==='nyc'?'var(--blue)':'var(--cloud)'};border-radius:var(--r-md);cursor:pointer;transition:all .2s ease;font-size:.8125rem">
+          <input type="radio" name="shipping" value="nyc" ${selectedShipping==='nyc'?'checked':''} style="accent-color:var(--blue)">
+          <div style="flex:1">
+            <div style="font-weight:600;color:var(--carbon)"><i class="fas fa-bolt" style="color:var(--blue);font-size:.625rem;margin-right:4px"></i>NYC Same-Day Delivery</div>
+            <div style="font-size:.6875rem;color:var(--steel)">Order by 2pm, delivered today</div>
+          </div>
+          <span style="font-weight:700;color:var(--carbon)">$79.00</span>
+        </label>
+      </div>`;
+
       if(footEl) footEl.style.display='block';
+
+      // Bind remove buttons
       QA('[data-rm]',bodyEl).forEach(btn=>btn.addEventListener('click',()=>cartRemove(btn.dataset.rm)));
+
+      // Bind shipping radios
+      QA('input[name="shipping"]',bodyEl).forEach(radio=>{
+        radio.addEventListener('change',()=>{
+          selectedShipping = radio.value;
+          cartUI(); // Re-render with new shipping
+        });
+      });
     }
   }
-  if(totalEl) totalEl.textContent='$'+total.toLocaleString();
+
+  // Update footer totals
+  if(totalEl && cartItems.length){
+    const subEl = Q('#shCartSub');
+    const shipEl = Q('#shCartShip');
+    if(subEl) subEl.textContent = '
+
+/* ═══════════════════════════════════════
+   SMOOTH SCROLL
+═══════════════════════════════════════ */
+function initSmooth(){
+  document.addEventListener('click',e=>{
+    const link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+    const href=link.getAttribute('href');
+    if(href==='#'||href.startsWith('#product/')) return;
+    const t=Q(href);
+    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
+  });
+}
+
+/* ═══════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════ */
+function initTop(){
+  const btn=Q('#shTop'); if(!btn) return;
+  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+
+/* ═══════════════════════════════════════
+   BOOT
+═══════════════════════════════════════ */
+function boot(){
+  checkOrderSuccess();   // ← Check if returning from Square payment
+  initReveal();
+  initProgress();
+  initHeader();
+  initMobile();
+  initGlow();
+  initParticles();
+  initBadges();
+  initHeroParallax();
+  initMagnetic();
+  renderGrid(P);
+  initFilters();
+  initCart();
+  initCompare();
+  initSmooth();
+  initTop();
+  checkHash();
+  console.log('✦ ETW Shop V3 — Square Checkout Ready');
+}
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+else boot();
++subtotal.toLocaleString();
+    if(shipEl) shipEl.textContent = '
+
+/* ═══════════════════════════════════════
+   SMOOTH SCROLL
+═══════════════════════════════════════ */
+function initSmooth(){
+  document.addEventListener('click',e=>{
+    const link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+    const href=link.getAttribute('href');
+    if(href==='#'||href.startsWith('#product/')) return;
+    const t=Q(href);
+    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
+  });
+}
+
+/* ═══════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════ */
+function initTop(){
+  const btn=Q('#shTop'); if(!btn) return;
+  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+
+/* ═══════════════════════════════════════
+   BOOT
+═══════════════════════════════════════ */
+function boot(){
+  checkOrderSuccess();   // ← Check if returning from Square payment
+  initReveal();
+  initProgress();
+  initHeader();
+  initMobile();
+  initGlow();
+  initParticles();
+  initBadges();
+  initHeroParallax();
+  initMagnetic();
+  renderGrid(P);
+  initFilters();
+  initCart();
+  initCompare();
+  initSmooth();
+  initTop();
+  checkHash();
+  console.log('✦ ETW Shop V3 — Square Checkout Ready');
+}
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+else boot();
++ship.price.toFixed(2);
+    totalEl.textContent = '
+
+/* ═══════════════════════════════════════
+   SMOOTH SCROLL
+═══════════════════════════════════════ */
+function initSmooth(){
+  document.addEventListener('click',e=>{
+    const link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+    const href=link.getAttribute('href');
+    if(href==='#'||href.startsWith('#product/')) return;
+    const t=Q(href);
+    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
+  });
+}
+
+/* ═══════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════ */
+function initTop(){
+  const btn=Q('#shTop'); if(!btn) return;
+  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+
+/* ═══════════════════════════════════════
+   BOOT
+═══════════════════════════════════════ */
+function boot(){
+  checkOrderSuccess();   // ← Check if returning from Square payment
+  initReveal();
+  initProgress();
+  initHeader();
+  initMobile();
+  initGlow();
+  initParticles();
+  initBadges();
+  initHeroParallax();
+  initMagnetic();
+  renderGrid(P);
+  initFilters();
+  initCart();
+  initCompare();
+  initSmooth();
+  initTop();
+  checkHash();
+  console.log('✦ ETW Shop V3 — Square Checkout Ready');
+}
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+else boot();
++grand.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
 }
 
 function cartOpen(){
@@ -490,7 +691,6 @@ async function handleCheckout(){
   const btn = Q('#shCheckout');
   if(!cartItems.length || !btn) return;
 
-  // Loading state
   const orig = btn.innerHTML;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating checkout…';
   btn.disabled = true;
@@ -498,7 +698,6 @@ async function handleCheckout(){
   btn.style.pointerEvents = 'none';
 
   try {
-    // Build items for the API
     const items = cartItems.map(item=>{
       const p = P.find(x=>x.id===item.id);
       if(!p) return null;
@@ -517,15 +716,14 @@ async function handleCheckout(){
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         items,
+        shipping: selectedShipping,
         redirectUrl: window.location.origin + '/shop/?order=success',
       }),
     });
 
     const data = await res.json();
-
     if(!res.ok) throw new Error(data.detail || data.error || 'Checkout failed');
 
-    // Redirect to Square hosted checkout
     window.location.href = data.url;
 
   } catch(err){
@@ -542,20 +740,15 @@ async function handleCheckout(){
 function checkOrderSuccess(){
   const params = new URLSearchParams(window.location.search);
   if(params.get('order') === 'success'){
-    // Clear cart
     cartItems = [];
     cartSave();
     cartUI();
-
-    // Show success message
     const t=Q('#shToast'), m=Q('#shToastMsg');
     if(t&&m){
       m.textContent = "Order placed! We'll be in touch shortly.";
       t.classList.add('show');
       setTimeout(()=>t.classList.remove('show'),6000);
     }
-
-    // Clean URL
     history.replaceState(null,'',window.location.pathname);
   }
 }
