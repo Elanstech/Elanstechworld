@@ -106,26 +106,26 @@
     "id": "iphone-15",
     "name": "iPhone 15",
     "cat": "iphone",
-    "cond": "good",
+    "cond": "Like New",
     "specs": ["A16", "48MP Camera", "USB-C"],
     "colorOptions": [
-      { "name": "Black",  "swatch": "#1C1C1E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Blue",   "swatch": "#4A7FA5", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Green",  "swatch": "#5A8A72", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-green?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Yellow", "swatch": "#E5C840", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-yellow?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Pink",   "swatch": "#E8A0AA", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-pink?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+      { "name": "Black",  "swatch": "#1C1C1E", "img": "https://i.ebayimg.com/images/g/6JsAAeSwUTlpJJHr/s-l1600.jpg" },
+      { "name": "Blue",   "swatch": "#4A7FA5", "img": "https://i.ebayimg.com/images/g/5gMAAeSwSgppJJHz/s-l1600.jpg" },
+      { "name": "Green",  "swatch": "#5A8A72", "img": "https://i.ebayimg.com/images/g/K9IAAeSwqWBpZ-D0/s-l1600.jpg" },
+      { "name": "Yellow", "swatch": "#E5C840", "img": "https://i.ebayimg.com/images/g/X3kAAOSwFHZnN64Z/s-l1600.jpg" },
+      { "name": "Pink",   "swatch": "#E8A0AA", "img": "https://i.ebayimg.com/images/g/A50AAeSwtGBpJJIA/s-l1600.jpg" }
     ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-green?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-yellow?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-pink?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://i.ebayimg.com/images/g/6JsAAeSwUTlpJJHr/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/5gMAAeSwSgppJJHz/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/A50AAeSwtGBpJJIA/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/K9IAAeSwqWBpZ-D0/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/X3kAAOSwFHZnN64Z/s-l1600.jpg"
     ],
-    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "thumb": "https://i.ebayimg.com/images/g/9NoAAeSwHjZpJJHb/s-l1600.jpg",
     "variants": [
-      { "storage": "128GB", "color": "Black", "price": 449, "retail": 799, "bm": 519, "inStock": true },
-      { "storage": "256GB", "color": "Black", "price": 529, "retail": 899, "bm": 599, "inStock": true }
+      { "storage": "128GB", "color": "Black", "price": 459.99, "retail": 799, "bm": 519, "inStock": true },
+      { "storage": "256GB", "color": "Black", "price": 499.99, "retail": 899, "bm": 599, "inStock": true }
     ]
   },
   {
