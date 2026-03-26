@@ -1,0 +1,183 @@
+[
+  {
+    "id": "iphone-16-pro",
+    "name": "iPhone 16 Pro",
+    "cat": "iphone",
+    "cond": "excellent",
+    "specs": ["A18 Pro", "48MP Camera", "Titanium"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Natural Titanium", "price": 749, "retail": 999, "bm": 839, "inStock": true },
+      { "storage": "256GB", "color": "Natural Titanium", "price": 849, "retail": 1099, "bm": 939, "inStock": true },
+      { "storage": "512GB", "color": "Natural Titanium", "price": 1029, "retail": 1299, "bm": 1129, "inStock": true },
+      { "storage": "1TB", "color": "Natural Titanium", "price": 1199, "retail": 1499, "bm": 1319, "inStock": false }
+    ]
+  },
+  {
+    "id": "iphone-16",
+    "name": "iPhone 16",
+    "cat": "iphone",
+    "cond": "excellent",
+    "specs": ["A18", "48MP Camera", "Dynamic Island"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-pink?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Ultramarine", "price": 599, "retail": 829, "bm": 669, "inStock": true },
+      { "storage": "256GB", "color": "Ultramarine", "price": 699, "retail": 929, "bm": 769, "inStock": true },
+      { "storage": "512GB", "color": "Ultramarine", "price": 849, "retail": 1129, "bm": 939, "inStock": false }
+    ]
+  },
+  {
+    "id": "iphone-15-pro-max",
+    "name": "iPhone 15 Pro Max",
+    "cat": "iphone",
+    "cond": "excellent",
+    "specs": ["A17 Pro", "5x Zoom", "Titanium"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "256GB", "color": "Blue Titanium", "price": 779, "retail": 1199, "bm": 869, "inStock": true },
+      { "storage": "512GB", "color": "Blue Titanium", "price": 929, "retail": 1399, "bm": 1029, "inStock": true },
+      { "storage": "1TB", "color": "Blue Titanium", "price": 1079, "retail": 1599, "bm": 1199, "inStock": false }
+    ]
+  },
+  {
+    "id": "iphone-15-pro",
+    "name": "iPhone 15 Pro",
+    "cat": "iphone",
+    "cond": "good",
+    "specs": ["A17 Pro", "48MP Camera", "Titanium"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Natural Titanium", "price": 619, "retail": 999, "bm": 699, "inStock": true },
+      { "storage": "256GB", "color": "Natural Titanium", "price": 719, "retail": 1099, "bm": 799, "inStock": true },
+      { "storage": "512GB", "color": "Natural Titanium", "price": 869, "retail": 1299, "bm": 969, "inStock": false }
+    ]
+  },
+  {
+    "id": "iphone-15",
+    "name": "iPhone 15",
+    "cat": "iphone",
+    "cond": "good",
+    "specs": ["A16", "48MP Camera", "USB-C"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Black", "price": 449, "retail": 799, "bm": 519, "inStock": true },
+      { "storage": "256GB", "color": "Black", "price": 529, "retail": 899, "bm": 599, "inStock": true }
+    ]
+  },
+  {
+    "id": "iphone-14-pro-max",
+    "name": "iPhone 14 Pro Max",
+    "cat": "iphone",
+    "cond": "good",
+    "specs": ["A16", "48MP Camera", "Dynamic Island"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-spaceblack?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Deep Purple", "price": 489, "retail": 999, "bm": 559, "inStock": true },
+      { "storage": "256GB", "color": "Deep Purple", "price": 549, "retail": 1099, "bm": 629, "inStock": true },
+      { "storage": "512GB", "color": "Deep Purple", "price": 679, "retail": 1299, "bm": 759, "inStock": false }
+    ]
+  },
+  {
+    "id": "iphone-14",
+    "name": "iPhone 14",
+    "cat": "iphone",
+    "cond": "good",
+    "specs": ["A15", "12MP Camera", "6.1 Display"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Midnight", "price": 349, "retail": 699, "bm": 399, "inStock": true },
+      { "storage": "256GB", "color": "Midnight", "price": 409, "retail": 799, "bm": 469, "inStock": true }
+    ]
+  },
+  {
+    "id": "iphone-13-pro",
+    "name": "iPhone 13 Pro",
+    "cat": "iphone",
+    "cond": "fair",
+    "specs": ["A15", "ProRes Video", "LiDAR"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Sierra Blue", "price": 349, "retail": 999, "bm": 409, "inStock": true },
+      { "storage": "256GB", "color": "Sierra Blue", "price": 399, "retail": 1099, "bm": 469, "inStock": true }
+    ]
+  },
+  {
+    "id": "iphone-13",
+    "name": "iPhone 13",
+    "cat": "iphone",
+    "cond": "fair",
+    "specs": ["A15", "12MP Camera", "5G"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Midnight", "price": 269, "retail": 699, "bm": 319, "inStock": true },
+      { "storage": "256GB", "color": "Midnight", "price": 319, "retail": 799, "bm": 369, "inStock": true }
+    ]
+  },
+  {
+    "id": "iphone-12-pro",
+    "name": "iPhone 12 Pro",
+    "cat": "iphone",
+    "cond": "fair",
+    "specs": ["A14", "LiDAR", "5G"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "128GB", "color": "Pacific Blue", "price": 259, "retail": 899, "bm": 309, "inStock": true },
+      { "storage": "256GB", "color": "Pacific Blue", "price": 299, "retail": 999, "bm": 349, "inStock": false }
+    ]
+  },
+  {
+    "id": "iphone-12",
+    "name": "iPhone 12",
+    "cat": "iphone",
+    "cond": "fair",
+    "specs": ["A14", "12MP Camera", "5G"],
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    ],
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "variants": [
+      { "storage": "64GB", "color": "Blue", "price": 199, "retail": 699, "bm": 239, "inStock": true },
+      { "storage": "128GB", "color": "Blue", "price": 229, "retail": 749, "bm": 269, "inStock": true }
+    ]
+  }
+]
