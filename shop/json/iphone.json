@@ -56,7 +56,7 @@
     "id": "iphone-15-pro-max",
     "name": "iPhone 15 Pro Max",
     "cat": "iphone",
-    "cond": "excellent",
+    "cond": "Like New",
     "specs": ["A17 Pro", "5x Zoom", "Titanium"],
     "colorOptions": [
       { "name": "Blue Titanium",    "swatch": "#4E6B8C", "img": "https://i.ebayimg.com/images/g/8dkAAeSw-5xpJIwF/s-l1600.jpg" },
@@ -74,7 +74,7 @@
     "variants": [
       { "storage": "256GB", "color": "Blue Titanium", "price": 659.99,  "retail": 1199, "bm": 869,  "inStock": true },
       { "storage": "512GB", "color": "Blue Titanium", "price": 729.99,  "retail": 1399, "bm": 1029, "inStock": true },
-      { "storage": "1TB",   "color": "Blue Titanium", "price": 899.99, "retail": 1599, "bm": 1199, "inStock": false }
+      { "storage": "1TB",   "color": "Blue Titanium", "price": 899.99, "retail": 1599, "bm": 1199, "inStock": true }
     ]
   },
   {
