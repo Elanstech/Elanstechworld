@@ -138,9 +138,12 @@
                 <div class="sh-hero-video-wrap" id="shHeroFloat">
                     <video class="sh-hero-video" autoplay muted loop playsinline preload="auto">
                         <!-- Replace this src with your actual Apple promo video file -->
-                        <source src="https://github.com/Elanstech/Elanstechworld/releases/download/Video/apple-promo.mp4" type="video/mp4">
+                        <source src="assets/apple-promo.mp4" type="video/mp4">
                     </video>
                     <div class="sh-hero-video-overlay"></div>
+                    <div class="sh-fbadge sh-fb-save"><i class="fas fa-microscope"></i><span>44-Point Tested</span></div>
+                    <div class="sh-fbadge sh-fb-cert"><i class="fas fa-shield-check"></i><span>Like-New Guarantee</span></div>
+                    <div class="sh-fbadge sh-fb-rate"><i class="fas fa-rotate-left"></i><span>Free Returns</span></div>
                 </div>
             </div>
         </div>
@@ -151,10 +154,135 @@
 <section class="sh-trustbar" data-sh="up">
     <div class="container">
         <div class="sh-trustbar-grid">
-            <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-truck-fast"></i></div><strong>Free NYC Delivery</strong><span>Same-day in Queens</span></div>
+            <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-truck-fast"></i></div><strong>Fast Shipping</strong><span>NYC same-day available</span></div>
             <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-shield-halved"></i></div><strong>90-Day Warranty</strong><span>Full coverage</span></div>
             <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-microscope"></i></div><strong>44-Point Inspection</strong><span>Every device tested</span></div>
             <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-credit-card"></i></div><strong>Square Checkout</strong><span>Secure payment</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     QUALITY SHOWCASE
+═══════════════════════════════════════ -->
+<section class="sh-sec sh-sec-white sh-quality" id="quality">
+    <div class="container">
+        <div class="sh-sec-header" data-sh="up">
+            <span class="sh-sec-tag">Our Standard</span>
+            <h2 class="sh-sec-title">Inspected. Tested. <em>Perfect.</em></h2>
+            <p class="sh-sec-sub">Every device goes through our rigorous 44-point inspection. If it doesn't meet our standard, it doesn't ship.</p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="sq-grid">
+            <!-- Large card: Screen -->
+            <div class="sq-card sq-card-lg" data-sh="up" data-d="0">
+                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=800&hei=944&fmt=p-jpg&qlt=80" alt="Device screen inspection" class="sq-card-img">
+                <div class="sq-card-overlay"></div>
+                <div class="sq-card-content">
+                    <div class="sq-card-icon"><i class="fas fa-display"></i></div>
+                    <h3>Display</h3>
+                    <p>Zero dead pixels. No burn-in. True Tone and ProMotion verified on every screen.</p>
+                    <div class="sq-pills">
+                        <span class="sq-pill"><i class="fas fa-check-circle"></i> No scratches</span>
+                        <span class="sq-pill"><i class="fas fa-check-circle"></i> Original display</span>
+                        <span class="sq-pill"><i class="fas fa-check-circle"></i> Full brightness</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tall card: Body -->
+            <div class="sq-card sq-card-tall" data-sh="up" data-d="100">
+                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=800&hei=944&fmt=p-jpg&qlt=80" alt="Device body inspection" class="sq-card-img">
+                <div class="sq-card-overlay"></div>
+                <div class="sq-card-content">
+                    <div class="sq-card-icon"><i class="fas fa-hand-sparkles"></i></div>
+                    <h3>Body</h3>
+                    <p>Minimal to zero signs of use. Premium feel preserved.</p>
+                    <div class="sq-pills">
+                        <span class="sq-pill"><i class="fas fa-check-circle"></i> Like new</span>
+                        <span class="sq-pill"><i class="fas fa-check-circle"></i> Apple parts</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Small card: Battery -->
+            <div class="sq-card sq-card-sm" data-sh="up" data-d="200">
+                <div class="sq-card-dark">
+                    <div class="sq-battery-ring">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="8"/>
+                            <circle cx="60" cy="60" r="52" fill="none" stroke="url(#battGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="33" transform="rotate(-90 60 60)"/>
+                            <defs><linearGradient id="battGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#34C759"/><stop offset="100%" stop-color="#30D158"/></linearGradient></defs>
+                        </svg>
+                        <div class="sq-battery-pct">
+                            <span class="sq-battery-num" data-target="90">0</span>
+                            <span class="sq-battery-sign">%+</span>
+                        </div>
+                    </div>
+                    <h3>Battery Health</h3>
+                    <p>Minimum 80% health. Most devices ship at 90%+. Built for heavy daily use.</p>
+                </div>
+            </div>
+
+            <!-- Small card: Camera -->
+            <div class="sq-card sq-card-sm" data-sh="up" data-d="300">
+                <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MYW73?wid=800&hei=800&fmt=p-jpg&qlt=80" alt="Camera lens inspection" class="sq-card-img sq-card-img-zoom">
+                <div class="sq-card-overlay sq-card-overlay-heavy"></div>
+                <div class="sq-card-content">
+                    <div class="sq-card-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Camera</h3>
+                    <p>Lens clarity, autofocus, OIS, and flash — all tested and verified.</p>
+                    <div class="sq-pills">
+                        <span class="sq-pill"><i class="fas fa-check-circle"></i> Crystal clear</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wide card: Internals -->
+            <div class="sq-card sq-card-wide" data-sh="up" data-d="150">
+                <div class="sq-card-dark sq-card-dark-row">
+                    <div class="sq-internals-checks">
+                        <div class="sq-check-item">
+                            <div class="sq-check-icon sq-check-pass"><i class="fas fa-check"></i></div>
+                            <div><strong>Face ID / Touch ID</strong><span>Biometrics verified</span></div>
+                        </div>
+                        <div class="sq-check-item">
+                            <div class="sq-check-icon sq-check-pass"><i class="fas fa-check"></i></div>
+                            <div><strong>All Buttons &amp; Ports</strong><span>Fully functional</span></div>
+                        </div>
+                        <div class="sq-check-item">
+                            <div class="sq-check-icon sq-check-pass"><i class="fas fa-check"></i></div>
+                            <div><strong>Speakers &amp; Mic</strong><span>Clear audio confirmed</span></div>
+                        </div>
+                        <div class="sq-check-item">
+                            <div class="sq-check-icon sq-check-pass"><i class="fas fa-check"></i></div>
+                            <div><strong>Wi-Fi, Bluetooth, GPS</strong><span>All radios tested</span></div>
+                        </div>
+                        <div class="sq-check-item">
+                            <div class="sq-check-icon sq-check-pass"><i class="fas fa-check"></i></div>
+                            <div><strong>Water Resistance</strong><span>Seal integrity checked</span></div>
+                        </div>
+                        <div class="sq-check-item">
+                            <div class="sq-check-icon sq-check-pass"><i class="fas fa-check"></i></div>
+                            <div><strong>Factory Reset</strong><span>Clean install, zero data</span></div>
+                        </div>
+                    </div>
+                    <div class="sq-internals-label">
+                        <div class="sq-card-icon"><i class="fas fa-microchip"></i></div>
+                        <h3>44 Points. Every Device.</h3>
+                        <p>Nothing ships until every checkpoint passes. Period.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promise bar -->
+        <div class="sq-promise" data-sh="up" data-d="200">
+            <div class="sq-promise-item">
+                <i class="fas fa-rotate-left"></i>
+                <span>Doesn't meet your standards? <strong>Send it back free.</strong></span>
+            </div>
         </div>
     </div>
 </section>
