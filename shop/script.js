@@ -550,7 +550,7 @@ function checkOrderSuccess(){
     // Show success message
     const t=Q('#shToast'), m=Q('#shToastMsg');
     if(t&&m){
-      m.textContent = 'Order placed! We'll be in touch shortly.';
+      m.textContent = "Order placed! We'll be in touch shortly.";
       t.classList.add('show');
       setTimeout(()=>t.classList.remove('show'),6000);
     }
