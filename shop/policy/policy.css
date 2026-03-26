@@ -1,0 +1,264 @@
+/**
+ * ═══════════════════════════════════════════════════════════════
+ *  ETW SHOP — Policy Pages Shared Styles
+ *  File: shop/policies.css
+ *  Used by: returns.html, warranty.html, privacy.html
+ *  Inherits tokens from shop/style.css
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* ─── PAGE LAYOUT ─── */
+.pol-page {
+  padding: 120px 0 80px;
+  background: var(--snow);
+  min-height: 100vh;
+}
+
+/* ─── BACK LINK ─── */
+.pol-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 40px;
+  transition: all .2s ease;
+}
+.pol-back:hover {
+  color: var(--blue-h);
+  transform: translateX(-4px);
+}
+.pol-back i { font-size: .75rem; }
+
+/* ─── HERO ─── */
+.pol-hero {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.pol-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-s);
+  border-radius: 16px;
+  margin: 0 auto 20px;
+  font-size: 1.5rem;
+  color: var(--blue);
+}
+.pol-hero h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  color: var(--carbon);
+  margin-bottom: 12px;
+}
+.pol-hero p {
+  font-size: 1.0625rem;
+  color: var(--graphite);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.pol-updated {
+  font-size: .75rem;
+  color: var(--steel);
+  margin-top: 16px;
+}
+
+/* ─── CONTENT ─── */
+.pol-body {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.pol-body h2 {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: var(--carbon);
+  letter-spacing: -.03em;
+  margin-top: 48px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--cloud);
+}
+.pol-body h2:first-child { margin-top: 0; }
+
+.pol-body h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--carbon);
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+.pol-body p {
+  font-size: .9375rem;
+  color: var(--graphite);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.pol-body strong { color: var(--carbon); }
+
+.pol-body a {
+  color: var(--blue);
+  font-weight: 600;
+  transition: color .2s ease;
+}
+.pol-body a:hover { color: var(--blue-h); }
+
+/* ─── CALLOUT BOX ─── */
+.pol-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 24px;
+  background: var(--blue-s);
+  border: 1px solid rgba(0,113,227,.12);
+  border-radius: var(--r-md);
+  margin: 24px 0;
+  font-size: .875rem;
+  color: var(--carbon);
+  line-height: 1.65;
+}
+.pol-callout i {
+  color: var(--blue);
+  font-size: 1rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.pol-callout-warn {
+  background: rgba(232,101,26,.06);
+  border-color: rgba(232,101,26,.12);
+}
+.pol-callout-warn i { color: var(--orange); }
+
+.pol-callout-green {
+  background: var(--green-s);
+  border-color: rgba(52,199,89,.15);
+}
+.pol-callout-green i { color: var(--green); }
+
+/* ─── CHECKLIST ─── */
+.pol-list {
+  margin: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pol-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .9375rem;
+  color: var(--graphite);
+  line-height: 1.65;
+}
+.pol-list li i {
+  color: var(--green);
+  font-size: .6875rem;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+.pol-list-x li i { color: var(--red); }
+
+/* ─── TABLE ─── */
+.pol-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin: 20px 0 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.04);
+}
+.pol-table th {
+  padding: 12px 20px;
+  background: var(--matte);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--steel);
+  text-align: left;
+  border-bottom: 1px solid var(--cloud);
+}
+.pol-table td {
+  padding: 14px 20px;
+  background: #fff;
+  font-size: .875rem;
+  color: var(--graphite);
+  border-bottom: 1px solid var(--cloud);
+  line-height: 1.6;
+}
+.pol-table tr:last-child td { border-bottom: none; }
+
+/* ─── POLICY NAV (cross-links) ─── */
+.pol-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--cloud);
+  flex-wrap: wrap;
+}
+.pol-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--matte);
+  border: 1px solid var(--cloud);
+  border-radius: var(--r-full);
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--graphite);
+  transition: all .25s ease;
+}
+.pol-nav a:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-s);
+  transform: translateY(-2px);
+}
+.pol-nav a.pol-nav-active {
+  background: var(--carbon);
+  color: #fff;
+  border-color: var(--carbon);
+  pointer-events: none;
+}
+.pol-nav a i { font-size: .6875rem; }
+
+/* ─── CONTACT BAR ─── */
+.pol-contact {
+  text-align: center;
+  margin-top: 48px;
+  padding: 28px;
+  background: var(--matte);
+  border-radius: var(--r-lg);
+}
+.pol-contact p {
+  font-size: .9375rem;
+  color: var(--graphite);
+  margin-bottom: 4px;
+}
+.pol-contact a {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 640px) {
+  .pol-page { padding: 100px 0 60px; }
+  .pol-hero { margin-bottom: 40px; }
+  .pol-body h2 { font-size: 1.25rem; margin-top: 36px; }
+  .pol-callout { flex-direction: column; gap: 8px; }
+  .pol-nav { flex-direction: column; align-items: stretch; }
+  .pol-nav a { justify-content: center; }
+  .pol-table { font-size: .8125rem; }
+}
