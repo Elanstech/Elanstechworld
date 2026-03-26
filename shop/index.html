@@ -3,172 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- ═══ SEO ═══ -->
     <title>Shop Refurbished Apple — iPhones, MacBooks, iPads | ETW Shop</title>
-    <meta name="description" content="Premium refurbished Apple products at unbeatable prices. iPhones, MacBooks, iPads, Apple Watch & AirPods — tested, certified, 90-day warranty. Free NYC delivery.">
+    <meta name="description" content="Premium refurbished Apple products at unbeatable prices. iPhones 12–16, MacBooks, iPads, Watch & AirPods — tested, certified, 90-day warranty.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.elanstechworld.com/shop/">
 
-    <!-- ═══ OG ═══ -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Shop Refurbished Apple | ETW Shop">
-    <meta property="og:description" content="Premium refurbished Apple products 10-20% cheaper than Back Market. Tested. Certified. 90-day warranty.">
+    <meta property="og:description" content="Premium refurbished Apple 10-20% cheaper than Back Market. Tested. Certified. 90-day warranty.">
     <meta property="og:url" content="https://www.elanstechworld.com/shop/">
-    <meta property="og:image" content="https://www.elanstechworld.com/assets/images/og-shop.jpg">
 
-    <!-- ═══ SCHEMA ═══ -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "ETW Shop — Refurbished Apple",
-      "description": "Premium refurbished Apple products with 90-day warranty and free NYC delivery.",
-      "url": "https://www.elanstechworld.com/shop/",
-      "telephone": "+1-929-417-6819",
-      "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" },
-      "priceRange": "$$"
-    }
+    {"@context":"https://schema.org","@type":"Store","name":"ETW Shop","description":"Premium refurbished Apple products with 90-day warranty.","url":"https://www.elanstechworld.com/shop/","telephone":"+1-929-417-6819","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"priceRange":"$$"}
     </script>
 
-    <!-- ═══ FONTS (shared with main site) ═══ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400&display=swap" rel="stylesheet">
-
-    <!-- ═══ ICONS ═══ -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- ═══ MAIN SITE CSS (header, footer, loader, utilities) ═══ -->
-    <link rel="stylesheet" href="../css/style.css">
-
-    <!-- ═══ SHOP-SPECIFIC CSS ═══ -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body class="shop-page">
 
-<!-- ═══ LOADER (uses main site loader) ═══ -->
-<div class="loader" id="loader">
-    <div class="loader-inner">
-        <div class="loader-logo"><img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World"></div>
-        <div class="loader-line"><div class="loader-line-fill"></div></div>
-        <p class="loader-tagline">ETW Shop</p>
-    </div>
-</div>
+<!-- Scroll progress -->
+<div id="shProgress"></div>
 
-<!-- ═══ SCROLL PROGRESS ═══ -->
-<div class="sh-scroll-progress" id="shScrollProgress"></div>
+<!-- Cursor glow (desktop) -->
+<div id="shGlow"></div>
 
-<!-- ═══════════════════════════════════════
-     HEADER — Uses main site header structure
-     so ../js/script.js handles scroll, mobile, etc.
-═══════════════════════════════════════ -->
-<header class="header" id="header">
-    <div class="header-container">
-        <a href="../index.html" class="logo">
-            <div class="logo-mark"><img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World"></div>
-            <div class="logo-type"><span class="logo-name">ETW</span><span class="logo-descriptor">Shop</span></div>
+<!-- ═══ HEADER ═══ -->
+<header class="sh-header" id="shHeader">
+    <div class="sh-header-inner">
+        <a href="/shop/" class="sh-logo">
+            <img src="../assets/images/Elanslogo.jpeg" alt="ETW Shop" class="sh-logo-img">
+            <div class="sh-logo-text">ETW <span>Shop</span></div>
         </a>
-
-        <nav class="nav" id="nav">
-            <ul class="nav-list">
-                <li><a href="#products" class="nav-link active">All Products</a></li>
-                <li><a href="#products" class="nav-link" data-sh-filter="iphone">iPhone</a></li>
-                <li><a href="#products" class="nav-link" data-sh-filter="macbook">MacBook</a></li>
-                <li><a href="#products" class="nav-link" data-sh-filter="ipad">iPad</a></li>
-                <li><a href="#products" class="nav-link" data-sh-filter="watch">Watch</a></li>
-                <li><a href="#products" class="nav-link" data-sh-filter="airpods">AirPods</a></li>
-            </ul>
+        <nav class="sh-nav">
+            <a href="#products" class="active">All Products</a>
+            <a href="#products" data-f="iphone">iPhone</a>
+            <a href="#products" data-f="macbook">MacBook</a>
+            <a href="#products" data-f="ipad">iPad</a>
+            <a href="#products" data-f="watch">Watch</a>
+            <a href="#products" data-f="airpods">AirPods</a>
+            <a href="../index.html" class="sh-nav-services"><i class="fas fa-bolt"></i> Our Services</a>
         </nav>
-
-        <div class="header-actions">
-            <!-- Cart icon -->
-            <button class="sh-header-icon" id="shCartToggle" aria-label="Cart" style="margin-right:8px;">
+        <div class="sh-header-actions">
+            <button class="sh-h-icon" id="shCartBtn" aria-label="Cart">
                 <i class="fas fa-bag-shopping"></i>
-                <span class="sh-cart-count" id="shCartCount">0</span>
+                <span class="sh-cart-count" id="shCount">0</span>
             </button>
-            <!-- Services CTA -->
-            <a href="../index.html" class="btn btn-primary btn-header">
-                <span>Our Services</span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                <span></span><span></span>
-            </button>
+            <button class="sh-menu-btn" id="shMenuBtn" aria-label="Menu"><span></span><span></span></button>
         </div>
     </div>
 </header>
 
-<!-- ═══ MOBILE MENU (main site structure) ═══ -->
-<div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-overlay"></div>
-    <div class="mobile-menu-panel">
-        <nav class="mobile-nav">
-            <ul>
-                <li><a href="#products" class="mobile-nav-link active" data-index="01">All Products</a></li>
-                <li><a href="#products" class="mobile-nav-link" data-index="02" data-sh-filter="iphone">iPhone</a></li>
-                <li><a href="#products" class="mobile-nav-link" data-index="03" data-sh-filter="macbook">MacBook</a></li>
-                <li><a href="#products" class="mobile-nav-link" data-index="04" data-sh-filter="ipad">iPad</a></li>
-                <li><a href="#products" class="mobile-nav-link" data-index="05" data-sh-filter="watch">Apple Watch</a></li>
-                <li><a href="#products" class="mobile-nav-link" data-index="06" data-sh-filter="airpods">AirPods</a></li>
-            </ul>
-        </nav>
-        <div class="mobile-menu-footer">
-            <a href="tel:+19294176819">(929) 417-6819</a>
-            <a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a>
-            <a href="../index.html" style="display:inline-block;margin-top:16px;padding:10px 20px;background:var(--hermes);color:#fff;border-radius:999px;font-size:.8rem;font-weight:700;">← Back to Services</a>
-        </div>
+<!-- Mobile menu -->
+<div class="sh-mob" id="shMob">
+    <div class="sh-mob-overlay"></div>
+    <div class="sh-mob-panel">
+        <a href="#products">All Products</a>
+        <a href="#products" data-f="iphone">iPhone</a>
+        <a href="#products" data-f="macbook">MacBook</a>
+        <a href="#products" data-f="ipad">iPad</a>
+        <a href="#products" data-f="watch">Apple Watch</a>
+        <a href="#products" data-f="airpods">AirPods</a>
+        <a href="../index.html" class="sh-mob-back"><i class="fas fa-bolt"></i> Our Services</a>
     </div>
 </div>
 
-<!-- ═══ CART OVERLAY ═══ -->
-<div class="sh-cart-overlay" id="shCartOverlay"></div>
+<!-- Cart overlay -->
+<div class="sh-cart-ov" id="shCartOv"></div>
 
-<!-- ═══ CART DRAWER ═══ -->
+<!-- Cart drawer -->
 <div class="sh-cart-drawer" id="shCartDrawer">
     <div class="sh-cart-head">
         <h3>Your Bag</h3>
-        <button class="sh-cart-close" id="shCartClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+        <button class="sh-cart-x" id="shCartX"><i class="fas fa-xmark"></i></button>
     </div>
     <div class="sh-cart-body" id="shCartBody">
         <div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>
     </div>
-    <div class="sh-cart-foot" id="shCartFoot" style="display:none;">
+    <div class="sh-cart-foot" id="shCartFoot" style="display:none">
         <div class="sh-cart-total">
-            <span class="sh-cart-total-label">Subtotal</span>
-            <span class="sh-cart-total-amount" id="shCartTotal">$0</span>
+            <span class="sh-cart-total-l">Subtotal</span>
+            <span class="sh-cart-total-v" id="shCartTotal">$0</span>
         </div>
-        <button class="sh-checkout-btn" id="shCheckoutBtn"><i class="fas fa-lock"></i> Checkout with Square</button>
-        <div class="sh-cart-secured"><i class="fas fa-shield-check"></i> Secured by Square</div>
+        <button class="sh-checkout-btn" id="shCheckout"><i class="fas fa-lock"></i> Checkout with Square</button>
+        <div class="sh-cart-secure"><i class="fas fa-shield-check"></i> Secured by Square</div>
     </div>
 </div>
 
-<!-- ═══ TOAST ═══ -->
+<!-- Toast -->
 <div class="sh-toast" id="shToast"><i class="fas fa-check-circle"></i><span id="shToastMsg">Added to bag!</span></div>
 
-<!-- ═══════════════════════════════════════
-     MAIN CONTENT WRAPPER
-     — #shopMain holds either the grid view
-       or the product detail view (swapped by JS)
-═══════════════════════════════════════ -->
-<div id="shopMain">
+<!-- ═══ MAIN VIEW ═══ -->
+<div id="shopView">
 
-<!-- ═══ HERO ═══ -->
+<!-- HERO -->
 <section class="sh-hero" id="shHero">
-    <div class="sh-hero-orb sh-hero-orb-1"></div>
-    <div class="sh-hero-orb sh-hero-orb-2"></div>
+    <div class="sh-orb sh-orb-1"></div>
+    <div class="sh-orb sh-orb-2"></div>
+    <div class="sh-orb sh-orb-3"></div>
+    <div class="sh-hero-grid"></div>
+    <div class="sh-hero-particles" id="shParticles"></div>
+
     <div class="container">
         <div class="sh-hero-layout">
-            <div class="sh-hero-content" data-sh-reveal="up" data-sh-delay="100">
-                <div class="sh-hero-tag"><i class="fas fa-bolt"></i> Certified Refurbished — Up to 40% Off Retail</div>
+            <div class="sh-hero-content" data-sh="up" data-d="100">
+                <div class="sh-hero-tag"><i class="fas fa-bolt"></i> Certified Refurbished — Up to 50% Off Retail</div>
                 <h1 class="sh-hero-title">Premium Apple.<br><em>Honest Prices.</em></h1>
-                <p class="sh-hero-sub">Every device tested by our technicians, backed by a <strong>90-day warranty</strong>, and priced <strong>10–20% below Back Market</strong>. No surprises. No compromises.</p>
+                <p class="sh-hero-sub">Every device tested by our NYC technicians, backed by a <strong>90-day warranty</strong>, and priced <strong>10–20% below Back Market</strong>. No surprises.</p>
                 <div class="sh-hero-ctas">
-                    <a href="#products" class="sh-btn sh-btn-primary sh-btn-lg"><i class="fas fa-bag-shopping"></i> Shop Now</a>
-                    <a href="#compare" class="sh-btn sh-btn-secondary sh-btn-lg">See Price Comparison</a>
+                    <a href="#products" class="btn btn-primary btn-lg"><i class="fas fa-bag-shopping"></i> Shop Now</a>
+                    <a href="#compare" class="btn btn-outline btn-lg">See Price Comparison</a>
                 </div>
                 <div class="sh-hero-trust">
                     <div class="sh-trust-item"><i class="fas fa-check-circle"></i><span>90-Day Warranty</span></div>
@@ -176,182 +125,118 @@
                     <div class="sh-trust-item"><i class="fas fa-check-circle"></i><span>Square Secure Checkout</span></div>
                 </div>
             </div>
-            <div class="sh-hero-visual" data-sh-reveal="scale" data-sh-delay="300">
-                <div class="sh-hero-product-float">
-                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=940&hei=1112&fmt=p-jpg&qlt=80" alt="iPhone 16 Pro — Refurbished" class="sh-hero-product-img" loading="eager">
-                    <div class="sh-hero-badge sh-hero-badge-save"><i class="fas fa-tag"></i><span>Save $180</span></div>
-                    <div class="sh-hero-badge sh-hero-badge-verified"><i class="fas fa-shield-check"></i><span>Certified</span></div>
-                    <div class="sh-hero-badge sh-hero-badge-rating"><i class="fas fa-star"></i><span>4.9 Rating</span></div>
+            <div class="sh-hero-visual" data-sh="scale" data-d="300">
+                <div class="sh-hero-float" id="shHeroFloat">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=940&hei=1112&fmt=p-jpg&qlt=80" alt="iPhone 16 Pro" loading="eager">
+                    <div class="sh-fbadge sh-fb-save"><i class="fas fa-tag"></i><span>Save $250</span></div>
+                    <div class="sh-fbadge sh-fb-cert"><i class="fas fa-shield-check"></i><span>Certified</span></div>
+                    <div class="sh-fbadge sh-fb-rate"><i class="fas fa-star"></i><span>4.9 Rating</span></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ═══ TRUST BAR ═══ -->
-<section class="sh-trustbar" data-sh-reveal="up">
+<!-- TRUST BAR -->
+<section class="sh-trustbar" data-sh="up">
     <div class="container">
         <div class="sh-trustbar-grid">
-            <div class="sh-trustbar-item">
-                <div class="sh-trustbar-icon"><i class="fas fa-truck-fast"></i></div>
-                <strong>Free NYC Delivery</strong><span>Same-day in Queens</span>
-            </div>
-            <div class="sh-trustbar-item">
-                <div class="sh-trustbar-icon"><i class="fas fa-shield-halved"></i></div>
-                <strong>90-Day Warranty</strong><span>Full coverage included</span>
-            </div>
-            <div class="sh-trustbar-item">
-                <div class="sh-trustbar-icon"><i class="fas fa-microscope"></i></div>
-                <strong>44-Point Inspection</strong><span>Every device tested</span>
-            </div>
-            <div class="sh-trustbar-item">
-                <div class="sh-trustbar-icon"><i class="fas fa-credit-card"></i></div>
-                <strong>Square Checkout</strong><span>Secure payment</span>
-            </div>
+            <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-truck-fast"></i></div><strong>Free NYC Delivery</strong><span>Same-day in Queens</span></div>
+            <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-shield-halved"></i></div><strong>90-Day Warranty</strong><span>Full coverage</span></div>
+            <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-microscope"></i></div><strong>44-Point Inspection</strong><span>Every device tested</span></div>
+            <div class="sh-tb-item"><div class="sh-tb-icon"><i class="fas fa-credit-card"></i></div><strong>Square Checkout</strong><span>Secure payment</span></div>
         </div>
     </div>
 </section>
 
-<!-- ═══ PRODUCTS GRID ═══ -->
-<section class="sh-section sh-section-matte" id="products">
+<!-- PRODUCTS -->
+<section class="sh-sec sh-sec-matte" id="products">
     <div class="container">
-        <div class="sh-section-header" data-sh-reveal="up">
-            <span class="sh-section-tag">Shop All Devices</span>
-            <h2 class="sh-section-title">Certified <em>Refurbished</em></h2>
-            <p class="sh-section-sub">Every device inspected, tested, and backed by our warranty. Sorted by best value.</p>
+        <div class="sh-sec-header" data-sh="up">
+            <span class="sh-sec-tag">Shop All Devices</span>
+            <h2 class="sh-sec-title">Certified <em>Refurbished</em></h2>
+            <p class="sh-sec-sub">Every device inspected, tested, and backed by our warranty.</p>
         </div>
-        <div class="sh-filters" data-sh-reveal="up" data-sh-delay="100" id="shFilters">
-            <button class="sh-filter-btn sh-filter-active" data-filter="all"><i class="fas fa-grip"></i> All</button>
-            <button class="sh-filter-btn" data-filter="iphone"><i class="fas fa-mobile-screen"></i> iPhone</button>
-            <button class="sh-filter-btn" data-filter="macbook"><i class="fas fa-laptop"></i> MacBook</button>
-            <button class="sh-filter-btn" data-filter="ipad"><i class="fas fa-tablet-screen-button"></i> iPad</button>
-            <button class="sh-filter-btn" data-filter="watch"><i class="fas fa-clock"></i> Apple Watch</button>
-            <button class="sh-filter-btn" data-filter="airpods"><i class="fas fa-headphones"></i> AirPods</button>
+        <div class="sh-filters" data-sh="up" data-d="100" id="shFilters">
+            <button class="sh-fbtn active" data-filter="all"><i class="fas fa-grip"></i> All</button>
+            <button class="sh-fbtn" data-filter="iphone"><i class="fas fa-mobile-screen"></i> iPhone</button>
+            <button class="sh-fbtn" data-filter="macbook"><i class="fas fa-laptop"></i> MacBook</button>
+            <button class="sh-fbtn" data-filter="ipad"><i class="fas fa-tablet-screen-button"></i> iPad</button>
+            <button class="sh-fbtn" data-filter="watch"><i class="fas fa-clock"></i> Watch</button>
+            <button class="sh-fbtn" data-filter="airpods"><i class="fas fa-headphones"></i> AirPods</button>
         </div>
-        <div class="sh-products-grid" id="shProductsGrid"></div>
+        <div class="sh-grid" id="shGrid"></div>
     </div>
 </section>
 
-<!-- ═══ PRICE COMPARISON ═══ -->
-<section class="sh-section sh-section-white" id="compare">
+<!-- PRICE COMPARISON -->
+<section class="sh-sec sh-sec-white" id="compare">
     <div class="container">
-        <div class="sh-section-header" data-sh-reveal="up">
-            <span class="sh-section-tag">Price Match</span>
-            <h2 class="sh-section-title">We Beat <em>Everyone</em></h2>
-            <p class="sh-section-sub">Same quality. Lower prices. Compare us to Back Market and see the difference.</p>
+        <div class="sh-sec-header" data-sh="up">
+            <span class="sh-sec-tag">Price Match</span>
+            <h2 class="sh-sec-title">We Beat <em>Everyone</em></h2>
+            <p class="sh-sec-sub">Same quality. Lower prices. Compare us to Back Market.</p>
         </div>
-        <div data-sh-reveal="up" data-sh-delay="150">
-            <table class="sh-compare-table" id="shCompareTable">
-                <thead><tr><th>Product</th><th>Back Market</th><th>ETW Shop Price</th></tr></thead>
-                <tbody></tbody>
-            </table>
+        <div data-sh="up" data-d="150">
+            <table class="sh-cmp" id="shCmp"><thead><tr><th>Product</th><th>Back Market</th><th>ETW Shop</th></tr></thead><tbody></tbody></table>
         </div>
     </div>
 </section>
 
-<!-- ═══ WHY BUY ═══ -->
-<section class="sh-section sh-section-matte" id="why">
+<!-- WHY BUY -->
+<section class="sh-sec sh-sec-matte" id="why">
     <div class="container">
-        <div class="sh-section-header" data-sh-reveal="up">
-            <span class="sh-section-tag">The ETW Difference</span>
-            <h2 class="sh-section-title">Why Buy <em>From Us</em></h2>
+        <div class="sh-sec-header" data-sh="up">
+            <span class="sh-sec-tag">The ETW Difference</span>
+            <h2 class="sh-sec-title">Why Buy <em>From Us</em></h2>
         </div>
         <div class="sh-why-grid">
-            <div class="sh-why-card" data-sh-reveal="up" data-sh-delay="0">
-                <div class="sh-why-icon"><i class="fas fa-user-check"></i></div>
-                <h3>Real People, Real Support</h3>
-                <p>Text or call Elan directly. No chatbots, no ticket queues. You get a human who cares about your purchase.</p>
-            </div>
-            <div class="sh-why-card" data-sh-reveal="up" data-sh-delay="100">
-                <div class="sh-why-icon"><i class="fas fa-microscope"></i></div>
-                <h3>44-Point Inspection</h3>
-                <p>Battery health, screen quality, buttons, cameras, sensors — every device goes through rigorous testing.</p>
-            </div>
-            <div class="sh-why-card" data-sh-reveal="up" data-sh-delay="200">
-                <div class="sh-why-icon"><i class="fas fa-hand-holding-dollar"></i></div>
-                <h3>Best Price Guarantee</h3>
-                <p>We price 10–20% below Back Market. Find it cheaper? We'll match it. No questions asked.</p>
-            </div>
-            <div class="sh-why-card" data-sh-reveal="up" data-sh-delay="300">
-                <div class="sh-why-icon"><i class="fas fa-rotate-left"></i></div>
-                <h3>14-Day Free Returns</h3>
-                <p>Not satisfied? Return within 14 days for a full refund. No restocking fees, no hassle.</p>
-            </div>
+            <div class="sh-why-card" data-sh="up" data-d="0"><div class="sh-why-icon"><i class="fas fa-user-check"></i></div><h3>Real People</h3><p>Text or call Elan directly. No chatbots. A human who cares about your purchase.</p></div>
+            <div class="sh-why-card" data-sh="up" data-d="100"><div class="sh-why-icon"><i class="fas fa-microscope"></i></div><h3>44-Point Inspection</h3><p>Battery, screen, buttons, cameras, sensors — rigorous testing on every device.</p></div>
+            <div class="sh-why-card" data-sh="up" data-d="200"><div class="sh-why-icon"><i class="fas fa-hand-holding-dollar"></i></div><h3>Best Price Guarantee</h3><p>10–20% below Back Market. Find it cheaper? We'll match it.</p></div>
+            <div class="sh-why-card" data-sh="up" data-d="300"><div class="sh-why-icon"><i class="fas fa-rotate-left"></i></div><h3>14-Day Returns</h3><p>Not satisfied? Full refund within 14 days. No restocking fees.</p></div>
         </div>
     </div>
 </section>
 
-<!-- ═══ FINAL CTA ═══ -->
-<section class="sh-cta-section">
+<!-- CTA -->
+<section class="sh-cta">
     <div class="sh-cta-orb sh-cta-orb-1"></div>
     <div class="sh-cta-orb sh-cta-orb-2"></div>
     <div class="container">
-        <div class="sh-cta-content" data-sh-reveal="up">
+        <div class="sh-cta-content" data-sh="up">
             <h2 class="sh-cta-title">Premium Apple.<br>No Premium <em>Price.</em></h2>
-            <p class="sh-cta-desc">Join hundreds of happy customers who chose quality refurbished over overpriced retail. 90-day warranty on every device.</p>
+            <p class="sh-cta-desc">Hundreds of happy customers chose quality refurbished over overpriced retail. 90-day warranty on every device.</p>
             <div class="sh-cta-actions">
-                <a href="#products" class="sh-btn sh-btn-primary sh-btn-lg"><i class="fas fa-bag-shopping"></i> Shop Now</a>
-                <a href="tel:+19294176819" class="sh-btn sh-btn-secondary sh-btn-lg" style="border-color:rgba(255,255,255,.25);color:#fff;"><i class="fas fa-phone"></i> (929) 417-6819</a>
+                <a href="#products" class="btn btn-primary btn-lg"><i class="fas fa-bag-shopping"></i> Shop Now</a>
+                <a href="tel:+19294176819" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.2);color:#fff"><i class="fas fa-phone"></i> (929) 417-6819</a>
             </div>
         </div>
     </div>
 </section>
 
-</div><!-- /#shopMain -->
+</div><!-- #shopView -->
 
-<!-- ═══ FOOTER (main site footer) ═══ -->
-<footer class="footer">
+<!-- FOOTER -->
+<footer class="sh-footer">
     <div class="container">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <a href="../index.html" class="logo">
-                    <div class="logo-mark"><img src="../assets/images/Elanslogo.jpeg" alt="Elan's Tech World"></div>
-                    <div class="logo-type"><span class="logo-name">Elan's</span><span class="logo-descriptor">Tech World</span></div>
-                </a>
-                <p class="footer-tagline">Premium refurbished Apple products & digital solutions. Based in New York City.</p>
+        <div class="sh-footer-inner">
+            <div class="sh-footer-links">
+                <a href="/shop/">Shop</a>
+                <a href="../index.html">Services</a>
+                <a href="../pages/contact.html">Contact</a>
+                <a href="#">Warranty Policy</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Privacy</a>
             </div>
-            <div class="footer-col"><h4>Shop</h4>
-                <ul>
-                    <li><a href="#products" data-sh-filter="iphone">iPhone</a></li>
-                    <li><a href="#products" data-sh-filter="macbook">MacBook</a></li>
-                    <li><a href="#products" data-sh-filter="ipad">iPad</a></li>
-                    <li><a href="#products" data-sh-filter="watch">Apple Watch</a></li>
-                    <li><a href="#products" data-sh-filter="airpods">AirPods</a></li>
-                </ul>
-            </div>
-            <div class="footer-col"><h4>Services</h4>
-                <ul>
-                    <li><a href="../pages/services.html">Web Development</a></li>
-                    <li><a href="../pages/services.html">E-Commerce</a></li>
-                    <li><a href="../pages/services.html">Digital Marketing</a></li>
-                    <li><a href="../pages/services.html">Custom Signage</a></li>
-                </ul>
-            </div>
-            <div class="footer-col"><h4>Contact</h4>
-                <ul class="footer-contact">
-                    <li><i class="fas fa-map-marker-alt"></i><span>New York, NY</span></li>
-                    <li><i class="fas fa-phone"></i><a href="tel:+19294176819">(929) 417-6819</a></li>
-                    <li><i class="fas fa-envelope"></i><a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Elan's Tech World. All Rights Reserved.</p>
-            <div class="footer-legal"><a href="#">Warranty Policy</a><a href="#">Return Policy</a><a href="#">Privacy</a></div>
-            <p class="footer-crafted">Payments by Square · Crafted with <i class="fas fa-heart"></i> in NYC</p>
+            <p class="sh-footer-copy">&copy; 2026 Elan's Tech World. All rights reserved.</p>
+            <p class="sh-footer-powered">Payments by <a href="https://squareup.com" target="_blank">Square</a> · Crafted in NYC</p>
         </div>
     </div>
 </footer>
 
-<!-- Back to Top (main site) -->
-<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15V3M9 3L3 9M9 3L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-</a>
+<button id="shTop" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
 
-<!-- ═══ MAIN SITE JS (loader, header scroll, mobile menu, back-to-top) ═══ -->
-<script src="../js/script.js"></script>
-
-<!-- ═══ SHOP JS ═══ -->
 <script src="script.js"></script>
 </body>
 </html>
