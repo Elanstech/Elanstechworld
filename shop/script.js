@@ -421,6 +421,35 @@ function checkHash(){
 }
 
 /* ═══════════════════════════════════════
+   BATTERY COUNTER ANIMATION
+═══════════════════════════════════════ */
+function initBatteryCounter(){
+  var el = Q('.sq-battery-num');
+  if(!el) return;
+  var target = parseInt(el.dataset.target)||90;
+  var done = false;
+
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !done){
+        done = true;
+        var start = performance.now();
+        var dur = 2000;
+        function step(now){
+          var p = Math.min((now - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 4);
+          el.textContent = Math.round(target * eased);
+          if(p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.5});
+  obs.observe(el);
+}
+
+/* ═══════════════════════════════════════
    COMPARISON TABLE
 ═══════════════════════════════════════ */
 function initCompare(){
@@ -673,6 +702,7 @@ function boot(){
   renderGrid(P);
   initFilters();
   initCart();
+  initBatteryCounter();
   initCompare();
   initSmooth();
   initTop();
