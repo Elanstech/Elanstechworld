@@ -81,25 +81,25 @@
     "id": "iphone-15-pro",
     "name": "iPhone 15 Pro",
     "cat": "iphone",
-    "cond": "good",
+    "cond": "Like New",
     "specs": ["A17 Pro", "48MP Camera", "Titanium"],
     "colorOptions": [
-      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Blue Titanium",    "swatch": "#4E6B8C", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
-      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://i.ebayimg.com/images/g/emoAAeSwnfdpJNP6/s-l1600.jpg" },
+      { "name": "Blue Titanium",    "swatch": "#4E6B8C", "img": "https://i.ebayimg.com/images/g/hIkAAeSwmTZpJNPv/s-l1600.jpg" },
+      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://i.ebayimg.com/images/g/asAAAeSwh6JpJNPl/s-l1600.jpg" },
+      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://i.ebayimg.com/images/g/ax0AAeSwskhpJNQJ/s-l1600.jpg" }
     ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://i.ebayimg.com/images/g/emoAAeSwnfdpJNP6/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/hIkAAeSwmTZpJNPv/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/asAAAeSwh6JpJNPl/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/ax0AAeSwskhpJNQJ/s-l1600.jpg"
     ],
-    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "thumb": "https://i.ebayimg.com/images/g/dp8AAeSwUoNpJNPZ/s-l1600.jpg",
     "variants": [
-      { "storage": "128GB", "color": "Natural Titanium", "price": 619, "retail": 999,  "bm": 699, "inStock": true },
-      { "storage": "256GB", "color": "Natural Titanium", "price": 719, "retail": 1099, "bm": 799, "inStock": true },
-      { "storage": "512GB", "color": "Natural Titanium", "price": 869, "retail": 1299, "bm": 969, "inStock": false }
+      { "storage": "128GB", "color": "Natural Titanium", "price": 559.99, "retail": 999,  "bm": 699, "inStock": true },
+      { "storage": "256GB", "color": "Natural Titanium", "price": 589.99, "retail": 1099, "bm": 799, "inStock": true },
+      { "storage": "512GB", "color": "Natural Titanium", "price": 679.99, "retail": 1299, "bm": 969, "inStock": false }
     ]
   },
   {
