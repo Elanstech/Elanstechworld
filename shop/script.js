@@ -1,8 +1,8 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- *  ETW SHOP V3 — Fully Standalone Wow Engine
+ *  ETW SHOP V3 — Fully Standalone · Square Checkout Integrated
  *  3D tilt · Cursor glow · Particles · Magnetic buttons ·
- *  View transitions · Cart · Filters · iPhones 12–16
+ *  View transitions · Cart → Square Checkout · iPhones 12–16
  *  File: shop/script.js — ZERO dependencies
  * ═══════════════════════════════════════════════════════════════
  */
@@ -11,10 +11,11 @@ const Q = (s, p = document) => p.querySelector(s);
 const QA = (s, p = document) => [...p.querySelectorAll(s)];
 const throttle = (fn, ms) => { let l = 0; return (...a) => { const n = Date.now(); if (n - l >= ms) { l = n; fn(...a); } }; };
 
+/* ── Square Checkout Endpoint ── */
+const CHECKOUT_API = 'https://www.elanstechworld.com/api/create-checkout';
+
 /* ═══════════════════════════════════════
    PRODUCT DATA
-   iPhones 12–16, MacBooks, iPads, Watch, AirPods
-   Mixed conditions
 ═══════════════════════════════════════ */
 const P = [
   // ── iPhones ──
@@ -41,7 +42,7 @@ const P = [
   { id:'ipad10', name:'iPad 10th Gen', cat:'ipad', stor:'64GB', color:'Blue', cond:'good', price:269, retail:449, bm:309, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-10th-gen-finish-select-202212-blue-wifi?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','64GB','10.9" Display'] },
   { id:'ipad9', name:'iPad 9th Gen', cat:'ipad', stor:'64GB', color:'Space Gray', cond:'fair', price:179, retail:329, bm:209, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-2021-702702702?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A13','64GB','10.2" Retina'] },
 
-  // ── Apple Watch ──
+  // ── Watch ──
   { id:'wu2', name:'Apple Watch Ultra 2', cat:'watch', stor:'64GB', color:'Titanium', cond:'excellent', price:549, retail:799, bm:619, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQDY3ref_VW_34FR+watch-49-titanium-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S9 Chip','GPS + Cellular','49mm'] },
   { id:'ws10', name:'Apple Watch Series 10', cat:'watch', stor:'64GB', color:'Jet Black', cond:'excellent', price:329, retail:429, bm:369, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-702702702?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S10 Chip','GPS','46mm'] },
   { id:'wse2', name:'Apple Watch SE 2', cat:'watch', stor:'32GB', color:'Midnight', cond:'good', price:149, retail:249, bm:179, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNTE3ref_VW_34FR+watch-40-alum-midnight-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S8 Chip','GPS','40mm'] },
@@ -109,7 +110,7 @@ function initMobile(){
 }
 
 /* ═══════════════════════════════════════
-   CURSOR GLOW (desktop only)
+   CURSOR GLOW
 ═══════════════════════════════════════ */
 function initGlow(){
   if(window.innerWidth<768) return;
@@ -129,6 +130,8 @@ function initGlow(){
 ═══════════════════════════════════════ */
 function initParticles(){
   const c=Q('#shParticles'); if(!c) return;
+  // Don't duplicate particles
+  if(c.children.length>0) return;
   const n = window.innerWidth<768?12:30;
   const colors=['rgba(0,113,227,.4)','rgba(90,200,250,.3)','rgba(191,90,242,.3)','rgba(52,199,89,.25)','rgba(191,162,106,.2)'];
   for(let i=0;i<n;i++){
@@ -143,15 +146,19 @@ function initParticles(){
 }
 
 /* ═══════════════════════════════════════
-   HERO BADGES STAGGER
+   HERO BADGES
 ═══════════════════════════════════════ */
 function initBadges(){
-  QA('.sh-fbadge').forEach((b,i)=>setTimeout(()=>b.classList.add('show'),900+i*350));
+  QA('.sh-fbadge').forEach((b,i)=>{
+    if(!b.classList.contains('show'))
+      setTimeout(()=>b.classList.add('show'),900+i*350);
+  });
 }
 
 /* ═══════════════════════════════════════
-   HERO FLOAT PARALLAX (mouse + mobile gyro)
+   HERO PARALLAX
 ═══════════════════════════════════════ */
+let heroRAF = null;
 function initHeroParallax(){
   const float=Q('#shHeroFloat'), hero=Q('#shHero');
   if(!float||!hero||window.innerWidth<768) return;
@@ -161,11 +168,12 @@ function initHeroParallax(){
     mx=(e.clientX-r.left)/r.width; my=(e.clientY-r.top)/r.height;
   });
   hero.addEventListener('mouseleave',()=>{mx=.5;my=.5});
+  if(heroRAF) cancelAnimationFrame(heroRAF);
   (function loop(){
     cx+=(mx-cx)*.04; cy+=(my-cy)*.04;
     const ry=(cx-.5)*12, rx=(cy-.5)*-8;
     float.style.transform=`translateY(${Math.sin(Date.now()/1000)*10}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    requestAnimationFrame(loop);
+    heroRAF = requestAnimationFrame(loop);
   })();
 }
 
@@ -180,7 +188,6 @@ function bindCardTilt(){
       const x=(e.clientX-r.left)/r.width-.5;
       const y=(e.clientY-r.top)/r.height-.5;
       card.style.transform=`perspective(800px) rotateX(${y*-8}deg) rotateY(${x*8}deg) translateY(-6px)`;
-      // Update glow position
       const glow=Q('.sh-card-glow',card);
       if(glow){ glow.style.setProperty('--mx',(e.clientX-r.left)+'px'); glow.style.setProperty('--my',(e.clientY-r.top)+'px'); }
     });
@@ -233,7 +240,8 @@ function renderGrid(products){
       <span class="sh-cond ${cc}">${cl}</span>
       ${pct>=25?`<span class="sh-save">-${pct}%</span>`:''}
       <div class="sh-card-img">
-        <img src="${p.img}" alt="${p.name} ${p.stor}" loading="lazy">
+        <img src="${p.img}" alt="${p.name} ${p.stor}" loading="lazy"
+             onerror="this.src='https://via.placeholder.com/400x472/F5F5F7/1D1D1F?text=${encodeURIComponent(p.name)}'">
         <div class="sh-card-quick"><button class="sh-qbtn" data-add="${p.id}"><i class="fas fa-bag-shopping"></i> Add to Bag</button></div>
       </div>
       <div class="sh-card-info">
@@ -249,11 +257,9 @@ function renderGrid(products){
     </div>`;
   }).join('');
 
-  // Reveal new cards
   revealSeen.clear();
   reveal(QA('[data-sh]',grid));
 
-  // Bind card clicks → detail
   QA('.sh-card',grid).forEach(card=>{
     card.addEventListener('click',e=>{
       if(e.target.closest('[data-add]')) return;
@@ -261,12 +267,10 @@ function renderGrid(products){
     });
   });
 
-  // Bind quick-add
   QA('[data-add]',grid).forEach(btn=>{
     btn.addEventListener('click',e=>{ e.stopPropagation(); cartAdd(btn.dataset.add); });
   });
 
-  // 3D tilt
   bindCardTilt();
 }
 
@@ -285,13 +289,12 @@ function initFilters(){
     });
   });
 
-  // Nav + mobile filter links
   QA('[data-f]').forEach(link=>{
     link.addEventListener('click',e=>{
       e.preventDefault();
       activeFilter = link.dataset.f;
-      if(wrap) QA('.sh-fbtn',wrap).forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter));
-      // Ensure grid view
+      const wrap2=Q('#shFilters');
+      if(wrap2) QA('.sh-fbtn',wrap2).forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter));
       if(isDetailView) hideProduct();
       applyFilter();
       const sec=Q('#products');
@@ -301,7 +304,7 @@ function initFilters(){
 }
 
 /* ═══════════════════════════════════════
-   PRODUCT DETAIL (view transition)
+   PRODUCT DETAIL
 ═══════════════════════════════════════ */
 let isDetailView = false;
 let gridSnapshot = null;
@@ -310,8 +313,7 @@ function showProduct(id){
   const p = P.find(x=>x.id===id); if(!p) return;
   const view = Q('#shopView'); if(!view) return;
 
-  // Save grid state
-  gridSnapshot = view.innerHTML;
+  if(!gridSnapshot) gridSnapshot = view.innerHTML;
   isDetailView = true;
   history.pushState({product:id},'',`#product/${id}`);
 
@@ -365,7 +367,6 @@ function showProduct(id){
 
   window.scrollTo({top:0,behavior:'smooth'});
   document.title = `${p.name} ${p.stor||''} — ETW Shop`;
-
   Q('#spBack')?.addEventListener('click',()=>hideProduct());
   Q('#spAdd')?.addEventListener('click',()=>cartAdd(p.id));
 }
@@ -378,7 +379,7 @@ function hideProduct(){
   history.pushState(null,'',window.location.pathname);
   document.title = 'Shop Refurbished Apple | ETW Shop';
 
-  // Re-init everything in the restored view
+  // Re-init everything cleanly
   revealSeen.clear();
   reveal(QA('[data-sh]'));
   initFilters();
@@ -389,18 +390,15 @@ function hideProduct(){
   initMagnetic();
 }
 
-// Handle browser back/forward
 window.addEventListener('popstate',e=>{
   if(e.state && e.state.product) showProduct(e.state.product);
   else if(isDetailView) hideProduct();
 });
 
-// Handle direct URL with #product/
 function checkHash(){
   const h = window.location.hash;
   if(h.startsWith('#product/')){
-    const id = h.replace('#product/','');
-    setTimeout(()=>showProduct(id),300);
+    setTimeout(()=>showProduct(h.replace('#product/','')),300);
   }
 }
 
@@ -417,7 +415,7 @@ function initCompare(){
 }
 
 /* ═══════════════════════════════════════
-   CART
+   CART + SQUARE CHECKOUT
 ═══════════════════════════════════════ */
 let cartItems = [];
 try{ const s=sessionStorage.getItem('sh_cart'); if(s) cartItems=JSON.parse(s); }catch(e){}
@@ -441,7 +439,9 @@ function cartCount(){ return cartItems.reduce((s,i)=>s+i.qty,0); }
 function cartUI(){
   const count=cartCount(), total=cartTotal();
   const countEl=Q('#shCount'), bodyEl=Q('#shCartBody'), footEl=Q('#shCartFoot'), totalEl=Q('#shCartTotal');
+
   if(countEl){ countEl.textContent=count; countEl.classList.toggle('show',count>0); }
+
   if(bodyEl){
     if(!cartItems.length){
       bodyEl.innerHTML='<div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>';
@@ -485,13 +485,86 @@ function cartToast(id){
   setTimeout(()=>t.classList.remove('show'),2500);
 }
 
+/* ── Square Checkout Handler ── */
+async function handleCheckout(){
+  const btn = Q('#shCheckout');
+  if(!cartItems.length || !btn) return;
+
+  // Loading state
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating checkout…';
+  btn.disabled = true;
+  btn.style.opacity = '.7';
+  btn.style.pointerEvents = 'none';
+
+  try {
+    // Build items for the API
+    const items = cartItems.map(item=>{
+      const p = P.find(x=>x.id===item.id);
+      if(!p) return null;
+      return {
+        name: `${p.name}${p.stor?' '+p.stor:''} (${p.cond})`,
+        qty: item.qty,
+        price: p.price,
+        variant: `${p.color} · Refurbished · ${p.cond}`,
+      };
+    }).filter(Boolean);
+
+    if(!items.length) throw new Error('No valid items in cart');
+
+    const res = await fetch(CHECKOUT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        items,
+        redirectUrl: window.location.origin + '/shop/?order=success',
+      }),
+    });
+
+    const data = await res.json();
+
+    if(!res.ok) throw new Error(data.detail || data.error || 'Checkout failed');
+
+    // Redirect to Square hosted checkout
+    window.location.href = data.url;
+
+  } catch(err){
+    console.error('Checkout error:', err);
+    alert(`Checkout error: ${err.message}\n\nPlease call (929) 417-6819 to complete your order.`);
+    btn.innerHTML = orig;
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+  }
+}
+
+/* ── Detect return from successful payment ── */
+function checkOrderSuccess(){
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('order') === 'success'){
+    // Clear cart
+    cartItems = [];
+    cartSave();
+    cartUI();
+
+    // Show success message
+    const t=Q('#shToast'), m=Q('#shToastMsg');
+    if(t&&m){
+      m.textContent = 'Order placed! We'll be in touch shortly.';
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),6000);
+    }
+
+    // Clean URL
+    history.replaceState(null,'',window.location.pathname);
+  }
+}
+
 function initCart(){
   Q('#shCartBtn')?.addEventListener('click',cartOpen);
   Q('#shCartX')?.addEventListener('click',cartClose);
   Q('#shCartOv')?.addEventListener('click',cartClose);
-  Q('#shCheckout')?.addEventListener('click',()=>{
-    alert('Square checkout coming soon!\n\nCall or text (929) 417-6819 to complete your order.');
-  });
+  Q('#shCheckout')?.addEventListener('click',handleCheckout);
   cartUI();
 }
 
@@ -522,6 +595,7 @@ function initTop(){
    BOOT
 ═══════════════════════════════════════ */
 function boot(){
+  checkOrderSuccess();   // ← Check if returning from Square payment
   initReveal();
   initProgress();
   initHeader();
@@ -538,7 +612,7 @@ function boot(){
   initSmooth();
   initTop();
   checkHash();
-  console.log('✦ ETW Shop V3 — Wow Edition loaded');
+  console.log('✦ ETW Shop V3 — Square Checkout Ready');
 }
 
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
