@@ -148,9 +148,9 @@
     ],
     "thumb": "https://i.ebayimg.com/images/g/S6gAAOSw6ltlJILl/s-l1600.jpg",
     "variants": [
-      { "storage": "128GB", "color": "Deep Purple", "price": 559.99, "retail": 999,  "bm": 559, "inStock": true },
-      { "storage": "256GB", "color": "Deep Purple", "price": 599.99, "retail": 1099, "bm": 629, "inStock": true },
-      { "storage": "512GB", "color": "Deep Purple", "price": 649.99, "retail": 1299, "bm": 759, "inStock": false }
+      { "storage": "128GB", "color": "Deep Purple", "price": 559.99, "retail": 999,  "bm": 650, "inStock": true },
+      { "storage": "256GB", "color": "Deep Purple", "price": 599.99, "retail": 1099, "bm": 700, "inStock": true },
+      { "storage": "512GB", "color": "Deep Purple", "price": 649.99, "retail": 1299, "bm": 800, "inStock": false }
     ]
   }
 ]
