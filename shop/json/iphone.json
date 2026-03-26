@@ -6,15 +6,17 @@
     "cond": "excellent",
     "specs": ["A18 Pro", "48MP Camera", "Titanium"],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://i.ebayimg.com/images/g/0tUAAOSwZVRnhTs~/s-l1600.jpg",
+      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+Black.jpg",
+      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+Desert.jpg",
+      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+Natural.jpg",
+      "https://s3.amazonaws.com/iwm-ebay/images/products/iPhone+16+Pro/iPhone+16+Pro+White.jpg"
     ],
-    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "thumb": "https://i.ebayimg.com/images/g/0tUAAOSwZVRnhTs~/s-l1600.jpg",
     "variants": [
-      { "storage": "128GB", "color": "Natural Titanium", "price": 749, "retail": 999, "bm": 839, "inStock": true },
-      { "storage": "256GB", "color": "Natural Titanium", "price": 849, "retail": 1099, "bm": 939, "inStock": true },
-      { "storage": "512GB", "color": "Natural Titanium", "price": 1029, "retail": 1299, "bm": 1129, "inStock": true },
+      { "storage": "128GB", "color": "Natural Titanium", "price": 749.99, "retail": 999, "bm": 839, "inStock": true },
+      { "storage": "256GB", "color": "Natural Titanium", "price": 849.99, "retail": 1099, "bm": 939, "inStock": true },
+      { "storage": "512GB", "color": "Natural Titanium", "price": 949.99, "retail": 1299, "bm": 1129, "inStock": true },
       { "storage": "1TB", "color": "Natural Titanium", "price": 1199, "retail": 1499, "bm": 1319, "inStock": false }
     ]
   },
