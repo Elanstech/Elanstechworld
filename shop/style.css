@@ -651,7 +651,8 @@ ul,ol{list-style:none}
 .sp-back i{font-size:.75rem}
 .sp-layout{display:grid;grid-template-columns:1fr;gap:48px}
 @media(min-width:768px){.sp-layout{grid-template-columns:1.2fr 1fr;gap:64px}}
-.sp-gallery{position:sticky;top:80px}
+.sp-gallery{position:relative}
+@media(min-width:768px){.sp-gallery{position:sticky;top:80px}}
 .sp-gallery-main{
   width:100%;aspect-ratio:1;background:var(--matte);border-radius:var(--r-xl);
   display:flex;align-items:center;justify-content:center;overflow:hidden;
