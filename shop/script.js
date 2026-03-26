@@ -20,7 +20,7 @@ var SHIPPING={standard:{label:"Standard Shipping (3-5 days)",price:9.99},nyc:{la
 
 /* ═══ LOAD ALL JSON FILES (skips missing) ═══ */
 function loadProducts(cb){
-  var files=["json/iphones.json","json/macbooks.json","json/ipads.json","json/watches.json","json/airpods.json"];
+  var files=["json/iphone.json","json/macbooks.json","json/ipads.json","json/watches.json","json/airpods.json"];
   Promise.all(files.map(function(f){
     return fetch(f).then(function(r){
       if(!r.ok) return [];
