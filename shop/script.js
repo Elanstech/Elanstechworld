@@ -1,634 +1,545 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- *  ETW SHOP — Interaction Engine
- *  Product grid · Cart drawer · Filters · Scroll reveal ·
- *  Product detail view · Price comparison · Toast · Smooth scroll
- *  File: shop/script.js
- *  Depends on: ../js/script.js (header, loader, mobile menu)
+ *  ETW SHOP V3 — Fully Standalone Wow Engine
+ *  3D tilt · Cursor glow · Particles · Magnetic buttons ·
+ *  View transitions · Cart · Filters · iPhones 12–16
+ *  File: shop/script.js — ZERO dependencies
  * ═══════════════════════════════════════════════════════════════
  */
 
-// ─── UTILITIES ────────────────────────────────────────────────
-const sh = (s, p = document) => p.querySelector(s);
-const shAll = (s, p = document) => [...p.querySelectorAll(s)];
-const shThrottle = (fn, ms) => { let l = 0; return (...a) => { const n = Date.now(); if (n - l >= ms) { l = n; fn(...a); } }; };
+const Q = (s, p = document) => p.querySelector(s);
+const QA = (s, p = document) => [...p.querySelectorAll(s)];
+const throttle = (fn, ms) => { let l = 0; return (...a) => { const n = Date.now(); if (n - l >= ms) { l = n; fn(...a); } }; };
 
-// ─── PRODUCT DATA ─────────────────────────────────────────────
-// Replace images with your actual product photos
-const PRODUCTS = [
-  {
-    id: 'iphone-16-pro-256',
-    name: 'iPhone 16 Pro',
-    category: 'iphone',
-    storage: '256GB',
-    color: 'Natural Titanium',
-    condition: 'excellent',
-    price: 849,
-    retail: 1099,
-    backMarket: 939,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['A18 Pro', '256GB', '48MP Camera'],
-    featured: true,
-  },
-  {
-    id: 'iphone-16-128',
-    name: 'iPhone 16',
-    category: 'iphone',
-    storage: '128GB',
-    color: 'Ultramarine',
-    condition: 'excellent',
-    price: 599,
-    retail: 829,
-    backMarket: 669,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['A18', '128GB', '48MP Camera'],
-  },
-  {
-    id: 'iphone-15-pro-max-256',
-    name: 'iPhone 15 Pro Max',
-    category: 'iphone',
-    storage: '256GB',
-    color: 'Blue Titanium',
-    condition: 'excellent',
-    price: 779,
-    retail: 1199,
-    backMarket: 869,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['A17 Pro', '256GB', '5x Zoom'],
-  },
-  {
-    id: 'iphone-15-128',
-    name: 'iPhone 15',
-    category: 'iphone',
-    storage: '128GB',
-    color: 'Black',
-    condition: 'good',
-    price: 489,
-    retail: 799,
-    backMarket: 549,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['A16', '128GB', '48MP'],
-  },
-  {
-    id: 'iphone-14-128',
-    name: 'iPhone 14',
-    category: 'iphone',
-    storage: '128GB',
-    color: 'Midnight',
-    condition: 'good',
-    price: 379,
-    retail: 699,
-    backMarket: 429,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['A15', '128GB', '12MP'],
-  },
-  {
-    id: 'macbook-air-m3-256',
-    name: 'MacBook Air M3',
-    category: 'macbook',
-    storage: '256GB',
-    color: 'Midnight',
-    condition: 'excellent',
-    price: 849,
-    retail: 1099,
-    backMarket: 949,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=400&hei=300&fmt=p-jpg&qlt=80',
-    specs: ['M3 Chip', '8GB RAM', '256GB SSD'],
-  },
-  {
-    id: 'macbook-pro-m3-512',
-    name: 'MacBook Pro 14" M3',
-    category: 'macbook',
-    storage: '512GB',
-    color: 'Space Black',
-    condition: 'excellent',
-    price: 1249,
-    retail: 1599,
-    backMarket: 1399,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310?wid=400&hei=300&fmt=p-jpg&qlt=80',
-    specs: ['M3 Pro', '18GB RAM', '512GB SSD'],
-  },
-  {
-    id: 'ipad-air-m2-128',
-    name: 'iPad Air M2',
-    category: 'ipad',
-    storage: '128GB',
-    color: 'Starlight',
-    condition: 'excellent',
-    price: 449,
-    retail: 599,
-    backMarket: 509,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-wifi-starlight-202405?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['M2 Chip', '128GB', '11" Liquid Retina'],
-  },
-  {
-    id: 'ipad-10th-64',
-    name: 'iPad 10th Gen',
-    category: 'ipad',
-    storage: '64GB',
-    color: 'Blue',
-    condition: 'good',
-    price: 269,
-    retail: 449,
-    backMarket: 309,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-10th-gen-finish-select-202212-blue-wifi?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['A14', '64GB', '10.9" Display'],
-  },
-  {
-    id: 'watch-ultra-2',
-    name: 'Apple Watch Ultra 2',
-    category: 'watch',
-    storage: '64GB',
-    color: 'Titanium',
-    condition: 'excellent',
-    price: 549,
-    retail: 799,
-    backMarket: 619,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQDY3ref_VW_34FR+watch-49-titanium-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['S9 Chip', 'GPS + Cellular', '49mm'],
-  },
-  {
-    id: 'watch-se-2',
-    name: 'Apple Watch SE (2nd Gen)',
-    category: 'watch',
-    storage: '32GB',
-    color: 'Midnight',
-    condition: 'good',
-    price: 159,
-    retail: 249,
-    backMarket: 179,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNTE3ref_VW_34FR+watch-40-alum-midnight-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['S8 Chip', 'GPS', '40mm'],
-  },
-  {
-    id: 'airpods-pro-2',
-    name: 'AirPods Pro 2 (USB-C)',
-    category: 'airpods',
-    storage: '',
-    color: 'White',
-    condition: 'excellent',
-    price: 159,
-    retail: 249,
-    backMarket: 179,
-    image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-pro-2-hero-select-202409?wid=400&hei=472&fmt=p-jpg&qlt=80',
-    specs: ['H2 Chip', 'ANC', 'USB-C'],
-  },
+/* ═══════════════════════════════════════
+   PRODUCT DATA
+   iPhones 12–16, MacBooks, iPads, Watch, AirPods
+   Mixed conditions
+═══════════════════════════════════════ */
+const P = [
+  // ── iPhones ──
+  { id:'ip16pro256', name:'iPhone 16 Pro', cat:'iphone', stor:'256GB', color:'Natural Titanium', cond:'excellent', price:849, retail:1099, bm:939, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A18 Pro','256GB','48MP Camera'], feat:true },
+  { id:'ip16-128', name:'iPhone 16', cat:'iphone', stor:'128GB', color:'Ultramarine', cond:'excellent', price:599, retail:829, bm:669, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A18','128GB','48MP Camera'] },
+  { id:'ip15promax', name:'iPhone 15 Pro Max', cat:'iphone', stor:'256GB', color:'Blue Titanium', cond:'excellent', price:779, retail:1199, bm:869, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A17 Pro','256GB','5x Zoom'] },
+  { id:'ip15pro', name:'iPhone 15 Pro', cat:'iphone', stor:'128GB', color:'Natural Titanium', cond:'good', price:619, retail:999, bm:699, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A17 Pro','128GB','48MP'] },
+  { id:'ip15-128', name:'iPhone 15', cat:'iphone', stor:'128GB', color:'Black', cond:'good', price:449, retail:799, bm:519, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A16','128GB','48MP'] },
+  { id:'ip14promax', name:'iPhone 14 Pro Max', cat:'iphone', stor:'256GB', color:'Deep Purple', cond:'good', price:549, retail:1099, bm:629, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A16','256GB','48MP'] },
+  { id:'ip14-128', name:'iPhone 14', cat:'iphone', stor:'128GB', color:'Midnight', cond:'good', price:349, retail:699, bm:399, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A15','128GB','12MP'] },
+  { id:'ip13pro', name:'iPhone 13 Pro', cat:'iphone', stor:'128GB', color:'Sierra Blue', cond:'fair', price:349, retail:999, bm:409, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A15','128GB','12MP ProRes'] },
+  { id:'ip13-128', name:'iPhone 13', cat:'iphone', stor:'128GB', color:'Midnight', cond:'fair', price:269, retail:699, bm:319, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A15','128GB','12MP'] },
+  { id:'ip12pro', name:'iPhone 12 Pro', cat:'iphone', stor:'128GB', color:'Pacific Blue', cond:'fair', price:259, retail:899, bm:309, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','128GB','12MP LiDAR'] },
+  { id:'ip12-64', name:'iPhone 12', cat:'iphone', stor:'64GB', color:'Blue', cond:'fair', price:199, retail:699, bm:239, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','64GB','12MP'] },
+
+  // ── MacBooks ──
+  { id:'mbairm3', name:'MacBook Air M3', cat:'macbook', stor:'256GB', color:'Midnight', cond:'excellent', price:849, retail:1099, bm:949, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-midnight-select-20220606?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M3 Chip','8GB RAM','256GB SSD'] },
+  { id:'mbpro14m3', name:'MacBook Pro 14" M3', cat:'macbook', stor:'512GB', color:'Space Black', cond:'excellent', price:1249, retail:1599, bm:1399, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M3 Pro','18GB RAM','512GB SSD'] },
+  { id:'mbairm2', name:'MacBook Air M2', cat:'macbook', stor:'256GB', color:'Starlight', cond:'good', price:699, retail:999, bm:789, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-starlight-select-20220606?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M2 Chip','8GB RAM','256GB SSD'] },
+  { id:'mbairm1', name:'MacBook Air M1', cat:'macbook', stor:'256GB', color:'Space Gray', cond:'fair', price:479, retail:799, bm:549, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-space-gray-select-201810?wid=400&hei=300&fmt=p-jpg&qlt=80', specs:['M1 Chip','8GB RAM','256GB SSD'] },
+
+  // ── iPads ──
+  { id:'ipadairm2', name:'iPad Air M2', cat:'ipad', stor:'128GB', color:'Starlight', cond:'excellent', price:449, retail:599, bm:509, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-air-select-wifi-starlight-202405?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['M2 Chip','128GB','11" Liquid Retina'] },
+  { id:'ipad10', name:'iPad 10th Gen', cat:'ipad', stor:'64GB', color:'Blue', cond:'good', price:269, retail:449, bm:309, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-10th-gen-finish-select-202212-blue-wifi?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A14','64GB','10.9" Display'] },
+  { id:'ipad9', name:'iPad 9th Gen', cat:'ipad', stor:'64GB', color:'Space Gray', cond:'fair', price:179, retail:329, bm:209, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-2021-702702702?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['A13','64GB','10.2" Retina'] },
+
+  // ── Apple Watch ──
+  { id:'wu2', name:'Apple Watch Ultra 2', cat:'watch', stor:'64GB', color:'Titanium', cond:'excellent', price:549, retail:799, bm:619, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQDY3ref_VW_34FR+watch-49-titanium-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S9 Chip','GPS + Cellular','49mm'] },
+  { id:'ws10', name:'Apple Watch Series 10', cat:'watch', stor:'64GB', color:'Jet Black', cond:'excellent', price:329, retail:429, bm:369, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/watch-s10-702702702?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S10 Chip','GPS','46mm'] },
+  { id:'wse2', name:'Apple Watch SE 2', cat:'watch', stor:'32GB', color:'Midnight', cond:'good', price:149, retail:249, bm:179, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MNTE3ref_VW_34FR+watch-40-alum-midnight-702702702_VW_34FR_WF_CO?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['S8 Chip','GPS','40mm'] },
+
+  // ── AirPods ──
+  { id:'app2', name:'AirPods Pro 2 (USB-C)', cat:'airpods', stor:'', color:'White', cond:'excellent', price:159, retail:249, bm:179, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-pro-2-hero-select-202409?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['H2 Chip','ANC','USB-C'] },
+  { id:'apm', name:'AirPods Max (USB-C)', cat:'airpods', stor:'', color:'Midnight', cond:'good', price:379, retail:549, bm:429, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-select-202409-midnight?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['H2 Chip','ANC','USB-C'] },
+  { id:'ap4', name:'AirPods 4', cat:'airpods', stor:'', color:'White', cond:'excellent', price:99, retail:129, bm:115, img:'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-4-hero-select-202409?wid=400&hei=472&fmt=p-jpg&qlt=80', specs:['H2 Chip','Open Ear','USB-C'] },
 ];
 
-// ─── SCROLL REVEAL ────────────────────────────────────────────
-class ShReveal {
-  constructor() { this.seen = new Set(); }
-
-  init() { this.observe(shAll('[data-sh-reveal]')); }
-
-  observe(els) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !this.seen.has(e.target)) {
-          this.seen.add(e.target);
-          const d = parseInt(e.target.dataset.shDelay || 0);
-          setTimeout(() => e.target.classList.add('sh-visible'), d);
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    els.forEach(el => obs.observe(el));
-  }
-}
-
-// ─── SCROLL PROGRESS ──────────────────────────────────────────
-class ShProgress {
-  init() {
-    const bar = sh('#shScrollProgress');
-    if (!bar) return;
-    window.addEventListener('scroll', shThrottle(() => {
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.transform = `scaleX(${h > 0 ? window.scrollY / h : 0})`;
-    }, 30));
-  }
-}
-
-// ─── HERO BADGES STAGGER ──────────────────────────────────────
-class ShHeroBadges {
-  init() {
-    shAll('.sh-hero-badge').forEach((b, i) => {
-      setTimeout(() => b.classList.add('sh-badge-show'), 800 + i * 300);
-    });
-  }
-}
-
-// ─── PRODUCT GRID ─────────────────────────────────────────────
-class ShProductGrid {
-  constructor(reveal) {
-    this.grid = sh('#shProductsGrid');
-    this.filtersWrap = sh('#shFilters');
-    this.active = 'all';
-    this.reveal = reveal;
-  }
-
-  init() {
-    if (!this.grid) return;
-    this.render(PRODUCTS);
-    this.bindFilterBtns();
-    this.bindNavFilters();
-  }
-
-  render(products) {
-    if (!products.length) {
-      this.grid.innerHTML = '<div class="sh-no-results"><i class="fas fa-search"></i><p>No products found.</p></div>';
-      return;
-    }
-
-    this.grid.innerHTML = products.map((p, i) => {
-      const savePct = Math.round(((p.retail - p.price) / p.retail) * 100);
-      const condCls = p.condition === 'excellent' ? 'sh-cond-excellent' : p.condition === 'good' ? 'sh-cond-good' : 'sh-cond-fair';
-      const condTxt = p.condition.charAt(0).toUpperCase() + p.condition.slice(1);
-
-      return `
-        <div class="sh-product-card" data-sh-reveal="up" data-sh-delay="${Math.min(i * 60, 300)}" data-id="${p.id}">
-          <span class="sh-product-condition ${condCls}">${condTxt}</span>
-          ${savePct >= 20 ? `<span class="sh-product-save">Save ${savePct}%</span>` : ''}
-          <div class="sh-product-image">
-            <img src="${p.image}" alt="${p.name} ${p.storage}" loading="lazy"
-                 onerror="this.src='https://via.placeholder.com/400x472/F5F5F7/1D1D1F?text=${encodeURIComponent(p.name)}'">
-            <div class="sh-product-quick">
-              <button class="sh-quick-btn" data-add="${p.id}"><i class="fas fa-bag-shopping"></i> Add to Bag</button>
-            </div>
-          </div>
-          <div class="sh-product-info">
-            <div class="sh-product-category">${p.category}</div>
-            <h3 class="sh-product-name">${p.name}${p.storage ? ' · ' + p.storage : ''}</h3>
-            <div class="sh-product-specs">${p.specs.map(s => `<span class="sh-product-spec">${s}</span>`).join('')}</div>
-            <div class="sh-product-price-row">
-              <span class="sh-product-price">$${p.price}</span>
-              <span class="sh-product-orig">$${p.retail}</span>
-              <span class="sh-product-save-tag">Save $${p.retail - p.price}</span>
-            </div>
-          </div>
-        </div>`;
-    }).join('');
-
-    // Reveal new cards
-    this.reveal.observe(shAll('[data-sh-reveal]', this.grid));
-
-    // Bind card clicks → product detail
-    shAll('.sh-product-card', this.grid).forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('[data-add]')) return; // Don't navigate if clicking Add to Bag
-        const id = card.dataset.id;
-        window.shopApp.detail.show(id);
-      });
-    });
-
-    // Bind quick-add buttons
-    shAll('[data-add]', this.grid).forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        window.shopApp.cart.add(btn.dataset.add);
-      });
-    });
-  }
-
-  bindFilterBtns() {
-    if (!this.filtersWrap) return;
-    shAll('.sh-filter-btn', this.filtersWrap).forEach(btn => {
-      btn.addEventListener('click', () => {
-        this.active = btn.dataset.filter;
-        shAll('.sh-filter-btn', this.filtersWrap).forEach(b => b.classList.remove('sh-filter-active'));
-        btn.classList.add('sh-filter-active');
-        this.apply();
-      });
-    });
-  }
-
-  bindNavFilters() {
-    shAll('[data-sh-filter]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const f = link.dataset.shFilter;
-        this.active = f;
-        // Update filter buttons
-        if (this.filtersWrap) {
-          shAll('.sh-filter-btn', this.filtersWrap).forEach(b => {
-            b.classList.toggle('sh-filter-active', b.dataset.filter === f);
-          });
-        }
-        this.apply();
-        // Make sure we're on grid view
-        window.shopApp.detail.hide();
-        // Scroll to products
-        const sec = sh('#products');
-        if (sec) setTimeout(() => window.scrollTo({ top: sec.offsetTop - 60, behavior: 'smooth' }), 50);
-      });
-    });
-  }
-
-  apply() {
-    this.reveal.seen.clear();
-    const filtered = this.active === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === this.active);
-    this.render(filtered);
-  }
-}
-
-// ─── CART ──────────────────────────────────────────────────────
-class ShCart {
-  constructor() {
-    this.items = []; // { id, qty }
-    this.drawer = sh('#shCartDrawer');
-    this.overlay = sh('#shCartOverlay');
-    this.body = sh('#shCartBody');
-    this.foot = sh('#shCartFoot');
-    this.totalEl = sh('#shCartTotal');
-    this.countEl = sh('#shCartCount');
-    this.toggleBtn = sh('#shCartToggle');
-    this.closeBtn = sh('#shCartClose');
-    this.checkoutBtn = sh('#shCheckoutBtn');
-  }
-
-  init() {
-    try { const s = sessionStorage.getItem('sh_cart'); if (s) this.items = JSON.parse(s); } catch (e) {}
-
-    this.toggleBtn?.addEventListener('click', () => this.open());
-    this.closeBtn?.addEventListener('click', () => this.close());
-    this.overlay?.addEventListener('click', () => this.close());
-    this.checkoutBtn?.addEventListener('click', () => this.checkout());
-    this.updateUI();
-  }
-
-  add(id) {
-    const ex = this.items.find(i => i.id === id);
-    if (ex) ex.qty++; else this.items.push({ id, qty: 1 });
-    this.save(); this.updateUI(); this.toast(id); this.open();
-  }
-
-  remove(id) {
-    this.items = this.items.filter(i => i.id !== id);
-    this.save(); this.updateUI();
-  }
-
-  save() { try { sessionStorage.setItem('sh_cart', JSON.stringify(this.items)); } catch (e) {} }
-
-  getTotal() { return this.items.reduce((s, i) => { const p = PRODUCTS.find(x => x.id === i.id); return s + (p ? p.price * i.qty : 0); }, 0); }
-  getCount() { return this.items.reduce((s, i) => s + i.qty, 0); }
-
-  updateUI() {
-    const count = this.getCount();
-    const total = this.getTotal();
-
-    if (this.countEl) {
-      this.countEl.textContent = count;
-      this.countEl.classList.toggle('sh-count-show', count > 0);
-    }
-
-    if (this.body) {
-      if (!this.items.length) {
-        this.body.innerHTML = '<div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>';
-        if (this.foot) this.foot.style.display = 'none';
-      } else {
-        this.body.innerHTML = this.items.map(item => {
-          const p = PRODUCTS.find(x => x.id === item.id);
-          if (!p) return '';
-          return `
-            <div class="sh-cart-item">
-              <div class="sh-cart-item-img"><img src="${p.image}" alt="${p.name}"></div>
-              <div class="sh-cart-item-info">
-                <div class="sh-cart-item-name">${p.name}</div>
-                <div class="sh-cart-item-variant">${p.storage ? p.storage + ' · ' : ''}${p.color} · Qty: ${item.qty}</div>
-                <div class="sh-cart-item-price">$${(p.price * item.qty).toLocaleString()}</div>
-              </div>
-              <button class="sh-cart-item-remove" data-remove="${p.id}"><i class="fas fa-trash-can"></i></button>
-            </div>`;
-        }).join('');
-        if (this.foot) this.foot.style.display = 'block';
-
-        // Bind remove buttons
-        shAll('[data-remove]', this.body).forEach(btn => {
-          btn.addEventListener('click', () => this.remove(btn.dataset.remove));
-        });
-      }
-    }
-    if (this.totalEl) this.totalEl.textContent = `$${total.toLocaleString()}`;
-  }
-
-  open() {
-    this.drawer?.classList.add('sh-open');
-    this.overlay?.classList.add('sh-open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  close() {
-    this.drawer?.classList.remove('sh-open');
-    this.overlay?.classList.remove('sh-open');
-    document.body.style.overflow = '';
-  }
-
-  checkout() {
-    alert('Square checkout integration coming soon!\n\nFor now, call or text (929) 417-6819 to complete your order.');
-  }
-
-  toast(id) {
-    const p = PRODUCTS.find(x => x.id === id);
-    const toast = sh('#shToast');
-    const msg = sh('#shToastMsg');
-    if (!toast || !msg || !p) return;
-    msg.textContent = `${p.name} added to bag!`;
-    toast.classList.add('sh-toast-show');
-    setTimeout(() => toast.classList.remove('sh-toast-show'), 2500);
-  }
-}
-
-// ─── PRODUCT DETAIL VIEW ──────────────────────────────────────
-// Swaps the #shopMain content to show a single product,
-// and restores the grid view when "back" is clicked.
-class ShProductDetail {
-  constructor() {
-    this.main = sh('#shopMain');
-    this.gridHTML = ''; // Cached grid HTML
-  }
-
-  init() {
-    // Check URL hash for product ID on load: #product/iphone-16-pro-256
-    const hash = window.location.hash;
-    if (hash.startsWith('#product/')) {
-      const id = hash.replace('#product/', '');
-      // Small delay so grid renders first (needed for cache)
-      setTimeout(() => this.show(id), 200);
-    }
-
-    // Handle browser back
-    window.addEventListener('hashchange', () => {
-      const h = window.location.hash;
-      if (h.startsWith('#product/')) {
-        this.show(h.replace('#product/', ''));
-      } else if (!h || h === '#' || h === '#products') {
-        this.hide();
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+const revealSeen = new Set();
+function reveal(els){
+  if(!els||!els.length) return;
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && !revealSeen.has(e.target)){
+        revealSeen.add(e.target);
+        const d = parseInt(e.target.dataset.d||0);
+        setTimeout(()=>e.target.classList.add('vis'),d);
+        obs.unobserve(e.target);
       }
     });
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  els.forEach(el=>obs.observe(el));
+}
+function initReveal(){ reveal(QA('[data-sh]')); }
+
+/* ═══════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════ */
+function initProgress(){
+  const bar = Q('#shProgress'); if(!bar) return;
+  window.addEventListener('scroll',throttle(()=>{
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = `scaleX(${h>0?window.scrollY/h:0})`;
+  },30));
+}
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+function initHeader(){
+  const h = Q('#shHeader'); if(!h) return;
+  window.addEventListener('scroll',throttle(()=> h.classList.toggle('scrolled',window.scrollY>40),80));
+}
+
+/* ═══════════════════════════════════════
+   MOBILE MENU
+═══════════════════════════════════════ */
+function initMobile(){
+  const btn=Q('#shMenuBtn'),mob=Q('#shMob'),ov=Q('.sh-mob-overlay');
+  if(!btn||!mob) return;
+  const toggle=()=>{
+    btn.classList.toggle('open');
+    mob.classList.toggle('open');
+    document.body.style.overflow = mob.classList.contains('open')?'hidden':'';
+  };
+  const close=()=>{ btn.classList.remove('open'); mob.classList.remove('open'); document.body.style.overflow=''; };
+  btn.addEventListener('click',toggle);
+  ov?.addEventListener('click',close);
+  QA('a',mob).forEach(a=>a.addEventListener('click',close));
+}
+
+/* ═══════════════════════════════════════
+   CURSOR GLOW (desktop only)
+═══════════════════════════════════════ */
+function initGlow(){
+  if(window.innerWidth<768) return;
+  const g=Q('#shGlow'); if(!g) return;
+  let mx=0,my=0,cx=0,cy=0,active=false;
+  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; });
+  document.addEventListener('mouseenter',()=>{ active=true; g.classList.add('on'); });
+  document.addEventListener('mouseleave',()=>{ active=false; g.classList.remove('on'); });
+  (function loop(){
+    if(active){ cx+=(mx-cx)*.08; cy+=(my-cy)*.08; g.style.left=cx+'px'; g.style.top=cy+'px'; }
+    requestAnimationFrame(loop);
+  })();
+}
+
+/* ═══════════════════════════════════════
+   PARTICLES
+═══════════════════════════════════════ */
+function initParticles(){
+  const c=Q('#shParticles'); if(!c) return;
+  const n = window.innerWidth<768?12:30;
+  const colors=['rgba(0,113,227,.4)','rgba(90,200,250,.3)','rgba(191,90,242,.3)','rgba(52,199,89,.25)','rgba(191,162,106,.2)'];
+  for(let i=0;i<n;i++){
+    const el=document.createElement('div');
+    el.className='sh-particle';
+    const x=Math.random()*100, y=30+Math.random()*70, sz=1.5+Math.random()*3;
+    const dur=10+Math.random()*16, delay=Math.random()*dur;
+    const dx=-80+Math.random()*160, dy=-(100+Math.random()*300), peak=.08+Math.random()*.3;
+    el.style.cssText=`left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;background:${colors[i%colors.length]};--dur:${dur}s;--delay:-${delay}s;--dx:${dx}px;--dy:${dy}px;--peak:${peak};`;
+    c.appendChild(el);
   }
+}
 
-  show(id) {
-    const product = PRODUCTS.find(p => p.id === id);
-    if (!product || !this.main) return;
+/* ═══════════════════════════════════════
+   HERO BADGES STAGGER
+═══════════════════════════════════════ */
+function initBadges(){
+  QA('.sh-fbadge').forEach((b,i)=>setTimeout(()=>b.classList.add('show'),900+i*350));
+}
 
-    // Cache grid view
-    if (!this.gridHTML) this.gridHTML = this.main.innerHTML;
+/* ═══════════════════════════════════════
+   HERO FLOAT PARALLAX (mouse + mobile gyro)
+═══════════════════════════════════════ */
+function initHeroParallax(){
+  const float=Q('#shHeroFloat'), hero=Q('#shHero');
+  if(!float||!hero||window.innerWidth<768) return;
+  let mx=.5,my=.5,cx=.5,cy=.5;
+  hero.addEventListener('mousemove',e=>{
+    const r=hero.getBoundingClientRect();
+    mx=(e.clientX-r.left)/r.width; my=(e.clientY-r.top)/r.height;
+  });
+  hero.addEventListener('mouseleave',()=>{mx=.5;my=.5});
+  (function loop(){
+    cx+=(mx-cx)*.04; cy+=(my-cy)*.04;
+    const ry=(cx-.5)*12, rx=(cy-.5)*-8;
+    float.style.transform=`translateY(${Math.sin(Date.now()/1000)*10}px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    requestAnimationFrame(loop);
+  })();
+}
 
-    // Update URL hash
-    window.location.hash = `product/${id}`;
+/* ═══════════════════════════════════════
+   3D CARD TILT
+═══════════════════════════════════════ */
+function bindCardTilt(){
+  if(window.innerWidth<768) return;
+  QA('.sh-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(800px) rotateX(${y*-8}deg) rotateY(${x*8}deg) translateY(-6px)`;
+      // Update glow position
+      const glow=Q('.sh-card-glow',card);
+      if(glow){ glow.style.setProperty('--mx',(e.clientX-r.left)+'px'); glow.style.setProperty('--my',(e.clientY-r.top)+'px'); }
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transition='transform .5s cubic-bezier(.25,.46,.45,.94)';
+      card.style.transform='perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+      setTimeout(()=>card.style.transition='',500);
+    });
+  });
+}
 
-    const savePct = Math.round(((product.retail - product.price) / product.retail) * 100);
-    const bmSave = product.backMarket - product.price;
-    const condCls = product.condition === 'excellent' ? 'sh-cond-excellent' : product.condition === 'good' ? 'sh-cond-good' : 'sh-cond-fair';
-    const condTxt = product.condition.charAt(0).toUpperCase() + product.condition.slice(1);
-    const specLabels = ['Processor', 'Storage', 'Camera / Display'];
+/* ═══════════════════════════════════════
+   MAGNETIC BUTTONS
+═══════════════════════════════════════ */
+function initMagnetic(){
+  if(window.innerWidth<768) return;
+  QA('.btn-primary, .btn-dark').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const dx=(e.clientX-r.left-r.width/2)*.25;
+      const dy=(e.clientY-r.top-r.height/2)*.25;
+      btn.style.transform=`translate(${dx}px,${dy}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>{
+      btn.style.transition='transform .4s cubic-bezier(.34,1.56,.64,1)';
+      btn.style.transform='translate(0,0)';
+      setTimeout(()=>btn.style.transition='',400);
+    });
+  });
+}
 
-    this.main.innerHTML = `
-      <div class="sp-view">
-        <div class="container">
-          <button class="sp-back" id="spBack"><i class="fas fa-arrow-left"></i> Back to Shop</button>
-          <div class="sp-layout">
-            <div class="sp-gallery">
-              <div class="sp-gallery-main">
-                <img src="${product.image}" alt="${product.name} ${product.storage} ${product.color}">
-              </div>
-            </div>
-            <div class="sp-info">
-              <span class="sp-cond-tag ${condCls}">${condTxt} Condition</span>
-              <h1>${product.name}</h1>
-              <p class="sp-info-sub">${product.storage ? product.storage + ' · ' : ''}${product.color} · Refurbished</p>
-              <div class="sp-price-row">
-                <span class="sp-price">$${product.price}</span>
-                <span class="sp-price-orig">$${product.retail}</span>
-                <span class="sp-price-save">Save ${savePct}%</span>
-              </div>
-              <div class="sp-compare-line">
-                <i class="fas fa-scale-balanced"></i>
-                <span>Back Market: <strong>$${product.backMarket}</strong></span>
-                <span>→ You save <span class="sp-compare-diff">$${bmSave} more</span> with us</span>
-              </div>
-              <div class="sp-divider"></div>
-              <div class="sp-specs">
-                ${product.specs.map((s, i) => `
-                  <div class="sp-spec">
-                    <div class="sp-spec-label">${specLabels[i] || 'Feature'}</div>
-                    <div class="sp-spec-value">${s}</div>
-                  </div>`).join('')}
-                <div class="sp-spec">
-                  <div class="sp-spec-label">Condition</div>
-                  <div class="sp-spec-value">${condTxt}</div>
-                </div>
-              </div>
-              <div class="sp-ctas">
-                <button class="sp-cta-main" id="spAddBtn"><i class="fas fa-bag-shopping"></i> Add to Bag — $${product.price}</button>
-                <a href="tel:+19294176819" class="sp-cta-call"><i class="fas fa-phone"></i> Questions? Call (929) 417-6819</a>
-              </div>
-              <div class="sp-divider"></div>
-              <div class="sp-trust-list">
-                <div class="sp-trust-row"><i class="fas fa-check-circle"></i> 90-day warranty included</div>
-                <div class="sp-trust-row"><i class="fas fa-check-circle"></i> 44-point inspection certified</div>
-                <div class="sp-trust-row"><i class="fas fa-check-circle"></i> Free NYC same-day delivery</div>
-                <div class="sp-trust-row"><i class="fas fa-check-circle"></i> 14-day free returns</div>
-                <div class="sp-trust-row"><i class="fas fa-check-circle"></i> Secure Square checkout</div>
-              </div>
-            </div>
+/* ═══════════════════════════════════════
+   PRODUCT GRID
+═══════════════════════════════════════ */
+let activeFilter = 'all';
+
+function renderGrid(products){
+  const grid = Q('#shGrid'); if(!grid) return;
+  if(!products.length){
+    grid.innerHTML='<div class="sh-empty"><i class="fas fa-search"></i><p>No products found.</p></div>';
+    return;
+  }
+  grid.innerHTML = products.map((p,i)=>{
+    const pct=Math.round(((p.retail-p.price)/p.retail)*100);
+    const cc = p.cond==='excellent'?'sh-cond-excellent':p.cond==='good'?'sh-cond-good':'sh-cond-fair';
+    const cl = p.cond[0].toUpperCase()+p.cond.slice(1);
+    return `
+    <div class="sh-card" data-sh="up" data-d="${Math.min(i*50,250)}" data-id="${p.id}">
+      <div class="sh-card-glow"></div>
+      <span class="sh-cond ${cc}">${cl}</span>
+      ${pct>=25?`<span class="sh-save">-${pct}%</span>`:''}
+      <div class="sh-card-img">
+        <img src="${p.img}" alt="${p.name} ${p.stor}" loading="lazy">
+        <div class="sh-card-quick"><button class="sh-qbtn" data-add="${p.id}"><i class="fas fa-bag-shopping"></i> Add to Bag</button></div>
+      </div>
+      <div class="sh-card-info">
+        <div class="sh-card-cat">${p.cat}</div>
+        <h3 class="sh-card-name">${p.name}${p.stor?' · '+p.stor:''}</h3>
+        <div class="sh-card-specs">${p.specs.map(s=>`<span class="sh-card-spec">${s}</span>`).join('')}</div>
+        <div class="sh-card-prices">
+          <span class="sh-card-price">$${p.price}</span>
+          <span class="sh-card-orig">$${p.retail}</span>
+          <span class="sh-card-saved">Save $${p.retail-p.price}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Reveal new cards
+  revealSeen.clear();
+  reveal(QA('[data-sh]',grid));
+
+  // Bind card clicks → detail
+  QA('.sh-card',grid).forEach(card=>{
+    card.addEventListener('click',e=>{
+      if(e.target.closest('[data-add]')) return;
+      showProduct(card.dataset.id);
+    });
+  });
+
+  // Bind quick-add
+  QA('[data-add]',grid).forEach(btn=>{
+    btn.addEventListener('click',e=>{ e.stopPropagation(); cartAdd(btn.dataset.add); });
+  });
+
+  // 3D tilt
+  bindCardTilt();
+}
+
+function applyFilter(){
+  const filtered = activeFilter==='all' ? P : P.filter(p=>p.cat===activeFilter);
+  renderGrid(filtered);
+}
+
+function initFilters(){
+  const wrap=Q('#shFilters'); if(!wrap) return;
+  QA('.sh-fbtn',wrap).forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeFilter = btn.dataset.filter;
+      QA('.sh-fbtn',wrap).forEach(b=>b.classList.toggle('active',b===btn));
+      applyFilter();
+    });
+  });
+
+  // Nav + mobile filter links
+  QA('[data-f]').forEach(link=>{
+    link.addEventListener('click',e=>{
+      e.preventDefault();
+      activeFilter = link.dataset.f;
+      if(wrap) QA('.sh-fbtn',wrap).forEach(b=>b.classList.toggle('active',b.dataset.filter===activeFilter));
+      // Ensure grid view
+      if(isDetailView) hideProduct();
+      applyFilter();
+      const sec=Q('#products');
+      if(sec) setTimeout(()=>window.scrollTo({top:sec.offsetTop-60,behavior:'smooth'}),100);
+    });
+  });
+}
+
+/* ═══════════════════════════════════════
+   PRODUCT DETAIL (view transition)
+═══════════════════════════════════════ */
+let isDetailView = false;
+let gridSnapshot = null;
+
+function showProduct(id){
+  const p = P.find(x=>x.id===id); if(!p) return;
+  const view = Q('#shopView'); if(!view) return;
+
+  // Save grid state
+  gridSnapshot = view.innerHTML;
+  isDetailView = true;
+  history.pushState({product:id},'',`#product/${id}`);
+
+  const pct=Math.round(((p.retail-p.price)/p.retail)*100);
+  const bmDiff = p.bm-p.price;
+  const cc = p.cond==='excellent'?'sh-cond-excellent':p.cond==='good'?'sh-cond-good':'sh-cond-fair';
+  const cl = p.cond[0].toUpperCase()+p.cond.slice(1);
+  const labels=['Processor','Storage','Feature'];
+
+  view.innerHTML=`
+  <div class="sp-wrap">
+    <div class="container">
+      <button class="sp-back" id="spBack"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+      <div class="sp-layout">
+        <div class="sp-gallery"><div class="sp-gallery-main"><img src="${p.img}" alt="${p.name}"></div></div>
+        <div class="sp-info">
+          <span class="sp-cond-tag ${cc}">${cl} Condition</span>
+          <h1>${p.name}</h1>
+          <p class="sp-sub">${p.stor?p.stor+' · ':''}${p.color} · Refurbished</p>
+          <div class="sp-price-row">
+            <span class="sp-price">$${p.price}</span>
+            <span class="sp-orig">$${p.retail}</span>
+            <span class="sp-save-tag">Save ${pct}%</span>
+          </div>
+          <div class="sp-cmp">
+            <i class="fas fa-scale-balanced"></i>
+            <span>Back Market: <strong>$${p.bm}</strong></span>
+            <span>→ You save <span class="sp-cmp-diff">$${bmDiff} more</span> with us</span>
+          </div>
+          <div class="sp-div"></div>
+          <div class="sp-specs">
+            ${p.specs.map((s,i)=>`<div class="sp-spec"><div class="sp-spec-l">${labels[i]||'Detail'}</div><div class="sp-spec-v">${s}</div></div>`).join('')}
+            <div class="sp-spec"><div class="sp-spec-l">Condition</div><div class="sp-spec-v">${cl}</div></div>
+          </div>
+          <div class="sp-ctas">
+            <button class="sp-cta-main" id="spAdd"><i class="fas fa-bag-shopping"></i> Add to Bag — $${p.price}</button>
+            <a href="tel:+19294176819" class="sp-cta-call"><i class="fas fa-phone"></i> Questions? (929) 417-6819</a>
+          </div>
+          <div class="sp-div"></div>
+          <div class="sp-trust">
+            <div class="sp-trust-row"><i class="fas fa-check-circle"></i> 90-day warranty included</div>
+            <div class="sp-trust-row"><i class="fas fa-check-circle"></i> 44-point inspection certified</div>
+            <div class="sp-trust-row"><i class="fas fa-check-circle"></i> Free NYC same-day delivery</div>
+            <div class="sp-trust-row"><i class="fas fa-check-circle"></i> 14-day free returns</div>
+            <div class="sp-trust-row"><i class="fas fa-check-circle"></i> Secure Square checkout</div>
           </div>
         </div>
-      </div>`;
+      </div>
+    </div>
+  </div>`;
 
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.title = `${p.name} ${p.stor||''} — ETW Shop`;
 
-    // Update page title
-    document.title = `${product.name} ${product.storage || ''} — Refurbished | ETW Shop`;
+  Q('#spBack')?.addEventListener('click',()=>hideProduct());
+  Q('#spAdd')?.addEventListener('click',()=>cartAdd(p.id));
+}
 
-    // Bind back button
-    sh('#spBack')?.addEventListener('click', () => this.hide());
+function hideProduct(){
+  const view = Q('#shopView'); if(!view||!gridSnapshot) return;
+  view.innerHTML = gridSnapshot;
+  gridSnapshot = null;
+  isDetailView = false;
+  history.pushState(null,'',window.location.pathname);
+  document.title = 'Shop Refurbished Apple | ETW Shop';
 
-    // Bind add to bag
-    sh('#spAddBtn')?.addEventListener('click', () => window.shopApp.cart.add(product.id));
-  }
+  // Re-init everything in the restored view
+  revealSeen.clear();
+  reveal(QA('[data-sh]'));
+  initFilters();
+  applyFilter();
+  initBadges();
+  initParticles();
+  initHeroParallax();
+  initMagnetic();
+}
 
-  hide() {
-    if (!this.main || !this.gridHTML) return;
-    this.main.innerHTML = this.gridHTML;
-    this.gridHTML = '';
+// Handle browser back/forward
+window.addEventListener('popstate',e=>{
+  if(e.state && e.state.product) showProduct(e.state.product);
+  else if(isDetailView) hideProduct();
+});
 
-    // Reset hash
-    history.pushState(null, '', window.location.pathname);
-
-    // Reset title
-    document.title = 'Shop Refurbished Apple — iPhones, MacBooks, iPads | ETW Shop';
-
-    // Re-init grid, reveals, badges, filters
-    window.shopApp.reveal.observe(shAll('[data-sh-reveal]'));
-    window.shopApp.products.init();
-    window.shopApp.badges.init();
+// Handle direct URL with #product/
+function checkHash(){
+  const h = window.location.hash;
+  if(h.startsWith('#product/')){
+    const id = h.replace('#product/','');
+    setTimeout(()=>showProduct(id),300);
   }
 }
 
-// ─── PRICE COMPARISON TABLE ──────────────────────────────────
-class ShCompare {
-  init() {
-    const tbody = sh('#shCompareTable tbody');
-    if (!tbody) return;
-    const ids = ['iphone-16-pro-256', 'iphone-15-pro-max-256', 'macbook-air-m3-256', 'ipad-air-m2-128', 'airpods-pro-2'];
-    const products = ids.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
-    tbody.innerHTML = products.map(p => {
-      const diff = p.backMarket - p.price;
-      return `<tr>
-        <td><strong>${p.name}</strong> ${p.storage}</td>
-        <td>$${p.backMarket}</td>
-        <td>$${p.price} <span class="sh-compare-badge">−$${diff}</span></td>
-      </tr>`;
-    }).join('');
-  }
+/* ═══════════════════════════════════════
+   COMPARISON TABLE
+═══════════════════════════════════════ */
+function initCompare(){
+  const tbody = Q('#shCmp tbody'); if(!tbody) return;
+  const ids=['ip16pro256','ip15promax','ip14promax','mbairm3','ipadairm2','app2'];
+  tbody.innerHTML = ids.map(id=>{
+    const p=P.find(x=>x.id===id); if(!p) return '';
+    return `<tr><td><strong>${p.name}</strong> ${p.stor}</td><td>$${p.bm}</td><td>$${p.price} <span class="sh-cmp-save">−$${p.bm-p.price}</span></td></tr>`;
+  }).join('');
 }
 
-// ─── SMOOTH SCROLL ────────────────────────────────────────────
-class ShSmoothScroll {
-  init() {
-    shAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (href === '#' || href.startsWith('#product/')) return;
-        const t = sh(href);
-        if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }
-      });
-    });
-  }
+/* ═══════════════════════════════════════
+   CART
+═══════════════════════════════════════ */
+let cartItems = [];
+try{ const s=sessionStorage.getItem('sh_cart'); if(s) cartItems=JSON.parse(s); }catch(e){}
+
+function cartSave(){ try{sessionStorage.setItem('sh_cart',JSON.stringify(cartItems))}catch(e){} }
+
+function cartAdd(id){
+  const ex=cartItems.find(i=>i.id===id);
+  if(ex) ex.qty++; else cartItems.push({id,qty:1});
+  cartSave(); cartUI(); cartToast(id); cartOpen();
 }
 
-// ─── APPLICATION ──────────────────────────────────────────────
-class ShopApp {
-  constructor() {
-    this.reveal   = new ShReveal();
-    this.progress = new ShProgress();
-    this.badges   = new ShHeroBadges();
-    this.products = new ShProductGrid(this.reveal);
-    this.cart     = new ShCart();
-    this.detail   = new ShProductDetail();
-    this.compare  = new ShCompare();
-    this.smooth   = new ShSmoothScroll();
-  }
-
-  init() {
-    const mods = [
-      this.reveal, this.progress, this.badges,
-      this.products, this.cart, this.detail,
-      this.compare, this.smooth
-    ];
-    mods.forEach(m => {
-      try { m.init(); }
-      catch (err) { console.error('[Shop]', err); }
-    });
-    console.log('✦ ETW Shop — Premium Edition loaded');
-  }
+function cartRemove(id){
+  cartItems=cartItems.filter(i=>i.id!==id);
+  cartSave(); cartUI();
 }
 
-// ─── INIT ─────────────────────────────────────────────────────
-let shopApp;
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => { shopApp = new ShopApp(); shopApp.init(); window.shopApp = shopApp; });
-} else {
-  shopApp = new ShopApp(); shopApp.init(); window.shopApp = shopApp;
+function cartTotal(){ return cartItems.reduce((s,i)=>{ const p=P.find(x=>x.id===i.id); return s+(p?p.price*i.qty:0); },0); }
+function cartCount(){ return cartItems.reduce((s,i)=>s+i.qty,0); }
+
+function cartUI(){
+  const count=cartCount(), total=cartTotal();
+  const countEl=Q('#shCount'), bodyEl=Q('#shCartBody'), footEl=Q('#shCartFoot'), totalEl=Q('#shCartTotal');
+  if(countEl){ countEl.textContent=count; countEl.classList.toggle('show',count>0); }
+  if(bodyEl){
+    if(!cartItems.length){
+      bodyEl.innerHTML='<div class="sh-cart-empty"><i class="fas fa-bag-shopping"></i><p>Your bag is empty.</p></div>';
+      if(footEl) footEl.style.display='none';
+    } else {
+      bodyEl.innerHTML=cartItems.map(item=>{
+        const p=P.find(x=>x.id===item.id); if(!p) return '';
+        return `<div class="sh-cart-item">
+          <div class="sh-cart-item-img"><img src="${p.img}" alt="${p.name}"></div>
+          <div class="sh-cart-item-info">
+            <div class="sh-cart-item-name">${p.name}</div>
+            <div class="sh-cart-item-var">${p.stor?p.stor+' · ':''}${p.color} · Qty: ${item.qty}</div>
+            <div class="sh-cart-item-price">$${(p.price*item.qty).toLocaleString()}</div>
+          </div>
+          <button class="sh-cart-item-rm" data-rm="${p.id}"><i class="fas fa-trash-can"></i></button>
+        </div>`;
+      }).join('');
+      if(footEl) footEl.style.display='block';
+      QA('[data-rm]',bodyEl).forEach(btn=>btn.addEventListener('click',()=>cartRemove(btn.dataset.rm)));
+    }
+  }
+  if(totalEl) totalEl.textContent='$'+total.toLocaleString();
 }
+
+function cartOpen(){
+  Q('#shCartDrawer')?.classList.add('open');
+  Q('#shCartOv')?.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function cartClose(){
+  Q('#shCartDrawer')?.classList.remove('open');
+  Q('#shCartOv')?.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function cartToast(id){
+  const p=P.find(x=>x.id===id), t=Q('#shToast'), m=Q('#shToastMsg');
+  if(!p||!t||!m) return;
+  m.textContent=`${p.name} added to bag!`;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function initCart(){
+  Q('#shCartBtn')?.addEventListener('click',cartOpen);
+  Q('#shCartX')?.addEventListener('click',cartClose);
+  Q('#shCartOv')?.addEventListener('click',cartClose);
+  Q('#shCheckout')?.addEventListener('click',()=>{
+    alert('Square checkout coming soon!\n\nCall or text (929) 417-6819 to complete your order.');
+  });
+  cartUI();
+}
+
+/* ═══════════════════════════════════════
+   SMOOTH SCROLL
+═══════════════════════════════════════ */
+function initSmooth(){
+  document.addEventListener('click',e=>{
+    const link = e.target.closest('a[href^="#"]');
+    if(!link) return;
+    const href=link.getAttribute('href');
+    if(href==='#'||href.startsWith('#product/')) return;
+    const t=Q(href);
+    if(t){ e.preventDefault(); window.scrollTo({top:t.offsetTop-60,behavior:'smooth'}); }
+  });
+}
+
+/* ═══════════════════════════════════════
+   BACK TO TOP
+═══════════════════════════════════════ */
+function initTop(){
+  const btn=Q('#shTop'); if(!btn) return;
+  window.addEventListener('scroll',throttle(()=>btn.classList.toggle('vis',window.scrollY>600),200));
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+
+/* ═══════════════════════════════════════
+   BOOT
+═══════════════════════════════════════ */
+function boot(){
+  initReveal();
+  initProgress();
+  initHeader();
+  initMobile();
+  initGlow();
+  initParticles();
+  initBadges();
+  initHeroParallax();
+  initMagnetic();
+  renderGrid(P);
+  initFilters();
+  initCart();
+  initCompare();
+  initSmooth();
+  initTop();
+  checkHash();
+  console.log('✦ ETW Shop V3 — Wow Edition loaded');
+}
+
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+else boot();
