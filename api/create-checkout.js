@@ -1,12 +1,14 @@
 /**
  * ═══════════════════════════════════════════════════════════════
  *  ETW SHOP — Square Checkout Link Creator
- *  Vercel Serverless Function
+ *  Vercel Serverless Function  ·  With Shipping Tiers
  *  File: api/create-checkout.js  (repo root)
  *
- *  ENV VARIABLES (set in Vercel dashboard):
- *    SQUARE_ACCESS_TOKEN  — production token (starts with sq0atp-)
- *    SQUARE_LOCATION_ID   — your location ID (starts with L)
+ *  ENV VARIABLES (Vercel dashboard):
+ *    SQUARE_ACCESS_TOKEN  — starts with sq0atp-
+ *    SQUARE_LOCATION_ID   — starts with L
+ *
+ *  Tax is configured in Square Dashboard, applied automatically.
  * ═══════════════════════════════════════════════════════════════
  */
 
@@ -28,13 +30,17 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const { items, redirectUrl } = req.body;
+    const { items, shipping, redirectUrl } = req.body;
 
+    // ── Validate ──
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: 'No items provided' });
     }
+    if (!shipping || !['nyc', 'standard'].includes(shipping)) {
+      return res.status(400).json({ error: 'Invalid shipping option' });
+    }
 
-    // ── Build Square line items (price in cents) ──
+    // ── Build product line items ──
     const lineItems = items.map(item => ({
       name: item.name,
       quantity: String(item.qty),
@@ -45,13 +51,29 @@ export default async function handler(req, res) {
       note: item.variant || '',
     }));
 
-    // ── Build request body ──
-    // Single item → use quick_pay (simpler)
-    // Multiple items → use order with line_items
-    const isSingle = lineItems.length === 1 && lineItems[0].quantity === '1';
+    // ── Add shipping as a line item ──
+    const shippingFee = shipping === 'nyc' ? 7900 : 999; // cents
+    const shippingLabel = shipping === 'nyc'
+      ? 'NYC Same-Day Delivery'
+      : 'Standard Shipping (3–5 business days)';
 
+    lineItems.push({
+      name: shippingLabel,
+      quantity: '1',
+      base_price_money: {
+        amount: shippingFee,
+        currency: 'USD',
+      },
+      note: 'Shipping',
+    });
+
+    // ── Build Square request ──
     const body = {
       idempotency_key: crypto.randomUUID(),
+      order: {
+        location_id: process.env.SQUARE_LOCATION_ID,
+        line_items: lineItems,
+      },
       checkout_options: {
         allow_tipping: false,
         redirect_url: redirectUrl || 'https://www.elanstechworld.com/shop/?order=success',
@@ -64,22 +86,6 @@ export default async function handler(req, res) {
         },
       },
     };
-
-    if (isSingle) {
-      body.quick_pay = {
-        name: lineItems[0].name,
-        price_money: {
-          amount: lineItems[0].base_price_money.amount,
-          currency: 'USD',
-        },
-        location_id: process.env.SQUARE_LOCATION_ID,
-      };
-    } else {
-      body.order = {
-        location_id: process.env.SQUARE_LOCATION_ID,
-        line_items: lineItems,
-      };
-    }
 
     // ── Call Square API ──
     const response = await fetch(
