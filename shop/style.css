@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- *  ETW SHOP V3 — Fully Standalone · Wow Edition
+ *  ETW SHOP V4 — Fully Standalone · Wow Edition
  *  Matte Apple · 3D tilt · Cursor glow · Particles ·
  *  Magnetic buttons · View transitions · Cart fly
  *  File: shop/style.css — ZERO dependencies
@@ -452,14 +452,24 @@ ul,ol{list-style:none}
   background:var(--red);color:#fff;border-radius:var(--r-full);letter-spacing:.04em;
 }
 
-/* Image */
+/* ─── CARD IMAGE — portrait-friendly, no dead whitespace ─── */
 .sh-card-img{
-  position:relative;padding:32px 24px;background:var(--matte);
+  position:relative;
+  padding:0;
+  background:var(--matte);
   display:flex;align-items:center;justify-content:center;
-  min-height:240px;overflow:hidden;z-index:2;
+  height:280px;
+  overflow:hidden;
+  z-index:2;
 }
-.sh-card-img img{max-height:200px;object-fit:contain;transition:transform var(--t-slow)}
-.sh-card:hover .sh-card-img img{transform:scale(1.08) rotate(-1.5deg)}
+.sh-card-img img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:20px 16px;
+  transition:transform var(--t-slow);
+}
+.sh-card:hover .sh-card-img img{transform:scale(1.06) translateY(-4px)}
 
 /* Quick add overlay */
 .sh-card-quick{
@@ -653,12 +663,26 @@ ul,ol{list-style:none}
 @media(min-width:768px){.sp-layout{grid-template-columns:1.2fr 1fr;gap:64px}}
 .sp-gallery{position:relative}
 @media(min-width:768px){.sp-gallery{position:sticky;top:80px}}
+
+/* ─── GALLERY MAIN — portrait aspect for Apple CDN images ─── */
 .sp-gallery-main{
-  width:100%;aspect-ratio:1;background:var(--matte);border-radius:var(--r-xl);
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
+  position:relative;
+  width:100%;
+  aspect-ratio:5 / 6;
+  background:var(--matte);
+  border-radius:var(--r-xl);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
 }
-.sp-gallery-main img{max-width:75%;max-height:75%;object-fit:contain;transition:transform var(--t-slow)}
-.sp-gallery-main:hover img{transform:scale(1.08)}
+.sp-gallery-main img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:32px 28px;
+  transition:transform .5s ease;
+}
+.sp-gallery-main:hover img{transform:scale(1.05)}
+
 .sp-cond-tag{display:inline-block;padding:5px 18px;font-size:.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border-radius:var(--r-full);margin-bottom:16px}
 .sp-info h1{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;letter-spacing:-.03em;color:var(--carbon);margin-bottom:8px;line-height:1.08}
 .sp-sub{font-size:1rem;color:var(--graphite);margin-bottom:28px}
@@ -700,6 +724,34 @@ ul,ol{list-style:none}
 .sp-trust{display:flex;flex-direction:column;gap:14px}
 .sp-trust-row{display:flex;align-items:center;gap:12px;font-size:.8125rem;color:var(--graphite)}
 .sp-trust-row i{width:20px;text-align:center;color:var(--green);font-size:.8rem}
+
+/* ═══════════════════════════════════════
+   COLOR SWATCHES — detail page
+═══════════════════════════════════════ */
+.sp-colors{margin-bottom:24px}
+.sp-color-label{
+  font-size:.6875rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--steel);margin-bottom:10px;
+}
+.sp-color-name-display{
+  display:inline;font-weight:600;color:var(--carbon);
+  text-transform:none;letter-spacing:0;
+}
+.sp-color-btns{display:flex;flex-wrap:wrap;gap:10px}
+.sp-color-btn{
+  position:relative;width:32px;height:32px;border-radius:50%;
+  border:2.5px solid transparent;cursor:pointer;
+  transition:transform var(--t-fast),border-color var(--t-fast);
+  outline:none;
+}
+.sp-color-btn::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid transparent;transition:border-color var(--t-fast);
+}
+.sp-color-btn:hover{transform:scale(1.15)}
+.sp-color-btn.sp-color-sel::after{border-color:var(--carbon)}
+/* Light swatches need a subtle border so they don't disappear on white bg */
+.sp-color-btn.sp-color-light{border-color:var(--cloud)}
 
 /* ═══════════════════════════════════════
    QUALITY SHOWCASE — Bento Grid
@@ -861,9 +913,7 @@ ul,ol{list-style:none}
   display:flex;align-items:center;gap:12px;
   font-size:.9375rem;color:var(--graphite);
 }
-.sq-promise-item i{
-  font-size:1rem;color:var(--green);
-}
+.sq-promise-item i{font-size:1rem;color:var(--green)}
 .sq-promise-item strong{color:var(--carbon)}
 
 /* ── Responsive ── */
@@ -902,15 +952,8 @@ ul,ol{list-style:none}
 /* ═══ "FROM" LABEL ON CARDS ═══ */
 .sh-card-from{font-size:.6875rem;font-weight:600;color:var(--steel);margin-right:-4px}
 
-/* ═══ GALLERY ═══ */
+/* ═══ GALLERY WRAP ═══ */
 .sp-gallery-wrap{position:relative}
-.sp-gallery-main{
-  position:relative;width:100%;aspect-ratio:1;background:var(--matte);
-  border-radius:var(--r-xl);display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.sp-gallery-main img{max-width:75%;max-height:75%;object-fit:contain;transition:transform .5s ease}
-.sp-gallery-main:hover img{transform:scale(1.05)}
 
 /* Arrows */
 .sp-arrow{
@@ -1025,8 +1068,8 @@ ul,ol{list-style:none}
   .sh-hero-ctas .btn{justify-content:center}
   .sh-hero-trust{flex-direction:column;gap:8px;align-items:center}
   .sh-grid{grid-template-columns:repeat(2,1fr);gap:12px}
-  .sh-card-img{min-height:160px;padding:20px 12px}
-  .sh-card-img img{max-height:140px}
+  .sh-card-img{height:200px}
+  .sh-card-img img{padding:14px 10px}
   .sh-card-info{padding:12px 12px 16px}
   .sh-card-name{font-size:.875rem}
   .sh-card-price{font-size:1.125rem}
