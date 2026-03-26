@@ -6,18 +6,18 @@
     "cond": "excellent",
     "specs": ["A18 Pro", "48MP Camera", "Titanium"],
     "colorOptions": [
-      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://i.ebayimg.com/images/g/nlMAAeSw8JhpJOAQ/s-l1600.jpg" },
-      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://i.ebayimg.com/images/g/vJ0AAeSwwdVpJOAF/s-l1600.jpg" },
-      { "name": "Desert Titanium",  "swatch": "#C0A27A", "img": "https://i.ebayimg.com/images/g/wyQAAeSwqLtpJOAL/s-l1600.jpg" },
-      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://i.ebayimg.com/images/g/CNgAAeSwlfxpJI~0/s-l1600.jpg" }
+      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Desert Titanium",  "swatch": "#C0A27A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" }
     ],
     "images": [
-      "https://i.ebayimg.com/images/g/tRkAAeSwvxhpJN~-/s-l1600.jpg",
-      "https://i.ebayimg.com/images/g/qmcAAeSwaU9pJOAF/s-l1600.jpg",
-      "https://i.ebayimg.com/images/g/wyQAAeSwqLtpJOAL/s-l1600.jpg",
-      "https://i.ebayimg.com/images/g/voIAAeSwYfppJOAQ/s-l1600.jpg"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
-    "thumb": "https://i.ebayimg.com/images/g/tRkAAeSwvxhpJN~-/s-l1600.jpg",
+    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
       { "storage": "128GB", "color": "Natural Titanium", "price": 749.99, "retail": 999,  "bm": 839,  "inStock": true },
       { "storage": "256GB", "color": "Natural Titanium", "price": 849.99, "retail": 1099, "bm": 939,  "inStock": true },
@@ -29,18 +29,27 @@
     "id": "iphone-16",
     "name": "iPhone 16",
     "cat": "iphone",
-    "cond": "excellent",
+    "cond": "Like New",
     "specs": ["A18", "48MP Camera", "Dynamic Island"],
-    "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-pink?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80"
+    "colorOptions": [
+      { "name": "Black",        "swatch": "#1C1C1E", "img": "https://i.ebayimg.com/images/g/314AAeSwEDJpJOYi/s-l1600.jpg" },
+      { "name": "Ultramarine",  "swatch": "#3A5BA0", "img": "https://i.ebayimg.com/images/g/6xoAAeSw27JpJOYm/s-l1600.jpg" },
+      { "name": "Teal",         "swatch": "#4A9E8C", "img": "https://i.ebayimg.com/images/g/6tEAAeSwWfppJOYr/s-l1600.jpg" },
+      { "name": "Pink",         "swatch": "#E8879A", "img": "https://i.ebayimg.com/images/g/19gAAeSwFJJpJOYv/s-l1600.jpg" },
+      { "name": "White",        "swatch": "#F0EFED", "img": "https://i.ebayimg.com/images/g/3VoAAeSwYlFpJOYz/s-l1600.jpg" }
     ],
-    "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=472&fmt=p-jpg&qlt=80",
+    "images": [
+      "https://i.ebayimg.com/images/g/314AAeSwEDJpJOYi/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/6xoAAeSw27JpJOYm/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/6tEAAeSwWfppJOYr/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/19gAAeSwFJJpJOYv/s-l1600.jpg",
+      "https://i.ebayimg.com/images/g/3VoAAeSwYlFpJOYz/s-l1600.jpg"
+    ],
+    "thumb": "https://i.ebayimg.com/images/g/xGMAAeSw8~ppJOYd/s-l1600.jpg",
     "variants": [
-      { "storage": "128GB", "color": "Ultramarine", "price": 599,  "retail": 829,  "bm": 669, "inStock": true },
-      { "storage": "256GB", "color": "Ultramarine", "price": 699,  "retail": 929,  "bm": 769, "inStock": true },
-      { "storage": "512GB", "color": "Ultramarine", "price": 849,  "retail": 1129, "bm": 939, "inStock": false }
+      { "storage": "128GB", "color": "Ultramarine", "price": 639.99, "retail": 829,  "bm": 669, "inStock": true },
+      { "storage": "256GB", "color": "Ultramarine", "price": 699.99, "retail": 929,  "bm": 769, "inStock": true },
+      { "storage": "512GB", "color": "Ultramarine", "price": 899.99, "retail": 1129, "bm": 939, "inStock": false }
     ]
   },
   {
@@ -49,10 +58,17 @@
     "cat": "iphone",
     "cond": "excellent",
     "specs": ["A17 Pro", "5x Zoom", "Titanium"],
+    "colorOptions": [
+      { "name": "Blue Titanium",    "swatch": "#4E6B8C", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-max-finish-select-202309-6-7inch-bluetitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -67,9 +83,17 @@
     "cat": "iphone",
     "cond": "good",
     "specs": ["A17 Pro", "48MP Camera", "Titanium"],
+    "colorOptions": [
+      { "name": "Natural Titanium", "swatch": "#8E8983", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Blue Titanium",    "swatch": "#4E6B8C", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Black Titanium",   "swatch": "#2D2A26", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "White Titanium",   "swatch": "#E4DED7", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-bluetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-blacktitanium?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-whitetitanium?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -84,9 +108,19 @@
     "cat": "iphone",
     "cond": "good",
     "specs": ["A16", "48MP Camera", "USB-C"],
+    "colorOptions": [
+      { "name": "Black",  "swatch": "#1C1C1E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Blue",   "swatch": "#4A7FA5", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Green",  "swatch": "#5A8A72", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-green?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Yellow", "swatch": "#E5C840", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-yellow?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Pink",   "swatch": "#E8A0AA", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-pink?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-green?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-yellow?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-pink?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-black?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -100,9 +134,17 @@
     "cat": "iphone",
     "cond": "good",
     "specs": ["A16", "48MP Camera", "Dynamic Island"],
+    "colorOptions": [
+      { "name": "Deep Purple", "swatch": "#4E3D69", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Space Black", "swatch": "#2A2A2A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-spaceblack?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Gold",        "swatch": "#C8A96E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-gold?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Silver",      "swatch": "#E3E3E3", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-silver?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-spaceblack?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-spaceblack?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-gold?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-silver?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-max-finish-select-202209-6-7inch-deeppurple?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -117,9 +159,21 @@
     "cat": "iphone",
     "cond": "good",
     "specs": ["A15", "12MP Camera", "6.1 Display"],
+    "colorOptions": [
+      { "name": "Midnight",     "swatch": "#1C1C1E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Blue",         "swatch": "#2D4F6C", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Starlight",    "swatch": "#E8E3D8", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-starlight?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Purple",       "swatch": "#8E7EAC", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-purple?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Product Red",  "swatch": "#BF0000", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-red?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Yellow",       "swatch": "#F5E17A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-yellow?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
       "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=600&hei=708&fmt=p-jpg&qlt=80",
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-blue?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-starlight?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-purple?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-red?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-yellow?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-finish-select-202209-6-1inch-midnight?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -133,8 +187,19 @@
     "cat": "iphone",
     "cond": "fair",
     "specs": ["A15", "ProRes Video", "LiDAR"],
+    "colorOptions": [
+      { "name": "Sierra Blue",    "swatch": "#6B8FA8", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Silver",         "swatch": "#E3E3E3", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-silver-select?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Gold",           "swatch": "#C8A96E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Graphite",       "swatch": "#54524F", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Alpine Green",   "swatch": "#576856", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-green-select?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-silver-select?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-gold-select?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-graphite-select?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-green-select?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-blue-select?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -148,8 +213,21 @@
     "cat": "iphone",
     "cond": "fair",
     "specs": ["A15", "12MP Camera", "5G"],
+    "colorOptions": [
+      { "name": "Midnight",     "swatch": "#1C1C1E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Starlight",    "swatch": "#E8E3D8", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Blue",         "swatch": "#2A4B8C", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Pink",         "swatch": "#F2C4C0", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pink-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Product Red",  "swatch": "#BF0000", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-red-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Green",        "swatch": "#4A7A5A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-green-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-blue-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pink-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-red-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-green-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -163,8 +241,17 @@
     "cat": "iphone",
     "cond": "fair",
     "specs": ["A14", "LiDAR", "5G"],
+    "colorOptions": [
+      { "name": "Pacific Blue", "swatch": "#2E5F7A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Silver",       "swatch": "#E3E3E3", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-silver-hero?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Gold",         "swatch": "#C8A96E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Graphite",     "swatch": "#54524F", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-graphite-hero?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-silver-hero?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-graphite-hero?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
@@ -178,8 +265,21 @@
     "cat": "iphone",
     "cond": "fair",
     "specs": ["A14", "12MP Camera", "5G"],
+    "colorOptions": [
+      { "name": "Blue",         "swatch": "#2A4B8C", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Black",        "swatch": "#1C1C1E", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "White",        "swatch": "#F0EFED", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-white-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Product Red",  "swatch": "#BF0000", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-red-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Green",        "swatch": "#4A7A5A", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-green-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80" },
+      { "name": "Purple",       "swatch": "#8E7EAC", "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-purple-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80" }
+    ],
     "images": [
-      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80"
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-black-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-white-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-red-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-green-select-2020?wid=600&hei=708&fmt=p-jpg&qlt=80",
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-purple-select-2021?wid=600&hei=708&fmt=p-jpg&qlt=80"
     ],
     "thumb": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-blue-select-2020?wid=400&hei=472&fmt=p-jpg&qlt=80",
     "variants": [
