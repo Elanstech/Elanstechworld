@@ -1,402 +1,827 @@
-/* ═══════════════════════════════════════════════════════════════
-   ELAN'S TECH WORLD — motion & interaction
-   ═══════════════════════════════════════════════════════════════ */
-(function(){
-"use strict";
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELAN'S TECH WORLD — motion & interaction (ES6)
+   ─────────────────────────────────────────────────────────────────────────
+   Modules:
+     Env            — environment flags & shared helpers
+     SmoothScroll   — Lenis wiring + anchor handling
+     Preloader      — count-up intro, hands off to HeroIntro
+     HeroIntro      — headline split, entrance timeline, scramble, orbs
+     Cursor         — custom dot + ring
+     Magnetic       — magnetic hover on buttons
+     Marquees       — infinite loops, velocity-reactive
+     Manifesto      — word-by-word scroll reveal
+     Stitches       — dashed divider draw-in
+     Deck           — sticky stacking service cards
+     Counters       — animated numbers
+     ProcessRail    — pinned horizontal scroll (all screen sizes)
+     FolioPreview   — floating portfolio preview
+     Testimonials   — autoplaying quote slider
+     Faq            — accordion
+     Reveals        — batched scroll reveals
+     HeaderCtrl     — hide-on-scroll header, progress bar, to-top
+     MobileMenu     — burger overlay
+     FooterWord     — wordmark parallax
+     App            — boots everything
+   ═══════════════════════════════════════════════════════════════════════ */
 
-const doc = document.documentElement;
-const RM  = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const TOUCH = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-const hasGSAP = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+const Env = {
+    RM: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    TOUCH: window.matchMedia('(hover: none), (pointer: coarse)').matches,
+    hasGSAP: typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined',
+    headH: 96,
+};
 
-if (RM || !hasGSAP) doc.classList.add("no-motion");
+const q  = (sel, ctx = document) => ctx.querySelector(sel);
+const qa = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-const $  = (s, c) => (c || document).querySelector(s);
-const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
 
-/* ── kill loader instantly if we can't animate ── */
-const loader = $("#loader");
-if ((RM || !hasGSAP) && loader) loader.style.display = "none";
+/* ═══════════════════════════════════════════════════════════════════════
+   SMOOTH SCROLL
+   ═══════════════════════════════════════════════════════════════════════ */
 
-if (!hasGSAP) return;                 // graceful static page
-gsap.registerPlugin(ScrollTrigger);
+class SmoothScroll {
+    constructor() {
+        this.lenis = null;
 
-/* ── smooth scroll (Lenis, optional) ───────────── */
-let lenis = null;
-if (!RM && typeof Lenis !== "undefined") {
-    lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(t => lenis.raf(t * 1000));
-    gsap.ticker.lagSmoothing(0);
-}
-function scrollToTarget(el){
-    if (lenis) lenis.scrollTo(el, { offset: -70, duration: 1.4 });
-    else el.scrollIntoView({ behavior: RM ? "auto" : "smooth" });
-}
-$$('a[href^="#"]').forEach(a => {
-    a.addEventListener("click", e => {
-        const id = a.getAttribute("href");
-        if (id.length < 2) return;
-        const t = $(id);
-        if (!t) return;
-        e.preventDefault();
-        scrollToTarget(t);
-    });
-});
+        if (!Env.RM && typeof Lenis !== 'undefined') {
+            this.lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+            this.lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((t) => this.lenis.raf(t * 1000));
+            gsap.ticker.lagSmoothing(0);
+        }
 
-/* ── split hero word into chars ────────────────── */
-const heroWord = $("#heroWord");
-let heroChars = [];
-if (heroWord) {
-    const txt = heroWord.textContent.trim();
-    heroWord.textContent = "";
-    txt.split("").forEach((ch, i) => {
-        const s = document.createElement("span");
-        s.className = "ch" + (i % 3 === 1 ? " ch--outline" : "");
-        s.textContent = ch;
-        heroWord.appendChild(s);
-    });
-    heroChars = $$(".ch", heroWord);
-}
-
-/* initial hero states (loader hides the flash) */
-const heroBits = ["#heroSmall", "#heroStandard", "#heroDesc", "#heroCta", ".hero-eyebrow", ".hero-meta-inner", "#heroBadge"].map(s => $(s)).filter(Boolean);
-if (!RM) {
-    gsap.set(heroChars, { yPercent: 130, rotate: 6 });
-    gsap.set(heroBits, { autoAlpha: 0, y: 26 });
-    gsap.set(heroWord, { overflow: "hidden", display: "block" });
-}
-
-/* ── preloader ─────────────────────────────────── */
-function heroIntro(){
-    const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-    tl.to(heroChars, { yPercent: 0, rotate: 0, duration: 1.3, stagger: 0.045 })
-      .to($(".hero-eyebrow"), { autoAlpha: 1, y: 0, duration: .8 }, "-=1.0")
-      .to(["#heroSmall", "#heroStandard"].map(s=>$(s)), { autoAlpha: 1, y: 0, duration: .9, stagger: .12 }, "-=0.9")
-      .to(["#heroDesc", "#heroCta"].map(s=>$(s)), { autoAlpha: 1, y: 0, duration: .8, stagger: .1 }, "-=0.6")
-      .to([$(".hero-meta-inner"), $("#heroBadge")], { autoAlpha: 1, y: 0, duration: .8, stagger: .1 }, "-=0.5");
-    startScramble();
-}
-
-if (loader && !RM) {
-    const word = $("#loaderWord");
-    if (word) {
-        const t = word.textContent.trim();
-        word.innerHTML = t.split("").map(c => `<span>${c === " " ? "&nbsp;" : c}</span>`).join("");
+        this.bindAnchors();
     }
-    const counter = { v: 0 };
-    const countEl = $("#loaderCount");
-    const tl = gsap.timeline({
-        onComplete(){ loader.style.display = "none"; heroIntro(); }
-    });
-    tl.to($$("#loaderWord span"), { y: 0, yPercent: -0, duration: .9, ease: "expo.out", stagger: .03, onStart(){ gsap.set($$("#loaderWord span"), {display:"inline-block"}); }, startAt:{ yPercent: 110 } })
-      .to(counter, { v: 100, duration: 1.4, ease: "power2.inOut",
-          onUpdate(){ if (countEl) countEl.textContent = String(Math.round(counter.v)).padStart(2, "0"); } }, "<")
-      .to($("#loaderLine"), { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, "<")
-      .to($(".loader-inner"), { autoAlpha: 0, y: -30, duration: .5, ease: "power2.in" }, "+=0.15")
-      .to($(".loader-panel--top"), { yPercent: -101, duration: .9, ease: "expo.inOut" }, "-=0.1")
-      .to($(".loader-panel--bot"), { yPercent: 101, duration: .9, ease: "expo.inOut" }, "<");
-} else if (!RM) {
-    heroIntro();
-}
 
-/* ── text scramble (eyebrow) ───────────────────── */
-function startScramble(){
-    const el = $(".scramble");
-    if (!el || RM) return;
-    const target = el.dataset.scramble || el.textContent;
-    const glyphs = "◆◇#/\\_—·ELANTECH";
-    let frame = 0;
-    const total = 34;
-    const iv = setInterval(() => {
-        frame++;
-        const reveal = Math.floor((frame / total) * target.length);
-        el.textContent = target.split("").map((c, i) =>
-            i < reveal ? c : (c === " " ? " " : glyphs[Math.floor(Math.random() * glyphs.length)])
-        ).join("");
-        if (frame >= total) { el.textContent = target; clearInterval(iv); }
-    }, 32);
-}
+    scrollTo(el) {
+        if (this.lenis) {
+            this.lenis.scrollTo(el, { offset: -70, duration: 1.4 });
+        } else {
+            el.scrollIntoView({ behavior: Env.RM ? 'auto' : 'smooth' });
+        }
+    }
 
-/* ── custom cursor ─────────────────────────────── */
-if (!TOUCH && !RM) {
-    const dot = $("#cursorDot"), ring = $("#cursorRing"), label = $("#cursorLabel");
-    const dx = gsap.quickTo(dot, "x", { duration: .12, ease: "power3" });
-    const dy = gsap.quickTo(dot, "y", { duration: .12, ease: "power3" });
-    const rx = gsap.quickTo(ring, "x", { duration: .45, ease: "power3" });
-    const ry = gsap.quickTo(ring, "y", { duration: .45, ease: "power3" });
-    gsap.set([dot, ring], { xPercent: -50, yPercent: -50, x: -100, y: -100 });
-    window.addEventListener("mousemove", e => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
-    const hoverables = 'a, button, .faq-q, [data-cursor]';
-    document.addEventListener("mouseover", e => {
-        const t = e.target.closest(hoverables);
-        if (!t) { ring.classList.remove("is-hover"); return; }
-        label.textContent = t.closest(".folio-item") ? "View" : t.closest(".deck-card") ? "More" : "Go";
-        ring.classList.add("is-hover");
-    });
-}
-
-/* ── magnetic buttons ──────────────────────────── */
-if (!TOUCH && !RM) {
-    $$(".magnetic").forEach(el => {
-        const xTo = gsap.quickTo(el, "x", { duration: .5, ease: "elastic.out(1,.4)" });
-        const yTo = gsap.quickTo(el, "y", { duration: .5, ease: "elastic.out(1,.4)" });
-        el.addEventListener("mousemove", e => {
-            const r = el.getBoundingClientRect();
-            xTo((e.clientX - (r.left + r.width / 2)) * .35);
-            yTo((e.clientY - (r.top + r.height / 2)) * .35);
-        });
-        el.addEventListener("mouseleave", () => { xTo(0); yTo(0); });
-    });
-}
-
-/* ── hero orb parallax (mouse + scroll) ────────── */
-if (!RM) {
-    const orbs = $$("[data-orb]");
-    if (!TOUCH) {
-        window.addEventListener("mousemove", e => {
-            const nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5;
-            orbs.forEach(o => {
-                const f = parseFloat(o.dataset.orb) * 1000;
-                gsap.to(o, { x: nx * f, y: ny * f, duration: 1.6, ease: "power2.out" });
+    bindAnchors() {
+        qa('a[href^="#"]').forEach((a) => {
+            a.addEventListener('click', (e) => {
+                const id = a.getAttribute('href');
+                if (id.length < 2) return;
+                const target = q(id);
+                if (!target) return;
+                e.preventDefault();
+                this.scrollTo(target);
             });
         });
     }
-    gsap.to(".hero-content", {
-        yPercent: -12, autoAlpha: .25, ease: "none",
-        scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true }
-    });
+
+    get y() {
+        return this.lenis ? this.lenis.scroll : (window.scrollY || 0);
+    }
+
+    stop()  { this.lenis?.stop(); }
+    start() { this.lenis?.start(); }
+
+    onScroll(fn) {
+        this.lenis?.on('scroll', fn);
+        window.addEventListener('scroll', fn, { passive: true });
+    }
 }
 
-/* ── marquees (velocity-reactive) ──────────────── */
-function loopMarquee(track, dir){
-    if (!track || RM) return;
-    const tween = dir > 0
-        ? gsap.fromTo(track, { xPercent: 0 },   { xPercent: -50, ease: "none", duration: 24, repeat: -1 })
-        : gsap.fromTo(track, { xPercent: -50 }, { xPercent: 0,   ease: "none", duration: 24, repeat: -1 });
-    ScrollTrigger.create({
-        onUpdate(self){
-            const v = Math.abs(self.getVelocity() / 260);
-            gsap.to(tween, { timeScale: gsap.utils.clamp(1, 4, v), duration: .5, overwrite: true });
-        }
-    });
-}
-loopMarquee($("#marqueeTrack"), 1);
-$$(".shop-mq-track").forEach(t => loopMarquee(t, parseFloat(t.dataset.mqDir || "1")));
 
-/* ── manifesto word-by-word scrub ──────────────── */
-const mani = $("#manifestoText");
-if (mani) {
-    const accents = (mani.dataset.accents || "").split(",").map(s => s.trim());
-    const words = mani.textContent.trim().split(/\s+/);
-    mani.innerHTML = words.map(w => {
-        const clean = w.replace(/[^a-zA-Z]/g, "").toLowerCase();
-        const acc = accents.some(a => a && clean.includes(a));
-        return `<span class="w${acc ? " w--accent" : ""}">${w}</span>`;
-    }).join(" ");
-    if (!RM) {
-        gsap.to($$(".w", mani), {
-            opacity: 1, ease: "none", stagger: .06,
-            scrollTrigger: { trigger: mani, start: "top 80%", end: "bottom 55%", scrub: true }
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO INTRO
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class HeroIntro {
+    constructor() {
+        this.word = q('#heroWord');
+        this.chars = [];
+        this.bits = ['#heroSmall', '#heroStandard', '#heroDesc', '#heroCta', '.hero-eyebrow', '.hero-meta-inner', '#heroBadge']
+            .map((s) => q(s))
+            .filter(Boolean);
+
+        this.splitWord();
+        this.setInitialStates();
+        this.bindOrbs();
+        this.bindParallax();
+    }
+
+    splitWord() {
+        if (!this.word) return;
+        const text = this.word.textContent.trim();
+        this.word.textContent = '';
+        text.split('').forEach((ch, i) => {
+            const span = document.createElement('span');
+            span.className = `ch${i % 3 === 1 ? ' ch--outline' : ''}`;
+            span.textContent = ch;
+            this.word.appendChild(span);
+        });
+        this.chars = qa('.ch', this.word);
+    }
+
+    setInitialStates() {
+        if (Env.RM) return;
+        gsap.set(this.chars, { yPercent: 130, rotate: 6 });
+        gsap.set(this.bits, { autoAlpha: 0, y: 26 });
+        gsap.set(this.word, { overflow: 'hidden', display: 'block' });
+    }
+
+    play() {
+        const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+
+        tl.to(this.chars, { yPercent: 0, rotate: 0, duration: 1.3, stagger: 0.045 })
+          .to(q('.hero-eyebrow'), { autoAlpha: 1, y: 0, duration: 0.8 }, '-=1.0')
+          .to([q('#heroSmall'), q('#heroStandard')], { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.12 }, '-=0.9')
+          .to([q('#heroDesc'), q('#heroCta')], { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, '-=0.6')
+          .to([q('.hero-meta-inner'), q('#heroBadge')], { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, '-=0.5');
+
+        this.scramble();
+    }
+
+    scramble() {
+        const el = q('.scramble');
+        if (!el || Env.RM) return;
+
+        const target = el.dataset.scramble || el.textContent;
+        const glyphs = '◆◇#/\\_—·ELANTECH';
+        const totalFrames = 34;
+        let frame = 0;
+
+        const interval = setInterval(() => {
+            frame += 1;
+            const reveal = Math.floor((frame / totalFrames) * target.length);
+            el.textContent = target
+                .split('')
+                .map((c, i) => (i < reveal ? c : c === ' ' ? ' ' : glyphs[Math.floor(Math.random() * glyphs.length)]))
+                .join('');
+            if (frame >= totalFrames) {
+                el.textContent = target;
+                clearInterval(interval);
+            }
+        }, 32);
+    }
+
+    bindOrbs() {
+        if (Env.RM || Env.TOUCH) return;
+        const orbs = qa('[data-orb]');
+        window.addEventListener('mousemove', (e) => {
+            const nx = e.clientX / innerWidth - 0.5;
+            const ny = e.clientY / innerHeight - 0.5;
+            orbs.forEach((orb) => {
+                const force = parseFloat(orb.dataset.orb) * 1000;
+                gsap.to(orb, { x: nx * force, y: ny * force, duration: 1.6, ease: 'power2.out' });
+            });
+        });
+    }
+
+    bindParallax() {
+        if (Env.RM) return;
+        gsap.to('.hero-content', {
+            yPercent: -12,
+            autoAlpha: 0.25,
+            ease: 'none',
+            scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
         });
     }
 }
 
-/* ── stitch divider draw ───────────────────────── */
-$$(".stitch-path").forEach(p => {
-    if (RM) return;
-    const len = p.getTotalLength ? p.getTotalLength() : 400;
-    gsap.fromTo(p, { strokeDashoffset: len, strokeDasharray: `7 7` , opacity:.4},
-        { strokeDashoffset: 0, opacity:1, duration: 1.4, ease: "power2.out",
-          scrollTrigger: { trigger: p.closest(".stitch"), start: "top 88%" } });
-});
 
-/* ── services deck (sticky stack) ──────────────── */
-const deckCards = $$(".deck-card");
-const headH = 96;
-deckCards.forEach((card, i) => {
-    card.style.top = (headH + i * 16) + "px";
-    card.style.zIndex = i + 1;
-});
-if (!RM) {
-    ScrollTrigger.matchMedia({
-        "(min-width: 861px)": function(){
-            deckCards.forEach((card, i) => {
-                if (i === deckCards.length - 1) return;
-                gsap.to(card, {
-                    scale: .93, filter: "brightness(.75)", transformOrigin: "50% 0%", ease: "none",
-                    scrollTrigger: { trigger: deckCards[i + 1], start: "top bottom", end: "top " + (headH + i * 16 + 40) + "px", scrub: true }
+/* ═══════════════════════════════════════════════════════════════════════
+   PRELOADER
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Preloader {
+    constructor(onDone) {
+        this.el = q('#loader');
+        this.onDone = onDone;
+
+        if (!this.el || Env.RM) {
+            if (this.el) this.el.style.display = 'none';
+            if (!Env.RM) onDone();
+            return;
+        }
+
+        this.splitWord();
+        this.play();
+    }
+
+    splitWord() {
+        const word = q('#loaderWord');
+        if (!word) return;
+        const text = word.textContent.trim();
+        word.innerHTML = text
+            .split('')
+            .map((c) => `<span>${c === ' ' ? '&nbsp;' : c}</span>`)
+            .join('');
+    }
+
+    play() {
+        const counter = { v: 0 };
+        const countEl = q('#loaderCount');
+        const spans = qa('#loaderWord span');
+
+        const tl = gsap.timeline({
+            onComplete: () => {
+                this.el.style.display = 'none';
+                this.onDone();
+            },
+        });
+
+        tl.fromTo(spans,
+              { yPercent: 110, display: 'inline-block' },
+              { yPercent: 0, duration: 0.9, ease: 'expo.out', stagger: 0.03 })
+          .to(counter, {
+              v: 100,
+              duration: 1.4,
+              ease: 'power2.inOut',
+              onUpdate: () => {
+                  if (countEl) countEl.textContent = String(Math.round(counter.v)).padStart(2, '0');
+              },
+          }, '<')
+          .to(q('#loaderLine'), { scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, '<')
+          .to(q('.loader-inner'), { autoAlpha: 0, y: -30, duration: 0.5, ease: 'power2.in' }, '+=0.15')
+          .to(q('.loader-panel--top'), { yPercent: -101, duration: 0.9, ease: 'expo.inOut' }, '-=0.1')
+          .to(q('.loader-panel--bot'), { yPercent: 101, duration: 0.9, ease: 'expo.inOut' }, '<');
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CURSOR
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Cursor {
+    constructor() {
+        if (Env.TOUCH || Env.RM) return;
+
+        this.dot = q('#cursorDot');
+        this.ring = q('#cursorRing');
+        this.label = q('#cursorLabel');
+        if (!this.dot || !this.ring) return;
+
+        this.dx = gsap.quickTo(this.dot, 'x', { duration: 0.12, ease: 'power3' });
+        this.dy = gsap.quickTo(this.dot, 'y', { duration: 0.12, ease: 'power3' });
+        this.rx = gsap.quickTo(this.ring, 'x', { duration: 0.45, ease: 'power3' });
+        this.ry = gsap.quickTo(this.ring, 'y', { duration: 0.45, ease: 'power3' });
+
+        gsap.set([this.dot, this.ring], { xPercent: -50, yPercent: -50, x: -100, y: -100 });
+        this.bind();
+    }
+
+    bind() {
+        window.addEventListener('mousemove', (e) => {
+            this.dx(e.clientX);
+            this.dy(e.clientY);
+            this.rx(e.clientX);
+            this.ry(e.clientY);
+        });
+
+        const hoverables = 'a, button, .faq-q, [data-cursor]';
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target.closest(hoverables);
+            if (!target) {
+                this.ring.classList.remove('is-hover');
+                return;
+            }
+            this.label.textContent = target.closest('.folio-item') ? 'View'
+                                   : target.closest('.deck-card') ? 'More'
+                                   : 'Go';
+            this.ring.classList.add('is-hover');
+        });
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAGNETIC BUTTONS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Magnetic {
+    constructor() {
+        if (Env.TOUCH || Env.RM) return;
+
+        qa('.magnetic').forEach((el) => {
+            const xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'elastic.out(1,.4)' });
+            const yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'elastic.out(1,.4)' });
+
+            el.addEventListener('mousemove', (e) => {
+                const r = el.getBoundingClientRect();
+                xTo((e.clientX - (r.left + r.width / 2)) * 0.35);
+                yTo((e.clientY - (r.top + r.height / 2)) * 0.35);
+            });
+
+            el.addEventListener('mouseleave', () => {
+                xTo(0);
+                yTo(0);
+            });
+        });
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MARQUEES  (velocity-reactive infinite loops)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Marquees {
+    constructor() {
+        if (Env.RM) return;
+        this.loop(q('#marqueeTrack'), 1);
+        qa('.shop-mq-track').forEach((track) => this.loop(track, parseFloat(track.dataset.mqDir || '1')));
+    }
+
+    loop(track, dir) {
+        if (!track) return;
+
+        const tween = dir > 0
+            ? gsap.fromTo(track, { xPercent: 0 },   { xPercent: -50, ease: 'none', duration: 24, repeat: -1 })
+            : gsap.fromTo(track, { xPercent: -50 }, { xPercent: 0,   ease: 'none', duration: 24, repeat: -1 });
+
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                const velocity = Math.abs(self.getVelocity() / 260);
+                gsap.to(tween, { timeScale: gsap.utils.clamp(1, 4, velocity), duration: 0.5, overwrite: true });
+            },
+        });
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MANIFESTO  (word-by-word scrub)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Manifesto {
+    constructor() {
+        this.el = q('#manifestoText');
+        if (!this.el) return;
+
+        this.splitWords();
+        this.animate();
+    }
+
+    splitWords() {
+        const accents = (this.el.dataset.accents || '').split(',').map((s) => s.trim());
+        const words = this.el.textContent.trim().split(/\s+/);
+
+        this.el.innerHTML = words
+            .map((word) => {
+                const clean = word.replace(/[^a-zA-Z]/g, '').toLowerCase();
+                const isAccent = accents.some((a) => a && clean.includes(a));
+                return `<span class="w${isAccent ? ' w--accent' : ''}">${word}</span>`;
+            })
+            .join(' ');
+    }
+
+    animate() {
+        if (Env.RM) return;
+        gsap.to(qa('.w', this.el), {
+            opacity: 1,
+            ease: 'none',
+            stagger: 0.06,
+            scrollTrigger: { trigger: this.el, start: 'top 80%', end: 'bottom 55%', scrub: true },
+        });
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STITCH DIVIDERS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Stitches {
+    constructor() {
+        if (Env.RM) return;
+
+        qa('.stitch-path').forEach((path) => {
+            const length = path.getTotalLength ? path.getTotalLength() : 400;
+            gsap.fromTo(path,
+                { strokeDashoffset: length, strokeDasharray: '7 7', opacity: 0.4 },
+                {
+                    strokeDashoffset: 0,
+                    opacity: 1,
+                    duration: 1.4,
+                    ease: 'power2.out',
+                    scrollTrigger: { trigger: path.closest('.stitch'), start: 'top 88%' },
                 });
-            });
-        }
-    });
+        });
+    }
 }
 
-/* ── counters ──────────────────────────────────── */
-$$("[data-count]").forEach(el => {
-    const end = parseFloat(el.dataset.count);
-    const dec = parseInt(el.dataset.decimal || "0", 10);
-    if (RM) { el.textContent = end.toFixed(dec); return; }
-    const obj = { v: 0 };
-    ScrollTrigger.create({
-        trigger: el, start: "top 88%", once: true,
-        onEnter(){
-            gsap.to(obj, { v: end, duration: 1.8, ease: "power3.out",
-                onUpdate(){ el.textContent = obj.v.toFixed(dec); },
-                onComplete(){ el.textContent = end.toFixed(dec); } });
-        }
-    });
-});
 
-/* ── process horizontal rail (desktop pin) ─────── */
-if (!RM) {
-    ScrollTrigger.matchMedia({
-        "(min-width: 861px)": function(){
-            const pin = $("#processPin"), track = $("#processTrack");
-            if (!pin || !track) return;
-            const dist = () => track.scrollWidth - document.documentElement.clientWidth;
-            const st = gsap.to(track, {
-                x: () => -dist(), ease: "none",
-                scrollTrigger: {
-                    trigger: pin, start: "top " + (headH + 20) + "px",
-                    end: () => "+=" + dist(),
-                    pin: true, scrub: 1, invalidateOnRefresh: true,
-                    onUpdate(self){
-                        gsap.set("#processProgress i", { scaleX: self.progress });
-                        $$(".pstep-bar i").forEach((b, i, arr) => {
-                            const per = 1 / arr.length;
-                            gsap.set(b, { scaleX: gsap.utils.clamp(0, 1, (self.progress - i * per) / per) });
-                        });
-                    }
-                }
-            });
-            return () => st.scrollTrigger && st.scrollTrigger.kill();
-        }
-    });
+/* ═══════════════════════════════════════════════════════════════════════
+   SERVICES DECK  (sticky stack — cards stay readable while stacking)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Deck {
+    constructor() {
+        this.cards = qa('.deck-card');
+        if (!this.cards.length) return;
+
+        this.layout();
+        this.animate();
+    }
+
+    layout() {
+        this.cards.forEach((card, i) => {
+            card.style.top = `${Env.headH + i * 14}px`;
+            card.style.zIndex = i + 1;
+        });
+    }
+
+    animate() {
+        if (Env.RM) return;
+
+        this.cards.forEach((card, i) => {
+            const next = this.cards[i + 1];
+            if (!next) return;
+
+            /* gentle recede: the covered card only starts to settle once the
+               next card is genuinely arriving, and it never goes dark —
+               a light scale + soft brightness keeps every word readable.
+               NOTE: fromTo with an explicit brightness(1) start is required;
+               tweening from `filter: none` makes GSAP start at brightness(0). */
+            gsap.fromTo(card,
+                { scale: 1, filter: 'brightness(1)' },
+                {
+                    scale: 0.95,
+                    filter: 'brightness(.9)',
+                    transformOrigin: '50% 0%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: next,
+                        start: 'top 92%',
+                        end: `top ${Env.headH + i * 14 + 30}px`,
+                        scrub: true,
+                    },
+                });
+        });
+    }
 }
 
-/* ── portfolio floating preview ────────────────── */
-if (!TOUCH && !RM) {
-    const prev = $("#folioPreview");
-    if (prev) {
-        const px = gsap.quickTo(prev, "x", { duration: .6, ease: "power3" });
-        const py = gsap.quickTo(prev, "y", { duration: .6, ease: "power3" });
-        gsap.set(prev, { xPercent: -50, yPercent: -50 });
-        let active = false;
-        window.addEventListener("mousemove", e => { if (active) { px(e.clientX); py(e.clientY); } });
-        $$(".folio-item").forEach(item => {
-            item.addEventListener("mouseenter", e => {
-                active = true;
-                px(e.clientX); py(e.clientY);
-                $$(".fp-pane", prev).forEach(p => p.classList.toggle("active", p.dataset.pane === item.dataset.preview));
-                gsap.to(prev, { autoAlpha: 1, scale: 1, duration: .45, ease: "expo.out", overwrite: true });
-            });
-            item.addEventListener("mouseleave", () => {
-                active = false;
-                gsap.to(prev, { autoAlpha: 0, scale: .9, duration: .35, ease: "power2.in", overwrite: true });
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COUNTERS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Counters {
+    constructor() {
+        qa('[data-count]').forEach((el) => {
+            const end = parseFloat(el.dataset.count);
+            const decimals = parseInt(el.dataset.decimal || '0', 10);
+
+            if (Env.RM) {
+                el.textContent = end.toFixed(decimals);
+                return;
+            }
+
+            const obj = { v: 0 };
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 88%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(obj, {
+                        v: end,
+                        duration: 1.8,
+                        ease: 'power3.out',
+                        onUpdate: () => { el.textContent = obj.v.toFixed(decimals); },
+                        onComplete: () => { el.textContent = end.toFixed(decimals); },
+                    });
+                },
             });
         });
     }
 }
 
-/* ── testimonials autoplay ─────────────────────── */
-(function(){
-    const slides = $$(".testi-slide");
-    const nav = $("#testiNav");
-    if (!slides.length || !nav) return;
-    let idx = 0, timer = null;
-    const DUR = 6000;
-    slides.forEach((_, i) => {
-        const d = document.createElement("button");
-        d.className = "testi-dot"; d.setAttribute("aria-label", "Testimonial " + (i + 1));
-        d.innerHTML = "<i></i>";
-        d.addEventListener("click", () => go(i, true));
-        nav.appendChild(d);
-    });
-    const dots = $$(".testi-dot i", nav);
-    function go(i, manual){
-        slides[idx].classList.remove("active");
-        idx = i % slides.length;
-        slides[idx].classList.add("active");
-        dots.forEach((d, j) => {
-            gsap.killTweensOf(d);
-            gsap.set(d, { scaleX: j < idx ? 1 : 0 });
-        });
-        if (!RM) gsap.fromTo(dots[idx], { scaleX: 0 }, { scaleX: 1, duration: DUR / 1000, ease: "none" });
-        else gsap.set(dots[idx], { scaleX: 1 });
-        clearTimeout(timer);
-        timer = setTimeout(() => go(idx + 1), DUR);
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROCESS RAIL  (pinned horizontal scroll — desktop AND mobile)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class ProcessRail {
+    constructor() {
+        this.pin = q('#processPin');
+        this.track = q('#processTrack');
+        if (!this.pin || !this.track || Env.RM) return;
+
+        this.build();
     }
-    go(0);
-})();
 
-/* ── FAQ accordion ─────────────────────────────── */
-$$(".faq-item").forEach(item => {
-    const q = $(".faq-q", item), a = $(".faq-a", item);
-    q.addEventListener("click", () => {
-        const open = item.classList.contains("open");
-        $$(".faq-item.open").forEach(o => {
-            if (o === item) return;
-            o.classList.remove("open");
-            $(".faq-q", o).setAttribute("aria-expanded", "false");
-            gsap.to($(".faq-a", o), { height: 0, duration: .5, ease: "expo.out" });
+    distance() {
+        return this.track.scrollWidth - document.documentElement.clientWidth + parseFloat(getComputedStyle(this.track).paddingLeft);
+    }
+
+    build() {
+        gsap.to(this.track, {
+            x: () => -this.distance(),
+            ease: 'none',
+            scrollTrigger: {
+                trigger: this.pin,
+                start: 'top top',
+                end: () => `+=${this.distance()}`,
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => this.progress(self.progress),
+            },
         });
-        item.classList.toggle("open", !open);
-        q.setAttribute("aria-expanded", String(!open));
-        gsap.to(a, { height: open ? 0 : "auto", duration: .55, ease: "expo.out" });
-    });
-});
+    }
 
-/* ── reveal batch ──────────────────────────────── */
-if (!RM) {
-    ScrollTrigger.batch(".rv", {
-        start: "top 88%",
-        onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: 1, ease: "expo.out", stagger: .08, overwrite: true })
-    });
-    ScrollTrigger.addEventListener("refreshInit", () => {}); // keep layout fresh
-} else {
-    $$(".rv").forEach(el => { el.style.opacity = 1; el.style.transform = "none"; });
+    progress(p) {
+        gsap.set('#processProgress i', { scaleX: p });
+
+        const bars = qa('.pstep-bar i');
+        bars.forEach((bar, i) => {
+            const per = 1 / bars.length;
+            gsap.set(bar, { scaleX: gsap.utils.clamp(0, 1, (p - i * per) / per) });
+        });
+    }
 }
 
-/* ── footer wordmark parallax ──────────────────── */
-if (!RM) {
-    gsap.fromTo("#footerWord", { yPercent: 46 }, {
-        yPercent: 6, ease: "none",
-        scrollTrigger: { trigger: ".footer", start: "top bottom", end: "bottom bottom", scrub: true }
-    });
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PORTFOLIO PREVIEW  (floats with the cursor)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class FolioPreview {
+    constructor() {
+        if (Env.TOUCH || Env.RM) return;
+
+        this.el = q('#folioPreview');
+        if (!this.el) return;
+
+        this.active = false;
+        this.px = gsap.quickTo(this.el, 'x', { duration: 0.6, ease: 'power3' });
+        this.py = gsap.quickTo(this.el, 'y', { duration: 0.6, ease: 'power3' });
+
+        gsap.set(this.el, { xPercent: -50, yPercent: -50 });
+        this.bind();
+    }
+
+    bind() {
+        window.addEventListener('mousemove', (e) => {
+            if (this.active) {
+                this.px(e.clientX);
+                this.py(e.clientY);
+            }
+        });
+
+        qa('.folio-item').forEach((item) => {
+            item.addEventListener('mouseenter', (e) => {
+                this.active = true;
+                this.px(e.clientX);
+                this.py(e.clientY);
+                qa('.fp-pane', this.el).forEach((pane) => {
+                    pane.classList.toggle('active', pane.dataset.pane === item.dataset.preview);
+                });
+                gsap.to(this.el, { autoAlpha: 1, scale: 1, duration: 0.45, ease: 'expo.out', overwrite: true });
+            });
+
+            item.addEventListener('mouseleave', () => {
+                this.active = false;
+                gsap.to(this.el, { autoAlpha: 0, scale: 0.9, duration: 0.35, ease: 'power2.in', overwrite: true });
+            });
+        });
+    }
 }
 
-/* ── header hide / progress / to-top ───────────── */
-const header = $("#header"), progress = $("#scrollProgress"), toTop = $("#toTop");
-let lastY = 0;
-function onScroll(){
-    const y = lenis ? lenis.scroll : (window.scrollY || 0);
-    header.classList.toggle("is-scrolled", y > 40);
-    header.classList.toggle("is-hidden", y > 500 && y > lastY && !$("#mmenu").classList.contains("is-open"));
-    toTop.classList.toggle("show", y > 900);
-    const max = document.documentElement.scrollHeight - innerHeight;
-    if (progress) progress.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
-    lastY = y;
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TESTIMONIALS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Testimonials {
+    constructor() {
+        this.slides = qa('.testi-slide');
+        this.nav = q('#testiNav');
+        if (!this.slides.length || !this.nav) return;
+
+        this.idx = 0;
+        this.timer = null;
+        this.DURATION = 6000;
+
+        this.buildDots();
+        this.go(0);
+    }
+
+    buildDots() {
+        this.slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'testi-dot';
+            dot.setAttribute('aria-label', `Testimonial ${i + 1}`);
+            dot.innerHTML = '<i></i>';
+            dot.addEventListener('click', () => this.go(i));
+            this.nav.appendChild(dot);
+        });
+        this.dots = qa('.testi-dot i', this.nav);
+    }
+
+    go(i) {
+        this.slides[this.idx].classList.remove('active');
+        this.idx = i % this.slides.length;
+        this.slides[this.idx].classList.add('active');
+
+        this.dots.forEach((dot, j) => {
+            gsap.killTweensOf(dot);
+            gsap.set(dot, { scaleX: j < this.idx ? 1 : 0 });
+        });
+
+        if (!Env.RM) {
+            gsap.fromTo(this.dots[this.idx], { scaleX: 0 }, { scaleX: 1, duration: this.DURATION / 1000, ease: 'none' });
+        } else {
+            gsap.set(this.dots[this.idx], { scaleX: 1 });
+        }
+
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => this.go(this.idx + 1), this.DURATION);
+    }
 }
-if (lenis) lenis.on("scroll", onScroll);
-window.addEventListener("scroll", onScroll, { passive: true });
-onScroll();
 
-/* ── mobile menu ───────────────────────────────── */
-const burger = $("#burger"), mmenu = $("#mmenu");
-if (burger && mmenu) {
-    burger.addEventListener("click", () => {
-        const open = mmenu.classList.toggle("is-open");
-        burger.setAttribute("aria-expanded", String(open));
-        mmenu.setAttribute("aria-hidden", String(!open));
-        document.body.style.overflow = open ? "hidden" : "";
-        if (lenis) open ? lenis.stop() : lenis.start();
-    });
-    $$("a", mmenu).forEach(a => a.addEventListener("click", () => burger.click()));
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FAQ ACCORDION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Faq {
+    constructor() {
+        qa('.faq-item').forEach((item) => {
+            const question = q('.faq-q', item);
+            const answer = q('.faq-a', item);
+
+            question.addEventListener('click', () => this.toggle(item, question, answer));
+        });
+    }
+
+    toggle(item, question, answer) {
+        const isOpen = item.classList.contains('open');
+
+        qa('.faq-item.open').forEach((other) => {
+            if (other === item) return;
+            other.classList.remove('open');
+            q('.faq-q', other).setAttribute('aria-expanded', 'false');
+            gsap.to(q('.faq-a', other), { height: 0, duration: 0.5, ease: 'expo.out' });
+        });
+
+        item.classList.toggle('open', !isOpen);
+        question.setAttribute('aria-expanded', String(!isOpen));
+        gsap.to(answer, { height: isOpen ? 0 : 'auto', duration: 0.55, ease: 'expo.out' });
+    }
 }
 
-/* ── keep triggers honest after fonts/embeds load ── */
-window.addEventListener("load", () => ScrollTrigger.refresh());
-setTimeout(() => ScrollTrigger.refresh(), 2500);
 
-})();
+/* ═══════════════════════════════════════════════════════════════════════
+   REVEALS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class Reveals {
+    constructor() {
+        if (Env.RM) {
+            qa('.rv').forEach((el) => {
+                el.style.opacity = 1;
+                el.style.transform = 'none';
+            });
+            return;
+        }
+
+        ScrollTrigger.batch('.rv', {
+            start: 'top 88%',
+            onEnter: (batch) => gsap.to(batch, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'expo.out',
+                stagger: 0.08,
+                overwrite: true,
+            }),
+        });
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HEADER / PROGRESS / TO-TOP
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class HeaderCtrl {
+    constructor(smooth) {
+        this.smooth = smooth;
+        this.header = q('#header');
+        this.progress = q('#scrollProgress');
+        this.toTop = q('#toTop');
+        this.mmenu = q('#mmenu');
+        this.lastY = 0;
+
+        this.smooth.onScroll(() => this.update());
+        this.update();
+    }
+
+    update() {
+        const y = this.smooth.y;
+        const menuOpen = this.mmenu?.classList.contains('is-open');
+
+        this.header.classList.toggle('is-scrolled', y > 40);
+        this.header.classList.toggle('is-hidden', y > 500 && y > this.lastY && !menuOpen);
+        this.toTop.classList.toggle('show', y > 900);
+
+        const max = document.documentElement.scrollHeight - innerHeight;
+        if (this.progress) {
+            this.progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+        }
+
+        this.lastY = y;
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE MENU
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class MobileMenu {
+    constructor(smooth) {
+        this.smooth = smooth;
+        this.burger = q('#burger');
+        this.menu = q('#mmenu');
+        if (!this.burger || !this.menu) return;
+
+        this.burger.addEventListener('click', () => this.toggle());
+        qa('a', this.menu).forEach((a) => a.addEventListener('click', () => this.burger.click()));
+    }
+
+    toggle() {
+        const open = this.menu.classList.toggle('is-open');
+        this.burger.setAttribute('aria-expanded', String(open));
+        this.menu.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+        open ? this.smooth.stop() : this.smooth.start();
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FOOTER WORDMARK
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class FooterWord {
+    constructor() {
+        if (Env.RM) return;
+
+        gsap.fromTo('#footerWord',
+            { yPercent: 46 },
+            {
+                yPercent: 6,
+                ease: 'none',
+                scrollTrigger: { trigger: '.footer', start: 'top bottom', end: 'bottom bottom', scrub: true },
+            });
+    }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   APP BOOT
+   ═══════════════════════════════════════════════════════════════════════ */
+
+class App {
+    constructor() {
+        const doc = document.documentElement;
+
+        if (Env.RM || !Env.hasGSAP) doc.classList.add('no-motion');
+
+        /* graceful static page if the CDN failed */
+        if (!Env.hasGSAP) {
+            const loader = q('#loader');
+            if (loader) loader.style.display = 'none';
+            return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        this.smooth = new SmoothScroll();
+        this.hero = new HeroIntro();
+
+        new Preloader(() => this.hero.play());
+        new Cursor();
+        new Magnetic();
+        new Marquees();
+        new Manifesto();
+        new Stitches();
+        new Deck();
+        new Counters();
+        new ProcessRail();
+        new FolioPreview();
+        new Testimonials();
+        new Faq();
+        new Reveals();
+        new HeaderCtrl(this.smooth);
+        new MobileMenu(this.smooth);
+        new FooterWord();
+
+        /* re-measure once webfonts and embeds settle */
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+        setTimeout(() => ScrollTrigger.refresh(), 2500);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => new App());
