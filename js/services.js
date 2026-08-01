@@ -1,353 +1,503 @@
-/**
- * ═══════════════════════════════════════════════════════════════
- *  SERVICES HUB PAGE — Full Redesign Interactions
- *  3D card tilt · Chrome mouse-track · Particle field ·
- *  Gradient mesh · Timeline progress · Counter animation ·
- *  Orbit icons · Cursor glow · Card glow follow ·
- *  Magnetic buttons · Smooth scroll · Perf monitor
- * ═══════════════════════════════════════════════════════════════
- */
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELAN'S TECH WORLD — SERVICES PAGE (ES6)
+   ─────────────────────────────────────────────────────────────────────────
+   Loads after ../js/script.js and reuses its globals (Env, q, qa, gsap,
+   ScrollTrigger). Wrapped in an IIFE so nothing here collides with the
+   shared script's top-level declarations.
 
-const sQ = (s, p = document) => p.querySelector(s);
-const sQA = (s, p = document) => [...p.querySelectorAll(s)];
-const sLerp = (a, b, t) => a + (b - a) * t;
-const sClamp = (v, mn, mx) => Math.min(Math.max(v, mn), mx);
-const sMap = (v, a, b, c, d) => c + ((v - a) / (b - a)) * (d - c);
-const sThrottle = (fn, ms) => { let l = 0; return (...a) => { const n = Date.now(); if (n - l >= ms) { l = n; fn(...a); } }; };
+   Modules:
+     SmokeFX          — live canvas smoke in the hero (the showpiece)
+     ChapterNav       — sticky sub-nav scrollspy with sliding indicator
+     SeoRing          — SEO score ring + number fill (web chapter)
+     ChartDraw        — marketing chart line draw-in
+     CardTilt         — 3D business-card tilt (print chapter)
+     PosPrint         — receipt prints out of the terminal on scroll
+     NeonFlicker      — occasional realistic flicker on the neon sign
+     DashLive         — property dashboard bars grow on scroll
+     WatermarkDrift   — giant chapter numbers parallax
+     TimelineDraw     — process rail draws itself as you scroll
+   ═══════════════════════════════════════════════════════════════════════ */
 
-// ─── SCROLL REVEAL ────────────────────────────────────────────
-class SrvScrollReveal {
-  constructor() { this.els = sQA('[data-srv-reveal]'); this.seen = new Set(); }
-  init() {
-    if (!this.els.length) return;
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !this.seen.has(e.target)) {
-          this.seen.add(e.target);
-          const d = parseInt(e.target.dataset.srvDelay || 0);
-          setTimeout(() => e.target.classList.add('srv-visible'), d);
-          obs.unobserve(e.target);
+(() => {
+    'use strict';
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SMOKE FX — soft royal/hermès smoke drifting through the ink hero
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class SmokeFX {
+        constructor() {
+            this.canvas = q('#smokeCanvas');
+            if (!this.canvas) return;
+
+            this.ctx = this.canvas.getContext('2d');
+            this.particles = [];
+            this.running = true;
+            this.pointer = { x: -1, y: -1 };
+
+            /* fewer particles on touch devices, none in reduced motion */
+            this.MAX = Env.TOUCH ? 26 : 46;
+
+            if (Env.RM) {
+                this.resize();
+                this.paintStill();
+                return;
+            }
+
+            this.sprites = this.makeSprites();
+            this.resize();
+            this.seed();
+            this.bind();
+            this.loop();
         }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    this.els.forEach(el => obs.observe(el));
-  }
-}
 
-// ─── PARTICLE FIELD ───────────────────────────────────────────
-class SrvParticleField {
-  constructor() { this.container = sQ('#srvParticles'); this.count = 35; }
-  init() {
-    if (!this.container) return;
-    if (window.innerWidth < 768) this.count = 14;
-    else if (window.innerWidth < 1024) this.count = 22;
-    for (let i = 0; i < this.count; i++) this.spawn();
-  }
-  spawn() {
-    const el = document.createElement('div');
-    el.className = 'srv-particle';
-    const x = Math.random() * 100, y = 40 + Math.random() * 60;
-    const sz = 1.5 + Math.random() * 3.5, dur = 9 + Math.random() * 18;
-    const delay = Math.random() * dur;
-    const dx = -60 + Math.random() * 120, dy = -(80 + Math.random() * 280);
-    const peak = 0.08 + Math.random() * 0.3;
-    const colors = ['rgba(232,101,26,.5)','rgba(244,147,90,.4)','rgba(255,215,0,.25)','rgba(30,58,110,.35)','rgba(248,245,240,.15)'];
-    const c = colors[Math.floor(Math.random() * colors.length)];
-    el.style.cssText = `left:${x}%;top:${y}%;width:${sz}px;height:${sz}px;background:${c};--dur:${dur}s;--delay:-${delay}s;--dx:${dx}px;--dy:${dy}px;--peak:${peak};`;
-    this.container.appendChild(el);
-  }
-}
+        /* pre-rendered soft radial sprites — far cheaper than per-frame blur */
+        makeSprites() {
+            const colors = [
+                [43, 75, 223],    /* royal */
+                [243, 112, 33],   /* hermès */
+                [196, 174, 126],  /* gold */
+            ];
 
-// ─── CHROME TEXT MOUSE-TRACKING ───────────────────────────────
-class SrvChromeTrack {
-  constructor() { this.el = sQ('#chromeTitle'); this.hero = sQ('.srv-hero'); this.mx = .5; this.my = .5; this.cx = .5; this.cy = .5; }
-  init() {
-    if (!this.el || !this.hero) return;
-    this.hero.addEventListener('mousemove', e => {
-      const r = this.hero.getBoundingClientRect();
-      this.mx = (e.clientX - r.left) / r.width;
-      this.my = (e.clientY - r.top) / r.height;
-    });
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', e => {
-        if (e.gamma !== null) { this.mx = (e.gamma + 90) / 180; this.my = sClamp((e.beta + 30) / 120, 0, 1); }
-      });
+            return colors.map(([r, g, b]) => {
+                const size = 260;
+                const c = document.createElement('canvas');
+                c.width = size;
+                c.height = size;
+                const cx = c.getContext('2d');
+                const grad = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+                grad.addColorStop(0, `rgba(${r},${g},${b},.55)`);
+                grad.addColorStop(.45, `rgba(${r},${g},${b},.18)`);
+                grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+                cx.fillStyle = grad;
+                cx.fillRect(0, 0, size, size);
+                return c;
+            });
+        }
+
+        resize() {
+            const rect = this.canvas.parentElement.getBoundingClientRect();
+            /* half-resolution buffer keeps it silky and soft */
+            this.w = this.canvas.width = Math.max(1, rect.width * 0.5);
+            this.h = this.canvas.height = Math.max(1, rect.height * 0.5);
+        }
+
+        spawn(atPointer = false) {
+            const sprite = this.sprites[Math.floor(Math.random() * this.sprites.length)];
+            return {
+                sprite,
+                x: atPointer ? this.pointer.x : Math.random() * this.w,
+                y: atPointer ? this.pointer.y : this.h * (0.55 + Math.random() * 0.55),
+                r: 30 + Math.random() * 60,
+                growth: 0.14 + Math.random() * 0.2,
+                vx: (Math.random() - 0.5) * 0.22,
+                vy: -(0.18 + Math.random() * 0.4),
+                wobble: Math.random() * Math.PI * 2,
+                wobbleSpeed: 0.004 + Math.random() * 0.008,
+                life: 0,
+                maxLife: 420 + Math.random() * 280,
+            };
+        }
+
+        seed() {
+            for (let i = 0; i < this.MAX; i += 1) {
+                const p = this.spawn();
+                p.life = Math.random() * p.maxLife; /* start mid-life so it never looks empty */
+                this.particles.push(p);
+            }
+        }
+
+        bind() {
+            window.addEventListener('resize', () => this.resize());
+
+            /* the cursor stirs the smoke */
+            if (!Env.TOUCH) {
+                this.canvas.parentElement.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    this.pointer.x = (e.clientX - rect.left) * (this.w / rect.width);
+                    this.pointer.y = (e.clientY - rect.top) * (this.h / rect.height);
+                });
+            }
+
+            /* stop burning frames once the hero has scrolled away */
+            if (typeof IntersectionObserver !== 'undefined') {
+                new IntersectionObserver(([entry]) => {
+                    this.running = entry.isIntersecting;
+                    if (this.running) this.loop();
+                }).observe(this.canvas.parentElement);
+            }
+        }
+
+        loop() {
+            if (!this.running) return;
+
+            const { ctx } = this;
+            ctx.clearRect(0, 0, this.w, this.h);
+            ctx.globalCompositeOperation = 'lighter';
+
+            this.particles.forEach((p, i) => {
+                p.life += 1;
+                p.wobble += p.wobbleSpeed;
+                p.x += p.vx + Math.sin(p.wobble) * 0.35;
+                p.y += p.vy;
+                p.r += p.growth;
+
+                /* gentle pull toward the cursor */
+                if (this.pointer.x > 0) {
+                    const dx = this.pointer.x - p.x;
+                    const dy = this.pointer.y - p.y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < 160 && dist > 1) {
+                        p.x += (dx / dist) * 0.5;
+                        p.y += (dy / dist) * 0.5;
+                    }
+                }
+
+                /* fade in, hold, fade out */
+                const t = p.life / p.maxLife;
+                const alpha = t < 0.15 ? t / 0.15
+                            : t > 0.7 ? Math.max(0, (1 - t) / 0.3)
+                            : 1;
+
+                ctx.globalAlpha = alpha * 0.6;
+                ctx.drawImage(p.sprite, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+
+                if (p.life >= p.maxLife || p.y < -p.r * 2) {
+                    this.particles[i] = this.spawn();
+                }
+            });
+
+            ctx.globalAlpha = 1;
+            requestAnimationFrame(() => this.loop());
+        }
+
+        /* reduced motion: one calm, static wash of color */
+        paintStill() {
+            const { ctx } = this;
+            ctx.globalCompositeOperation = 'lighter';
+            const wash = (x, y, r, rgb) => {
+                const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+                grad.addColorStop(0, `rgba(${rgb},.35)`);
+                grad.addColorStop(1, `rgba(${rgb},0)`);
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, this.w, this.h);
+            };
+            wash(this.w * 0.75, this.h * 0.35, this.w * 0.5, '43,75,223');
+            wash(this.w * 0.2, this.h * 0.8, this.w * 0.45, '243,112,33');
+        }
     }
-    this.animate();
-  }
-  animate() {
-    this.cx += (this.mx - this.cx) * 0.06;
-    this.cy += (this.my - this.cy) * 0.06;
-    const angle = 90 + this.cx * 180;
-    const bgX = this.cx * 100, bgY = this.cy * 100;
-    this.el.style.background = `linear-gradient(${angle}deg,#c0c0c0 0%,#fafafa 15%,#909090 28%,#f8f8f8 42%,#a8a8a8 50%,#f0f0f0 58%,#b8b8b8 72%,#fafafa 85%,#a0a0a0 100%)`;
-    this.el.style.backgroundSize = '200% 200%';
-    this.el.style.backgroundPosition = `${bgX}% ${bgY}%`;
-    this.el.style.webkitBackgroundClip = 'text';
-    this.el.style.backgroundClip = 'text';
-    this.el.style.webkitTextFillColor = 'transparent';
-    this.el.style.color = 'transparent';
-    requestAnimationFrame(() => this.animate());
-  }
-}
 
-// ─── GRADIENT MESH MOUSE RESPONSE ─────────────────────────────
-class SrvMeshResponse {
-  constructor() { this.mesh = sQ('#srvMesh'); this.hero = sQ('#srv-hero'); this.mx = .5; this.my = .5; this.cx = .5; this.cy = .5; }
-  init() {
-    if (!this.mesh || !this.hero || window.innerWidth < 768) return;
-    this.hero.addEventListener('mousemove', e => {
-      const r = this.hero.getBoundingClientRect();
-      this.mx = (e.clientX - r.left) / r.width;
-      this.my = (e.clientY - r.top) / r.height;
-    });
-    this.animate();
-  }
-  animate() {
-    this.cx = sLerp(this.cx, this.mx, 0.02);
-    this.cy = sLerp(this.cy, this.my, 0.02);
-    const x = 20 + this.cx * 30, y = 30 + this.cy * 30;
-    this.mesh.style.background = `conic-gradient(from ${this.cx * 360}deg at ${x}% ${y}%,rgba(232,101,26,.12),rgba(30,58,110,.18),rgba(244,147,90,.08),rgba(27,42,74,.12),rgba(232,101,26,.12))`;
-    requestAnimationFrame(() => this.animate());
-  }
-}
 
-// ─── COUNTER ANIMATION ────────────────────────────────────────
-class SrvCounters {
-  constructor() { this.els = sQA('[data-count]'); this.done = new Set(); }
-  init() {
-    if (!this.els.length) return;
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !this.done.has(e.target)) {
-          this.done.add(e.target);
-          this.count(e.target);
-          obs.unobserve(e.target);
+    /* ═══════════════════════════════════════════════════════════════════
+       CHAPTER NAV — scrollspy + sliding indicator
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class ChapterNav {
+        constructor() {
+            this.nav = q('#chapnav');
+            this.track = q('#chapnavTrack');
+            this.indicator = q('#chapnavInd');
+            if (!this.nav || !this.track || !this.indicator) return;
+
+            this.links = qa('.chapnav-link', this.track);
+            this.bindSpy();
+            window.addEventListener('resize', () => this.moveTo(q('.chapnav-link.active', this.track)));
         }
-      });
-    }, { threshold: 0.5 });
-    this.els.forEach(el => obs.observe(el));
-  }
-  count(el) {
-    const target = parseInt(el.dataset.count), suffix = el.dataset.suffix || '';
-    const dur = 2200, start = performance.now();
-    const step = now => {
-      const p = Math.min((now - start) / dur, 1);
-      const eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(step);
+
+        bindSpy() {
+            this.links.forEach((link) => {
+                const section = q(`#${link.dataset.chap}`);
+                if (!section) return;
+
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top 45%',
+                    end: 'bottom 45%',
+                    onToggle: (self) => {
+                        if (self.isActive) this.activate(link);
+                    },
+                });
+            });
+        }
+
+        activate(link) {
+            this.links.forEach((l) => l.classList.toggle('active', l === link));
+            this.moveTo(link);
+
+            /* keep the active pill in view on narrow screens */
+            link.scrollIntoView({ block: 'nearest', inline: 'center', behavior: Env.RM ? 'auto' : 'smooth' });
+        }
+
+        moveTo(link) {
+            if (!link) {
+                this.indicator.style.width = '0px';
+                return;
+            }
+            const trackRect = this.track.getBoundingClientRect();
+            const rect = link.getBoundingClientRect();
+            this.indicator.style.width = `${rect.width}px`;
+            this.indicator.style.transform = `translateX(${rect.left - trackRect.left + this.track.scrollLeft}px)`;
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       SEO RING — the score dial in the web chapter
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class SeoRing {
+        constructor() {
+            this.fill = q('#wdRingFill');
+            this.num = q('#wdRingNum');
+            if (!this.fill || !this.num) return;
+
+            const SCORE = 98;
+            const CIRCUMFERENCE = 125.6;
+
+            if (Env.RM) {
+                this.fill.style.strokeDashoffset = CIRCUMFERENCE * (1 - SCORE / 100);
+                this.num.textContent = SCORE;
+                return;
+            }
+
+            const obj = { v: 0 };
+            ScrollTrigger.create({
+                trigger: this.fill,
+                start: 'top 88%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(obj, {
+                        v: SCORE,
+                        duration: 1.8,
+                        ease: 'power3.out',
+                        onUpdate: () => {
+                            this.num.textContent = Math.round(obj.v);
+                            this.fill.style.strokeDashoffset = CIRCUMFERENCE * (1 - obj.v / 100);
+                        },
+                    });
+                },
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       CHART DRAW — the marketing growth line draws itself in
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class ChartDraw {
+        constructor() {
+            this.line = q('#mkLine');
+            this.area = q('#mkArea');
+            if (!this.line) return;
+
+            const length = this.line.getTotalLength();
+
+            if (Env.RM) return;
+
+            gsap.set(this.line, { strokeDasharray: length, strokeDashoffset: length });
+            gsap.set(this.area, { opacity: 0 });
+
+            ScrollTrigger.create({
+                trigger: this.line,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    gsap.to(this.line, { strokeDashoffset: 0, duration: 2, ease: 'power2.inOut' });
+                    gsap.to(this.area, { opacity: 1, duration: 1.2, delay: 0.8 });
+                },
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       CARD TILT — the foil business card follows the cursor in 3D
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class CardTilt {
+        constructor() {
+            this.stage = q('#bcStage');
+            this.card = q('#bcCard');
+            if (!this.stage || !this.card || Env.RM) return;
+
+            if (Env.TOUCH) {
+                /* gentle idle sway when there's no cursor to follow */
+                gsap.to(this.card, {
+                    rotateY: 10,
+                    rotateX: -6,
+                    duration: 3,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'sine.inOut',
+                });
+                return;
+            }
+
+            this.stage.addEventListener('mousemove', (e) => {
+                const rect = this.stage.getBoundingClientRect();
+                const nx = (e.clientX - rect.left) / rect.width - 0.5;
+                const ny = (e.clientY - rect.top) / rect.height - 0.5;
+                gsap.to(this.card, {
+                    rotateY: nx * 26,
+                    rotateX: -ny * 20,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                });
+            });
+
+            this.stage.addEventListener('mouseleave', () => {
+                gsap.to(this.card, { rotateY: 0, rotateX: 0, duration: 0.8, ease: 'elastic.out(1,.5)' });
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       POS PRINT — the receipt slides out of the terminal on scroll
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class PosPrint {
+        constructor() {
+            this.stage = q('#posStage');
+            if (!this.stage) return;
+
+            if (Env.RM) {
+                this.stage.classList.add('is-printed');
+                return;
+            }
+
+            ScrollTrigger.create({
+                trigger: this.stage,
+                start: 'top 78%',
+                once: true,
+                onEnter: () => this.stage.classList.add('is-printed'),
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       NEON FLICKER — the sign hums, then flickers like the real thing
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class NeonFlicker {
+        constructor() {
+            this.sign = q('#neonSign');
+            if (!this.sign || Env.RM) return;
+
+            this.schedule();
+        }
+
+        schedule() {
+            const delay = 3500 + Math.random() * 4500;
+            setTimeout(() => {
+                this.sign.classList.add('is-flicker');
+                setTimeout(() => this.sign.classList.remove('is-flicker'), 1100);
+                this.schedule();
+            }, delay);
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       DASH LIVE — property dashboard bars grow when it enters view
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class DashLive {
+        constructor() {
+            this.dash = q('#ppDash');
+            if (!this.dash) return;
+
+            if (Env.RM) {
+                this.dash.classList.add('is-live');
+                return;
+            }
+
+            ScrollTrigger.create({
+                trigger: this.dash,
+                start: 'top 80%',
+                once: true,
+                onEnter: () => this.dash.classList.add('is-live'),
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       WATERMARK DRIFT — giant chapter numbers parallax past the content
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class WatermarkDrift {
+        constructor() {
+            if (Env.RM) return;
+
+            qa('.chapter-wm').forEach((wm) => {
+                gsap.fromTo(wm,
+                    { yPercent: 18 },
+                    {
+                        yPercent: -18,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: wm.closest('.chapter'),
+                            start: 'top bottom',
+                            end: 'bottom top',
+                            scrub: true,
+                        },
+                    });
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       TIMELINE DRAW — the process rail draws itself as you scroll
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class TimelineDraw {
+        constructor() {
+            this.progress = q('#tlineProgress');
+            this.wrap = q('#tline');
+            if (!this.progress || !this.wrap || Env.RM) return;
+
+            gsap.to(this.progress, {
+                scaleY: 1,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: this.wrap,
+                    start: 'top 70%',
+                    end: 'bottom 65%',
+                    scrub: true,
+                },
+            });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       BOOT
+       ═══════════════════════════════════════════════════════════════════ */
+
+    const boot = () => {
+        /* the shared script bails without GSAP — so do we */
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+        new SmokeFX();
+        new ChapterNav();
+        new SeoRing();
+        new ChartDraw();
+        new CardTilt();
+        new PosPrint();
+        new NeonFlicker();
+        new DashLive();
+        new WatermarkDrift();
+        new TimelineDraw();
     };
-    requestAnimationFrame(step);
-  }
-}
 
-// ─── 3D CARD TILT ─────────────────────────────────────────────
-// Service showcase cards tilt toward the cursor on hover with
-// a perspective effect and the glow layer follows the mouse.
-class SrvCardTilt {
-  constructor() { this.cards = sQA('[data-tilt]'); }
-  init() {
-    if (!this.cards.length || window.innerWidth < 768) return;
-    this.cards.forEach(card => {
-      const glow = sQ('.srv-card-glow', card);
-
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        const rotX = y * -8, rotY = x * 8;
-        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
-        card.style.transition = 'transform .08s linear, border-color .5s ease, box-shadow .5s ease';
-
-        // Move glow to cursor
-        if (glow) {
-          const px = ((e.clientX - r.left) / r.width) * 100;
-          const py = ((e.clientY - r.top) / r.height) * 100;
-          glow.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(232,101,26,.08) 0%, transparent 55%)`;
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
-        card.style.transition = 'transform .5s cubic-bezier(.25,.46,.45,.94), border-color .5s ease, box-shadow .5s ease';
-        if (glow) glow.style.background = '';
-      });
-    });
-  }
-}
-
-// ─── TIMELINE PROGRESS ────────────────────────────────────────
-class SrvTimelineProgress {
-  constructor() { this.timeline = sQ('#srvTimeline'); this.bar = sQ('#timelineProgress'); this.steps = sQA('.srv-timeline-step'); }
-  init() {
-    if (!this.timeline || !this.bar) return;
-
-    const stepObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('srv-step-active'); });
-    }, { threshold: 0.5, rootMargin: '0px 0px -20% 0px' });
-    this.steps.forEach(s => stepObs.observe(s));
-
-    window.addEventListener('scroll', sThrottle(() => this.update(), 30), { passive: true });
-  }
-  update() {
-    const r = this.timeline.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const start = r.top - vh * 0.7;
-    const end = r.top + r.height - vh * 0.3;
-    const range = end - start;
-    let p = 0;
-    if (start < 0) p = Math.min(Math.abs(start) / range, 1);
-    this.bar.style.height = `${p * 100}%`;
-  }
-}
-
-// ─── CURSOR GLOW ──────────────────────────────────────────────
-class SrvCursorGlow {
-  constructor() { this.hero = sQ('#srv-hero'); this.glow = null; this.mx = 0; this.my = 0; this.cx = 0; this.cy = 0; this.active = false; }
-  init() {
-    if (!this.hero || window.innerWidth < 768) return;
-    this.glow = document.createElement('div');
-    this.glow.style.cssText = `position:absolute;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(232,101,26,.07) 0%,transparent 65%);pointer-events:none;z-index:2;transform:translate(-50%,-50%);transition:opacity .3s ease;opacity:0;will-change:transform;`;
-    this.hero.appendChild(this.glow);
-    this.hero.addEventListener('mouseenter', () => { this.active = true; this.glow.style.opacity = '1'; });
-    this.hero.addEventListener('mouseleave', () => { this.active = false; this.glow.style.opacity = '0'; });
-    this.hero.addEventListener('mousemove', e => {
-      const r = this.hero.getBoundingClientRect();
-      this.mx = e.clientX - r.left; this.my = e.clientY - r.top;
-    });
-    this.animate();
-  }
-  animate() {
-    if (this.active && this.glow) {
-      this.cx = sLerp(this.cx, this.mx, 0.07);
-      this.cy = sLerp(this.cy, this.my, 0.07);
-      this.glow.style.transform = `translate(${this.cx - 225}px, ${this.cy - 225}px)`;
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
     }
-    requestAnimationFrame(() => this.animate());
-  }
-}
-
-// ─── MAGNETIC BUTTONS ─────────────────────────────────────────
-class SrvMagneticButtons {
-  constructor() { this.btns = sQA('.srv-hero-ctas .btn'); this.str = 0.28; }
-  init() {
-    if (!this.btns.length || window.innerWidth < 768) return;
-    this.btns.forEach(btn => {
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        const dx = (e.clientX - r.left - r.width / 2) * this.str;
-        const dy = (e.clientY - r.top - r.height / 2) * this.str;
-        btn.style.transform = `translate(${dx}px, ${dy}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0,0)';
-        btn.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1)';
-        setTimeout(() => { btn.style.transition = ''; }, 400);
-      });
-    });
-  }
-}
-
-// ─── SMOOTH SCROLL ────────────────────────────────────────────
-class SrvSmoothScroll {
-  init() {
-    sQA('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const href = link.getAttribute('href');
-        if (href === '#') return;
-        const t = sQ(href);
-        if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }
-      });
-    });
-  }
-}
-
-// ─── ORBIT PARALLAX ───────────────────────────────────────────
-// The orbit icons slow down / speed up slightly based on scroll
-// for a parallax depth effect.
-class SrvOrbitParallax {
-  constructor() { this.orbit = sQ('#srvOrbit'); this.icons = sQA('.srv-orbit-icon'); }
-  init() {
-    if (!this.orbit || !this.icons.length || window.innerWidth < 768) return;
-    window.addEventListener('scroll', sThrottle(() => {
-      const scrollY = window.scrollY;
-      const speed = 0.015;
-      this.icons.forEach((icon, i) => {
-        const offset = scrollY * speed * (i % 2 === 0 ? 1 : -1);
-        icon.style.marginTop = `${offset}px`;
-      });
-    }, 30), { passive: true });
-  }
-}
-
-// ─── CARD RIPPLE EFFECT ───────────────────────────────────────
-// Click ripple on service cards for satisfying feedback.
-class SrvCardRipple {
-  init() {
-    sQA('.srv-showcase-card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        const r = this.getBoundingClientRect();
-        const x = e.clientX - r.left, y = e.clientY - r.top;
-        const ripple = document.createElement('span');
-        ripple.style.cssText = `position:absolute;width:0;height:0;left:${x}px;top:${y}px;background:rgba(232,101,26,.1);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:10;animation:srvRipple .6s ease-out forwards;`;
-        this.style.position = 'relative';
-        this.style.overflow = 'hidden';
-        this.appendChild(ripple);
-        setTimeout(() => ripple.remove(), 600);
-      });
-    });
-    if (!document.getElementById('srv-ripple-style')) {
-      const s = document.createElement('style');
-      s.id = 'srv-ripple-style';
-      s.textContent = `@keyframes srvRipple{to{width:400px;height:400px;opacity:0;}}`;
-      document.head.appendChild(s);
-    }
-  }
-}
-
-// ─── PERFORMANCE MONITOR ──────────────────────────────────────
-class SrvPerfMonitor {
-  constructor() { this.frames = []; this.low = false; }
-  init() { this.measure(); setInterval(() => this.check(), 2500); }
-  measure() { this.frames.push(performance.now()); if (this.frames.length > 60) this.frames.shift(); requestAnimationFrame(() => this.measure()); }
-  check() {
-    if (this.frames.length < 10) return;
-    const r = this.frames.slice(-30);
-    const fps = (r.length - 1) / ((r[r.length - 1] - r[0]) / 1000);
-    if (fps < 28 && !this.low) { this.low = true; document.body.classList.add('srv-low-perf'); console.log('⚡ Services: reduced animations'); }
-  }
-}
-
-// ─── APPLICATION ──────────────────────────────────────────────
-class SrvApp {
-  constructor() {
-    this.modules = {
-      reveal:       new SrvScrollReveal(),
-      particles:    new SrvParticleField(),
-      chrome:       new SrvChromeTrack(),
-      mesh:         new SrvMeshResponse(),
-      counters:     new SrvCounters(),
-      cardTilt:     new SrvCardTilt(),
-      timeline:     new SrvTimelineProgress(),
-      cursorGlow:   new SrvCursorGlow(),
-      magnetic:     new SrvMagneticButtons(),
-      smoothScroll: new SrvSmoothScroll(),
-      orbitPx:      new SrvOrbitParallax(),
-      cardRipple:   new SrvCardRipple(),
-      perfMonitor:  new SrvPerfMonitor(),
-    };
-  }
-  init() {
-    Object.entries(this.modules).forEach(([name, mod]) => {
-      try { if (typeof mod.init === 'function') mod.init(); }
-      catch (err) { console.error(`[SRV:${name}]`, err); }
-    });
-    console.log('✦ Services Hub — Premium Edition loaded');
-  }
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => new SrvApp().init());
-} else {
-  new SrvApp().init();
-}
+})();
