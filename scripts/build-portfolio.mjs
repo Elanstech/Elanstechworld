@@ -2,15 +2,14 @@
  * ELAN'S TECH WORLD — portfolio build
  * ---------------------------------------------------------------------------
  * Reads  content/clients/*.json   (written by the CMS)
- * Writes portfolio/index.html     the client index
+ * Writes portfolio/index.html     the cinematic index
  *        portfolio/<slug>.html    one page per client
- *        sitemap-portfolio.xml    for Search Console
+ *        sitemap-portfolio.xml
  *
  * Run:   node scripts/build-portfolio.mjs
  *
- * Everything renders to real static HTML — no client-side fetching — so search
- * engines and AI crawlers get the full content on first request, and every
- * client has its own indexable URL.
+ * Real static HTML — no client-side fetching — so crawlers get everything on
+ * first request and every client has its own indexable URL.
  * ---------------------------------------------------------------------------
  */
 
@@ -53,15 +52,19 @@ const DISCIPLINE = {
 };
 
 const label = (key) => DISCIPLINE[key] || key;
-
-/* strip protocol and trailing slash for display */
 const prettyUrl = (url = '') => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+const initials = (name = '') =>
+  name
+    .replace(/[^a-zA-Z ]/g, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join('');
 
 /* ── shared chrome ───────────────────────────────────────────────────── */
 
-const head = ({ title, description, canonical, schema, depth = 1 }) => {
-  const up = '../'.repeat(depth);
-  return `<!DOCTYPE html>
+const head = ({ title, description, canonical, schema, bodyClass = '' }) => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +74,7 @@ const head = ({ title, description, canonical, schema, depth = 1 }) => {
     <meta name="description" content="${esc(description)}">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <link rel="canonical" href="${canonical}">
-    <meta name="theme-color" content="#0E1B3D">
+    <meta name="theme-color" content="#070C1E">
 
     <meta name="geo.region" content="US-NY">
     <meta name="geo.placename" content="Rego Park, Queens, New York">
@@ -87,7 +90,7 @@ const head = ({ title, description, canonical, schema, depth = 1 }) => {
     <meta name="twitter:title" content="${esc(title)}">
     <meta name="twitter:description" content="${esc(description)}">
 
-${schema.map((block) => `    <script type="application/ld+json">\n${JSON.stringify(block, null, 2)}\n    </script>`).join('\n')}
+${schema.map((b) => `    <script type="application/ld+json">\n${JSON.stringify(b, null, 2)}\n    </script>`).join('\n')}
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,12 +100,11 @@ ${schema.map((block) => `    <script type="application/ld+json">\n${JSON.stringi
     <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 
-    <link rel="stylesheet" href="${up}css/style.css">
-    <link rel="stylesheet" href="${up}css/portfolio.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/portfolio.css">
 </head>`;
-};
 
-const header = (activePortfolio = true) => `
+const header = () => `
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel">View</span></div>
@@ -119,7 +121,7 @@ const header = (activePortfolio = true) => `
                 <li><a href="/" class="nav-link" data-hover="Home"><span>Home</span></a></li>
                 <li><a href="/pages/services.html" class="nav-link" data-hover="Services"><span>Services</span></a></li>
                 <li><a href="/pages/whyus.html" class="nav-link" data-hover="Why Us"><span>Why Us</span></a></li>
-                <li><a href="/portfolio/" class="nav-link${activePortfolio ? ' active' : ''}" data-hover="Portfolio"><span>Portfolio</span></a></li>
+                <li><a href="/portfolio/" class="nav-link active" data-hover="Portfolio"><span>Portfolio</span></a></li>
                 <li><a href="/shop/" class="nav-link" data-hover="Shop"><span>Shop</span></a></li>
                 <li><a href="/pages/contact.html" class="nav-link" data-hover="Contact"><span>Contact</span></a></li>
             </ul>
@@ -214,7 +216,7 @@ const footer = () => `
 </body>
 </html>`;
 
-/* ── index page ──────────────────────────────────────────────────────── */
+/* ── the cinematic index ─────────────────────────────────────────────── */
 
 const indexPage = (clients, stats) => {
   const schema = [
@@ -223,7 +225,7 @@ const indexPage = (clients, stats) => {
       '@type': 'CollectionPage',
       '@id': `${ORIGIN}/portfolio/#page`,
       url: `${ORIGIN}/portfolio/`,
-      name: 'Portfolio — Elan\'s Tech World',
+      name: "Portfolio — Elan's Tech World",
       description: `Selected work for ${stats.clients} New York businesses: websites, platforms, brand identity, print and signage.`,
       isPartOf: { '@type': 'WebSite', '@id': `${ORIGIN}/#website` },
       about: { '@id': `${ORIGIN}/#business` },
@@ -239,7 +241,7 @@ const indexPage = (clients, stats) => {
     {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: 'Client work by Elan\'s Tech World',
+      name: "Client work by Elan's Tech World",
       numberOfItems: clients.length,
       itemListElement: clients.map((client, i) => ({
         '@type': 'ListItem',
@@ -256,33 +258,54 @@ const indexPage = (clients, stats) => {
     },
   ];
 
-  const filters = [...new Set(clients.flatMap((c) => c.disciplines))];
+  const total = clients.length;
 
-  const rows = clients
+  /* the side rail — one mark per client, the current one lights up */
+  const rail = clients
+    .map(
+      (client, i) =>
+        `        <a href="#c-${client.slug}" class="cine-rail-item" data-index="${i}"><i>${String(i + 1).padStart(2, '0')}</i><span>${esc(client.name)}</span></a>`,
+    )
+    .join('\n');
+
+  const scenes = clients
     .map((client, i) => {
-      const metric = client.headlineMetric?.value
-        ? `<span class="pf-metric"><b>${esc(client.headlineMetric.value)}</b>${esc(client.headlineMetric.label || '')}</span>`
-        : `<span class="pf-metric pf-metric--empty">${esc(client.industry)}</span>`;
+      const n = String(i + 1).padStart(2, '0');
 
-      const shot = client.capture
-        ? `<img src="/${CAPTURES}/${client.slug}.webp" alt="" loading="lazy" decoding="async">`
-        : '';
+      const visual = client.capture
+        ? `<div class="cine-frame">
+                        <div class="cine-chrome"><i></i><i></i><i></i><span>${esc(prettyUrl(client.liveUrl))}</span></div>
+                        <div class="cine-screen"><img src="/${CAPTURES}/${client.slug}.webp" alt="${esc(client.name)} website" loading="lazy" decoding="async"></div>
+                    </div>`
+        : `<div class="cine-frame cine-frame--mono">
+                        <span class="cine-mono">${esc(initials(client.name))}</span>
+                        <span class="cine-mono-label">${client.liveUrl ? 'Screenshot pending' : 'Launching soon'}</span>
+                    </div>`;
+
+      const metric = client.headlineMetric?.value
+        ? `<p class="cine-metric"><b>${esc(client.headlineMetric.value)}</b><span>${esc(client.headlineMetric.label || '')}</span></p>`
+        : `<p class="cine-metric cine-metric--quiet"><span>${esc(client.work.length)} ${client.work.length === 1 ? 'piece' : 'pieces'} delivered</span></p>`;
 
       return `
-            <li class="pf-row rv" data-disciplines="${client.disciplines.join(' ')}" style="--accent:${esc(client.accent || '#2B4BDF')}">
-                <a class="pf-link" href="/portfolio/${client.slug}.html" data-shot="${client.capture ? `/${CAPTURES}/${client.slug}.webp` : ''}">
-                    <span class="pf-idx">${String(i + 1).padStart(2, '0')}</span>
-                    <span class="pf-main">
-                        <span class="pf-name">${esc(client.name)}</span>
-                        <span class="pf-sub">${esc(client.industry)}${client.neighborhood ? ` · ${esc(client.neighborhood)}` : ''}</span>
-                    </span>
-                    <span class="pf-tags">${client.disciplines.map((d) => `<i>${esc(label(d))}</i>`).join('')}</span>
-                    ${metric}
-                    <span class="pf-year">${esc(client.yearFirst)}</span>
-                    <span class="pf-arrow" aria-hidden="true">↗</span>
+    <section class="cine" id="c-${client.slug}" style="--accent:${esc(client.accent || '#2B4BDF')}" aria-label="${esc(client.name)}">
+        <div class="cine-glow" aria-hidden="true"></div>
+        <div class="cine-inner container">
+            <div class="cine-copy">
+                <span class="cine-num"><b>${n}</b><i>/ ${total}</i></span>
+                <h2 class="cine-name">${esc(client.name)}</h2>
+                <p class="cine-role">${esc(client.industry)}${client.neighborhood ? ` <span>· ${esc(client.neighborhood)}</span>` : ''}</p>
+                <ul class="cine-tags">${client.disciplines.map((d) => `<li>${esc(label(d))}</li>`).join('')}</ul>
+                ${metric}
+                <a class="cine-cta" href="/portfolio/${client.slug}.html">
+                    <span>Open the case file</span><i aria-hidden="true">↗</i>
                 </a>
-                <div class="pf-thumb" aria-hidden="true">${shot}</div>
-            </li>`;
+            </div>
+            <div class="cine-visual">
+                ${visual}
+                <span class="cine-stamp">${esc(client.yearFirst)} — ${client.work.length} ${client.work.length === 1 ? 'piece' : 'pieces'}</span>
+            </div>
+        </div>
+    </section>`;
     })
     .join('');
 
@@ -291,57 +314,37 @@ const indexPage = (clients, stats) => {
     description: `Selected work for ${stats.clients} New York businesses — ${stats.work} projects across websites, platforms, brand identity, print and signage. Hand-coded, never templated.`,
     canonical: `${ORIGIN}/portfolio/`,
     schema,
-    depth: 1,
   })}
 <body data-page="portfolio" id="top">
-${header(true)}
+${header()}
 
 <main id="main">
 
-<section class="pf-hero" aria-label="Portfolio introduction">
-    <div class="pf-hero-rule" aria-hidden="true"></div>
-    <div class="container">
+<section class="cine-open" aria-label="Portfolio introduction">
+    <div class="cine-open-glow" aria-hidden="true"></div>
+    <div class="container cine-open-inner">
         <div class="eyebrow rv"><span class="dm">◆</span><span>Selected Work · 2020 — ${new Date().getFullYear()}</span></div>
-        <h1 class="pf-title rv">The <em>work.</em></h1>
-        <p class="pf-lead rv">Every brand below was carried end to end — website, identity, print, the sign over the door. Hover a row to scroll the live site.</p>
-
-        <dl class="pf-stats rv">
+        <h1 class="cine-open-title rv">Fourteen brands.<em>One standard.</em></h1>
+        <p class="cine-open-lead rv">Every one carried end to end — the website, the identity, the print, the sign over the door. Scroll to walk through them.</p>
+        <dl class="cine-open-stats rv">
             <div><dt>Clients</dt><dd>${stats.clients}</dd></div>
-            <div><dt>Projects delivered</dt><dd>${stats.work}</dd></div>
+            <div><dt>Projects</dt><dd>${stats.work}</dd></div>
             <div><dt>Years</dt><dd>${stats.years}</dd></div>
-            <div><dt>Average rating</dt><dd>5.0<i>★</i></dd></div>
+            <div><dt>Rating</dt><dd>5.0<i>★</i></dd></div>
         </dl>
+        <div class="cine-open-cue rv" aria-hidden="true"><span>Scroll</span><i></i></div>
     </div>
 </section>
 
-<section class="pf-list-sec" aria-label="Client work">
-    <div class="container">
-        <div class="pf-filters rv" role="group" aria-label="Filter by discipline">
-            <button type="button" class="pf-filter is-on" data-filter="all">All<i>${clients.length}</i></button>
-            ${filters
-              .map((f) => {
-                const count = clients.filter((c) => c.disciplines.includes(f)).length;
-                return `<button type="button" class="pf-filter" data-filter="${f}">${esc(label(f))}<i>${count}</i></button>`;
-              })
-              .join('\n            ')}
-        </div>
+<nav class="cine-rail" id="cineRail" aria-label="Jump to a client">
+${rail}
+</nav>
 
-        <ul class="pf-list" id="pfList">${rows}
-        </ul>
-
-        <p class="pf-empty" id="pfEmpty" hidden>No work in that discipline yet.</p>
-    </div>
-</section>
-
-<!-- floating preview: a real browser frame that scrolls the captured page -->
-<div class="pf-preview" id="pfPreview" aria-hidden="true">
-    <div class="pf-frame">
-        <div class="pf-chrome"><i></i><i></i><i></i><span id="pfUrl"></span></div>
-        <div class="pf-screen"><img id="pfShot" src="" alt=""></div>
-    </div>
+<div class="cine-stack" id="cineStack">
+${scenes}
 </div>
 
-<section class="slab mega" aria-label="Start your project">
+<section class="slab mega cine-close" aria-label="Start your project">
     <span class="mega-orb mega-orb--a" aria-hidden="true"></span>
     <span class="mega-orb mega-orb--b" aria-hidden="true"></span>
     <div class="section">
@@ -382,18 +385,14 @@ const clientPage = (client) => {
         name: client.name,
         ...(client.liveUrl ? { url: client.liveUrl } : {}),
       },
-      keywords: client.disciplines.map(label).join(', '),
+      keywords: disciplines,
       ...(client.testimonial?.text
         ? {
             review: {
               '@type': 'Review',
               reviewBody: client.testimonial.text,
               author: { '@type': 'Person', name: client.testimonial.author || client.name },
-              reviewRating: {
-                '@type': 'Rating',
-                ratingValue: String(client.testimonial.rating || 5),
-                bestRating: '5',
-              },
+              reviewRating: { '@type': 'Rating', ratingValue: String(client.testimonial.rating || 5), bestRating: '5' },
             },
           }
         : {}),
@@ -404,17 +403,11 @@ const clientPage = (client) => {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Home', item: `${ORIGIN}/` },
         { '@type': 'ListItem', position: 2, name: 'Portfolio', item: `${ORIGIN}/portfolio/` },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: client.name,
-          item: `${ORIGIN}/portfolio/${client.slug}.html`,
-        },
+        { '@type': 'ListItem', position: 3, name: client.name, item: `${ORIGIN}/portfolio/${client.slug}.html` },
       ],
     },
   ];
 
-  /* group work by discipline so a client with nine pieces reads as a system */
   const groups = client.work.reduce((acc, item) => {
     (acc[item.discipline] ||= []).push(item);
     return acc;
@@ -437,25 +430,16 @@ const clientPage = (client) => {
                     ${
                       item.images?.length
                         ? `<div class="cw-shots">${item.images
-                            .map(
-                              (src) =>
-                                `<img src="${esc(src)}" alt="${esc(item.title)} — ${esc(client.name)}" loading="lazy" decoding="async">`,
-                            )
+                            .map((src) => `<img src="${esc(src)}" alt="${esc(item.title)} — ${esc(client.name)}" loading="lazy" decoding="async">`)
                             .join('')}</div>`
                         : ''
                     }
                     ${
                       item.specs && Object.keys(item.specs).length
-                        ? `<dl class="cw-specs">${Object.entries(item.specs)
-                            .map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`)
-                            .join('')}</dl>`
+                        ? `<dl class="cw-specs">${Object.entries(item.specs).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`
                         : ''
                     }
-                    ${
-                      item.technologies?.length
-                        ? `<ul class="cw-tech">${item.technologies.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>`
-                        : ''
-                    }
+                    ${item.technologies?.length ? `<ul class="cw-tech">${item.technologies.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
                 </article>`,
                   )
                   .join('')}
@@ -468,31 +452,23 @@ const clientPage = (client) => {
     description,
     canonical: `${ORIGIN}/portfolio/${client.slug}.html`,
     schema,
-    depth: 1,
   })}
 <body data-page="portfolio-client" id="top" style="--accent:${esc(client.accent || '#2B4BDF')}">
-${header(true)}
+${header()}
 
 <main id="main">
 
 <article class="cw">
     <header class="cw-hero">
+        <div class="cw-hero-glow" aria-hidden="true"></div>
         <div class="container">
             <nav class="cw-crumbs" aria-label="Breadcrumb">
                 <a href="/portfolio/">Portfolio</a><span aria-hidden="true">/</span><span>${esc(client.name)}</span>
             </nav>
-
             <h1 class="cw-title">${esc(client.name)}</h1>
             <p class="cw-sub">${esc(client.industry)}${client.neighborhood ? ` · ${esc(client.neighborhood)}` : ''} · since ${esc(client.yearFirst)}</p>
-
             <ul class="cw-disciplines">${client.disciplines.map((d) => `<li>${esc(label(d))}</li>`).join('')}</ul>
-
-            ${
-              metric
-                ? `<p class="cw-headline"><b>${esc(client.headlineMetric.value)}</b><span>${esc(client.headlineMetric.label || '')}</span></p>`
-                : ''
-            }
-
+            ${metric ? `<p class="cw-headline"><b>${esc(client.headlineMetric.value)}</b><span>${esc(client.headlineMetric.label || '')}</span></p>` : ''}
             ${
               client.liveUrl
                 ? `<a class="cw-live" href="${esc(client.liveUrl)}" target="_blank" rel="noopener">${esc(prettyUrl(client.liveUrl))} <i aria-hidden="true">↗</i></a>`
@@ -503,8 +479,8 @@ ${header(true)}
 
     ${
       client.capture
-        ? `<div class="cw-capture container"><div class="pf-frame">
-        <div class="pf-chrome"><i></i><i></i><i></i><span>${esc(prettyUrl(client.liveUrl))}</span></div>
+        ? `<div class="cw-capture container"><div class="cine-frame">
+        <div class="cine-chrome"><i></i><i></i><i></i><span>${esc(prettyUrl(client.liveUrl))}</span></div>
         <div class="cw-capture-screen"><img src="/${CAPTURES}/${client.slug}.webp" alt="${esc(client.name)} homepage" loading="lazy" decoding="async"></div>
     </div></div>`
         : ''
@@ -519,14 +495,7 @@ ${header(true)}
             <h2>What we did</h2>
             <p>${esc(client.story?.solution || '')}</p>
         </div>
-        ${
-          client.story?.impact
-            ? `<div class="cw-story-col cw-story-col--impact">
-            <h2>The result</h2>
-            <p>${esc(client.story.impact)}</p>
-        </div>`
-            : ''
-        }
+        ${client.story?.impact ? `<div class="cw-story-col cw-story-col--impact"><h2>The result</h2><p>${esc(client.story.impact)}</p></div>` : ''}
     </section>
 
     <section class="cw-work container" aria-label="Everything delivered">
@@ -580,7 +549,6 @@ const run = async () => {
     clients.push(client);
   }
 
-  /* featured first, then most recent */
   clients.sort(
     (a, b) =>
       Number(!!b.featured) - Number(!!a.featured) ||
@@ -602,12 +570,8 @@ const run = async () => {
     await writeFile(path.join(OUT, `${client.slug}.html`), clientPage(client), 'utf8');
   }
 
-  /* sitemap fragment — submit this in Search Console */
   const today = new Date().toISOString().slice(0, 10);
-  const urls = [
-    `${ORIGIN}/portfolio/`,
-    ...clients.map((c) => `${ORIGIN}/portfolio/${c.slug}.html`),
-  ];
+  const urls = [`${ORIGIN}/portfolio/`, ...clients.map((c) => `${ORIGIN}/portfolio/${c.slug}.html`)];
   await writeFile(
     'sitemap-portfolio.xml',
     `<?xml version="1.0" encoding="UTF-8"?>
