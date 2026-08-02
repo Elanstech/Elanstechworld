@@ -486,6 +486,40 @@ ${header()}
         : ''
     }
 
+    ${
+      client.captureMobile || client.capturePagesFound.length
+        ? `<section class="cw-screens container" aria-label="More screens">
+        <div class="sec-head">
+            <div class="eyebrow"><span class="dm">◆</span><span>Every Screen</span></div>
+            <h2 class="sec-title">Built for <em>every device.</em></h2>
+        </div>
+        <div class="cw-screens-grid">
+            ${
+              client.captureMobile
+                ? `<figure class="cw-phone">
+                <div class="cw-phone-frame"><div class="cw-phone-notch" aria-hidden="true"></div>
+                    <div class="cw-phone-screen"><img src="/${CAPTURES}/${client.slug}-mobile.webp" alt="${esc(client.name)} on mobile" loading="lazy" decoding="async"></div>
+                </div>
+                <figcaption>Mobile · 390px</figcaption>
+            </figure>`
+                : ''
+            }
+            ${client.capturePagesFound
+              .map(
+                (src, i) => `<figure class="cw-page">
+                <div class="cine-frame">
+                    <div class="cine-chrome"><i></i><i></i><i></i><span>${esc(prettyUrl(client.liveUrl))}</span></div>
+                    <div class="cw-page-screen"><img src="${src}" alt="${esc(client.name)} interior page" loading="lazy" decoding="async"></div>
+                </div>
+                <figcaption>Interior page ${i + 1} · desktop</figcaption>
+            </figure>`,
+              )
+              .join('')}
+        </div>
+    </section>`
+        : ''
+    }
+
     <section class="cw-story container" aria-label="The work">
         <div class="cw-story-col">
             <h2>The challenge</h2>
@@ -545,6 +579,13 @@ const run = async () => {
     client.work ||= [];
     client.disciplines ||= [];
     client.capture = await exists(path.join(CAPTURES, `${client.slug}.webp`));
+    client.captureMobile = await exists(path.join(CAPTURES, `${client.slug}-mobile.webp`));
+    client.capturePagesFound = [];
+    for (const n of [2, 3]) {
+      if (await exists(path.join(CAPTURES, `${client.slug}-${n}.webp`))) {
+        client.capturePagesFound.push(`/${CAPTURES}/${client.slug}-${n}.webp`);
+      }
+    }
     if (client.status === 'archived') continue;
     clients.push(client);
   }
