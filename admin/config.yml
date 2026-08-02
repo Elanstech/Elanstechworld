@@ -8,7 +8,7 @@
 
 backend:
   name: github
-  repo: OWNER/REPO # ← change to your GitHub owner/repo
+  repo: Elanstech/Elanstechworld # ← change to your GitHub owner/repo
   branch: main
   # Points at the OAuth client running as Vercel functions in this same repo.
   base_url: https://www.elanstechworld.com
