@@ -1,26 +1,27 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELAN'S TECH WORLD — SERVICES PAGE (ES6)
+   ELAN'S TECH WORLD — SERVICES PAGE (ES6) · performance pass
    ─────────────────────────────────────────────────────────────────────────
    Full drop-in replacement for js/services.js.
 
-   Loads after ../js/script.js and reuses its globals (Env, q, qa, gsap,
-   ScrollTrigger). Wrapped in an IIFE so nothing here collides with the
-   shared script's top-level declarations.
+   What changed vs. the first version, and why:
+     · The colour wash moved to its own 220×130 canvas, stretched to fill.
+       Three full-screen gradient fills per frame was the most expensive
+       thing on the page; at 220×130 that's ~0.3% of the pixels, and the
+       browser's bilinear upscale gives the soft edges for free.
+     · The dot matrix no longer redraws every frame. It's painted once, then
+       only the ~360px square around the cursor is cleared and repainted when
+       the pointer actually moves. Idle hero = zero work.
+     · Both hero layers are event-driven or capped at 30fps, and stop
+       entirely once the hero scrolls out of view.
 
    Modules:
-     HeroField        — animated dot-field + colour wash behind the hero
-     CraftIndex       — the live six-craft index (auto-advances, tints the field)
+     HeroWash         — drifting colour field (tiny buffer, 30fps)
+     HeroDots         — reactive dot matrix (dirty-rect, pointer-driven)
+     CraftIndex       — live six-craft index, tints the wash
      KineticType      — headline characters lift toward the cursor
      NycClock         — live New York time in the hero meta strip
-     ChapterNav       — sticky sub-nav scrollspy with sliding indicator
-     SeoRing          — SEO score ring + number fill (web chapter)
-     ChartDraw        — marketing chart line draw-in
-     CardTilt         — 3D business-card tilt (print chapter)
-     PosPrint         — receipt prints out of the terminal on scroll
-     NeonFlicker      — occasional realistic flicker on the neon sign
-     DashLive         — property dashboard bars grow on scroll
-     WatermarkDrift   — giant chapter numbers parallax
-     TimelineDraw     — process rail draws itself as you scroll
+     ChapterNav · SeoRing · ChartDraw · CardTilt · PosPrint · NeonFlicker
+     DashLive · WatermarkDrift · TimelineDraw   — unchanged
    ═══════════════════════════════════════════════════════════════════════ */
 
 (() => {
@@ -31,33 +32,41 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       HERO FIELD — a slow colour wash under a reactive dot matrix
+       HERO WASH — three drifting blooms on a deliberately tiny buffer
        ═══════════════════════════════════════════════════════════════════ */
 
-    class HeroField {
+    class HeroWash {
         constructor() {
-            this.canvas = q('#srvField');
+            this.canvas = q('#srvWash');
             if (!this.canvas) return;
 
             this.ok = true;
             this.ctx = this.canvas.getContext('2d');
-            this.host = this.canvas.parentElement;
-            this.pointer = { x: 0, y: 0, on: false };
+
+            /* fixed low-res buffer — CSS stretches it to fill the hero */
+            this.w = this.canvas.width = 220;
+            this.h = this.canvas.height = 130;
+
             this.tint = [43, 75, 223];
             this.target = [43, 75, 223];
             this.t = 0;
+            this.last = 0;
             this.running = true;
+            this.tick = this.tick.bind(this);
 
-            this.resize();
-            window.addEventListener('resize', () => this.resize());
+            this.paint();
 
-            if (Env.RM) {
-                this.paint(true);
-                return;
+            if (Env.RM) return;
+
+            if (typeof IntersectionObserver !== 'undefined') {
+                new IntersectionObserver(([entry]) => {
+                    const was = this.running;
+                    this.running = entry.isIntersecting;
+                    if (this.running && !was) requestAnimationFrame(this.tick);
+                }).observe(this.canvas.parentElement);
             }
 
-            this.bind();
-            this.loop();
+            requestAnimationFrame(this.tick);
         }
 
         /* called by CraftIndex — "43,75,223" */
@@ -67,69 +76,36 @@
             if (parts.length === 3 && parts.every((n) => !Number.isNaN(n))) this.target = parts;
         }
 
-        resize() {
-            const rect = this.host.getBoundingClientRect();
-            this.w = Math.max(1, rect.width);
-            this.h = Math.max(1, rect.height);
-
-            /* capped DPR keeps big screens cheap */
-            const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-            this.canvas.width = this.w * dpr;
-            this.canvas.height = this.h * dpr;
-            this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-            if (Env.RM) this.paint(true);
-        }
-
-        bind() {
-            if (!Env.TOUCH) {
-                this.host.addEventListener('mousemove', (e) => {
-                    const r = this.host.getBoundingClientRect();
-                    this.pointer.x = e.clientX - r.left;
-                    this.pointer.y = e.clientY - r.top;
-                    this.pointer.on = true;
-                });
-                this.host.addEventListener('mouseleave', () => { this.pointer.on = false; });
-            }
-
-            /* stop burning frames once the hero has scrolled away */
-            if (typeof IntersectionObserver !== 'undefined') {
-                new IntersectionObserver(([entry]) => {
-                    const was = this.running;
-                    this.running = entry.isIntersecting;
-                    if (this.running && !was) this.loop();
-                }).observe(this.host);
-            }
-        }
-
-        loop() {
+        tick(ts) {
             if (!this.running) return;
+            requestAnimationFrame(this.tick);
+
+            /* 30fps is plenty for something this slow and this soft */
+            if (ts - this.last < 33) return;
+            this.last = ts;
             this.t += 1;
             this.paint();
-            requestAnimationFrame(() => this.loop());
         }
 
-        paint(still = false) {
-            const { ctx, w, h } = this;
-            const t = still ? 0 : this.t;
+        paint() {
+            const { ctx, w, h, t } = this;
 
-            /* ease the wash toward the active craft's colour */
+            /* ease toward the active craft's colour */
             for (let i = 0; i < 3; i += 1) {
-                this.tint[i] += (this.target[i] - this.tint[i]) * 0.03;
+                this.tint[i] += (this.target[i] - this.tint[i]) * 0.05;
             }
             const tint = this.tint.map((v) => Math.round(v));
 
-            ctx.clearRect(0, 0, w, h);
+            ctx.globalCompositeOperation = 'source-over';
             ctx.fillStyle = '#070C1E';
             ctx.fillRect(0, 0, w, h);
 
-            /* ── three drifting washes ── */
             ctx.globalCompositeOperation = 'lighter';
 
             const blobs = [
-                { x: 0.74 + Math.sin(t * 0.0016) * 0.05, y: 0.30 + Math.cos(t * 0.0013) * 0.07, r: 0.58, c: tint, a: 0.30 },
-                { x: 0.16 + Math.cos(t * 0.0011) * 0.06, y: 0.74 + Math.sin(t * 0.0015) * 0.05, r: 0.50, c: [243, 112, 33], a: 0.18 },
-                { x: 0.48 + Math.sin(t * 0.0009) * 0.10, y: 0.52 + Math.cos(t * 0.0012) * 0.09, r: 0.34, c: [196, 174, 126], a: 0.10 },
+                { x: 0.74 + Math.sin(t * 0.005) * 0.05,  y: 0.30 + Math.cos(t * 0.004) * 0.07,  r: 0.62, c: tint,           a: 0.34 },
+                { x: 0.16 + Math.cos(t * 0.0035) * 0.06, y: 0.74 + Math.sin(t * 0.0048) * 0.05, r: 0.54, c: [243, 112, 33], a: 0.20 },
+                { x: 0.48 + Math.sin(t * 0.003) * 0.10,  y: 0.52 + Math.cos(t * 0.0038) * 0.09, r: 0.38, c: [196, 174, 126], a: 0.11 },
             ];
 
             blobs.forEach((b) => {
@@ -143,43 +119,163 @@
                 ctx.fillStyle = grad;
                 ctx.fillRect(0, 0, w, h);
             });
+        }
+    }
 
-            ctx.globalCompositeOperation = 'source-over';
 
-            /* ── dot matrix: a slow wave, plus a lift around the cursor ── */
-            const step = 30;
-            const reach = 190;
-            const reach2 = reach * reach;
+    /* ═══════════════════════════════════════════════════════════════════
+       HERO DOTS — painted once, then only the square around the cursor
+       is cleared and repainted. No pointer movement, no frames.
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class HeroDots {
+        constructor() {
+            this.canvas = q('#srvField');
+            if (!this.canvas) return;
+
+            this.ok = true;
+            this.ctx = this.canvas.getContext('2d');
+            this.host = this.canvas.parentElement;
+
+            this.STEP = 30;
+            this.REACH = 165;
+            this.BASE_A = 0.14;
+            this.BASE_S = 1.7;
+
+            this.p = { x: 0, y: 0, on: false };
+            this.prev = null;
+            this.queued = false;
+
+            this.resize();
+            window.addEventListener('resize', () => {
+                clearTimeout(this.rt);
+                this.rt = setTimeout(() => this.resize(), 160);
+            });
+
+            /* the grid stays static for touch and reduced motion */
+            if (Env.RM || Env.TOUCH) return;
+
+            this.host.addEventListener('mousemove', (e) => {
+                const r = this.host.getBoundingClientRect();
+                this.p.x = e.clientX - r.left;
+                this.p.y = e.clientY - r.top;
+                this.p.on = true;
+                this.schedule();
+            });
+
+            this.host.addEventListener('mouseleave', () => {
+                this.p.on = false;
+                this.schedule();
+            });
+        }
+
+        resize() {
+            const rect = this.host.getBoundingClientRect();
+            this.w = Math.max(1, rect.width);
+            this.h = Math.max(1, rect.height);
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+            this.canvas.width = this.w * dpr;
+            this.canvas.height = this.h * dpr;
+            this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            this.prev = null;
+            this.full();
+        }
+
+        /* one fillStyle, one path, one fill — the whole resting grid */
+        full() {
+            const { ctx, w, h, STEP, BASE_S } = this;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = `rgba(244,238,223,${this.BASE_A})`;
+            ctx.beginPath();
+            for (let y = STEP; y < h; y += STEP) {
+                for (let x = STEP; x < w; x += STEP) {
+                    ctx.rect(x - BASE_S / 2, y - BASE_S / 2, BASE_S, BASE_S);
+                }
+            }
+            ctx.fill();
+        }
+
+        schedule() {
+            if (this.queued) return;
+            this.queued = true;
+            requestAnimationFrame(() => {
+                this.queued = false;
+                this.update();
+            });
+        }
+
+        update() {
+            const pad = this.REACH + 8;
+            const cur = this.p.on
+                ? { x: this.p.x - pad, y: this.p.y - pad, w: pad * 2, h: pad * 2 }
+                : null;
+
+            const box = this.union(this.prev, cur);
+            this.prev = cur;
+            if (!box) return;
+
+            /* clamp to the canvas so we never repaint pixels that don't exist */
+            const x0 = Math.max(0, box.x);
+            const y0 = Math.max(0, box.y);
+            const x1 = Math.min(this.w, box.x + box.w);
+            const y1 = Math.min(this.h, box.y + box.h);
+            if (x1 <= x0 || y1 <= y0) return;
+
+            this.ctx.clearRect(x0, y0, x1 - x0, y1 - y0);
+            this.region(x0, y0, x1, y1);
+        }
+
+        union(a, b) {
+            if (!a) return b;
+            if (!b) return a;
+            const x = Math.min(a.x, b.x);
+            const y = Math.min(a.y, b.y);
+            return {
+                x,
+                y,
+                w: Math.max(a.x + a.w, b.x + b.w) - x,
+                h: Math.max(a.y + a.h, b.y + b.h) - y,
+            };
+        }
+
+        /* redraw only the dots inside the dirty box, bucketed by brightness */
+        region(x0, y0, x1, y1) {
+            const { ctx, STEP, REACH, BASE_A, BASE_S } = this;
+            const reach2 = REACH * REACH;
             const LEVELS = 5;
             const buckets = Array.from({ length: LEVELS }, () => []);
 
-            for (let y = step; y < h; y += step) {
-                for (let x = step; x < w; x += step) {
-                    const wave = 0.5 + 0.5 * Math.sin(x * 0.011 + y * 0.013 + t * 0.012);
-                    let v = 0.10 + wave * 0.16;
-                    let size = 1.7;
+            const sx = Math.max(STEP, Math.ceil(x0 / STEP) * STEP);
+            const sy = Math.max(STEP, Math.ceil(y0 / STEP) * STEP);
 
-                    if (this.pointer.on) {
-                        const dx = x - this.pointer.x;
-                        const dy = y - this.pointer.y;
+            for (let y = sy; y < y1; y += STEP) {
+                for (let x = sx; x < x1; x += STEP) {
+                    let v = BASE_A;
+                    let size = BASE_S;
+
+                    if (this.p.on) {
+                        const dx = x - this.p.x;
+                        const dy = y - this.p.y;
                         const d2 = dx * dx + dy * dy;
                         if (d2 < reach2) {
-                            const f = 1 - Math.sqrt(d2) / reach;
-                            v += f * 0.75;
+                            const f = 1 - Math.sqrt(d2) / REACH;
+                            v += f * 0.46;
                             size += f * 2.6;
                         }
                     }
 
-                    const li = Math.min(LEVELS - 1, Math.max(0, Math.floor((v / 1.0) * LEVELS)));
+                    const li = Math.min(LEVELS - 1, Math.floor((v / 0.62) * LEVELS));
                     buckets[li].push(x, y, size);
                 }
             }
 
-            /* one fillStyle change per brightness level, not per dot */
             for (let i = 0; i < LEVELS; i += 1) {
                 const arr = buckets[i];
                 if (!arr.length) continue;
-                const alpha = 0.07 + (i / (LEVELS - 1)) * 0.48;
+                const alpha = BASE_A + (i / (LEVELS - 1)) * 0.44;
                 ctx.fillStyle = `rgba(244,238,223,${alpha.toFixed(3)})`;
                 ctx.beginPath();
                 for (let k = 0; k < arr.length; k += 3) {
@@ -193,12 +289,12 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       CRAFT INDEX — auto-advancing hero index, tints the field, jumps to
+       CRAFT INDEX — auto-advancing hero index, tints the wash, jumps to
        the matching chapter (anchors are smooth-scrolled by script.js)
        ═══════════════════════════════════════════════════════════════════ */
 
     class CraftIndex {
-        constructor(field) {
+        constructor(wash) {
             this.panel = q('#srvIndex');
             if (!this.panel) return;
 
@@ -206,7 +302,7 @@
             if (!this.rows.length) return;
 
             this.ok = true;
-            this.field = field;
+            this.wash = wash;
             this.idx = 0;
             this.timer = null;
             this.held = false;
@@ -226,7 +322,6 @@
                 link.addEventListener('blur', release);
             });
 
-            /* hidden until the intro hands over */
             if (!Env.RM) {
                 gsap.set(this.panel, { autoAlpha: 0, y: 28 });
                 gsap.set(this.rows, { autoAlpha: 0, x: 18 });
@@ -252,9 +347,8 @@
 
             this.rows.forEach((r, j) => r.classList.toggle('is-active', j === this.idx));
             this.panel.style.setProperty('--accent', accent);
-            if (this.field) this.field.setAccent(accent);
+            if (this.wash) this.wash.setAccent(accent);
 
-            /* reset every bar, then run the active one */
             this.rows.forEach((r) => {
                 const bar = q('.sr-bar i', r);
                 if (!bar) return;
@@ -276,7 +370,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       KINETIC TYPE — the headline reacts to the cursor after the intro
+       KINETIC TYPE — headline reacts to the cursor, one rAF per frame max
        ═══════════════════════════════════════════════════════════════════ */
 
     class KineticType {
@@ -297,10 +391,25 @@
                 s: gsap.quickTo(ch, 'scaleY', { duration: 0.55, ease: 'power3' }),
             }));
 
-            this.cache();
-            window.addEventListener('resize', () => this.cache());
+            this.mx = 0;
+            this.queued = false;
 
-            this.hero.addEventListener('mousemove', (e) => this.react(e.clientX));
+            this.cache();
+            window.addEventListener('resize', () => {
+                clearTimeout(this.rt);
+                this.rt = setTimeout(() => this.cache(), 160);
+            });
+
+            this.hero.addEventListener('mousemove', (e) => {
+                this.mx = e.clientX;
+                if (this.queued) return;
+                this.queued = true;
+                requestAnimationFrame(() => {
+                    this.queued = false;
+                    this.react(this.mx);
+                });
+            });
+
             this.hero.addEventListener('mouseleave', () => this.reset());
         }
 
@@ -312,6 +421,7 @@
         }
 
         react(mouseX) {
+            if (!this.centers) return;
             this.centers.forEach((cx, i) => {
                 const f = Math.max(0, 1 - Math.abs(mouseX - cx) / 260);
                 this.setters[i].y(-f * 16);
@@ -388,8 +498,6 @@
         activate(link) {
             this.links.forEach((l) => l.classList.toggle('active', l === link));
             this.moveTo(link);
-
-            /* keep the active pill in view on narrow screens */
             link.scrollIntoView({ block: 'nearest', inline: 'center', behavior: Env.RM ? 'auto' : 'smooth' });
         }
 
@@ -407,7 +515,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       SEO RING — the score dial in the web chapter
+       SEO RING
        ═══════════════════════════════════════════════════════════════════ */
 
     class SeoRing {
@@ -447,7 +555,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       CHART DRAW — the marketing growth line draws itself in
+       CHART DRAW
        ═══════════════════════════════════════════════════════════════════ */
 
     class ChartDraw {
@@ -475,7 +583,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       CARD TILT — the foil business card follows the cursor in 3D
+       CARD TILT
        ═══════════════════════════════════════════════════════════════════ */
 
     class CardTilt {
@@ -516,7 +624,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       POS PRINT — the receipt slides out of the terminal on scroll
+       POS PRINT
        ═══════════════════════════════════════════════════════════════════ */
 
     class PosPrint {
@@ -662,7 +770,6 @@
         });
         obs.observe(loader, { attributes: true, attributeFilter: ['style'] });
 
-        /* safety net if the preloader never reports back */
         setTimeout(() => { obs.disconnect(); fire(); }, 6500);
     };
 
@@ -672,11 +779,11 @@
        ═══════════════════════════════════════════════════════════════════ */
 
     const boot = () => {
-        /* the shared script bails without GSAP — so do we */
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-        const field = new HeroField();
-        const index = new CraftIndex(field);
+        const wash = new HeroWash();
+        new HeroDots();
+        const index = new CraftIndex(wash);
 
         new NycClock();
         new ChapterNav();
