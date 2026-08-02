@@ -1,0 +1,65 @@
+{
+  "slug": "barber-world-nyc",
+  "name": "Barber World NYC",
+  "contact": "Management Team",
+  "industry": "Retail & E-Commerce",
+  "neighborhood": "",
+  "yearFirst": "2025",
+  "liveUrl": "https://barberworldnyc.com",
+  "accent": "#007aff",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "logo"
+  ],
+  "headlineMetric": {
+    "value": "$12K",
+    "label": "revenue in month one"
+  },
+  "story": {
+    "challenge": "No online presence at all, and inventory that had to stay in sync across a physical store and a new digital one.",
+    "solution": "A Shopify build with a custom theme and inventory management wired into the in-store POS.",
+    "impact": "100+ sales and $12K revenue in the first month, 76 products online, customer reach up 300%."
+  },
+  "testimonial": {
+    "text": "The e-commerce platform Elan built for us is incredible. Our sales tripled in the first quarter. The inventory management system makes running our business so much easier.",
+    "author": "Management Team",
+    "role": "Barber World NYC",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Barber World NYC store",
+      "year": "2025",
+      "duration": "10 weeks",
+      "liveUrl": "https://barberworldnyc.com",
+      "tags": [
+        "E-commerce",
+        "Inventory",
+        "Marketing"
+      ],
+      "technologies": [
+        "Shopify",
+        "Liquid",
+        "Stripe",
+        "Klaviyo"
+      ],
+      "images": [
+        "/assets/images/barberhero.jpeg",
+        "/assets/images/barbercarusel.jpeg",
+        "/assets/images/barberproducts.jpeg",
+        "/assets/images/barberfooter.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2025",
+      "images": [
+        "/assets/logos/barberlogo.jpg"
+      ]
+    }
+  ]
+}

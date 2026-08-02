@@ -1,0 +1,48 @@
+{
+  "slug": "nyc-panache-salon",
+  "name": "NYC Panache Salon",
+  "contact": "Marina Iskiyaeva",
+  "industry": "Luxury Salon",
+  "neighborhood": "Forest Hills, Queens",
+  "yearFirst": "2025",
+  "liveUrl": "",
+  "accent": "#C5A258",
+  "featured": true,
+  "status": "in-progress",
+  "disciplines": [
+    "website",
+    "logo"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "Communicating genuine luxury and exclusivity while staying approachable, across digital, signage and premium print.",
+    "solution": "Refined typography and a mirror-gold palette, balancing classic sophistication with modern minimalism across every touchpoint.",
+    "impact": "Elevated market positioning as a premier luxury salon destination in Queens."
+  },
+  "testimonial": {
+    "text": "The logo radiates luxury and elegance — it perfectly captures the premium experience we offer. Clients notice the quality of our brand before they even sit in the chair.",
+    "author": "Management Team",
+    "role": "NYC Panache Salon",
+    "rating": 5
+  },
+  "work": [
+    {
+      "discipline": "website",
+      "title": "NYC Panache Salon website",
+      "year": "2026",
+      "duration": "10 weeks",
+      "status": "in-progress",
+      "images": [
+        "/assets/images/panachehero.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2025",
+      "images": [
+        "/assets/logos/panachelogo.jpg"
+      ]
+    }
+  ]
+}

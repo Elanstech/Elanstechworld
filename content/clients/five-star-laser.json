@@ -1,0 +1,42 @@
+{
+  "slug": "five-star-laser",
+  "name": "Five Star Laser",
+  "contact": "Business Owner",
+  "industry": "Aesthetics Clinic",
+  "neighborhood": "",
+  "yearFirst": "2025",
+  "liveUrl": "",
+  "accent": "#007aff",
+  "featured": false,
+  "disciplines": [
+    "print"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "Advertising treatment specials in a way that grabs attention without losing a professional medical look.",
+    "solution": "A high-impact poster with bold type, clinical photography and one clear call to action.",
+    "impact": "Increased walk-in inquiries and bookings through the promotional period."
+  },
+  "testimonial": {
+    "text": "The poster looks fantastic and has definitely helped bring in new clients. The design is professional and the specials are easy to read at a glance.",
+    "author": "Business Owner",
+    "role": "Five Star Laser",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "print",
+      "title": "Promotional poster",
+      "year": "2025",
+      "images": [
+        "/assets/materials/fivestarposter.jpeg"
+      ],
+      "specs": {
+        "size": "24\" x 36\"",
+        "material": "Premium poster stock",
+        "finish": "Gloss lamination"
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "slug": "holistic-mental-health-services",
+  "name": "Holistic Mental Health Services",
+  "contact": "Kristie Doheny & Doug Uhlig",
+  "industry": "Mental Health",
+  "neighborhood": "",
+  "yearFirst": "2025",
+  "liveUrl": "https://www.holisticmentalhealthny.com",
+  "accent": "#4da3ff",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "logo",
+    "signage"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "Creating a platform that feels welcoming and lowers the barrier to seeking help, while holding professional credibility and HIPAA considerations.",
+    "solution": "A warm, calming site with easy service navigation, integrated scheduling and a multi-location directory — plus matching interior signage.",
+    "impact": "Launched across multiple locations, streamlined patient intake and increased new client inquiries through improved search visibility."
+  },
+  "testimonial": {
+    "text": "The website perfectly captures the welcoming, professional atmosphere of our practice. Patients tell us all the time how easy it is to navigate and book appointments.",
+    "author": "Doug Uhlig",
+    "role": "Holistic Psychological Services",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Holistic Mental Health Services website",
+      "year": "2026",
+      "duration": "8 weeks",
+      "liveUrl": "https://www.holisticmentalhealthny.com",
+      "tags": [
+        "Healthcare",
+        "Scheduling",
+        "Multi-location"
+      ],
+      "technologies": [
+        "WordPress",
+        "Custom Theme",
+        "Scheduling API"
+      ],
+      "images": [
+        "/assets/images/holistichero.jpeg",
+        "/assets/images/holisticabout.jpeg",
+        "/assets/images/holisticservices.jpeg",
+        "/assets/images/holisitclocations.jpeg"
+      ]
+    },
+    {
+      "discipline": "website",
+      "title": "Holistic Psychological Services (earlier build)",
+      "year": "2025",
+      "liveUrl": "https://holisticpsych.vercel.app",
+      "images": [
+        "/assets/images/cityhero.jpeg",
+        "/assets/images/cityabout.jpeg",
+        "/assets/images/cityservices.jpeg",
+        "/assets/images/citysocial.jpeg"
+      ],
+      "todo": "Confirm whether this is the same practice as hmh-website. If yes, keep as a superseded build or drop. If a separate client, split into its own clients[] entry."
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2025",
+      "images": [
+        "/assets/logos/mentalhealthlogo.jpg"
+      ]
+    },
+    {
+      "discipline": "signage",
+      "title": "Office suite sign",
+      "year": "2025",
+      "images": [
+        "/assets/signs/holisticsign.jpeg",
+        "/assets/signs/holisticsign1.jpeg"
+      ],
+      "specs": {
+        "size": "48\" x 10\"",
+        "material": "LED with acrylic accents",
+        "mounting": "Wall-mounted standoffs",
+        "compliance": "ADA compliant"
+      }
+    }
+  ]
+}

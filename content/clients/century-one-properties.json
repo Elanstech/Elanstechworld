@@ -1,0 +1,81 @@
+{
+  "slug": "century-one-properties",
+  "name": "Century One Properties",
+  "contact": "Zarina Yusupova",
+  "industry": "Property Management",
+  "neighborhood": "",
+  "yearFirst": "2023",
+  "liveUrl": "https://centuryonemanagement.com",
+  "accent": "#007aff",
+  "featured": true,
+  "disciplines": [
+    "platform",
+    "logo",
+    "print"
+  ],
+  "headlineMetric": {
+    "value": "50+",
+    "label": "properties on one dashboard"
+  },
+  "story": {
+    "challenge": "Managing a diverse residential and commercial portfolio while keeping communication and service quality consistent.",
+    "solution": "A custom platform with tenant portal, maintenance tracking, payment processing and an owner dashboard.",
+    "impact": "Operations streamlined across 50+ properties, tenant retention up 35%, vacancy periods down 45%."
+  },
+  "testimonial": {
+    "text": "The platform has revolutionized how we operate. Managing 50+ properties used to be overwhelming, but now everything is centralized. Exceptional work!",
+    "author": "Property Manager",
+    "role": "Century One Properties",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "platform",
+      "title": "Property management platform",
+      "year": "2023",
+      "duration": "10 weeks",
+      "liveUrl": "https://centuryonemanagement.com",
+      "tags": [
+        "Tenant Portal",
+        "Payments",
+        "Owner Dashboard"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Stripe",
+        "AWS"
+      ],
+      "images": [
+        "/assets/images/centuryhero.jpeg",
+        "/assets/images/centuryprop.jpeg",
+        "/assets/images/centuryservices.jpeg",
+        "/assets/images/centuryservpage.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2024",
+      "images": [
+        "/assets/logos/century-one-logo.png"
+      ],
+      "todo": "Re-host: was hotlinked from centuryonemanagement.com/logo1.png"
+    },
+    {
+      "discipline": "print",
+      "title": "Letterhead & stationery",
+      "year": "2024",
+      "images": [
+        "/assets/materials/centuryletter.jpg"
+      ],
+      "specs": {
+        "size": "8.5\" x 11\"",
+        "paper": "24lb premium bond",
+        "finish": "Linen texture"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "cohen-associates",
+  "name": "Cohen & Associates",
+  "contact": "Oksana & Steve",
+  "industry": "Legal Services",
+  "neighborhood": "",
+  "yearFirst": "2024",
+  "liveUrl": "https://cohen-associates.com",
+  "accent": "#4da3ff",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "print",
+    "promo"
+  ],
+  "headlineMetric": {
+    "value": "190%",
+    "label": "more consultation requests"
+  },
+  "story": {
+    "challenge": "Projecting authority and trust while implementing bank-level security for client communications.",
+    "solution": "A sophisticated site with a secure client portal — encrypted messaging and document sharing.",
+    "impact": "Consultation requests up 190%, communication efficiency up 70%, time spent on inquiries down 50%."
+  },
+  "testimonial": {
+    "text": "Elan delivered exactly what we needed - a professional website that conveys our expertise while providing secure communication tools. Our consultation requests have nearly doubled!",
+    "author": "Senior Partner",
+    "role": "Cohen & Associates",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Cohen & Associates website & client portal",
+      "year": "2024",
+      "duration": "12 weeks",
+      "liveUrl": "https://cohen-associates.com",
+      "tags": [
+        "Legal",
+        "Security",
+        "Portal"
+      ],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "SSL Encryption",
+        "Clio Integration"
+      ],
+      "images": [
+        "/assets/images/cohenhero.jpeg",
+        "/assets/images/cohenabout.jpeg",
+        "/assets/images/cohenservices.jpeg",
+        "/assets/images/cohenreviews.jpeg"
+      ]
+    },
+    {
+      "discipline": "print",
+      "title": "Business cards",
+      "year": "2024",
+      "images": [
+        "/assets/materials/cohencard.jpeg",
+        "/assets/materials/cohencardback.jpeg"
+      ],
+      "specs": {
+        "size": "3.5\" x 2\"",
+        "paper": "32pt ultra-thick",
+        "finish": "Matte with navy edge painting"
+      }
+    },
+    {
+      "discipline": "promo",
+      "title": "Engraved metal pens",
+      "year": "2024",
+      "images": [
+        "/assets/materials/cohenpen.jpeg"
+      ],
+      "specs": {
+        "material": "Brushed metal",
+        "branding": "Laser engraved",
+        "packaging": "Individual gift boxes"
+      }
+    },
+    {
+      "discipline": "promo",
+      "title": "Branded mugs",
+      "year": "2024",
+      "images": [
+        "/assets/materials/cohenfront.jpeg",
+        "/assets/materials/cohenback.jpeg"
+      ],
+      "specs": {
+        "capacity": "14 oz",
+        "material": "Ceramic",
+        "features": "Microwave & dishwasher safe"
+      }
+    },
+    {
+      "discipline": "promo",
+      "title": "Branded mouse pads",
+      "year": "2024",
+      "images": [
+        "/assets/materials/cohenmousepad.jpeg"
+      ],
+      "specs": {
+        "size": "9\" x 7.5\"",
+        "material": "Fabric top, rubber base",
+        "thickness": "3mm"
+      }
+    }
+  ]
+}

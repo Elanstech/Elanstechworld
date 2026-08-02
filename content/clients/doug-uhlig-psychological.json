@@ -1,0 +1,70 @@
+{
+  "slug": "doug-uhlig-psychological",
+  "name": "Doug Uhlig Psychological Services",
+  "contact": "Douglas Uhlig, Ph.D.",
+  "industry": "Psychology Practice",
+  "neighborhood": "",
+  "yearFirst": "2023",
+  "liveUrl": "https://dougpsychassociates.com",
+  "accent": "#4da3ff",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "print"
+  ],
+  "headlineMetric": {
+    "value": "625",
+    "label": "new clients in year one"
+  },
+  "story": {
+    "challenge": "Balancing user experience against strict HIPAA requirements while adding telehealth.",
+    "solution": "A HIPAA-compliant platform with end-to-end encryption, secure patient portal and integrated video sessions.",
+    "impact": "625 new clients in year one, full HIPAA compliance, patient satisfaction up 85%, admin work down 60%."
+  },
+  "testimonial": {
+    "text": "As a psychology practice, HIPAA compliance is absolutely critical. Elan delivered a secure, professional website with a patient portal that meets all requirements. The marketing campaign brought in 625 new clients in our first year!",
+    "author": "Douglas Uhlig, Ph.D.",
+    "role": "Doug Uhlig Psychological Services",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "HIPAA-compliant practice platform",
+      "year": "2023",
+      "duration": "12 weeks",
+      "liveUrl": "https://dougpsychassociates.com",
+      "tags": [
+        "HIPAA",
+        "Telehealth",
+        "Patient Portal"
+      ],
+      "technologies": [
+        "WordPress",
+        "PHP",
+        "MySQL",
+        "Zoom Healthcare API"
+      ],
+      "images": [
+        "/assets/images/doughero.jpeg",
+        "/assets/images/dougabout.jpeg",
+        "/assets/images/dougteam.jpeg",
+        "/assets/images/dougservices.jpeg"
+      ]
+    },
+    {
+      "discipline": "print",
+      "title": "Business cards",
+      "year": "2023",
+      "images": [
+        "/assets/signs/dougbusinesscard.jpeg"
+      ],
+      "specs": {
+        "size": "3.5\" x 2\"",
+        "paper": "16pt silk laminated",
+        "finish": "Matte lamination"
+      }
+    }
+  ]
+}

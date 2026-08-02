@@ -1,0 +1,44 @@
+{
+  "slug": "park-city-34",
+  "name": "Park City 3&4",
+  "contact": "David Javidan",
+  "industry": "Property Management",
+  "neighborhood": "",
+  "yearFirst": "2026",
+  "liveUrl": "https://parkcity34.com",
+  "accent": "#FF8C42",
+  "featured": true,
+  "disciplines": [
+    "platform"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "Residents needed one place for building information, amenities and requests instead of scattered emails and paper notices.",
+    "solution": "A custom property platform with a resident portal, amenity guides, maintenance tracking and building communications.",
+    "impact": ""
+  },
+  "testimonial": null,
+  "status": "live",
+  "work": [
+    {
+      "discipline": "platform",
+      "title": "Park City 3&4 resident platform",
+      "year": "2026",
+      "duration": "14 weeks",
+      "liveUrl": "https://parkcity34.com",
+      "tags": [
+        "Property Management",
+        "Portal",
+        "Automation"
+      ],
+      "images": [
+        "/assets/images/parkhero.jpeg",
+        "/assets/images/parkguides.jpeg",
+        "/assets/images/parkamentiesfront.jpeg",
+        "/assets/images/parkamenties.jpeg",
+        "/assets/images/parkcom.jpeg",
+        "/assets/images/parkfooter.jpeg"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "east-coast-realty",
+  "name": "East Coast Realty by Zarina",
+  "contact": "Zarina Yusupova",
+  "industry": "Real Estate",
+  "neighborhood": "",
+  "yearFirst": "2020",
+  "liveUrl": "https://www.eastcoastrealtybyzarina.com",
+  "accent": "#007aff",
+  "featured": false,
+  "disciplines": [
+    "website",
+    "logo"
+  ],
+  "headlineMetric": {
+    "value": "450+",
+    "label": "qualified leads in six months"
+  },
+  "story": {
+    "challenge": "Standing out in real estate while integrating with MLS systems for real-time listings.",
+    "solution": "Custom IDX integration with advanced property search and smart lead capture.",
+    "impact": "450+ qualified leads in the first six months, traffic up 320%, 15+ first-page keywords, cost per lead down 55%."
+  },
+  "testimonial": {
+    "text": "Elan created a real estate website that truly represents my brand. The IDX integration works flawlessly, and we've generated over 450 qualified leads in the first six months!",
+    "author": "Zarina Yusupova",
+    "role": "Owner, East Coast Realty",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "East Coast Realty website",
+      "year": "2022",
+      "duration": "10 weeks",
+      "liveUrl": "https://www.eastcoastrealtybyzarina.com",
+      "tags": [
+        "IDX",
+        "Lead Generation",
+        "Real Estate"
+      ],
+      "technologies": [
+        "WordPress",
+        "IDX Broker",
+        "Google Maps API",
+        "HubSpot CRM"
+      ],
+      "images": [
+        "/assets/images/zarinahero.jpeg",
+        "/assets/images/zarinaprop.jpeg",
+        "/assets/images/zarinacalc.jpeg",
+        "/assets/images/zarinaabout.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2020",
+      "images": [
+        "/assets/logos/eastlogo.jpeg"
+      ]
+    }
+  ]
+}

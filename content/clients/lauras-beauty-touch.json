@@ -1,0 +1,124 @@
+{
+  "slug": "lauras-beauty-touch",
+  "name": "Laura's Beauty Touch",
+  "contact": "Laura Sholomov",
+  "industry": "Beauty Salon",
+  "neighborhood": "Rego Park, Queens",
+  "yearFirst": "2025",
+  "liveUrl": "https://www.laurasbeautytouch.com",
+  "accent": "#FFB482",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "logo",
+    "print",
+    "signage",
+    "ads"
+  ],
+  "headlineMetric": {
+    "value": "180%",
+    "label": "increase in bookings"
+  },
+  "story": {
+    "challenge": "Standing out in a saturated beauty market while conveying the premium experience of the physical salon.",
+    "solution": "A visually rich website with professional photography, plus Google Ads targeting affluent local demographics — then brochure, price list and illuminated storefront sign to match.",
+    "impact": "Bookings up 180%, average transaction value up 40%, and a 4.8/5 Google rating. The storefront sign alone lifted walk-ins 65%."
+  },
+  "testimonial": {
+    "text": "Working with Elan was seamless. They understood our vision and delivered a stunning website that perfectly represents our brand. The Google Ads campaign has been incredibly effective!",
+    "author": "Laura Sholomov",
+    "role": "Owner, Laura's Beauty Touch",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Laura's Beauty Touch website",
+      "year": "2025",
+      "duration": "6 weeks",
+      "liveUrl": "https://www.laurasbeautytouch.com",
+      "tags": [
+        "Google Ads",
+        "Booking System",
+        "Branding"
+      ],
+      "technologies": [
+        "WordPress",
+        "Elementor Pro",
+        "Google Ads"
+      ],
+      "images": [
+        "/assets/images/laurashero.jpeg",
+        "/assets/images/laurasmenu.jpeg",
+        "/assets/images/laurasfacial.jpeg",
+        "/assets/images/laurasgallary.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2025",
+      "images": [
+        "/assets/logos/lauraslogo.jpg"
+      ]
+    },
+    {
+      "discipline": "print",
+      "title": "Service brochure",
+      "year": "2025",
+      "images": [
+        "/assets/materials/laurasbrouchre.jpeg",
+        "/assets/materials/laurainside.jpeg"
+      ],
+      "metric": {
+        "value": "78%",
+        "label": "of recipients booked"
+      },
+      "specs": {
+        "format": "Tri-fold",
+        "size": "8.5\" x 11\"",
+        "paper": "100lb gloss cover",
+        "finish": "Matte lamination"
+      }
+    },
+    {
+      "discipline": "print",
+      "title": "Service price list",
+      "year": "2025",
+      "images": [
+        "/assets/signs/pricelist.jpeg",
+        "/assets/signs/pricelistside.jpeg"
+      ],
+      "metric": {
+        "value": "35%",
+        "label": "higher average transaction"
+      },
+      "specs": {
+        "format": "8-page booklet",
+        "size": "5.5\" x 8.5\"",
+        "paper": "100lb silk text",
+        "binding": "Saddle-stitch"
+      }
+    },
+    {
+      "discipline": "signage",
+      "title": "Illuminated storefront sign",
+      "year": "2025",
+      "images": [
+        "/assets/signs/laurasign.jpeg"
+      ],
+      "metric": {
+        "value": "65%",
+        "label": "increase in walk-ins"
+      },
+      "specs": {
+        "size": "10ft x 2.5ft",
+        "material": "Aluminium with LED",
+        "lighting": "Warm white halo",
+        "finish": "Gold-tone metallic",
+        "permits": "Handled"
+      }
+    }
+  ]
+}

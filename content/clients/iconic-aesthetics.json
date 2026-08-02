@@ -1,0 +1,58 @@
+{
+  "slug": "iconic-aesthetics",
+  "name": "Iconic Aesthetics",
+  "contact": "Ilanit Sholomov",
+  "industry": "Beauty & Wellness",
+  "neighborhood": "",
+  "yearFirst": "2022",
+  "liveUrl": "https://theiconicaesthetic.com",
+  "accent": "#FF8C42",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "pos"
+  ],
+  "headlineMetric": {
+    "value": "145%",
+    "label": "more online bookings"
+  },
+  "story": {
+    "challenge": "Losing clients to competitors with better online booking. Manual scheduling was slow and error-prone.",
+    "solution": "A custom site with real-time booking sync, automated reminders and Square POS integration.",
+    "impact": "Online bookings up 145% within three months, 8 hours saved per week, admin time down 70%, 4.9/5 customer satisfaction."
+  },
+  "testimonial": {
+    "text": "Elan transformed our entire digital presence. The integrated booking system alone has saved us countless hours and our online bookings increased by 145%. Absolutely phenomenal work!",
+    "author": "Ilanit Sholomov",
+    "role": "Owner, Iconic Aesthetics",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Iconic Aesthetics website & POS",
+      "year": "2022",
+      "duration": "8 weeks",
+      "liveUrl": "https://theiconicaesthetic.com",
+      "tags": [
+        "POS System",
+        "Booking System",
+        "SEO"
+      ],
+      "technologies": [
+        "WordPress",
+        "WooCommerce",
+        "Square API",
+        "Mailchimp"
+      ],
+      "images": [
+        "/assets/images/iconichero.jpeg",
+        "/assets/images/iconicabout.jpeg",
+        "/assets/images/iconicservice.jpeg",
+        "/assets/images/iconicfaq.jpeg",
+        "/assets/images/iconiccontact.jpeg"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "slug": "evia-aesthetics",
+  "name": "Evia Aesthetics",
+  "contact": "Dr. Evia Nano, MD",
+  "industry": "Medical Aesthetics",
+  "neighborhood": "",
+  "yearFirst": "2023",
+  "liveUrl": "https://www.eviaesthetics.com",
+  "accent": "#E8651A",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "logo",
+    "print",
+    "signage"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "Balancing clinical credibility with the luxury experience aesthetics clients expect, while meeting healthcare compliance standards.",
+    "solution": "A conversion-optimized platform with intuitive service navigation, before-and-after galleries and integrated booking — then the full physical brand system around it.",
+    "impact": "Elevated the practice's presence to match its premium positioning and established authority in the competitive NYC medical aesthetics market."
+  },
+  "testimonial": {
+    "text": "Elan understood exactly what my practice needed — a website that feels as premium as the experience I provide my patients. The result exceeded my expectations.",
+    "author": "Dr. Evia Nano, MD",
+    "role": "Founder, Evia Aesthetics",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Evia Aesthetics website",
+      "year": "2025",
+      "duration": "8 weeks",
+      "liveUrl": "https://www.eviaesthetics.com",
+      "tags": [
+        "Booking System",
+        "SEO",
+        "Healthcare"
+      ],
+      "technologies": [
+        "WordPress",
+        "Custom Theme",
+        "Booking API",
+        "Google Analytics"
+      ],
+      "images": [
+        "/assets/images/eviahero.jpeg",
+        "/assets/images/eviapabout.jpeg",
+        "/assets/images/eviaservices.jpeg",
+        "/assets/images/eviasocial.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2025",
+      "images": [
+        "/assets/logos/evia.jpg",
+        "/assets/logos/evia2.jpg"
+      ]
+    },
+    {
+      "discipline": "print",
+      "title": "Gold foil business cards",
+      "year": "2025",
+      "images": [
+        "/assets/materials/eviabusiness.jpeg",
+        "/assets/materials/eviabusinessback.jpeg"
+      ],
+      "specs": {
+        "size": "3.5\" x 2\"",
+        "paper": "32pt ultra-thick",
+        "finish": "Soft-touch matte with hot-stamped gold foil"
+      }
+    },
+    {
+      "discipline": "print",
+      "title": "IV therapy menu brochure",
+      "year": "2025",
+      "images": [
+        "/assets/materials/eviabrouchersout.jpeg",
+        "/assets/materials/eviabroucherin.jpeg"
+      ],
+      "specs": {
+        "format": "Tri-fold",
+        "size": "8.5\" x 11\"",
+        "paper": "100lb gloss cover",
+        "finish": "Matte lamination"
+      }
+    },
+    {
+      "discipline": "print",
+      "title": "Gift vouchers & envelopes",
+      "year": "2025",
+      "images": [
+        "/assets/materials/eviavoucher.jpeg",
+        "/assets/materials/eviavoucherback.jpeg"
+      ],
+      "specs": {
+        "size": "9\" x 4\"",
+        "paper": "120lb cardstock",
+        "finish": "Matte with spot UV",
+        "features": "Sequential numbering, matching envelope"
+      }
+    },
+    {
+      "discipline": "promo",
+      "title": "Branded VIP notebook",
+      "year": "2025",
+      "images": [
+        "/assets/materials/evianotebook.jpeg",
+        "/assets/materials/evianoteinside.jpeg",
+        "/assets/materials/evianotebookback.jpeg"
+      ],
+      "specs": {
+        "size": "5\" x 8.25\"",
+        "pages": "192 lined",
+        "material": "Hardcover, soft-touch",
+        "features": "Foil stamped, ribbon bookmark"
+      }
+    },
+    {
+      "discipline": "print",
+      "title": "Event flyer",
+      "year": "2025",
+      "images": [
+        "/assets/materials/eviaevent.jpg"
+      ],
+      "specs": {
+        "size": "8.5\" x 11\"",
+        "paper": "100lb gloss cover",
+        "finish": "UV coating"
+      }
+    },
+    {
+      "discipline": "signage",
+      "title": "Retractable expo banner",
+      "year": "2023",
+      "images": [
+        "/assets/signs/eviabanner.jpeg",
+        "/assets/signs/eviabannerside.jpeg"
+      ],
+      "specs": {
+        "size": "33\" x 79\"",
+        "material": "Premium vinyl",
+        "stand": "Retractable aluminium",
+        "finish": "Matte anti-glare"
+      }
+    },
+    {
+      "discipline": "signage",
+      "title": "LED QR code stand",
+      "year": "2023",
+      "images": [
+        "/assets/signs/eviastand1.jpeg",
+        "/assets/signs/eviastand.jpeg"
+      ],
+      "metric": {
+        "value": "85%",
+        "label": "digital menu engagement"
+      },
+      "specs": {
+        "size": "8\" x 10\" display",
+        "material": "Clear acrylic, LED base",
+        "lighting": "RGB edge-lit",
+        "power": "USB rechargeable"
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "s-cream",
+  "name": "S-Cream",
+  "contact": "S-Cream Team",
+  "industry": "Product Launch",
+  "neighborhood": "",
+  "yearFirst": "2022",
+  "liveUrl": "https://getscream.com",
+  "accent": "#FFB482",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "logo",
+    "packaging"
+  ],
+  "headlineMetric": {
+    "value": "14 days",
+    "label": "to sell out launch inventory"
+  },
+  "story": {
+    "challenge": "Launching a new product into a competitive market with zero brand recognition.",
+    "solution": "A conversion-optimized store with strong product storytelling, plus brand identity, packaging and a targeted launch campaign.",
+    "impact": "Initial inventory sold out in two weeks, 1,200+ pre-launch email subscribers, 8.5% conversion rate, 5,000+ social followers."
+  },
+  "testimonial": {
+    "text": "Elan turned our product launch into a huge success. We sold out our initial inventory in just two weeks. The e-commerce platform makes managing orders incredibly easy!",
+    "author": "Founder",
+    "role": "S-Cream",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "S-Cream launch store",
+      "year": "2022",
+      "duration": "6 weeks",
+      "liveUrl": "https://getscream.com",
+      "tags": [
+        "E-commerce",
+        "Launch",
+        "Marketing"
+      ],
+      "technologies": [
+        "Shopify",
+        "Klaviyo",
+        "Instagram Shopping",
+        "Google Ads"
+      ],
+      "images": [
+        "/assets/images/screamhero.jpeg",
+        "/assets/images/screaming.jpeg",
+        "/assets/images/screamproof.jpeg",
+        "/assets/images/screamgraph.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity & packaging",
+      "year": "2022",
+      "images": [
+        "/assets/logos/screamlogo.jpg"
+      ]
+    }
+  ]
+}

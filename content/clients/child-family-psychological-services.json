@@ -1,0 +1,64 @@
+{
+  "slug": "child-family-psychological-services",
+  "name": "Child & Family Psychological Services",
+  "contact": "Kristie Doheny",
+  "industry": "Psychology Practice",
+  "neighborhood": "",
+  "yearFirst": "2026",
+  "liveUrl": "https://www.childandfamilypsychservices.com",
+  "accent": "#4da3ff",
+  "featured": true,
+  "disciplines": [
+    "website",
+    "logo"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "Appealing to parents seeking help for their children while reducing the stigma of seeking psychological services.",
+    "solution": "A friendly but professional platform with calming aesthetics, age-segmented service navigation, integrated scheduling and family education resources.",
+    "impact": "New patient inquiries increased and the practice established itself as a trusted community resource."
+  },
+  "testimonial": {
+    "text": "Elan created a website that makes families feel comfortable and safe reaching out for help. It's professional but not intimidating, which is exactly what our practice needed.",
+    "author": "Kristie Doheny",
+    "role": "Owner, Child & Family Psychological Services",
+    "rating": 5
+  },
+  "status": "live",
+  "work": [
+    {
+      "discipline": "website",
+      "title": "Child & Family Psychological Services website",
+      "year": "2026",
+      "duration": "8 weeks",
+      "liveUrl": "https://www.childandfamilypsychservices.com",
+      "tags": [
+        "Healthcare",
+        "Scheduling",
+        "SEO"
+      ],
+      "technologies": [
+        "WordPress",
+        "Custom Theme",
+        "Scheduling API"
+      ],
+      "images": [
+        "/assets/images/cfpshero.jpeg",
+        "/assets/images/cfpsabout.jpeg",
+        "/assets/images/cfpsservices.jpeg",
+        "/assets/images/cfpsteams.jpeg",
+        "/assets/images/cfpsmodal.jpeg",
+        "/assets/images/cfpsteammodal.jpeg",
+        "/assets/images/cfpsfooter.jpeg"
+      ]
+    },
+    {
+      "discipline": "logo",
+      "title": "Brand identity",
+      "year": "2025",
+      "images": [
+        "/assets/logos/childlogo.jpg"
+      ]
+    }
+  ]
+}
