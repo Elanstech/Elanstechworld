@@ -1,0 +1,187 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Elan's Tech World — content manager
+# ---------------------------------------------------------------------------
+# One file per client in /content/clients/. Adding a new project = "New Client"
+# button, or open an existing client and add a row to their Work list.
+# ---------------------------------------------------------------------------
+
+backend:
+  name: github
+  repo: OWNER/REPO # ← change to your GitHub owner/repo
+  branch: main
+  # Points at the OAuth client running as Vercel functions in this same repo.
+  base_url: https://www.elanstechworld.com
+
+site_url: https://www.elanstechworld.com
+display_url: https://www.elanstechworld.com
+logo_url: https://www.elanstechworld.com/assets/images/Elanslogo.jpeg
+
+# Images uploaded in the CMS land here and are referenced root-absolute,
+# so they resolve from any folder depth.
+media_folder: assets/portfolio
+public_folder: /assets/portfolio
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+collections:
+  - name: clients
+    label: Clients
+    label_singular: Client
+    description: One entry per client. All of their work lives inside the entry.
+    folder: content/clients
+    create: true
+    extension: json
+    format: json
+    identifier_field: name
+    slug: '{{fields.slug}}'
+    summary: '{{name}} — {{industry}}'
+    sortable_fields: [name, yearFirst, industry]
+    view_groups:
+      - label: Industry
+        field: industry
+    fields:
+      - label: Client name
+        name: name
+        widget: string
+        hint: Shown on the portfolio index and used as the page title.
+
+      - label: URL slug
+        name: slug
+        widget: string
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Lowercase letters, numbers and hyphens only']
+        hint: Becomes /portfolio/<slug>.html — do not change once published, it breaks links and rankings.
+
+      - label: Contact name
+        name: contact
+        widget: string
+        required: false
+
+      - label: Industry
+        name: industry
+        widget: string
+        hint: 'e.g. Medical Aesthetics, Property Management'
+
+      - label: Neighborhood
+        name: neighborhood
+        widget: string
+        required: false
+        hint: 'e.g. Rego Park, Queens. Leave blank if unknown — do not guess.'
+
+      - label: First year of work
+        name: yearFirst
+        widget: string
+        pattern: ['^\d{4}$', 'Four digits']
+
+      - label: Live URL
+        name: liveUrl
+        widget: string
+        required: false
+        hint: Used for the scrolling screenshot. Leave blank if the site is not live yet.
+
+      - label: Accent colour
+        name: accent
+        widget: color
+        required: false
+        default: '#2B4BDF'
+
+      - label: Feature on the index
+        name: featured
+        widget: boolean
+        default: false
+
+      - label: Status
+        name: status
+        widget: select
+        default: live
+        options:
+          - { label: Live, value: live }
+          - { label: In progress, value: in-progress }
+          - { label: Archived, value: archived }
+
+      - label: Disciplines delivered
+        name: disciplines
+        widget: select
+        multiple: true
+        options: [website, platform, logo, print, signage, promo, packaging, pos, ads]
+        hint: Drives the discipline tags on the index row.
+
+      - label: Headline metric
+        name: headlineMetric
+        widget: object
+        required: false
+        collapsed: true
+        hint: Only real, verifiable numbers. Leave the whole thing empty rather than writing "Premium" or "Seamless".
+        fields:
+          - { label: Value, name: value, widget: string, required: false, hint: 'e.g. 145%, $12K, 625' }
+          - { label: Label, name: label, widget: string, required: false, hint: 'e.g. more online bookings' }
+
+      - label: Story
+        name: story
+        widget: object
+        collapsed: false
+        fields:
+          - { label: Challenge, name: challenge, widget: text }
+          - { label: Solution, name: solution, widget: text }
+          - { label: Impact, name: impact, widget: text, required: false }
+
+      - label: Testimonial
+        name: testimonial
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { label: Quote, name: text, widget: text, required: false }
+          - { label: Author, name: author, widget: string, required: false }
+          - { label: Role, name: role, widget: string, required: false }
+          - { label: Rating, name: rating, widget: number, required: false, value_type: int, min: 1, max: 5, default: 5 }
+
+      - label: Work
+        name: work
+        widget: list
+        label_singular: Piece of work
+        summary: '{{fields.title}} ({{fields.discipline}}, {{fields.year}})'
+        collapsed: true
+        fields:
+          - { label: Title, name: title, widget: string }
+          - label: Discipline
+            name: discipline
+            widget: select
+            options: [website, platform, logo, print, signage, promo, packaging, pos, ads]
+          - { label: Year, name: year, widget: string, pattern: ['^\d{4}$', 'Four digits'] }
+          - { label: Duration, name: duration, widget: string, required: false, hint: 'e.g. 8 weeks' }
+          - { label: Live URL, name: liveUrl, widget: string, required: false }
+          - label: Images
+            name: images
+            widget: list
+            required: false
+            field: { label: Image, name: image, widget: image }
+          - label: Tags
+            name: tags
+            widget: list
+            required: false
+            field: { label: Tag, name: tag, widget: string }
+          - label: Technologies
+            name: technologies
+            widget: list
+            required: false
+            field: { label: Technology, name: tech, widget: string }
+          - label: Specs
+            name: specs
+            widget: keyvalue
+            required: false
+            key_label: Spec
+            value_label: Detail
+            hint: 'Print and signage details — size, paper, finish, mounting.'
+          - label: Metric
+            name: metric
+            widget: object
+            required: false
+            collapsed: true
+            fields:
+              - { label: Value, name: value, widget: string, required: false }
+              - { label: Label, name: label, widget: string, required: false }
+          - { label: Internal note, name: todo, widget: string, required: false, hint: 'Reminders to yourself. Not rendered on the site.' }
