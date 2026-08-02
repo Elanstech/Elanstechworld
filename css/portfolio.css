@@ -17,7 +17,7 @@
    ═══════════════════════════════════════════════════════════════════════ */
 
 body[data-page='portfolio'] {
-    background: #070C1E;
+    background: #101B3C;
     color: var(--paper);
 }
 
@@ -77,7 +77,7 @@ body[data-page='portfolio'] .header:not(.is-scrolled) .header-cta::before {
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: #070C1E;
+    background: #101B3C;
 }
 
 .cine-open-glow {
@@ -278,7 +278,7 @@ body[data-page='portfolio'] .header:not(.is-scrolled) .header-cta::before {
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: #070C1E;
+    background: #101B3C;
     border-top: 1px solid rgba(196, 174, 126, .16);
     will-change: transform;
 }
@@ -292,7 +292,7 @@ body[data-page='portfolio'] .header:not(.is-scrolled) .header-cta::before {
         radial-gradient(closest-side circle at 74% 34%, color-mix(in srgb, var(--accent) 55%, transparent), transparent 72%),
         radial-gradient(closest-side circle at 12% 82%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 72%);
     filter: blur(40px);
-    opacity: .5;
+    opacity: .78;
 }
 
 .cine-inner {
@@ -574,7 +574,7 @@ body[data-page='portfolio-client'] {
 
 .cw-hero {
     position: relative;
-    background: #070C1E;
+    background: #101B3C;
     color: var(--paper);
     padding-block: calc(var(--head-h) + clamp(34px, 7vh, 80px)) clamp(40px, 7vh, 80px);
     overflow: hidden;
@@ -847,23 +847,79 @@ body[data-page='portfolio-client'] {
     margin-right: 4px;
 }
 
+/* Uniform tiles. Source images are wildly different shapes — a square logo,
+   a tall brochure, a 10ft storefront sign — so every one gets the same frame
+   and is contained inside it rather than stretched or cropped. */
 .cw-shots {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-    gap: 12px;
-    margin-bottom: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
 .cw-shots img {
     width: 100%;
-    border-radius: 12px;
+    height: clamp(180px, 22vw, 260px);
+    object-fit: contain;
+    object-position: center;
+    padding: 14px;
+    border-radius: 14px;
     border: 1px solid var(--line);
     background: #fff;
-    transition: transform .5s var(--ease);
+    cursor: zoom-in;
+    transition:
+        transform .5s var(--ease),
+        box-shadow .5s var(--ease);
 }
 
 .cw-shots img:hover {
-    transform: scale(1.02);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 44px rgba(14, 27, 61, .16);
+}
+
+/* click any image to see it full size */
+.cw-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: grid;
+    place-items: center;
+    padding: clamp(16px, 4vw, 60px);
+    background: rgba(7, 12, 30, .93);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .35s var(--ease);
+    cursor: zoom-out;
+}
+
+.cw-lightbox.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cw-lightbox img {
+    max-width: 100%;
+    max-height: 88vh;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, .5);
+}
+
+.cw-lightbox-close {
+    position: absolute;
+    top: clamp(14px, 3vw, 30px);
+    right: clamp(14px, 3vw, 30px);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 174, 126, .4);
+    color: var(--paper);
+    font-size: 20px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
 }
 
 .cw-specs {
@@ -906,7 +962,7 @@ body[data-page='portfolio-client'] {
 }
 
 .cw-quote {
-    background: #070C1E;
+    background: #101B3C;
     color: var(--paper);
     border-radius: var(--r-lg);
     margin-inline: clamp(8px, 1.2vw, 18px);
