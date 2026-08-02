@@ -1,0 +1,42 @@
+{
+  "name": "NEW CLINET",
+  "slug": "1233",
+  "contact": "",
+  "industry": "HEDE",
+  "neighborhood": "",
+  "yearFirst": "1223",
+  "liveUrl": "",
+  "accent": "",
+  "featured": true,
+  "status": "live",
+  "disciplines": [
+    "website"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "HELLO",
+    "solution": "HELLO",
+    "impact": ""
+  },
+  "testimonial": {
+    "text": "",
+    "author": "",
+    "role": "",
+    "rating": 5
+  },
+  "work": [
+    {
+      "title": "EEE",
+      "discipline": "packaging",
+      "year": "1223",
+      "duration": "",
+      "liveUrl": "",
+      "images": [],
+      "tags": [],
+      "technologies": [],
+      "metric": null,
+      "todo": "",
+      "specs": null
+    }
+  ]
+}
