@@ -22,6 +22,12 @@
      MobileMenu     — burger overlay
      FooterWord     — wordmark parallax
      App            — boots everything
+
+   CHANGED 2026-08-01 — two guards in HeroIntro so pages without a hero
+   section (the portfolio index and client pages) don't throw. Without them,
+   HeroIntro tried to animate elements that don't exist, the error killed the
+   rest of App's constructor, and Reveals never ran — leaving those pages
+   blank. Marked with "GUARD" below. No effect on pages that have a hero.
    ═══════════════════════════════════════════════════════════════════════ */
 
 const Env = {
@@ -127,6 +133,11 @@ class HeroIntro {
     }
 
     play() {
+        /* GUARD — no split headline on this page, so there is nothing to
+           animate. Without this the timeline below targets null and throws,
+           which stops App's constructor before Reveals ever runs. */
+        if (!this.chars.length) return;
+
         const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
 
         tl.to(this.chars, { yPercent: 0, rotate: 0, duration: 1.3, stagger: 0.045 })
@@ -175,7 +186,10 @@ class HeroIntro {
     }
 
     bindParallax() {
-        if (Env.RM) return;
+        /* GUARD — only build the scroll parallax when both the trigger and
+           the target actually exist on this page. */
+        if (Env.RM || !q('#hero') || !q('.hero-content')) return;
+
         gsap.to('.hero-content', {
             yPercent: -12,
             autoAlpha: 0.25,
