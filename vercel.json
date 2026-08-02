@@ -1,5 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/pages/projects.html", "destination": "/portfolio/", "permanent": true },
+    { "source": "/portfolio/index.html", "destination": "/portfolio/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/auth", "destination": "/api/auth" },
     { "source": "/callback", "destination": "/api/callback" }
@@ -15,13 +19,19 @@
       ]
     },
     {
+      "source": "/assets/captures/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=86400" }
+      ]
+    },
+    {
       "source": "/admin/:path*",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
         { "key": "X-Frame-Options", "value": "DENY" },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; connect-src 'self' https://api.github.com https://github.com https://unpkg.com https://raw.githubusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://github.com"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.github.com https://github.com https://unpkg.com https://raw.githubusercontent.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://github.com"
         }
       ]
     },
