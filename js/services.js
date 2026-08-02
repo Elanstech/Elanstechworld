@@ -1,12 +1,17 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    ELAN'S TECH WORLD — SERVICES PAGE (ES6)
    ─────────────────────────────────────────────────────────────────────────
+   Full drop-in replacement for js/services.js.
+
    Loads after ../js/script.js and reuses its globals (Env, q, qa, gsap,
    ScrollTrigger). Wrapped in an IIFE so nothing here collides with the
    shared script's top-level declarations.
 
    Modules:
-     SmokeFX          — live canvas smoke in the hero (the showpiece)
+     HeroField        — animated dot-field + colour wash behind the hero
+     CraftIndex       — the live six-craft index (auto-advances, tints the field)
+     KineticType      — headline characters lift toward the cursor
+     NycClock         — live New York time in the hero meta strip
      ChapterNav       — sticky sub-nav scrollspy with sliding indicator
      SeoRing          — SEO score ring + number fill (web chapter)
      ChartDraw        — marketing chart line draw-in
@@ -21,170 +26,329 @@
 (() => {
     'use strict';
 
+    /* how long each craft stays lit in the hero index */
+    const DWELL = 3600;
+
 
     /* ═══════════════════════════════════════════════════════════════════
-       SMOKE FX — soft royal/hermès smoke drifting through the ink hero
+       HERO FIELD — a slow colour wash under a reactive dot matrix
        ═══════════════════════════════════════════════════════════════════ */
 
-    class SmokeFX {
+    class HeroField {
         constructor() {
-            this.canvas = q('#smokeCanvas');
+            this.canvas = q('#srvField');
             if (!this.canvas) return;
 
+            this.ok = true;
             this.ctx = this.canvas.getContext('2d');
-            this.particles = [];
+            this.host = this.canvas.parentElement;
+            this.pointer = { x: 0, y: 0, on: false };
+            this.tint = [43, 75, 223];
+            this.target = [43, 75, 223];
+            this.t = 0;
             this.running = true;
-            this.pointer = { x: -1, y: -1 };
 
-            /* fewer particles on touch devices, none in reduced motion */
-            this.MAX = Env.TOUCH ? 26 : 46;
+            this.resize();
+            window.addEventListener('resize', () => this.resize());
 
             if (Env.RM) {
-                this.resize();
-                this.paintStill();
+                this.paint(true);
                 return;
             }
 
-            this.sprites = this.makeSprites();
-            this.resize();
-            this.seed();
             this.bind();
             this.loop();
         }
 
-        /* pre-rendered soft radial sprites — far cheaper than per-frame blur */
-        makeSprites() {
-            const colors = [
-                [43, 75, 223],    /* royal */
-                [243, 112, 33],   /* hermès */
-                [196, 174, 126],  /* gold */
-            ];
-
-            return colors.map(([r, g, b]) => {
-                const size = 260;
-                const c = document.createElement('canvas');
-                c.width = size;
-                c.height = size;
-                const cx = c.getContext('2d');
-                const grad = cx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-                grad.addColorStop(0, `rgba(${r},${g},${b},.55)`);
-                grad.addColorStop(.45, `rgba(${r},${g},${b},.18)`);
-                grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
-                cx.fillStyle = grad;
-                cx.fillRect(0, 0, size, size);
-                return c;
-            });
+        /* called by CraftIndex — "43,75,223" */
+        setAccent(rgb) {
+            if (!this.ok) return;
+            const parts = String(rgb).split(',').map(Number);
+            if (parts.length === 3 && parts.every((n) => !Number.isNaN(n))) this.target = parts;
         }
 
         resize() {
-            const rect = this.canvas.parentElement.getBoundingClientRect();
-            /* half-resolution buffer keeps it silky and soft */
-            this.w = this.canvas.width = Math.max(1, rect.width * 0.5);
-            this.h = this.canvas.height = Math.max(1, rect.height * 0.5);
-        }
+            const rect = this.host.getBoundingClientRect();
+            this.w = Math.max(1, rect.width);
+            this.h = Math.max(1, rect.height);
 
-        spawn(atPointer = false) {
-            const sprite = this.sprites[Math.floor(Math.random() * this.sprites.length)];
-            return {
-                sprite,
-                x: atPointer ? this.pointer.x : Math.random() * this.w,
-                y: atPointer ? this.pointer.y : this.h * (0.55 + Math.random() * 0.55),
-                r: 30 + Math.random() * 60,
-                growth: 0.14 + Math.random() * 0.2,
-                vx: (Math.random() - 0.5) * 0.22,
-                vy: -(0.18 + Math.random() * 0.4),
-                wobble: Math.random() * Math.PI * 2,
-                wobbleSpeed: 0.004 + Math.random() * 0.008,
-                life: 0,
-                maxLife: 420 + Math.random() * 280,
-            };
-        }
+            /* capped DPR keeps big screens cheap */
+            const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+            this.canvas.width = this.w * dpr;
+            this.canvas.height = this.h * dpr;
+            this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        seed() {
-            for (let i = 0; i < this.MAX; i += 1) {
-                const p = this.spawn();
-                p.life = Math.random() * p.maxLife; /* start mid-life so it never looks empty */
-                this.particles.push(p);
-            }
+            if (Env.RM) this.paint(true);
         }
 
         bind() {
-            window.addEventListener('resize', () => this.resize());
-
-            /* the cursor stirs the smoke */
             if (!Env.TOUCH) {
-                this.canvas.parentElement.addEventListener('mousemove', (e) => {
-                    const rect = this.canvas.getBoundingClientRect();
-                    this.pointer.x = (e.clientX - rect.left) * (this.w / rect.width);
-                    this.pointer.y = (e.clientY - rect.top) * (this.h / rect.height);
+                this.host.addEventListener('mousemove', (e) => {
+                    const r = this.host.getBoundingClientRect();
+                    this.pointer.x = e.clientX - r.left;
+                    this.pointer.y = e.clientY - r.top;
+                    this.pointer.on = true;
                 });
+                this.host.addEventListener('mouseleave', () => { this.pointer.on = false; });
             }
 
             /* stop burning frames once the hero has scrolled away */
             if (typeof IntersectionObserver !== 'undefined') {
                 new IntersectionObserver(([entry]) => {
+                    const was = this.running;
                     this.running = entry.isIntersecting;
-                    if (this.running) this.loop();
-                }).observe(this.canvas.parentElement);
+                    if (this.running && !was) this.loop();
+                }).observe(this.host);
             }
         }
 
         loop() {
             if (!this.running) return;
-
-            const { ctx } = this;
-            ctx.clearRect(0, 0, this.w, this.h);
-            ctx.globalCompositeOperation = 'lighter';
-
-            this.particles.forEach((p, i) => {
-                p.life += 1;
-                p.wobble += p.wobbleSpeed;
-                p.x += p.vx + Math.sin(p.wobble) * 0.35;
-                p.y += p.vy;
-                p.r += p.growth;
-
-                /* gentle pull toward the cursor */
-                if (this.pointer.x > 0) {
-                    const dx = this.pointer.x - p.x;
-                    const dy = this.pointer.y - p.y;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < 160 && dist > 1) {
-                        p.x += (dx / dist) * 0.5;
-                        p.y += (dy / dist) * 0.5;
-                    }
-                }
-
-                /* fade in, hold, fade out */
-                const t = p.life / p.maxLife;
-                const alpha = t < 0.15 ? t / 0.15
-                            : t > 0.7 ? Math.max(0, (1 - t) / 0.3)
-                            : 1;
-
-                ctx.globalAlpha = alpha * 0.6;
-                ctx.drawImage(p.sprite, p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
-
-                if (p.life >= p.maxLife || p.y < -p.r * 2) {
-                    this.particles[i] = this.spawn();
-                }
-            });
-
-            ctx.globalAlpha = 1;
+            this.t += 1;
+            this.paint();
             requestAnimationFrame(() => this.loop());
         }
 
-        /* reduced motion: one calm, static wash of color */
-        paintStill() {
-            const { ctx } = this;
+        paint(still = false) {
+            const { ctx, w, h } = this;
+            const t = still ? 0 : this.t;
+
+            /* ease the wash toward the active craft's colour */
+            for (let i = 0; i < 3; i += 1) {
+                this.tint[i] += (this.target[i] - this.tint[i]) * 0.03;
+            }
+            const tint = this.tint.map((v) => Math.round(v));
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#070C1E';
+            ctx.fillRect(0, 0, w, h);
+
+            /* ── three drifting washes ── */
             ctx.globalCompositeOperation = 'lighter';
-            const wash = (x, y, r, rgb) => {
-                const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-                grad.addColorStop(0, `rgba(${rgb},.35)`);
-                grad.addColorStop(1, `rgba(${rgb},0)`);
+
+            const blobs = [
+                { x: 0.74 + Math.sin(t * 0.0016) * 0.05, y: 0.30 + Math.cos(t * 0.0013) * 0.07, r: 0.58, c: tint, a: 0.30 },
+                { x: 0.16 + Math.cos(t * 0.0011) * 0.06, y: 0.74 + Math.sin(t * 0.0015) * 0.05, r: 0.50, c: [243, 112, 33], a: 0.18 },
+                { x: 0.48 + Math.sin(t * 0.0009) * 0.10, y: 0.52 + Math.cos(t * 0.0012) * 0.09, r: 0.34, c: [196, 174, 126], a: 0.10 },
+            ];
+
+            blobs.forEach((b) => {
+                const cx = b.x * w;
+                const cy = b.y * h;
+                const rad = b.r * Math.max(w, h);
+                const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+                grad.addColorStop(0, `rgba(${b.c},${b.a})`);
+                grad.addColorStop(0.5, `rgba(${b.c},${b.a * 0.3})`);
+                grad.addColorStop(1, `rgba(${b.c},0)`);
                 ctx.fillStyle = grad;
-                ctx.fillRect(0, 0, this.w, this.h);
-            };
-            wash(this.w * 0.75, this.h * 0.35, this.w * 0.5, '43,75,223');
-            wash(this.w * 0.2, this.h * 0.8, this.w * 0.45, '243,112,33');
+                ctx.fillRect(0, 0, w, h);
+            });
+
+            ctx.globalCompositeOperation = 'source-over';
+
+            /* ── dot matrix: a slow wave, plus a lift around the cursor ── */
+            const step = 30;
+            const reach = 190;
+            const reach2 = reach * reach;
+            const LEVELS = 5;
+            const buckets = Array.from({ length: LEVELS }, () => []);
+
+            for (let y = step; y < h; y += step) {
+                for (let x = step; x < w; x += step) {
+                    const wave = 0.5 + 0.5 * Math.sin(x * 0.011 + y * 0.013 + t * 0.012);
+                    let v = 0.10 + wave * 0.16;
+                    let size = 1.7;
+
+                    if (this.pointer.on) {
+                        const dx = x - this.pointer.x;
+                        const dy = y - this.pointer.y;
+                        const d2 = dx * dx + dy * dy;
+                        if (d2 < reach2) {
+                            const f = 1 - Math.sqrt(d2) / reach;
+                            v += f * 0.75;
+                            size += f * 2.6;
+                        }
+                    }
+
+                    const li = Math.min(LEVELS - 1, Math.max(0, Math.floor((v / 1.0) * LEVELS)));
+                    buckets[li].push(x, y, size);
+                }
+            }
+
+            /* one fillStyle change per brightness level, not per dot */
+            for (let i = 0; i < LEVELS; i += 1) {
+                const arr = buckets[i];
+                if (!arr.length) continue;
+                const alpha = 0.07 + (i / (LEVELS - 1)) * 0.48;
+                ctx.fillStyle = `rgba(244,238,223,${alpha.toFixed(3)})`;
+                ctx.beginPath();
+                for (let k = 0; k < arr.length; k += 3) {
+                    const s = arr[k + 2];
+                    ctx.rect(arr[k] - s / 2, arr[k + 1] - s / 2, s, s);
+                }
+                ctx.fill();
+            }
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       CRAFT INDEX — auto-advancing hero index, tints the field, jumps to
+       the matching chapter (anchors are smooth-scrolled by script.js)
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class CraftIndex {
+        constructor(field) {
+            this.panel = q('#srvIndex');
+            if (!this.panel) return;
+
+            this.rows = qa('.srv-row', this.panel);
+            if (!this.rows.length) return;
+
+            this.ok = true;
+            this.field = field;
+            this.idx = 0;
+            this.timer = null;
+            this.held = false;
+
+            this.rows.forEach((row, i) => {
+                row.style.setProperty('--row-accent', row.dataset.accent || '243,112,33');
+
+                const link = q('.sr-link', row);
+                if (!link) return;
+
+                const hold = () => { this.held = true; clearTimeout(this.timer); this.go(i, false); };
+                const release = () => { if (!this.held) return; this.held = false; this.go(this.idx, true); };
+
+                link.addEventListener('mouseenter', hold);
+                link.addEventListener('focus', hold);
+                link.addEventListener('mouseleave', release);
+                link.addEventListener('blur', release);
+            });
+
+            /* hidden until the intro hands over */
+            if (!Env.RM) {
+                gsap.set(this.panel, { autoAlpha: 0, y: 28 });
+                gsap.set(this.rows, { autoAlpha: 0, x: 18 });
+            } else {
+                this.go(0, false);
+            }
+        }
+
+        play() {
+            if (!this.ok || Env.RM) return;
+
+            gsap.to(this.panel, { autoAlpha: 1, y: 0, duration: 0.9, ease: 'expo.out' });
+            gsap.to(this.rows, { autoAlpha: 1, x: 0, duration: 0.7, stagger: 0.07, ease: 'expo.out' });
+            gsap.delayedCall(0.55, () => this.go(0, true));
+        }
+
+        go(i, autoplay = true) {
+            if (!this.ok) return;
+
+            this.idx = (i + this.rows.length) % this.rows.length;
+            const row = this.rows[this.idx];
+            const accent = row.dataset.accent || '243,112,33';
+
+            this.rows.forEach((r, j) => r.classList.toggle('is-active', j === this.idx));
+            this.panel.style.setProperty('--accent', accent);
+            if (this.field) this.field.setAccent(accent);
+
+            /* reset every bar, then run the active one */
+            this.rows.forEach((r) => {
+                const bar = q('.sr-bar i', r);
+                if (!bar) return;
+                gsap.killTweensOf(bar);
+                gsap.set(bar, { scaleX: 0 });
+            });
+
+            const bar = q('.sr-bar i', row);
+            clearTimeout(this.timer);
+
+            if (autoplay && !Env.RM) {
+                if (bar) gsap.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: DWELL / 1000, ease: 'none' });
+                this.timer = setTimeout(() => this.go(this.idx + 1, true), DWELL);
+            } else if (bar) {
+                gsap.set(bar, { scaleX: 1 });
+            }
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       KINETIC TYPE — the headline reacts to the cursor after the intro
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class KineticType {
+        constructor() {
+            this.word = q('.srv-hero .hero-word');
+            this.hero = q('#hero');
+            if (!this.word || !this.hero || Env.RM || Env.TOUCH) return;
+
+            this.chars = qa('.ch', this.word);
+            if (!this.chars.length) return;
+
+            /* script.js clips the word during the intro reveal — release it
+               so characters can lift above the line */
+            gsap.set(this.word, { overflow: 'visible' });
+
+            this.setters = this.chars.map((ch) => ({
+                y: gsap.quickTo(ch, 'y', { duration: 0.55, ease: 'power3' }),
+                s: gsap.quickTo(ch, 'scaleY', { duration: 0.55, ease: 'power3' }),
+            }));
+
+            this.cache();
+            window.addEventListener('resize', () => this.cache());
+
+            this.hero.addEventListener('mousemove', (e) => this.react(e.clientX));
+            this.hero.addEventListener('mouseleave', () => this.reset());
+        }
+
+        cache() {
+            this.centers = this.chars.map((ch) => {
+                const r = ch.getBoundingClientRect();
+                return r.left + r.width / 2;
+            });
+        }
+
+        react(mouseX) {
+            this.centers.forEach((cx, i) => {
+                const f = Math.max(0, 1 - Math.abs(mouseX - cx) / 260);
+                this.setters[i].y(-f * 16);
+                this.setters[i].s(1 + f * 0.12);
+            });
+        }
+
+        reset() {
+            this.setters.forEach((s) => { s.y(0); s.s(1); });
+        }
+    }
+
+
+    /* ═══════════════════════════════════════════════════════════════════
+       NYC CLOCK
+       ═══════════════════════════════════════════════════════════════════ */
+
+    class NycClock {
+        constructor() {
+            this.el = q('#srvClock');
+            if (!this.el) return;
+
+            this.tick();
+            setInterval(() => this.tick(), 20000);
+        }
+
+        tick() {
+            const now = new Date();
+            try {
+                this.el.textContent = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/New_York',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                }).format(now);
+            } catch (err) {
+                this.el.textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            }
         }
     }
 
@@ -290,11 +454,9 @@
         constructor() {
             this.line = q('#mkLine');
             this.area = q('#mkArea');
-            if (!this.line) return;
+            if (!this.line || Env.RM) return;
 
             const length = this.line.getTotalLength();
-
-            if (Env.RM) return;
 
             gsap.set(this.line, { strokeDasharray: length, strokeDashoffset: length });
             gsap.set(this.area, { opacity: 0 });
@@ -323,7 +485,6 @@
             if (!this.stage || !this.card || Env.RM) return;
 
             if (Env.TOUCH) {
-                /* gentle idle sway when there's no cursor to follow */
                 gsap.to(this.card, {
                     rotateY: 10,
                     rotateX: -6,
@@ -379,7 +540,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       NEON FLICKER — the sign hums, then flickers like the real thing
+       NEON FLICKER
        ═══════════════════════════════════════════════════════════════════ */
 
     class NeonFlicker {
@@ -402,7 +563,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       DASH LIVE — property dashboard bars grow when it enters view
+       DASH LIVE
        ═══════════════════════════════════════════════════════════════════ */
 
     class DashLive {
@@ -426,7 +587,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       WATERMARK DRIFT — giant chapter numbers parallax past the content
+       WATERMARK DRIFT
        ═══════════════════════════════════════════════════════════════════ */
 
     class WatermarkDrift {
@@ -452,7 +613,7 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
-       TIMELINE DRAW — the process rail draws itself as you scroll
+       TIMELINE DRAW
        ═══════════════════════════════════════════════════════════════════ */
 
     class TimelineDraw {
@@ -476,6 +637,37 @@
 
 
     /* ═══════════════════════════════════════════════════════════════════
+       INTRO HAND-OFF — run a callback once the preloader has cleared
+       ═══════════════════════════════════════════════════════════════════ */
+
+    const afterIntro = (cb) => {
+        let done = false;
+        const fire = () => {
+            if (done) return;
+            done = true;
+            cb();
+        };
+
+        const loader = q('#loader');
+        if (!loader || Env.RM || getComputedStyle(loader).display === 'none') {
+            fire();
+            return;
+        }
+
+        const obs = new MutationObserver(() => {
+            if (loader.style.display === 'none') {
+                obs.disconnect();
+                fire();
+            }
+        });
+        obs.observe(loader, { attributes: true, attributeFilter: ['style'] });
+
+        /* safety net if the preloader never reports back */
+        setTimeout(() => { obs.disconnect(); fire(); }, 6500);
+    };
+
+
+    /* ═══════════════════════════════════════════════════════════════════
        BOOT
        ═══════════════════════════════════════════════════════════════════ */
 
@@ -483,7 +675,10 @@
         /* the shared script bails without GSAP — so do we */
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
-        new SmokeFX();
+        const field = new HeroField();
+        const index = new CraftIndex(field);
+
+        new NycClock();
         new ChapterNav();
         new SeoRing();
         new ChartDraw();
@@ -493,6 +688,11 @@
         new DashLive();
         new WatermarkDrift();
         new TimelineDraw();
+
+        afterIntro(() => {
+            index.play();
+            new KineticType();
+        });
     };
 
     if (document.readyState === 'loading') {
