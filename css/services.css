@@ -19,72 +19,450 @@
 
 
 /* ═══════════════════════════════════════════════════════════════════════
-   01. HERO — INK VARIANT WITH LIVE SMOKE
+   01. HERO — LIVE FIELD + CRAFT INDEX
    ═══════════════════════════════════════════════════════════════════════ */
-
+ 
 .srv-hero {
-    background: var(--ink);
+    /* deeper than --ink so the hero reads as its own surface, not a
+       continuation of the header bar */
+    background: #070C1E;
     color: var(--paper);
+    justify-content: flex-start;
+    isolation: isolate;
 }
-
-/* the smoke canvas fills the hero behind everything */
-.srv-smoke {
+ 
+/* the animated dot-field canvas (drawn by services.js) */
+.srv-field {
     position: absolute;
     inset: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     display: block;
     pointer-events: none;
 }
-
-/* soft vignette keeps the type legible over the smoke */
+ 
+/* keeps type legible over the field */
 .srv-hero-vignette {
     position: absolute;
     inset: 0;
+    z-index: 1;
     pointer-events: none;
     background:
-        radial-gradient(ellipse 120% 90% at 50% 100%, rgba(14, 27, 61, 0) 40%, rgba(14, 27, 61, .55) 100%),
-        linear-gradient(180deg, rgba(14, 27, 61, .5) 0%, rgba(14, 27, 61, 0) 30%);
+        radial-gradient(ellipse 110% 70% at 50% 0%, rgba(7, 12, 30, .9), transparent 58%),
+        radial-gradient(ellipse 120% 80% at 50% 100%, rgba(7, 12, 30, .92) 8%, transparent 62%),
+        linear-gradient(90deg, rgba(7, 12, 30, .78) 0%, rgba(7, 12, 30, 0) 52%);
 }
-
-/* re-tint the shared hero pieces for a dark background */
+ 
+/* ── two-column layout ── */
+.srv-hero .hero-content {
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+    align-items: center;
+    gap: clamp(30px, 4.5vw, 80px);
+    padding-block: clamp(28px, 6vh, 72px) clamp(24px, 4vh, 52px);
+}
+ 
+/* ── type, re-scaled for a half-width column ── */
+.srv-hero .hero-word {
+    font-size: clamp(46px, 7vw, 118px);
+    text-shadow: 0 0 60px rgba(43, 75, 223, .35);
+}
+ 
+.srv-hero .hero-word .ch {
+    transform-origin: 50% 100%;
+}
+ 
+.srv-hero .hero-word .ch--outline {
+    -webkit-text-stroke-color: var(--paper);
+    text-shadow: none;
+}
+ 
+.srv-hero .hero-line2 .small {
+    font-size: clamp(23px, 3.1vw, 50px);
+}
+ 
+.srv-hero .hero-line2 .standard {
+    font-size: clamp(38px, 5.6vw, 92px);
+    color: var(--hermes-hot);
+}
+ 
 .srv-hero .hero-eyebrow .line {
     background: var(--paper);
 }
-
-.srv-hero .hero-word .ch--outline {
-    -webkit-text-stroke-color: var(--paper);
-}
-
+ 
 .srv-hero .hero-desc {
-    opacity: .85;
+    margin-top: clamp(16px, 3vh, 28px);
+    max-width: 460px;
+    opacity: .8;
 }
-
+ 
 .srv-hero .hero-desc b {
     color: var(--hermes-hot);
 }
-
-.srv-hero .hero-badge svg {
-    fill: var(--paper);
+ 
+.srv-hero .hero-cta {
+    margin-top: clamp(20px, 3.2vh, 34px);
+    justify-content: flex-start;
 }
-
-.srv-hero .hero-meta {
-    border-top-color: var(--line-light);
-}
-
-.srv-hero .scroll-cue .sline {
-    background: var(--paper);
-}
-
+ 
 .srv-hero .btn--light:hover {
     border-color: var(--hermes);
 }
-
-/* services marquee sits directly under the ink hero */
+ 
+/* ── the craft index (signature element) ── */
+.srv-index {
+    --accent: 43, 75, 223;
+    position: relative;
+    border: 1px solid rgba(244, 238, 223, .13);
+    border-radius: clamp(16px, 2vw, 26px);
+    background: linear-gradient(160deg, rgba(244, 238, 223, .075), rgba(244, 238, 223, .015));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, .45);
+    padding: clamp(14px, 1.5vw, 20px);
+    overflow: hidden;
+}
+ 
+/* accent hairline that changes colour with the active craft */
+.srv-index::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgb(var(--accent)), transparent);
+    transition: background .8s var(--ease);
+}
+ 
+.srv-index-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 10px 14px;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    color: rgba(244, 238, 223, .45);
+}
+ 
+.srv-index-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: rgb(var(--accent));
+    transition: color .8s var(--ease);
+}
+ 
+.srv-index-live i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: srvPulse 1.9s ease-in-out infinite;
+}
+ 
+@keyframes srvPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: .35; transform: scale(.65); }
+}
+ 
+.srv-index-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+ 
+.srv-row {
+    --row-accent: 243, 112, 33;
+}
+ 
+.sr-link {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 12px 17px;
+    border-radius: 14px;
+    transition: background .4s var(--ease);
+}
+ 
+.sr-num {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: rgba(244, 238, 223, .4);
+    transition: color .4s;
+}
+ 
+.sr-name {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: clamp(15px, 1.15vw, 18px);
+    letter-spacing: -.015em;
+    color: rgba(244, 238, 223, .72);
+    transition: color .4s;
+}
+ 
+.sr-meta {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    white-space: nowrap;
+    color: rgba(244, 238, 223, .32);
+    transition: color .4s;
+}
+ 
+.sr-arrow {
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity .4s var(--ease), transform .4s var(--ease);
+}
+ 
+.sr-bar {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 7px;
+    height: 1px;
+    background: rgba(244, 238, 223, .1);
+    overflow: hidden;
+}
+ 
+.sr-bar i {
+    position: absolute;
+    inset: 0;
+    background: rgb(var(--row-accent));
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+}
+ 
+.sr-link:hover,
+.sr-link:focus-visible {
+    background: rgba(244, 238, 223, .09);
+}
+ 
+.srv-row.is-active .sr-link {
+    background: rgba(244, 238, 223, .07);
+}
+ 
+.srv-row.is-active .sr-name {
+    color: var(--paper);
+}
+ 
+.srv-row.is-active .sr-num,
+.srv-row.is-active .sr-arrow {
+    color: rgb(var(--row-accent));
+}
+ 
+.srv-row.is-active .sr-meta {
+    color: rgba(244, 238, 223, .55);
+}
+ 
+.srv-row.is-active .sr-arrow {
+    opacity: 1;
+    transform: none;
+}
+ 
+.srv-index-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 14px 12px 4px;
+    border-top: 1px solid rgba(244, 238, 223, .1);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: rgba(244, 238, 223, .45);
+    transition: color .3s;
+}
+ 
+.srv-index-cta b {
+    color: var(--hermes-hot);
+    font-weight: 400;
+    white-space: nowrap;
+}
+ 
+.srv-index-cta:hover {
+    color: var(--paper);
+}
+ 
+/* ── bottom meta strip ── */
+.srv-hero .hero-meta {
+    position: relative;
+    z-index: 3;
+    border-top-color: var(--line-light);
+}
+ 
+.srv-hero .scroll-cue .sline {
+    background: var(--paper);
+}
+ 
+.srv-clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+ 
+.srv-clock .srv-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5EC46E;
+    box-shadow: 0 0 10px rgba(94, 196, 110, .9);
+}
+ 
+/* services marquee sits directly under the hero */
 .srv-marquee {
     background: var(--paper-2);
 }
-
+ 
+/* ── hero responsive ── */
+@media (max-width: 1024px) {
+    .srv-hero {
+        min-height: auto;
+    }
+ 
+    .srv-hero .hero-content {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding-block: clamp(40px, 9vh, 90px) clamp(28px, 5vh, 48px);
+    }
+ 
+    .srv-hero .hero-word {
+        font-size: clamp(52px, 11vw, 110px);
+    }
+ 
+    .srv-hero .hero-line2 .small {
+        font-size: clamp(26px, 5vw, 46px);
+    }
+ 
+    .srv-hero .hero-line2 .standard {
+        font-size: clamp(42px, 9vw, 84px);
+    }
+ 
+    .srv-index {
+        max-width: 640px;
+        width: 100%;
+    }
+}
+ 
+@media (max-width: 860px) {
+    /* the clock is the better fact to keep on small screens */
+    .srv-hero .hero-meta-inner .hm-side:last-child {
+        display: inline-flex;
+    }
+ 
+    .srv-hero .hero-meta-inner .hm-side:first-child {
+        display: none;
+    }
+}
+ 
+@media (max-width: 560px) {
+    .srv-hero .hero-cta {
+        width: 100%;
+        flex-direction: column;
+    }
+ 
+    .srv-hero .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+    }
+ 
+    .sr-link {
+        grid-template-columns: auto 1fr auto;
+        gap: 11px;
+        padding: 13px 10px 15px;
+    }
+ 
+    .sr-meta {
+        display: none;
+    }
+ 
+    .srv-index-head {
+        font-size: 9.5px;
+        letter-spacing: .12em;
+    }
+ 
+    .srv-index-cta {
+        font-size: 10.5px;
+    }
+}
+ 
+ 
+/* ═══════════════════════════════════════════════════════════════════════
+   01b. HEADER OVER THE DARK HERO
+   ─────────────────────────────────────────────────────────────────────
+   Before the page scrolls, the header floats on the dark hero, so it goes
+   light. The moment .is-scrolled lands (cream backdrop) it reverts to the
+   normal dark lockup — no JS required.
+   ═══════════════════════════════════════════════════════════════════════ */
+ 
+body[data-page="services"] .header {
+    transition:
+        transform .5s var(--ease),
+        background .4s,
+        border-color .4s,
+        color .4s;
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) {
+    color: var(--paper);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .logo-name {
+    color: var(--paper);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .logo-tag {
+    color: var(--paper);
+    opacity: .5;
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .logo-mark img {
+    background: rgba(255, 255, 255, .95);
+    border-color: rgba(244, 238, 223, .28);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .nav-link {
+    color: rgba(244, 238, 223, .78);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .nav-link:hover {
+    color: var(--paper);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .nav-link.active,
+body[data-page="services"] .header:not(.is-scrolled) .nav-link::after {
+    color: var(--hermes-hot);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .burger span {
+    background: var(--paper);
+}
+ 
+/* ghost CTA on the dark hero — inset shadow instead of a border so the
+   button never shifts size when the header changes state */
+body[data-page="services"] .header:not(.is-scrolled) .header-cta {
+    background: transparent;
+    color: var(--paper);
+    box-shadow: inset 0 0 0 1px rgba(244, 238, 223, .38);
+}
+ 
+body[data-page="services"] .header:not(.is-scrolled) .header-cta::before {
+    background: var(--hermes);
+}
 
 /* ═══════════════════════════════════════════════════════════════════════
    02. STICKY CHAPTER NAV
