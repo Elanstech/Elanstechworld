@@ -1079,3 +1079,101 @@ body[data-page='portfolio-client'] {
         position: static;
     }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   07. EVERY SCREEN — mobile + interior pages
+   ─────────────────────────────────────────────────────────────────────
+   "Fully responsive" is a claim. The same site in a laptop frame and a
+   phone frame, side by side, is proof.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.cw-screens {
+    padding-block: clamp(40px, 7vh, 80px);
+    border-bottom: 1px solid var(--line);
+}
+
+.cw-screens-grid {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) repeat(auto-fit, minmax(min(360px, 100%), 1fr));
+    gap: clamp(20px, 3vw, 40px);
+    align-items: start;
+}
+
+.cw-screens figcaption {
+    margin-top: 12px;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    opacity: .45;
+    text-align: center;
+}
+
+/* ── phone ── */
+.cw-phone-frame {
+    position: relative;
+    border-radius: 34px;
+    padding: 10px;
+    background: linear-gradient(160deg, #1B2647, #0B1226);
+    box-shadow:
+        0 30px 70px rgba(14, 27, 61, .3),
+        inset 0 0 0 1px rgba(196, 174, 126, .22);
+}
+
+.cw-phone-notch {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 82px;
+    height: 20px;
+    border-radius: 100px;
+    background: #060B1A;
+    z-index: 2;
+}
+
+.cw-phone-screen {
+    position: relative;
+    aspect-ratio: 390 / 700;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #0B1226;
+}
+
+.cw-phone-screen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    will-change: transform;
+}
+
+/* ── interior page ── */
+.cw-page-screen {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #0B1226;
+}
+
+.cw-page-screen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    will-change: transform;
+}
+
+@media (max-width: 780px) {
+    .cw-screens-grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .cw-phone-frame {
+        max-width: 260px;
+    }
+}
