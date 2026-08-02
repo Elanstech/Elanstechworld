@@ -31,8 +31,11 @@
     isolation: isolate;
 }
  
-/* the animated dot-field canvas (drawn by services.js) */
-.srv-field {
+ 
+/* ── canvas layers ─────────────────────────────────────────────────── */
+ 
+/* 220×130 buffer stretched to fill — the browser's upscale is the blur */
+.srv-wash {
     position: absolute;
     inset: 0;
     z-index: 0;
@@ -42,11 +45,30 @@
     pointer-events: none;
 }
  
+/* painted once, then only repainted around the cursor */
+.srv-field {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    /* the only ambient motion on this layer — opacity is composited on the
+       GPU, so it costs nothing to repaint */
+    animation: srvBreathe 9s ease-in-out infinite;
+}
+ 
+@keyframes srvBreathe {
+    0%, 100% { opacity: .88; }
+    50%      { opacity: 1; }
+}
+ 
 /* keeps type legible over the field */
 .srv-hero-vignette {
     position: absolute;
     inset: 0;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
     background:
         radial-gradient(ellipse 110% 70% at 50% 0%, rgba(7, 12, 30, .9), transparent 58%),
@@ -54,7 +76,9 @@
         linear-gradient(90deg, rgba(7, 12, 30, .78) 0%, rgba(7, 12, 30, 0) 52%);
 }
  
-/* ── two-column layout ── */
+ 
+/* ── two-column layout ─────────────────────────────────────────────── */
+ 
 .srv-hero .hero-content {
     position: relative;
     z-index: 3;
@@ -65,21 +89,28 @@
     align-items: center;
     gap: clamp(30px, 4.5vw, 80px);
     padding-block: clamp(28px, 6vh, 72px) clamp(24px, 4vh, 52px);
+    /* script.js fades this whole block on scroll — promote it so the fade
+       stays on the compositor */
+    will-change: opacity, transform;
 }
  
-/* ── type, re-scaled for a half-width column ── */
+ 
+/* ── type, re-scaled for a half-width column ───────────────────────── */
+ 
 .srv-hero .hero-word {
     font-size: clamp(46px, 7vw, 118px);
-    text-shadow: 0 0 60px rgba(43, 75, 223, .35);
+    /* no text-shadow: a large blur re-rasterizes every character while
+       KineticType is running. The wash provides the glow instead. */
 }
  
 .srv-hero .hero-word .ch {
     transform-origin: 50% 100%;
+    will-change: transform;
+    backface-visibility: hidden;
 }
  
 .srv-hero .hero-word .ch--outline {
     -webkit-text-stroke-color: var(--paper);
-    text-shadow: none;
 }
  
 .srv-hero .hero-line2 .small {
@@ -114,15 +145,17 @@
     border-color: var(--hermes);
 }
  
-/* ── the craft index (signature element) ── */
+ 
+/* ── the craft index (signature element) ───────────────────────────── */
+ 
 .srv-index {
     --accent: 43, 75, 223;
     position: relative;
     border: 1px solid rgba(244, 238, 223, .13);
     border-radius: clamp(16px, 2vw, 26px);
-    background: linear-gradient(160deg, rgba(244, 238, 223, .075), rgba(244, 238, 223, .015));
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    /* solid translucent fill, NOT backdrop-filter — blurring a backdrop
+       that sits over an animating canvas re-blurs on every repaint */
+    background: linear-gradient(160deg, rgba(26, 37, 72, .86), rgba(11, 18, 42, .80));
     box-shadow: 0 40px 90px rgba(0, 0, 0, .45);
     padding: clamp(14px, 1.5vw, 20px);
     overflow: hidden;
@@ -225,7 +258,9 @@
     font-size: 14px;
     opacity: 0;
     transform: translateY(-5px);
-    transition: opacity .4s var(--ease), transform .4s var(--ease);
+    transition:
+        opacity .4s var(--ease),
+        transform .4s var(--ease);
 }
  
 .sr-bar {
@@ -298,7 +333,9 @@
     color: var(--paper);
 }
  
-/* ── bottom meta strip ── */
+ 
+/* ── bottom meta strip ─────────────────────────────────────────────── */
+ 
 .srv-hero .hero-meta {
     position: relative;
     z-index: 3;
@@ -328,7 +365,9 @@
     background: var(--paper-2);
 }
  
-/* ── hero responsive ── */
+ 
+/* ── responsive ────────────────────────────────────────────────────── */
+ 
 @media (max-width: 1024px) {
     .srv-hero {
         min-height: auto;
@@ -400,6 +439,16 @@
     }
 }
  
+@media (prefers-reduced-motion: reduce) {
+    .srv-field {
+        animation: none;
+        opacity: 1;
+    }
+ 
+    .srv-index-live i {
+        animation: none;
+    }
+} 
  
 /* ═══════════════════════════════════════════════════════════════════════
    01b. HEADER OVER THE DARK HERO
