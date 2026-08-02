@@ -1,0 +1,48 @@
+name: Refresh portfolio screenshots
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Capture one client only (leave blank for all)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: portfolio-captures
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: npm install --no-save playwright && npx playwright install --with-deps chromium
+
+      - name: Capture
+        run: node scripts/capture.mjs ${{ inputs.slug }}
+
+      - name: Commit any changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/captures
+          if git diff --staged --quiet; then
+            echo "No screenshot changes."
+          else
+            git commit -m "chore: refresh portfolio screenshots"
+            git push
+          fi
