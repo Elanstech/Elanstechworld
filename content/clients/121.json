@@ -1,0 +1,42 @@
+{
+  "name": "TEST",
+  "slug": "121",
+  "contact": "",
+  "industry": "TEST",
+  "neighborhood": "TEST",
+  "yearFirst": "1233",
+  "liveUrl": "",
+  "accent": "",
+  "featured": true,
+  "status": "live",
+  "disciplines": [
+    "website"
+  ],
+  "headlineMetric": null,
+  "story": {
+    "challenge": "TEST",
+    "solution": "TEST",
+    "impact": ""
+  },
+  "testimonial": {
+    "text": "",
+    "author": "",
+    "role": "",
+    "rating": 5
+  },
+  "work": [
+    {
+      "title": "TEST",
+      "discipline": "website",
+      "year": "1212",
+      "duration": "TEST",
+      "liveUrl": "",
+      "images": [],
+      "tags": [],
+      "technologies": [],
+      "metric": null,
+      "todo": "",
+      "specs": null
+    }
+  ]
+}
