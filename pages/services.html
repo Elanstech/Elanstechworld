@@ -139,54 +139,120 @@
 <main id="main">
 
 <!-- ═══════════════ HERO — INK, LIVE SMOKE ═══════════════ -->
+<!-- ═══════════════ HERO — LIVE FIELD + CRAFT INDEX ═══════════════ -->
 <section class="hero srv-hero" id="hero" aria-label="Services introduction">
-    <canvas class="srv-smoke" id="smokeCanvas" aria-hidden="true"></canvas>
+    <canvas class="srv-field" id="srvField" aria-hidden="true"></canvas>
     <div class="srv-hero-vignette" aria-hidden="true"></div>
-
-    <a href="contact.html" class="hero-badge magnetic" id="heroBadge" aria-label="Start your project">
-        <svg viewBox="0 0 120 120" aria-hidden="true">
-            <defs><path id="badgeCircle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
-            <text><textPath href="#badgeCircle">SIX CRAFTS · ONE STANDARD · NYC ·&#160;</textPath></text>
-        </svg>
-        <span class="hero-badge-arrow">↗</span>
-    </a>
-
+ 
     <div class="container hero-content" id="heroContent">
-        <div class="hero-eyebrow eyebrow">
-            <span class="line"></span><span class="dm">◆</span>
-            <span class="scramble" data-scramble="The Complete Catalogue — NYC">The Complete Catalogue — NYC</span>
-        </div>
-        <h1 class="hero-title" id="heroTitle">
-            <span class="hero-word" id="heroWord" aria-label="Services">SERVICES</span>
-            <span class="hero-line2">
-                <span class="small" id="heroSmall">IN FULL,</span>
-                <span class="standard" id="heroStandard">no secrets.</span>
-            </span>
-        </h1>
-        <div class="hero-bottom">
+ 
+        <!-- ── left: the statement ── -->
+        <div class="srv-hero-copy">
+            <div class="hero-eyebrow eyebrow">
+                <span class="line"></span><span class="dm">◆</span>
+                <span class="scramble" data-scramble="The Complete Catalogue — NYC">The Complete Catalogue — NYC</span>
+            </div>
+ 
+            <h1 class="hero-title" id="heroTitle">
+                <span class="hero-word" id="heroWord" aria-label="Services">SERVICES</span>
+                <span class="hero-line2">
+                    <span class="small" id="heroSmall">IN FULL,</span>
+                    <span class="standard" id="heroStandard">no secrets.</span>
+                </span>
+            </h1>
+ 
             <p class="hero-desc" id="heroDesc">
-                Every craft, every deliverable, every price — the whole atelier on one page.
+                Six crafts, every deliverable, every price — the whole atelier on one page.
                 <b>Read it all, then let's talk.</b>
             </p>
-            <span></span>
+ 
             <div class="hero-cta" id="heroCta">
-                <a href="contact.html" class="btn btn--orange btn--lg magnetic"><span class="btn-text">Start your project</span>
-                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <a href="#web" class="btn btn--orange btn--lg magnetic"><span class="btn-text">Start the catalogue</span>
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1V15M8 15L1 8M8 15L15 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
                 <a href="tel:+19294176819" class="btn btn--light btn--lg magnetic"><span class="btn-text">☏ (929) 417-6819</span></a>
             </div>
         </div>
+ 
+        <!-- ── right: the live index (the signature element) ── -->
+        <aside class="srv-index" id="srvIndex" aria-label="Jump to a craft">
+            <div class="srv-index-head">
+                <span>The six crafts</span>
+                <span class="srv-index-live"><i aria-hidden="true"></i>Now showing</span>
+            </div>
+ 
+            <ul class="srv-index-list">
+                <li class="srv-row" data-accent="43,75,223">
+                    <a class="sr-link" href="#web">
+                        <span class="sr-num">01</span>
+                        <span class="sr-name">Web development</span>
+                        <span class="sr-meta">From $2,000</span>
+                        <span class="sr-arrow" aria-hidden="true">↓</span>
+                        <span class="sr-bar" aria-hidden="true"><i></i></span>
+                    </a>
+                </li>
+                <li class="srv-row" data-accent="243,112,33">
+                    <a class="sr-link" href="#marketing">
+                        <span class="sr-num">02</span>
+                        <span class="sr-name">Marketing &amp; SEO</span>
+                        <span class="sr-meta">No lock-in</span>
+                        <span class="sr-arrow" aria-hidden="true">↓</span>
+                        <span class="sr-bar" aria-hidden="true"><i></i></span>
+                    </a>
+                </li>
+                <li class="srv-row" data-accent="196,174,126">
+                    <a class="sr-link" href="#materials">
+                        <span class="sr-num">03</span>
+                        <span class="sr-name">Print &amp; brand identity</span>
+                        <span class="sr-meta">Foil &amp; spot UV</span>
+                        <span class="sr-arrow" aria-hidden="true">↓</span>
+                        <span class="sr-bar" aria-hidden="true"><i></i></span>
+                    </a>
+                </li>
+                <li class="srv-row" data-accent="94,196,110">
+                    <a class="sr-link" href="#pos">
+                        <span class="sr-num">04</span>
+                        <span class="sr-name">POS systems</span>
+                        <span class="sr-meta">Square · Clover · Toast</span>
+                        <span class="sr-arrow" aria-hidden="true">↓</span>
+                        <span class="sr-bar" aria-hidden="true"><i></i></span>
+                    </a>
+                </li>
+                <li class="srv-row" data-accent="255,122,26">
+                    <a class="sr-link" href="#signage">
+                        <span class="sr-num">05</span>
+                        <span class="sr-name">Custom signage</span>
+                        <span class="sr-meta">Permits handled</span>
+                        <span class="sr-arrow" aria-hidden="true">↓</span>
+                        <span class="sr-bar" aria-hidden="true"><i></i></span>
+                    </a>
+                </li>
+                <li class="srv-row" data-accent="86,164,255">
+                    <a class="sr-link" href="#property">
+                        <span class="sr-num">06</span>
+                        <span class="sr-name">Property platforms</span>
+                        <span class="sr-meta">50+ units live</span>
+                        <span class="sr-arrow" aria-hidden="true">↓</span>
+                        <span class="sr-bar" aria-hidden="true"><i></i></span>
+                    </a>
+                </li>
+            </ul>
+ 
+            <a href="contact.html" class="srv-index-cta">
+                <span>Not sure which one you need?</span><b>Ask Elan →</b>
+            </a>
+        </aside>
     </div>
-
+ 
     <div class="hero-meta">
         <div class="hero-meta-inner">
             <span class="hm-side">Websites from $2,000</span>
             <div class="scroll-cue"><span>Explore</span><span class="sline"></span></div>
-            <span class="hm-side">Direct access to Elan · 24/7</span>
+            <span class="hm-side srv-clock"><i class="srv-dot" aria-hidden="true"></i><span id="srvClock">—:—</span> · New York</span>
         </div>
     </div>
 </section>
-
+    
 <!-- ═══════════════ MARQUEE ═══════════════ -->
 <div class="marquee srv-marquee" id="marquee" aria-hidden="true">
     <div class="marquee-track" id="marqueeTrack">
