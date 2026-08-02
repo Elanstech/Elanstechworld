@@ -181,37 +181,85 @@
 
   class PageCapture {
     constructor() {
-      this.screen = q('.cw-capture-screen');
-      if (!this.screen || Env.RM) return;
+      /* the hero capture, the phone, and each interior page all pan the same
+         way — one handler, several targets */
+      qa('.cw-capture-screen, .cw-phone-screen, .cw-page-screen').forEach((screen) => {
+        const img = q('img', screen);
+        if (!img || Env.RM) return;
+        this.bind(screen, img);
+      });
+    }
 
-      this.img = q('img', this.screen);
-      if (!this.img) return;
+    bind(screen, img) {
+      const play = () => {
+        const distance = img.offsetHeight - screen.clientHeight;
+        if (distance <= 0) return;
+        gsap.killTweensOf(img);
+        gsap.to(img, { y: -distance, duration: Math.min(14, distance / 320), ease: 'none' });
+      };
 
-      this.screen.addEventListener('mouseenter', () => this.play());
-      this.screen.addEventListener('mouseleave', () => this.reset());
+      const reset = () => {
+        gsap.killTweensOf(img);
+        gsap.to(img, { y: 0, duration: 0.9, ease: 'power2.out' });
+      };
+
+      screen.addEventListener('mouseenter', play);
+      screen.addEventListener('mouseleave', reset);
 
       if (Env.TOUCH && typeof IntersectionObserver !== 'undefined') {
         new IntersectionObserver(
           ([entry], obs) => {
             if (!entry.isIntersecting) return;
-            this.play();
+            play();
             obs.disconnect();
           },
           { threshold: 0.5 },
-        ).observe(this.screen);
+        ).observe(screen);
       }
     }
+  }
 
-    play() {
-      const distance = this.img.offsetHeight - this.screen.clientHeight;
-      if (distance <= 0) return;
-      gsap.killTweensOf(this.img);
-      gsap.to(this.img, { y: -distance, duration: 8, ease: 'none' });
+  /* ═══════════════════════════════════════════════════════════════════
+     LIGHTBOX — tiles are uniform for layout's sake, so give people a way
+     to actually see the work full size
+     ═══════════════════════════════════════════════════════════════════ */
+
+  class Lightbox {
+    constructor() {
+      this.shots = qa('.cw-shots img');
+      if (!this.shots.length) return;
+
+      this.box = document.createElement('div');
+      this.box.className = 'cw-lightbox';
+      this.box.setAttribute('aria-hidden', 'true');
+      this.box.innerHTML =
+        '<button class="cw-lightbox-close" aria-label="Close">✕</button><img src="" alt="">';
+      document.body.appendChild(this.box);
+
+      this.img = q('img', this.box);
+
+      this.shots.forEach((shot) => {
+        shot.addEventListener('click', () => this.open(shot));
+      });
+
+      this.box.addEventListener('click', () => this.close());
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') this.close();
+      });
     }
 
-    reset() {
-      gsap.killTweensOf(this.img);
-      gsap.to(this.img, { y: 0, duration: 0.9, ease: 'power2.out' });
+    open(shot) {
+      this.img.src = shot.currentSrc || shot.src;
+      this.img.alt = shot.alt || '';
+      this.box.classList.add('is-open');
+      this.box.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+      this.box.classList.remove('is-open');
+      this.box.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
     }
   }
 
@@ -222,6 +270,7 @@
   const boot = () => {
     /* outside the gsap guard — the page must render even if the CDN failed */
     new Reveals();
+    new Lightbox();
 
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
