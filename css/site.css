@@ -103,8 +103,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .site-header__in { height: 100%; display: flex; align-items: center; gap: 28px; }
 .site-header__progress { position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: var(--sun); transform-origin: left; transform: scaleX(var(--sp, 0)); pointer-events: none; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; margin-right: auto; }
-.brand img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 0 0 4px var(--paper), 0 0 0 5px var(--gold-soft); transition: transform .6s var(--ease); }
-.brand:hover img { transform: rotate(-8deg) scale(1.04); }
+.brand img { height: 54px; width: auto; object-fit: contain; transition: transform .6s var(--ease); }
+.brand:hover img { transform: scale(1.05); }
 .brand__name { display: grid; font-weight: 750; font-size: 1.16rem; line-height: 1.1; letter-spacing: -0.02em; font-stretch: 90%; }
 .brand__name small { font-size: .7rem; font-weight: 600; letter-spacing: .02em; color: var(--gold); font-stretch: 100%; }
 .nav ul { display: flex; align-items: center; gap: 2px; }
@@ -172,7 +172,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .site-header__actions .btn { display: none; }
   .brand__name { font-size: 1.05rem; }
   .brand__name small { font-size: .64rem; }
-  .brand img { width: 38px; height: 38px; }
+  .brand img { height: 44px; width: auto; }
 }
 
 /* ── Sections (shared) ── */

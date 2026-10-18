@@ -141,7 +141,7 @@ export function header(active) {
 <header class="site-header" id="top">
   <div class="wrap site-header__in">
     <a class="brand" href="/" aria-label="${esc(SITE.name)} home">
-      <img src="/assets/images/Elanslogo.jpeg" alt="" width="44" height="44">
+      <img src="/assets/images/etw-logo.webp" alt="" width="53" height="54">
       <span class="brand__name">Elan's Tech World<small>Full-service studio, Queens NYC</small></span>
     </a>
     <nav class="nav" aria-label="Main">
