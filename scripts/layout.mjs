@@ -12,6 +12,14 @@ export const SITE = {
   priceFrom: '$2,000',
 };
 
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+
+// Content hash per asset so browsers fetch fresh CSS/JS after every deploy.
+const ver = rel => { try { return crypto.createHash('sha1').update(fs.readFileSync(new URL(`../${rel}`, import.meta.url))).digest('hex').slice(0, 8); } catch { return '1'; } };
+const CSS_V = ver('css/site.css');
+const JS_V = ver('js/site.js');
+
 export const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -86,7 +94,7 @@ export function head({ title, description, path, image, schema = [], preload = [
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/site.css?v=${CSS_V}">
 ${preload.map(p => `<link rel="preload" as="image" href="${p.href}"${p.srcset ? ` imagesrcset="${p.srcset}" imagesizes="${p.sizes || '100vw'}"` : ''} fetchpriority="high">`).join('\n')}
 ${schema.map(s => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
 ${extraHead}
@@ -179,7 +187,7 @@ export function scripts({ gsap = true, extra = '' } = {}) {
   return `${gsap ? `<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>` : ''}
-<script src="/js/site.js" defer></script>
+<script src="/js/site.js?v=${JS_V}" defer></script>
 ${extra}`;
 }
 
