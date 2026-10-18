@@ -1,0 +1,470 @@
+{
+  "_readme": "Portfolio content. Edit this file, push to main, and the site rebuilds itself on Vercel (scripts/build.mjs). Projects show in the order listed. Images live in /assets/work/<slug>/.",
+  "projects": [
+    {
+      "slug": "alpha-vital-elite-iv",
+      "name": "Alpha Vital Elite IV",
+      "type": "IV therapy practice",
+      "location": "Middle Village, Queens",
+      "year": "2026",
+      "isNew": true,
+      "liveUrl": "https://www.alphaeliteiv.com",
+      "browseUrl": "https://www.alphaeliteiv.com",
+      "summary": "A physician-directed IV therapy practice led by Dr. Violeta Aronov, DO, a board-certified anesthesiologist.",
+      "brief": "Dr. Aronov wanted a site that feels as calm and clinical as her treatment room, puts the physician review front and center, and screens patients for safety before anyone books.",
+      "built": [
+        "An editorial home page with a clinic-tour video and a scroll-driven infusion menu",
+        "A page for every infusion: what's in it, how long it takes, the price, and its own FAQ",
+        "A free online eligibility screening — contact details first, then yes/no safety questions — sent to HIPAA-compliant Jotform",
+        "A 40-answer FAQ and a research page with published references",
+        "The doctor's story, press coverage and a guided tour of the clinic",
+        "Ongoing Instagram, Google Business Profile and marketing management"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Patient screening flow",
+        "SEO",
+        "Social & marketing"
+      ],
+      "palette": [
+        {
+          "name": "Cream",
+          "hex": "#F6F1E7"
+        },
+        {
+          "name": "Forest",
+          "hex": "#203421"
+        },
+        {
+          "name": "Gold",
+          "hex": "#C1963F"
+        },
+        {
+          "name": "Sage",
+          "hex": "#8FBE9B"
+        }
+      ],
+      "fonts": [
+        "Prata",
+        "Cormorant",
+        "Instrument Sans"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "GSAP ScrollTrigger",
+        "HIPAA Jotform",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "screening",
+          "caption": "Step one of the free eligibility screening — pick an infusion"
+        },
+        {
+          "file": "physician",
+          "caption": "Meet the physician"
+        },
+        {
+          "file": "clinic",
+          "caption": "Inside the practice"
+        },
+        {
+          "file": "drip",
+          "caption": "An individual infusion page"
+        }
+      ],
+      "mobile": [
+        "mobile",
+        "mobile-drip"
+      ]
+    },
+    {
+      "slug": "cohen-associates",
+      "name": "Cohen & Associates",
+      "type": "Tax & accounting firm",
+      "location": "Rego Park, Queens",
+      "liveUrl": "https://www.cohen-associates.com",
+      "browseUrl": "https://www.cohen-associates.com",
+      "summary": "A boutique tax, accounting and advisory firm, founded in 2004, that represents clients before the IRS and state authorities in all 50 states.",
+      "brief": "Cohen & Associates wanted a site that matches the personal, boutique service clients get in their Rego Park office — and sends every inquiry straight to the team.",
+      "built": [
+        "A six-page site: home, services, about, team, FAQ and contact",
+        "A hero video of the team and the office",
+        "Services organized into three pillars: tax strategy, financial management and business advisory",
+        "An industries section for dentists, attorneys, physicians, real estate, business owners and high-net-worth clients",
+        "A searchable FAQ with topic filters",
+        "A contact form with a service picker, delivered straight to the firm's inbox through Formspree"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Lead forms",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Navy",
+          "hex": "#1A237E"
+        },
+        {
+          "name": "Copper",
+          "hex": "#AA5634"
+        },
+        {
+          "name": "Cream",
+          "hex": "#F9F6F1"
+        },
+        {
+          "name": "Ink",
+          "hex": "#1B1C2E"
+        }
+      ],
+      "fonts": [
+        "Plus Jakarta Sans",
+        "Caveat"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Formspree",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "about",
+          "caption": "The firm's story"
+        },
+        {
+          "file": "services",
+          "caption": "The services page"
+        },
+        {
+          "file": "process",
+          "caption": "How working with the firm runs"
+        },
+        {
+          "file": "team",
+          "caption": "The team page"
+        }
+      ],
+      "mobile": [
+        "mobile",
+        "mobile-about"
+      ],
+      "bodyFont": "Plus Jakarta Sans"
+    },
+    {
+      "slug": "child-family-psychological-services",
+      "name": "Child & Family Psychological Services",
+      "type": "Psychology practice",
+      "location": "Long Island & Queens",
+      "liveUrl": "https://www.childandfamilypsychservices.com",
+      "browseUrl": "https://www.childandfamilypsychservices.com",
+      "summary": "Therapy, evaluations and family court services for children, teens, adults and families since 2007, led by Dr. Kristie Doheny, PsyD.",
+      "brief": "Parents often arrive worried and unsure what kind of help they need. The site had to feel warm, explain a long list of services in plain language, point people to the right office, and keep forensic referrals on their own line.",
+      "built": [
+        "Eleven service guides, from child therapy to custody evaluations and neurofeedback",
+        "Clinician profiles with full bios",
+        "A tabbed FAQ across five topics, plus an insurance section",
+        "Four office cards — Hauppauge, Forest Hills, Patchogue and Mineola — with one-tap directions",
+        "A separate contact line for forensic and court-related referrals",
+        "A training institute section with the play-therapy workshop season and registration",
+        "Office and event structured data for local search"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Local SEO"
+      ],
+      "palette": [
+        {
+          "name": "Sea",
+          "hex": "#0F6E8C"
+        },
+        {
+          "name": "Lilac",
+          "hex": "#6B5AA6"
+        },
+        {
+          "name": "Blush",
+          "hex": "#D9647F"
+        },
+        {
+          "name": "Shell",
+          "hex": "#F6FAFB"
+        }
+      ],
+      "fonts": [
+        "Fraunces",
+        "Instrument Sans"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Schema.org",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "training",
+          "caption": "The play-therapy training season"
+        },
+        {
+          "file": "team",
+          "caption": "Clinician profiles"
+        },
+        {
+          "file": "faq",
+          "caption": "A tabbed FAQ across five topics"
+        }
+      ],
+      "mobile": [
+        "mobile",
+        "mobile-services"
+      ]
+    },
+    {
+      "slug": "holistic-mental-health-services",
+      "name": "Holistic Mental Health Services",
+      "type": "Therapy practice",
+      "location": "Long Island, Queens & telehealth",
+      "liveUrl": "https://www.holisticmentalhealthny.com",
+      "browseUrl": "https://www.holisticmentalhealthny.com",
+      "summary": "Individual, couples and family therapy across four offices and telehealth statewide, founded by Dr. Kristie Doheny.",
+      "brief": "A sister practice to Child & Family with its own identity — calmer, focused on adults, and built around an $80 self-pay offer for daytime sessions.",
+      "built": [
+        "An $80 self-pay offer with a live clock that shows whether today's booking window is open",
+        "Service guides for individual, couples and family therapy, CBT, EMDR, mindfulness, groups and neurofeedback",
+        "Therapy P.L.U.S., a dedicated LGBTQ+ affirming program",
+        "A founder profile and team directory",
+        "A filterable FAQ, crisis resources and four office cards with directions"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Local SEO"
+      ],
+      "palette": [
+        {
+          "name": "Teal",
+          "hex": "#0F5F68"
+        },
+        {
+          "name": "Periwinkle",
+          "hex": "#5A66A8"
+        },
+        {
+          "name": "Amber",
+          "hex": "#C4761C"
+        },
+        {
+          "name": "Mist",
+          "hex": "#E4F2F3"
+        }
+      ],
+      "fonts": [
+        "Newsreader",
+        "Figtree"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Schema.org",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "offer",
+          "caption": "The $80 offer, with a live booking-window clock"
+        },
+        {
+          "file": "founder",
+          "caption": "Meet the founder"
+        },
+        {
+          "file": "faq",
+          "caption": "A filterable FAQ"
+        }
+      ],
+      "mobile": [
+        "mobile",
+        "mobile-offer"
+      ]
+    },
+    {
+      "slug": "evia-aesthetics",
+      "name": "Eviaesthetics",
+      "type": "Medical spa",
+      "location": "Midtown Manhattan",
+      "liveUrl": "https://www.eviaesthetics.com",
+      "browseUrl": "https://www.eviaesthetics.com",
+      "summary": "Dr. Evia A. Nano, MD's appointment-only aesthetics practice: injectables, skin treatments, medical weight management and IV therapy.",
+      "brief": "A private, by-appointment practice needs a site that feels discreet and high-end, yet still answers the two questions every new patient has: what does it cost, and how do I book?",
+      "built": [
+        "A full treatment menu across ten categories, with published prices and pre- and post-care notes",
+        "Dedicated pages for IV therapy and hyperhidrosis treatment, each with its own FAQ",
+        "The physician's profile and the story of the practice",
+        "A consultation request form and click-to-call",
+        "A skincare section linked to the practice's AlumierMD shop"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Porcelain",
+          "hex": "#FAF6EF"
+        },
+        {
+          "name": "Espresso",
+          "hex": "#221B14"
+        },
+        {
+          "name": "Signature orange",
+          "hex": "#FF6B00"
+        }
+      ],
+      "fonts": [
+        "Fraunces",
+        "Manrope"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "physician",
+          "caption": "The physician"
+        },
+        {
+          "file": "treatments",
+          "caption": "The treatment index"
+        },
+        {
+          "file": "menu",
+          "caption": "The complete menu, with prices"
+        },
+        {
+          "file": "consult",
+          "caption": "Booking a consultation"
+        }
+      ],
+      "mobile": [
+        "mobile-menu"
+      ]
+    },
+    {
+      "slug": "park-city-34",
+      "name": "Park City 3 & 4",
+      "type": "Residential co-op",
+      "location": "Rego Park, Queens",
+      "status": "Launching soon",
+      "liveUrl": "",
+      "browseUrl": "https://parkcity3-4.vercel.app",
+      "summary": "A cooperative of six 14-story buildings in Rego Park, established in 1955 and managed by AKAM.",
+      "brief": "Replacing the co-op's old WordPress site with one place for everything residents need — forms, building rules, payments and amenities — that also shows off the grounds.",
+      "built": [
+        "Nine online resident forms — alterations, garage waiting list, pet registration and more — delivered straight to management",
+        "Resident guides for ClickPay payments, moves and deliveries, insurance, house rules and sublets",
+        "Amenity pages for the pool, playground, garages, storage and laundry",
+        "A 48-photo gallery organized into buildings, interiors, amenities and grounds",
+        "A directory of all six buildings and a resident FAQ"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Online forms"
+      ],
+      "palette": [
+        {
+          "name": "Bone",
+          "hex": "#FAF6EE"
+        },
+        {
+          "name": "Brass",
+          "hex": "#B8956A"
+        },
+        {
+          "name": "Terracotta",
+          "hex": "#C97B5D"
+        },
+        {
+          "name": "Olive",
+          "hex": "#7A8568"
+        }
+      ],
+      "fonts": [
+        "Fraunces",
+        "Cormorant Garamond",
+        "Instrument Serif",
+        "Inter"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Lenis",
+        "FormSubmit",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "gallery",
+          "caption": "The photo archive"
+        },
+        {
+          "file": "buildings",
+          "caption": "Six buildings, one directory"
+        },
+        {
+          "file": "gallery-grid",
+          "caption": "Lobbies & interiors"
+        },
+        {
+          "file": "amenities-page",
+          "caption": "The amenities page"
+        }
+      ],
+      "mobile": [
+        "mobile",
+        "mobile-gallery"
+      ],
+      "bodyFont": "Inter"
+    }
+  ]
+}

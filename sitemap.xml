@@ -1,33 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.elanstechworld.com/</loc>
-    <lastmod>2025-02-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-18</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.elanstechworld.com/pages/services.html</loc>
-    <lastmod>2025-02-07</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.elanstechworld.com/portfolio/</loc>
+    <lastmod>2026-10-18</lastmod>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.elanstechworld.com/pages/whyus.html</loc>
-    <lastmod>2025-02-07</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.elanstechworld.com/services/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/whyus/</loc>
+    <lastmod>2026-10-18</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.elanstechworld.com/pages/projects.html</loc>
-    <lastmod>2025-02-07</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.elanstechworld.com/contact/</loc>
+    <lastmod>2026-10-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.elanstechworld.com/pages/contact.html</loc>
-    <lastmod>2025-02-07</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.elanstechworld.com/portfolio/alpha-vital-elite-iv/</loc>
+    <lastmod>2026-10-18</lastmod>
     <priority>0.8</priority>
+    <image:image><image:loc>https://www.elanstechworld.com/assets/work/alpha-vital-elite-iv/hero.webp</image:loc><image:title>Alpha Vital Elite IV website</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/portfolio/cohen-associates/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.elanstechworld.com/assets/work/cohen-associates/hero.webp</image:loc><image:title>Cohen &amp; Associates website</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/portfolio/child-family-psychological-services/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.elanstechworld.com/assets/work/child-family-psychological-services/hero.webp</image:loc><image:title>Child &amp; Family Psychological Services website</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/portfolio/holistic-mental-health-services/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.elanstechworld.com/assets/work/holistic-mental-health-services/hero.webp</image:loc><image:title>Holistic Mental Health Services website</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/portfolio/evia-aesthetics/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.elanstechworld.com/assets/work/evia-aesthetics/hero.webp</image:loc><image:title>Eviaesthetics website</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/portfolio/park-city-34/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://www.elanstechworld.com/assets/work/park-city-34/hero.webp</image:loc><image:title>Park City 3 &amp; 4 website</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.elanstechworld.com/shop/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <priority>0.4</priority>
   </url>
 </urlset>
