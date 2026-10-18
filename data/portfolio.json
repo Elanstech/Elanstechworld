@@ -1,5 +1,5 @@
 {
-  "_readme": "Portfolio content. Edit this file, push to main, and the site rebuilds itself on Vercel (scripts/build.mjs). Projects show in the order listed. Images live in /assets/work/<slug>/.",
+  "_readme": "Portfolio content. Edit this file, push to main, and the site rebuilds itself on Vercel (scripts/build.mjs). Projects show in the order listed. Images live in /assets/work/<slug>/ (logo.webp = the client's logo, photo-*.webp = real-world photos).",
   "projects": [
     {
       "slug": "alpha-vital-elite-iv",
@@ -22,6 +22,7 @@
       ],
       "services": [
         "Website design",
+        "Logo design",
         "Development",
         "Patient screening flow",
         "SEO",
@@ -83,6 +84,17 @@
       "mobile": [
         "mobile",
         "mobile-drip"
+      ],
+      "logo": "logo.webp",
+      "photos": [
+        {
+          "file": "photo-sign",
+          "caption": "The logo as a circle sign on the treatment-room door"
+        },
+        {
+          "file": "photo-banner",
+          "caption": "The welcome banner in the waiting area"
+        }
       ]
     },
     {
@@ -104,6 +116,7 @@
       ],
       "services": [
         "Website design",
+        "Logo design",
         "Development",
         "Lead forms",
         "SEO"
@@ -163,7 +176,14 @@
         "mobile",
         "mobile-about"
       ],
-      "bodyFont": "Plus Jakarta Sans"
+      "bodyFont": "Plus Jakarta Sans",
+      "logo": "logo.webp",
+      "photos": [
+        {
+          "file": "photo-lobby-sign",
+          "caption": "The logo on the lobby wall"
+        }
+      ]
     },
     {
       "slug": "child-family-psychological-services",
@@ -185,6 +205,7 @@
       ],
       "services": [
         "Website design",
+        "Logo design",
         "Development",
         "Local SEO"
       ],
@@ -238,7 +259,8 @@
       "mobile": [
         "mobile",
         "mobile-services"
-      ]
+      ],
+      "logo": "logo.webp"
     },
     {
       "slug": "holistic-mental-health-services",
@@ -258,6 +280,7 @@
       ],
       "services": [
         "Website design",
+        "Logo design",
         "Development",
         "Local SEO"
       ],
@@ -311,7 +334,8 @@
       "mobile": [
         "mobile",
         "mobile-offer"
-      ]
+      ],
+      "logo": "logo.webp"
     },
     {
       "slug": "evia-aesthetics",
@@ -331,6 +355,7 @@
       ],
       "services": [
         "Website design",
+        "Logo design",
         "Development",
         "SEO"
       ],
@@ -382,7 +407,8 @@
       ],
       "mobile": [
         "mobile-menu"
-      ]
+      ],
+      "logo": "logo.webp"
     },
     {
       "slug": "park-city-34",
@@ -403,6 +429,7 @@
       ],
       "services": [
         "Website design",
+        "Logo design",
         "Development",
         "Online forms"
       ],
@@ -464,7 +491,8 @@
         "mobile",
         "mobile-gallery"
       ],
-      "bodyFont": "Inter"
+      "bodyFont": "Inter",
+      "logo": "logo.webp"
     }
   ]
 }

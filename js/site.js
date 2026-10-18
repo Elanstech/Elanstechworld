@@ -4,12 +4,56 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ── Header & mobile menu ── */
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ── Header: compact on scroll, hide on the way down, reading-progress line ── */
   const header = $('.site-header');
-  const onScroll = () => header && header.classList.toggle('is-scrolled', scrollY > 8);
+  let lastY = scrollY;
+  const onScroll = () => {
+    if (!header) return;
+    const y = scrollY;
+    header.classList.toggle('is-scrolled', y > 8);
+    if (y > 420 && y > lastY + 4) header.classList.add('is-hidden');
+    else if (y < lastY - 4 || y < 420) header.classList.remove('is-hidden');
+    lastY = y;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    header.style.setProperty('--sp', max > 0 ? (y / max).toFixed(4) : 0);
+  };
   addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ── Services mega menu ── */
+  const mega = $('#megaMenu');
+  const megaBtn = $('.nav__toggle');
+  const megaLi = $('.nav__mega');
+  let megaTimer = 0;
+  const setMega = open => {
+    if (!mega || !megaBtn) return;
+    if (open === !mega.hidden) return;
+    megaBtn.setAttribute('aria-expanded', String(open));
+    header.classList.toggle('is-open', open);
+    if (open) {
+      mega.hidden = false;
+      if (window.gsap && !reduced) {
+        gsap.fromTo(mega, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: .55, ease: 'expo.out' });
+        gsap.fromTo($$('.mega__col li, .mega__group, .mega__feature', mega), { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .6, ease: 'expo.out', stagger: .025, delay: .05 });
+      }
+    } else if (window.gsap && !reduced) {
+      gsap.to(mega, { clipPath: 'inset(0 0 100% 0)', duration: .35, ease: 'power2.in', onComplete: () => { mega.hidden = true; } });
+    } else mega.hidden = true;
+  };
+  megaBtn?.addEventListener('click', () => setMega(mega.hidden));
+  if (fine && megaLi && mega) {
+    const enter = () => { clearTimeout(megaTimer); megaTimer = setTimeout(() => setMega(true), 120); };
+    const leave = () => { clearTimeout(megaTimer); megaTimer = setTimeout(() => setMega(false), 220); };
+    megaLi.addEventListener('pointerenter', enter);
+    megaLi.addEventListener('pointerleave', leave);
+    mega.addEventListener('pointerenter', () => clearTimeout(megaTimer));
+    mega.addEventListener('pointerleave', leave);
+  }
+  mega?.addEventListener('focusout', e => { if (!mega.contains(e.relatedTarget) && e.relatedTarget !== megaBtn) setMega(false); });
+
+  /* ── Mobile menu ── */
   const menuBtn = $('.menu-btn');
   const mobileNav = $('#mobileNav');
   const setMenu = open => {
@@ -17,21 +61,70 @@
     menuBtn.setAttribute('aria-expanded', String(open));
     menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     mobileNav.hidden = !open;
+    header.classList.toggle('is-open', open);
     document.documentElement.style.overflow = open ? 'hidden' : '';
     window.__lenis?.[open ? 'stop' : 'start']();
+    if (open && window.gsap && !reduced) gsap.fromTo($$('.mobile-nav__main li, .mobile-nav__services > div, .mobile-nav__contact', mobileNav), { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .7, ease: 'expo.out', stagger: .045 });
   };
   menuBtn?.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
   mobileNav?.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
-  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') { setMenu(false); setMega(false); } });
 
-  /* ── Smooth scroll + scroll-linked effects (only if the libraries loaded) ── */
+  /* ── Hero: type out a rotating word ── */
+  $$('.rot').forEach(rot => {
+    const words = JSON.parse(rot.dataset.words || '[]');
+    const out = $('.rot__word', rot);
+    if (words.length < 2 || reduced) return;
+    let w = 0;
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    (async () => {
+      await sleep(2600);
+      for (;;) {
+        const cur = words[w];
+        for (let i = cur.length; i >= 0; i--) { out.textContent = cur.slice(0, i); await sleep(38); }
+        w = (w + 1) % words.length;
+        const next = words[w];
+        await sleep(160);
+        for (let i = 1; i <= next.length; i++) { out.textContent = next.slice(0, i); await sleep(70); }
+        await sleep(2300);
+      }
+    })();
+  });
+
+  /* ── Split text helpers for reveals ── */
+  const split = (el, mode) => {
+    if (el.dataset.split) return $$('.rv-i', el);
+    const text = el.textContent.replace(/\s+/g, ' ').trim();
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    const holder = document.createElement('span');
+    holder.setAttribute('aria-hidden', 'true');
+    const words = text.split(' ');
+    words.forEach((word, wi) => {
+      const w = document.createElement('span');
+      w.className = 'rv-w';
+      if (mode === 'chars') {
+        [...word].forEach(ch => { const c = document.createElement('span'); c.className = 'rv-i'; c.textContent = ch; w.append(c); });
+      } else {
+        const i = document.createElement('span'); i.className = 'rv-i'; i.textContent = word; w.append(i);
+      }
+      holder.append(w);
+      if (wi < words.length - 1) holder.append(' ');
+    });
+    el.append(holder);
+    el.dataset.split = '1';
+    return $$('.rv-i', el);
+  };
+
+  /* ── Smooth scroll + every scroll-linked animation (only if the libraries loaded) ── */
   function initMotion() {
     const { gsap, ScrollTrigger, Lenis } = window;
-    if (!gsap || !ScrollTrigger || reduced) return;
+    if (!gsap || !ScrollTrigger || reduced) { document.documentElement.classList.remove('motion'); return; }
+    window.__motionOK = true;
     gsap.registerPlugin(ScrollTrigger);
 
     if (Lenis) {
-      const lenis = new Lenis({ lerp: 0.11, wheelMultiplier: 1, smoothWheel: true });
+      const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
       window.__lenis = lenis;
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add(t => lenis.raf(t * 1000));
@@ -42,9 +135,37 @@
         const el = id === '#top' ? document.body : $(id);
         if (!el) return;
         e.preventDefault();
-        lenis.scrollTo(el, { offset: id === '#top' ? 0 : -90 });
+        lenis.scrollTo(el, { offset: id === '#top' ? 0 : -100 });
       }));
     }
+
+    // Headings: words (or letters) rise out of a mask.
+    $$('[data-reveal="lines"], [data-reveal="chars"]').forEach(el => {
+      const mode = el.dataset.reveal;
+      const parts = split(el, mode);
+      gsap.set(el, { opacity: 1 });
+      gsap.from(parts, {
+        yPercent: 115, rotate: mode === 'chars' ? 6 : 2, duration: mode === 'chars' ? 1.1 : 1, ease: 'expo.out', stagger: mode === 'chars' ? 0.028 : 0.05,
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      });
+    });
+    // Blocks fade up.
+    $$('[data-reveal=""]').forEach(el => gsap.fromTo(el, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }));
+    // Groups stagger in.
+    $$('[data-reveal="stagger"]').forEach(el => {
+      gsap.fromTo(el.children, { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: 0.07, scrollTrigger: { trigger: el, start: 'top 86%', once: true } });
+    });
+    // Process: the line draws across, numbers pop.
+    $$('[data-reveal="steps"]').forEach(el => {
+      const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 82%', once: true } });
+      tl.fromTo(el.children, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .9, ease: 'expo.out', stagger: .12 })
+        .from($$('.steps__n', el), { scale: 0, rotate: -90, duration: .7, ease: 'back.out(2)', stagger: .12 }, '<.1');
+    });
+
+    // Images unveil like a page being turned.
+    gsap.utils.toArray('.shot .device, .cs-photos figure, .cs-logo__plate').forEach(el => {
+      gsap.fromTo(el, { clipPath: 'inset(14% 10% 14% 10% round 26px)', scale: .96 }, { clipPath: 'inset(0% 0% 0% 0% round 26px)', scale: 1, duration: 1.3, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
 
     const mm = gsap.matchMedia();
 
@@ -53,10 +174,44 @@
     if (lb) {
       mm.add({ wide: '(min-width: 861px)', narrow: '(max-width: 860px)' }, ctx => {
         const tilt = ctx.conditions.wide ? 16 : 7;
-        gsap.fromTo(lb, { rotateX: tilt, scale: ctx.conditions.wide ? 0.92 : 0.97, y: 0 }, {
+        gsap.fromTo(lb, { rotateX: tilt, scale: ctx.conditions.wide ? 0.92 : 0.97 }, {
           rotateX: 0, scale: 1, ease: 'none',
           scrollTrigger: { trigger: '.lb-stage', start: 'top 92%', end: 'top 18%', scrub: 0.7 },
         });
+      });
+    }
+
+    // Hero copy drifts apart as you scroll away — a little depth.
+    if ($('.hero__title')) {
+      gsap.to('.hero__title', { yPercent: -14, opacity: .25, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: '45% top', scrub: true } });
+      gsap.to('.seal', { rotate: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    }
+
+    // Ticker speeds up with your scroll.
+    const tracks = $$('.ticker__track');
+    if (tracks.length) {
+      const anims = tracks.map(t => t.getAnimations()[0]).filter(Boolean);
+      let boost = 0;
+      ScrollTrigger.create({ trigger: '.ticker', start: 'top bottom', end: 'bottom top', onUpdate: self => { boost = Math.min(6, Math.abs(self.getVelocity()) / 300); } });
+      gsap.ticker.add(() => { boost *= 0.92; anims.forEach(a => { a.playbackRate = 1 + boost; }); });
+    }
+
+    // Journey: each step takes the stage as it reaches the middle of the screen.
+    const steps = $$('.journey__step');
+    if (steps.length) {
+      const vis = $$('.journey__vis');
+      const bar = $('.journey__bar');
+      const activate = i => {
+        steps.forEach((s, k) => s.classList.toggle('is-on', k === i));
+        vis.forEach((v, k) => v.classList.toggle('is-on', k === i));
+        bar?.style.setProperty('--jp', ((i + 1) / steps.length).toFixed(4));
+      };
+      mm.add('(min-width: 900px)', () => {
+        steps.forEach((s, i) => ScrollTrigger.create({ trigger: s, start: 'top 55%', end: 'bottom 55%', onToggle: self => self.isActive && activate(i) }));
+        return () => steps.forEach(s => s.classList.add('is-on'));
+      });
+      mm.add('(max-width: 899px)', () => {
+        steps.forEach(s => gsap.from($('.journey__mvis', s), { scale: .9, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: s, start: 'top 85%', once: true } }));
       });
     }
 
@@ -71,22 +226,36 @@
           x: () => -dist(), ease: 'none',
           scrollTrigger: { trigger: hs, start: 'center center', end: () => '+=' + dist(), pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 },
         });
-        // gentle parallax on each screenshot while the reel moves
         $$('.hs__media img', hs).forEach(img => {
           gsap.fromTo(img, { scale: 1.08, xPercent: 3 }, { scale: 1.08, xPercent: -3, ease: 'none', scrollTrigger: { trigger: img.closest('.hs__panel'), containerAnimation: tween, start: 'left right', end: 'right left', scrub: true } });
+        });
+        $$('.hs__text', hs).forEach(t => {
+          gsap.from(t.children, { y: 30, opacity: 0, duration: .8, ease: 'expo.out', stagger: .06, scrollTrigger: { trigger: t, containerAnimation: tween, start: 'left 85%', once: true } });
         });
         return () => hs.classList.remove('is-pinned');
       });
     }
 
-    // Case study + portfolio: device frames drift a little against the scroll.
-    $$('.phone--stage, .cs-phones__row .phone:nth-child(2)').forEach(el => {
+    // Phones and devices drift a little against the scroll.
+    $$('.phone--stage, .cs-phones__row .phone:nth-child(2), .phone--float').forEach(el => {
       gsap.fromTo(el, { y: 40 }, { y: -40, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+
+    // Footer wordmark: letters rise one by one.
+    const word = $$('.site-footer__word span');
+    if (word.length) gsap.from(word, { yPercent: 100, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .035, scrollTrigger: { trigger: '.site-footer__word', start: 'top 96%', once: true } });
+
+    // Buttons lean toward the cursor.
+    if (fine) $$('.btn--sun, .btn--line').forEach(btn => {
+      const x = gsap.quickTo(btn, 'x', { duration: .5, ease: 'power3' });
+      const y = gsap.quickTo(btn, 'y', { duration: .5, ease: 'power3' });
+      btn.addEventListener('pointermove', e => { const r = btn.getBoundingClientRect(); x((e.clientX - r.left - r.width / 2) * .18); y((e.clientY - r.top - r.height / 2) * .28); });
+      btn.addEventListener('pointerleave', () => { x(0); y(0); });
     });
 
     addEventListener('load', () => ScrollTrigger.refresh());
   }
-  if (document.readyState === 'complete') initMotion(); else addEventListener('load', initMotion, { once: true });
+  initMotion();
 
   /* ── Live build: types each client's real brand tokens, then reveals their site ── */
   const lbRoot = $('#liveBuild');

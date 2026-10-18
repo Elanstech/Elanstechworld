@@ -30,7 +30,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/css/site.css?v=8a32f949">
+<link rel="stylesheet" href="/css/site.css?v=9a4a8451">
+<script>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.__motionOK)d.classList.remove('motion')},3000)}})(document.documentElement)</script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Web design portfolio — Elan's Tech World","url":"https://www.elanstechworld.com/portfolio/","about":{"@id":"https://www.elanstechworld.com/#business"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://www.elanstechworld.com/portfolio/alpha-vital-elite-iv/","name":"Alpha Vital Elite IV"},{"@type":"ListItem","position":2,"url":"https://www.elanstechworld.com/portfolio/cohen-associates/","name":"Cohen & Associates"},{"@type":"ListItem","position":3,"url":"https://www.elanstechworld.com/portfolio/child-family-psychological-services/","name":"Child & Family Psychological Services"},{"@type":"ListItem","position":4,"url":"https://www.elanstechworld.com/portfolio/holistic-mental-health-services/","name":"Holistic Mental Health Services"},{"@type":"ListItem","position":5,"url":"https://www.elanstechworld.com/portfolio/evia-aesthetics/","name":"Eviaesthetics"},{"@type":"ListItem","position":6,"url":"https://www.elanstechworld.com/portfolio/park-city-34/","name":"Park City 3 & 4"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.elanstechworld.com/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://www.elanstechworld.com/portfolio/"}]}</script>
@@ -42,12 +43,13 @@
   <div class="wrap site-header__in">
     <a class="brand" href="/" aria-label="Elan's Tech World home">
       <img src="/assets/images/Elanslogo.jpeg" alt="" width="44" height="44">
-      <span class="brand__name">Elan's Tech World</span>
+      <span class="brand__name">Elan's Tech World<small>Full-service studio, Queens NYC</small></span>
     </a>
     <nav class="nav" aria-label="Main">
       <ul>
+        <li><a href="/">Home</a></li>
         <li><a href="/portfolio/" aria-current="page">Work</a></li>
-        <li><a href="/services/">Services</a></li>
+        <li class="nav__mega"><a href="/services/">Services</a><button class="nav__toggle" type="button" aria-expanded="false" aria-controls="megaMenu" aria-label="Show all services"><i aria-hidden="true"></i></button></li>
         <li><a href="/whyus/">Why us</a></li>
         <li><a href="/contact/">Contact</a></li>
       </ul>
@@ -58,26 +60,73 @@
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
+  <span class="site-header__progress" aria-hidden="true"></span>
+  <div class="mega" id="megaMenu" hidden>
+    <div class="wrap mega__in">
+      <div class="mega__col">
+        <p class="mega__group">Online</p>
+        <ul>
+          <li><a href="/services/web-design/"><span class="mega__name">Website design</span><span class="mega__blurb">Custom, hand-coded websites built to rank and convert.</span></a></li>
+          <li><a href="/services/seo/"><span class="mega__name">SEO &amp; Google Ads</span><span class="mega__blurb">Local SEO and ad campaigns that bring in nearby customers.</span></a></li>
+          <li><a href="/services/google-business-profile/"><span class="mega__name">Google Business Profile</span><span class="mega__blurb">Show up on Google Maps — and stay active there.</span></a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__group">Content</p>
+        <ul>
+          <li><a href="/services/social-media/"><span class="mega__name">Instagram &amp; social</span><span class="mega__blurb">We script, film, edit and post — you run your business.</span></a></li>
+          <li><a href="/services/video-production/"><span class="mega__name">Cinematic video &amp; photo</span><span class="mega__blurb">Brand films, website hero videos, reels and retouching.</span></a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__group">Brand &amp; print</p>
+        <ul>
+          <li><a href="/services/branding/"><span class="mega__name">Logo design &amp; branding</span><span class="mega__blurb">Logos and identities that carry from screen to storefront.</span></a></li>
+          <li><a href="/services/print/"><span class="mega__name">Business cards &amp; print</span><span class="mega__blurb">Designed here, printed and delivered.</span></a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__group">Signs &amp; systems</p>
+        <ul>
+          <li><a href="/services/signage/"><span class="mega__name">Signs &amp; QR stands</span><span class="mega__blurb">Circle logo signs, glass signs and QR stands.</span></a></li>
+          <li><a href="/services/property-management-systems/"><span class="mega__name">Property management systems</span><span class="mega__blurb">Resident portals, onboarding and management workflows.</span></a></li>
+        </ul>
+      </div>
+      <a class="mega__feature" href="/portfolio/alpha-vital-elite-iv/">
+        <span class="mega__feature-logo"><img src="/assets/work/alpha-vital-elite-iv/logo.webp" alt="" loading="lazy" width="120" height="120"></span>
+        <span class="mega__feature-k">Latest project</span>
+        <span class="mega__feature-t">Alpha Vital Elite IV</span>
+        <span class="mega__feature-d">Logo, website, screening flow and Instagram — one studio.</span>
+      </a>
+    </div>
+    <div class="wrap mega__foot"><a href="/services/">All services</a><span>One studio for your whole online presence — from the first Google search to the sign on your door.</span></div>
+  </div>
+</header>
   <div class="mobile-nav" id="mobileNav" hidden>
-    <ul>
+    <ul class="mobile-nav__main">
       <li><a href="/">Home</a></li>
       <li><a href="/portfolio/">Work</a></li>
       <li><a href="/services/">Services</a></li>
       <li><a href="/whyus/">Why us</a></li>
       <li><a href="/contact/">Contact</a></li>
     </ul>
+    <div class="mobile-nav__services">
+      <div><p>Online</p><ul><li><a href="/services/web-design/">Website design</a></li><li><a href="/services/seo/">SEO &amp; Google Ads</a></li><li><a href="/services/google-business-profile/">Google Business Profile</a></li></ul></div>
+      <div><p>Content</p><ul><li><a href="/services/social-media/">Instagram &amp; social</a></li><li><a href="/services/video-production/">Cinematic video &amp; photo</a></li></ul></div>
+      <div><p>Brand &amp; print</p><ul><li><a href="/services/branding/">Logo design &amp; branding</a></li><li><a href="/services/print/">Business cards &amp; print</a></li></ul></div>
+      <div><p>Signs &amp; systems</p><ul><li><a href="/services/signage/">Signs &amp; QR stands</a></li><li><a href="/services/property-management-systems/">Property management systems</a></li></ul></div>
+    </div>
     <div class="mobile-nav__contact">
       <a class="btn btn--sun" href="/contact/">Book a free call</a>
       <a href="tel:+19294176819">Call or text (929) 417-6819</a>
     </div>
   </div>
-</header>
 <main id="main">
 
 <section class="page-hero">
   <div class="wrap">
-    <h1 class="page-hero__title">Work</h1>
-    <p class="page-hero__lede">Live websites for practices, firms and buildings across New York. Every one designed and hand-coded by us — open any case study to browse the real site.</p>
+    <h1 class="page-hero__title" data-reveal="chars">Work</h1>
+    <p class="page-hero__lede">Brands we built end to end for practices, firms and buildings across New York — logos, websites, content and more. Open any case study to browse the real site.</p>
   </div>
 </section>
 <section class="pf-list">
@@ -91,10 +140,11 @@
         <div class="phone phone--float"><img src="/assets/work/alpha-vital-elite-iv/mobile-390.webp" srcset="/assets/work/alpha-vital-elite-iv/mobile-390.webp 390w, /assets/work/alpha-vital-elite-iv/mobile.webp 780w" sizes="200px" width="390" height="844" alt="Alpha Vital Elite IV on a phone" loading="lazy" decoding="async"></div>
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/alpha-vital-elite-iv/logo.webp" alt="Alpha Vital Elite IV logo" loading="lazy">
         <p class="pf-row__meta"><span>IV therapy practice</span><span>Middle Village, Queens</span><span class="tag tag--new">New</span></p>
         <h2><a href="/portfolio/alpha-vital-elite-iv/">Alpha Vital Elite IV</a></h2>
         <p>A physician-directed IV therapy practice led by Dr. Violeta Aronov, DO, a board-certified anesthesiologist.</p>
-        <ul class="chips"><li>Website design</li><li>Development</li><li>Patient screening flow</li><li>SEO</li><li>Social &amp; marketing</li></ul>
+        <ul class="chips"><li>Website design</li><li>Logo design</li><li>Development</li><li>Patient screening flow</li><li>SEO</li><li>Social &amp; marketing</li></ul>
         <a class="link-arrow" href="/portfolio/alpha-vital-elite-iv/">See the case study</a>
       </div>
     </article>
@@ -107,10 +157,11 @@
         <div class="phone phone--float"><img src="/assets/work/cohen-associates/mobile-390.webp" srcset="/assets/work/cohen-associates/mobile-390.webp 390w, /assets/work/cohen-associates/mobile.webp 780w" sizes="200px" width="390" height="844" alt="Cohen &amp; Associates on a phone" loading="lazy" decoding="async"></div>
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/cohen-associates/logo.webp" alt="Cohen &amp; Associates logo" loading="lazy">
         <p class="pf-row__meta"><span>Tax &amp; accounting firm</span><span>Rego Park, Queens</span></p>
         <h2><a href="/portfolio/cohen-associates/">Cohen &amp; Associates</a></h2>
         <p>A boutique tax, accounting and advisory firm, founded in 2004, that represents clients before the IRS and state authorities in all 50 states.</p>
-        <ul class="chips"><li>Website design</li><li>Development</li><li>Lead forms</li><li>SEO</li></ul>
+        <ul class="chips"><li>Website design</li><li>Logo design</li><li>Development</li><li>Lead forms</li><li>SEO</li></ul>
         <a class="link-arrow" href="/portfolio/cohen-associates/">See the case study</a>
       </div>
     </article>
@@ -123,10 +174,11 @@
         <div class="phone phone--float"><img src="/assets/work/child-family-psychological-services/mobile-390.webp" srcset="/assets/work/child-family-psychological-services/mobile-390.webp 390w, /assets/work/child-family-psychological-services/mobile.webp 780w" sizes="200px" width="390" height="844" alt="Child &amp; Family Psychological Services on a phone" loading="lazy" decoding="async"></div>
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/child-family-psychological-services/logo.webp" alt="Child &amp; Family Psychological Services logo" loading="lazy">
         <p class="pf-row__meta"><span>Psychology practice</span><span>Long Island &amp; Queens</span></p>
         <h2><a href="/portfolio/child-family-psychological-services/">Child &amp; Family Psychological Services</a></h2>
         <p>Therapy, evaluations and family court services for children, teens, adults and families since 2007, led by Dr. Kristie Doheny, PsyD.</p>
-        <ul class="chips"><li>Website design</li><li>Development</li><li>Local SEO</li></ul>
+        <ul class="chips"><li>Website design</li><li>Logo design</li><li>Development</li><li>Local SEO</li></ul>
         <a class="link-arrow" href="/portfolio/child-family-psychological-services/">See the case study</a>
       </div>
     </article>
@@ -139,10 +191,11 @@
         <div class="phone phone--float"><img src="/assets/work/holistic-mental-health-services/mobile-390.webp" srcset="/assets/work/holistic-mental-health-services/mobile-390.webp 390w, /assets/work/holistic-mental-health-services/mobile.webp 780w" sizes="200px" width="390" height="844" alt="Holistic Mental Health Services on a phone" loading="lazy" decoding="async"></div>
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/holistic-mental-health-services/logo.webp" alt="Holistic Mental Health Services logo" loading="lazy">
         <p class="pf-row__meta"><span>Therapy practice</span><span>Long Island, Queens &amp; telehealth</span></p>
         <h2><a href="/portfolio/holistic-mental-health-services/">Holistic Mental Health Services</a></h2>
         <p>Individual, couples and family therapy across four offices and telehealth statewide, founded by Dr. Kristie Doheny.</p>
-        <ul class="chips"><li>Website design</li><li>Development</li><li>Local SEO</li></ul>
+        <ul class="chips"><li>Website design</li><li>Logo design</li><li>Development</li><li>Local SEO</li></ul>
         <a class="link-arrow" href="/portfolio/holistic-mental-health-services/">See the case study</a>
       </div>
     </article>
@@ -155,10 +208,11 @@
         <div class="phone phone--float"><img src="/assets/work/evia-aesthetics/mobile-menu-390.webp" srcset="/assets/work/evia-aesthetics/mobile-menu-390.webp 390w, /assets/work/evia-aesthetics/mobile-menu.webp 780w" sizes="200px" width="390" height="845" alt="Eviaesthetics on a phone" loading="lazy" decoding="async"></div>
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/evia-aesthetics/logo.webp" alt="Eviaesthetics logo" loading="lazy">
         <p class="pf-row__meta"><span>Medical spa</span><span>Midtown Manhattan</span></p>
         <h2><a href="/portfolio/evia-aesthetics/">Eviaesthetics</a></h2>
         <p>Dr. Evia A. Nano, MD's appointment-only aesthetics practice: injectables, skin treatments, medical weight management and IV therapy.</p>
-        <ul class="chips"><li>Website design</li><li>Development</li><li>SEO</li></ul>
+        <ul class="chips"><li>Website design</li><li>Logo design</li><li>Development</li><li>SEO</li></ul>
         <a class="link-arrow" href="/portfolio/evia-aesthetics/">See the case study</a>
       </div>
     </article>
@@ -171,10 +225,11 @@
         <div class="phone phone--float"><img src="/assets/work/park-city-34/mobile-390.webp" srcset="/assets/work/park-city-34/mobile-390.webp 390w, /assets/work/park-city-34/mobile.webp 780w" sizes="200px" width="390" height="844" alt="Park City 3 &amp; 4 on a phone" loading="lazy" decoding="async"></div>
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/park-city-34/logo.webp" alt="Park City 3 &amp; 4 logo" loading="lazy">
         <p class="pf-row__meta"><span>Residential co-op</span><span>Rego Park, Queens</span><span class="tag">Launching soon</span></p>
         <h2><a href="/portfolio/park-city-34/">Park City 3 &amp; 4</a></h2>
         <p>A cooperative of six 14-story buildings in Rego Park, established in 1955 and managed by AKAM.</p>
-        <ul class="chips"><li>Website design</li><li>Development</li><li>Online forms</li></ul>
+        <ul class="chips"><li>Website design</li><li>Logo design</li><li>Development</li><li>Online forms</li></ul>
         <a class="link-arrow" href="/portfolio/park-city-34/">See the case study</a>
       </div>
     </article>
@@ -184,7 +239,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="site-footer__cta">
-      <h2>Let's build the site your business deserves.</h2>
+      <h2 data-reveal="lines">Let's build the presence your business deserves.</h2>
       <div class="site-footer__actions">
         <a class="btn btn--sun btn--lg" href="/contact/">Book a free call</a>
         <a class="btn btn--line btn--lg" href="tel:+19294176819">(929) 417-6819</a>
@@ -192,16 +247,20 @@
     </div>
     <div class="site-footer__grid">
       <div>
-        <p class="site-footer__about">Hand-coded websites, SEO and marketing for New York businesses. Based in Rego Park, Queens — working across the five boroughs and Long Island.</p>
+        <p class="site-footer__about">A full-service studio in Rego Park, Queens: websites, SEO, Instagram, video, branding, print and signs — your whole online presence, managed by one team across the five boroughs and Long Island.</p>
       </div>
-      <nav aria-label="Footer: pages">
-        <h3>Studio</h3>
+      <nav aria-label="Footer: services">
+        <h3>Services</h3>
         <ul>
-          <li><a href="/portfolio/">Work</a></li>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/whyus/">Why us</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/services/web-design/">Website design</a></li>
+          <li><a href="/services/seo/">SEO &amp; Google Ads</a></li>
+          <li><a href="/services/google-business-profile/">Google Business Profile</a></li>
+          <li><a href="/services/social-media/">Instagram &amp; social</a></li>
+          <li><a href="/services/video-production/">Cinematic video &amp; photo</a></li>
+          <li><a href="/services/branding/">Logo design &amp; branding</a></li>
+          <li><a href="/services/print/">Business cards &amp; print</a></li>
+          <li><a href="/services/signage/">Signs &amp; QR stands</a></li>
+          <li><a href="/services/property-management-systems/">Property management systems</a></li>
         </ul>
       </nav>
       <nav aria-label="Footer: recent work">
@@ -216,8 +275,12 @@
         </ul>
       </nav>
       <div>
-        <h3>Get in touch</h3>
+        <h3>Studio</h3>
         <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/whyus/">Why us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/shop/">Shop</a></li>
           <li><a href="tel:+19294176819">(929) 417-6819</a></li>
           <li><a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a></li>
           <li><a href="https://www.instagram.com/elan_tech_world/" rel="noopener" target="_blank">Instagram @elan_tech_world</a></li>
@@ -225,7 +288,7 @@
         </ul>
       </div>
     </div>
-    <p class="site-footer__word" aria-hidden="true">Elan's Tech World</p>
+    <p class="site-footer__word" aria-hidden="true"><span>E</span><span>l</span><span>a</span><span>n</span><span>'</span><span>s</span><span>&nbsp;</span><span>T</span><span>e</span><span>c</span><span>h</span><span>&nbsp;</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span></p>
     <div class="site-footer__base">
       <p>© 2026 Elan's Tech World. Every page of this site was written by hand.</p>
       <a href="#top">Back to top</a>
@@ -235,7 +298,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
-<script src="/js/site.js?v=835e0574" defer></script>
+<script src="/js/site.js?v=e2f4a3e0" defer></script>
 
 </body>
 </html>

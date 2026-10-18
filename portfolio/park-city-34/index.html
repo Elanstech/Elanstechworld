@@ -30,9 +30,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/css/site.css?v=8a32f949">
+<link rel="stylesheet" href="/css/site.css?v=9a4a8451">
+<script>(function(d){d.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('motion');setTimeout(function(){if(!window.__motionOK)d.classList.remove('motion')},3000)}})(document.documentElement)</script>
 <link rel="preload" as="image" href="/assets/work/park-city-34/hero-1440.webp" imagesrcset="/assets/work/park-city-34/hero-1440.webp 1440w, /assets/work/park-city-34/hero.webp 2880w" imagesizes="(min-width: 1320px) 1240px, 94vw" fetchpriority="high">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Park City 3 & 4 website","headline":"Park City 3 & 4 — website case study","description":"A cooperative of six 14-story buildings in Rego Park, established in 1955 and managed by AKAM.","url":"https://www.elanstechworld.com/portfolio/park-city-34/","image":"https://www.elanstechworld.com/assets/work/park-city-34/og.jpg","creator":{"@id":"https://www.elanstechworld.com/#business"},"about":{"@type":"Organization","name":"Park City 3 & 4"},"keywords":"Residential co-op, Rego Park, Queens, Website design, Development, Online forms"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"Park City 3 & 4 website","headline":"Park City 3 & 4 — website case study","description":"A cooperative of six 14-story buildings in Rego Park, established in 1955 and managed by AKAM.","url":"https://www.elanstechworld.com/portfolio/park-city-34/","image":"https://www.elanstechworld.com/assets/work/park-city-34/og.jpg","creator":{"@id":"https://www.elanstechworld.com/#business"},"about":{"@type":"Organization","name":"Park City 3 & 4"},"keywords":"Residential co-op, Rego Park, Queens, Website design, Logo design, Development, Online forms"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.elanstechworld.com/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://www.elanstechworld.com/portfolio/"},{"@type":"ListItem","position":3,"name":"Park City 3 & 4","item":"https://www.elanstechworld.com/portfolio/park-city-34/"}]}</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces&family=Cormorant+Garamond&family=Instrument+Serif&family=Inter&text=AaFrauncesCormorant%20GaramondInstrument%20SerifInter&display=swap">
 </head>
@@ -42,12 +43,13 @@
   <div class="wrap site-header__in">
     <a class="brand" href="/" aria-label="Elan's Tech World home">
       <img src="/assets/images/Elanslogo.jpeg" alt="" width="44" height="44">
-      <span class="brand__name">Elan's Tech World</span>
+      <span class="brand__name">Elan's Tech World<small>Full-service studio, Queens NYC</small></span>
     </a>
     <nav class="nav" aria-label="Main">
       <ul>
+        <li><a href="/">Home</a></li>
         <li><a href="/portfolio/" aria-current="page">Work</a></li>
-        <li><a href="/services/">Services</a></li>
+        <li class="nav__mega"><a href="/services/">Services</a><button class="nav__toggle" type="button" aria-expanded="false" aria-controls="megaMenu" aria-label="Show all services"><i aria-hidden="true"></i></button></li>
         <li><a href="/whyus/">Why us</a></li>
         <li><a href="/contact/">Contact</a></li>
       </ul>
@@ -58,32 +60,79 @@
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span></span><span></span></button>
     </div>
   </div>
+  <span class="site-header__progress" aria-hidden="true"></span>
+  <div class="mega" id="megaMenu" hidden>
+    <div class="wrap mega__in">
+      <div class="mega__col">
+        <p class="mega__group">Online</p>
+        <ul>
+          <li><a href="/services/web-design/"><span class="mega__name">Website design</span><span class="mega__blurb">Custom, hand-coded websites built to rank and convert.</span></a></li>
+          <li><a href="/services/seo/"><span class="mega__name">SEO &amp; Google Ads</span><span class="mega__blurb">Local SEO and ad campaigns that bring in nearby customers.</span></a></li>
+          <li><a href="/services/google-business-profile/"><span class="mega__name">Google Business Profile</span><span class="mega__blurb">Show up on Google Maps — and stay active there.</span></a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__group">Content</p>
+        <ul>
+          <li><a href="/services/social-media/"><span class="mega__name">Instagram &amp; social</span><span class="mega__blurb">We script, film, edit and post — you run your business.</span></a></li>
+          <li><a href="/services/video-production/"><span class="mega__name">Cinematic video &amp; photo</span><span class="mega__blurb">Brand films, website hero videos, reels and retouching.</span></a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__group">Brand &amp; print</p>
+        <ul>
+          <li><a href="/services/branding/"><span class="mega__name">Logo design &amp; branding</span><span class="mega__blurb">Logos and identities that carry from screen to storefront.</span></a></li>
+          <li><a href="/services/print/"><span class="mega__name">Business cards &amp; print</span><span class="mega__blurb">Designed here, printed and delivered.</span></a></li>
+        </ul>
+      </div>
+      <div class="mega__col">
+        <p class="mega__group">Signs &amp; systems</p>
+        <ul>
+          <li><a href="/services/signage/"><span class="mega__name">Signs &amp; QR stands</span><span class="mega__blurb">Circle logo signs, glass signs and QR stands.</span></a></li>
+          <li><a href="/services/property-management-systems/"><span class="mega__name">Property management systems</span><span class="mega__blurb">Resident portals, onboarding and management workflows.</span></a></li>
+        </ul>
+      </div>
+      <a class="mega__feature" href="/portfolio/alpha-vital-elite-iv/">
+        <span class="mega__feature-logo"><img src="/assets/work/alpha-vital-elite-iv/logo.webp" alt="" loading="lazy" width="120" height="120"></span>
+        <span class="mega__feature-k">Latest project</span>
+        <span class="mega__feature-t">Alpha Vital Elite IV</span>
+        <span class="mega__feature-d">Logo, website, screening flow and Instagram — one studio.</span>
+      </a>
+    </div>
+    <div class="wrap mega__foot"><a href="/services/">All services</a><span>One studio for your whole online presence — from the first Google search to the sign on your door.</span></div>
+  </div>
+</header>
   <div class="mobile-nav" id="mobileNav" hidden>
-    <ul>
+    <ul class="mobile-nav__main">
       <li><a href="/">Home</a></li>
       <li><a href="/portfolio/">Work</a></li>
       <li><a href="/services/">Services</a></li>
       <li><a href="/whyus/">Why us</a></li>
       <li><a href="/contact/">Contact</a></li>
     </ul>
+    <div class="mobile-nav__services">
+      <div><p>Online</p><ul><li><a href="/services/web-design/">Website design</a></li><li><a href="/services/seo/">SEO &amp; Google Ads</a></li><li><a href="/services/google-business-profile/">Google Business Profile</a></li></ul></div>
+      <div><p>Content</p><ul><li><a href="/services/social-media/">Instagram &amp; social</a></li><li><a href="/services/video-production/">Cinematic video &amp; photo</a></li></ul></div>
+      <div><p>Brand &amp; print</p><ul><li><a href="/services/branding/">Logo design &amp; branding</a></li><li><a href="/services/print/">Business cards &amp; print</a></li></ul></div>
+      <div><p>Signs &amp; systems</p><ul><li><a href="/services/signage/">Signs &amp; QR stands</a></li><li><a href="/services/property-management-systems/">Property management systems</a></li></ul></div>
+    </div>
     <div class="mobile-nav__contact">
       <a class="btn btn--sun" href="/contact/">Book a free call</a>
       <a href="tel:+19294176819">Call or text (929) 417-6819</a>
     </div>
   </div>
-</header>
 <main id="main">
 
 <article class="cs" style="--c1:#FAF6EE;--c2:#B8956A;--c3:#C97B5D">
   <header class="cs-hero">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/portfolio/">Work</a><span aria-hidden="true">/</span><span aria-current="page">Park City 3 &amp; 4</span></nav>
-      <h1 class="cs-hero__title">Park City 3 &amp; 4</h1>
+      <h1 class="cs-hero__title" data-reveal="chars">Park City 3 &amp; 4</h1>
       <p class="cs-hero__lede">A cooperative of six 14-story buildings in Rego Park, established in 1955 and managed by AKAM.</p>
       <dl class="facts">
         <div><dt>Industry</dt><dd>Residential co-op</dd></div>
         <div><dt>Location</dt><dd>Rego Park, Queens</dd></div>
-        <div><dt>What we did</dt><dd>Website design, Development, Online forms</dd></div>
+        <div><dt>What we did</dt><dd>Website design, Logo design, Development, Online forms</dd></div>
       </dl>
       <div class="cs-hero__ctas">
         <a class="btn btn--sun" href="#browse">Browse the live site</a>
@@ -118,7 +167,7 @@
   <section class="browse" id="browse" aria-labelledby="browse-title">
     <div class="wrap">
       <div class="browse__head">
-        <h2 id="browse-title">Browse it live</h2>
+        <h2 id="browse-title" data-reveal="lines">Browse it live</h2>
         <p>This is the real site, running inside this page. Scroll it, open the menus, click through.</p>
       </div>
       <div class="browse__frame" data-browse="https://parkcity3-4.vercel.app" data-mode="desktop">
@@ -168,7 +217,7 @@
   <section class="cs-phones" aria-label="On phones">
     <div class="wrap cs-phones__in">
       <div class="cs-phones__text">
-        <h2>Built for the phone first</h2>
+        <h2 data-reveal="lines">Built for the phone first</h2>
         <p>Most visitors find Park City 3 &amp; 4 on a phone. Every layout was designed and tested for small screens before desktop.</p>
       </div>
       <div class="cs-phones__row">
@@ -178,9 +227,20 @@
     </div>
   </section>
 
+  <section class="cs-logo" aria-labelledby="logo-title">
+    <div class="wrap cs-logo__in">
+      <div class="cs-logo__text">
+        <h2 id="logo-title" data-reveal="lines">The logo</h2>
+        <p>Designed by Elan's Tech World, then carried through the website, social media, print and signs.</p>
+      </div>
+      <div class="cs-logo__plate" data-reveal><img src="/assets/work/park-city-34/logo.webp" alt="Park City 3 &amp; 4 logo" loading="lazy"></div>
+    </div>
+    
+  </section>
+
   <section class="cs-brand" aria-labelledby="brand-title">
     <div class="wrap">
-      <h2 id="brand-title">The brand system</h2>
+      <h2 id="brand-title" data-reveal="lines">The brand system</h2>
       <div class="cs-brand__grid">
         <ul class="swatches">
           <li style="--sw:#FAF6EE"><span class="swatches__chip"></span><span class="swatches__name">Bone</span><code>#FAF6EE</code></li>
@@ -214,7 +274,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <div class="site-footer__cta">
-      <h2>Let's build the site your business deserves.</h2>
+      <h2 data-reveal="lines">Let's build the presence your business deserves.</h2>
       <div class="site-footer__actions">
         <a class="btn btn--sun btn--lg" href="/contact/">Book a free call</a>
         <a class="btn btn--line btn--lg" href="tel:+19294176819">(929) 417-6819</a>
@@ -222,16 +282,20 @@
     </div>
     <div class="site-footer__grid">
       <div>
-        <p class="site-footer__about">Hand-coded websites, SEO and marketing for New York businesses. Based in Rego Park, Queens — working across the five boroughs and Long Island.</p>
+        <p class="site-footer__about">A full-service studio in Rego Park, Queens: websites, SEO, Instagram, video, branding, print and signs — your whole online presence, managed by one team across the five boroughs and Long Island.</p>
       </div>
-      <nav aria-label="Footer: pages">
-        <h3>Studio</h3>
+      <nav aria-label="Footer: services">
+        <h3>Services</h3>
         <ul>
-          <li><a href="/portfolio/">Work</a></li>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/whyus/">Why us</a></li>
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/services/web-design/">Website design</a></li>
+          <li><a href="/services/seo/">SEO &amp; Google Ads</a></li>
+          <li><a href="/services/google-business-profile/">Google Business Profile</a></li>
+          <li><a href="/services/social-media/">Instagram &amp; social</a></li>
+          <li><a href="/services/video-production/">Cinematic video &amp; photo</a></li>
+          <li><a href="/services/branding/">Logo design &amp; branding</a></li>
+          <li><a href="/services/print/">Business cards &amp; print</a></li>
+          <li><a href="/services/signage/">Signs &amp; QR stands</a></li>
+          <li><a href="/services/property-management-systems/">Property management systems</a></li>
         </ul>
       </nav>
       <nav aria-label="Footer: recent work">
@@ -246,8 +310,12 @@
         </ul>
       </nav>
       <div>
-        <h3>Get in touch</h3>
+        <h3>Studio</h3>
         <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/whyus/">Why us</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/shop/">Shop</a></li>
           <li><a href="tel:+19294176819">(929) 417-6819</a></li>
           <li><a href="mailto:elan@elanstechworld.com">elan@elanstechworld.com</a></li>
           <li><a href="https://www.instagram.com/elan_tech_world/" rel="noopener" target="_blank">Instagram @elan_tech_world</a></li>
@@ -255,7 +323,7 @@
         </ul>
       </div>
     </div>
-    <p class="site-footer__word" aria-hidden="true">Elan's Tech World</p>
+    <p class="site-footer__word" aria-hidden="true"><span>E</span><span>l</span><span>a</span><span>n</span><span>'</span><span>s</span><span>&nbsp;</span><span>T</span><span>e</span><span>c</span><span>h</span><span>&nbsp;</span><span>W</span><span>o</span><span>r</span><span>l</span><span>d</span></p>
     <div class="site-footer__base">
       <p>© 2026 Elan's Tech World. Every page of this site was written by hand.</p>
       <a href="#top">Back to top</a>
@@ -265,7 +333,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
-<script src="/js/site.js?v=835e0574" defer></script>
+<script src="/js/site.js?v=e2f4a3e0" defer></script>
 
 </body>
 </html>

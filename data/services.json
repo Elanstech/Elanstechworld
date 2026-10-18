@@ -1,0 +1,298 @@
+{
+  "_readme": "Service pages. Each entry becomes /services/<slug>/. Groups control the header menu. Edit, push to main, and Vercel rebuilds the site.",
+  "groups": ["Online", "Content", "Brand & print", "Signs & systems"],
+  "services": [
+    {
+      "slug": "web-design",
+      "group": "Online",
+      "menu": "Website design",
+      "name": "Website design & development",
+      "blurb": "Custom, hand-coded websites built to rank and convert.",
+      "title": "Website Design & Development in Queens, NYC | Elan's Tech World",
+      "description": "Custom hand-coded website design in Queens and NYC. Fast, mobile-first sites built to rank on Google and turn visitors into calls. From $2,000.",
+      "h1": "Website design & development",
+      "lede": "Custom websites designed around your business and written by hand — fast, mobile-first, built to rank on Google and turn visitors into calls, bookings and sales.",
+      "price": [["Business websites", "From $2,000", "2–4 weeks"], ["Online stores", "From $3,500", "3–5 weeks"]],
+      "body": [
+        "Every site starts from a blank page, not a theme. That means it loads fast, looks like nobody else's, and does exactly what your customers need — book a consultation, request a quote, check prices or find your office.",
+        "We handle the whole build: page plan, copy guidance, design, development, hosting and the technical SEO that gets new pages indexed. You approve the design before any code is written, and at launch you own the complete source code."
+      ],
+      "includes": [
+        "A design you approve before development starts",
+        "Hand-coded, mobile-first pages tested on real phones and browsers",
+        "Technical SEO: fast loads, structured data, sitemap, Search Console",
+        "Contact, booking and intake forms — HIPAA-compliant options for practices",
+        "Cinematic hero video and animation when it serves the brand",
+        "Analytics and conversion tracking",
+        "30 days of support after launch, directly with Elan",
+        "The full source code, yours to keep"
+      ],
+      "faqs": [
+        { "q": "How much does a website cost?", "a": "Business websites start at $2,000 and online stores at $3,500. After a free call you get a fixed quote, agreed before any work starts." },
+        { "q": "Can you redesign my current website without losing my Google rankings?", "a": "Yes. We keep what already ranks, map every old page to its new address with permanent redirects, and resubmit the sitemap so Google picks up the change quickly." },
+        { "q": "Do I own the website when it's done?", "a": "Yes — you receive the complete source code at handover and can host it anywhere." }
+      ],
+      "work": ["alpha-vital-elite-iv", "cohen-associates", "park-city-34"],
+      "keywords": ["web design Queens", "website design NYC", "web designer Rego Park", "custom website development New York", "small business website design NYC"]
+    },
+    {
+      "slug": "seo",
+      "group": "Online",
+      "menu": "SEO & Google Ads",
+      "name": "SEO & Google Ads",
+      "blurb": "Local SEO and ad campaigns that bring in nearby customers.",
+      "title": "SEO & Google Ads Services in Queens, NYC | Elan's Tech World",
+      "description": "Local SEO, technical SEO and Google Ads management for New York businesses. Get found by nearby customers already searching for what you do.",
+      "h1": "SEO & Google Ads",
+      "lede": "Get found by people nearby who are already searching for what you do — with technical SEO, local SEO and Google Ads, managed month to month.",
+      "price": [["Monthly management", "Month to month", "No long contracts"]],
+      "body": [
+        "SEO starts with the site itself — fast pages, clean structure and structured data — then grows with content that answers what your customers search for, service by service and neighborhood by neighborhood.",
+        "Google Ads fills the gap while rankings build, so the phone rings from the first week. Every call and form is tracked, and you get a plain-English report each month: what we spent, what came in and what it cost."
+      ],
+      "includes": [
+        "Technical SEO audits and fixes: speed, structure, schema and indexing",
+        "Local SEO for Google Maps and the local map pack",
+        "Keyword research and service and neighborhood pages written to rank",
+        "On-page SEO: titles, descriptions, headings and internal links",
+        "Google Ads search campaigns with call and form tracking",
+        "Google Search Console and Google Analytics 4 setup",
+        "Plain-English monthly reports — and your ad account stays in your name"
+      ],
+      "faqs": [
+        { "q": "How long does SEO take to work?", "a": "For local searches, meaningful movement usually takes three to six months, depending on competition and where your site starts. Google Ads can bring in calls from the first week while SEO builds." },
+        { "q": "Can you guarantee a #1 ranking on Google?", "a": "No honest agency can — Google decides rankings. We commit to the work, show you exactly what was done each month, and track the calls and leads it produces." },
+        { "q": "Who owns the Google Ads account?", "a": "You do. The account is created in your name and we manage it with access you can remove at any time." }
+      ],
+      "work": ["child-family-psychological-services", "alpha-vital-elite-iv"],
+      "keywords": ["SEO company Queens", "local SEO NYC", "SEO services New York", "Google Ads management NYC", "SEO for small business NYC"]
+    },
+    {
+      "slug": "google-business-profile",
+      "group": "Online",
+      "menu": "Google Business Profile",
+      "name": "Google Business Profile management",
+      "blurb": "Show up on Google Maps — and stay active there.",
+      "title": "Google Business Profile Management in NYC | Elan's Tech World",
+      "description": "Google Business Profile setup, optimization, posts, photos and review management for New York businesses. Show up in Google Maps and the local map pack.",
+      "h1": "Google Business Profile management",
+      "lede": "Your Google Business Profile is often the first thing a customer sees — before your website. We set it up, optimize it and keep it active, so you show up in Google Maps and the local map pack.",
+      "price": [["Monthly management", "Month to month", "Often bundled with SEO"]],
+      "body": [
+        "Most profiles are filled in once and forgotten. Google rewards the ones that stay complete and active: accurate categories and services, fresh photos, regular posts and owners who reply to reviews.",
+        "We run all of it, keep your name, address and phone number consistent across the directories Google checks, and give your customers an easy way to leave a review — including QR stands for your front desk."
+      ],
+      "includes": [
+        "Setup and verification support",
+        "Categories, services, hours, attributes and booking links",
+        "Professional photo uploads and edits",
+        "Regular posts, offers and updates",
+        "Review requests, QR review stands and reply templates",
+        "Questions and answers",
+        "Directory listings kept consistent (name, address, phone)",
+        "Monthly insights: calls, direction requests and searches"
+      ],
+      "faqs": [
+        { "q": "Why does my Google Business Profile matter?", "a": "For searches like \"near me\" or a service plus a neighborhood, Google often shows the map pack before any websites. A complete, active profile is how you get into it." },
+        { "q": "Can you get us more Google reviews?", "a": "We make it easy for real customers to leave one — direct review links, QR stands and follow-up messages. We never buy or write fake reviews." },
+        { "q": "How often do you post?", "a": "It depends on your plan, but an active profile gets new posts or photos every week or two." }
+      ],
+      "work": ["alpha-vital-elite-iv"],
+      "keywords": ["Google Business Profile management", "Google My Business optimization NYC", "Google Maps ranking Queens", "local map pack SEO", "Google reviews management"]
+    },
+    {
+      "slug": "social-media",
+      "group": "Content",
+      "menu": "Instagram & social",
+      "name": "Instagram & social media management",
+      "blurb": "We script, film, edit and post — you run your business.",
+      "title": "Instagram & Social Media Management in NYC | Elan's Tech World",
+      "description": "Instagram management for New York businesses: content calendars, scripts, on-site filming, reels, post design and posting — all in your brand.",
+      "h1": "Instagram & social media management",
+      "lede": "We plan, script, film, edit and post your Instagram — and keep it looking like the same premium brand as your website.",
+      "price": [["Monthly management", "Month to month", "Plans built around your goals"]],
+      "body": [
+        "We come to you — your office, clinic, salon or storefront — with scripts and a shot list written in advance, so one shoot turns into weeks of reels, stories and posts.",
+        "Everything is designed in your colors and type, captioned and scheduled, and the account is watched and answered. You approve the plan; we handle the rest."
+      ],
+      "includes": [
+        "Monthly content calendar",
+        "Scripts, hooks and shot lists for reels",
+        "On-location filming across NYC and Long Island",
+        "Editing: cuts, captions, color, sound and music",
+        "Post, carousel and story design in your brand",
+        "Captions and hashtag research",
+        "Scheduling, posting and community management",
+        "Monthly reporting"
+      ],
+      "faqs": [
+        { "q": "Do you come to our location to film?", "a": "Yes. We film on-site across the five boroughs and Long Island, with scripts and shot lists prepared ahead so the shoot is quick." },
+        { "q": "Do I have to be on camera?", "a": "No. We script options with you, your team, your space or just your work — whatever fits your brand and comfort." },
+        { "q": "Who owns the content?", "a": "You do. Every video and design we make for your account is yours." }
+      ],
+      "work": ["alpha-vital-elite-iv"],
+      "keywords": ["Instagram management NYC", "social media management Queens", "social media agency New York", "Instagram reels filming NYC", "social media content creation"]
+    },
+    {
+      "slug": "video-production",
+      "group": "Content",
+      "menu": "Cinematic video & photo",
+      "name": "Cinematic video & photo editing",
+      "blurb": "Brand films, website hero videos, reels and retouching.",
+      "title": "Video Production & Photo Editing in NYC | Elan's Tech World",
+      "description": "Cinematic video for your website hero, Instagram and ads — clinic, office and property tours, reels, interviews — plus professional photo editing in NYC.",
+      "h1": "Cinematic video & photo editing",
+      "lede": "Cinematic video for your website, your Instagram and your ads — plus photo editing that makes every image look like the same brand.",
+      "price": [["Per project", "Quoted per shoot", "Bundles with websites and social"]],
+      "body": [
+        "A 20-second film of your space does more than a page of text: people see the room, the team and the care before they ever call. We film and edit website hero videos, tours and reels with a cinematic look — then compress them so your site still loads fast.",
+        "Photos get the same treatment: retouched, color-matched and cropped for every place they'll appear, from the website to Instagram to your Google Business Profile."
+      ],
+      "includes": [
+        "Website hero videos and short brand films",
+        "Clinic, office, storefront and property tours",
+        "Reels and short-form edits",
+        "Interviews and talking-head videos",
+        "Color grading, sound, captions and music",
+        "Photo retouching and color correction",
+        "Background removal and product photo cleanup",
+        "Web-optimized exports that keep your site fast"
+      ],
+      "faqs": [
+        { "q": "Will a video slow down my website?", "a": "Not when it's done right. We compress and stream the video, show a still image first, and keep the file small enough that pages still load quickly on phones." },
+        { "q": "Can you edit footage and photos we already have?", "a": "Yes. Send what you have and we'll edit, color-match and cut it into versions for your site and social." },
+        { "q": "Where do you film?", "a": "Across New York City and Long Island, at your location." }
+      ],
+      "work": ["alpha-vital-elite-iv", "park-city-34"],
+      "keywords": ["video production NYC", "cinematic brand video Queens", "website hero video", "real estate video tour NYC", "photo editing services NYC"]
+    },
+    {
+      "slug": "branding",
+      "group": "Brand & print",
+      "menu": "Logo design & branding",
+      "name": "Logo design, branding & PR",
+      "blurb": "Logos and identities that carry from screen to storefront.",
+      "title": "Logo Design & Branding Agency in Queens, NYC | Elan's Tech World",
+      "description": "Logo design, brand identity, brand guidelines and PR for New York businesses — one identity carried from your website to your Instagram, print and signs.",
+      "h1": "Logo design, branding & PR",
+      "lede": "Logos and brand identities that carry from your website to your Instagram, your business cards and your front door — plus the PR that gets your story told.",
+      "price": [["Per project", "Quoted after a free call", "Often bundled with a website"]],
+      "body": [
+        "Every logo in our portfolio was designed here — Alpha Vital Elite IV, Cohen & Associates, Child & Family Psychological Services, Holistic Mental Health Services, Eviaesthetics and Park City 3 & 4 — and then carried through the website and everything around it.",
+        "A brand is more than a mark: it's the colors, type and tone that make a business recognizable everywhere. We build the full system, hand you every file, and use the same system for your site, posts, print and signs."
+      ],
+      "includes": [
+        "Logo design and refinement",
+        "Color palette and typography",
+        "Brand guidelines your team can follow",
+        "Templates for social posts and print",
+        "Naming and tagline help",
+        "Press releases and PR outreach",
+        "Media kits and founder bios",
+        "Every file format: vector, print-ready PDF, PNG and social sizes"
+      ],
+      "faqs": [
+        { "q": "How does the logo process work?", "a": "We start with a short brief about your business and customers, present concepts, refine the one you choose, then deliver the final files and a simple guide for using them." },
+        { "q": "What files will I receive?", "a": "Vector files (AI, SVG, PDF) for print and signs, transparent PNGs for the web, and sized versions for social profiles." },
+        { "q": "Do you handle PR?", "a": "Yes — press releases, media outreach and the founder bios and media kits that go with them." }
+      ],
+      "work": ["alpha-vital-elite-iv", "cohen-associates", "child-family-psychological-services", "holistic-mental-health-services", "evia-aesthetics", "park-city-34"],
+      "keywords": ["logo design Queens", "branding agency NYC", "brand identity design New York", "logo designer NYC", "PR services small business NYC"]
+    },
+    {
+      "slug": "print",
+      "group": "Brand & print",
+      "menu": "Business cards & print",
+      "name": "Business cards, flyers & print",
+      "blurb": "Designed here, printed and delivered.",
+      "title": "Business Card & Flyer Printing in NYC | Elan's Tech World",
+      "description": "Business card, flyer, brochure, menu and banner design and printing for New York businesses — premium stocks, foil and spot UV, delivered.",
+      "h1": "Business cards, flyers & print",
+      "lede": "Designed here, printed and delivered — business cards, flyers, brochures, menus and banners that match your brand exactly.",
+      "price": [["Design + print", "Quoted per piece", "Premium stocks and finishes"]],
+      "body": [
+        "Print is often the thing a customer actually keeps. We design it to match your website and signs, then manage the printing — paper, finishes, proofs and delivery — so you get one finished result instead of a file and a to-do list.",
+        "Need it fast for an opening, an event or a campaign? Tell us the date and we'll plan backwards from it."
+      ],
+      "includes": [
+        "Business cards — premium stocks, foil, spot UV, rounded corners",
+        "Flyers and postcards",
+        "Brochures and menus",
+        "Roll-up banners and posters",
+        "Stickers and labels",
+        "Letterhead and stationery",
+        "Proofs, print management and delivery"
+      ],
+      "faqs": [
+        { "q": "Do you only design, or do you print too?", "a": "Both. We design, send you a proof, manage the printing and get the finished pieces to you." },
+        { "q": "Can you match my existing brand?", "a": "Yes — send your logo and any brand colors, or we'll pull them from your website." },
+        { "q": "How fast can I get business cards?", "a": "Turnaround depends on the paper and finish. Tell us the date you need them and we'll plan the proof and print schedule around it." }
+      ],
+      "work": ["alpha-vital-elite-iv", "cohen-associates"],
+      "keywords": ["business card printing NYC", "business card design Queens", "flyer printing NYC", "brochure design New York", "banner printing Queens"]
+    },
+    {
+      "slug": "signage",
+      "group": "Signs & systems",
+      "menu": "Signs & QR stands",
+      "name": "Signs: circle, glass & QR stands",
+      "blurb": "Circle logo signs, glass signs and QR stands.",
+      "title": "Custom Signs in NYC — Circle, Glass & QR Stands | Elan's Tech World",
+      "description": "Custom indoor signs for New York businesses: circle logo signs, glass and acrylic wall signs, door vinyl and QR code stands. Outdoor signs available in bundles.",
+      "h1": "Signs: circle, glass & QR stands",
+      "lede": "Indoor signs that make your space look as premium as your website — circle logo signs, glass and acrylic wall signs, and QR stands that turn visitors into reviews and followers.",
+      "price": [["Per project", "Quoted per sign", "Outdoor signs in bundles only"]],
+      "body": [
+        "The moment someone walks in, your space should confirm everything your website promised. A clean circle sign on the door or a glass logo wall behind the front desk does that instantly.",
+        "QR stands do the quiet work: one scan to leave a Google review, follow your Instagram, see a menu or book the next visit. Outdoor storefront signs are available when they're part of a branding or website bundle."
+      ],
+      "includes": [
+        "Circle logo signs for doors and walls",
+        "Glass and acrylic wall signs with standoffs",
+        "Door and window vinyl",
+        "QR stands for reviews, Instagram, menus and booking",
+        "Room and wayfinding signs",
+        "Outdoor storefront signs — when bundled with a branding or website project"
+      ],
+      "faqs": [
+        { "q": "Do you make outdoor signs?", "a": "Yes, but only as part of a bundle with branding or a website. Indoor signs and QR stands can be ordered on their own." },
+        { "q": "What can a QR stand link to?", "a": "Anything: a Google review page, your Instagram, a menu or price list, a booking page or a special offer. With a dynamic code, the link can be changed later without reprinting." },
+        { "q": "Do you design the sign too?", "a": "Yes — design, proofs and production, matched to your logo and brand colors." }
+      ],
+      "work": ["alpha-vital-elite-iv", "cohen-associates"],
+      "keywords": ["custom signs NYC", "acrylic logo sign Queens", "glass office sign NYC", "QR code stand for Google reviews", "indoor business signs New York"]
+    },
+    {
+      "slug": "property-management-systems",
+      "group": "Signs & systems",
+      "menu": "Property management systems",
+      "name": "Property management systems",
+      "blurb": "Resident portals, onboarding and management workflows.",
+      "title": "Property Management Systems & Tenant Onboarding | Elan's Tech World",
+      "description": "Property management websites and systems for NYC co-ops, condos and managers: resident onboarding, online forms, building guides and management workflows.",
+      "h1": "Property management systems",
+      "lede": "Systems that help buildings run: resident onboarding, online forms routed to management, building guides and the workflows behind them — for co-ops, condos and property managers in New York.",
+      "price": [["Per project", "Quoted after a walkthrough", "Ongoing care available"]],
+      "body": [
+        "Paper forms, scattered emails and outdated PDFs cost managers hours every week. We put everything residents need in one place — and route every request straight to the right person at management.",
+        "New residents get a clear onboarding path: applications, move-in steps, documents and building rules. Boards and managers get fewer phone calls and a cleaner record of every request."
+      ],
+      "includes": [
+        "Resident and tenant onboarding flows",
+        "Online forms routed to management: alterations, parking, pets and more",
+        "Building guides, house rules and document libraries",
+        "Maintenance and service request intake",
+        "Payment portal links (for example, ClickPay)",
+        "Amenity pages, photo galleries and announcements",
+        "Custom dashboards and workflows for managers and boards"
+      ],
+      "faqs": [
+        { "q": "Do you work with management companies?", "a": "Yes. Forms and requests can be routed to the management company's inbox and work alongside the payment and accounting tools they already use." },
+        { "q": "Can residents fill out forms online instead of on paper?", "a": "Yes — each form is built for phones and sends a clean, complete submission straight to management." },
+        { "q": "Is this only for co-ops?", "a": "No. We build for co-ops, condos, rental buildings and property managers with several properties." }
+      ],
+      "work": ["park-city-34"],
+      "keywords": ["property management website NYC", "co-op website design Queens", "tenant onboarding system", "resident portal NYC", "condo board website New York"]
+    }
+  ]
+}

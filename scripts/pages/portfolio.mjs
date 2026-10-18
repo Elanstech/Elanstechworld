@@ -1,4 +1,4 @@
-import { SITE, esc, page, breadcrumbSchema, businessId } from '../layout.mjs';
+import { SITE, DATA, esc, page, breadcrumbSchema, businessId } from '../layout.mjs';
 import { shotImg, host, hasShot } from '../media.mjs';
 
 const clip = (t, n = 158) => (t.length <= n ? t : t.slice(0, t.lastIndexOf(' ', n - 1)).replace(/[,.;:]$/, '') + '…');
@@ -8,7 +8,8 @@ const fontSpecimenHref = fonts =>
   fonts.map(f => `family=${encodeURIComponent(f).replace(/%20/g, '+')}`).join('&') +
   `&text=${encodeURIComponent('Aa' + fonts.join(''))}&display=swap`;
 
-export function portfolioIndex(projects) {
+export function portfolioIndex() {
+  const { projects } = DATA;
   const rows = projects.map((p, i) => `
     <article class="pf-row${i % 2 ? ' pf-row--flip' : ''}">
       <a class="pf-row__media" href="/portfolio/${p.slug}/" aria-label="${esc(p.name)} case study">
@@ -19,6 +20,7 @@ export function portfolioIndex(projects) {
         ${p.mobile?.[0] && hasShot(p.slug, p.mobile[0]) ? `<div class="phone phone--float">${shotImg(p, p.mobile[0], { phone: true, sizes: '200px', alt: `${p.name} on a phone` })}</div>` : ''}
       </a>
       <div class="pf-row__text">
+        <img class="pf-row__logo" src="/assets/work/${p.slug}/logo.webp" alt="${esc(p.name)} logo" loading="lazy">
         <p class="pf-row__meta"><span>${esc(p.type)}</span><span>${esc(p.location)}</span>${p.isNew ? '<span class="tag tag--new">New</span>' : ''}${p.status ? `<span class="tag">${esc(p.status)}</span>` : ''}</p>
         <h2><a href="/portfolio/${p.slug}/">${esc(p.name)}</a></h2>
         <p>${esc(p.summary)}</p>
@@ -45,8 +47,8 @@ export function portfolioIndex(projects) {
   const body = `
 <section class="page-hero">
   <div class="wrap">
-    <h1 class="page-hero__title">Work</h1>
-    <p class="page-hero__lede">Live websites for practices, firms and buildings across New York. Every one designed and hand-coded by us — open any case study to browse the real site.</p>
+    <h1 class="page-hero__title" data-reveal="chars">Work</h1>
+    <p class="page-hero__lede">Brands we built end to end for practices, firms and buildings across New York — logos, websites, content and more. Open any case study to browse the real site.</p>
   </div>
 </section>
 <section class="pf-list">
@@ -63,11 +65,11 @@ export function portfolioIndex(projects) {
     },
     active: 'work',
     body,
-    projects,
   });
 }
 
-export function caseStudy(p, i, projects) {
+export function caseStudy(p, i) {
+  const { projects } = DATA;
   const next = projects[(i + 1) % projects.length];
   const liveHost = host(p.liveUrl || p.browseUrl);
   const shots = p.shots.filter(s => hasShot(p.slug, s.file));
@@ -103,7 +105,7 @@ export function caseStudy(p, i, projects) {
   <header class="cs-hero">
     <div class="wrap">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/portfolio/">Work</a><span aria-hidden="true">/</span><span aria-current="page">${esc(p.name)}</span></nav>
-      <h1 class="cs-hero__title">${esc(p.name)}</h1>
+      <h1 class="cs-hero__title" data-reveal="chars">${esc(p.name)}</h1>
       <p class="cs-hero__lede">${esc(p.summary)}</p>
       <dl class="facts">
         ${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('\n        ')}
@@ -141,7 +143,7 @@ export function caseStudy(p, i, projects) {
   <section class="browse" id="browse" aria-labelledby="browse-title">
     <div class="wrap">
       <div class="browse__head">
-        <h2 id="browse-title">Browse it live</h2>
+        <h2 id="browse-title" data-reveal="lines">Browse it live</h2>
         <p>This is the real site, running inside this page. Scroll it, open the menus, click through.</p>
       </div>
       <div class="browse__frame" data-browse="${esc(p.browseUrl)}" data-mode="desktop">
@@ -179,7 +181,7 @@ export function caseStudy(p, i, projects) {
   ${phones.length ? `<section class="cs-phones" aria-label="On phones">
     <div class="wrap cs-phones__in">
       <div class="cs-phones__text">
-        <h2>Built for the phone first</h2>
+        <h2 data-reveal="lines">Built for the phone first</h2>
         <p>Most visitors find ${esc(p.name)} on a phone. Every layout was designed and tested for small screens before desktop.</p>
       </div>
       <div class="cs-phones__row">
@@ -188,9 +190,22 @@ export function caseStudy(p, i, projects) {
     </div>
   </section>` : ''}
 
+  ${p.logo ? `<section class="cs-logo" aria-labelledby="logo-title">
+    <div class="wrap cs-logo__in">
+      <div class="cs-logo__text">
+        <h2 id="logo-title" data-reveal="lines">The logo</h2>
+        <p>Designed by Elan's Tech World, then carried through the website, social media, print and signs.</p>
+      </div>
+      <div class="cs-logo__plate" data-reveal><img src="/assets/work/${p.slug}/${p.logo}" alt="${esc(p.name)} logo" loading="lazy"></div>
+    </div>
+    ${(p.photos || []).length ? `<div class="wrap cs-photos" data-reveal="stagger">
+      ${p.photos.map(ph => `<figure><img src="/assets/work/${p.slug}/${ph.file}.webp" alt="${esc(p.name)} — ${esc(ph.caption)}" loading="lazy" width="1600" height="1067"><figcaption>${esc(ph.caption)}</figcaption></figure>`).join('\n      ')}
+    </div>` : ''}
+  </section>` : ''}
+
   <section class="cs-brand" aria-labelledby="brand-title">
     <div class="wrap">
-      <h2 id="brand-title">The brand system</h2>
+      <h2 id="brand-title" data-reveal="lines">The brand system</h2>
       <div class="cs-brand__grid">
         <ul class="swatches">
           ${p.palette.map(c => `<li style="--sw:${c.hex}"><span class="swatches__chip"></span><span class="swatches__name">${esc(c.name)}</span><code>${c.hex}</code></li>`).join('\n          ')}
@@ -227,7 +242,6 @@ export function caseStudy(p, i, projects) {
     },
     active: 'work',
     body,
-    projects,
     bodyClass: 'is-case',
   });
 }
