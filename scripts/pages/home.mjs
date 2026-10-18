@@ -56,11 +56,15 @@ export function homePage(projects) {
 
   const body = `
 <section class="hero" aria-labelledby="hero-title">
-  <div class="wrap">
+  <div class="wrap hero__in">
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 200 200" width="200" height="200"><defs><path id="sealPath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><circle cx="100" cy="100" r="97" class="seal__ring"/><circle cx="100" cy="100" r="62" class="seal__ring"/><text class="seal__text"><textPath href="#sealPath" textLength="500" lengthAdjust="spacing">Hand-coded in New York · Rego Park, Queens ·&#160;</textPath></text></svg>
+      <span class="seal__mark">ETW</span>
+    </div>
     <h1 class="hero__title" id="hero-title">
       <span class="line"><span>We hand-code websites</span></span>
       <span class="line"><span>that make New York</span></span>
-      <span class="line"><span>pick up the phone.</span></span>
+      <span class="line"><span>pick up the phone<span class="dot">.</span></span></span>
     </h1>
     <div class="hero__row">
       <p class="hero__lede">Elan's Tech World is a web studio in Rego Park, Queens. We design and write every site from a blank page — no templates, no page builders — then get it found on Google. Websites start at ${SITE.priceFrom}.</p>

@@ -63,7 +63,7 @@ export function head({ title, description, path, image, schema = [], preload = [
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#fbf8f2">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(SITE.name)}">
 <meta property="og:title" content="${esc(title)}">
