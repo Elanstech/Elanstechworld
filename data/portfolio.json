@@ -26,7 +26,9 @@
         "Development",
         "Patient screening flow",
         "SEO",
-        "Social & marketing"
+        "Social & marketing",
+        "Signs & QR stands",
+        "Business cards"
       ],
       "palette": [
         {
@@ -87,6 +89,11 @@
       ],
       "logo": "logo.webp",
       "photos": [
+        {
+          "file": "photo-qr-stand",
+          "caption": "Front-desk display: Instagram and Google review QR codes, Dr. Aronov's portrait and a business card holder — designed and produced by us",
+          "wide": true
+        },
         {
           "file": "photo-sign",
           "caption": "The logo as a circle sign on the treatment-room door"

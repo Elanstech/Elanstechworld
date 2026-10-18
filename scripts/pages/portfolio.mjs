@@ -199,7 +199,7 @@ export function caseStudy(p, i) {
       <div class="cs-logo__plate" data-reveal><img src="/assets/work/${p.slug}/${p.logo}" alt="${esc(p.name)} logo" loading="lazy"></div>
     </div>
     ${(p.photos || []).length ? `<div class="wrap cs-photos" data-reveal="stagger">
-      ${p.photos.map(ph => `<figure><img src="/assets/work/${p.slug}/${ph.file}.webp" alt="${esc(p.name)} — ${esc(ph.caption)}" loading="lazy" width="1600" height="1067"><figcaption>${esc(ph.caption)}</figcaption></figure>`).join('\n      ')}
+      ${p.photos.map(ph => `<figure${ph.wide ? ' class="is-wide"' : ''}><img src="/assets/work/${p.slug}/${ph.file}.webp" alt="${esc(p.name)} — ${esc(ph.caption)}" loading="lazy" width="1600" height="1067"><figcaption>${esc(ph.caption)}</figcaption></figure>`).join('\n      ')}
     </div>` : ''}
   </section>` : ''}
 

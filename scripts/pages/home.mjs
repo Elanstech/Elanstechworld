@@ -39,7 +39,7 @@ const STAGES = [
   { t: 'They click', d: 'Your website answers every question and makes booking, calling or buying one tap away.', s: [['web-design', 'Website design']], v: 'site' },
   { t: 'They remember', d: 'A logo they recognize, a business card they keep, a flyer on the fridge.', s: [['branding', 'Logo & branding'], ['print', 'Business cards & print']], v: 'card' },
   { t: 'They walk in', d: 'The circle sign on the door and the glass logo behind the desk confirm everything the website promised.', s: [['signage', 'Signs & QR stands']], v: 'sign' },
-  { t: 'They come back', d: 'A QR stand turns a good visit into a Google review, and a steady profile keeps you at the top of the map.', s: [['google-business-profile', 'Reviews & profile'], ['property-management-systems', 'Systems & onboarding']], v: 'review' },
+  { t: 'They come back', d: 'A QR stand turns a good visit into a Google review, and a steady profile keeps you at the top of the map.', s: [['google-business-profile', 'Reviews & profile'], ['signage', 'QR stands']], v: 'review-photo' },
 ];
 
 const visual = v => {
@@ -49,6 +49,7 @@ const visual = v => {
     case 'site': return `<div class="vz vz--site"><div class="vz-browser"><div class="vz-browser__bar"><i></i><i></i><i></i><span>yourbusiness.com</span></div><div class="vz-browser__hero"><span class="h1"></span><span class="h1 h1--b"></span><span class="p"></span><span class="cta">Book now</span></div><div class="vz-browser__cols"><span></span><span></span><span></span></div></div></div>`;
     case 'card': return `<div class="vz vz--card"><div class="vz-card vz-card--back"><span>YB</span></div><div class="vz-card vz-card--front"><b>Your Name</b><em>Founder</em><span class="mono">YB</span><small>yourbusiness.com</small></div></div>`;
     case 'sign': return `<div class="vz vz--sign"><div class="vz-wall"><div class="vz-circle"><i></i><i></i><i></i><i></i><span>YB</span><small>Your Business</small></div></div></div>`;
+    case 'review-photo': return `<figure class="vz vz--photo"><img src="/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp" alt="" width="1600" height="1066" loading="lazy"><figcaption>Our QR stand at Alpha Vital Elite IV</figcaption></figure>`;
     default: return `<div class="vz vz--review"><div class="vz-stand"><div class="vz-qr">${Array.from({ length: 49 }, (_, i) => `<i${[0, 1, 2, 3, 4, 5, 6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 43, 44, 45, 46, 47, 48, 9, 17, 24, 31, 37, 11, 19, 25].includes(i) ? ' class="on"' : ''}></i>`).join('')}</div><b>Scan to review</b><span class="stars">★★★★★</span></div></div>`;
   }
 };

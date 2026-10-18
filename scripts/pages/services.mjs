@@ -128,6 +128,15 @@ export function servicePage(s) {
   </div>
 </section>
 
+${s.photo ? `<section class="svc-photo">
+  <div class="wrap">
+    <figure class="svc-photo__fig" data-reveal>
+      <img src="${s.photo.src}" alt="${esc(s.photo.alt)}" width="1600" height="1066" loading="lazy" decoding="async">
+      <figcaption><span>${esc(s.photo.caption)}</span>${s.photo.project ? `<a class="link-arrow" href="/portfolio/${s.photo.project}/">See the project</a>` : ''}</figcaption>
+    </figure>
+  </div>
+</section>` : ''}
+
 ${work.length ? `<section class="svc-work">
   <div class="wrap">
     <h2 data-reveal="lines">See it in our work</h2>
