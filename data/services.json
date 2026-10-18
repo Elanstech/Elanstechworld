@@ -124,6 +124,17 @@
         "SEO services New York",
         "Google Ads management NYC",
         "SEO for small business NYC"
+      ],
+      "photos": [
+        {
+          "src": "/assets/work/evia-aesthetics/social-google-search.webp",
+          "w": 1010,
+          "h": 785,
+          "contain": true,
+          "project": "evia-aesthetics",
+          "alt": "Google search result for Eviaesthetics showing sitelinks to its services, about and IV therapy pages",
+          "caption": "Eviaesthetics in Google search, with sitelinks to its key pages."
+        }
       ]
     },
     {
@@ -181,12 +192,25 @@
         "local map pack SEO",
         "Google reviews management"
       ],
-      "photo": {
-        "src": "/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp",
-        "alt": "QR stand linking patients to Google reviews and Instagram at Alpha Vital Elite IV",
-        "caption": "A front-desk QR stand that sends patients straight to the practice's Google review page and Instagram.",
-        "project": "alpha-vital-elite-iv"
-      }
+      "photos": [
+        {
+          "src": "/assets/work/evia-aesthetics/social-google-profile.webp",
+          "w": 1272,
+          "h": 615,
+          "contain": true,
+          "project": "evia-aesthetics",
+          "alt": "Eviaesthetics Google Business Profile with a 5.0 rating from 86 Google reviews",
+          "caption": "Eviaesthetics on Google: 5.0 stars from 86 reviews."
+        },
+        {
+          "src": "/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp",
+          "w": 1600,
+          "h": 1066,
+          "project": "alpha-vital-elite-iv",
+          "alt": "QR stand linking patients to Google reviews and Instagram at Alpha Vital Elite IV",
+          "caption": "A front-desk QR stand that sends patients straight to the practice's Google review page and Instagram."
+        }
+      ]
     },
     {
       "slug": "social-media",
@@ -242,6 +266,17 @@
         "social media agency New York",
         "Instagram reels filming NYC",
         "social media content creation"
+      ],
+      "photos": [
+        {
+          "src": "/assets/work/evia-aesthetics/social-instagram.webp",
+          "w": 1600,
+          "h": 1087,
+          "project": "evia-aesthetics",
+          "alt": "Eviaesthetics verified Instagram profile with story highlights and branded posts",
+          "caption": "@eviaesthetics on Instagram: verified, with highlights and branded posts.",
+          "contain": true
+        }
       ]
     },
     {
@@ -417,12 +452,16 @@
         "brochure design New York",
         "banner printing Queens"
       ],
-      "photo": {
-        "src": "/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp",
-        "alt": "Alpha Vital Elite IV business cards in a gold acrylic holder beside a QR review stand",
-        "caption": "Business cards, holder and QR stand designed and produced for Alpha Vital Elite IV.",
-        "project": "alpha-vital-elite-iv"
-      }
+      "photos": [
+        {
+          "src": "/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp",
+          "w": 1600,
+          "h": 1066,
+          "project": "alpha-vital-elite-iv",
+          "alt": "Alpha Vital Elite IV business cards in a gold acrylic holder beside a QR review stand",
+          "caption": "Business cards, holder and QR stand designed and produced for Alpha Vital Elite IV."
+        }
+      ]
     },
     {
       "slug": "signage",
@@ -478,12 +517,24 @@
         "QR code stand for Google reviews",
         "indoor business signs New York"
       ],
-      "photo": {
-        "src": "/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp",
-        "alt": "Gold acrylic front-desk display with Instagram and Google review QR codes, physician portrait and business card holder for Alpha Vital Elite IV",
-        "caption": "Alpha Vital Elite IV front desk: Instagram and Google review QR codes, Dr. Aronov's portrait and a business card holder in gold acrylic.",
-        "project": "alpha-vital-elite-iv"
-      }
+      "photos": [
+        {
+          "src": "/assets/work/alpha-vital-elite-iv/photo-sign.webp",
+          "w": 1600,
+          "h": 1067,
+          "project": "alpha-vital-elite-iv",
+          "alt": "Circle acrylic logo sign with gold ring on the treatment-room door at Alpha Vital Elite IV",
+          "caption": "Circle logo sign on the treatment-room door at Alpha Vital Elite IV."
+        },
+        {
+          "src": "/assets/work/alpha-vital-elite-iv/photo-qr-stand.webp",
+          "w": 1600,
+          "h": 1066,
+          "project": "alpha-vital-elite-iv",
+          "alt": "Gold acrylic front-desk display with Instagram and Google review QR codes, physician portrait and business card holder for Alpha Vital Elite IV",
+          "caption": "Alpha Vital Elite IV front desk: Instagram and Google review QR codes, Dr. Aronov's portrait and a business card holder in gold acrylic."
+        }
+      ]
     },
     {
       "slug": "property-management-systems",

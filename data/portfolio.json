@@ -364,7 +364,9 @@
         "Website design",
         "Logo design",
         "Development",
-        "SEO"
+        "SEO",
+        "Instagram",
+        "Google Business Profile"
       ],
       "palette": [
         {
@@ -415,7 +417,30 @@
       "mobile": [
         "mobile-menu"
       ],
-      "logo": "logo.webp"
+      "logo": "logo.webp",
+      "photos": [
+        {
+          "file": "social-instagram",
+          "caption": "@eviaesthetics on Instagram — verified, with highlights for IV therapy, skin care, the clinic and testimonials",
+          "wide": true,
+          "w": 1600,
+          "h": 1087
+        },
+        {
+          "file": "social-google-profile",
+          "caption": "Google Business Profile: 5.0 stars from 86 Google reviews",
+          "w": 1272,
+          "h": 615,
+          "contain": true
+        },
+        {
+          "file": "social-google-search",
+          "caption": "Search results: eviaesthetics.com shows with sitelinks to its key pages",
+          "w": 1010,
+          "h": 785,
+          "contain": true
+        }
+      ]
     },
     {
       "slug": "park-city-34",

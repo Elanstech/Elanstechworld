@@ -193,13 +193,13 @@ export function caseStudy(p, i) {
   ${p.logo ? `<section class="cs-logo" aria-labelledby="logo-title">
     <div class="wrap cs-logo__in">
       <div class="cs-logo__text">
-        <h2 id="logo-title" data-reveal="lines">The logo</h2>
+        <h2 id="logo-title" data-reveal="lines">${p.photos && p.photos.some(ph => ph.file.startsWith('social-')) ? 'The logo &amp; online presence' : 'The logo'}</h2>
         <p>Designed by Elan's Tech World, then carried through the website, social media, print and signs.</p>
       </div>
       <div class="cs-logo__plate" data-reveal><img src="/assets/work/${p.slug}/${p.logo}" alt="${esc(p.name)} logo" loading="lazy"></div>
     </div>
     ${(p.photos || []).length ? `<div class="wrap cs-photos" data-reveal="stagger">
-      ${p.photos.map(ph => `<figure${ph.wide ? ' class="is-wide"' : ''}><img src="/assets/work/${p.slug}/${ph.file}.webp" alt="${esc(p.name)} — ${esc(ph.caption)}" loading="lazy" width="1600" height="1067"><figcaption>${esc(ph.caption)}</figcaption></figure>`).join('\n      ')}
+      ${p.photos.map(ph => `<figure class="${[ph.wide ? 'is-wide' : '', ph.contain ? 'is-shot' : ''].join(' ').trim()}"><img src="/assets/work/${p.slug}/${ph.file}.webp" alt="${esc(p.name)} — ${esc(ph.caption)}" loading="lazy" width="${ph.w || 1600}" height="${ph.h || 1067}"><figcaption>${esc(ph.caption)}</figcaption></figure>`).join('\n      ')}
     </div>` : ''}
   </section>` : ''}
 

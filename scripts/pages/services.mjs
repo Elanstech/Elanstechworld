@@ -128,12 +128,12 @@ export function servicePage(s) {
   </div>
 </section>
 
-${s.photo ? `<section class="svc-photo">
-  <div class="wrap">
-    <figure class="svc-photo__fig" data-reveal>
-      <img src="${s.photo.src}" alt="${esc(s.photo.alt)}" width="1600" height="1066" loading="lazy" decoding="async">
-      <figcaption><span>${esc(s.photo.caption)}</span>${s.photo.project ? `<a class="link-arrow" href="/portfolio/${s.photo.project}/">See the project</a>` : ''}</figcaption>
-    </figure>
+${(s.photos || []).length ? `<section class="svc-photo">
+  <div class="wrap svc-photo__grid${s.photos.length > 1 ? ' is-multi' : ''}" data-reveal="stagger">
+    ${s.photos.map((ph, k) => `<figure class="svc-photo__fig${ph.contain ? ' is-shot' : ''}${k === 0 ? ' is-lead' : ''}">
+      <img src="${ph.src}" alt="${esc(ph.alt)}" width="${ph.w || 1600}" height="${ph.h || 1066}" loading="lazy" decoding="async">
+      <figcaption><span>${esc(ph.caption)}</span>${ph.project ? `<a class="link-arrow" href="/portfolio/${ph.project}/">See the project</a>` : ''}</figcaption>
+    </figure>`).join('\n    ')}
   </div>
 </section>` : ''}
 
