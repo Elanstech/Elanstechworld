@@ -102,7 +102,8 @@
           "file": "photo-banner",
           "caption": "The welcome banner in the waiting area"
         }
-      ]
+      ],
+      "featured": true
     },
     {
       "slug": "cohen-associates",
@@ -190,7 +191,8 @@
           "file": "photo-lobby-sign",
           "caption": "The logo on the lobby wall"
         }
-      ]
+      ],
+      "featured": true
     },
     {
       "slug": "child-family-psychological-services",
@@ -267,7 +269,8 @@
         "mobile",
         "mobile-services"
       ],
-      "logo": "logo.webp"
+      "logo": "logo.webp",
+      "featured": true
     },
     {
       "slug": "holistic-mental-health-services",
@@ -342,7 +345,8 @@
         "mobile",
         "mobile-offer"
       ],
-      "logo": "logo.webp"
+      "logo": "logo.webp",
+      "featured": true
     },
     {
       "slug": "evia-aesthetics",
@@ -415,6 +419,7 @@
         }
       ],
       "mobile": [
+        "mobile",
         "mobile-menu"
       ],
       "logo": "logo.webp",
@@ -440,7 +445,8 @@
           "h": 785,
           "contain": true
         }
-      ]
+      ],
+      "featured": true
     },
     {
       "slug": "park-city-34",
@@ -524,7 +530,534 @@
         "mobile-gallery"
       ],
       "bodyFont": "Inter",
+      "logo": "logo.webp",
+      "featured": true
+    },
+    {
+      "slug": "lauras-beauty-touch",
+      "name": "Laura's Beauty Touch",
+      "type": "Day spa",
+      "location": "Rego Park, Queens",
+      "liveUrl": "https://www.laurasbeautytouch.com",
+      "browseUrl": "https://www.laurasbeautytouch.com",
+      "summary": "A Rego Park day spa for facials, laser hair removal, waxing, lashes, body treatments and nails, led by founder and master esthetician Laura.",
+      "brief": "With well over a hundred treatments across ten categories, the spa needed a site where clients can find the right service and its price quickly, then book or buy a gift card in a couple of taps.",
+      "built": [
+        "A full treatment menu of about 134 priced services across ten category pages, loaded from easy-to-edit data files",
+        "Online booking and gift cards through Fresha",
+        "A payment-plan page for financing treatments through Cherry",
+        "A video hero that cycles through real treatments",
+        "Site-wide search, a beauty tips blog and a newsletter signup",
+        "Contact form and Google reviews badge"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Online booking",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Forest",
+          "hex": "#3B4A2F"
+        },
+        {
+          "name": "Mint",
+          "hex": "#A9C89C"
+        },
+        {
+          "name": "Taupe",
+          "hex": "#B6A98C"
+        },
+        {
+          "name": "Gold",
+          "hex": "#D4AF37"
+        }
+      ],
+      "fonts": [
+        "Playfair Display",
+        "Lato"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Fresha",
+        "Cherry",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home — a video hero of real treatments"
+        },
+        {
+          "file": "about",
+          "caption": "Meet Laura, the founder"
+        },
+        {
+          "file": "team",
+          "caption": "The team"
+        }
+      ],
+      "mobile": [
+        "mobile"
+      ],
       "logo": "logo.webp"
+    },
+    {
+      "slug": "nyc-panache-salon",
+      "name": "NYC Panache Salon",
+      "type": "Luxury hair salon",
+      "location": "Forest Hills, Queens",
+      "liveUrl": "https://www.nycpanachesalon.com",
+      "browseUrl": "https://www.nycpanachesalon.com",
+      "summary": "A luxury hair salon in Forest Hills for color, balayage, keratin smoothing, extensions, nails and waxing, led by founder and master stylist Marina Iskiyaeva.",
+      "brief": "Panache's work is visual, so the site had to show it — real transformations, a clear price list and booking one tap away — with the gold-and-cream polish of the salon itself.",
+      "built": [
+        "A priced service menu for cuts, color, smoothing, extensions, nails and waxing",
+        "Drag-to-compare before-and-after sliders and a filterable gallery",
+        "Online booking through Vagaro",
+        "A cinematic video hero",
+        "An FAQ page, Instagram feed and contact form",
+        "An llms.txt file so AI search tools describe the salon accurately"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Online booking",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Cream",
+          "hex": "#FAF6F0"
+        },
+        {
+          "name": "Gold",
+          "hex": "#CB9B51"
+        },
+        {
+          "name": "Deep gold",
+          "hex": "#8B6914"
+        },
+        {
+          "name": "Espresso",
+          "hex": "#2D2926"
+        }
+      ],
+      "fonts": [
+        "Playfair Display",
+        "Cormorant Garamond",
+        "DM Sans"
+      ],
+      "bodyFont": "DM Sans",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vagaro",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "showcase",
+          "caption": "Drag-to-compare before and after results"
+        },
+        {
+          "file": "waxing",
+          "caption": "The waxing price list"
+        },
+        {
+          "file": "story",
+          "caption": "The salon's story"
+        },
+        {
+          "file": "faq",
+          "caption": "FAQ"
+        }
+      ],
+      "mobile": [
+        "mobile"
+      ],
+      "logo": "logo.webp"
+    },
+    {
+      "slug": "doug-uhlig-psychological",
+      "name": "Doug Uhlig Psychological Services",
+      "type": "Therapy & executive coaching",
+      "location": "Manhattan, Brooklyn & Queens",
+      "liveUrl": "https://www.dougpsychassociates.com",
+      "browseUrl": "https://www.dougpsychassociates.com",
+      "summary": "Dr. Doug Uhlig, PhD runs two practices from one site: evidence-based therapy across three NYC offices, and the Manhattan Executive Coaching Consortium (MECC).",
+      "brief": "Two audiences — people looking for a therapist and leaders looking for a coach — had to land on one site and each find their path in a single click.",
+      "built": [
+        "A split home page that sends visitors to therapy or executive coaching",
+        "A four-part leadership intake quiz for coaching clients",
+        "A directory of the full clinical team, plus coach profiles",
+        "Location cards for the Manhattan, Brooklyn and Rego Park offices with directions",
+        "Services, team, coaching and contact pages",
+        "Contact forms and a link to his Psychology Today profile"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Intake forms",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Royal blue",
+          "hex": "#1A237E"
+        },
+        {
+          "name": "Gold",
+          "hex": "#B49B57"
+        },
+        {
+          "name": "Champagne",
+          "hex": "#E6D5AC"
+        },
+        {
+          "name": "Mist",
+          "hex": "#F7F8FC"
+        }
+      ],
+      "fonts": [
+        "Playfair Display",
+        "Plus Jakarta Sans"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "FormSubmit",
+        "Vercel"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home — therapy or executive coaching, one click"
+        },
+        {
+          "file": "about",
+          "caption": "Dr. Uhlig's story"
+        },
+        {
+          "file": "coaching",
+          "caption": "The Manhattan Executive Coaching Consortium page"
+        },
+        {
+          "file": "team",
+          "caption": "The clinical team"
+        },
+        {
+          "file": "services",
+          "caption": "Services"
+        }
+      ],
+      "mobile": [
+        "mobile",
+        "mobile-coaching"
+      ],
+      "logo": "logo.webp"
+    },
+    {
+      "slug": "century-one-management",
+      "name": "Century One Management",
+      "type": "Property management",
+      "location": "Rego Park, Queens",
+      "liveUrl": "https://centuryonemanagement.com",
+      "browseUrl": "https://centuryonemanagement.com",
+      "summary": "A property management company on Queens Boulevard in Rego Park managing residential, commercial and luxury properties across Queens and NYC, led by founder and CEO Zarina Yusupova.",
+      "brief": "Owners need to trust a manager before they hand over a building. The site had to explain the service plainly, show the portfolio and turn ad traffic into consultation requests.",
+      "built": [
+        "Service pages for residential, commercial and luxury management",
+        "A properties page with filters, sorting and detail views",
+        "Tenant and owner portal links through DoorLoop",
+        "A dedicated ad landing page with a lead form",
+        "A how-it-works process, areas served and FAQ"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "Landing pages",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Green",
+          "hex": "#046307"
+        },
+        {
+          "name": "Gold",
+          "hex": "#D4AF37"
+        },
+        {
+          "name": "Bronze",
+          "hex": "#996515"
+        },
+        {
+          "name": "Mist",
+          "hex": "#F8F9FA"
+        }
+      ],
+      "fonts": [
+        "Playfair Display",
+        "Montserrat"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "DoorLoop",
+        "EmailJS"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "services",
+          "caption": "Residential, commercial and luxury management"
+        },
+        {
+          "file": "process",
+          "caption": "How it works"
+        },
+        {
+          "file": "properties",
+          "caption": "Featured properties"
+        },
+        {
+          "file": "areas",
+          "caption": "Areas served"
+        }
+      ],
+      "mobile": [
+        "mobile"
+      ],
+      "logo": "logo.webp"
+    },
+    {
+      "slug": "east-coast-realty",
+      "name": "East Coast Realty by Zarina",
+      "type": "Real estate brokerage",
+      "location": "Rego Park, Queens",
+      "liveUrl": "https://www.eastcoastrealtybyzarina.com",
+      "browseUrl": "https://www.eastcoastrealtybyzarina.com",
+      "summary": "A New York real estate brokerage led by founder and principal broker Zarina Yusupova, with listings, buyer tools and local guidance.",
+      "brief": "Renters and buyers want to browse listings and run the numbers before they call. The site puts both front and center.",
+      "built": [
+        "Rental listings with search filters and map views",
+        "A mortgage calculator, debt-to-income calculator and home value estimator",
+        "An IDX link for browsing all listings",
+        "FAQ and Fair Housing notice",
+        "Reviews and a contact form"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Electric blue",
+          "hex": "#0100F4"
+        },
+        {
+          "name": "Sky",
+          "hex": "#00AAFF"
+        },
+        {
+          "name": "Slate",
+          "hex": "#2B3E50"
+        },
+        {
+          "name": "Mist",
+          "hex": "#F9F9F9"
+        }
+      ],
+      "fonts": [
+        "Montserrat",
+        "Quicksand"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "IDX Broker"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "about",
+          "caption": "Meet Zarina"
+        },
+        {
+          "file": "tools",
+          "caption": "Mortgage, debt-to-income and home-value tools"
+        },
+        {
+          "file": "faq",
+          "caption": "FAQ"
+        }
+      ],
+      "mobile": [
+        "mobile"
+      ],
+      "logo": "logo.webp"
+    },
+    {
+      "slug": "iconic-aesthetics",
+      "name": "Iconic Aesthetics",
+      "type": "Permanent makeup & lash studio",
+      "location": "Rego Park, Queens",
+      "liveUrl": "https://theiconicaesthetic.com",
+      "browseUrl": "https://theiconicaesthetic.com",
+      "summary": "A Rego Park studio for permanent makeup, lashes, brows and facials, led by founder and lead aesthetician Ilanit Shalom.",
+      "brief": "Permanent makeup is a big decision. The site leads with real before-and-after results and clear prices so clients arrive confident.",
+      "built": [
+        "A menu of 18 services with prices and durations",
+        "A before-and-after gallery of real results",
+        "An FAQ for first-time clients",
+        "A booking request form",
+        "An Instagram feed and refund policy page"
+      ],
+      "services": [
+        "Website design",
+        "Development",
+        "SEO"
+      ],
+      "palette": [
+        {
+          "name": "Rose",
+          "hex": "#D8A39D"
+        },
+        {
+          "name": "Gold",
+          "hex": "#B89D5A"
+        },
+        {
+          "name": "Cocoa",
+          "hex": "#5A3D3D"
+        },
+        {
+          "name": "Mist",
+          "hex": "#F9F9F9"
+        }
+      ],
+      "fonts": [
+        "Marcellus",
+        "Montserrat"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Home"
+        },
+        {
+          "file": "about",
+          "caption": "The studio"
+        },
+        {
+          "file": "gallery",
+          "caption": "Before and after results"
+        },
+        {
+          "file": "booking",
+          "caption": "Booking request"
+        }
+      ],
+      "mobile": [
+        "mobile"
+      ],
+      "logo": "logo.webp",
+      "logoDark": true
+    },
+    {
+      "slug": "barber-world-nyc",
+      "name": "Barber World",
+      "type": "E-commerce store",
+      "location": "Ships from New York",
+      "liveUrl": "https://www.barberworldnyc.com",
+      "browseUrl": "https://www.barberworldnyc.com",
+      "summary": "An online store for professional barber clippers, trimmers and shavers from BaBylissPRO, StyleCraft, JRL and more.",
+      "brief": "A custom store that takes payment, calculates tax and ships orders without a monthly platform fee — and gets the shipping label printed automatically.",
+      "built": [
+        "A catalog of about 70 professional products across brand and category pages, with filters and sorting",
+        "Checkout through Stripe with cards, Klarna and Afterpay, plus automatic sales tax",
+        "Serverless order handling that buys the Shippo shipping label the moment an order is paid",
+        "Order confirmation and store policy pages",
+        "An AI chat assistant for product questions"
+      ],
+      "services": [
+        "Online store",
+        "Website design",
+        "Development",
+        "Payments & shipping"
+      ],
+      "palette": [
+        {
+          "name": "Black",
+          "hex": "#0A0A0A"
+        },
+        {
+          "name": "Gold",
+          "hex": "#D4AF37"
+        },
+        {
+          "name": "Light gold",
+          "hex": "#E6C969"
+        },
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        }
+      ],
+      "fonts": [
+        "Inter"
+      ],
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Stripe",
+        "Shippo",
+        "Vercel serverless"
+      ],
+      "shots": [
+        {
+          "file": "hero",
+          "caption": "Shop by brand and category"
+        },
+        {
+          "file": "about",
+          "caption": "About the store"
+        },
+        {
+          "file": "why",
+          "caption": "Why buy from Barber World"
+        }
+      ],
+      "mobile": [
+        "mobile"
+      ],
+      "logo": "logo.webp",
+      "logoDark": true
     }
   ]
 }

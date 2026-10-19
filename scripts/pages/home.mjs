@@ -58,8 +58,9 @@ const visual = v => {
 };
 
 export function homePage() {
-  const { projects, services } = DATA;
+  const { projects, allProjects, services } = DATA;
   const first = projects[0];
+  const moreCount = allProjects.length - projects.length;
   const schema = [
     businessSchema(),
     { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE.origin}/#website`, name: SITE.name, url: `${SITE.origin}/`, publisher: { '@id': `${SITE.origin}/#business` } },
@@ -165,7 +166,7 @@ export function homePage() {
   <div class="wrap work-hs__head">
     <h2 id="work-title" data-reveal="lines">Recent work</h2>
     <p>Six brands we built end to end — logo, website and more — for medical practices, therapists, an accounting firm and a six-building co-op across Queens, Long Island and Manhattan. Open any of them and click around.</p>
-    <a class="link-arrow" href="/portfolio/">All projects</a>
+    <a class="link-arrow" href="/portfolio/">See all ${allProjects.length} projects</a>
   </div>
   <div class="hs" id="workScroll">
     <div class="hs__track">${panels}
@@ -173,14 +174,24 @@ export function homePage() {
         <div class="hs__end">
           <p class="hs__end-big">Yours could be next.</p>
           <p>Tell us what your business does and who you want to reach. We'll show you what we'd build — from the logo to the sign on the door.</p>
-          <a class="btn btn--sun btn--lg" href="/contact/">Start a project</a>
+          <div class="hs__end-ctas"><a class="btn btn--sun btn--lg" href="/contact/">Start a project</a>${moreCount > 0 ? `<a class="btn btn--line btn--lg hs__more" href="/portfolio/#more">See ${moreCount} more projects</a>` : ''}</div>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<section class="logo-wall" aria-labelledby="logos-title">
+${moreCount > 0 ? `<section class="more-strip" aria-labelledby="more-strip-title">
+  <div class="wrap more-strip__in">
+    <h2 id="more-strip-title" class="more-strip__title" data-reveal="lines">And ${moreCount} more</h2>
+    <ul class="more-strip__list" data-reveal="stagger">
+      ${allProjects.filter(p => !p.featured).map(p => `<li><a href="/portfolio/${p.slug}/" title="${esc(p.name)}"><span class="more-strip__logo${p.logoDark ? ' is-dark' : ''}"><img src="/assets/work/${p.slug}/logo.webp" alt="${esc(p.name)}" loading="lazy"></span><span class="more-strip__name">${esc(p.name)}</span></a></li>`).join('\n      ')}
+    </ul>
+    <a class="btn btn--line more-strip__btn" href="/portfolio/#more">See more projects</a>
+  </div>
+</section>
+
+` : ''}<section class="logo-wall" aria-labelledby="logos-title">
   <div class="wrap">
     <div class="split-head">
       <h2 id="logos-title" data-reveal="lines">Logos we've designed</h2>

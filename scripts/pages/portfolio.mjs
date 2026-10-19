@@ -9,7 +9,8 @@ const fontSpecimenHref = fonts =>
   `&text=${encodeURIComponent('Aa' + fonts.join(''))}&display=swap`;
 
 export function portfolioIndex() {
-  const { projects } = DATA;
+  const { projects, allProjects } = DATA;
+  const more = allProjects.filter(p => !p.featured);
   const rows = projects.map((p, i) => `
     <article class="pf-row${i % 2 ? ' pf-row--flip' : ''}">
       <a class="pf-row__media" href="/portfolio/${p.slug}/" aria-label="${esc(p.name)} case study">
@@ -38,7 +39,7 @@ export function portfolioIndex() {
       about: { '@id': businessId },
       mainEntity: {
         '@type': 'ItemList',
-        itemListElement: projects.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.origin}/portfolio/${p.slug}/`, name: p.name })),
+        itemListElement: allProjects.map((p, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE.origin}/portfolio/${p.slug}/`, name: p.name })),
       },
     },
     breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Work', path: '/portfolio/' }]),
@@ -54,12 +55,31 @@ export function portfolioIndex() {
 <section class="pf-list">
   <div class="wrap">${rows}
   </div>
-</section>`;
+</section>
+${more.length ? `<section class="pf-more" id="more" aria-labelledby="more-title">
+  <div class="wrap">
+    <div class="split-head">
+      <h2 id="more-title" data-reveal="lines">More projects</h2>
+      <p>Salons, spas, therapists, real estate, property management and an online store — ${more.length} more sites we designed and built across Queens, Manhattan and Brooklyn.</p>
+    </div>
+    <ul class="pf-cards" data-reveal="stagger">
+      ${more.map(p => `<li><a class="pf-card" href="/portfolio/${p.slug}/">
+        <span class="pf-card__shot"><span class="chrome"><span></span><span></span><span></span><em>${esc(host(p.liveUrl || p.browseUrl))}</em></span>${shotImg(p, 'hero', { sizes: '(min-width: 1100px) 400px, (min-width: 700px) 46vw, 92vw', alt: `${p.name} website designed by Elan's Tech World` })}</span>
+        <span class="pf-card__body">
+          <span class="pf-card__logo${p.logoDark ? ' is-dark' : ''}"><img src="/assets/work/${p.slug}/logo.webp" alt="" loading="lazy"></span>
+          <span class="pf-card__name">${esc(p.name)}</span>
+          <span class="pf-card__meta">${esc(p.type)}, ${esc(p.location)}</span>
+          <span class="pf-card__go">See the project</span>
+        </span>
+      </a></li>`).join('\n      ')}
+    </ul>
+  </div>
+</section>` : ''}`;
 
   return page({
     meta: {
       title: "Web Design Portfolio — NYC Client Websites | Elan's Tech World",
-      description: 'Case studies of custom websites we designed and hand-coded for practices, firms and a co-op across Queens, Long Island and Manhattan. Browse each one live.',
+      description: `${allProjects.length} client websites we designed and built: medical practices, therapists, med spas, salons, real estate, property management and e-commerce across NYC.`,
       path: '/portfolio/',
       schema,
     },
@@ -68,9 +88,10 @@ export function portfolioIndex() {
   });
 }
 
-export function caseStudy(p, i) {
-  const { projects } = DATA;
-  const next = projects[(i + 1) % projects.length];
+export function caseStudy(p) {
+  const { allProjects } = DATA;
+  const i = allProjects.indexOf(p);
+  const next = allProjects[(i + 1) % allProjects.length];
   const liveHost = host(p.liveUrl || p.browseUrl);
   const shots = p.shots.filter(s => hasShot(p.slug, s.file));
   const gallery = shots.slice(1);
@@ -194,9 +215,9 @@ export function caseStudy(p, i) {
     <div class="wrap cs-logo__in">
       <div class="cs-logo__text">
         <h2 id="logo-title" data-reveal="lines">${p.photos && p.photos.some(ph => ph.file.startsWith('social-')) ? 'The logo &amp; online presence' : 'The logo'}</h2>
-        <p>Designed by Elan's Tech World, then carried through the website, social media, print and signs.</p>
+        <p>${p.services.includes('Logo design') ? "Designed by Elan's Tech World, then carried through the website, social media, print and signs." : 'The brand, carried through every page of the website we built.'}</p>
       </div>
-      <div class="cs-logo__plate" data-reveal><img src="/assets/work/${p.slug}/${p.logo}" alt="${esc(p.name)} logo" loading="lazy"></div>
+      <div class="cs-logo__plate${p.logoDark ? ' is-dark' : ''}" data-reveal><img src="/assets/work/${p.slug}/${p.logo}" alt="${esc(p.name)} logo" loading="lazy"></div>
     </div>
     ${(p.photos || []).length ? `<div class="wrap cs-photos" data-reveal="stagger">
       ${p.photos.map(ph => `<figure class="${[ph.wide ? 'is-wide' : '', ph.contain ? 'is-shot' : ''].join(' ').trim()}"><img src="/assets/work/${p.slug}/${ph.file}.webp" alt="${esc(p.name)} — ${esc(ph.caption)}" loading="lazy" width="${ph.w || 1600}" height="${ph.h || 1067}"><figcaption>${esc(ph.caption)}</figcaption></figure>`).join('\n      ')}

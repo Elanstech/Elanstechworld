@@ -83,8 +83,8 @@ ${groups.map((g, gi) => `<section class="svc-group${gi % 2 ? ' svc-group--tint' 
 }
 
 export function servicePage(s) {
-  const { services, projects } = DATA;
-  const work = (s.work || []).map(slug => projects.find(p => p.slug === slug)).filter(Boolean);
+  const { services, allProjects } = DATA;
+  const work = (s.work || []).map(slug => allProjects.find(p => p.slug === slug)).filter(Boolean);
   const related = services.filter(x => x.slug !== s.slug && x.group === s.group).concat(services.filter(x => x.group !== s.group)).slice(0, 3);
   const schema = [
     {

@@ -16,7 +16,7 @@ export const SITE = {
 };
 
 // Filled in by build.mjs so the header/footer can list every service and project.
-export const DATA = { projects: [], services: [], groups: [] };
+export const DATA = { projects: [], allProjects: [], services: [], groups: [] };
 
 // Content hash per asset so browsers fetch fresh CSS/JS after every deploy.
 const ver = rel => { try { return crypto.createHash('sha1').update(fs.readFileSync(new URL(`../${rel}`, import.meta.url))).digest('hex').slice(0, 8); } catch { return '1'; } };

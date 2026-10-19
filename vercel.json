@@ -71,22 +71,22 @@
     },
     {
       "source": "/portfolio/barber-world-nyc.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/barber-world-nyc/",
       "permanent": true
     },
     {
       "source": "/portfolio/century-one-properties.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/century-one-management/",
       "permanent": true
     },
     {
       "source": "/portfolio/doug-uhlig-psychological.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/doug-uhlig-psychological/",
       "permanent": true
     },
     {
       "source": "/portfolio/east-coast-realty.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/east-coast-realty/",
       "permanent": true
     },
     {
@@ -96,17 +96,17 @@
     },
     {
       "source": "/portfolio/iconic-aesthetics.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/iconic-aesthetics/",
       "permanent": true
     },
     {
       "source": "/portfolio/lauras-beauty-touch.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/lauras-beauty-touch/",
       "permanent": true
     },
     {
       "source": "/portfolio/nyc-panache-salon.html",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/nyc-panache-salon/",
       "permanent": true
     },
     {
@@ -115,42 +115,12 @@
       "permanent": true
     },
     {
-      "source": "/portfolio/barber-world-nyc",
-      "destination": "/portfolio/",
-      "permanent": true
-    },
-    {
       "source": "/portfolio/century-one-properties",
-      "destination": "/portfolio/",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/doug-uhlig-psychological",
-      "destination": "/portfolio/",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/east-coast-realty",
-      "destination": "/portfolio/",
+      "destination": "/portfolio/century-one-management/",
       "permanent": true
     },
     {
       "source": "/portfolio/five-star-laser",
-      "destination": "/portfolio/",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/iconic-aesthetics",
-      "destination": "/portfolio/",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/lauras-beauty-touch",
-      "destination": "/portfolio/",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/nyc-panache-salon",
       "destination": "/portfolio/",
       "permanent": true
     },
@@ -182,6 +152,11 @@
     {
       "source": "/sitemap-portfolio.xml",
       "destination": "/sitemap.xml",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/century-one-properties/",
+      "destination": "/portfolio/century-one-management/",
       "permanent": true
     }
   ],
