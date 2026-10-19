@@ -651,17 +651,6 @@ section { position: relative; }
 .rot__caret { display: inline-block; width: .07em; height: .78em; margin-left: .04em; vertical-align: -0.04em; background: var(--sun); animation: blink 1s steps(1) infinite; }
 .hero__title .dot { color: var(--sun); }
 
-/* Ticker */
-.ticker { background: var(--ink); color: var(--paper); padding: 18px 0; overflow: hidden; border-top: 4px solid var(--gold); }
-.ticker__row { overflow: hidden; }
-.ticker__track { display: flex; align-items: center; gap: 28px; width: max-content; padding-right: 28px; animation: marquee 60s linear infinite; }
-.ticker__row--rev .ticker__track { animation-direction: reverse; animation-duration: 75s; }
-.ticker__track span { font-size: clamp(1.5rem, 3vw, 2.6rem); font-weight: 720; font-stretch: 86%; letter-spacing: -0.02em; white-space: nowrap; }
-.ticker__row--rev .ticker__track span { font-size: clamp(1rem, 1.6vw, 1.3rem); font-weight: 560; font-stretch: 100%; color: var(--gold-soft); letter-spacing: 0; }
-.ticker__track i { font-style: normal; color: var(--sun); font-size: .9rem; }
-.ticker__row + .ticker__row { margin-top: 10px; }
-@keyframes marquee { to { transform: translateX(-50%); } }
-
 /* Journey */
 .journey { padding-block: clamp(80px, 11vw, 150px); }
 .journey__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); }

@@ -187,15 +187,6 @@
       gsap.to('.seal', { rotate: 120, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
     }
 
-    // Ticker speeds up with your scroll.
-    const tracks = $$('.ticker__track');
-    if (tracks.length) {
-      const anims = tracks.map(t => t.getAnimations()[0]).filter(Boolean);
-      let boost = 0;
-      ScrollTrigger.create({ trigger: '.ticker', start: 'top bottom', end: 'bottom top', onUpdate: self => { boost = Math.min(6, Math.abs(self.getVelocity()) / 300); } });
-      gsap.ticker.add(() => { boost *= 0.92; anims.forEach(a => { a.playbackRate = 1 + boost; }); });
-    }
-
     // Journey: each step takes the stage as it reaches the middle of the screen.
     const steps = $$('.journey__step');
     if (steps.length) {

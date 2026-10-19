@@ -30,7 +30,6 @@ export function liveBuildData(projects) {
 
 const ROTATE = ['websites', 'reels', 'brands', 'logos', 'flyers', 'signs'];
 
-const TICKER = ['Websites', 'SEO', 'Google Business Profile', 'Instagram filming', 'Reel scripts', 'Cinematic video', 'Photo editing', 'Logo design', 'Branding', 'PR', 'Business cards', 'Flyers', 'Circle signs', 'Glass signs', 'QR stands', 'Property management systems'];
 
 /* The journey: every place a customer meets the business, shown with real client work where we have it. */
 const STAGES = [
@@ -85,7 +84,6 @@ export function homePage() {
           </div>
         </article>`).join('');
 
-  const tickerRow = TICKER.map(t => `<span>${esc(t)}</span><i aria-hidden="true">✦</i>`).join('');
 
   const body = `
 <section class="hero" aria-labelledby="hero-title">
@@ -136,11 +134,6 @@ export function homePage() {
   </div>
   <script type="application/json" id="lbData">${JSON.stringify(liveBuildData(projects)).replace(/</g, '\\u003c')}</script>
 </section>
-
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__row"><div class="ticker__track">${tickerRow}${tickerRow}</div></div>
-  <div class="ticker__row ticker__row--rev"><div class="ticker__track">${tickerRow}${tickerRow}</div></div>
-</div>
 
 <section class="journey" aria-labelledby="journey-title">
   <div class="wrap">
