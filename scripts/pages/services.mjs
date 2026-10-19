@@ -9,7 +9,7 @@ const BUNDLES = [
 ];
 
 const projectCard = p => `<a class="mini-case" href="/portfolio/${p.slug}/">
-  <span class="mini-case__logo"><img src="/assets/work/${p.slug}/logo.webp" alt="${esc(p.name)} logo" loading="lazy"></span>
+  <span class="mini-case__logo${p.logoDark ? ' is-dark' : ''}"><img src="/assets/work/${p.slug}/logo.webp" alt="${esc(p.name)} logo" loading="lazy"></span>
   <span class="mini-case__name">${esc(p.name)}</span>
   <span class="mini-case__meta">${esc(p.type)}, ${esc(p.location)}</span>
 </a>`;
