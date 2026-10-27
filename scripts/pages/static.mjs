@@ -71,7 +71,7 @@ export function whyUsPage() {
 
 <section class="founder">
   <div class="wrap founder__in">
-    <div class="founder__mark"><img src="/assets/images/Elanslogo.jpeg" alt="Elan's Tech World logo" width="220" height="220" loading="lazy"></div>
+    <div class="founder__mark"><img src="/assets/images/etw-logo-lg.webp" alt="Elan's Tech World logo" width="720" height="676" loading="lazy"></div>
     <div>
       <h2 data-reveal="lines">Hi — I'm Elan.</h2>
       <p>I started Elan's Tech World because too many New York business owners were being sold the same template twice and charged rent on it forever. I build the opposite: a site made for one business, handed over completely, and backed by a phone number that reaches me directly.</p>

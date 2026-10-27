@@ -5,6 +5,11 @@
   "trailingSlash": true,
   "redirects": [
     {
+      "source": "/assets/images/Elanslogo.jpeg",
+      "destination": "/assets/images/etw-logo.png",
+      "permanent": true
+    },
+    {
       "source": "/pages/whyus.html",
       "destination": "/whyus/",
       "permanent": true

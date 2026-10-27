@@ -22,6 +22,10 @@ export const DATA = { projects: [], allProjects: [], services: [], groups: [] };
 const ver = rel => { try { return crypto.createHash('sha1').update(fs.readFileSync(new URL(`../${rel}`, import.meta.url))).digest('hex').slice(0, 8); } catch { return '1'; } };
 const CSS_V = ver('css/site.css');
 const JS_V = ver('js/site.js');
+const LOGO_V = ver('assets/images/etw-logo.webp');
+const ICON_V = ver('assets/favicon/favicon.svg');
+// Versioned URL for a file on this site, so a replaced image (logo, share image) is re-fetched instead of served from cache.
+const bust = u => u.startsWith(SITE.origin + '/') ? `${u}?v=${ver(u.slice(SITE.origin.length + 1))}` : u;
 
 export const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -36,7 +40,7 @@ export const businessSchema = () => ({
   description:
     "Full-service creative and digital agency in Rego Park, Queens: website design, SEO, Google Business Profile, Instagram filming and management, cinematic video, logo design and branding, business card and flyer printing, signs and property management systems.",
   url: `${SITE.origin}/`,
-  logo: `${SITE.origin}/assets/images/Elanslogo.jpeg`,
+  logo: `${SITE.origin}/assets/images/etw-logo.png`,
   image: `${SITE.origin}/assets/images/og-image.jpg`,
   telephone: '+1-929-417-6819',
   email: SITE.email,
@@ -72,7 +76,7 @@ const NAV = [
 
 export function head({ title, description, path, image, schema = [], preload = [], extraHead = '' }) {
   const url = `${SITE.origin}${path}`;
-  const og = image || `${SITE.origin}/assets/images/og-image.jpg`;
+  const og = bust(image || `${SITE.origin}/assets/images/og-image.jpg`);
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -98,10 +102,10 @@ export function head({ title, description, path, image, schema = [], preload = [
 <meta name="twitter:image" content="${og}">
 <meta name="geo.region" content="US-NY">
 <meta name="geo.placename" content="Rego Park, Queens, New York">
-<link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/assets/favicon/favicon-96x96.png" sizes="96x96" type="image/png">
-<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
-<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link rel="icon" href="/assets/favicon/favicon.svg?v=${ICON_V}" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png?v=${ICON_V}" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png?v=${ICON_V}">
+<link rel="manifest" href="/assets/favicon/site.webmanifest?v=${ICON_V}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist+Mono:wght@400;500&display=swap">
@@ -141,7 +145,7 @@ export function header(active) {
 <header class="site-header" id="top">
   <div class="wrap site-header__in">
     <a class="brand" href="/" aria-label="${esc(SITE.name)} home">
-      <img src="/assets/images/etw-logo.webp" alt="" width="53" height="54">
+      <img src="/assets/images/etw-logo.webp?v=${LOGO_V}" alt="" width="58" height="54">
       <span class="brand__name">Elan's Tech World<small>Full-service studio, Queens NYC</small></span>
     </a>
     <nav class="nav" aria-label="Main">
