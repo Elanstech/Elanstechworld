@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arsen Shakhunts &amp; Valery Meladze Concerts | Elan's Tech World Events</title>
+<meta name="description" content="Arsen Shakhunts: A Mother's Day Concert, Sunday May 9, 2027 at Hard Rock Live, Etess Arena, Atlantic City. Plus Valery Meladze at Kings Theatre, Brooklyn.">
+<link rel="canonical" href="https://www.elanstechworld.com/events/">
+<meta name="theme-color" content="#0b0807">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Elan's Tech World">
+<meta property="og:title" content="Arsen Shakhunts &amp; Valery Meladze Concerts | Elan's Tech World Events">
+<meta property="og:description" content="Arsen Shakhunts: A Mother's Day Concert, Sunday May 9, 2027 at Hard Rock Live, Etess Arena, Atlantic City. Plus Valery Meladze at Kings Theatre, Brooklyn.">
+<meta property="og:url" content="https://www.elanstechworld.com/events/">
+<meta property="og:image" content="https://www.elanstechworld.com/assets/images/events/arsen-shakhunts-poster.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1600">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon/favicon.svg?v=df0a1f41" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon/favicon-96x96.png?v=df0a1f41" sizes="96x96" type="image/png">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png?v=df0a1f41">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: a dark concert-hall microsite. Featured show hero with poster and countdown,
+   then the season as ticket stubs, then one detail block per show, then contact. */
+:root {
+  --bg: #0b0807;
+  --stage: #220c08;
+  --panel: #120c0a;
+  --line: #3a2a1f;
+  --gold: #d6b46e;
+  --gold-hi: #f1dca6;
+  --gold-lo: #a9843f;
+  --ink: #f1e7d6;
+  --muted: #a8977f;
+  --on-gold: #1a0f08;
+  --display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "Jost", "Futura", "Avenir Next", "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background-image: radial-gradient(ellipse 80% 50% at 20% 0%, var(--stage), transparent 70%);
+  background-repeat: no-repeat;
+}
+.wrap { max-width: 1140px; margin: 0 auto; }
+section { scroll-margin-top: 24px; }
+
+/* Shared type */
+.eyebrow, .label, .mast nav a, .btn, .status {
+  font-size: .72rem; letter-spacing: .26em; text-transform: uppercase; font-weight: 400;
+}
+.eyebrow { color: var(--gold); margin: 0; }
+.label { color: var(--muted); }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; }
+.gilt {
+  background: linear-gradient(100deg, var(--gold) 0%, var(--gold-hi) 45%, var(--gold) 70%, var(--gold-lo) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.tnum { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 1px solid var(--gold-hi); outline-offset: 3px; }
+
+/* Masthead */
+.mast {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap;
+  padding-block: 26px 18px; border-bottom: 1px solid var(--line);
+}
+.brand { font-family: var(--display); font-size: 1.35rem; color: var(--ink); text-decoration: none; }
+.brand em { color: var(--gold); }
+.mast nav { display: flex; gap: 22px; flex-wrap: wrap; }
+.mast nav a { color: var(--muted); text-decoration: none; }
+.mast nav a:hover, .mast nav a:focus-visible { color: var(--gold-hi); }
+
+/* Buttons */
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 22px; text-decoration: none; border: 1px solid var(--gold);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn.solid { background: var(--gold); color: var(--on-gold); font-weight: 500; }
+.btn.solid:hover, .btn.solid:focus-visible { background: var(--gold-hi); border-color: var(--gold-hi); }
+.btn.ghost { color: var(--gold-hi); }
+.btn.ghost:hover, .btn.ghost:focus-visible { background: var(--panel); border-color: var(--gold-hi); }
+.btn .arr { font-family: var(--sans); letter-spacing: 0; }
+
+.status {
+  display: inline-flex; align-items: center; gap: 10px; color: var(--gold-hi);
+}
+.status::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex: none;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.status.live::before { animation: none; background: var(--gold-hi); }
+@keyframes pulse { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .status::before { animation: none; } }
+
+/* Hero */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 64px);
+  align-items: center; padding-block: clamp(36px, 6vw, 72px);
+}
+.hero-copy { min-width: 0; display: flex; flex-direction: column; gap: 22px; }
+.hero h1 { font-size: clamp(3rem, 8.2vw, 6.4rem); line-height: .94; letter-spacing: -.015em; }
+.hero h1 span { display: block; }
+.hero .subtitle { font-family: var(--display); font-style: italic; font-size: clamp(1.3rem, 2.6vw, 1.8rem); margin: -8px 0 0; }
+.hero .when { margin: 0; color: var(--ink); font-size: 1.05rem; }
+.hero .when b { font-weight: 400; color: var(--gold-hi); }
+.poster { margin: 0; border: 1px solid var(--line); padding: 10px; background: #000; box-shadow: 0 34px 80px -34px #000; }
+.poster img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; }
+
+.countdown {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 440px;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.countdown div { padding-block: 12px; text-align: center; border-left: 1px solid var(--line); }
+.countdown div:first-child { border-left: 0; }
+.countdown strong { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(1.6rem, 3.6vw, 2.2rem); line-height: 1.1; color: var(--ink); }
+.countdown span { font-size: .64rem; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+.countdown-cap { margin: -10px 0 0; font-size: .85rem; color: var(--muted); }
+
+/* Section heads */
+.sec { padding-block: clamp(40px, 6vw, 72px); border-top: 1px solid var(--line); }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.05; }
+
+/* Upcoming list: ticket stubs */
+.stubs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.stub {
+  display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; align-items: center;
+  background: var(--panel); border: 1px solid var(--line);
+  transition: border-color .2s;
+}
+.stub:hover { border-color: var(--gold-lo); }
+.date {
+  align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 18px 10px; border-right: 1px dashed var(--line); text-align: center; gap: 2px;
+}
+.date .mo, .date .dow { font-size: .66rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gold); }
+.date .dd { font-family: var(--display); font-size: 2.6rem; line-height: 1; color: var(--ink); }
+.date .yr { font-size: .72rem; color: var(--muted); letter-spacing: .1em; }
+.stub-body { min-width: 0; padding: 18px 22px; display: flex; flex-direction: column; gap: 4px; }
+.stub-body h3 { font-size: 1.6rem; line-height: 1.15; }
+.stub-body h3 a { color: var(--ink); text-decoration: none; }
+.stub-body h3 a:hover, .stub-body h3 a:focus-visible { color: var(--gold-hi); }
+.stub-body p { margin: 0; color: var(--muted); font-size: .95rem; }
+.stub-act { padding: 18px 22px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+
+/* Show detail blocks */
+.show {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 64px); align-items: start;
+}
+.show-intro { min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.show-intro h2 { font-size: clamp(2.2rem, 4.8vw, 3.4rem); line-height: 1; }
+.show-intro .subtitle { font-family: var(--display); font-style: italic; font-size: 1.3rem; margin: -6px 0 0; }
+.show-intro p { margin: 0; max-width: 46ch; }
+.facts { margin: 0; border-top: 1px solid var(--line); min-width: 0; }
+.facts > div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.facts dt { padding-top: 4px; }
+.facts dd { margin: 0; min-width: 0; }
+.big { font-family: var(--display); font-size: 1.3rem; line-height: 1.25; display: block; }
+.sub { color: var(--muted); font-size: .95rem; display: block; }
+a.inline { color: var(--gold-hi); text-decoration: none; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+a.inline:hover, a.inline:focus-visible { border-bottom-color: var(--gold); }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card h3 { font-size: 1.5rem; }
+.card p { margin: 0; color: var(--muted); }
+.copyline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--ink); overflow-wrap: anywhere; }
+.copy {
+  font: inherit; font-size: .66rem; letter-spacing: .2em; text-transform: uppercase;
+  background: none; color: var(--muted); border: 1px solid var(--line); padding: 4px 10px; cursor: pointer;
+}
+.copy:hover, .copy:focus-visible { color: var(--gold-hi); border-color: var(--gold); }
+
+footer {
+  display: flex; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap;
+  padding-block: 24px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem;
+}
+footer a { color: var(--ink); text-decoration: none; }
+footer a:hover, footer a:focus-visible { color: var(--gold-hi); }
+
+@media (max-width: 860px) {
+  .hero, .show { grid-template-columns: minmax(0, 1fr); }
+  .hero .poster { max-width: 440px; order: -1; }
+  .contact { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .stub { grid-template-columns: 88px minmax(0, 1fr); }
+  .date .dd { font-size: 2.1rem; }
+  .stub-act { grid-column: 1 / -1; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; border-top: 1px dashed var(--line); padding: 14px 18px; }
+  .stub-body { padding: 16px 18px; }
+  .mast nav { gap: 14px; }
+}
+@media (max-width: 420px) {
+  .facts > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .btn { padding: 12px 16px; }
+}
+
+/* Page reset (standalone page; does not use /css/site.css) */
+html { -webkit-text-size-adjust: 100%; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="mast">
+    <a class="brand" href="/">Elan's Tech World <em>Events</em></a>
+    <nav aria-label="Sections">
+      <a href="#upcoming">Upcoming</a>
+      <a href="#arsen">Arsen Shakhunts</a>
+      <a href="#meladze">Valery Meladze</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Featured show -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Golden Voice Entertainment presents</p>
+        <h1 id="hero-title" class="gilt"><span>Arsen</span><span>Shakhunts</span></h1>
+        <p class="subtitle">A Mother's Day Concert</p>
+        <p class="when tnum"><b>Sunday, May 9, 2027</b> · Doors 6:00 PM · Hard Rock Live, Atlantic City</p>
+        <span class="status">Tickets on sale soon</span>
+
+        <div class="countdown tnum" id="countdown" aria-label="Time until doors open">
+          <div><strong id="cd-d">—</strong><span>Days</span></div>
+          <div><strong id="cd-h">—</strong><span>Hours</span></div>
+          <div><strong id="cd-m">—</strong><span>Min</span></div>
+          <div><strong id="cd-s">—</strong><span>Sec</span></div>
+        </div>
+        <p class="countdown-cap" id="cd-cap">Until doors open at Hard Rock Live</p>
+
+        <div class="btns">
+          <a class="btn solid" href="#arsen">Show details</a>
+          <a class="btn ghost" href="https://casino.hardrock.com/atlantic-city/event-calendar" target="_blank" rel="noopener">Hard Rock calendar <span class="arr" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="poster">
+        <img src="/assets/images/events/arsen-shakhunts-poster.jpg" width="1200" height="1600"
+             alt="Concert poster: Golden Voice Entertainment presents Arsen Shakhunts, A Mother's Day Concert, Sunday May 9, 2027, Hard Rock Live at Mark G. Etess Arena, Atlantic City">
+      </figure>
+    </section>
+
+    <!-- Upcoming -->
+    <section class="sec" id="upcoming" aria-labelledby="upcoming-title">
+      <div class="sec-head">
+        <h2 id="upcoming-title">Upcoming events</h2>
+        <span class="label">Mother's Day weekend · 2027</span>
+      </div>
+      <ul class="stubs">
+        <li class="stub">
+          <div class="date tnum"><span class="dow">Sun</span><span class="dd">09</span><span class="mo">May</span><span class="yr">2027</span></div>
+          <div class="stub-body">
+            <h3><a href="#arsen">Arsen Shakhunts</a></h3>
+            <p>A Mother's Day Concert · Hard Rock Live at Mark G. Etess Arena, Atlantic City, NJ · Doors 6:00 PM</p>
+          </div>
+          <div class="stub-act">
+            <span class="status">On sale soon</span>
+            <a class="btn ghost" href="#arsen">Details</a>
+          </div>
+        </li>
+        <li class="stub">
+          <div class="date tnum"><span class="dow">Sun</span><span class="dd">09</span><span class="mo">May</span><span class="yr">2027</span></div>
+          <div class="stub-body">
+            <h3><a href="#meladze">Valery Meladze</a></h3>
+            <p>Kings Theatre, Brooklyn, NY · 7:00 PM</p>
+          </div>
+          <div class="stub-act">
+            <span class="status live">Tickets available</span>
+            <a class="btn solid" href="https://us.atgtickets.com/events/valery-meladze/kings-theatre-brooklyn/tickets/1470B00E-3C0A-423D-9C09-34637B92B8F9" target="_blank" rel="noopener">Buy tickets <span class="arr" aria-hidden="true">↗</span></a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Arsen detail -->
+    <section class="sec" id="arsen" aria-labelledby="arsen-title">
+      <div class="show">
+        <div class="show-intro">
+          <p class="eyebrow">Live in Atlantic City</p>
+          <h2 id="arsen-title" class="gilt">Arsen Shakhunts</h2>
+          <p class="subtitle">A Mother's Day Concert</p>
+          <p>Celebrate Mother's Day with an evening of music by acclaimed singer Arsen Shakhunts. Enjoy his distinctive blend of Russian chanson, Eastern musical influences, and Armenian-style songs, along with fan favorites such as "Golubka," "Devochka, Stop!" and "A Ya Kayfuyu."</p>
+          <p>Make this Mother's Day unforgettable with Arsen Shakhunts live in Atlantic City!</p>
+          <span class="status">Tickets on sale soon</span>
+        </div>
+        <dl class="facts">
+          <div><dt class="label">Date</dt><dd><span class="big tnum">Sunday, May 9, 2027</span><span class="sub">Mother's Day</span></dd></div>
+          <div><dt class="label">Doors</dt><dd><span class="big tnum">6:00 PM</span></dd></div>
+          <div><dt class="label">Venue</dt><dd><span class="big">Hard Rock Live at Mark G. Etess Arena</span><span class="sub">Hard Rock Hotel &amp; Casino</span></dd></div>
+          <div><dt class="label">Address</dt><dd><span class="sub" style="color:var(--ink)">1000 Boardwalk, Atlantic City, NJ 08401</span></dd></div>
+          <div><dt class="label">Tickets</dt><dd><span class="sub" style="color:var(--ink)">On sale soon. Watch the <a class="inline" href="https://casino.hardrock.com/atlantic-city/event-calendar" target="_blank" rel="noopener">Hard Rock event calendar</a>.</span></dd></div>
+          <div><dt class="label">Presented by</dt><dd><span class="sub" style="color:var(--ink)">Golden Voice Entertainment AZ LLC</span></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Meladze detail -->
+    <section class="sec" id="meladze" aria-labelledby="meladze-title">
+      <div class="show">
+        <div class="show-intro">
+          <p class="eyebrow">Brooklyn, NY</p>
+          <h2 id="meladze-title" class="gilt">Valery Meladze</h2>
+          <p class="subtitle">Live at Kings Theatre</p>
+          <p>Valery Meladze takes the stage at Brooklyn's historic Kings Theatre on Mother's Day evening. Tickets are on sale now through the theatre's official seller.</p>
+          <div class="btns">
+            <a class="btn solid" href="https://us.atgtickets.com/events/valery-meladze/kings-theatre-brooklyn/tickets/1470B00E-3C0A-423D-9C09-34637B92B8F9" target="_blank" rel="noopener">Buy tickets <span class="arr" aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <dl class="facts">
+          <div><dt class="label">Date</dt><dd><span class="big tnum">Sunday, May 9, 2027</span><span class="sub">Mother's Day</span></dd></div>
+          <div><dt class="label">Show</dt><dd><span class="big tnum">7:00 PM</span></dd></div>
+          <div><dt class="label">Venue</dt><dd><span class="big">Kings Theatre</span><span class="sub">Flatbush, Brooklyn</span></dd></div>
+          <div><dt class="label">Address</dt><dd><span class="sub" style="color:var(--ink)">1027 Flatbush Ave, Brooklyn, NY 11226</span></dd></div>
+          <div><dt class="label">Tickets</dt><dd><span class="sub" style="color:var(--ink)">On sale now at <a class="inline" href="https://us.atgtickets.com/events/valery-meladze/kings-theatre-brooklyn/tickets/1470B00E-3C0A-423D-9C09-34637B92B8F9" target="_blank" rel="noopener">ATG Tickets</a>, the official seller. Prices include fees.</span></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="sec" id="contact" aria-labelledby="contact-title">
+      <div class="sec-head"><h2 id="contact-title">Questions &amp; bookings</h2></div>
+      <div class="contact">
+        <div class="card">
+          <p class="eyebrow">Arsen Shakhunts concert</p>
+          <h3>Golden Voice Entertainment</h3>
+          <p>Group tickets, press and general questions about the Atlantic City show.</p>
+          <div class="copyline"><span id="gv-email">goldenvoiceentertainment@gmail.com</span><button class="copy" type="button" id="copy-gv" data-target="gv-email">Copy</button></div>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Event marketing</p>
+          <h3>Elan's Tech World</h3>
+          <p>Promotion, websites, video and social for concerts and live events. Based in Rego Park, Queens.</p>
+          <div class="btns"><a class="btn ghost" href="/contact/">Work with us</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Event marketing by <a href="/">Elan's Tech World</a></span>
+    <span>Dates, times and ticket availability set by each presenter and venue.</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  // Countdown to doors: May 9, 2027, 6:00 PM Eastern (EDT, UTC-4)
+  var target = Date.parse('2027-05-09T18:00:00-04:00');
+  var els = { d: document.getElementById('cd-d'), h: document.getElementById('cd-h'), m: document.getElementById('cd-m'), s: document.getElementById('cd-s') };
+  var cap = document.getElementById('cd-cap');
+  var box = document.getElementById('countdown');
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      box.hidden = true;
+      cap.textContent = 'Doors are open. See you at Hard Rock Live.';
+      return false;
+    }
+    var s = Math.floor(diff / 1000);
+    els.d.textContent = Math.floor(s / 86400);
+    els.h.textContent = pad(Math.floor(s % 86400 / 3600));
+    els.m.textContent = pad(Math.floor(s % 3600 / 60));
+    els.s.textContent = pad(s % 60);
+    return true;
+  }
+  if (tick()) { var t = setInterval(function () { if (!tick()) clearInterval(t); }, 1000); }
+
+  // Copy buttons
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      function selectIt() {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      }
+      try {
+        navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = 'Copy'; }, 1600);
+        }, selectIt);
+      } catch (e) { selectIt(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
