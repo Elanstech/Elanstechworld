@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Email Signature · Elan's Tech World</title>
+<link rel="icon" href="/assets/favicon/favicon.svg" type="image/svg+xml">
+<style>
+  :root{--cobalt:#1f3f95;--sun:#f37021;--ink:#13203d;--paper:#fbf8f2;--line:#e6ddcf;--gold:#b48a5a}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  .wrap{max-width:860px;margin:0 auto;padding:40px 16px 80px}
+  h1{font-size:26px;margin:0 0 4px}
+  p.sub{margin:0 0 28px;color:#5b6478}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px;overflow-x:auto;box-shadow:0 10px 30px rgba(19,32,61,.06)}
+  .bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0 32px}
+  button{font:600 15px system-ui,sans-serif;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;background:var(--sun);color:#fff}
+  button.ghost{background:transparent;color:var(--cobalt);border:1.5px solid var(--cobalt)}
+  #status{color:#1a7f4b;font-weight:600}
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:10px 0}
+  summary{font-weight:600;cursor:pointer}
+  details ol{margin:10px 0 4px;padding-left:20px}
+  .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:0 0 20px}
+  .fields label{font-size:12px;font-weight:600;color:#5b6478;display:block}
+  .fields input{width:100%;font:14px system-ui,sans-serif;padding:9px 11px;border:1px solid var(--line);border-radius:8px;margin-top:3px;background:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Email signature</h1>
+  <p class="sub">Edit the fields, hit <b>Copy signature</b>, then paste it into your mail app's signature settings.</p>
+
+  <div class="fields">
+    <label>Name<input id="f-name" value="Elan Cohen"></label>
+    <label>Title<input id="f-title" value="CEO &amp; Founder"></label>
+    <label>Phone<input id="f-phone" value="(929) 417-6819"></label>
+    <label>Email<input id="f-email" value="elan@elanstechworld.com"></label>
+    <label>LinkedIn URL<input id="f-linkedin" value="https://www.linkedin.com/"></label>
+    <label>Instagram URL<input id="f-ig" value="https://www.instagram.com/elan_tech_world/"></label>
+  </div>
+
+  <div class="card"><div id="sig"></div></div>
+
+  <div class="bar">
+    <button id="copy">Copy signature</button>
+    <button class="ghost" id="copy-html">Copy HTML code</button>
+    <span id="status" role="status"></span>
+  </div>
+
+  <details open><summary>Gmail</summary><ol>
+    <li>Settings (gear) → <b>See all settings</b> → General → Signature → <b>Create new</b>.</li>
+    <li>Click in the box and paste (⌘V / Ctrl+V).</li>
+    <li>Set it as the default for new emails and replies, then <b>Save changes</b> at the bottom.</li>
+  </ol></details>
+  <details><summary>Outlook (web / new Outlook)</summary><ol>
+    <li>Settings → Account → <b>Signatures</b> → New signature.</li>
+    <li>Paste into the editor, pick it as the default, Save.</li>
+  </ol></details>
+  <details><summary>Apple Mail (Mac)</summary><ol>
+    <li>Mail → Settings → Signatures → <b>+</b>.</li>
+    <li>Uncheck “Always match my default message font”, then paste into the right-hand box.</li>
+  </ol></details>
+  <details><summary>iPhone Mail</summary><ol>
+    <li>Email this page's signature to yourself from the Mac/Gmail, open it on the iPhone and copy it.</li>
+    <li>Settings → Apps → Mail → Signature → paste, then shake to undo if iOS strips the styling and choose “Undo Change Attributes”.</li>
+  </ol></details>
+</div>
+
+<script>
+const BASE = 'https://www.elanstechworld.com/assets/email-signature/';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const v = id => document.getElementById(id).value.trim();
+
+function build() {
+  const name = esc(v('f-name')), title = esc(v('f-title')), phone = esc(v('f-phone')), email = esc(v('f-email'));
+  const li = esc(v('f-linkedin')), ig = esc(v('f-ig'));
+  const tel = phone.replace(/[^\d+]/g, '');
+  const F = "font-family:Arial,Helvetica,sans-serif;";
+  const a = "text-decoration:none;color:#13203d;";
+  const row = (icon, href, text) => `
+      <tr><td style="padding:0 10px 7px 0;vertical-align:middle;" width="22"><img src="${BASE}${icon}.png" width="22" height="22" alt="" style="display:block;border:0;"></td>
+      <td style="padding:0 0 7px 0;vertical-align:middle;${F}font-size:13px;line-height:22px;"><a href="${href}" style="${a}">${text}</a></td></tr>`;
+  const social = (icon, href, alt) => `<td style="padding:0 6px 0 0;"><a href="${href}" style="text-decoration:none;"><img src="${BASE}${icon}.png" width="28" height="28" alt="${alt}" style="display:block;border:0;"></a></td>`;
+
+  return `<table cellpadding="0" cellspacing="0" border="0" style="${F}color:#13203d;border-collapse:collapse;">
+  <tr><td style="padding:0 0 10px 0;"><img src="${BASE}best-regards.gif" width="224" height="72" alt="Best regards," style="display:block;border:0;"></td></tr>
+  <tr><td>
+    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+      <tr>
+        <td style="padding:0 20px 0 0;vertical-align:middle;text-align:center;" width="120">
+          <a href="https://www.elanstechworld.com/" style="text-decoration:none;"><img src="${BASE}logo.png" width="120" height="113" alt="Elan's Tech World" style="display:block;border:0;margin:0 auto;"></a>
+          <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:12px auto 0;border-collapse:collapse;"><tr>
+            ${social('instagram', ig, 'Instagram')}${social('linkedin', li, 'LinkedIn')}${social('website', 'https://www.elanstechworld.com/', 'Website').replace('padding:0 6px 0 0', 'padding:0')}
+          </tr></table>
+        </td>
+        <td style="border-left:2px solid #f37021;padding:0 0 0 20px;vertical-align:middle;">
+          <div style="${F}font-size:22px;line-height:26px;font-weight:bold;color:#1f3f95;">${name}</div>
+          <div style="${F}font-size:12px;line-height:18px;letter-spacing:1.5px;text-transform:uppercase;color:#13203d;padding-top:3px;">${title} &middot; Elan's Tech World</div>
+          <div style="${F}font-size:12px;line-height:18px;color:#b48a5a;padding-top:2px;">Websites &middot; SEO &middot; Branding &middot; Video &middot; Marketing</div>
+          <table cellpadding="0" cellspacing="0" border="0" style="margin:12px 0 12px;border-collapse:collapse;"><tr>
+            <td width="56" height="3" style="background:#1f3f95;font-size:0;line-height:0;" bgcolor="#1f3f95">&nbsp;</td>
+            <td width="24" height="3" style="background:#f37021;font-size:0;line-height:0;" bgcolor="#f37021">&nbsp;</td>
+          </tr></table>
+          <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+            ${row('globe', 'https://www.elanstechworld.com/', 'www.elanstechworld.com')}
+            ${row('phone', 'tel:' + tel, phone)}
+            ${row('mail', 'mailto:' + email, email)}
+          </table>
+          <table cellpadding="0" cellspacing="0" border="0" style="margin-top:6px;border-collapse:separate;"><tr>
+            <td bgcolor="#f37021" style="background:#f37021;border-radius:20px;padding:8px 18px;">
+              <a href="https://www.elanstechworld.com/contact/" style="${F}font-size:12px;font-weight:bold;color:#ffffff;text-decoration:none;letter-spacing:.3px;">Book a free consultation &rarr;</a>
+            </td>
+          </tr></table>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+  <tr><td style="padding:18px 0 0 0;">
+    <div style="border-top:1px solid #e6ddcf;padding-top:10px;${F}font-size:10px;line-height:14px;color:#8a8f99;max-width:560px;">
+      CONFIDENTIAL: This email and any attachments are intended only for the named recipient(s). If you received it by mistake, please notify the sender and delete it without sharing or copying its contents.
+    </div>
+  </td></tr>
+</table>`;
+}
+
+const sig = document.getElementById('sig'), status = document.getElementById('status');
+const render = () => { sig.innerHTML = build(); };
+document.querySelectorAll('.fields input').forEach(i => i.addEventListener('input', render));
+render();
+
+const flash = m => { status.textContent = m; setTimeout(() => status.textContent = '', 2500); };
+document.getElementById('copy').onclick = async () => {
+  const html = build();
+  try {
+    await navigator.clipboard.write([new ClipboardItem({
+      'text/html': new Blob([html], { type: 'text/html' }),
+      'text/plain': new Blob([sig.innerText], { type: 'text/plain' })
+    })]);
+  } catch {
+    const r = document.createRange(); r.selectNodeContents(sig);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    document.execCommand('copy'); s.removeAllRanges();
+  }
+  flash('Copied — now paste it into your mail app.');
+};
+document.getElementById('copy-html').onclick = async () => {
+  try { await navigator.clipboard.writeText(build()); flash('HTML copied.'); } catch { flash('Copy blocked — select the preview instead.'); }
+};
+</script>
+</body>
+</html>
