@@ -33,7 +33,7 @@
 
   <div class="fields">
     <label>Name<input id="f-name" value="Elan Cohen"></label>
-    <label>Title<input id="f-title" value="CEO &amp; Founder"></label>
+    <label>Title<input id="f-title" value="CEO &amp; Owner"></label>
     <label>Phone<input id="f-phone" value="(929) 417-6819"></label>
     <label>Email<input id="f-email" value="elan@elanstechworld.com"></label>
     <label>LinkedIn URL<input id="f-linkedin" value="https://www.linkedin.com/"></label>
@@ -68,7 +68,7 @@
 </div>
 
 <script>
-const BASE = 'https://www.elanstechworld.com/assets/email-signature/';
+const BASE = 'https://www.elanstechworld.com/assets/email-signature/v2/';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const v = id => document.getElementById(id).value.trim();
 
@@ -77,49 +77,35 @@ function build() {
   const li = esc(v('f-linkedin')), ig = esc(v('f-ig'));
   const tel = phone.replace(/[^\d+]/g, '');
   const F = "font-family:Arial,Helvetica,sans-serif;";
-  const a = "text-decoration:none;color:#13203d;";
-  const row = (icon, href, text) => `
-      <tr><td style="padding:0 10px 7px 0;vertical-align:middle;" width="22"><img src="${BASE}${icon}.png" width="22" height="22" alt="" style="display:block;border:0;"></td>
-      <td style="padding:0 0 7px 0;vertical-align:middle;${F}font-size:13px;line-height:22px;"><a href="${href}" style="${a}">${text}</a></td></tr>`;
-  const social = (icon, href, alt) => `<td style="padding:0 6px 0 0;"><a href="${href}" style="text-decoration:none;"><img src="${BASE}${icon}.png" width="28" height="28" alt="${alt}" style="display:block;border:0;"></a></td>`;
+  const row = (icon, href, text) => `<tr>
+        <td width="14" style="padding:0 7px 3px 0;vertical-align:middle;"><img src="${BASE}${icon}.png" width="14" height="14" alt="" style="display:block;border:0;"></td>
+        <td style="padding:0 0 3px 0;vertical-align:middle;${F}font-size:12px;line-height:18px;"><a href="${href}" style="color:#4a5468;text-decoration:none;">${text}</a></td>
+      </tr>`;
+  const social = (icon, href, alt, last) => `<td style="padding:0 ${last ? 0 : 6}px 0 0;"><a href="${href}" style="text-decoration:none;"><img src="${BASE}${icon}.png" width="18" height="18" alt="${alt}" style="display:block;border:0;"></a></td>`;
 
   return `<table cellpadding="0" cellspacing="0" border="0" style="${F}color:#13203d;border-collapse:collapse;">
-  <tr><td style="padding:0 0 10px 0;"><img src="${BASE}best-regards.gif" width="224" height="72" alt="Best regards," style="display:block;border:0;"></td></tr>
+  <tr><td style="padding:0 0 12px 0;"><img src="${BASE}best-regards.gif" width="140" height="39" alt="Best regards," style="display:block;border:0;"></td></tr>
   <tr><td>
-    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-      <tr>
-        <td style="padding:0 20px 0 0;vertical-align:middle;text-align:center;" width="120">
-          <a href="https://www.elanstechworld.com/" style="text-decoration:none;"><img src="${BASE}logo.png" width="120" height="113" alt="Elan's Tech World" style="display:block;border:0;margin:0 auto;"></a>
-          <table cellpadding="0" cellspacing="0" border="0" align="center" style="margin:12px auto 0;border-collapse:collapse;"><tr>
-            ${social('instagram', ig, 'Instagram')}${social('linkedin', li, 'LinkedIn')}${social('website', 'https://www.elanstechworld.com/', 'Website').replace('padding:0 6px 0 0', 'padding:0')}
-          </tr></table>
-        </td>
-        <td style="border-left:2px solid #f37021;padding:0 0 0 20px;vertical-align:middle;">
-          <div style="${F}font-size:22px;line-height:26px;font-weight:bold;color:#1f3f95;">${name}</div>
-          <div style="${F}font-size:12px;line-height:18px;letter-spacing:1.5px;text-transform:uppercase;color:#13203d;padding-top:3px;">${title} &middot; Elan's Tech World</div>
-          <div style="${F}font-size:12px;line-height:18px;color:#b48a5a;padding-top:2px;">Websites &middot; SEO &middot; Branding &middot; Video &middot; Marketing</div>
-          <table cellpadding="0" cellspacing="0" border="0" style="margin:12px 0 12px;border-collapse:collapse;"><tr>
-            <td width="56" height="3" style="background:#1f3f95;font-size:0;line-height:0;" bgcolor="#1f3f95">&nbsp;</td>
-            <td width="24" height="3" style="background:#f37021;font-size:0;line-height:0;" bgcolor="#f37021">&nbsp;</td>
-          </tr></table>
-          <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
-            ${row('globe', 'https://www.elanstechworld.com/', 'www.elanstechworld.com')}
-            ${row('phone', 'tel:' + tel, phone)}
-            ${row('mail', 'mailto:' + email, email)}
-          </table>
-          <table cellpadding="0" cellspacing="0" border="0" style="margin-top:6px;border-collapse:separate;"><tr>
-            <td bgcolor="#f37021" style="background:#f37021;border-radius:20px;padding:8px 18px;">
-              <a href="https://www.elanstechworld.com/contact/" style="${F}font-size:12px;font-weight:bold;color:#ffffff;text-decoration:none;letter-spacing:.3px;">Book a free consultation &rarr;</a>
-            </td>
-          </tr></table>
-        </td>
-      </tr>
-    </table>
+    <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;"><tr>
+      <td width="72" style="padding:0 16px 0 0;vertical-align:middle;">
+        <a href="https://www.elanstechworld.com/" style="text-decoration:none;"><img src="${BASE}logo.png" width="72" height="68" alt="Elan's Tech World" style="display:block;border:0;"></a>
+      </td>
+      <td style="border-left:1px solid #d9dde5;padding:0 0 0 16px;vertical-align:middle;">
+        <div style="${F}font-size:15px;line-height:20px;font-weight:bold;color:#13203d;">${name}</div>
+        <div style="${F}font-size:12px;line-height:17px;color:#6b7385;padding:1px 0 8px 0;">${title}, <span style="color:#1f3f95;">Elan's Tech World</span></div>
+        <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+          ${row('phone', 'tel:' + tel, phone)}
+          ${row('mail', 'mailto:' + email, email)}
+          ${row('globe', 'https://www.elanstechworld.com/', 'elanstechworld.com')}
+        </table>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin-top:6px;border-collapse:collapse;"><tr>
+          ${social('instagram', ig, 'Instagram')}${social('linkedin', li, 'LinkedIn', true)}
+        </tr></table>
+      </td>
+    </tr></table>
   </td></tr>
-  <tr><td style="padding:18px 0 0 0;">
-    <div style="border-top:1px solid #e6ddcf;padding-top:10px;${F}font-size:10px;line-height:14px;color:#8a8f99;max-width:560px;">
-      CONFIDENTIAL: This email and any attachments are intended only for the named recipient(s). If you received it by mistake, please notify the sender and delete it without sharing or copying its contents.
-    </div>
+  <tr><td style="padding:14px 0 0 0;${F}font-size:9px;line-height:13px;color:#a0a6b2;max-width:460px;width:460px;">
+    CONFIDENTIAL: This email and any attachments are intended only for the named recipient(s). If you received it in error, please notify the sender and delete it.
   </td></tr>
 </table>`;
 }
