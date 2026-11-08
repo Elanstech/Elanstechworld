@@ -904,3 +904,12 @@ section { position: relative; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
+
+/* Privacy / legal pages */
+.legal { padding-block: clamp(24px, 4vw, 48px) clamp(64px, 9vw, 120px); background: var(--paper); }
+.legal__in { max-width: 72ch; }
+.legal h2 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); margin-top: 2.2em; margin-bottom: .55em; letter-spacing: -0.015em; }
+.legal h2:first-child { margin-top: 0; }
+.legal p, .legal li { color: var(--ink-2); line-height: 1.7; font-size: 1.05rem; }
+.legal ul { padding-left: 1.2em; display: grid; gap: .6em; list-style: disc; }
+.legal a { text-decoration: underline; text-underline-offset: 3px; }

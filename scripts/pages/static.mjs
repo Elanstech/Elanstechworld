@@ -211,3 +211,62 @@ export function notFoundPage() {
   const html = page({ meta: { title: "Page not found | Elan's Tech World", description: 'This page could not be found.', path: '/404' }, active: '', body});
   return html.replace('<meta name="robots" content="index, follow, max-image-preview:large">', '<meta name="robots" content="noindex">');
 }
+
+/* ─────────────────────────── PRIVACY ─────────────────────────── */
+export function privacyPage() {
+  const updated = 'November 8, 2026';
+  const body = `
+<section class="page-hero page-hero--tight">
+  <div class="wrap">
+    <h1 class="page-hero__title">Privacy policy</h1>
+    <p class="page-hero__lede">Short version: we only collect what you send us, we use it to answer you and do the work, and we never sell it. Last updated ${updated}.</p>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap"><div class="legal__in">
+    <h2>Who we are</h2>
+    <p>${SITE.name} is a creative and digital studio in ${SITE.area}. This policy covers <a href="/">${SITE.origin.replace('https://', '')}</a>, our Instagram (${SITE.instagramHandle}) and Facebook pages, and the ads we run on Meta and Google. Questions go to <a href="mailto:${SITE.email}">${SITE.email}</a> or <a href="tel:${SITE.tel}">${SITE.phone}</a>.</p>
+
+    <h2>What we collect</h2>
+    <ul>
+      <li><strong>What you send us.</strong> When you use our contact form, message us on Instagram or Facebook, call, text or email, we receive what you share: usually your name, email, phone number, business name and details about your project.</li>
+      <li><strong>Ad interactions.</strong> If you tap one of our ads on Instagram, Facebook or Google and message or contact us, we see the message you send and basic results reported by those platforms (for example, how many people viewed or tapped an ad). We do not receive your personal account data from them.</li>
+      <li><strong>Basic site logs.</strong> Our hosting provider records standard technical information such as IP address and browser type to keep the site running and secure. This website does not use advertising trackers or sell-your-data cookies.</li>
+    </ul>
+
+    <h2>How we use it</h2>
+    <ul>
+      <li>To reply to you, prepare a quote and schedule calls.</li>
+      <li>To deliver the work you hire us for and send invoices.</li>
+      <li>To understand which of our ads and posts are working, in aggregate.</li>
+    </ul>
+    <p>We do not sell, rent or trade your information, and we don't add you to a mailing list.</p>
+
+    <h2>Who we share it with</h2>
+    <p>Only the services needed to run the business: FormSubmit (delivers contact-form messages to our inbox), Vercel (website hosting), Meta and Google (where our ads and pages run), and our email and phone providers. Each handles data under its own privacy policy. We may disclose information if the law requires it.</p>
+
+    <h2>How long we keep it</h2>
+    <p>Inquiries are kept as long as needed to respond and follow up, and client records as long as needed for the project, support and tax purposes. Ask and we'll delete what we don't legally have to keep.</p>
+
+    <h2>Your choices</h2>
+    <p>You can ask us to show you, correct or delete the information we hold about you at any time by emailing <a href="mailto:${SITE.email}">${SITE.email}</a>. You can also manage the ads you see in your Instagram, Facebook and Google ad settings.</p>
+
+    <h2>Children</h2>
+    <p>Our services are for businesses and adults. We don't knowingly collect information from children under 13.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, we'll update this page and the date at the top.</p>
+  </div></div>
+</section>`;
+  return page({
+    meta: {
+      title: "Privacy Policy | Elan's Tech World",
+      description: "How Elan's Tech World handles the information you send through our website, Instagram, Facebook, ads, calls and email. We never sell your data.",
+      path: '/privacy/',
+      schema: [breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Privacy policy', path: '/privacy/' }])],
+    },
+    active: '',
+    body,
+  });
+}

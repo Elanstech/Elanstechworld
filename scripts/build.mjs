@@ -7,7 +7,7 @@ import { SITE, DATA } from './layout.mjs';
 import { ROOT } from './media.mjs';
 import { homePage } from './pages/home.mjs';
 import { portfolioIndex, caseStudy } from './pages/portfolio.mjs';
-import { whyUsPage, contactPage, notFoundPage } from './pages/static.mjs';
+import { whyUsPage, contactPage, notFoundPage, privacyPage } from './pages/static.mjs';
 import { servicesIndex, servicePage } from './pages/services.mjs';
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/portfolio.json'), 'utf8'));
@@ -42,6 +42,7 @@ write('services/index.html', servicesIndex());
 services.forEach(s => write(`services/${s.slug}/index.html`, servicePage(s)));
 write('whyus/index.html', whyUsPage());
 write('contact/index.html', contactPage());
+write('privacy/index.html', privacyPage());
 write('portfolio/index.html', portfolioIndex());
 allProjects.forEach(p => write(`portfolio/${p.slug}/index.html`, caseStudy(p)));
 write('404.html', notFoundPage());
@@ -59,7 +60,7 @@ const today = new Date().toISOString().slice(0, 10);
 const urls = [
   ['/', '1.0'], ['/services/', '0.9'], ...services.map(x => [`/services/${x.slug}/`, '0.9']), ['/portfolio/', '0.9'], ['/whyus/', '0.7'], ['/contact/', '0.8'],
   ...allProjects.map(p => [`/portfolio/${p.slug}/`, p.featured ? '0.8' : '0.7']),
-  ['/shop/', '0.4'],
+  ['/shop/', '0.4'], ['/privacy/', '0.3'],
 ];
 const img = p => `\n    <image:image><image:loc>${SITE.origin}/assets/work/${p.slug}/hero.webp</image:loc><image:title>${p.name.replace(/&/g, '&amp;')} website</image:title></image:image>`;
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>

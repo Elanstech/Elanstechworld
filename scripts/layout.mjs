@@ -222,7 +222,7 @@ export function footer() {
     </div>
     <p class="site-footer__word" aria-hidden="true">${"Elan's Tech World".split('').map(c => `<span>${c === ' ' ? '&nbsp;' : esc(c)}</span>`).join('')}</p>
     <div class="site-footer__base">
-      <p>© ${year} Elan's Tech World. Every page of this site was written by hand.</p>
+      <p>© ${year} Elan's Tech World. Every page of this site was written by hand. <a href="/privacy/">Privacy policy</a></p>
       <a href="#top">Back to top</a>
     </div>
   </div>
